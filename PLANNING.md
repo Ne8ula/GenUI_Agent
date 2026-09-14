@@ -4,14 +4,16 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Approved expanded baseline for implementation |
-| Version | 0.2 |
-| Date | 2026-08-02 |
+| Status | v0.3 planning revision for owner review; v0.2 commitments preserved unless explicitly revised |
+| Version | 0.3 draft |
+| Date | 2026-09-14 |
 | Codename | EVA |
 | Initial audience | One personal user |
 | Target platforms | macOS and Windows |
 | Repository visibility | Public |
 | Future integration | Backend for an existing Live2D desktop companion |
+
+This revision incorporates the owner's public Canva pitch and confirmed requirements: immediate interactive cards/charts, asynchronous generated imagery, eventual optimization for the home workstation, optional Modal GPU experiments, owner-only hands-on phase acceptance, and persistent development visual references. The owner selected Space Grotesk / IBM Plex Sans / IBM Plex Mono after reviewing typography comparisons on 2026-09-14. Rendering experiments, final type scale, and accent-color changes remain proposals pending review. Review this plan before authoring `DESIGN.md` and `AGENTS.md`; no implementation phase is approved or complete merely because it appears here.
 
 ## 1. Purpose
 
@@ -57,6 +59,24 @@ The first complete demonstration must support this sequence:
 16. EVA proposes or writes a cited memory update describing the interaction and any explicit preference learned.
 17. EVA displays the memory-review dossier when review is required.
 18. EVA closes its eye and disappears completely when dismissed or dormant.
+
+### 1.3 Current repository and source hierarchy
+
+As of this revision, the repository contains this plan, an independent-study proposal, versioned concept PNGs, and document exports. It has no runnable desktop application, package manifest, or Rust crate. The architecture and milestones below describe intended work, not implemented capabilities.
+
+The [eight-slide Canva pitch](https://canva.link/6ug6dtvm50gfyxi), reviewed on 2026-09-14, is high-level visual inspiration. Reconcile it with the existing commitments and future tested implementation rather than treating reference artwork as an exact screen specification. Existing concepts in `docs/research/visuals/` are historical proposals, not accepted implementation screenshots. Root `DESIGN.md` will become the canonical visual specification after this planning review; root `AGENTS.md` will define development collaboration.
+
+### 1.4 Near-term study and longer-term product
+
+Preserve the [Fall 2026 independent-study proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md) as a bounded delivery track targeting mid-December:
+
+- build mocked seven-day weather and calendar-planning workflows using the same bounded component vocabulary;
+- demonstrate activation, the social eye, visible generation, conversational revision, inspectable memory retrieval, and explicit closure;
+- compare relational and instrumental conditions while holding functionality, generated results, voice identity, timing, visual grammar, and memory capability constant;
+- use synthetic data and simulated memory; production accounts, consequential device actions, full backend completion, and Live2D are outside the semester scope;
+- preserve the proposal's research, prototype, study, manuscript, demonstration, and presentation deliverables.
+
+The full vertical slice in Section 1.2 and Milestones 0–12 remain the longer product roadmap. The study may implement bounded subsets of these milestones without claiming that an entire product milestone has passed. Owner acceptance of development phases does not replace institutional approval for participant recruitment or the proposal's faculty/lab research process.
 
 ## 2. Goals and non-goals
 
@@ -194,11 +214,37 @@ EVA may precompute local embeddings, likely retrieval keys, UI skeletons, layout
 | Voice output | ElevenLabs |
 | Smart-home bridge | Home Assistant MCP |
 | Initial data integrations | Mock implementations behind production-shaped interfaces |
-| UI header typeface | Shippori Mincho |
-| UI text typeface | IBM Plex Sans Condensed |
+| UI header typeface | Space Grotesk |
+| UI text typeface | IBM Plex Sans |
 | Instrumentation typeface | IBM Plex Mono |
 
 All model names must be configuration values, not hard-coded assumptions. Capability detection and benchmark results determine routing over time.
+
+### 4.1 Proposed rendering and media responsibilities
+
+Retain Tauri 2, React/TypeScript, and the Rust policy broker. The owner wants interactive cards and charts immediately, with generated imagery added asynchronously. The proposed implementation separates three responsibilities:
+
+| Responsibility | Proposed implementation | Boundary |
+| --- | --- | --- |
+| UI composition | GPT or Claude through a provider adapter emits small validated declarative documents or patches | Selects approved components, data references, layout intentions, and bounded presentation parameters; never executable UI code |
+| Interactive rendering | React for text, charts, controls, and card geometry; a reviewed local WebGL effects layer | Owns readable content and frame-by-frame animation; no network or model call is required for dragging, focus, cancellation, or eye feedback |
+| Optional generated assets | Local ComfyUI service through a narrow asset adapter | Produces images or other media asynchronously; failure or absence cannot block the functional workspace |
+| Cloud experiments | Optional Modal-hosted generation worker or headless evaluation harness | Uses synthetic fixtures initially; results must be revalidated on the workstation |
+| Alternative media provider | Optional Higgsfield adapter or authoring workflow | Concept and media production experiment, not an initial interactive runtime dependency |
+| Alternative effects renderer | Native Rust `wgpu` experiment; TouchDesigner exhibit/motion experiment | Adoption requires a measured benefit and owner review; neither replaces the bounded UI contract |
+
+WebGL already supports GPU acceleration. Rust alone does not improve visual quality; a native `wgpu` renderer would require deliberate graphics, text, compositing, and interaction work. Begin by measuring reviewed effects in the actual Tauri WebViews on macOS and Windows. Feature-detect GPU support and provide a static/reduced-effects fallback. Evaluate WebGPU or native rendering only when compatibility and measurements justify it.
+
+TouchDesigner is a candidate for the lab exhibit and motion exploration. Its GPU-based TOPs can implement procedural visuals; embedding through TouchEngine adds installation and paid-license requirements documented by Derivative. A future exhibit renderer must consume bounded EVA events without receiving policy authority. It is not required to ship the desktop prototype.
+
+### 4.2 Workstation target and experimental infrastructure
+
+- Primary optimization target: the owner's home workstation, reported as an NVIDIA GeForce RTX 5080 with 16 GB dedicated VRAM and Intel i9, confirmed by the owner on 2026-09-14. Exact CPU, OS, system RAM, and display resolution/refresh rate remain to be confirmed.
+- Size generation workloads for 16 GB total dedicated VRAM while reserving measured headroom for the desktop renderer and other applications. The full 16 GB cannot be assumed available to model weights; verify actual free memory and peak workflow use on the workstation.
+- EVA's desktop shell, input handling, and policy broker remain local. Modal can host media workers and synthetic backend tests; a cloud inference result does not prove desktop overlay, capture, hotkey, or frame-time behavior.
+- Benchmark local rendering while generation is active on the same GPU. Limit generation concurrency, resolution, model residency, and queue size according to measured headroom; preserve interactive responsiveness under load.
+- Cloud experiments use the same versioned requests and fixture scenarios. Measure network transfer, queuing, cold initialization, warm inference, and delivery separately. Warm containers can reduce startup delays at an idle-resource cost; choose budgets before a paid experiment.
+- macOS and Windows compatibility commitments remain. Workstation-specific optimizations must have explicit fallbacks rather than making the NVIDIA GPU mandatory for all clients.
 
 ## 5. System architecture
 
@@ -578,6 +624,21 @@ These are initial engineering targets and must be revised from measured baseline
 No safety check may be skipped to meet a latency target.
 
 Performance evaluation also records p50, p95, and p99 for time to first useful UI, time to verified answer, UI stabilization, TTS start, correction rate, cache hit rate, cancellation, per-agent cost, CPU, memory, battery, and network usage.
+
+### 7.9 UI and asset latency contract
+
+The existing targets in Section 7.8 remain provisional engineering targets, not measured claims. "Immediate cards" means local acknowledgement and an interactive skeleton appear without waiting for a cloud response; useful data arrives through validated revisions. Never fill a chart with fabricated values to make it appear complete.
+
+- Keep drag, resize, pin, dismiss, keyboard interaction, and eye-state animation local.
+- Prefer a small patch to an existing stable component over regenerating a whole workspace. Bind content through validated data references and preserve user-adjusted geometry.
+- Render only complete, validated stream units; incomplete JSON and schema-valid but unauthorized actions never become executable behavior.
+- Present optional media in a reserved slot with queued, generating, ready, failed, or cancelled state. Show a labelled placeholder or suitable cached asset while pending; do not delay a usable chart or verified answer for imagery.
+- Discard late media results for superseded or dismissed revisions. A media refresh cannot displace controls, reset focus, imply verified evidence, or overwrite user edits.
+- Measure time to interactive skeleton, first useful validated UI, verified content, and completed media separately. Record p50/p95/p99, cold/warm cache status, workflow/model version, output resolution, peak VRAM, queue delay, and concurrent frame times.
+- Start the ComfyUI experiment with one approved still-image workflow and bounded concurrency. Choose the checkpoint and any distillation/quantization only after hardware and quality measurements. Do not promise a generation duration before these tests.
+- Test media-service failure, timeouts, cancellation, memory pressure, and no-GPU fallback. Optional media is not part of the critical path for core card interaction.
+
+Development subscriptions do not establish runtime API availability, model identifiers, quotas, or benchmark results. Preserve the existing Anthropic route as the baseline; compare a GPT adapter on identical bounded UI tasks before changing the narrator or planner. Do not put a serial Kimi → Claude → GPT chain on the normal interaction path merely because all three tools are available.
 
 ## 8. Personality and voice
 
@@ -1313,7 +1374,7 @@ The sandbox cannot approve its own output or promote it into the primary rendere
 
 ### 13.9 Visual Capsule boundary
 
-Interactive HTML, Canvas, SVG, 3D scenes, or simulations never run inside the primary overlay. A Visual Capsule uses:
+Untrusted or model-authored interactive HTML, Canvas, SVG, 3D scenes, and simulations never execute inside the primary overlay. Renderer-owned components and effects are reviewed application code that may use these graphics primitives with validated, bounded data; this does not permit models to submit executable markup, scripts, CSS, or shaders. Generated interactive content follows the Visual Capsule authoring order in Section 14.12. A Visual Capsule uses:
 
 - a separate unprivileged process or WebView;
 - a unique opaque origin;
@@ -1412,7 +1473,7 @@ Generative UI creates task-specific interfaces. Agentic UI makes those interface
 
 ### 14.1 Visual direction
 
-The approved direction is a floating tactical CRT instrument system over the desktop:
+The existing baseline is a floating tactical CRT instrument system over the desktop. This revision proposes a more precise synthesis: an expressive social eye surrounded by restrained, task-specific instruments. Keep the following established foundations while evaluating the pitch refinements below:
 
 - biomechanical tension expressed primarily through typography and layout;
 - void black background;
@@ -1432,13 +1493,25 @@ The approved direction is a floating tactical CRT instrument system over the des
 
 The system should be inspired by the reference language without copying protected characters, logos, interface artwork, or bundled franchise fonts.
 
+Pitch reconciliation for review:
+
+- Slides 3–5 and 7 contribute halftone/dithered imagery, thin annotation lines, monochrome specimen-like diagrams, and architectural negative space. Use these to support actual content and relationships; decorative labels must not impersonate data, source verification, or model reasoning.
+- Slide 8 and the repository mockups support floating dark instruments and an eye paired with voice activity. The eye should yield space once the task requires reading or manipulation. Desktop wallpaper is user-owned; architectural imagery is a reference setting, not a forced background replacement.
+- Preserve card continuity, memory-region inspection, citations, and semantic revisions from the planning baseline. Use stronger reading hierarchy and progressive disclosure to reduce the tiny labels and dense microtext in the concepts.
+- Restrict dithering, bloom, chromatic separation, and CRT distortion to suitable image/effect regions. Keep body text, chart labels, focus indicators, and confirmation surfaces crisp; provide reduced motion and a quiet visual mode.
+- Color remains an explicit open decision: the pitch and concept eye use red for routine activity, while this plan reserves emergency red for safety/failure. Until owner review chooses otherwise, retain the existing amber-active/red-danger semantics. Any change must update trust states and confirmation rules together and use labels/icons as well as color.
+
 ### 14.2 Typeface system
 
 | Role | Typeface |
 | --- | --- |
-| Display and dossier headers | Shippori Mincho |
-| General interface text | IBM Plex Sans Condensed |
+| Display, card, and dossier headers | Space Grotesk |
+| General interface text and controls | IBM Plex Sans |
 | Instrumentation and numeric data | IBM Plex Mono |
+
+The owner selected this combination on 2026-09-14 after viewing the same weather and memory content in four combinations: Space Grotesk / IBM Plex Sans / IBM Plex Mono; Rajdhani / Inter / IBM Plex Mono; IBM Plex Sans Condensed / IBM Plex Sans / IBM Plex Mono; and the previous Shippori Mincho / IBM Plex Sans Condensed / IBM Plex Mono baseline. This selection supersedes the earlier header/body fonts. Doto was explicitly rejected; its appearance in Canva is historical inspiration, not an implementation requirement.
+
+Use Space Grotesk for distinctive short headings, IBM Plex Sans for readable sentences and controls, and IBM Plex Mono for aligned values, timestamps, identifiers, and compact instrumentation. Avoid setting whole paragraphs in mono or making interface body text condensed. Start from the reviewed specimen's medium headings (500), regular body (400), and regular data (400); calibrate scale, line spacing, and any further weights with actual card layouts. Font-family acceptance does not imply acceptance of specimen content, color, layout, or the entire planning revision. Validate long labels, small-size legibility, and laptop/workstation resolutions during implementation. Bundle reviewed font files locally with the applicable license notices rather than depending on runtime remote font loading.
 
 Paid typeface evaluation is deferred. The official `mojimo-EVA` font cannot be embedded because its license excludes application and webfont use.
 
@@ -1610,7 +1683,7 @@ Capsules are visibly marked as isolated, cannot impersonate operational controls
 
 ### 14.13 Required future design guide
 
-`docs/GENERATIVE_UI_DESIGN.md` will be created before open-ended card generation. It must define:
+Root `DESIGN.md` will be created after owner review of this planning revision and before open-ended card generation. It fulfills the previously planned `docs/GENERATIVE_UI_DESIGN.md` deliverable and the research proposal's `GENERATIVE_UI_DESIGN.md` deliverable; maintain one canonical guide rather than competing specifications. It must define:
 
 - design tokens;
 - semantic color rules;
@@ -1640,6 +1713,30 @@ Capsules are visibly marked as isolated, cannot impersonate operational controls
 - visual-regression expectations.
 
 The guide is enforced by schema, code, tests, and visual regression—not by prompting alone.
+
+### 14.14 Bounded media generation
+
+ComfyUI and Higgsfield generate optional media assets, not operational cards, chart values, approval controls, or trusted status badges. A prompt alone is not a bounded vocabulary: the application must enforce a finite asset-kind catalog, approved workflow IDs, output formats, dimensions, resource budgets, and permitted input references.
+
+The proposed asset adapter uses a versioned request with a request ID, target card/revision, approved workflow ID/version, bounded parameters, seed where supported, input provenance, confidentiality, deadline, and cancellation state. Results include status, asset reference/hash, model/workflow provenance, dimensions, timing, and errors. Generated illustrations are labelled as illustrations and do not inherit factual verification from the surrounding card.
+
+The service executes only reviewed workflows and pinned dependencies. A runtime model may choose permitted parameters but cannot install custom nodes, change model paths, invent workflows, or supply arbitrary Python/code. Access stays behind a narrow local or authenticated remote service adapter; the primary renderer does not gain access to ComfyUI administration or arbitrary asset URLs. Validate imported media and register it in a renderer-owned local asset catalog consistent with the existing remote-asset restriction.
+
+Media submissions pass the existing broker authorization, provenance/confidentiality, deadline, and cost/resource checks. A direct request or permitted routine must authorize the relevant work; speculative external generation is not allowed. Supersession, dismissal, cancellation, and the global kill switch cancel queued jobs and request termination of active jobs where supported. Discard late results and record any provider limitation; do not claim that remote processing stopped when the provider cannot guarantee it. Local generation processes remain subject to resource limits and the host's cancellation controls.
+
+Cache keys include normalized inputs, workflow/model versions, style version, and relevant confidentiality context. Bound disk use and distinguish disposable generated media from deliberately retained design evidence. Use synthetic inputs for initial cloud tests, with explicit source-to-destination policy for any later private data. These media services remain separate from the network-disabled Visual Capsule.
+
+### 14.15 Development visual history
+
+Before every visual edit, the responsible agent must inspect the latest accepted screenshot and any intervening candidate, read its scenario and owner feedback, and capture the current rendition as the edit's before reference. After the edit, capture the same scenario at matching viewport/DPI and record the result. Save every reviewable rendition, including rejected alternatives; never overwrite earlier references or promote the newest image automatically.
+
+Proposed archive: `docs/design/revisions/<revision-id>/` with `before.png`, `after.png`, additional affected-state screenshots, and `manifest.json`. Use a short recording plus representative stills for motion changes. A visual index at `docs/design/INDEX.md` identifies accepted baselines per scenario and links pending/rejected candidates.
+
+Each manifest records revision and predecessor IDs, source commit or working-tree description, authoring agent/tool, scenario/fixture, platform, viewport/DPI, relevant renderer/model/workflow versions, seed and animation time when applicable, intended change, screenshot paths, checks, known limitations, and owner feedback/decision with date. Record decisions as pending, accepted, or rejected; only the owner can accept a phase or designate an accepted baseline.
+
+For the first implementation, where no runnable before-state exists, record that fact and link the selected concept reference rather than labelling a concept as an application screenshot. If capture is unavailable, record the limitation and obtain the missing evidence before claiming visual completion.
+
+This archive contains synthetic or deliberately sanitized development views, cropped to the relevant application surface. Preserve historical concept PNGs. It is distinct from private runtime screen-awareness captures, trace exclusions, and the 30-day temporal workspace policy: those runtime deletion/privacy rules remain unchanged. Do not archive personal desktops, vault contents, credentials, or participant records in this public repository.
 
 ## 15. Observability and evaluation
 
@@ -1832,13 +1929,15 @@ The following are hard gates for the first vertical slice:
 - every durable memory has provenance;
 - provisional, stale, revoked, or quarantined output never becomes durable fact;
 - denied captures produce no screenshot upload;
-- raw audio and screenshots are deleted by default;
+- raw runtime audio and screen-awareness screenshots are deleted by default; synthetic development visual records follow Section 14.15;
 - public fixtures contain no personal data;
 - temporal rewind never restores authority;
 - topology cancellation stops dependent work;
 - Visual Capsules have no network, privileged IPC, or secret access;
 - the global kill switch cancels models, speech, tools, routines, sandboxes, and leases;
-- the eye and cards leave no interactive invisible overlay after dormancy.
+- the eye and cards leave no interactive invisible overlay after dormancy;
+- optional media failure cannot block core card interaction, and late media cannot overwrite a superseded revision;
+- phase-specific checks, visual evidence where applicable, and explicit owner hands-on acceptance are recorded under Section 17.
 
 ### 15.6 Adversarial evaluation protocol
 
@@ -1886,6 +1985,7 @@ eva/
 │   ├── memory/                  # Vault, extraction, retrieval, indexing
 │   ├── persona/                 # Persona compiler and validators
 │   ├── ui-system/               # Approved components and design tokens
+│   ├── media-adapters/          # Optional bounded ComfyUI/cloud asset jobs
 │   ├── visual-capsule/          # Isolated declarative simulation renderer
 │   ├── connector-core/          # Canonical tool contracts
 │   ├── connector-mocks/         # Synthetic connectors
@@ -1903,16 +2003,61 @@ eva/
 │   ├── architecture/
 │   ├── research/
 │   ├── threat-model/
-│   └── GENERATIVE_UI_DESIGN.md  # Created in the design-system milestone
+│   └── design/                 # Visual index, immutable revisions, phase acceptance records
 ├── scripts/
 ├── .env.example
 ├── PLANNING.md
+├── DESIGN.md                   # Canonical guide; created after planning review
+├── AGENTS.md                   # Development collaboration; created after planning review
 └── README.md
 ```
 
-The final package manager, task runner, and test framework will be chosen during repository scaffolding. The structure should not force every package to become an independently published library.
+Milestone 0 selects npm workspaces, Ajv, and Node's built-in test runner. The task runner and any additional visual-test tooling will be chosen during scaffolding. The structure should not force every package to become an independently published library. Archive folders and future code packages above are proposed; listing them does not mean they exist.
+
+### 16.1 Development agent roles and handoffs
+
+These are development responsibilities for building EVA, separate from EVA's runtime specialists and model routing in Sections 6–7. The owner reports paid access to GPT/Codex, Claude/Fable, and Kimi; subscription names or prices do not establish exact model versions or API entitlements. Record the actual model and tool when work is performed and verify runtime API access before an integration experiment.
+
+| Development role | Initial assignment | Required handoff |
+| --- | --- | --- |
+| Implementation and integration lead | Codex | Scoped implementation, relevant checks, before/after visual evidence, limitations, and a testable owner review packet |
+| Interaction design and architecture reviewer | Claude/Fable | Component/state rules, visual critique against the accepted baseline, architecture tradeoffs, and test scenarios |
+| Research and independent evaluation | Kimi | Cited alternatives, bounded vocabulary coverage review, scenario-based comparison, and unsupported-assumption findings |
+| Product direction and phase acceptance | Owner | Hands-on testing, feedback, and explicit acceptance or rejection tied to a revision |
+
+These assignments are starting workflow choices, not a universal ranking of model ability. Evaluate them on shared fixtures and adjust from observed quality, latency, and usefulness. Capability and available access determine delegation; do not claim an unavailable model reviewed or approved a change. If only one provider can be invoked, identify that limitation and prepare a handoff for the other tools rather than impersonating them.
+
+Give each task a bounded objective, owned files, input references, accepted baseline ID, acceptance criteria, and expected output. Assign one writer per overlapping file or module; use independent review tasks for parallel work. Every handoff records changed files, decisions, evidence, unresolved questions, and the next test. The implementation lead reconciles conflicting recommendations and preserves user work. Agents may implement and revise within an accepted phase, but cannot declare owner acceptance, silently change shared design rules, or advance to the next major phase.
 
 ## 17. Milestones
+
+### Mandatory owner testing and phase acceptance
+
+Every major phase, including each product milestone below and each study delivery phase, requires the following gate before advancing:
+
+1. Prepare a reproducible demonstration or, for foundation work, a runnable contract fixture that the owner can exercise. Documentation-only work uses a readable diff and decision list. Supply the scenario, expected behavior, relevant commands where applicable, and known limitations.
+2. Complete the phase's technical checks and provide before/after visual records for affected interfaces under Section 14.15. Documentation-only revisions use a reviewed diff; they do not invent application screenshots.
+3. The owner tests the result hands-on. Other agents, automated tests, screenshots, and silence cannot substitute for this step.
+4. Record feedback and acceptance blockers, fix them, and provide the affected behavior for owner retesting.
+5. Record the owner's explicit acceptance tied to the tested revision before beginning the next phase. Acceptance of one revision does not automatically cover a materially changed replacement.
+
+Future acceptance records belong in `docs/design/acceptance/<phase-id>.md` and link the build/revision, test script, technical results, visual records, feedback, and decision/date. Status is pending until the owner provides a decision. Passing automated tests does not mark a milestone complete. Owner-only approval is sufficient for these development gates; the separate participant study retains its faculty and institutional requirements.
+
+For this documentation task, first review the proposed `PLANNING.md` changes with the owner. Create `DESIGN.md` and `AGENTS.md` only after that review. Their creation does not authorize starting a product implementation phase.
+
+### Near-term study delivery phases
+
+These phases operationalize Section 1.4 without removing or renumbering the larger product roadmap. Scope each phase to the study's two mocked workflows; map reused work to the product milestones without marking unfinished milestones complete.
+
+| Phase | Deliverable and owner test | Product milestone overlap |
+| --- | --- | --- |
+| S0 — Planning and visual baseline | Review this plan; then the design guide and collaboration rules; select candidate visual baselines with unresolved choices labelled | Milestones 0–2 planning |
+| S1 — Bounded grammar and local interaction | Exercise schema acceptance/rejection, the social-eye prototype, and fixed weather/calendar cards with direct manipulation and reduced effects | Scoped parts of Milestones 0–2 |
+| S2 — Conversational revision and memory | Test voice activation/closure, schema-validated patches, preserved geometry, simulated memory regions, citations, and interruption | Scoped parts of Milestones 2–5 |
+| S3 — Optional imagery and workstation measurement | Compare no-media/cached-media/generated-media paths; test cancellation, failures, supersession, and interaction while one generation job runs; retain the optional feature only if useful | Media experiment under Milestone 2 and latency work |
+| S4 — Study-ready conditions | Test functionally equivalent relational/instrumental conditions, replayable fixtures, logging, and timing controls; freeze protocol for the proposed pilot/study | Scoped evaluation work from Milestone 9 |
+
+The accepted prototype then supports the proposal's faculty/lab critique, pilot, approved participant study, analysis, manuscript, and final demonstration. Use matched or precomputed assets and timing where needed to prevent image-generation variability from confounding the condition comparison. A disappointing optional media experiment may be closed with recorded findings and owner acceptance; it must not block the core two-workflow prototype indefinitely. Optional exhibit/TouchDesigner exploration follows a separately agreed scope and must not displace semester deliverables.
 
 ### Milestone 0 — Contracts and safety foundation
 
@@ -1961,7 +2106,7 @@ Deliver:
 - Rust IPC validation;
 - global hotkey;
 - dormant, opening, active, closing, and click-through behavior;
-- initial eye shader prototype.
+- initial reviewed eye shader prototype with static/reduced-effects fallback and platform measurements.
 
 Exit criteria:
 
@@ -1975,8 +2120,8 @@ Exit criteria:
 
 Deliver:
 
-- `docs/GENERATIVE_UI_DESIGN.md`;
-- Shippori Mincho, IBM Plex Sans Condensed, and IBM Plex Mono integration;
+- root `DESIGN.md`, fulfilling the previously planned generative UI design guide;
+- owner-selected Space Grotesk, IBM Plex Sans, and IBM Plex Mono integration with local font assets;
 - design tokens;
 - component registry;
 - card lifecycle;
@@ -1992,7 +2137,9 @@ Deliver:
 - counterfactual-rehearsal surface;
 - safety-owned confirmation surface;
 - schema validation;
-- visual regression fixtures.
+- visual regression fixtures;
+- development visual index and immutable before/after revision records;
+- bounded optional-media contract, mocked job states, and a proposed ComfyUI still-image experiment after core interaction is testable.
 
 Exit criteria:
 
@@ -2001,7 +2148,9 @@ Exit criteria:
 - rewind cannot restore secrets, permissions, leases, approvals, or stale facts;
 - direct manipulation produces validated semantic events;
 - example dashboards render consistently on laptop and workstation resolutions;
-- emergency red appears only in safety and failure states.
+- emergency red appears only in safety and failure states;
+- imagery is optional and asynchronous; core controls remain responsive through media cancellation, failure, and supersession;
+- visual baselines and phase acceptance are recorded under the common owner gate.
 
 ### Milestone 3 — Reflex and voice loop
 
@@ -2287,6 +2436,13 @@ Every research-backed design decision should record:
 
 These do not block planning but require benchmarks or prototypes:
 
+- owner's workstation OS, exact i9 model, system RAM, display resolution/DPI/refresh rate, driver/runtime versions, and measured free VRAM;
+- final color semantics: retain amber activity/red danger or explicitly revise the pitch's use of red for ordinary activity;
+- exact type scale, line spacing, and responsive sizing for the owner-selected Space Grotesk / IBM Plex Sans / IBM Plex Mono system;
+- exact development model versions/access and runtime API entitlements; GPT bounded-UI challenger evaluation without assuming subscription access is an API grant;
+- ComfyUI checkpoint, approved workflow, output resolution, concurrency, cache policy, disk budget, and measured GPU headroom within 16 GB;
+- optional Modal GPU type, cloud experiment budget, cold/warm policy, and permitted synthetic test inputs;
+- need for Higgsfield assets, native `wgpu`, WebGPU, or TouchDesigner based on recorded experiments rather than presumed visual superiority;
 - speech-recognition provider and offline fallback;
 - local wake-word engine;
 - Guardian model, classifier, and deterministic-detector composition;
@@ -2314,9 +2470,9 @@ These do not block planning but require benchmarks or prototypes:
 - Kimi K3 hosting/API route;
 - later Live2D event vocabulary.
 
-## 20. Definition of done for the first repository phase
+## 20. Definition of done for the full product vertical slice
 
-The first phase is complete when a clean macOS or Windows installation can:
+This retains the v0.2 full vertical-slice definition; it is not the completion criterion for the smaller semester prototype in Sections 1.4 and 17. The full slice is complete when the common owner acceptance gate has passed and a clean macOS or Windows installation can:
 
 - launch EVA by “Hey EVA” and hotkey;
 - render the eye and floating overlay;
@@ -2342,8 +2498,26 @@ The first phase is complete when a clean macOS or Windows installation can:
 - close the eye and disappear;
 - expose stable backend events suitable for a future Live2D client.
 
+For visual completion, the accepted revision also has the required screenshot/motion evidence, works with optional imagery unavailable, and has recorded workstation performance with generation both idle and active if enabled. No such implementation or benchmark is claimed complete by this planning revision.
+
 ## 21. Reference sources
 
+- [Owner's Canva visual pitch](https://canva.link/6ug6dtvm50gfyxi) — eight slides reviewed 2026-09-14; inspiration, not an implementation specification.
+- [Independent-study proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md)
+- [Space Grotesk official source](https://github.com/floriankarsten/space-grotesk)
+- [IBM Plex official source](https://github.com/IBM/plex)
+- [NVIDIA RTX 5080 specifications](https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5080/)
+- [ComfyUI official repository](https://github.com/Comfy-Org/ComfyUI)
+- [ComfyUI local HTTP and WebSocket API](https://docs.comfy.org/development/comfyui-server/comms_routes)
+- [Higgsfield asynchronous media API](https://docs.higgsfield.ai/docs)
+- [Modal cold-start performance](https://modal.com/docs/guide/cold-start)
+- [WebGL GPU rendering](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API)
+- [wgpu portable graphics library](https://wgpu.rs/)
+- [Tauri WebView versions](https://v2.tauri.app/reference/webview-versions/)
+- [TouchDesigner GPU-based TOPs](https://derivative.ca/UserGuide/TOP)
+- [TouchEngine integration and runtime requirements](https://derivative.ca/UserGuide/TouchEngine)
+- [OpenAI structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs)
+- [OpenAI latency optimization](https://developers.openai.com/api/docs/guides/latency-optimization)
 - [Tauri security](https://v2.tauri.app/security/)
 - [Tauri capabilities](https://v2.tauri.app/security/capabilities/)
 - [Electron security guidance](https://www.electronjs.org/docs/latest/tutorial/security)
