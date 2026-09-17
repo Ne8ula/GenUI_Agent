@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "liveWhisper": true,
+  "checks": [
+    {
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "voice": "Live Whisper API, synthetic Windows speech via fake microphone",
+      "transcript": "“Show me the weather in Ithaca.”"
+    },
+    "Two complete movement, selected day, wind, source, Escape, undo/reset regressions passed",
+    "Cancel releases microphone without upload; unsupported intent bounded; provider failure; dismissal rejects late transcription and unmounts GPU canvas",
+    "GPU context loss fallback and reduced motion passed"
+  ],
+  "errors": []
+}

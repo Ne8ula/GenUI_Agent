@@ -1,0 +1,40 @@
+import { chromium } from "playwright";
+import { mkdir, writeFile } from "node:fs/promises";
+import { resolve, join } from "node:path";
+import { tmpdir } from "node:os";
+const output = resolve(process.argv[2]); await mkdir(output, { recursive: false });
+const browser = await chromium.launch({ channel: "msedge", headless: true, args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream", `--use-file-for-fake-audio-capture=${join(tmpdir(), "eva-synthetic-weather-request.wav")}`] });
+const context = await browser.newContext({ viewport: { width: 1440, height: 960 }, permissions: ["microphone"], recordVideo: { dir: join(output,"video"), size: {width:1440,height:960} } });
+const page = await context.newPage();
+const pause = ms => page.waitForTimeout(ms);
+try {
+  await page.goto("http://127.0.0.1:1420"); await page.evaluate(() => document.fonts.ready);
+  await pause(1800); await page.mouse.move(570,460); await pause(1200); await page.mouse.move(230,540); await pause(1200);
+  await page.screenshot({ path: join(output,"eye-viewport.png") });
+  const sample = () => page.evaluate(() => new Promise(resolve => {
+    const gaps=[]; let last=performance.now(); const start=last;
+    function frame(now) { gaps.push(now-last);last=now;if(now-start<2000)requestAnimationFrame(frame);else { gaps.sort((a,b)=>a-b);resolve({durationMs:now-start,frames:gaps.length,medianIntervalMs:gaps[Math.floor(gaps.length*.5)],p95IntervalMs:gaps[Math.floor(gaps.length*.95)]}); } } requestAnimationFrame(frame);
+  }));
+  const idle = await sample();
+  await page.getByRole("button", { name: "Speak request", exact:true }).click(); await page.getByRole("button", { name: "Send recording" }).waitFor();
+  await pause(2800); await page.screenshot({ path:join(output,"listening-viewport.png") });
+  await page.getByRole("button",{name:"Send recording"}).click();
+  await page.getByTestId("weather-loading").waitFor({timeout:35000});
+  await pause(260); await page.screenshot({path:join(output,"eye-docking-viewport.png")});
+  await pause(800); await page.screenshot({path:join(output,"loading-viewport.png")});
+  await pause(1100); await page.screenshot({path:join(output,"memory-record-viewport.png")});
+  await page.locator('[data-stage="raster"]').waitFor();await pause(1200);await page.screenshot({path:join(output,"raster-viewport.png")});
+  await page.getByTestId("weather-card").waitFor({timeout:35000});
+  const assembly = await sample(); await pause(1000); await page.mouse.move(15,15);
+  await page.screenshot({ path:join(output,"weather-viewport.png") });
+  const move = await page.getByRole("button",{name:"Move weather card"}).boundingBox();
+  await page.mouse.move(move.x+10,move.y+10);await page.mouse.down();await page.mouse.move(move.x+22,move.y+34,{steps:24});await page.mouse.up();await pause(1000);
+  await page.getByRole("button",{name:"Add wind"}).click();await pause(1500);
+  await page.getByRole("button",{name:"Preference used: Celsius"}).click();await pause(1500);
+  await page.getByText("View exact Markdown source").click();await page.locator("dialog pre").scrollIntoViewIfNeeded();await pause(2500);
+  await page.screenshot({path:join(output,"source-viewport.png")});await page.keyboard.press("Escape");
+  await page.getByRole("button",{name:"Undo",exact:true}).click();await pause(900);await page.getByRole("button",{name:"Reset",exact:true}).click();await pause(900);
+  await page.getByRole("button",{name:"Dismiss"}).click();await pause(1600);
+  await writeFile(join(output,"measurement.json"),JSON.stringify({mode:"Headless Edge on Windows; 1440x960, DPR 1; real Whisper on synthetic Windows speech",scope:"Browser requestAnimationFrame cadence, not GPU execution time or native WebView performance",idle,assembly},null,2));
+  await page.close(); await page.video().saveAs(join(output,"voice-weather-demo.webm"));
+} finally { await context.close();await browser.close(); }

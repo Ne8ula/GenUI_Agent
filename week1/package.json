@@ -1,0 +1,32 @@
+{
+  "name": "eva",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/desktop",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "scripts": {
+    "pretest": "npm run protocol:generate",
+    "protocol:generate": "node scripts/build-validators.mjs",
+    "test": "node --test scripts/protocol.test.mjs scripts/memory-contract.test.mjs scripts/voice-contract.test.mjs scripts/voice-server.test.mjs scripts/narration-server.test.mjs scripts/speech-ending.test.mjs",
+    "memory:check": "node --test scripts/memory-contract.test.mjs && node scripts/rust.mjs test --locked demo_memory",
+    "dev": "npm run dev --workspace @eva/desktop",
+    "build": "npm run build --workspace @eva/desktop",
+    "typecheck": "npm run typecheck --workspace @eva/desktop",
+    "desktop:dev": "node scripts/tauri.mjs dev",
+    "desktop:build": "node scripts/tauri.mjs build --no-bundle",
+    "desktop:build:debug": "node scripts/tauri.mjs build --debug --no-bundle",
+    "rust:check": "node scripts/rust.mjs check --locked",
+    "rust:test": "node scripts/rust.mjs test --locked",
+    "rust:fmt": "node scripts/rust.mjs fmt --check",
+    "rust:clippy": "node scripts/rust.mjs clippy --locked -- -D warnings"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "playwright": "^1.58.0"
+  }
+}

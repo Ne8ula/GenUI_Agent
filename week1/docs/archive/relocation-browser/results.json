@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "browser": "153.0.4234.32",
+  "checks": [
+    {
+      "width": 172,
+      "height": 960,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px"
+    },
+    {
+      "width": 172,
+      "height": 640,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px"
+    }
+  ],
+  "microphoneWeather": true,
+  "dockedConsoleTransparent": true,
+  "errors": [],
+  "fixture": "Synthetic microphone and injected Whisper transcript; narration disabled; no paid API calls"
+}

@@ -1,0 +1,7 @@
+{
+  "acknowledge": "[speed: 1.25x] [calm] [analytical] Of course. I will pull-up-the-weather in Ithaca.",
+  "building": "[speed: 1.25x] [calm] [analytical] I'm putting your weather dashboard together now.",
+  "present": "[speed: 1.25x] [calm] [warm] So, Ithaca looks {thursday} on Thursday and {friday} on Friday; anything else you'd like to know?",
+  "wind-wait": "[speed: 1.25x] [calm] Give me a second.",
+  "wind-present": "[speed: 1.25x] [calm] [warm] Here's the wind speed in Ithaca."
+}

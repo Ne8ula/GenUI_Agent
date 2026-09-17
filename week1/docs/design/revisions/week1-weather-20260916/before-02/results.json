@@ -1,0 +1,135 @@
+{
+  "mode": "before-capture",
+  "results": [
+    {
+      "width": 960,
+      "height": 760,
+      "dpr": 1,
+      "scrollWidth": 960,
+      "scrollHeight": 760,
+      "section": {
+        "x": 28.796875,
+        "y": 116.796875,
+        "width": 902.40625,
+        "bottom": 596.6875
+      },
+      "result": {
+        "x": 61.796875,
+        "y": 455.1875,
+        "width": 836.40625,
+        "bottom": 555.6875
+      },
+      "footer": {
+        "x": 28.796875,
+        "y": 620.6875,
+        "width": 902.40625,
+        "bottom": 640.1875
+      },
+      "focused": true
+    },
+    {
+      "width": 1960,
+      "height": 530,
+      "dpr": 1,
+      "scrollWidth": 1960,
+      "scrollHeight": 530,
+      "section": {
+        "x": 300,
+        "y": 88,
+        "width": 1360,
+        "bottom": 382
+      },
+      "result": {
+        "x": 1068.625,
+        "y": 248.5,
+        "width": 566.375,
+        "bottom": 349
+      },
+      "footer": {
+        "x": 300,
+        "y": 398,
+        "width": 1360,
+        "bottom": 417.5
+      },
+      "focused": true
+    },
+    {
+      "width": 1280,
+      "height": 530,
+      "dpr": 1,
+      "scrollWidth": 1280,
+      "scrollHeight": 530,
+      "section": {
+        "x": 38.390625,
+        "y": 88,
+        "width": 1203.21875,
+        "bottom": 382
+      },
+      "result": {
+        "x": 715.671875,
+        "y": 248.5,
+        "width": 500.9375,
+        "bottom": 349
+      },
+      "footer": {
+        "x": 38.390625,
+        "y": 398,
+        "width": 1203.21875,
+        "bottom": 417.5
+      },
+      "focused": true
+    },
+    {
+      "width": 960,
+      "height": 530,
+      "dpr": 1,
+      "scrollWidth": 960,
+      "scrollHeight": 530,
+      "section": {
+        "x": 28.796875,
+        "y": 88,
+        "width": 902.40625,
+        "bottom": 406
+      },
+      "result": {
+        "x": 536.1875,
+        "y": 248.5,
+        "width": 370,
+        "bottom": 373
+      },
+      "footer": {
+        "x": 28.796875,
+        "y": 422,
+        "width": 902.40625,
+        "bottom": 441.5
+      },
+      "focused": true
+    },
+    {
+      "width": 400,
+      "height": 640,
+      "dpr": 1,
+      "scrollWidth": 400,
+      "scrollHeight": 750,
+      "section": {
+        "x": 20,
+        "y": 88,
+        "width": 360,
+        "bottom": 674.59375
+      },
+      "result": {
+        "x": 45,
+        "y": 517.09375,
+        "width": 310,
+        "bottom": 641.59375
+      },
+      "footer": {
+        "x": 20,
+        "y": 690.59375,
+        "width": 360,
+        "bottom": 729.59375
+      },
+      "focused": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "apps/desktop/src/App.tsx": "5b2685282a814150fc3b2b76b999562bc72e6427749e800660fefe6740beb6d9",
+  "apps/desktop/src/Command.css": "476f38fb50db2d5469bfcedf7e64b99519ef7ec817a8d3ba04083333b8c3c1d8",
+  "apps/desktop/src/Overlay.css": "826da8935c9c4d9fb90bc9c127b16ce223d23edd2810b136e1641e1576ddbf8e",
+  "scripts/speak-only-smoke.mjs": "66f79865b9862084748833dbd930e03520a8134e26126fe44b6fae3293a80f5d",
+  "scripts/wind-dialogue-smoke.mjs": "5c71550a83f2de38a82108321fd920af737c5419acb27b68166b4ce0988cd54e"
+}

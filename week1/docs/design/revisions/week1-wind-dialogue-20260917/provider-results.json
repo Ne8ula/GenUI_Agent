@@ -1,0 +1,35 @@
+{
+  "model": "eleven_v3",
+  "results": [
+    {
+      "phase": "acknowledge",
+      "status": 200,
+      "bytes": 41839,
+      "elapsedMs": 2048
+    },
+    {
+      "phase": "building",
+      "status": 200,
+      "bytes": 34316,
+      "elapsedMs": 1598
+    },
+    {
+      "phase": "present",
+      "status": 200,
+      "bytes": 85725,
+      "elapsedMs": 2735
+    },
+    {
+      "phase": "wind-wait",
+      "status": 200,
+      "bytes": 26793,
+      "elapsedMs": 1111
+    },
+    {
+      "phase": "wind-present",
+      "status": 200,
+      "bytes": 28047,
+      "elapsedMs": 1572
+    }
+  ]
+}

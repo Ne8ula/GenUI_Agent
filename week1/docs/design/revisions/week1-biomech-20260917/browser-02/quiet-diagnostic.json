@@ -1,0 +1,14 @@
+{
+  "uniforms": {
+    "gaze": [
+      0,
+      0
+    ],
+    "tissue": [
+      0,
+      0
+    ],
+    "closure": 0
+  },
+  "animations": []
+}

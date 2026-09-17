@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "modelId": "eleven_v3",
+  "targetMinCharacters": 251,
+  "maxCharacters": 1200,
+  "maxStackedTags": 3,
+  "allowedTags": ["speed: 1.25x", "analytical", "warm", "curious", "calm", "happy", "softly", "excited", "frustrated", "whispers", "whispering", "shouts", "shouting", "sarcastic", "sarcastically", "laughs", "chuckles", "exhales"],
+  "quietTags": ["whispers", "whispering", "softly"],
+  "loudTags": ["shouts", "shouting"],
+  "shortFormExceptions": {
+    "acknowledge": "Owner supplied short acknowledgement with delivery tags and hyphenated action phrase.",
+    "building": "One-sentence construction update for the timed dashboard demo.",
+    "present": "Brief fixture-grounded weather summary and follow-up invitation.",
+    "wind-wait": "Short acknowledgement before the five-second wind assembly.",
+    "wind-present": "Short introduction after the wind panel is visible."
+  }
+}

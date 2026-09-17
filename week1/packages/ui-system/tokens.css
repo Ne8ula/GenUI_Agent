@@ -1,0 +1,8 @@
+:root {
+  --void: #080a0b; --surface: #121618; --raised: #1b2124; --bone: #e8e4d9; --muted: #a8ada9;
+  --rule: #495155; --accent: #ff3b35; --danger: #ffb4af; --ink: #101314; --focus: #ff918b;
+  --sans: "IBM Plex Sans", sans-serif; --display: "Space Grotesk", sans-serif; --mono: "IBM Plex Mono", monospace;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 32px;
+  --radius: 2px; --motion-enter: 240ms; --motion-disclose: 180ms;
+}
+

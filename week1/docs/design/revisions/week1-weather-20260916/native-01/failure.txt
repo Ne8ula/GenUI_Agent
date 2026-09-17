@@ -1,0 +1,3 @@
+AssertionError [ERR_ASSERTION]: Native WebView2 ready
+    at launch (file:///C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/scripts/weather-smoke.mjs:42:10)
+    at async file:///C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/scripts/weather-smoke.mjs:68:14

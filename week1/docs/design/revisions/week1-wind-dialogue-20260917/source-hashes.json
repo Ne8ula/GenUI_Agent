@@ -1,0 +1,25 @@
+{
+  "versions": {
+    "node": "v24.14.0",
+    "playwright": "1.63.0",
+    "react": "19.3.0",
+    "edge": "153.0.4234.32"
+  },
+  "sha256": {
+    "AGENTS.md": "9191b67aaf018b9f01c46c7d67f140bb9e73ded3ebd3116d3908a0aaa1e72a73",
+    "fixtures/narration/voice-profile.json": "6ba8151de4280e883e31f3e910ef8ba908597d2085f32e1102c7cc39494b6ab7",
+    "fixtures/narration/weather-lines.json": "66a5cbbcfe9a5feec04c06b73d29e4e4920be493b4b660ae49a9ab532a6117c5",
+    "fixtures/narration/prompt-policy.json": "eccc15815b5ee94f305e4e5f233b05fc3788397bf347ccdea125a401f116365b",
+    "fixtures/connectors/weather-ithaca-week.json": "742f1904d61ae3099304186f5e00e29f90d80342141d4dc5347fc00724a45ac8",
+    "packages/protocol/narration.ts": "0b4af497c08975c4cb832df2ca7cb9e05bddae01f69ae7947a9e18be4ce7ebc9",
+    "apps/desktop/narration-server.ts": "6f624ea84819edad27faa4b412c69e86e8b81c6aa577b6679b1012f4412e9e5a",
+    "apps/desktop/src-tauri/src/narration.rs": "5db46d1499bdaa2cde85bac09c0b5e02468a79305a8fe9527d08d093c217cc8c",
+    "apps/desktop/src/useNarration.ts": "478de937bb5e1cbe08893c4c99ad6a753d44b04065ed21bb1a945c37165f43e8",
+    "apps/desktop/src/App.tsx": "cd259ea85b8c0bbd8f318df7479bfbaf7475c0a5c8dc002c93af7c407f568cbc",
+    "apps/desktop/src/usePanelResize.ts": "72ea600430389f6199641fe4e8dc11cd0a7b02b8542ca1eb156ecfaa9c4074c1",
+    "apps/desktop/src/Overlay.css": "8984b1fb4b25c92d165546eabc0ecd43bfd9ed0b29299a0cdb5df160b8d3c9f3",
+    "scripts/narration-server.test.mjs": "15a5657ed56d0623eafbdd7e74968c84518ec8195efcb8d72ea3880702f8dad5",
+    "scripts/narration-provider-check.mjs": "2ea38688805a3c032d395c335ba1a90e5e6d3b24fe5c720c8e786c2bbe76893d",
+    "scripts/wind-dialogue-smoke.mjs": "3423272ec641014a77cdbe44cd027887c87bed0d4f5abf287169493af878002e"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "mode": "browser-fixture",
+  "checks": [
+    {
+      "viewport": {
+        "width": 960,
+        "height": 760,
+        "dpr": 1
+      },
+      "url": "http://127.0.0.1:1420/"
+    },
+    "Keyboard activation and runtime response passed",
+    "400px browser viewport has no horizontal overflow; reduced motion enabled",
+    "No uncaught JavaScript errors during exercised interactions"
+  ]
+}

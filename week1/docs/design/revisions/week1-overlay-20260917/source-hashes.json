@@ -1,0 +1,38 @@
+﻿[
+    {
+        "sha256":  "CD300D2475A4D322589665D2B971E647842F9F1902F55D43E8F488CD59903017",
+        "path":  "apps/desktop/src/DitherLink.tsx"
+    },
+    {
+        "sha256":  "3698AE3CCF6380F0698CE17FD49F9AFFFA393707B11338FF2633AE06BF170BCD",
+        "path":  "apps/desktop/src/Overlay.css"
+    },
+    {
+        "sha256":  "5E4B40453AE6FAEBE3760B103E0880747CD804D41C13D3191A8D1ED1F03FE36B",
+        "path":  "apps/desktop/src/SomaticFrame.tsx"
+    },
+    {
+        "sha256":  "5A5946B990CBB86DAA88DDA2F5EEDD060CC31B8B023163EA836136174B4DAE14",
+        "path":  "apps/desktop/src/Biomech.css"
+    },
+    {
+        "sha256":  "33568CFF40FD4157B0F816364E8BB6579886191E30FE51AD45DAB01BAF7885A4",
+        "path":  "apps/desktop/src/MovingEye.tsx"
+    },
+    {
+        "sha256":  "7B751085913765C0F29FC30491D38F679760953AD96D20FB8E7901A98DFF05B0",
+        "path":  "apps/desktop/src/App.tsx"
+    },
+    {
+        "sha256":  "4E80C058FBF7C255F81402FD374AA0BCD8D7D3379A8028D538D64807F0E70031",
+        "path":  "apps/desktop/src-tauri/tauri.conf.json"
+    },
+    {
+        "sha256":  "76AB79853F67C3716115B6A3A5558E420C36CBEB3A890DD45A96D06FE87E5E5D",
+        "path":  "apps/desktop/src-tauri/capabilities/default.json"
+    },
+    {
+        "sha256":  "DF2B52DF22D99D9456483D6355B8B624389528327103D6C71575BFD6BC94C27B",
+        "path":  "scripts/overlay-smoke.mjs"
+    }
+]

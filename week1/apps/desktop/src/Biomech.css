@@ -1,0 +1,43 @@
+/* Anatomical supports surround the instruments; facts and controls stay still. */
+.eva-shell::before { background: radial-gradient(ellipse at 17% 42%,#701b181b,transparent 48%),repeating-radial-gradient(ellipse at -35% 45%,transparent 0 27px,#912c2420 28px 29px,transparent 30px 45px),radial-gradient(#e8e4d90d .65px,transparent .8px) 0 0/3px 3px; }
+.shell-header { border-bottom: 1px solid #883a33; }
+.shell-header::after { background: var(--accent); width: 72px; height: 5px; border-radius: 100% 0 0; }
+.moving-eye { border: 2px solid #a2352f; border-radius: 28px 3px 28px 3px; box-shadow: inset 0 0 0 5px #080909; }
+.somatic-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; color: var(--accent); overflow: hidden; }
+.instrument > .somatic-frame,.crt-assembly > .somatic-frame { mask: linear-gradient(#000 0 0) top/100% 10px no-repeat,linear-gradient(#000 0 0) bottom/100% 10px no-repeat,linear-gradient(#000 0 0) left/14px 100% no-repeat,linear-gradient(#000 0 0) right/14px 100% no-repeat; }
+.tendon-contour { stroke: #ff6b5b; stroke-width: 2; opacity: .7; }
+.vertebrae { fill: #a23d32; stroke: #e16e56; stroke-width: .8; opacity: .6; }
+.capillary { stroke: #ed8b70; stroke-width: 1; opacity: .5; }
+.moving-eye .somatic-frame { opacity: .75; }
+.eye-station { position: relative; }
+.instrument,.crt-assembly { border-radius: 30px 3px 30px 3px; overflow: hidden; border-color: #a84437; }
+.instrument { background-image: radial-gradient(ellipse at 0 50%,#5e211f29,transparent 48%),radial-gradient(#e8e4d917 .6px,transparent .8px); background-size: auto,3px 3px; }
+.instrument::before { background: #d85643; width: 120px; height: 5px; border-radius: 0 0 100%; }
+.instrument::after { background: #b34536; width: 140px; right: 0; left: auto; height: 4px; border-radius: 100% 0 0; }
+.instrument-top { border-radius: 25px 0 20px 0; background-color: var(--accent); background-image: repeating-radial-gradient(ellipse at 10% -50%,transparent 0 7px,#08090922 8px 9px,transparent 10px 16px); }
+.forecast-overview { border-left: 2px solid #a24d40; padding-left: 16px; border-radius: 18px 0 0 4px; }
+.strip-heading { border-top-color: #704337; }
+.day-cell { border-right-style: solid; border-right-color: #59362f; }
+.day-cell.selected { border-radius: 20px 2px 18px 2px; }
+.instrument-footer { border-top-color: #7b493b; border-radius: 24px 0 0; }
+.action.primary { border-radius: 13px 2px 12px 2px; }
+.crt-heading { border-radius: 24px 0 25px 0; }
+.crt-assembly { background-image: radial-gradient(ellipse at 0 50%,#69211b55,transparent 50%),radial-gradient(#ff3b3533 .7px,transparent .8px); background-size: auto,3px 3px; }
+.folder-tab { border-radius: 12px 0 0; }
+.folder-face { border-radius: 16px 2px 14px 2px; }
+.folder.selected .folder-face { background-image: repeating-radial-gradient(ellipse at 5% 20%,transparent 0 11px,#0809092b 12px 13px,transparent 14px 23px),radial-gradient(#08090966 .8px,transparent 1px); background-size: auto,3px 3px; }
+.retrieval-address { border-top-width: 2px; border-radius: 28px 0 0; padding-left: 10px; }
+.retrieval-strip { gap: 3px; }
+.retrieval-strip i { border-radius: 50% 2px 50% 2px; }
+.raster-baseline { height: 10px; border-radius: 100% 0; background: repeating-radial-gradient(ellipse at 50% 100%,var(--accent) 0 2px,transparent 3px 7px); }
+.memory-dossier { border-radius: 28px 2px 24px 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .somatic-frame .tendon-contour { transform-origin: center; animation: tissue-respiration 5800ms ease-in-out infinite; }
+  @keyframes tissue-respiration { 0%,100% { transform: scaleY(1); opacity: .6; } 45% { transform: scaleY(1.018); opacity: .8; } }
+}
+.quiet-mode .somatic-frame .tendon-contour { animation: none; }
+@media (max-width: 540px) {
+  .moving-eye { border-radius: 16px 2px 16px 2px; }
+  .forecast-overview { padding-left: 10px; }
+  .somatic-frame .vertebrae { opacity: .35; }
+}

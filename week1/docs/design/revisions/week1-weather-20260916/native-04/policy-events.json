@@ -1,0 +1,14 @@
+﻿[
+    {
+        "Id":  3077,
+        "timeUtc":  "2026-09-17T00:24:48.1150125Z",
+        "executable":  "apps/desktop/src-tauri/target/debug/eva-desktop.exe",
+        "signingRequirementReported":  true
+    },
+    {
+        "Id":  3033,
+        "timeUtc":  "2026-09-17T00:24:48.0776773Z",
+        "executable":  "apps/desktop/src-tauri/target/debug/eva-desktop.exe",
+        "signingRequirementReported":  true
+    }
+]

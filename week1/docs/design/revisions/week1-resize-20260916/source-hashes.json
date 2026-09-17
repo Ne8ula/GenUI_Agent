@@ -1,0 +1,26 @@
+﻿[
+    {
+        "path":  "apps/desktop/src/App.tsx",
+        "sha256":  "7230C917D03E06A7D5383D27B00522FDBE8F7C407415651C6DD39585296DE99E"
+    },
+    {
+        "path":  "apps/desktop/src/App.css",
+        "sha256":  "B40BFF5D1046081A2DBB9F1D2F244957AE169C37C82882FF7661AB299BDC0B28"
+    },
+    {
+        "path":  "scripts/check-resize.mjs",
+        "sha256":  "A00CE43DDFEC51858D7DD762CC151CE1F33A921217DC83D4EDE683403DA0C794"
+    },
+    {
+        "path":  "scripts/smoke.mjs",
+        "sha256":  "91D5460D5A7A0139A98C92248A4D753666FFBCFD9B9CFE362D02E801D3179AAF"
+    },
+    {
+        "path":  "package-lock.json",
+        "sha256":  "AC56B3102A010FACBF46353A9F72794C669328E86AA982F09D0AD13E4B1D1451"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/Cargo.lock",
+        "sha256":  "32FE88A1A9A9709B45071771079538B43FA96C043328212D4084FD0953FA4BF9"
+    }
+]

@@ -1,0 +1,16 @@
+{
+  "mode": "Headless Edge on Windows; 1440x960, DPR 1; real Whisper on synthetic Windows speech",
+  "scope": "Browser requestAnimationFrame cadence, not GPU execution time or native WebView performance",
+  "idle": {
+    "durationMs": 2000.300000011921,
+    "frames": 288,
+    "medianIntervalMs": 6.900000000000546,
+    "p95IntervalMs": 7
+  },
+  "assembly": {
+    "durationMs": 2003.3999999940388,
+    "frames": 281,
+    "medianIntervalMs": 7,
+    "p95IntervalMs": 7
+  }
+}

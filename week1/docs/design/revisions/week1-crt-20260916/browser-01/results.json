@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "cursorOutsideEye": {
+        "right": [
+          0.14457504451274872,
+          0.0747804343700409
+        ],
+        "left": [
+          -0.14304885268211365,
+          0.07499852031469345
+        ],
+        "sampleWindowMs": 180
+      }
+    },
+    {
+      "presentationMs": 7500,
+      "phases": [
+        {
+          "phase": "loading",
+          "time": 1070.199999988079
+        },
+        {
+          "phase": "revealing",
+          "time": 6499.0999999940395
+        },
+        {
+          "phase": "ready",
+          "time": 8570.199999988079
+        }
+      ]
+    },
+    "Four responsive folder/raster/final layouts passed",
+    "Enabling Quiet during retrieval skips the remaining presentation hold/reveal",
+    "Cancelled seven-second sequence cannot reveal late"
+  ],
+  "errors": []
+}

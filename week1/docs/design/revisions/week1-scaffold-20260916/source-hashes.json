@@ -1,0 +1,98 @@
+﻿[
+    {
+        "path":  "package.json",
+        "sha256":  "24A97D573C7DBDD0F025AAB991A7D91D597A3E0DE9268922E29864406FE47F97"
+    },
+    {
+        "path":  "package-lock.json",
+        "sha256":  "AC56B3102A010FACBF46353A9F72794C669328E86AA982F09D0AD13E4B1D1451"
+    },
+    {
+        "path":  "scripts/toolchain.mjs",
+        "sha256":  "8E786FE96F014D5A5F70856460DE43560C265DD181016A7445F40F3818EC6017"
+    },
+    {
+        "path":  "scripts/tauri.mjs",
+        "sha256":  "757FFC298B645FCBA405E5D909749A724654A0A5F8F37AFA6C0190D0E73DF6B8"
+    },
+    {
+        "path":  "scripts/rust.mjs",
+        "sha256":  "819C1B1D67BD38E54C002DA7C43F905852CD228979F2F2E3D82DDF4788F95781"
+    },
+    {
+        "path":  "scripts/smoke.mjs",
+        "sha256":  "F2E27EC9CD4E15A228BD09759DF37F64F1686832ADB7D3EEDC4CBCB690D1205A"
+    },
+    {
+        "path":  "scripts/check-running-dev.mjs",
+        "sha256":  "560B9F465F2701DCE7C13E0079D3999C11DB183B40A3CB3D6E6CD5B6EF599071"
+    },
+    {
+        "path":  "apps/desktop/package.json",
+        "sha256":  "903E034A5CF6F8E742ECE4FEBB267E9CC3395BE22AFF0F698D57317A0E791EDC"
+    },
+    {
+        "path":  "apps/desktop/vite.config.ts",
+        "sha256":  "24772438CEC9472D953FBA2A1A887264AE987D4B02C6AC6C67C79980E1C6F02F"
+    },
+    {
+        "path":  "apps/desktop/index.html",
+        "sha256":  "2CF1B3AE933415D8B5BBCB54C0B4CB87072303471ED30791357BE5411B5B7040"
+    },
+    {
+        "path":  "apps/desktop/tsconfig.json",
+        "sha256":  "9671B50541BCB0112D8914CF5F82C838FCAAA25BC3F14AB90CF40A49E929224E"
+    },
+    {
+        "path":  "apps/desktop/tsconfig.node.json",
+        "sha256":  "6EC602B8AA146888C76F0B41CA3515F91F95919F6E6417A4670DECABA8FCB982"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/Cargo.toml",
+        "sha256":  "C654901AFB0A012FB139CCCC4F42B925C60962027BE4EE3282F89CAF4AA72B63"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/Cargo.lock",
+        "sha256":  "32FE88A1A9A9709B45071771079538B43FA96C043328212D4084FD0953FA4BF9"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/build.rs",
+        "sha256":  "42A70531152DB4BE78FD2C0AFC23460F89F6FE3C7F4C69ECF0B4DF19A7C4E147"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/tauri.conf.json",
+        "sha256":  "C12A4226DE82BD4520802E78166F9FCA812DF28F2BB89105B929C5072DF76E71"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/capabilities/default.json",
+        "sha256":  "0C50458CCA9131E0837060BBE68FFAFC8C0E3D33EAE6CC27BD10AA0AEC704E31"
+    },
+    {
+        "path":  "apps/desktop/src/App.css",
+        "sha256":  "4096AD76FA91971164CD6100A25F91EFAA4A81FD5CF8AEF0A92E49733CBE1D4E"
+    },
+    {
+        "path":  "apps/desktop/src/App.tsx",
+        "sha256":  "D29B7C36552372E201D04474ECFAFA4C8B206B0C2292690E31995D03687CD24B"
+    },
+    {
+        "path":  "apps/desktop/src/main.tsx",
+        "sha256":  "8F55009F27569355469B6C65DDD242E2B38AA30B7A070EE2E438F4909A47A233"
+    },
+    {
+        "path":  "apps/desktop/src/runtime.ts",
+        "sha256":  "4B428F56640A887FD13302C3E909B1A96EC0927C10E64F9C593F0B989BB4D797"
+    },
+    {
+        "path":  "apps/desktop/src/vite-env.d.ts",
+        "sha256":  "424FAF9241DD699DDA995B367ED36665732DA1E6EC1F33B2FD40394488ECAC92"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/src/lib.rs",
+        "sha256":  "67DD2A37C82C0D4A22157018421D9530FC3AE04587B337A05F80EC0654723952"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/src/main.rs",
+        "sha256":  "8071087998921C7AB1A745E9AACFD3F02F3369BA58F045B10518FF78F9981C6D"
+    }
+]

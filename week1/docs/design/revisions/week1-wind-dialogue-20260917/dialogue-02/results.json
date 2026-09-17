@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "fixture": "Actual v3 MP3s injected into local responses; synthetic microphone input and bounded Whisper transcript",
+  "checks": [
+    {
+      "flow": {
+        "speech": [
+          {
+            "phase": "acknowledge",
+            "start": 824.9000000059605,
+            "duration": 2.56,
+            "windVisible": false,
+            "end": 3379
+          },
+          {
+            "phase": "building",
+            "start": 5654.4000000059605,
+            "duration": 2.08,
+            "windVisible": false,
+            "end": 7728.0999999940395
+          },
+          {
+            "phase": "present",
+            "start": 16411.80000001192,
+            "duration": 5.28,
+            "windVisible": false,
+            "end": 21688.19999998808
+          },
+          {
+            "phase": "wind-wait",
+            "start": 23459.69999998808,
+            "duration": 1.6,
+            "windVisible": false,
+            "end": 25068.09999999404
+          },
+          {
+            "phase": "wind-present",
+            "start": 30788.5,
+            "duration": 1.68,
+            "windVisible": true,
+            "end": 32468
+          }
+        ],
+        "windAt": 30086
+      },
+      "geometry": {
+        "x": 357.59375,
+        "y": 28,
+        "width": 976,
+        "height": 638
+      },
+      "repeatDoesNotDuplicate": true
+    },
+    "Dismiss cancels wind timer and queued presentation",
+    "New microphone request cancels wind construction",
+    "Visibility cancellation clears pending wind",
+    "Failed acknowledgement still reveals wind; reduced motion has static loading"
+  ],
+  "errors": []
+}

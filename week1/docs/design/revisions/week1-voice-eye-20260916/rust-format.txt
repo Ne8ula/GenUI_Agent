@@ -1,0 +1,4 @@
+> eva@0.1.0 rust:fmt
+> node scripts/rust.mjs fmt --check
+
+warn: could not canonicalize path C:\Users\alexx

@@ -1,0 +1,80 @@
+/* Only the application surfaces paint pixels; the desktop remains visible between them. */
+:root,html,body,#root,.eva-shell { background: transparent; }
+.eva-shell::before,.eva-shell::after { display: none; }
+.eva-shell { padding-top: 28px; }
+.command-welcome { min-height: calc(100dvh - 28px); gap: 0; }
+.welcome-command { padding: 0; margin-top: 12px; background: transparent; border: 0; }
+.command-workspace { position: relative; column-gap: 40px; }
+.eye-station,.stage { z-index: 1; }
+.eye-station .eye-anchor { margin-bottom: 0; }
+.eye-station .voice-console { background: transparent; border: 0; padding: 0; margin-top: 12px; }
+.eye-station .voice-trigger { min-width: 0; }
+.eye-session-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.eye-session-actions .action { flex: 1; min-width: 0; padding: 7px 8px; font-size: 12px; }
+.dither-link { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.instrument { box-shadow: none; }
+.instrument[data-testid="weather-card"] { margin: 0; max-width: 100%; max-height: max(300px,calc(100dvh - 60px)); display: flex; flex-direction: column; container-type: inline-size; }
+.instrument-top { flex: 0 0 auto; }
+.weather-content { padding-bottom: 36px; min-height: 0; overflow: auto; scrollbar-width: thin; scrollbar-color: #b4312c #080909; }
+.panel-tools { display: flex; align-items: center; gap: 6px; }
+.panel-close { color: #080909; background: transparent; border: 0; font-size: 24px; width: 32px; height: 36px; }
+.resize-grip { position: absolute; bottom: 2px; right: 2px; z-index: 5; width: 42px; height: 42px; color: #ff3b35; background: radial-gradient(#ff3b3545 .7px,transparent .8px) 0 0 / 3px 3px, #080909; border: 0; cursor: nwse-resize; touch-action: none; font: 26px/1 var(--mono); }
+.resize-grip svg { display: block; width: 30px; height: 30px; }
+.instrument-footer { min-height: 48px; padding-top: 8px; padding-bottom: 12px; padding-right: 40px; }
+.eye-station .request-receipt { margin-top: 8px; }
+.eye-station .request-receipt p { font-size: 12px; }
+@container (max-width: 760px) {
+  .forecast-heading { padding: 18px 18px 0; }
+  .forecast-heading h1 { font-size: 28px; }
+  .forecast-overview { grid-template-columns: 1fr; gap: 16px; margin: 20px 18px; }
+  .conditions { padding: 0; border: 0; }
+  .temperature { font-size: 76px; }
+  .forecast-strip,.wind-strip { grid-template-columns: 1fr; margin-left: 18px; margin-right: 18px; }
+  .day-cell { display: grid; grid-template-columns: 34px 52px 1fr auto auto; text-align: left; gap: 8px; border-right: 0; border-bottom: 1px dotted #59362f; padding: 8px; }
+  .day-values { display: contents; }
+  .day-cell .weather-glyph { width: 28px; height: 28px; justify-self: center; }
+  .day-high { font-size: 20px; }
+  .day-condition { display: none; }
+  .wind-cell { display: grid; grid-template-columns: 40px 44px 1fr; text-align: left; }
+  .wind-day { display: block; }
+  .strip-heading { margin-left: 18px; margin-right: 18px; }
+}
+.memory-dossier::backdrop { background: transparent; }
+.native-eye-tools { position: absolute; top: 5px; right: 5px; display: flex; gap: 4px; z-index: 5; opacity: 0; transition: opacity 140ms; }
+.moving-eye:hover .native-eye-tools,.moving-eye:focus-within .native-eye-tools { opacity: 1; }
+.native-eye-tools button { background: #080909; border: 1px solid #ff3b35; color: #ffddd8; width: 32px; height: 30px; font: 17px var(--mono); }
+.native-eye-tools .window-grip { cursor: move; touch-action: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .dither-link { animation: matrix-connect 500ms 800ms steps(8,end) both; }
+  @keyframes matrix-connect { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 -20px 0 -20px); } }
+}
+.quiet-mode .dither-link { animation: none; }
+@media (max-width: 960px) {
+  .command-workspace { row-gap: 42px; }
+  .eye-station { align-items: start; }
+}
+@media (max-width: 540px) {
+  .eva-shell { padding-top: 16px; }
+  .native-eye-tools { opacity: 1; }
+}
+
+.resize-grip:hover, .resize-grip:focus-visible { color: #fff0dc; background-color: #4d1717; }
+.resize-grip:active { color: #080909; background: #ff3b35; }
+.wind-loading { position: relative; overflow: hidden; }
+.wind-raster { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 3px; min-height: 126px; padding: 8px 24px 20px; }
+.wind-raster > div { overflow: hidden; padding: 10px; border-left: 1px solid #97312b; background: radial-gradient(#ff3b3560 .65px,transparent .9px) 0 0 / 3px 3px, #190b0c; }
+.wind-raster span { color: #ff3b35; font: 12px var(--mono); }
+.wind-raster i { display: block; height: 10px; margin-top: 9px; background: repeating-linear-gradient(90deg,#ff3b35 0 2px,transparent 2px 4px); opacity: .3; }
+.wind-raster i:nth-of-type(2) { width: 70%; }
+.wind-raster i:nth-of-type(3) { width: 45%; }
+.wind-scan { position: absolute; inset: 48px 0 auto; height: 3px; background: #ff3b35; opacity: .8; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .wind-loading[data-printing="true"] .wind-raster { animation: crt-print 5000ms steps(36,end) both; }
+  .wind-loading[data-printing="true"] .wind-scan { animation: wind-scan 5000ms steps(36,end) both; }
+  @keyframes wind-scan { from { transform: translateY(0); } to { transform: translateY(125px); opacity: 0; } }
+}
+@media (prefers-reduced-motion: reduce) { .wind-scan { display: none; } }
+@container (max-width: 500px) {
+  .wind-raster { padding-inline: 16px; }
+  .wind-raster > div { padding: 5px; }
+}

@@ -1,0 +1,5 @@
+Error: spawn UNKNOWN
+    at ChildProcess.spawn (node:internal/child_process:421:11)
+    at spawn (node:child_process:796:9)
+    at launch (file:///C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/scripts/weather-smoke.mjs:34:11)
+    at async file:///C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/scripts/weather-smoke.mjs:76:14

@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "mode": "native-webview2",
+  "checks": [
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA � Setup check",
+        "MainWindowHandle": 2494088
+      }
+    },
+    {
+      "viewport": {
+        "width": 960,
+        "height": 760,
+        "dpr": 1
+      },
+      "url": "http://tauri.localhost/"
+    },
+    "Keyboard activation and runtime response passed",
+    {
+      "rejections": [
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "unsupported_protocol"
+        },
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "invalid args `request` for command `check_runtime`: unknown field `permission`, expected `protocolVersion`"
+        },
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "invalid args `request` for command `check_runtime`: missing field `protocolVersion`"
+        },
+        {
+          "command": "not_registered",
+          "rejected": true,
+          "error": "not_registered not allowed. Command not found"
+        },
+        {
+          "command": "plugin:window|set_title",
+          "rejected": true,
+          "error": "window.set_title not allowed. Permissions associated with this command: core:window:allow-set-title"
+        }
+      ]
+    },
+    "Injected failure displays bounded error; retry reaches Rust again",
+    "No uncaught JavaScript errors during exercised interactions",
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA � Setup check",
+        "MainWindowHandle": 6228944
+      }
+    },
+    "Normal native close, relaunch, second IPC response and second close passed"
+  ]
+}

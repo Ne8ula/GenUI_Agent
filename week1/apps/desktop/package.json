@@ -1,0 +1,33 @@
+{
+  "name": "@eva/desktop",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node ../../scripts/build-validators.mjs",
+    "dev": "vite",
+    "prebuild": "node ../../scripts/build-validators.mjs",
+    "build": "tsc && tsc -p tsconfig.node.json && vite build",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.node.json",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@eva/protocol": "*",
+    "@eva/ui-system": "*",
+    "@fontsource/ibm-plex-mono": "^5",
+    "@fontsource/ibm-plex-sans": "^5",
+    "@fontsource/space-grotesk": "^5",
+    "@tauri-apps/api": "^2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@types/node": "^24.13.5",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^6.0.2",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.16"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "versions": {
+    "node": "v24.14.0",
+    "playwright": "1.63.0",
+    "react": "19.3.0",
+    "edge": "153.0.4234.32"
+  },
+  "sha256": {
+    "apps/desktop/src/App.tsx": "5aa667de32e3dff1d21b37b8128d274d6623cbd12ff0bb698e9a0bec6b137f53",
+    "apps/desktop/src/Overlay.css": "7835d23fe567f29f4e0b41f6b2421312ba6ec78493e1fd96ef45a5e437dc281d",
+    "apps/desktop/src/Crt.css": "b3d64049ff2334a28f98a16ee675b9bda829d61aedd789b9a3eec95e43401802",
+    "apps/desktop/src/WeatherAssembly.tsx": "45919376d279815d2d49ae7889378150932bce5608c53e49e9d47d9723147e8f",
+    "apps/desktop/src/useNarration.ts": "28952b30d879fd1171208d6ad9c70a06d17dff7270a190767f84bce86f147e65",
+    "apps/desktop/narration-server.ts": "2a8fd0b15cce078ed021eb8753b15f0d5bf72d8b670700b8f34ed2762d47771f",
+    "apps/desktop/src-tauri/src/narration.rs": "3097d9b04f5cc43d091d7fb331b1e857c4e9480fe02f9cb5d9e9f8a28df6e1a3",
+    "fixtures/narration/voice-profile.json": "6e73d002e3a412e9e34a67dab741ee954cfb7230da8d12dd8a7ca850f48d30d8",
+    "scripts/narration-server.test.mjs": "3f2545d51bc7a86c9fb702f5898764cbbf8cdef27671135eacd81dcb7c51a9c0",
+    "scripts/narration-pacing-smoke.mjs": "00598bf799781b6f536505a51b0392761d40ef262b04fd96d0524a9c4c3de444",
+    "scripts/narration-provider-check.mjs": "94271885626b478c5d9bf709b946a3ccfa1ff3da47c7e6473b5adeb7246ba8eb"
+  }
+}

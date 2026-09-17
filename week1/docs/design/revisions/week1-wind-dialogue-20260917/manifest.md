@@ -1,0 +1,32 @@
+# Weather summary and wind dialogue — 2026-09-17
+
+**Candidate; owner listening/native review pending.** Working tree based on `83a155f`; [source hashes and tool versions](source-hashes.json). Predecessor: [Eleven v3 prompts](../week1-v3-prompts-20260917/manifest.md), continuing the accepted biomechanical visual direction. No commit, publication, phase advancement or invented acceptance. Owner planning/research edits retained. Actual authoring: OpenAI Codex/GPT-6, PowerShell/Node source editing, Rust, Edge Playwright, official ElevenLabs docs. Existing design-engineering guidance applied to local state continuity and loading feedback; no generated image or external design reviewer.
+
+Owner requested a natural weather summary inviting a follow-up, then "Give me a second", five seconds of wind construction, and spoken wind presentation. This expands the preceding three-script checkpoint to five approved phases.
+
+| Before | After | Why |
+| --- | --- | --- |
+| "Here's your weather dashboard" | "So, Ithaca looks partly cloudy on Thursday and clear on Friday; anything else you'd like to know?" | Conversational summary; condition words derive from the displayed fixture |
+| Wind appeared immediately after microphone recognition | Acknowledgement ends, then five seconds of dithered CRT construction, then visible values and speech | Makes the follow-up process legible and gives the voice room |
+| Wind used existing user-set size, but an untouched panel could expand | Capture current panel dimensions before loading, preserving position/size/day | Maintains spatial continuity throughout the update |
+
+All scripts use `eleven_v3`, Natural stability 0.5, and the owner's cue-first form. The short-form policy, experimental `[speed: 1.25x]` limitation, no SSML rule, compatible stacked tags and separate extreme-transition guidance are documented in [VOICE_PROMPTING.md](../../VOICE_PROMPTING.md). Runtime TTS accepts only approved phases. The renderer cannot supply text, voice, model, endpoint or policy.
+
+Both backends resolve the summary's condition placeholders from `fixtures/connectors/weather-ithaca-week.json`. Source identity, synthetic provenance, location, exact Thursday/Friday dates and allowed conditions are checked before synthesis/cache return. Invalid source facts fail closed; tests also change Thursday to rain and confirm spoken wording follows the data. This is a deterministic sample-weather summary, not live weather or general LLM conversation. The visible Sample marker remains.
+
+Wind construction starts after the acknowledgement clip ends. If speech is unavailable, the visual workflow still proceeds. The five-second interval is authored UI pacing, not network progress. Reduced motion keeps a static loading panel for that interval. Dismiss, a new microphone request or hiding the document clears pending wind work; repeating a request for visible wind is idempotent. The eye uses its existing assembling state. The original weather sequence stays at 15 seconds.
+
+Evidence uses the same synthetic forecast and Markdown preference, installed Edge on Windows, viewport 1440×960 CSS px/DPR 1; four smaller/wider viewports use the existing resize harness. Blink/dither timing is not seeded. PNGs preserve root alpha; browser videos have no audio track and do not prove native desktop compositing.
+
+- [Before weather](before/weather.png), [before wind](before/wind-voice.png), [before checks](before/results.json), [before recording](before/resize-voice.webm).
+- [Wind construction](dialogue/wind-building.png), [wind ready](dialogue/wind-ready.png), [dialogue recording](dialogue/wind-dialogue.webm). Both stills reviewed at matching viewport.
+- [Dialogue checks](dialogue/results.json): actual Eleven v3 MP3s decoded/played via injected local responses; real AudioWorklet with synthetic input and injected Whisper phrase. All five phases in order; wind appeared **5.016 seconds after acknowledgement ended**, final wind speech started about **702 ms after visible content**. Clip durations: 2.56 / 2.08 / 5.28 / 1.60 / 1.68 seconds. Card geometry 976×638 remained unchanged. Repeating wind did not duplicate speech/revisions. Dismissal cancelled late wind; failed acknowledgement still allowed static reduced-motion loading to complete. No browser errors.
+- [Expanded interruption checks](dialogue-02/results.json), [recording](dialogue-02/wind-dialogue.webm): a second full pass also verified that starting another microphone request and dispatching document visibility cancellation clear wind construction, with no late panel. Visibility was instrumented in the browser, not a native window-minimize test.
+- [Resize checks](after/results.json), [small panel with wind](after/wind-voice.png), [narrow panel](after/wind-400x640.png), [resize recording](after/resize-voice.webm): pointer/keyboard resizing, geometry preservation, voice-only wind, four responsive sizes, idempotency and reduced-motion/new-session behavior passed.
+- [Live provider results](provider-results.json): all five final v3 payloads returned HTTP 200 MP3s through a separately authorized network check using the existing private configuration. Audio remains in a temporary local directory; no keys or voice ID are in evidence. Provider success and decoded playback do not prove that numeric speed cues were interpreted or all internal pauses are gone.
+
+Validation: frontend/server TypeScript and production build passed; **22 JavaScript tests and 17 Rust tests passed**, Clippy and formatting passed. Browser tests cover the new five-second sequence, cancellation and audio failure; unchanged resize/voice boundaries were rerun. This is browser plus backend evidence, not a fresh native listening test or subjective match to the voice preview.
+
+Changed code: approved speech lines/policy, shared narration validator/grounding, both TTS adapters, useNarration.ts, App.tsx, usePanelResize.ts, Overlay.css, provider check and focused tests/harness. Updated developer prompting guidance, README, DESIGN.md and index. Source hashes identify the final reviewable files.
+
+Owner exercise: restart the existing desktop process (`npm.cmd run desktop:dev`) to clear old clip caches, request weather and let the summary finish; ask "What about the wind speed?" with the microphone. Expect acknowledgement, five seconds of embedded CRT construction, wind values and the final wind reply. Try resize/dismiss during construction. The existing server on 1420 was reused and was not stopped by this task. Owner acceptance/date: **pending**.

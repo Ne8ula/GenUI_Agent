@@ -1,0 +1,30 @@
+﻿[
+    {
+        "sha256":  "9E58E61061039D4C4556F5E75885992C5C7326BD68D65F68EDAFAC5C1781B915",
+        "path":  "apps/desktop/src/SignalEye.tsx"
+    },
+    {
+        "sha256":  "341D4D80F7546C29734084F02E0C1D6482206FD78DDBBA6EF7D62C853A4AB3DC",
+        "path":  "apps/desktop/src/MovingEye.tsx"
+    },
+    {
+        "sha256":  "58746C1BB52FF95E686759F8E483E6A80FF1259AD7404ED15B5102EED967C4DB",
+        "path":  "apps/desktop/src/SomaticFrame.tsx"
+    },
+    {
+        "sha256":  "928AB62B3C676B0C446CCF55C19AF4E483273BD53B3728C0AED4838DA4F2498E",
+        "path":  "apps/desktop/src/Biomech.css"
+    },
+    {
+        "sha256":  "6DA087D241F8CB7A5174753EF91798A9FECEB3ED4EFAE5EFF95A913223FDD4E4",
+        "path":  "apps/desktop/src/App.tsx"
+    },
+    {
+        "sha256":  "6F6E329FFFD162B87BE3ECB9D0210E3C7506C0FBD37C628E744D9D83B6BB0BC4",
+        "path":  "apps/desktop/src/WeatherAssembly.tsx"
+    },
+    {
+        "sha256":  "BE7E89567D2A26DCD0BD9C338D3685678847A88198B77DCE32FF3BFD3E9283F2",
+        "path":  "scripts/biomech-smoke.mjs"
+    }
+]

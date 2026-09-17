@@ -1,0 +1,30 @@
+﻿[
+    {
+        "sha256":  "39F1073858AD415D9565EEE1DD4E40A3F7C76A2BAB0EB53F2EAA3848B670815B",
+        "path":  "apps/desktop/src/App.tsx"
+    },
+    {
+        "sha256":  "9BB0F735918B05FDB68ABA01FAC260FA45A08CBA704E99AFAAFCD7D4C2C8C24A",
+        "path":  "apps/desktop/src/DitherLink.tsx"
+    },
+    {
+        "sha256":  "FC27861374F79956ADD2ACDCC4B11E16B4BE2CD0A57EC944E409A9FF86EAE156",
+        "path":  "apps/desktop/src/Overlay.css"
+    },
+    {
+        "sha256":  "98E24B774926A72227DFB7339B531BB0BC7BF02AA794771FCD304F5B8B279DEE",
+        "path":  "apps/desktop/src/usePanelResize.ts"
+    },
+    {
+        "sha256":  "A648F60AC367FB9A07DBD78358C359F1A010F3A47687AC5BD7B24D9F83C74C15",
+        "path":  "packages/protocol/voice.ts"
+    },
+    {
+        "sha256":  "7AA1B6B087BAC1B243DE3DC76F3D4B2314CB0D7EAE9A0797AE94535EA6A46245",
+        "path":  "scripts/voice-contract.test.mjs"
+    },
+    {
+        "sha256":  "70673246E402380D7F49FC904656DF6EBD9F171D8B4424EFF58273FBB7A6CDD1",
+        "path":  "scripts/resize-voice-smoke.mjs"
+    }
+]

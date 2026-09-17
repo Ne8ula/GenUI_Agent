@@ -1,0 +1,21 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-runtime",
+  "description": "The local main window can read one synthetic memory record, submit/cancel bounded Whisper input, and synthesize/cancel three fixed ElevenLabs narration sentences.",
+  "local": true,
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "allow-check-runtime",
+    "allow-get-demo-memory",
+    "allow-voice-status",
+    "allow-transcribe-weather",
+    "allow-cancel-voice",
+    "allow-narration-status",
+    "allow-speak-narration",
+    "allow-cancel-narration",
+    "core:window:allow-start-dragging",
+    "core:window:allow-close"
+  ]
+}

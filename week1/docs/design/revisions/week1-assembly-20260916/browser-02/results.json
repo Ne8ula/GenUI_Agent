@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "continuity": true,
+      "start": {
+        "x": 220,
+        "y": 230.25,
+        "width": 1000,
+        "height": 471.6875
+      },
+      "middle": {
+        "x": 92.37364196777344,
+        "y": 182.11691284179688,
+        "width": 418.4737091064453,
+        "height": 197.39028930664062
+      },
+      "end": {
+        "x": 57.59375,
+        "y": 169,
+        "width": 260,
+        "height": 122.640625
+      }
+    },
+    "Dismissal cancels pending assembly and disposes the eye",
+    "Four responsive loading layouts and eye landing positions passed",
+    "Skeleton waits beyond choreography for delayed data (injected IPC)",
+    "Reduced motion skips eye travel and skeleton animation while respecting actual pending data",
+    "Data timeout exits loading with a visible fallback; late reply cannot replace it"
+  ],
+  "errors": []
+}

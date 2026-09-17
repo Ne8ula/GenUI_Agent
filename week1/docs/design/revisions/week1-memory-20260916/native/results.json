@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "mode": "native-webview2",
+  "checks": [
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA · Setup check",
+        "MainWindowHandle": 3345690
+      }
+    },
+    {
+      "viewport": {
+        "width": 960,
+        "height": 760,
+        "dpr": 1
+      },
+      "url": "http://127.0.0.1:1420/"
+    },
+    "Keyboard activation and runtime response passed",
+    "Native memory command rejects unknown ID, path/authority fields and missing ID",
+    {
+      "memoryLookup": {
+        "record": {
+          "id": "weather-units",
+          "category": "preference",
+          "value": "Celsius",
+          "scope": "weather",
+          "source": "synthetic-demo",
+          "recordedDate": "2026-09-16",
+          "markdown": "---\nid: weather-units\ncategory: preference\nvalue: Celsius\nscope: weather\nsource: synthetic-demo\nrecordedDate: 2026-09-16\n---\n\n# Weather units\n\nSynthetic demo memory. Use Celsius for the weather fixture.\n\nThis record was authored for the week-one demonstration. It is not a real\nperson's preference, a semantic retrieval result, or authorization for any action.\n\n",
+          "sourceReference": "fixtures/vault/preferences/weather-units.md"
+        },
+        "transport": "tauri"
+      },
+      "invalidIdMessage": "Demo memory unavailable"
+    },
+    {
+      "rejections": [
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "unsupported_protocol"
+        },
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "invalid args `request` for command `check_runtime`: unknown field `permission`, expected `protocolVersion`"
+        },
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "invalid args `request` for command `check_runtime`: missing field `protocolVersion`"
+        },
+        {
+          "command": "not_registered",
+          "rejected": true,
+          "error": "not_registered not allowed. Command not found"
+        },
+        {
+          "command": "plugin:window|set_title",
+          "rejected": true,
+          "error": "window.set_title not allowed. Permissions associated with this command: core:window:allow-set-title"
+        }
+      ]
+    },
+    "Injected failure displays bounded error; retry reaches Rust again",
+    "No uncaught JavaScript errors during exercised interactions",
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA · Setup check",
+        "MainWindowHandle": 1769696
+      }
+    },
+    "Normal native close, relaunch, second IPC response and second close passed"
+  ]
+}

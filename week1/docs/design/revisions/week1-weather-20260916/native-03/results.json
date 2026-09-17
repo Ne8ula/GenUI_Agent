@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA · Weather workspace",
+        "MainWindowHandle": 3082732
+      }
+    },
+    {
+      "url": "http://tauri.localhost/",
+      "viewport": {
+        "width": 960,
+        "height": 760,
+        "dpr": 1
+      },
+      "browser": "153.0.4234.32"
+    },
+    "Rehearsal 1: open, reset, keyboard move, select day, patch, exact source, topmost Escape, undo, reset, dismiss",
+    "Rehearsal 2: open, reset, keyboard move, select day, patch, exact source, topmost Escape, undo, reset, dismiss",
+    "Pointer drag; seven viewport base/wind/source checks; reduced motion and quiet mode passed",
+    "Injected pending/error, real Rust retry, derived Fahrenheit, escaped Markdown, dismissal supersession, timeout and late-result rejection passed",
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA · Weather workspace",
+        "MainWindowHandle": 1249094
+      }
+    },
+    "Standalone normal window close and relaunch passed"
+  ],
+  "errors": [],
+  "requests": [
+    "http://ipc.localhost/get_demo_memory",
+    "http://ipc.localhost/get_demo_memory",
+    "http://ipc.localhost/get_demo_memory",
+    "http://ipc.localhost/get_demo_memory",
+    "http://ipc.localhost/get_demo_memory",
+    "http://ipc.localhost/get_demo_memory"
+  ]
+}

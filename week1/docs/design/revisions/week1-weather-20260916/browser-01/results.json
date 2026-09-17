@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "url": "http://127.0.0.1:1420/",
+      "viewport": {
+        "width": 960,
+        "height": 760,
+        "dpr": 1
+      },
+      "browser": "153.0.4234.32"
+    },
+    "Rehearsal 1: open, reset, keyboard move, select day, patch, exact source, topmost Escape, undo, reset, dismiss",
+    "Rehearsal 2: open, reset, keyboard move, select day, patch, exact source, topmost Escape, undo, reset, dismiss",
+    "Pointer drag; six viewport base/wind/source checks; reduced motion and quiet mode passed"
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:1420/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2",
+    "http://127.0.0.1:1420/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+    "http://127.0.0.1:1420/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2",
+    "http://127.0.0.1:1420/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2"
+  ]
+}

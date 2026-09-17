@@ -70,6 +70,10 @@
 
 ## Semester curriculum
 
+Implementation sequencing note (owner decision, 2026-09-16): ComfyUI installation is scheduled for the start of delivery phase S3, after explicit owner acceptance of S2's core weather/calendar interaction, conversational revision, and simulated memory. Earlier phases use synthetic media-state fixtures. S3 evaluates one bounded local still-image workflow; optional imagery must not delay the core prototype or confound matched research conditions. These delivery phases are defined in PLANNING.md and are not calendar week numbers.
+
+A proposed week-one visual checkpoint is specified in [the demo brief](../../week1/docs/design/WEEK1_DEMO.md). It previews one reusable weather interaction and inspectable synthetic memory storage. It does not replace the planned literature work, later two-workflow prototype, voice/social conditions, or institutional research process.
+
 - **Weeks 1-2:** CASA, affective computing, mixed-initiative interaction, generative design, agentic UI, and trust literature; finalize constructs and protocol.
 - **Weeks 3-4:** Define the three-layer framework, component ontology, UI schema, affect rules, memory regions, and safety invariants.
 - **Weeks 5-7:** Implement weather and calendar workflows, voice and eye behavior, progressive generation, semantic revision, and simulated memory.

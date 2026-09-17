@@ -1,0 +1,33 @@
+> eva@0.1.0 pretest
+> npm run protocol:generate
+
+
+> eva@0.1.0 protocol:generate
+> node scripts/build-validators.mjs
+
+
+> eva@0.1.0 test
+> node --test scripts/protocol.test.mjs scripts/memory-contract.test.mjs scripts/voice-contract.test.mjs scripts/voice-server.test.mjs
+
+✔ browser fixture parses the single source and preserves its bytes (1.7202ms)
+✔ malformed, duplicate, authority-bearing and non-synthetic fields fail closed (0.3503ms)
+✔ backend reply must match the Markdown and contain only contract fields (0.3281ms)
+✔ seven chronological days, explicit units and missing wind remain data (1.8577ms)
+✔ fixture rejects unknown fields, impossible dates, order, ranges, and inconsistent missingness (0.4945ms)
+✔ document accepts only bounded weather components and fixture references (0.3279ms)
+✔ invalid, stale, unknown and replayed patches preserve the last good object (0.7872ms)
+✔ revision and undo preserve user geometry; reset restores it and advances revision (0.5152ms)
+✔ bounded weather utterances, not unrelated or compound instructions (1.1177ms)
+✔ canonical mono 16k PCM has an actual bounded duration, not a trusted duration field (6.0741ms)
+✔ loopback boundary rejects cross-origin, unknown authority/model fields and malformed audio before upload (25.2451ms)
+✔ one Whisper upload returns only bounded transcript; rapid replay is rejected (5.5946ms)
+✔ cancel aborts the in-flight provider request and permits no second simultaneous job (4.8948ms)
+✔ provider diagnostics and oversized responses stay out of the renderer (5.4284ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.7949

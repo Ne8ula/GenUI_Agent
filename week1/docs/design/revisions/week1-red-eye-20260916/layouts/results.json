@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "width": 1440,
+      "height": 960,
+      "entryAndInputOverflow": false
+    },
+    {
+      "width": 960,
+      "height": 760,
+      "entryAndInputOverflow": false
+    },
+    {
+      "width": 1960,
+      "height": 530,
+      "entryAndInputOverflow": false
+    },
+    {
+      "width": 600,
+      "height": 760,
+      "entryAndInputOverflow": false
+    },
+    {
+      "width": 400,
+      "height": 640,
+      "entryAndInputOverflow": false
+    },
+    "Typed request opens weather; quiet mode keeps identical canvas pixels"
+  ]
+}

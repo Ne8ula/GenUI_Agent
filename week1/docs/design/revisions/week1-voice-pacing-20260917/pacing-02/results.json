@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "fixture": "Synthetic 1-second tone, immediate cached-equivalent provider replies, real Web Audio",
+  "checks": [
+    {
+      "run": 0,
+      "presentationMs": 15137.5,
+      "speech": [
+        {
+          "stage": "loading",
+          "start": 908.7000000178814,
+          "duration": 1,
+          "end": 1903.4000000059605
+        },
+        {
+          "stage": "loading",
+          "start": 5773,
+          "duration": 1,
+          "end": 6771.700000017881
+        },
+        {
+          "stage": "ready",
+          "start": 16557.20000001788,
+          "duration": 1,
+          "end": 17552
+        }
+      ]
+    },
+    {
+      "run": 1,
+      "presentationMs": 15047.199999988079,
+      "speech": [
+        {
+          "stage": "loading",
+          "start": 18188,
+          "duration": 1,
+          "end": 19182.70000001788
+        },
+        {
+          "stage": "loading",
+          "start": 23130.30000001192,
+          "duration": 1,
+          "end": 24121.90000000596
+        },
+        {
+          "stage": "ready",
+          "start": 33859.09999999404,
+          "duration": 1,
+          "end": 34852.70000001788
+        }
+      ]
+    },
+    "Dismiss during inter-sentence pause cancels queued playback",
+    "Dismiss rejects late provider audio",
+    "Provider failure leaves dashboard usable"
+  ],
+  "errors": []
+}

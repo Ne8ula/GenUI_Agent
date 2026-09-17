@@ -1,0 +1,135 @@
+{
+  "mode": "before-capture",
+  "results": [
+    {
+      "width": 960,
+      "height": 760,
+      "dpr": 1,
+      "scrollWidth": 960,
+      "scrollHeight": 760,
+      "section": {
+        "x": 72,
+        "y": 128,
+        "width": 816,
+        "bottom": 619.390625
+      },
+      "result": {
+        "x": 105,
+        "y": 466.390625,
+        "width": 750,
+        "bottom": 586.390625
+      },
+      "footer": {
+        "x": 72,
+        "y": 643.390625,
+        "width": 816,
+        "bottom": 662.890625
+      },
+      "focused": true
+    },
+    {
+      "width": 1960,
+      "height": 530,
+      "dpr": 1,
+      "scrollWidth": 1960,
+      "scrollHeight": 695,
+      "section": {
+        "x": 572,
+        "y": 128,
+        "width": 816,
+        "bottom": 619.390625
+      },
+      "result": {
+        "x": 605,
+        "y": 466.390625,
+        "width": 750,
+        "bottom": 586.390625
+      },
+      "footer": {
+        "x": 572,
+        "y": 643.390625,
+        "width": 816,
+        "bottom": 662.890625
+      },
+      "focused": true
+    },
+    {
+      "width": 1280,
+      "height": 530,
+      "dpr": 1,
+      "scrollWidth": 1280,
+      "scrollHeight": 695,
+      "section": {
+        "x": 232,
+        "y": 128,
+        "width": 816,
+        "bottom": 619.390625
+      },
+      "result": {
+        "x": 265,
+        "y": 466.390625,
+        "width": 750,
+        "bottom": 586.390625
+      },
+      "footer": {
+        "x": 232,
+        "y": 643.390625,
+        "width": 816,
+        "bottom": 662.890625
+      },
+      "focused": true
+    },
+    {
+      "width": 960,
+      "height": 530,
+      "dpr": 1,
+      "scrollWidth": 960,
+      "scrollHeight": 695,
+      "section": {
+        "x": 72,
+        "y": 128,
+        "width": 816,
+        "bottom": 619.390625
+      },
+      "result": {
+        "x": 105,
+        "y": 466.390625,
+        "width": 750,
+        "bottom": 586.390625
+      },
+      "footer": {
+        "x": 72,
+        "y": 643.390625,
+        "width": 816,
+        "bottom": 662.890625
+      },
+      "focused": true
+    },
+    {
+      "width": 400,
+      "height": 640,
+      "dpr": 1,
+      "scrollWidth": 400,
+      "scrollHeight": 778,
+      "section": {
+        "x": 20,
+        "y": 100,
+        "width": 360,
+        "bottom": 694.59375
+      },
+      "result": {
+        "x": 45,
+        "y": 537.09375,
+        "width": 310,
+        "bottom": 661.59375
+      },
+      "footer": {
+        "x": 20,
+        "y": 718.59375,
+        "width": 360,
+        "bottom": 757.59375
+      },
+      "focused": true
+    }
+  ]
+}

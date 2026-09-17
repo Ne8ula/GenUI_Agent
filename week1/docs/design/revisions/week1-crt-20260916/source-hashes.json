@@ -1,0 +1,38 @@
+﻿[
+    {
+        "path":  "apps/desktop/src/App.tsx",
+        "sha256":  "25d451d00f42e55c5f836f3be21c7e5502d4bd0920506a0c00026413c755d9b0"
+    },
+    {
+        "path":  "apps/desktop/src/WeatherAssembly.tsx",
+        "sha256":  "d5bf58c76c3c6b9b849b600d696f1c8898a2f5d37c0739ac35bca1df7e3cc20d"
+    },
+    {
+        "path":  "apps/desktop/src/Crt.css",
+        "sha256":  "89e0676bb85ada6384ca95621c54ce9acc6fc9a5865abd17c307affc81da70eb"
+    },
+    {
+        "path":  "apps/desktop/src/SignalEye.tsx",
+        "sha256":  "578f4ae1593af07a34696c39c3f8d12abe5478fe9d21485b9ed774d0abc9b37d"
+    },
+    {
+        "path":  "apps/desktop/src/MovingEye.tsx",
+        "sha256":  "3356c925849c7c468fc56daa9f0ba7de033a96505becedab3b989d0b7cbd7131"
+    },
+    {
+        "path":  "scripts/crt-smoke.mjs",
+        "sha256":  "978b00b0f1a79b30b3ad388b66cad26b48134406fe9d050ceb3932f2f26f5638"
+    },
+    {
+        "path":  "scripts/assembly-smoke.mjs",
+        "sha256":  "6b9e2307a4f14ee0c51e9c23641f29edcc81c07239c29e53f863ee0df5747500"
+    },
+    {
+        "path":  "scripts/record-voice-eye.mjs",
+        "sha256":  "06d7fc6f44b4009b235ef300e0bc49ecaf55744dd666b910fd7bd2b04fc75f0d"
+    },
+    {
+        "path":  "scripts/voice-eye-smoke.mjs",
+        "sha256":  "7c682cb838f363fc29bfa5de507a804e0eec43415d2f02b860afda97c0626a5e"
+    }
+]

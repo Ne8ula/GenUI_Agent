@@ -1,0 +1,21 @@
+{
+  "name": "eva-repository",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Repository commands forward to the isolated Week 1 demo.",
+  "scripts": {
+    "protocol:generate": "npm --prefix week1 run protocol:generate --",
+    "test": "npm --prefix week1 run test --",
+    "memory:check": "npm --prefix week1 run memory:check --",
+    "dev": "npm --prefix week1 run dev --",
+    "build": "npm --prefix week1 run build --",
+    "typecheck": "npm --prefix week1 run typecheck --",
+    "desktop:dev": "npm --prefix week1 run desktop:dev --",
+    "desktop:build": "npm --prefix week1 run desktop:build --",
+    "desktop:build:debug": "npm --prefix week1 run desktop:build:debug --",
+    "rust:check": "npm --prefix week1 run rust:check --",
+    "rust:test": "npm --prefix week1 run rust:test --",
+    "rust:fmt": "npm --prefix week1 run rust:fmt --",
+    "rust:clippy": "npm --prefix week1 run rust:clippy --"
+  }
+}

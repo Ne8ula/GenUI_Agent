@@ -1,0 +1,20 @@
+[
+    {
+        "sampledTransparentPixels":  13104,
+        "samples":  21600,
+        "file":  "eye-alpha.png",
+        "cornerAlpha":  0
+    },
+    {
+        "sampledTransparentPixels":  10405,
+        "samples":  21600,
+        "file":  "loading-alpha.png",
+        "cornerAlpha":  0
+    },
+    {
+        "sampledTransparentPixels":  9780,
+        "samples":  21600,
+        "file":  "weather-alpha.png",
+        "cornerAlpha":  0
+    }
+]

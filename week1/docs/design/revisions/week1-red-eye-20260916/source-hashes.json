@@ -1,0 +1,42 @@
+﻿[
+    {
+        "path":  "apps/desktop/src/App.tsx",
+        "sha256":  "283c4b36685b4b0ffb50f974ba51db2c116987a06a5b278d883868c938cbbbd7"
+    },
+    {
+        "path":  "apps/desktop/src/App.css",
+        "sha256":  "f68a3649313e35c3b5ab48ab4144b6af4b8c16dd006d73d0369c0b3f9c984ef2"
+    },
+    {
+        "path":  "apps/desktop/src/Command.css",
+        "sha256":  "40a2226dc787d1995229fd9649d2ea9bdfe455765a95a6293cb1969ee093c6de"
+    },
+    {
+        "path":  "apps/desktop/src/SignalEye.tsx",
+        "sha256":  "672e845772d38ba26803b3278133099361b7b3c5d308e8c1444898239f556770"
+    },
+    {
+        "path":  "apps/desktop/src/useVoice.ts",
+        "sha256":  "eb285451fd03d39093ed38090f31d98afe104d9d2016e6b70baee33d81346fed"
+    },
+    {
+        "path":  "packages/ui-system/tokens.css",
+        "sha256":  "689282cb97489c84017939af89c8a52c619b81beeea0b6c5388c19632f6e447d"
+    },
+    {
+        "path":  "scripts/voice-eye-preview.mjs",
+        "sha256":  "6454afd5209cf28c41a7046723d46c8b2d473a7231dbf2f30f56c84108f86a98"
+    },
+    {
+        "path":  "scripts/voice-eye-smoke.mjs",
+        "sha256":  "7c682cb838f363fc29bfa5de507a804e0eec43415d2f02b860afda97c0626a5e"
+    },
+    {
+        "path":  "scripts/record-voice-eye.mjs",
+        "sha256":  "e994133ab478ebbc87e80c063d3f80963553f7fdabc3ce6db4f442e4050aa778"
+    },
+    {
+        "path":  "scripts/red-eye-layout.mjs",
+        "sha256":  "6548a3182e2e5fa1557bb0ae5151559bd9534bf6d522b3b66e18285f96664414"
+    }
+]

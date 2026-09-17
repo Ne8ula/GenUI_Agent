@@ -1,0 +1,21 @@
+{
+  "status": "failed",
+  "checks": [
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA · Setup check",
+        "MainWindowHandle": 1311936
+      }
+    },
+    {
+      "viewport": {
+        "width": 960,
+        "height": 760,
+        "dpr": 1
+      },
+      "url": "http://127.0.0.1:1420/"
+    },
+    "Keyboard activation and runtime response passed"
+  ],
+  "error": "The expression evaluated to a falsy value:\n\n  assert.ok(geometry.focused)\n"
+}

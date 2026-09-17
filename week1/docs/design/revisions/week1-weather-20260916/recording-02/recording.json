@@ -1,0 +1,11 @@
+{
+  "mode": "browser-fixture",
+  "viewport": {
+    "width": 1280,
+    "height": 1000
+  },
+  "deviceScaleFactor": 1,
+  "sequence": "open, move, wind, exact source, undo, reset, dismiss",
+  "browser": "153.0.4234.32",
+  "motion": "no-preference"
+}

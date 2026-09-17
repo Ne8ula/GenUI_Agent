@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "fixture": "Injected provider with synthetic tone WAV decoded by real Web Audio; not ElevenLabs voice quality evidence",
+  "checks": [
+    {
+      "orderedSpeech": [
+        {
+          "stage": "loading",
+          "time": 668.7000000178814
+        },
+        {
+          "stage": "loading",
+          "time": 1674.300000011921
+        },
+        {
+          "stage": "ready",
+          "time": 8147
+        }
+      ],
+      "phases": [
+        "acknowledge",
+        "building",
+        "present"
+      ],
+      "quietStopsPlayback": true
+    },
+    "Dismiss rejects late synthesized audio",
+    "Provider failure leaves dashboard usable"
+  ],
+  "errors": []
+}

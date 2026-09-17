@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "mode": "native-webview2",
+  "checks": [
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA · Setup check",
+        "MainWindowHandle": 1508190
+      }
+    },
+    {
+      "viewport": {
+        "width": 960,
+        "height": 760,
+        "dpr": 1
+      },
+      "url": "http://127.0.0.1:1420/"
+    },
+    "Keyboard activation and runtime response passed",
+    {
+      "webviewViewportResize": [
+        {
+          "width": 1960,
+          "height": 530,
+          "dpr": 1,
+          "scrollWidth": 1960,
+          "footerBottom": 417.5,
+          "focused": true
+        },
+        {
+          "width": 1280,
+          "height": 530,
+          "dpr": 1,
+          "scrollWidth": 1280,
+          "footerBottom": 417.5,
+          "focused": true
+        },
+        {
+          "width": 960,
+          "height": 530,
+          "dpr": 1,
+          "scrollWidth": 960,
+          "footerBottom": 417.5,
+          "focused": true
+        },
+        {
+          "width": 400,
+          "height": 640,
+          "dpr": 1,
+          "scrollWidth": 385,
+          "footerBottom": 642.09375,
+          "focused": true
+        },
+        {
+          "width": 960,
+          "height": 760,
+          "dpr": 1,
+          "scrollWidth": 960,
+          "footerBottom": 640.1875,
+          "focused": true
+        }
+      ]
+    },
+    {
+      "rejections": [
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "unsupported_protocol"
+        },
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "invalid args `request` for command `check_runtime`: unknown field `permission`, expected `protocolVersion`"
+        },
+        {
+          "command": "check_runtime",
+          "rejected": true,
+          "error": "invalid args `request` for command `check_runtime`: missing field `protocolVersion`"
+        },
+        {
+          "command": "not_registered",
+          "rejected": true,
+          "error": "not_registered not allowed. Command not found"
+        },
+        {
+          "command": "plugin:window|set_title",
+          "rejected": true,
+          "error": "window.set_title not allowed. Permissions associated with this command: core:window:allow-set-title"
+        }
+      ]
+    },
+    "Injected failure displays bounded error; retry reaches Rust again",
+    "No uncaught JavaScript errors during exercised interactions",
+    {
+      "nativeWindow": {
+        "MainWindowTitle": "EVA · Setup check",
+        "MainWindowHandle": 262798
+      }
+    },
+    "Normal native close, relaunch, second IPC response and second close passed"
+  ]
+}

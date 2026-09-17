@@ -1,0 +1,30 @@
+﻿[
+    {
+        "path":  "apps/desktop/src/App.tsx",
+        "sha256":  "0be5d02ef890afec4eca531c88d881c273e097cd55dabec87a93e3ba8d1e87d0"
+    },
+    {
+        "path":  "apps/desktop/src/MovingEye.tsx",
+        "sha256":  "3356c925849c7c468fc56daa9f0ba7de033a96505becedab3b989d0b7cbd7131"
+    },
+    {
+        "path":  "apps/desktop/src/SignalEye.tsx",
+        "sha256":  "2f823e48de47483363fb612a8c1e13c07288fe1877f2d8a6f163eedb0099690e"
+    },
+    {
+        "path":  "apps/desktop/src/Command.css",
+        "sha256":  "050412911023d8fab6472eb007e90bd1498926ede6d7816a54dc5dabfd699952"
+    },
+    {
+        "path":  "scripts/assembly-smoke.mjs",
+        "sha256":  "0b4af481fef6b79a0a3322147bd9dbacd3ee17dc01d1e52edc9b1d0321506a92"
+    },
+    {
+        "path":  "scripts/record-voice-eye.mjs",
+        "sha256":  "f27bfed5cf35e0b19db3761881bef0352eecc9fec3f7ca2686771f0086cc60a1"
+    },
+    {
+        "path":  "scripts/voice-eye-smoke.mjs",
+        "sha256":  "7c682cb838f363fc29bfa5de507a804e0eec43415d2f02b860afda97c0626a5e"
+    }
+]

@@ -1,0 +1,66 @@
+﻿[
+    {
+        "sha256":  "5B3C44A321874D1E1E86C62C97BBF74BCA36DD289710D995BC16132E9A91043B",
+        "path":  "fixtures/narration/weather-lines.json"
+    },
+    {
+        "sha256":  "A2D6FF4080BA92BC785200F6C3B4F3F430B9781DF5B14311D97413227C7C0ACD",
+        "path":  "apps/desktop/narration-server.ts"
+    },
+    {
+        "sha256":  "DFC1A657ADB9B3611872D7D80014AEB8F518BE28A2AA852A69087D342127377B",
+        "path":  "apps/desktop/src/useNarration.ts"
+    },
+    {
+        "sha256":  "6E21BFA8D651E1960594A531A13336B4DF206077F1F112D7B2D108AD9C824F03",
+        "path":  "apps/desktop/src/App.tsx"
+    },
+    {
+        "sha256":  "90B671D5C80A40770D1A966F009AECB93CB1ECAD3D705EC273236671BB1FB255",
+        "path":  "apps/desktop/vite.config.ts"
+    },
+    {
+        "sha256":  "E57076DD171543A474136CD14263F280EBD4CD29DEF0ABC65D4A61AD7445F8E6",
+        "path":  "apps/desktop/src-tauri/src/narration.rs"
+    },
+    {
+        "sha256":  "78FA8A39BB586D891E869DA134974E8BFD7BB4B886B0C7D207AAFB5EA22AA93A",
+        "path":  "apps/desktop/src-tauri/src/voice.rs"
+    },
+    {
+        "sha256":  "8FBFAAB81D7658229C5D43E336B32AE727454F5B6AE226271B42AD5FC0733597",
+        "path":  "apps/desktop/src-tauri/src/lib.rs"
+    },
+    {
+        "sha256":  "B5FBD4711329E78892207898E26E38E71E85BD7BFD27949D7B39DF36310F5419",
+        "path":  "apps/desktop/src-tauri/build.rs"
+    },
+    {
+        "sha256":  "40C505142E0FF06F867931C33B5EF9228B619B54C9B3C4B4CC1DD046E80044C0",
+        "path":  "apps/desktop/src-tauri/capabilities/default.json"
+    },
+    {
+        "sha256":  "435ACCDE9533490B8358023D6115970DEB29EFB460E839FCD889091A85A720A3",
+        "path":  "scripts/voice-key.mjs"
+    },
+    {
+        "sha256":  "024E12032C8C10E720586B51AD72BE7A90EAA1657978574EA4E28D4782AD61C8",
+        "path":  "scripts/toolchain.mjs"
+    },
+    {
+        "sha256":  "249ADC89EDCDE6751EBA623180000C7AF74FE010D084DD03067E7DBEE95780F7",
+        "path":  "scripts/narration-server.test.mjs"
+    },
+    {
+        "sha256":  "3F838921A261F31FC637A791175D92EEED09CD77032091829B9B47EED05EDD38",
+        "path":  "scripts/narration-smoke.mjs"
+    },
+    {
+        "sha256":  "61B25CB2563381178FB962EA881B724F05015ED4098D4E231989856940B59796",
+        "path":  "package.json"
+    },
+    {
+        "sha256":  "2CD5507DEAF22310497DD49D0426C62CF05F2C9B2CB9787160084D93507C9B47",
+        "path":  ".env.example"
+    }
+]

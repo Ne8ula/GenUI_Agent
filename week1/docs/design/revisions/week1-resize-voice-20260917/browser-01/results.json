@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "fixture": "Real AudioWorklet with synthetic speech; injected Whisper response",
+  "checks": [
+    {
+      "pointerResize": {
+        "initial": {
+          "x": 357.59375,
+          "y": 28,
+          "width": 1000,
+          "height": 651.859375
+        },
+        "smaller": {
+          "x": 357.59375,
+          "y": 28,
+          "width": 715,
+          "height": 492
+        }
+      },
+      "voiceWindPreservesGeometry": {
+        "x": 369.59375,
+        "y": 44,
+        "width": 715,
+        "height": 492
+      },
+      "repeatIsIdempotent": true,
+      "typedWindRejected": true,
+      "keyboardResize": true
+    },
+    "Voice before dashboard rejected; responsive content fits; reduced-motion dismissal works"
+  ],
+  "errors": []
+}

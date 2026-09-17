@@ -1,0 +1,162 @@
+﻿[
+    {
+        "path":  "apps/desktop/package.json",
+        "sha256":  "8FAB9C7097994BB3093874FAD4B6E266B22594F59DF16C6DD58154659F253D6F"
+    },
+    {
+        "path":  "apps/desktop/src/App.css",
+        "sha256":  "10A6E96AEE28A3B78EE3EB9D54A98E95E4FBC4E1B0AB5A6293F9D13B905CCD75"
+    },
+    {
+        "path":  "apps/desktop/src/App.tsx",
+        "sha256":  "D8EB04E9BAC4D801110C76C9ED48E6269575A118E4428E7AAC62B61F9E0FB2D1"
+    },
+    {
+        "path":  "apps/desktop/src/assets/react.svg",
+        "sha256":  "35EF61ED53B323AE94A16A8EC659B3D0AF3880698791133F23B084085AB1C2E5"
+    },
+    {
+        "path":  "apps/desktop/src/main.tsx",
+        "sha256":  "8F55009F27569355469B6C65DDD242E2B38AA30B7A070EE2E438F4909A47A233"
+    },
+    {
+        "path":  "apps/desktop/src/memory.ts",
+        "sha256":  "82C328D0FD49C98408CD87A3F38DA4B5CB9DB99703840F6D5732EF6D65A859A7"
+    },
+    {
+        "path":  "apps/desktop/src/memory-contract.ts",
+        "sha256":  "F2E207DC913F9F6840B98CCFE4D6ED0DE084066675C4E7F28413D05EE310B2C1"
+    },
+    {
+        "path":  "apps/desktop/src/runtime.ts",
+        "sha256":  "4B428F56640A887FD13302C3E909B1A96EC0927C10E64F9C593F0B989BB4D797"
+    },
+    {
+        "path":  "apps/desktop/src/vite-env.d.ts",
+        "sha256":  "424FAF9241DD699DDA995B367ED36665732DA1E6EC1F33B2FD40394488ECAC92"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/Cargo.lock",
+        "sha256":  "32FE88A1A9A9709B45071771079538B43FA96C043328212D4084FD0953FA4BF9"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/Cargo.toml",
+        "sha256":  "C654901AFB0A012FB139CCCC4F42B925C60962027BE4EE3282F89CAF4AA72B63"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/src/demo_memory.rs",
+        "sha256":  "0C78D9FBAECE137F826DCA8CCD4F40CFFC0E707F0DCD2B002FAC2E6A6F08D5D5"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/src/lib.rs",
+        "sha256":  "F2019B1FEEAB8C05E82F707E6F53124DBF57969B2632D09DFD9EB2339256F3F1"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/src/main.rs",
+        "sha256":  "8071087998921C7AB1A745E9AACFD3F02F3369BA58F045B10518FF78F9981C6D"
+    },
+    {
+        "path":  "apps/desktop/src-tauri/tauri.conf.json",
+        "sha256":  "785B092D1112CCC4F32C4F988F52DDA1002FBE3D9B298E72A5566B76553BF382"
+    },
+    {
+        "path":  "fixtures/connectors/weather-ithaca-week.json",
+        "sha256":  "742F1904D61AE3099304186F5E00E29F90D80342141D4DC5347FC00724A45AC8"
+    },
+    {
+        "path":  "fixtures/vault/preferences/weather-units.md",
+        "sha256":  "3ABD36D743F606E2B7D02D386B54143F1B8544F9F76413DCCD167C675984E2C5"
+    },
+    {
+        "path":  "package.json",
+        "sha256":  "52CD8A99FB85423C4DB0A8CA85E9AD6DF0D7D94314CA762DE5B7C09A64CA8365"
+    },
+    {
+        "path":  "package-lock.json",
+        "sha256":  "371ECD504FF0B0BF3D3FF4FF1423B6B26B49BEA2F88C446B903B78C47C0852EF"
+    },
+    {
+        "path":  "packages/protocol/document.schema.json",
+        "sha256":  "485C82E22F584AC27A4BC9118BEE2DE62B63ED40FB6D5614A20CC5A0228C0312"
+    },
+    {
+        "path":  "packages/protocol/generated/validators.d.mts",
+        "sha256":  "8FA697E97C66579C0E256F23A7B5E12DD6554F715884BC05032D3A17966395C2"
+    },
+    {
+        "path":  "packages/protocol/generated/validators.mjs",
+        "sha256":  "0F4711F2930ABF8749973295E5B0BB8543898D707C4E162052E57ADD1957F2D0"
+    },
+    {
+        "path":  "packages/protocol/index.ts",
+        "sha256":  "82A8581B88A9ED5DBA74535F39601CB7CEB6C0D4FD106A5C40FA40C1D549E5DC"
+    },
+    {
+        "path":  "packages/protocol/package.json",
+        "sha256":  "1639C5C85901C60886F6DD5BEDA621DE68E76C5C727A778B56B4584C6E0E05C2"
+    },
+    {
+        "path":  "packages/protocol/patch.schema.json",
+        "sha256":  "5A4390E66FE6D07E9C5159FE5BF375A0A5785E03E7C9B241ACA4B78833772C8A"
+    },
+    {
+        "path":  "packages/protocol/weather.schema.json",
+        "sha256":  "66AF5CBEF2DAD86769668A4DAB09F04F438BB6F40C4D1224E42621BEBA579D90"
+    },
+    {
+        "path":  "packages/ui-system/components.tsx",
+        "sha256":  "ABC43D4F5136E09FE14E9B40235AC8283F4270FD8AB0E832B92E481825546DFC"
+    },
+    {
+        "path":  "packages/ui-system/package.json",
+        "sha256":  "2B02551445EA312EF005A1EAAA6A34C8CB73AB02E85B47CE9D9486A1D4D9DDA0"
+    },
+    {
+        "path":  "packages/ui-system/tokens.css",
+        "sha256":  "6B92BA2888FE678635B69DCF04FBA50359B725BD94FE5F4639FCCD30610A1BFB"
+    },
+    {
+        "path":  "scripts/build-validators.mjs",
+        "sha256":  "D552C5269B776402AF7E738535320E864E8D9AA23DDA6629B871B6944F7B56BC"
+    },
+    {
+        "path":  "scripts/check-resize.mjs",
+        "sha256":  "A00CE43DDFEC51858D7DD762CC151CE1F33A921217DC83D4EDE683403DA0C794"
+    },
+    {
+        "path":  "scripts/check-running-dev.mjs",
+        "sha256":  "560B9F465F2701DCE7C13E0079D3999C11DB183B40A3CB3D6E6CD5B6EF599071"
+    },
+    {
+        "path":  "scripts/memory-contract.test.mjs",
+        "sha256":  "AB3763F444F6F41BCEE4EEF88EAE81F1F29EFD4812E3FB5AAD38057F93049DB0"
+    },
+    {
+        "path":  "scripts/protocol.test.mjs",
+        "sha256":  "5595D5F7465AA02B82145BAD8C39769AA87699B8DC484EF93FA7B5EC46417D33"
+    },
+    {
+        "path":  "scripts/record-weather.mjs",
+        "sha256":  "3E55DAB7486483836E4E14C3C0B51071FD57A7017B426F8C95B8E97F12D928B0"
+    },
+    {
+        "path":  "scripts/rust.mjs",
+        "sha256":  "819C1B1D67BD38E54C002DA7C43F905852CD228979F2F2E3D82DDF4788F95781"
+    },
+    {
+        "path":  "scripts/smoke.mjs",
+        "sha256":  "F7EB623020687F29BB90D6BEB3FBF1C2D14BA1DBCAC7686ECBB9B738682E8991"
+    },
+    {
+        "path":  "scripts/tauri.mjs",
+        "sha256":  "757FFC298B645FCBA405E5D909749A724654A0A5F8F37AFA6C0190D0E73DF6B8"
+    },
+    {
+        "path":  "scripts/toolchain.mjs",
+        "sha256":  "8E786FE96F014D5A5F70856460DE43560C265DD181016A7445F40F3818EC6017"
+    },
+    {
+        "path":  "scripts/weather-smoke.mjs",
+        "sha256":  "991C92B0B1A39948DBD1452D2B106B20548AA71B8B90A04AAD5E7E4713263816"
+    }
+]

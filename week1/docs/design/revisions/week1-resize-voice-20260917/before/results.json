@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "surfaces": [
+    "rgba(0, 0, 0, 0)",
+    "rgba(0, 0, 0, 0)",
+    "rgba(0, 0, 0, 0)",
+    "rgba(0, 0, 0, 0)"
+  ],
+  "checks": [
+    "Transparent root layers, no global header, dense attached matrix connectors, keyboard movement, quiet mode and four responsive widths passed"
+  ],
+  "errors": []
+}

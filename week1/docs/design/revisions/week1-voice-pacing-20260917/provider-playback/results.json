@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "fixture": "Actual ElevenLabs MP3 from the live provider check, injected through local responses; no subjective listening verdict",
+  "checks": [
+    {
+      "run": 0,
+      "presentationMs": 15112.5,
+      "speech": [
+        {
+          "stage": "loading",
+          "start": 908.5,
+          "duration": 2.0433541666666666,
+          "end": 2949.899999976158
+        },
+        {
+          "stage": "loading",
+          "start": 5697.0999999940395,
+          "duration": 1.439625,
+          "end": 7129.699999988079
+        },
+        {
+          "stage": "ready",
+          "start": 16467.899999976158,
+          "duration": 1.4860625,
+          "end": 17949.69999998808
+        }
+      ]
+    },
+    {
+      "run": 1,
+      "presentationMs": 15051.799999982119,
+      "speech": [
+        {
+          "stage": "loading",
+          "start": 18563.899999976158,
+          "duration": 2.0433541666666666,
+          "end": 20610.19999998808
+        },
+        {
+          "stage": "loading",
+          "start": 23506.69999998808,
+          "duration": 1.439625,
+          "end": 24939.5
+        },
+        {
+          "stage": "ready",
+          "start": 34235.5,
+          "duration": 1.4860625,
+          "end": 35719.69999998808
+        }
+      ]
+    },
+    "Dismiss during inter-sentence pause cancels queued playback",
+    "Dismiss rejects late provider audio",
+    "Provider failure leaves dashboard usable"
+  ],
+  "errors": []
+}

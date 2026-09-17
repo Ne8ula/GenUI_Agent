@@ -1,0 +1,6 @@
+{
+  "error": "page.waitForFunction: Timeout 60000ms exceeded.",
+  "requests": [],
+  "checks": [],
+  "errors": []
+}

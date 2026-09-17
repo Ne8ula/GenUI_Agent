@@ -228,7 +228,7 @@ Retain Tauri 2, React/TypeScript, and the Rust policy broker. The owner wants in
 | --- | --- | --- |
 | UI composition | GPT or Claude through a provider adapter emits small validated declarative documents or patches | Selects approved components, data references, layout intentions, and bounded presentation parameters; never executable UI code |
 | Interactive rendering | React for text, charts, controls, and card geometry; a reviewed local WebGL effects layer | Owns readable content and frame-by-frame animation; no network or model call is required for dragging, focus, cancellation, or eye feedback |
-| Optional generated assets | Local ComfyUI service through a narrow asset adapter | Produces images or other media asynchronously; failure or absence cannot block the functional workspace |
+| Optional generated assets | Local ComfyUI service through a narrow asset adapter; install at the start of S3 after explicit owner S2 acceptance | Produces images or other media asynchronously; use mocked media states before S3; failure or absence cannot block the functional workspace |
 | Cloud experiments | Optional Modal-hosted generation worker or headless evaluation harness | Uses synthetic fixtures initially; results must be revalidated on the workstation |
 | Alternative media provider | Optional Higgsfield adapter or authoring workflow | Concept and media production experiment, not an initial interactive runtime dependency |
 | Alternative effects renderer | Native Rust `wgpu` experiment; TouchDesigner exhibit/motion experiment | Adoption requires a measured benefit and owner review; neither replaces the bounded UI contract |
@@ -635,7 +635,7 @@ The existing targets in Section 7.8 remain provisional engineering targets, not 
 - Present optional media in a reserved slot with queued, generating, ready, failed, or cancelled state. Show a labelled placeholder or suitable cached asset while pending; do not delay a usable chart or verified answer for imagery.
 - Discard late media results for superseded or dismissed revisions. A media refresh cannot displace controls, reset focus, imply verified evidence, or overwrite user edits.
 - Measure time to interactive skeleton, first useful validated UI, verified content, and completed media separately. Record p50/p95/p99, cold/warm cache status, workflow/model version, output resolution, peak VRAM, queue delay, and concurrent frame times.
-- Start the ComfyUI experiment with one approved still-image workflow and bounded concurrency. Choose the checkpoint and any distillation/quantization only after hardware and quality measurements. Do not promise a generation duration before these tests.
+- Install ComfyUI at the start of S3, after explicit owner acceptance of the tested S2 revision (owner scheduling decision, 2026-09-16). Start with one approved still-image workflow and one active generation job. Choose the checkpoint, resolution, and any distillation/quantization against current hardware/headroom and quality measurements. Do not promise a generation duration before these tests.
 - Test media-service failure, timeouts, cancellation, memory pressure, and no-GPU fallback. Optional media is not part of the critical path for core card interaction.
 
 Development subscriptions do not establish runtime API availability, model identifiers, quotas, or benchmark results. Preserve the existing Anthropic route as the baseline; compare a GPT adapter on identical bounded UI tasks before changing the narrator or planner. Do not put a serial Kimi → Claude → GPT chain on the normal interaction path merely because all three tools are available.
@@ -2054,10 +2054,14 @@ These phases operationalize Section 1.4 without removing or renumbering the larg
 | S0 — Planning and visual baseline | Review this plan; then the design guide and collaboration rules; select candidate visual baselines with unresolved choices labelled | Milestones 0–2 planning |
 | S1 — Bounded grammar and local interaction | Exercise schema acceptance/rejection, the social-eye prototype, and fixed weather/calendar cards with direct manipulation and reduced effects | Scoped parts of Milestones 0–2 |
 | S2 — Conversational revision and memory | Test voice activation/closure, schema-validated patches, preserved geometry, simulated memory regions, citations, and interruption | Scoped parts of Milestones 2–5 |
-| S3 — Optional imagery and workstation measurement | Compare no-media/cached-media/generated-media paths; test cancellation, failures, supersession, and interaction while one generation job runs; retain the optional feature only if useful | Media experiment under Milestone 2 and latency work |
+| S3 — Optional imagery and workstation measurement | After explicit owner S2 acceptance, install ComfyUI and configure one reviewed still-image workflow; compare no-media/cached-media/generated-media paths; test cancellation, failures, supersession, and interaction while one generation job runs; retain the optional feature only if useful | Media experiment under Milestone 2 and latency work |
 | S4 — Study-ready conditions | Test functionally equivalent relational/instrumental conditions, replayable fixtures, logging, and timing controls; freeze protocol for the proposed pilot/study | Scoped evaluation work from Milestone 9 |
 
 The accepted prototype then supports the proposal's faculty/lab critique, pilot, approved participant study, analysis, manuscript, and final demonstration. Use matched or precomputed assets and timing where needed to prevent image-generation variability from confounding the condition comparison. A disappointing optional media experiment may be closed with recorded findings and owner acceptance; it must not block the core two-workflow prototype indefinitely. Optional exhibit/TouchDesigner exploration follows a separately agreed scope and must not displace semester deliverables.
+
+ComfyUI installation timing is established; the particular installation method, model, and resource budget remain S3 decisions. Before S3, develop media contracts with synthetic queued/ready/failed/cancelled fixtures and use Higgsfield for development authoring when connected. S3 begins from the accepted S2 weather/calendar interaction and simulated-memory baseline. Record cold/warm asset latency and UI frame times with generation idle and active, current free/peak VRAM, failures, and cancellation behavior. Retain local generation only if its measured visual/control/cost benefit justifies its latency and maintenance cost; core interaction must remain usable without it. Scheduling installation does not mark S2 or S3 accepted.
+
+The requested week-one demonstration is a proposed early visual checkpoint, with setup and execution defined in [WEEK1_DEMO_PLANNING.md](week1/WEEK1_DEMO_PLANNING.md) and its visual brief in [docs/design/WEEK1_DEMO.md](week1/docs/design/WEEK1_DEMO.md). It includes Tauri 2/Rust setup, a normal Windows desktop window, and a narrow Rust reader for a synthetic memory fixture alongside a small presentation/contract subset of S0–S1. It does not complete those phases or the secure desktop milestone, bring ComfyUI forward, or replace the later conversational and relational study conditions.
 
 ### Milestone 0 — Contracts and safety foundation
 
@@ -2139,7 +2143,7 @@ Deliver:
 - schema validation;
 - visual regression fixtures;
 - development visual index and immutable before/after revision records;
-- bounded optional-media contract, mocked job states, and a proposed ComfyUI still-image experiment after core interaction is testable.
+- bounded optional-media contract and mocked job states; install ComfyUI for the study's S3 still-image experiment only after explicit S2 acceptance, without making local generation a prerequisite for the core UI foundation.
 
 Exit criteria:
 

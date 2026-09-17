@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "const": "weather-primary"
+        },
+        "type": {
+          "const": "weather"
+        },
+        "dataRef": {
+          "const": "weather-ithaca-week"
+        },
+        "showWind": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "dataRef",
+        "showWind"
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "revision",
+    "card"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "inventoried": 931,
+  "unchanged": 921,
+  "changed": [
+    "AGENTS.md",
+    "week1/apps/desktop/README.md",
+    "DESIGN.md",
+    "week1/docs/design/acceptance/week1-demo.md",
+    "week1/docs/design/INDEX.md",
+    "week1/docs/design/revisions/week1-scaffold-20260916/manifest.md",
+    "docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md",
+    "PLANNING.md",
+    "week1/scripts/speak-only-smoke.mjs",
+    "week1/WEEK1_DEMO_PLANNING.md"
+  ],
+  "missing": [],
+  "documentsChecked": 48,
+  "brokenLinks": []
+}

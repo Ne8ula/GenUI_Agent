@@ -1,0 +1,23 @@
+{
+  "model": "eleven_multilingual_v2",
+  "results": [
+    {
+      "phase": "acknowledge",
+      "status": 200,
+      "bytes": 33898,
+      "elapsedMs": 1386
+    },
+    {
+      "phase": "building",
+      "status": 200,
+      "bytes": 24285,
+      "elapsedMs": 1312
+    },
+    {
+      "phase": "present",
+      "status": 200,
+      "bytes": 24703,
+      "elapsedMs": 975
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+/* Red print, coarse paper grain and stepped CRT assembly. No full-screen flashes. */
+.eva-shell { background-color: #080909; }
+.eva-shell::before { background: radial-gradient(#e8e4d90d .65px,transparent .8px) 0 0/3px 3px; }
+.shell-header { border-bottom: 2px solid var(--accent); }
+.shell-header::after { width: 15%; height: 6px; bottom: -2px; background: repeating-linear-gradient(110deg,var(--accent) 0 7px,#080909 7px 11px); }
+.instrument { border: 2px solid #8c3a35; box-shadow: none; background-color: #0c0e0f; background-image: radial-gradient(#e8e4d917 .6px,transparent .8px); background-size: 3px 3px; }
+.instrument-top { background: var(--accent); border-bottom: 2px solid #080909; }
+.instrument-top .index-label,.instrument-top .index-label > span,.instrument-top .move-handle { color: var(--ink); }
+.instrument-top .sample-label { color: var(--ink) !important; border-color: #541513; }
+.instrument::before { height: 6px; width: 100%; background: repeating-linear-gradient(110deg,#080909 0 5px,transparent 5px 10px); }
+.instrument::after { border: 0; width: 100%; height: 4px; background: var(--accent); right: 0; bottom: 0; }
+.forecast-heading h1 { font-size: clamp(28px,3.2vw,46px); letter-spacing: -.055em; }
+.strip-heading { border-top-width: 2px; }
+.day-cell { border-right-style: dashed; }
+.day-cell.selected { background-color: var(--accent); background-image: radial-gradient(#09090938 .65px,transparent .8px); background-size: 3px 3px; color: var(--ink); }
+.day-cell.selected .day-date,.day-cell.selected .day-low,.day-cell.selected .day-condition,.day-cell.selected .weather-glyph { color: var(--ink); }
+.instrument-footer { border-top: 2px solid #6c3632; background: #0b0c0d; }
+.action.primary { background-image: radial-gradient(#08090926 .7px,transparent .8px); background-size: 3px 3px; border-width: 2px; }
+.memory-dossier { background-image: radial-gradient(#11111117 .6px,transparent .8px); background-size: 3px 3px; }
+
+.crt-assembly { border: 2px solid var(--accent); min-height: 642px; color: var(--accent); background: radial-gradient(#ff3b3533 .7px,transparent .8px) 0 0/3px 3px,#090b0c; isolation: isolate; }
+.crt-assembly::before { z-index: 3; background: repeating-linear-gradient(transparent 0 3px,#0005 3px 5px); opacity: .65; }
+.crt-assembly::after { z-index: 4; height: 3px; top: 0; background: #ff7567; box-shadow: 0 4px 0 #ff3b3533; }
+.crt-heading { display: flex; align-items: center; gap: 18px; background: var(--accent); color: #080909; padding: 14px 22px 10px; border-bottom: 9px solid #090b0c; }
+.crt-heading > span { font: 500 56px/.9 var(--display); border-right: 3px solid #080909; padding-right: 18px; letter-spacing: -.06em; }
+.crt-heading strong { font: 500 clamp(34px,4.2vw,62px)/.95 var(--display); letter-spacing: -.065em; }
+.crt-heading > b { margin-left: auto; font: 14px var(--mono); writing-mode: vertical-rl; }
+.retrieval-scene { padding: 18px 24px 30px; }
+.retrieval-path { display: flex; justify-content: space-between; gap: 16px; font: 12px var(--mono); padding-bottom: 18px; border-bottom: 2px solid var(--accent); }
+.folder-bank { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; padding: 58px 0 42px; }
+.folder { position: relative; height: 176px; margin-top: 24px; color: #ab423a; }
+.folder-tab { position: absolute; left: 0; top: -24px; width: 44%; height: 28px; border: 2px solid currentColor; border-bottom: 0; padding-left: 10px; font: 13px var(--mono); clip-path: polygon(0 0,80% 0,100% 100%,0 100%); background: #1f1111; }
+.folder-sheets { position: absolute; inset: 2px 9px; }
+.folder-sheets i { position: absolute; left: 0; width: 100%; height: 85%; background: repeating-linear-gradient(#090b0c 0 9px,currentColor 9px 10px); border: 1px solid currentColor; }
+.folder-sheets i:nth-child(2) { top: 8px; left: 4px; }
+.folder-sheets i:nth-child(3) { top: 16px; left: 8px; }
+.folder-face { position: absolute; inset: 26px 0 0; background: #170d0e; border: 2px solid currentColor; padding: 16px 10px; display: flex; flex-direction: column; justify-content: space-between; }
+.folder-face > span { font: 12px/1.4 var(--mono); overflow-wrap: anywhere; }
+.folder-face > b { font: 500 56px/.9 var(--display); }
+.folder.selected { color: var(--accent); }
+.folder.selected .folder-face { background: var(--accent); color: #080909; background-image: radial-gradient(#08090966 .8px,transparent 1px); background-size: 3px 3px; }
+.retrieval-address { display: flex; align-items: center; gap: 14px; border-top: 3px solid var(--accent); padding: 16px 0; }
+.retrieval-address > span { font: 32px var(--mono); }
+.retrieval-address > strong { font: 500 clamp(22px,2.6vw,36px)/1.1 var(--display); letter-spacing: -.04em; overflow-wrap: anywhere; }
+.retrieval-strip { display: grid; grid-template-columns: repeat(24,minmax(0,1fr)); height: 14px; gap: 4px; }
+.retrieval-strip i { height: 100%; background: #4f211d; }
+.crt-footer { display: flex; justify-content: space-between; gap: 12px; padding: 13px 24px; font: 12px/1.5 var(--mono); border-top: 2px solid var(--accent); background: #090b0c; }
+.raster-scene { display: none; padding: 25px 24px 40px; }
+[data-stage="raster"] .retrieval-scene { display: none; }
+[data-stage="raster"] .raster-scene { display: block; }
+.raster-title { display: flex; flex-direction: column; gap: 5px; }
+.raster-title b { font: 500 clamp(34px,5vw,70px)/1 var(--display); letter-spacing: -.065em; }
+.raster-title span { font: 13px var(--mono); }
+.raster-reading { margin: 32px 0; padding: 20px 0; border-top: 2px solid; border-bottom: 2px solid; display: flex; align-items: center; gap: 60px; }
+.raster-reading > span { font: 500 90px/1 var(--display); color: #5f2925; }
+.raster-reading > div { width: 40%; display: grid; gap: 12px; }
+.raster-reading i { width: 100%; height: 6px; background: repeating-linear-gradient(90deg,var(--accent) 0 2px,transparent 2px 4px); }
+.raster-reading i:nth-child(2) { width: 75%; }
+.raster-reading i:last-child { width: 55%; }
+.raster-days { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); }
+.raster-days > div { display: grid; justify-items: center; gap: 20px; border-right: 1px dashed; padding: 12px 0; }
+.raster-days > div:last-child { border: 0; }
+.raster-days b { font: 18px var(--mono); }
+.raster-days i { width: 45%; height: 28px; background: radial-gradient(var(--accent) .8px,transparent 1px) 0 0/3px 3px; }
+.raster-days i:last-child { height: 5px; }
+.raster-baseline { margin-top: 30px; height: 8px; background: repeating-linear-gradient(110deg,var(--accent) 0 5px,transparent 5px 10px); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .crt-assembly { animation: crt-power 450ms 220ms steps(6,end) both; }
+  .crt-assembly::after { animation: crt-beam 2800ms 400ms linear infinite; }
+  .folder.selected .folder-sheets { animation: file-lift 700ms steps(7,end) both; }
+  .retrieval-strip i { animation: strip-read 400ms 500ms steps(2,end) forwards; }
+  [data-stage="raster"] .raster-scene { animation: crt-print 5800ms steps(28,end) both; }
+  [data-assembly="revealing"] .instrument { animation: crt-print 3000ms steps(26,end) both; }
+  [data-assembly="revealing"] .instrument .forecast-heading,[data-assembly="revealing"] .instrument .forecast-overview,[data-assembly="revealing"] .instrument .day-cell { animation: none; }
+  [data-assembly="revealing"] .assembly-sweep { inset: 0; border: 0; background: repeating-linear-gradient(transparent 0 3px,#0009 3px 5px); animation: crt-settle 3000ms steps(10,end) both; }
+  @keyframes crt-power { from { clip-path: inset(49% 0 49%); opacity: .3; } to { clip-path: inset(0); opacity: 1; } }
+  @keyframes crt-print { from { clip-path: inset(0 0 100%); } to { clip-path: inset(0); } }
+  @keyframes crt-beam { to { transform: translateY(700px); } }
+  @keyframes file-lift { from { transform: translateY(0); } to { transform: translateY(-22px); } }
+  @keyframes strip-read { to { background: var(--accent); } }
+  @keyframes crt-settle { 0%,75% { opacity: .85; } to { opacity: 0; } }
+}
+.quiet-mode .crt-assembly,.quiet-mode .crt-assembly::after,.quiet-mode .folder-sheets,.quiet-mode .retrieval-strip i,.quiet-mode .raster-scene,.quiet-mode[data-assembly="revealing"] .instrument,.quiet-mode[data-assembly="revealing"] .assembly-sweep { animation: none; }
+.quiet-mode .crt-assembly::before { display: none; }
+@media (max-width: 700px) {
+  .crt-heading { gap: 12px; padding: 14px; }
+  .crt-heading > span { font-size: 40px; padding-right: 12px; }
+  .crt-heading strong { font-size: 36px; }
+  .retrieval-scene,.raster-scene { padding-left: 16px; padding-right: 16px; }
+  .folder-bank { gap: 8px; padding-top: 40px; }
+  .folder { height: 144px; }
+  .folder-face { padding: 10px 6px; }
+  .folder-face > span { font-size: 10px; }
+  .folder-face > b { font-size: 40px; }
+  .retrieval-path,.crt-footer { font-size: 10px; }
+  .crt-footer { padding-left: 16px; padding-right: 16px; }
+  .crt-assembly { min-height: 590px; }
+  .raster-reading { gap: 20px; }
+  .raster-reading > span { font-size: 72px; }
+}

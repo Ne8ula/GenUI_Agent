@@ -1,0 +1,71 @@
+{
+  "id": "weather-ithaca-week",
+  "source": "synthetic",
+  "location": "Ithaca, New York",
+  "timezone": "America/New_York",
+  "days": [
+    {
+      "date": "2026-09-17",
+      "condition": "partly-cloudy",
+      "highC": 22,
+      "lowC": 12,
+      "precipitationPct": 15,
+      "windKph": 12,
+      "windDirection": "NW"
+    },
+    {
+      "date": "2026-09-18",
+      "condition": "clear",
+      "highC": 24,
+      "lowC": 13,
+      "precipitationPct": 5,
+      "windKph": 8,
+      "windDirection": "W"
+    },
+    {
+      "date": "2026-09-19",
+      "condition": "cloudy",
+      "highC": 21,
+      "lowC": 11,
+      "precipitationPct": 30,
+      "windKph": 16,
+      "windDirection": "SW"
+    },
+    {
+      "date": "2026-09-20",
+      "condition": "rain",
+      "highC": 18,
+      "lowC": 10,
+      "precipitationPct": 80,
+      "windKph": 22,
+      "windDirection": "S"
+    },
+    {
+      "date": "2026-09-21",
+      "condition": "cloudy",
+      "highC": 19,
+      "lowC": 9,
+      "precipitationPct": 40,
+      "windKph": null,
+      "windDirection": null
+    },
+    {
+      "date": "2026-09-22",
+      "condition": "clear",
+      "highC": 22,
+      "lowC": 11,
+      "precipitationPct": 10,
+      "windKph": 10,
+      "windDirection": "NW"
+    },
+    {
+      "date": "2026-09-23",
+      "condition": "partly-cloudy",
+      "highC": 23,
+      "lowC": 12,
+      "precipitationPct": 20,
+      "windKph": 14,
+      "windDirection": "W"
+    }
+  ]
+}

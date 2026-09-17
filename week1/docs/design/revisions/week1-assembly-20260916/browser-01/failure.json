@@ -1,0 +1,29 @@
+{
+  "error": "Expected values to be strictly equal:\n\n1 !== 0\n",
+  "checks": [
+    {
+      "continuity": true,
+      "start": {
+        "x": 220,
+        "y": 229.375,
+        "width": 1000,
+        "height": 471.671875
+      },
+      "middle": {
+        "x": 89.22852325439453,
+        "y": 180.76031494140625,
+        "width": 404.14305877685547,
+        "height": 190.627685546875
+      },
+      "end": {
+        "x": 57.59375,
+        "y": 169,
+        "width": 260,
+        "height": 122.640625
+      }
+    },
+    "Dismissal cancels pending assembly and disposes the eye",
+    "Four responsive loading layouts and eye landing positions passed"
+  ],
+  "errors": []
+}
