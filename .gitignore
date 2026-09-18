@@ -8,3 +8,9 @@ node_modules/
 !.env.example
 *.log
 
+# Private development-agent settings, worktrees, and Ruflo coordination state.
+.claude/settings.local.json
+.claude/worktrees/
+.claude-flow/
+.swarm/
+.ruflo/

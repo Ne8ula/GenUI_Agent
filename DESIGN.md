@@ -1,307 +1,198 @@
-# EVA Design System
+# EVA Design System: Expressive Response Grammar
 
-**Speak-only refinement (2026-09-17):** remove Weather/Type controls and the opaque command panel. Speak request sits beneath the eye on transparency, including when docked. Recording feedback, cancellation and errors remain available. [Evidence](week1/docs/design/revisions/week1-speak-only-20260917/manifest.md).
+Version: 0.2 research candidate · 2026-09-17 · New visual baseline and implementation acceptance: pending.
 
-**Dialogue refinement (2026-09-17):** the owner requested a conversational forecast summary and a staged wind follow-up. Narration uses Eleven v3 with the shared [prompting rules](week1/docs/design/VOICE_PROMPTING.md). The wind request acknowledges first, then prints an embedded dither/CRT wind section over five seconds before revealing the values and speaking again. Preserve card dimensions and position throughout. [Candidate evidence](week1/docs/design/revisions/week1-wind-dialogue-20260917/manifest.md).
+This is the single canonical visual and interaction guide for [PLANNING.md](PLANNING.md) and the [independent study](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md). The response is the design object: readable information and an evolving composition that can propose, attend, yield, and reconsider with the user.
 
-**Owner refinement (2026-09-17):** remove the Celsius preference control and its inspector from the demo UI, while retaining explicit units and the bundled Markdown source. Enlarge the dithered corner resize handle. Keep the existing folder/CRT choreography, extending it to 15 seconds for spaced narration. This supersedes the earlier 7.5-second timing and visible source-control requirement for this rendition. [Candidate evidence](week1/docs/design/revisions/week1-voice-pacing-20260917/manifest.md).
+The owner authorized this research reframe, not a new implementation phase. The successfully demonstrated [Week 1 app and evidence](week1/README.md) remain unchanged. Its red palette, square pupil, transparent surface, voice refinements, and long authored reveal belong to that rendition; they are not measurements or requirements for every future response. The exact prior guide and accumulated refinements are [preserved here](docs/research/history/2026-09-17-before-reframe/README.md). The [decision log](docs/research/DIRECTION_DECISIONS.md) distinguishes owner direction from new recommendations.
 
-**Transparent surface / voice revision (2026-09-17):** the owner found the thick matrix connection poorly adapted to an absent background. The new candidate uses a narrow dark-backed dither braid with defined attachment collars, checked on light/dark synthetic backdrops. Weather instruments resize independently with a corner grip, local width-based reflow and internal scrolling. Remove Quiet, Add Wind, Undo and Reset buttons. Wind stays hidden until a recognized microphone follow-up ("What about the wind speed?"); its reveal preserves the user's panel geometry. OS reduced motion and essential voice, dismissal, movement and source controls remain. [Evidence](week1/docs/design/revisions/week1-resize-voice-20260917/manifest.md).
+## 1. Experience and design hypothesis
 
-**Desktop overlay refinement (2026-09-17):** remove all global backgrounds, header/branding bars, native Windows decorations and full-window shadows. Render only the eye with its attached controls, dashboard or loading panel, and substantial red square-cell dithered connective tissue. Keep card contents opaque/readable. Connections follow card movement and reflow vertically on small windows; Quiet/reduced motion skips their reveal. The [overlay rendition](week1/docs/design/revisions/week1-overlay-20260917/manifest.md) replaces the earlier thin connector vocabulary. Native desktop compositing still requires owner verification.
+An answer can inhabit the desktop without occupying a rectangular dashboard. Dithered matter gathers around a readable fact; a selected time becomes a spatial anchor; a comparison parts one field into two; a user's intervention causes the composition to yield and form a different proposal. Silence and stillness are legitimate phases. The answer remains available throughout.
 
-Version: 0.1 candidate · 2026-09-16 · Owner visual acceptance: pending
+The hypothesis is that coherent, situated, revisable behavior may invite an interpretation of attention or intention. It is not a claim that EVA feels emotion or reads the user's feelings. Affect is explored through the relation between action and response: anticipation followed by a controllable reveal, an interrupted movement that yields, an interpretation that can be refused, and a familiar element that persists through change. “Happy = yellow” and “angry = red” are not the grammar.
 
-**Biomechanical follow-up (2026-09-17):** the owner requested coordinated movement of the whole eye and a more biological interface. The [biomechanical candidate](week1/docs/design/revisions/week1-biomech-20260917/manifest.md) couples fast iris attention to slower socket rotation/stretch, lid and brow movement, subtle respiration and uneven blinking. Rib-like edges and branching connective curves extend this vocabulary into the instruments. Keep the square pupil, coarse dithering, red accent, legible controls and 7.5-second CRT construction; Quiet/reduced motion stops decorative movement. This is authored expression, not a physiological simulation or sensor readout. Acceptance remains pending.
+Credit The Memory Archive and artistic influences without copying their characters, artwork, signatures, or interaction sequences. See the [transfer study](docs/research/MEMORY_ARCHIVE_TRANSFER.md), [academic synthesis](docs/research/EXPRESSIVE_RESPONSE_SYNTHESIS.md), and [precedents](docs/research/ARTISTIC_PRECEDENTS.md). Desktop spatial attachment does not require a camera.
 
-**CRT/pacing follow-up (2026-09-16):** owner requested a 5–10 second loading sequence, folder-like memory retrieval, brutal red typography/frames, CRT scanlines that progressively construct the dashboard, dithered surfaces and faster pupil tracking. The [CRT candidate](week1/docs/design/revisions/week1-crt-20260916/manifest.md) uses 7.5 seconds of authored presentation and global pointer attention with a 40 ms smoothing constant. It preserves the square pupil, red semantics, actual readiness/cancellation and reduced-motion escape. This supersedes the shorter assembly timing below; it is not measured filesystem/model retrieval latency.
+## 2. Ownership and boundaries
 
-**Motion/eye follow-up (2026-09-16):** restore the square pupil, use substantially coarser pixel/ordered dithering, and visibly shrink/move the same eye to make room before a loading wireframe resolves into the weather panel. The [assembly rendition](week1/docs/design/revisions/week1-assembly-20260916/manifest.md) supersedes the round-pupil treatment below. Preserve red and the uncluttered application surface. Loading must respect actual data readiness and cancellation; local choreography is not provider progress. Quiet/reduced motion skips travel and presentation holds.
-
-**Latest owner refinement (2026-09-16):** the current application uses Evangelion-inspired red (`#FF3B35`) instead of orange/amber. Remove presentation/helper copy from the main surface; use an anatomical, round-pupil eye with red halftone treatment from the supplied photographic reference. This explicitly supersedes amber-only activity rules and the earlier square-pupil candidate below for this rendition. Use pale-red error text plus an exclamation marker and clear error words; color alone never distinguishes danger or authority. See [the red-eye revision](week1/docs/design/revisions/week1-red-eye-20260916/manifest.md). Historical guidelines and evidence remain preserved; owner acceptance is pending.
-
-This is the canonical visual and interaction specification for EVA. It implements the direction in [PLANNING.md](PLANNING.md), particularly Sections 6, 7, 9, 12–14, and 17, and fulfills the independent-study proposal's `GENERATIVE_UI_DESIGN.md` deliverable. Do not maintain a second competing design guide.
-
-The owner authorized creation of this guide after editing the plan. That authorization does not accept new numeric tokens, visual candidates, or an implementation milestone. Requirements inherited from the plan are binding; values identified below as candidate defaults are starting points for owner testing. No runnable renderer or accepted application screenshots exist at authoring time.
-
-## 1. Design intent
-
-EVA is an expressive social eye accompanied by precise, movable instruments. The desktop remains the user's workspace. The eye acknowledges, listens, and yields space to the task; cards carry readable evidence, useful controls, and persistent spatial identity.
-
-Use void black, bone white, industrial amber, mechanical geometry, thin annotation lines, and architectural negative space. Dithered specimen imagery, scanlines, restrained phosphor bloom, and chromatic separation belong in dedicated effect regions. Text, charts, focus rings, and consequential controls stay crisp.
-
-Avoid a conventional full-screen SaaS dashboard as the default composition. Also avoid decorative telemetry, unreadable microtext, gratuitous card proliferation, and simulated verification. Every instrument must answer a task question or expose a useful action.
-
-Historical concepts in [docs/research/visuals](docs/research/visuals) are reference material, not accepted screenshots. Their red active eye and typography do not override the selected fonts or amber-active/red-danger rule. Do not copy franchise characters, logos, artwork, or restricted fonts. Do not replace the user's wallpaper with the architectural reference background.
-
-## 2. Authoring and runtime responsibilities
-
-| Layer | Responsibility | Output and boundary |
+| Source | Determines | Cannot determine |
 | --- | --- | --- |
-| Development design exploration | Codex with Higgsfield; optional Figma for editable component work | Full dashboard concepts, component/state boards, layout variants, motion studies, and prototypes where supported |
-| Development implementation | Reviewed React/TypeScript components and local effects | Reusable, tested vocabulary committed through normal software changes |
-| Runtime UI composition | Provider-neutral model adapter | Validated declarative component selection, data references, layout intentions, and small patches |
-| Runtime rendering | Local trusted renderer | Typography, interaction, responsive layout, trust treatment, sanitization, and deterministic state |
-| Optional runtime media | Bounded ComfyUI or Higgsfield adapter | Asynchronous illustrations; never the sole source of controls, chart values, or authority |
+| Development author | Primitive implementations, material vocabulary, phase recipes, constraints, schemas, keyboard behavior, fallbacks | User consent or empirical emotional effects |
+| Runtime model | A bounded proposal: selected primitives, evidence references, semantic anchors, permitted phase recipe, expressive intention | Executable code/shaders, arbitrary CSS/IPC, trusted labels, user emotion, permission, unbounded resources |
+| Validated data | Values, units, location, time, uncertainty, missingness, evidence identity | Personality, authority, emotional diagnosis |
+| Deterministic runtime | Validation, provenance/status, event ordering, policy, resource limits, renderer state, cancellation, patch eligibility | A person's actual emotional interpretation |
+| User | Explicit focus, comparison, manipulation, locks, correction, rejection, intensity, plain answer, dismissal | Hidden approval through incidental behavior |
+| Session state | Stable entity IDs, direct edits, selected scope, presentation history, unresolved proposal | Durable personal facts or revived authority |
+| Later persistent memory | Explicitly reviewed context with source, retention, correction, deletion | Unreviewed emotion inferences or permission derived from past rapport |
 
-Higgsfield is part of UI and vocabulary authoring, not restricted to background imagery. A generated screen can propose an entire interaction language; the development agent extracts it into explicit reusable rules. A bitmap is a visual proposal, not an interactive dashboard. Generated source is development input for review, not code EVA evaluates from a runtime model response.
+Keep dialogue orchestration, memory, expressive scoring, and rendering separate. A proposed intention such as `invite-comparison` is an instruction to bounded expressive machinery, not a diagnosis of the user or a trusted affect state. Start without PAD/Plutchik state; investigate its value only against a simpler model if continuity failures justify it.
 
-See [Higgsfield authoring workflow](docs/design/HIGGSFIELD.md) for connection status, capability checks, briefs, and deliverables. Capability must be verified in the connected client before promising web-app or source export support. Blender and 3D are not prerequisites for this 2D workflow.
+Higgsfield can support whole-composition studies, response state boards, and motion references through the [authoring workflow](docs/design/HIGGSFIELD.md). A bitmap is a proposal, not interaction evidence. Runtime media is optional. ComfyUI remains gated until explicit S2 acceptance and a separately authorized S3 experiment; no generation dependency is needed for E1.
 
-Owner scheduling decision, 2026-09-16: install ComfyUI at the start of S3, after explicit acceptance of S2's weather/calendar interactions, conversational revisions, and simulated memory. Earlier phases use synthetic media-state fixtures and optional development-time Higgsfield outputs. S3 evaluates one reviewed still-image workflow with one active job, comparing no-media/cached/generated paths and UI responsiveness under load. Installation timing is settled; workflow, model, budget, and performance remain to be measured. The [week-one demo brief](week1/docs/design/WEEK1_DEMO.md) is an early visual checkpoint, not an exception to this gate.
+## 3. Foundations and material language
 
-## 3. Foundations and candidate tokens
+### Palette and type
 
-### Semantic palette
+The owner replaced amber-only activity with red in Week 1. Carrying red into this new candidate is a proposed continuity choice, not acceptance of a new baseline. Resolve safety with host-owned words, shape, placement, and control behavior rather than assuming that red always means danger.
 
-The semantic roles are inherited requirements. Exact hex values are candidate defaults to validate on actual displays and varied wallpapers.
-
-| Token | Candidate value | Use |
+| Token | Candidate | Role |
 | --- | --- | --- |
-| `color.void` | `#080A0B` | Internal dark backgrounds; dormant overlay itself is absent |
-| `color.surface` | `#121618` | Readable opaque card bed |
-| `color.surfaceRaised` | `#1B2124` | Menus, selected regions, secondary layers |
-| `color.bone` | `#E8E4D9` | Primary information and dossier surface |
-| `color.muted` | `#A8ADA9` | Secondary readable labels |
-| `color.rule` | `#495155` | Decorative dividers; not sufficient alone for interactive boundaries |
-| `color.active` | `#E8AD56` | Activity, selection, pending approval, untrusted evidence with a label |
-| `color.danger` | `#F06C68` | Safety, failure, revocation, danger only |
-| `color.ink` | `#101314` | Text on bone and amber surfaces |
-| `color.focus` | `#F4D18C` | Visible keyboard focus with dark separation ring |
+| Void | `#080A0B` | Local reading/effect backing; not a full-desktop wallpaper |
+| Surface | `#121618` | Opaque protection behind text and controls where required |
+| Bone | `#E8E4D9` | Primary facts, typography, stable material |
+| Muted | `#A8ADA9` | Secondary labels with measured contrast |
+| Expressive red | `#FF3B35` | Field accents, emphasis, selected expressive geometry |
+| Pending amber | `#E8AD56` | Optional fixed host status, always labeled; not an emotion |
+| Error pale red | `#F06C68` | Host-owned error text with icon and explicit words |
+| Focus | `#F4D18C` | High-contrast focus ring with dark separation |
 
-Activity, selection, provenance, freshness, and verification are separate semantics even when they share amber. Combine text and shape/pattern; never ask the user to infer authority from hue alone. Verified output uses a restrained bone-white label, not a green success glow. Charts use neutral/amber series with line styles and direct labels; red is not a routine data-series color.
+Red expression must not impersonate an error, approval, verified source, or security hold. Do not make source quality prettier with warmer affect. Palette is constrained across weather and transit; domain differentiation comes from composition and timing.
 
-Use an opaque backing where transparency would compromise reading. Candidate readability targets: 4.5:1 for normal text and 3:1 for large text and meaningful control boundaries. Measure rendered combinations, including dossier inversion and focus states. These are implementation checks, not a claim of formal accessibility conformance.
+Use **Space Grotesk** headings, **IBM Plex Sans** reading/controls, and **IBM Plex Mono** quantities and timestamps. Candidate defaults: headings 18/24 px, body 15/22, secondary/data 13/18, primary metric 28/34. Use scalable units, tabular numerals, bundled licensed fonts and system fallbacks. Never place required text below 12 px or run paragraphs in decorative mono. The archived fonts and licenses are reusable after ordinary asset review.
 
-### Typography
+### Pixels, dithering, and space
 
-| Role | Typeface | Candidate size / line height | Weight |
-| --- | --- | --- | --- |
-| Workspace title | Space Grotesk | 24 / 30 px | 500 |
-| Instrument heading | Space Grotesk | 18 / 24 px | 500 |
-| Section heading | Space Grotesk | 16 / 22 px | 500 |
-| Body and controls | IBM Plex Sans | 15 / 22 px | 400 |
-| Secondary label | IBM Plex Sans | 13 / 18 px | 400 |
-| Data and timestamps | IBM Plex Mono | 13 / 18 px | 400 |
-| Primary metric | IBM Plex Mono | 28 / 34 px | 400 |
+Square-cell ordered dithering gives matter a shared material, not factual uncertainty. Start with candidate cell sizes of 3–6 CSS px; test at actual DPI and scale. Reserve high-frequency texture for effect layers. Text, numerals, charts, focus rings, source labels, and controls remain crisp. No flashing, continual scanline crawl over reading, or bloom that erases a glyph.
 
-Font families and baseline weights follow the owner selection. Numeric scale is provisional. Express sizes in scalable units during implementation; retain system text scaling. Use tabular numbers for changing/comparable quantities, sentence case for reading, and sparing uppercase for short instrument labels. Never compress a paragraph into mono or condensed text. Labels below 12 px must not carry required information. Long titles wrap; truncation requires access to the full text by keyboard as well as pointer.
+Use negative space as a compositional resource. Semantic anchors attach material to a time, value, selected entity, or user-created region. Curves and fields may cross the space between anchors; they must not intercept unrelated clicks or imply a privileged relationship. Reading backings may be rectangular when useful, but a card grid is not the default skeleton.
 
-Bundle reviewed font assets and licenses locally. Use system sans/monospace fallbacks without blocking the interface. Doto and the earlier Shippori Mincho baseline are not selected. Do not embed mojimo-EVA.
+Candidate spacing: 4/8/12/16/24/32/48 px. Controls have adequate hit areas and visible focus; consequential controls use a distinct protected surface with candidate 44 px minimum height. Preserve system scaling. Test actual contrast on light/dark synthetic wallpapers: proposed targets 4.5:1 normal text and 3:1 large text/meaningful controls. These targets are not a conformance claim.
 
-### Geometry and hierarchy
+## 4. Authored primitive vocabulary
 
-Candidate spacing steps: 4, 8, 12, 16, 24, 32, 48 px. Default card padding: 16 px; group gap: 16–24 px; rule: 1 px; corner radius: 2 px; compact control height: 32 px; primary controls: 40 px. Preserve adequate hit areas around small visual icons. Safety controls use at least 44 px height and 16 px separation as a candidate minimum.
+These identifiers are **proposed**, not implemented registry entries. Each needs a version, closed schema, required evidence, events, bounds, reduced-motion rendition, keyboard contract, and positive/negative fixtures before a model may select it.
 
-Dark cards use one restrained edge and a subtle shadow to separate from wallpaper. Reserve bone-white inversion for memory dossiers or safety-owned reading surfaces. Do not simulate depth through multiple nested glossy panels. Decorative line endpoints must not resemble draggable handles.
-
-## 4. Component vocabulary
-
-Registry names below are proposed stable identifiers, to be implemented and schema-tested during the bounded-grammar phase. A component is not runtime-available until its implementation, schema, states, keyboard behavior, and fixtures exist. Registry ownership is a security boundary.
-
-| Component | Purpose and required data | Allowed interaction | Owner / scope |
-| --- | --- | --- | --- |
-| `text-summary` | Short cited explanation; text and evidence refs | Expand, inspect citation, annotate | Generated composition; study |
-| `metric-grid` | Comparable values with units, period, and missingness | Select metric, compare, inspect | Generated composition; study |
-| `forecast-strip` | Seven dated daily records, location, timezone, units | Select day, request detail | Generated composition; study |
-| `time-series-chart` | Ordered series, axes, units, evidence refs | Inspect value, toggle series, bounded range selection | Generated composition; study |
-| `comparison-table` | Typed columns, stable row IDs, comparable units | Sort, select, compare | Generated composition; study |
-| `agenda-timeline` | Dated intervals, timezone, conflicts, stable event IDs | Select, propose move, compare revision | Generated composition; study mocks |
-| `priority-list` | Ordered items, explicit priority and constraints | Reorder proposal, annotate, select | Generated composition; study mocks |
-| `constraint-chips` | Explicit constraints with source and scope | Add/remove through allowed intent | Generated composition; study |
-| `media-slot` | Registered local asset ref, illustration label, job state | Retry/cancel through validated request | Generated composition; optional |
-| `evidence-drawer` | Sources, freshness, lineage, verifier result | Inspect and navigate evidence | Renderer-owned; study subset |
-| `memory-regions` | Episodic, semantic, preference, relational, affective, identity, procedural regions | Inspect retrieved synthetic records | Renderer-owned; study |
-| `memory-dossier` | Claim, type, exact source, confidence, scope, sensitivity, conflicts, expiry | Accept, edit, reject, make temporary | Controlled memory workflow; study simulation |
-| `agent-topology` | Specialists, artifact edges, status, budgets, holds | Inspect, pause, cancel, retry, collapse | Renderer-owned; product, bounded study subset |
-| `rehearsal-diff` | Expected before/after, targets, outgoing data, reversibility, uncertainty | Inspect, revise proposal | Controlled workflow; no approval or execution |
-| `workspace-history` | Events, revisions, branches, current/historical marker | Rewind, branch, compare, restore presentation | Renderer-owned; staged product scope |
-| `safety-confirmation` | Broker-validated action and approval context | Explicit approve/cancel | Safety-owned; never in model-selectable registry |
-| `security-hold` | Policy reason and allowed recovery options | Inspect, cancel, authorized recovery | Safety-owned; never model-generated |
-| `social-eye` | Orchestrator state and permitted local audio energy | Activate, inspect status, dismiss | Local shell; study |
-
-Shared primitives include headings, labeled values, buttons, separators, bounded selectors, legend keys, disclosure controls, and status labels. They inherit tokens; composition does not grant arbitrary styling. Adding a domain should reuse these primitives before introducing another bespoke card.
-
-Each registry entry needs: identifier/version, allowed props and enums, data contract, source requirements, size constraints, permitted events, trust ownership, loading/empty/error states, keyboard contract, reduced-effects rendition, and visual fixtures. Unknown components or props fail validation with a safe fallback; they never trigger automatic component installation.
-
-## 5. Card anatomy and information density
-
-Every factual card has a stable ID and five conceptual regions:
-
-1. Header: descriptive title, lifecycle/pin state, move handle, overflow controls.
-2. Context: location, period, units, timezone, or other interpretation-critical scope.
-3. Body: the chart, comparison, summary, or task controls.
-4. Evidence footer: verification label, freshness, citation affordance, revision indicator when relevant.
-5. Optional media region: reserved geometry and an explicit illustration/job label.
-
-The evidence footer may be compact, but cannot vanish into hover-only UI. Put the primary answer first; disclose methodological detail and auxiliary metrics on demand. Keep user controls separate from decorative annotations. Empty, loading, stale, and error states retain the title and useful local controls.
-
-Candidate density modes are `comfortable` and `compact`; neither changes the semantics, removes provenance, or hides safety controls. Reduce simultaneous content before reducing type size. Aim initially for one primary and at most two supporting instruments in a reading cluster; test this default rather than enforcing a universal card-count limit.
-
-## 6. Layout, responsiveness, and continuity
-
-Store semantic anchor, size class, priority, group, Z-order intent, lifecycle, and pin state. Resolve these locally against viewport, DPI, safe areas, and monitor configuration. The model proposes relationships, not unrestricted pixel positions.
-
-Candidate size classes: small 280–360 px, medium 360–560 px, large 560–880 px, always clamped to available space. Widths are working ranges, not schema absolutes. On narrow workspaces, use a primary instrument with secondary disclosure or stacking. On wide workspaces, expand comparisons side by side. Do not stretch small text across a large display or shrink an entire desktop composition to fit a laptop.
-
-Maintain card identity, selected items, focus, scroll position, manual geometry, pins, layout locks, and direct edits across revisions. Propose visible changes when a generated patch conflicts with user intent. Use stable keyed components and minimal patches. A new datum should not rebuild the workspace.
-
-Drag and resize are local, use pointer capture, and remain interruptible. Offer keyboard move/resize alternatives. Magnetic snapping is optional; it does not force a grid. Keep headers recoverable after monitor disconnects or scaling changes. Raise focused cards without allowing them to cover safety surfaces. Reserve the highest interaction layer for safety-owned controls.
-
-Validate candidate layouts at 1280×800, 1440×900, 1920×1080, and 2560×1440 logical-pixel scenarios, plus representative 100%, 150%, and 200% scaling and multi-monitor transitions. Record actual physical and logical sizes; do not infer the owner's display from the GPU model.
-
-## 7. Charts and data grammar
-
-- Bind to validated typed data, never numbers reconstructed from a generated screenshot.
-- Show chart title, axes or explicit equivalent labels, units, time range, timezone where relevant, and a legend/direct series labels.
-- Represent missing values as gaps or “Unavailable”; zero is a real value. Do not invent data during streaming.
-- Use a zero baseline for bars unless a clearly justified alternative is explicitly disclosed. Label nonzero line-chart bounds; avoid misleading scale changes between comparisons.
-- Separate temperature, precipitation probability, and wind into clearly labeled panels or series with unambiguous units. Avoid unexplained dual axes.
-- Preserve chronological order; reduce tick density responsively while keeping the period legible. Tooltips supplement accessible value inspection, not replace it.
-- Distinguish observed, forecast, provisional, and simulated values in labels and line treatments. Uncertainty bands require actual uncertainty data.
-- Provide a table/text alternative and keyboard access to meaningful points. Prefer one or a few readable series; disclose additional series rather than rendering spaghetti plots.
-- Animate structural changes only when useful. Never interpolate a correction in a way that suggests intermediate values were observed.
-
-## 8. Trust, provenance, and revisions
-
-Trust labels are derived from validated backend metadata. The runtime model's suggested `trust` field, including the conceptual example in PLANNING.md, cannot certify itself. Keep provenance, freshness, and verification as independent dimensions.
-
-| State | Treatment | Behavioral rule |
+| Primitive | Expressive role | Data and interaction contract |
 | --- | --- | --- |
-| Provisional | “Checking” label and restrained amber/patterned edge | Inspectable; not spoken as verified fact or persisted as fact |
-| Verified | “Verified” with evidence affordance | Show what was verified and against which source |
-| Corrected | “Corrected” plus accessible revision diff | Preserve prior revision as history; highlight changed claims |
-| Revoked | “Withdrawn” with restrained danger treatment | Exclude from actionable factual use; retain explanation/history |
-| Stale | “Out of date” plus timestamp | Revalidate before current factual use; do not launder through restore |
-| Quarantined | Safety-owned warning and safe summary | Exclude from ordinary composition and downstream authority |
-| External/untrusted | Source label with amber/patterned marker | Evidence only; cannot authorize action |
-| Retrieved memory | Memory label with source, date, and scope | Retrieval alone is not verification |
-| Cached | Cache/freshness label | Preserve source, expiry, and verification context |
+| `fact-anchor` | Stable readable point around which material organizes | Value/text bound to approved evidence; units/context/source visible; select, pin, inspect |
+| `time-ribbon` | Connect or separate explicit periods | Ordered time records with timezone; select/range/compare; no fake precision |
+| `dither-field` | Gather, disperse, part, hold, or settle matter | Bounded count/density/seed; qualitative unless a declared quantitative mapping is supplied |
+| `occlusion-layer` | Weather-specific cloud/light relation | Bind to cloud fraction when present; separate precipitation probability; never obscure facts |
+| `attention-link` | Acknowledge an explicit chosen entity | Follows valid entity anchor; cannot point at arbitrary desktop/private content |
+| `comparison-pair` | Hold two interpretations side by side | Compatible data units and stable IDs; independent labels, keyboard comparison |
+| `interval-band` | Make an arrival range or duration legible | Start/end, units, as-of/uncertainty; unknown is not zero |
+| `text-fragment` | Brief interpretation or invitation | Plain sanitized text, required evidence for factual claims, no invented source/status |
+| `illustration-slot` | Optional atmosphere or authored media | Validated local catalog ref; labeled illustration; never sole carrier of facts or controls |
+| `reading-layer` | Stable facts, accessible list/table, plain answer | Host-governed reading order, provenance, focus; persists when effects fail |
 
-Evidence inspection exposes source, relevant quote or record, time/freshness, artifact lineage, verification result, and memory/tool citations. “Verified mock fixture” must remain distinguishable from a live service result. Decorative scanning does not imply verification or screen capture.
+The shell also owns local eye/status, stop/intensity controls, evidence inspection, and revision controls. Safety confirmation and security hold are **not** model-selectable primitives. Future charts, dossiers, topology, and task instruments remain reusable product surfaces when needed, not mandatory furniture for every response.
 
-## 9. Eye, motion, and effects
+Begin with at most two simultaneous effect fields, one active attention target, and three fact groups for E1. These are proposed budgets to test, not measured capacities. A field does not receive permission to fill the desktop or run indefinitely.
 
-Motion explains state and spatial continuity. Candidate timings: immediate local feedback; 120 ms press/exit; 180 ms disclosure; 240 ms card entrance or layout settle. Use a restrained ease-out such as `cubic-bezier(0.23, 1, 0.32, 1)` for entry. These values require actual platform testing. Never delay interaction, cancellation, or keyboard response until animation completes.
+## 5. Temporal grammar and coordination
 
-| Operating state | Eye / workspace behavior |
-| --- | --- |
-| Dormant | Eye and overlay absent; no invisible interactive regions |
-| Launching | Mechanical opening with immediate feedback |
-| Listening | Iris responds only to permitted local audio energy; visible microphone state |
-| Reflex | Brief acknowledgement pulse; usable local skeleton |
-| Observing | Controlled scan with explicit capture indicator reflecting actual capture |
-| Deliberating | Restrained concentric contraction; compact real work status |
-| Refining | Alignment pass; provisional labels remain until verification |
-| Rehearsing | Amber split-path preview labeled simulation |
-| Awaiting approval | Stable amber hold; no urgency countdown unless real expiry is relevant |
-| Acting | Segmented rotation tied to actual execution state |
-| Verifying | Alignment pass tied to result verification |
-| Memory review | Bone-white dossier, eye yields reading space |
-| Memory updated | Brief bone-white afterimage after confirmed persistence |
-| Security hold | Restrained safety-owned red frame; plain explanation |
-| Blocked | Clear reason and permitted recovery; red only for safety/failure |
-| Closing | Eye closes; hit regions removed promptly and all surfaces disappear |
+| Phase | Behavior | Transition and escape |
+| --- | --- | --- |
+| Acknowledge | Local focus/status responds to the explicit request | Immediate local cue; no provisional factual speech |
+| Expose | Show available verified fixture facts and source | Facts never wait for theatrical construction or an asset |
+| Propose | Material gathers into a subject-specific arrangement | Short, skippable phase; duration bounded by authored recipe |
+| Inhabit | Settle into readable stillness or minimal motion | No compulsory idle animation or implied emotion sensing |
+| Attend | On explicit selection/intervention, orient relevant material and preserve the target | Local feedback; hovering may reveal a tooltip but grants no broader request |
+| Reconsider | Revise the arrangement around the new scope or constraint | Keep IDs, locks, direct edits, focus, and evidence; reject stale patches |
+| Settle / dissolve | Hold a useful result, simplify, or withdraw | User can stop immediately; no sulking, guilt, or delayed dismissal |
 
-States come from the orchestrator and policy pipeline. They are not freely selected by model prose or generated artwork. The eye can be expressive without claiming sentience, certainty, or authority.
+The phase order is not a mandatory movie. A follow-up can interrupt propose; a correction can jump to expose; plain answer can bypass every effect. Data readiness and expressive timing are distinct. Do not display percentage progress unless it represents a measured operation.
 
-Animate transform/opacity where practical; use interruptible transitions and avoid `transition: all`. Do not bounce precision instruments or repeatedly stagger every streamed datum. Frequent keyboard operations should respond immediately; the planned eye activation may animate concurrently. Safety controls do not move on press.
+Coordinate channels through actual events. Eye attends to the selected anchor, then yields spatial prominence; surrounding matter follows a slower authored response if that helps legibility. Text does not jiggle to simulate speech. When optional speech is enabled, factual utterances wait for sentence verification and speech cues follow actual playback-start/end events, not a guessed timer. Sound is optional, independently muted, and never required for missing-data or failure comprehension. Silence remains usable space.
 
-Effects must be reviewed local code. Restrict bloom, scanlines, dither, curvature, vignette, and chromatic separation to designated eye/media/decorative regions. No effects over body text, chart labels, keyboard focus, or high-risk confirmations. No flashing or decorative perpetual full-screen rendering. Pause offscreen work and cease rendering when dormant.
+A shared cancellation token invalidates pending score, model, media, audio, and queued transitions for the response. A new revision cannot revive stale sound or attach a late field to a dismissed entity. E1 starts with silent comparison conditions; adding voice is a separate manipulation.
 
-Reduced motion removes rotation, scan sweeps, displacement, and spatial transitions; static state labels remain. Quiet mode additionally removes scanlines, bloom, distortion, and chromatic separation. GPU/context loss falls back to a static eye and normal cards. No model or image service is needed to animate, drag, cancel, or close EVA.
+## 6. Explicit interaction and persistence
 
-## 10. Agentic surfaces and safety
+| User act | Context change | Allowed response |
+| --- | --- | --- |
+| Mention | Adds a possible referent in language | Resolve or ask a bounded clarification; no attachment to private desktop content |
+| Select | Establishes explicit focus on a visible entity | Show related evidence and a local attention cue |
+| Manipulate | Changes position, scale, scope, or expressive intensity | Apply locally; preserve the direct edit across revisions |
+| Compare | Invites a relation between named/selected entities | Build a labeled comparison using compatible evidence |
+| Invite reinterpretation | Explicitly asks for a different framing/material emphasis | Offer a reversible composition; keep facts invariant |
+| Pause, hover, look, remain silent | No additional authority or emotional disclosure | At most ordinary local affordance feedback; no inferred approval |
 
-### Topology and memory
+Use stable IDs for facts, anchors, fields, and revisions. Store semantic anchors and bounded layout relations; the renderer resolves viewport/DPI and collisions. Follow-ups patch affected entities rather than rebuilding the whole scene. Preserve focus, reading order, scroll, pins, user geometry, locks, intensity, and selected scope. If a patch conflicts with a lock, adapt around it or show an optional proposal; do not silently move it.
 
-Default topology is compact; expansion is deliberate. Show specialists, actual dependency/artifact edges, status, deadlines, token/cost/latency summaries, capability summaries, holds, and inspect/pause/cancel/retry controls. Do not fabricate agents, reasoning traces, progress percentages, or hidden chain-of-thought. Cancel must propagate to dependent work; late output is discarded.
+Offer keyboard alternatives to selection, drag, resize, compare, intensity, and stop. Direct manipulation remains local and responsive without a model call. Keep controls recoverable after viewport/display changes. Plain answer is always reachable and preserves current facts/scope. Reduced motion uses immediate state changes, restrained crossfades if allowed, and static spatial relationships; no traveling particles, breathing, or drifting field.
 
-Memory-region animation highlights records actually retrieved, with accessible source inspection. Do not animate every region to imply deep understanding. The dossier exposes the complete review fields listed in the registry. Accept/edit/reject/make-temporary actions pass the memory policy. Sensitive or identity changes may require the plain safety dialog.
+Session continuity can remember “keep this fact here” and “less motion for this response.” Persistent preferences require an explicit, inspectable memory workflow. Do not write a transient expressive state, stale claim, or inferred user feeling as durable fact. Presentation rewind restores an earlier arrangement, never freshness, permission, approval, leases, or secrets.
 
-### Rehearsal and confirmation
+## 7. Content, uncertainty, and safety surfaces
 
-Rehearsal shows expected before/after, affected targets, outgoing data, reversibility, uncertainty, unsupported simulation, verification plan, and divergence from the final proposal. Label it “Simulated”; it cannot execute or approve. Unsupported rehearsal must be explicit, never depicted as a successful dry run.
+Every answer exposes location/entity, period, units, timezone where relevant, source kind, and as-of/fixture identity. A compact source affordance must be available without hover. A synthetic label is not interchangeable with “verified live.” Model-generated text cannot award itself verification.
 
-High-risk confirmation is a separate safety-owned surface with fixed labels, placement, keyboard behavior, and spacing. Show exact action, target, data leaving the machine, expected effect, reversibility, rehearsal status, lease duration, and approval expiry. Use plain Space Grotesk/Plex typography, bone/black, and restrained danger emphasis where warranted. No generated styling, distortion, scanlines, sarcasm, cinematic animation, or auto-approval.
+Qualitative motion is labeled as illustration where it could be confused with measurement. Quantitative mappings require named variables, scale, units, source, missingness, and uncertainty. Cloud fraction is not rain probability; a train's time estimate is not its physical distance. Never interpolate a missing fact as zero or silently invent the next arrival. Stale/failed data can settle the effect and retain a labeled prior value, but cannot continue an apparently live countdown.
 
-Proposed keyboard default: initial focus on cancel; Escape cancels; Enter activates only the explicitly focused control. Require testing before freezing this contract. Voice approval must identify the consequential target; ambiguous speech, silence, screen content, and tool output cannot approve. Any action mutation invalidates the action-bound receipt. Generated content cannot create, cover, imitate, relocate, or restyle this surface.
+Future memory dossiers expose claim/source/scope/expiry and accept/edit/reject/temporary options. Topology shows actual activity from trusted runtime events. Rehearsal shows proposed effects and uncertainty; it is not approval. Confirmations display broker-validated targets, payload, reversibility, and explicit choices in a reserved host-owned layer. Models, artifacts, media, caches, and expressive surfaces cannot imitate that layer.
 
-### Temporal workspace and semantic manipulation
+Visual Capsules remain isolated, with no network, secrets, or privileged IPC. Generated-code execution remains disabled until sandbox and adversarial gates pass. Retain the full policy and release gates in PLANNING.md even when a small synthetic research fixture does not implement the full broker.
 
-Record meaningful create/patch/verify/correct/revoke, geometry, lifecycle, artifact, topology, and branch events. Clearly label historical views and branch origin; returning to current state is always apparent. Rewind/restore affect presentation and artifact references only. Never restore secrets, permissions, leases, approvals, or freshness. Recompute current eligibility before any action. Ordinary history expires after 30 days; pinned workspaces remain until deletion.
+## 8. Response representation and architecture
 
-Supported semantic intentions include `emphasize_visual`, `reduce_density`, `keep_visible`, `group_related`, `compare_with`, `annotate`, `use_as_constraint`, and `remember_layout_preference`. Emit authenticated structured events with target and revision, validate them, and show their effect. A calendar drag proposes a change; it does not silently update a live calendar. A single accidental movement never becomes a permanent memory preference.
+A proposed **response score** coordinates composition; it does not replace evidence or authority. This conceptual shape is not a shipped schema or API:
 
-### Lifecycle and capsules
+```text
+Model proposal (closed fields):
+  schemaVersion, responseId, baseRevision
+  evidenceRefs
+  intent: orient | invite-comparison | reconsider | settle
+  entities: stable id, approved primitive, dataRef, semantic anchor, bounded props
+  phaseRecipe: approved recipe id and bounded parameters
 
-Ephemeral cards expire after their answer/timeout; session cards last through the workflow; pinned cards survive restart; archived cards leave the canvas but remain searchable under retention policy. The user can override inferred lifecycle. Paused reading/focus must not be interrupted by an automatic disappearance; exact timeout policy is a later tested decision. Dismissal, archiving, memory deletion, and cancellation are distinct operations.
+Host envelope (never accepted from the model):
+  accepted evidence and provenance, validation result
+  revision and cancellation token, actual event timestamps
+  user locks/preferences, local seed, resource budget, expiry
+  permitted interactions and policy state
+```
 
-Visual Capsules are isolated and labeled. Prefer approved components, then declarative chart/diagram/scene/simulation grammars, then sanitized SVG. Generated executable code stays disabled until sandbox and adversarial gates pass. Capsules receive sanitized read-only copies, have no network/secrets/privileged IPC, and emit only validated bounded events. Their controls cannot impersonate EVA operational controls. They are not required for the two study workflows.
+The model may propose only references it has been given. Reject unknown fields, missing/foreign evidence, raw HTML/JS/CSS/shaders, authority-bearing fields, invalid anchors, oversized requests, incompatible units, and superseded revisions. A structurally valid score also needs semantic, provenance, confidentiality, resource, and action checks. Clamp presentation preferences only where policy permits; reject an invalid factual binding rather than silently rewriting it.
 
-## 11. UI protocol and media contract
+Pipeline: synthetic evidence → provider-neutral score proposal → closed-schema and semantic checks → deterministic event/revision controller → React reading/interaction layer plus an authored local effect renderer. Rust retains privileged boundaries. Do not copy the full product's future broker features into a claim about the narrow archived command set.
 
-Use EVA-owned JSON Schema Draft 2020-12. Protocol version, design-token version, registry version, and workspace revision are distinct. The first concrete schema version is selected during foundation work; conceptual examples are not implemented contracts.
+Retain Tauri 2, React/TypeScript, and Rust. The archive already contains authored WebGL eye code and local animation, but no evidence that a new full-composition renderer meets performance targets. E1 compares Canvas 2D and a small authored WebGL primitive with identical fixtures. Record the actual selected runtime path; browser results cannot establish Tauri behavior. The reported RTX 5080 is a hardware target, not a benchmark. No native renderer replacement, Unreal, MetaHuman, camera stack, model downloads, or GPU dependencies are required now.
 
-A composition request references a supported component, stable card ID, typed data/artifact refs, bounded size/layout intent, lifecycle, and allowed semantic actions. No raw HTML, CSS, JavaScript, shader source, arbitrary IPC, executable strings, or unregistered remote asset URLs. Enforce closed object shapes where authority is involved and bounded collections/text/depth/resources throughout. Validate data-reference access in addition to shape.
+## 9. Weather composition: light that can be redirected
 
-Apply only complete validated stream units against the expected base revision. Reject incompatible schema versions and stale patches with a recoverable error; retain the last good UI. Breaking component/prop changes require a new protocol/registry version or explicit migration with fixtures. Never silently reinterpret an archived document.
+**Synthetic design fixture W-NYC-01:** New York City; 2026-10-14; America/New_York. At 09:00/12:00/15:00, temperature is 18/22/21 °C, cloud cover 70/20/45%, precipitation probability 10/5/15%, and wind 12/18/16 km/h. Fixture as-of is 08:00 on that date. These invented values are design data, not a forecast.
 
-Optional media states are queued, generating, ready, failed, and cancelled. Superseded jobs are discarded. Reserve space; keep existing focus and controls stable when an asset arrives. Label illustrations independently of surrounding factual verification. No-media and cached-media paths must remain usable.
+1. “What's the weather in NYC?” exposes time, temperatures, units, and synthetic source immediately. Bone pixels gather around the selected noon anchor into a sun-like field; a separate occluding material uses the cloud-cover input. A readable list remains available.
+2. “Focus on the afternoon” selects 15:00. The relevant anchor stays legible while the field parts and reforms around it. It does not infer that the user feels brighter or needs encouragement.
+3. The user pins 15:00 on the right and asks “Compare with noon.” A second stable anchor appears; material relates the two without moving the pin. Explicit values and labels carry the comparison.
+4. “Less motion” settles the field immediately. “Just the numbers” preserves scope, comparison, source, and pinned information in the reading layer.
+5. If the user corrects the location, invalidate incompatible evidence and obtain/select a labeled fixture for the new place; never relabel NYC's numbers as another city. If no fixture exists, show unavailable and preserve the correction.
 
-Media requests bind request/card/revision IDs, approved workflow/version, bounded parameters, input provenance/confidentiality, deadline, cancellation, and resource/cost budget. Results record hash, dimensions, provenance, timings, and error status. Use a validated local asset catalog. Cancellation requests remote termination where supported but must not falsely claim remote processing stopped. Supersession and kill switch prevent attachment of late results.
+The response is contingent because the selected time and lock change its spatial/temporal behavior, situated because light/occlusion relates to weather fields, and revisable because user constraints persist. Whether this is experienced as agentic or emotionally meaningful remains to be tested.
 
-## 12. Reference scenarios and anti-patterns
+## 10. Transit composition: a bounded experience of waiting
 
-### Weather: seven days to a focused comparison
+**Synthetic design fixture T-M-01:** fictional “Demo Station A,” service label “M,” direction label “Uptown — scenario only,” destination “Demo Terminal,” America/New_York, as-of 2026-10-14 17:00. First arrival estimate 3–5 minutes; second 11–14 minutes. Station, route/direction combination, destinations, and estimates are unverified fictional placeholders, not NYC journey advice.
 
-1. Activate: eye and empty, interactive forecast skeleton appear locally.
-2. Populate a seven-day synthetic fixture with location, dates, high/low temperatures, units, and source label.
-3. “Add wind”: attach a labeled wind panel through a validated patch, preserving the forecast card's position and selected day.
-4. “Compare Friday and Saturday”: open a two-column comparison using the same values, labels, and evidence.
-5. Inspect a source, reduce density, cancel pending media, and close. No real weather-service dependency is required.
+1. The request exposes station, service, direction, destination, interval, synthetic source, and as-of together. A narrow interval band gives the wait a spatial span. A restrained pulse suggests anticipation, explicitly illustrative—not a train-location tracker.
+2. “Show the next two” establishes two labeled bands; rhythm separates alternatives without accelerating as if an arrival were guaranteed.
+3. Selecting the later interval moves attention toward that option. “Keep that one here” pins it; “make the wait feel quieter” reduces density/rhythm while retaining estimates.
+4. An unknown estimate becomes “No estimate” with no imminent-arrival pulse. Stale data freezes any derived elapsed-time display and visibly marks the source; a range is never converted to a precise countdown.
+5. Plain answer lists both intervals and context. Dismissal dissolves the field immediately.
 
-### Calendar: constrained planning with continuity
+A real integration must verify the station identifier, route, direction, service at the requested time, destination, feed timestamp, and source semantics before displaying live advice. No live M-service assumption is needed for this design study. The point of transfer is a different material/time relationship, not a sun animation reskinned as a train.
 
-1. Render a synthetic agenda and priorities with explicit timezone and fixed commitments.
-2. Retrieve a simulated preference and show its inspectable memory region.
-3. “Protect two hours for writing”: show a proposed allocation and conflict explanation; never silently move fixed events.
-4. Drag a proposed block or change a constraint; patch the same stable item IDs and preserve focus.
-5. Compare or undo the proposal; clearly distinguish simulated changes from execution. No production calendar access.
+## 11. Evidence and acceptance
 
-Both research conditions use identical functionality, data, voice identity, timing, grammar, and memory capability. Relational framing varies language, affect, eye behavior, and references to shared memory; instrumental framing uses functional language and nonsocial status with silent preference application. Treat this as a bundled condition, not separate causal tests. No sarcasm during uncertainty, failure, privacy, distress, confirmation, or security events.
+The next proposed build is [E1](docs/design/experiments/E1_REVISABLE_WEATHER.md). Documentation acceptance uses the readable diff and decision list. New visual implementation requires the same fixture before/after at matching viewport/DPI, captures of affected states, a short recording for timing changes, and actual native-window checks. Preserve rejected candidates. Missing capture blocks a visual-completion claim, not independent work.
 
-| Avoid | Use instead |
-| --- | --- |
-| A beautiful screenshot presented as a working dashboard | Native readable components with real focus, state, and data binding |
-| One-off vocabulary for each generated screen | Shared registry demonstrated across weather and calendar |
-| Red idle/listening eye copied from a concept | Amber activity until a documented semantic revision is accepted |
-| Tiny cinematic labels and invented telemetry | Readable task content and actual observed status |
-| Whole-workspace regeneration after every request | Minimal revisions preserving direct edits and geometry |
-| Art baked into labels, charts, or approval controls | Separate optional media slot and trusted native UI |
-| Fake chart values while loading | Honest skeleton, missing-data state, and verified revisions |
-| A “verified” badge requested by the model | Renderer treatment derived from validated evidence |
-| Approval embedded in a generated card | Independent safety-owned confirmation |
-| Motion or personality pressuring acceptance | Immediate interruption, clear uncertainty, and neutral cancellation |
+Each `docs/design/revisions/<revision-id>/` manifest records:
 
-## 13. Evidence, performance, and acceptance
+- revision ID, date, phase, source/build revision, actual tool/provider/model, and status;
+- accepted baseline or “none,” prior candidate, scenario/fixture and seed, requested change and rationale;
+- commands, platform/WebView/GPU/driver, viewport, display scale, reduced-motion/intensity, input/audio settings;
+- score/schema and evidence versions, captures/recording paths, event trace and actual checks;
+- source/asset provenance and licenses; performance measurements separated from targets;
+- known failures and limits, owner feedback, retest and explicit decision/date.
 
-Before each visual edit, inspect the accepted baseline and intervening candidates, read owner feedback, and capture the current state. Afterward capture the same fixture at matching viewport/DPI. Preserve rejected alternatives. For the first implementation, explicitly record “no runnable before-state” and link a concept reference; do not mislabel it as an application capture.
+Update [the evidence index](docs/design/INDEX.md) only with actual candidates; research prose is not a rendered candidate. Keep acceptance in `docs/design/acceptance/<phase-id>.md`, pending until an explicit owner decision tied to that revision.
 
-Use `docs/design/revisions/<revision-id>/` for immutable images/recordings and a manifest; `docs/design/INDEX.md` tracks accepted baselines and candidates when they exist. Record revision/predecessor, source commit or working-tree description, actual authoring tool/model, fixture, platform, viewport/DPI, versions, seed/time if applicable, intended change, artifact paths, checks, limitations, and dated owner feedback/decision. Use pending/accepted/rejected; only the owner accepts. Development evidence must be synthetic or deliberately sanitized.
+Evaluate content comprehension, stable interaction, contingency, cancellation, missing-data honesty, reduced motion, and measured cost before claiming successful expression. A screenshot cannot establish timing; an event log cannot establish human meaning; a positive owner impression cannot establish a general psychological effect.
 
-Visual fixtures must cover both workflows, long labels, missing/error data, all trust states, compact/comfortable density, keyboard focus, no media, failed/cancelled/late media, reduced motion, quiet mode, high-risk confirmation, and desktop contrast variations. Freeze clocks, seeds, and animation time where possible. Combine image comparison with semantic assertions; a screenshot cannot prove cancellation or authority boundaries.
+## 12. Anti-patterns
 
-Measure interaction separately from media completion. Planning targets include local launch under 150 ms, first useful provisional cloud output p50 under 2 s, and local manipulation at 60 FPS. These are targets, not results. Record p50/p95/p99 latency, frame times, CPU/RAM/VRAM, cache state, resolution, workflow/version, and generation concurrency. Measure the reported RTX 5080 16 GB workstation with generation idle and active; verify actual hardware/headroom. Retain static/no-GPU fallbacks and test macOS/Windows WebViews.
+Avoid a fixed spectacle after every call; hiding facts until narration ends; making the eye the only responsive element; arbitrary emotion-to-color mappings; gesture/camera requirements without a research need; confidence expressed as brightness; personal memory used to simulate intimacy; information unlocked by rapport; a refusal that resists dismissal; and optional media that blocks useful work.
 
-Phase review requires a reproducible scenario, relevant technical checks, before/after evidence or a documentation diff, limitations, and an owner decision tied to the tested revision. Store future acceptance records in `docs/design/acceptance/<phase-id>.md`. Do not mark a phase accepted from tests or silence.
-
-Open design decisions: exact token/type scale calibration, final activity-color decision, approved baseline composition, eye/effect budget, chart library, final hotkeys, concrete schema and registry limits, Higgsfield client capabilities and authoring budget, and optional local media workflow. The present guide provides candidate defaults without claiming those decisions are settled.
-
-## 14. Owner refinement: week-one eye and command console (2026-09-16)
-
-The owner requested stronger Evangelion-inspired visual effects and a living eye, supplying a grainy monochrome eye with a square black pupil and small catchlight. For the week-one candidate, replace the abstract iris with this locally authored motif: subtle gaze shifts and blinks, measured microphone-energy response, focused transcription, and closure on dismissal. Only a still reference was available; exact reference motion is not established.
-
-The candidate uses black/bone contrast, amber hatch rules, numbered instruments and staged dashboard assembly. Keep typography/data sharp and effects in separate surfaces. Preserve Space Grotesk / IBM Plex Sans / IBM Plex Mono, amber activity, red danger and native trusted controls. Quiet/reduced motion, context-loss fallback, hidden/offscreen pause, and GPU disposal on dormancy remain required. Rust enforces the native voice boundary; WebGL renders the eye on the GPU. No shader speed or native responsiveness claim follows merely from using Rust or an RTX 5080.
-
-See the [authoring brief](week1/docs/design/revisions/week1-voice-eye-20260916/authoring-brief.md), [evidence](week1/docs/design/revisions/week1-voice-eye-20260916/manifest.md) and [pending owner review](week1/docs/design/acceptance/week1-voice-eye.md). This refinement changes the requested candidate direction, not the accepted baseline or study phase.
+The useful test is concrete: **what did this explicit intervention cause the composition to do, what remained under the user's control, and could the person still understand the answer?**

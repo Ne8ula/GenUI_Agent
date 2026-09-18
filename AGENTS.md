@@ -12,7 +12,9 @@ Read [PLANNING.md](PLANNING.md) for product scope, architecture, security, and m
 
 Latest explicit owner instructions take precedence over repository guidance. Preserve user edits. When documents conflict, identify the conflict and make the smallest authorized reconciliation; do not silently replace the architecture or expand scope. DESIGN.md fulfills the previously named GENERATIVE_UI_DESIGN.md deliverable; do not fork another guide.
 
-At creation of this file, the repository contains planning, research, concepts, and exports, with no runnable app, package manifest, or Rust crate. Recheck the tree before assuming that remains true. Proposed packages and commands are not evidence of implementation. The owner's request authorizes these documents and Higgsfield setup; it does not authorize beginning the next implementation phase.
+The runnable Week 1 application is archived under `week1/`; inspect its manifests and implementation before making capability claims. The owner's subsequent 2026-09-17 instruction accepts the revised expressive-response direction as the planning baseline and authorizes the bounded E1 visual exploration, implementation, testing, and documentation in a separate `experiments/e1/` workspace. This supersedes earlier implementation-pending notes, not the pending acceptance of a finished E1 candidate, S1/S2, or any later phase. Preserve `week1/` unchanged. See the [research synthesis](docs/research/EXPRESSIVE_RESPONSE_SYNTHESIS.md), [predecessor audit](docs/research/MEMORY_ARCHIVE_TRANSFER.md), [decision log](docs/research/DIRECTION_DECISIONS.md), and [E1 specification](docs/design/experiments/E1_REVISABLE_WEATHER.md).
+
+Ground research claims in academic primary sources, distinguishing full-text reading, abstracts, and bibliographic verification. Use creator/institution sources for artistic work and official documentation/code for implementation. Community discussions do not substitute for academic evidence. Distinguish project descriptions, inspected code, observed behavior, design hypotheses, and participant results; do not infer one from another.
 
 ## Working loop
 
@@ -32,11 +34,21 @@ Fix reported blockers within the current phase and supply a retest. Record expli
 
 An acceptance record includes phase/scope, revision/build, scenario and commands, expected results, actual checks, visual evidence if relevant, limitations, owner feedback, blockers/retest, and the owner's decision/date. Do not invent application evidence for documentation work.
 
-Keep study phases S0–S4 distinct from full product Milestones 0–12. Weather and calendar mocks, simulated memory, equivalent research conditions, and the mid-December study deliverables take priority in the semester track. Production accounts, consequential device actions, full backend completion, Live2D, Blender/3D, and exhibit experiments are not implicit study scope. Development acceptance does not replace institutional study approval.
+Keep study phases S0–S4 distinct from full product Milestones 0–12. The current proposal prioritizes one synthetic weather response, explicit intervention, expressive revision, session continuity, and matched evaluation conditions. Transit is a design transfer example; calendar, longitudinal relationships, and exhibit delivery are deferred. No new deadline was supplied. Production accounts, consequential actions, full backend completion, Live2D, and Blender/3D are not implicit study scope. Development acceptance does not replace institutional study approval.
 
 ## Development roles and handoffs
 
-PLANNING.md assigns Codex implementation/integration, Claude/Fable interaction and architecture review, Kimi research/independent evaluation, and the owner product direction/acceptance. These are intended responsibilities, not guaranteed available integrations or a universal model ranking.
+### Owner-selected Astra workflow (2026-09-17)
+
+For development in Claude Code, the owner selected GPT-6 Astra as orchestrator through Model Gateway, retaining Ruflo where useful for coordination. See [the development-agent workflow](docs/development/AGENT_WORKFLOW.md); [CLAUDE.md](CLAUDE.md) imports this file for Claude Code. This is a refinement of the initial development assignments in PLANNING.md Section 16.1, not a change to EVA's runtime models or study phase authorization.
+
+Use the project `.claude/agents/eva-*.md` definitions for task-specific execution. Astra owns decomposition, integration, and final verification; Sol handles substantial implementation, Luna tightly specified mechanical work, Terra source-backed research, Sonnet UI implementation, and Opus independent architecture/security review. These are configurable starting choices, not measured universal rankings. Kimi remains an explicit external handoff until a working authorized adapter is verified.
+
+Within the owner's authorized task, delegate substantive independent work when it improves the result; keep trivial known edits inline. Use at most three concurrent workers, bounded contracts and one writer per overlapping file/module. Recheck status and the exact file immediately before applying edits. Treat unexplained changes as another session's work; do not reset, stash, clean, overwrite, commit, or absorb them. Isolate parallel writers in worktrees and coordinate integration; do not switch the shared checkout's branch. Existing sessions outside Ruflo are not covered by its coordination records.
+
+Native Claude Code agent model fields select workers. Ruflo routing suggestions are advisory and must not silently replace those models. Ruflo agent records are not proof of execution; invoke the native Agent tool and verify provider/model evidence. If a route fails, report it and retry once only for a transient failure; return to Astra for reassignment without claiming the requested specialist ran. Keep ordinary permissions, no automatic commits/pushes, and explicit owner phase acceptance regardless of plugin instructions.
+
+PLANNING.md's initial assignments were Codex implementation/integration, Claude/Fable interaction and architecture review, Kimi research/independent evaluation, and the owner product direction/acceptance. The owner-selected workflow above refines those development assignments. These are intended responsibilities, not guaranteed available integrations or a universal model ranking.
 
 Use only actually available, authorized models/tools. Record the real provider/model and tool used; never impersonate another reviewer. If a role cannot be invoked, identify that limitation and prepare a handoff. Do not infer API access or exact model IDs from a paid subscription. Do not put a serial multi-provider review chain on EVA's normal runtime path.
 
@@ -71,13 +83,13 @@ Next test and owner decision needed:
 
 ## UI and creative-tool workflow
 
-Apply DESIGN.md before visual changes. Use the selected Space Grotesk / IBM Plex Sans / IBM Plex Mono system. Retain amber activity and red danger until an explicit semantic revision. Generated styling cannot reach safety-owned confirmations.
+Apply DESIGN.md before visual changes. Use the selected Space Grotesk / IBM Plex Sans / IBM Plex Mono system. Preserve Week 1's explicit red refinement in its archive; the current red/bone/black response vocabulary is a proposed continuity candidate. Host-owned error/authority semantics use explicit words, shape and placement, never color alone. Generated styling cannot reach safety-owned confirmations.
 
-Use Higgsfield for whole-dashboard exploration, component vocabulary, state boards, layout alternatives, and motion studies as supported by the actual connected tools. Do not reduce its role to decorative imagery. Extract reusable tokens, components, constraints, and events from selected outputs; implement and test them as native components. Generated source, if exportable, requires normal dependency, security, accessibility, and behavior review before adoption.
+Use Higgsfield for whole-response compositions, primitive vocabulary, intervention/state boards, layout alternatives, and motion studies as supported by connected tools. Do not reduce its role to decorative imagery or assume a card grid. Extract reusable tokens, primitives, constraints, and events; implement and test them as native components within an authorized phase. Generated source, if exportable, requires normal dependency, security, accessibility, and behavior review before adoption.
 
 Use the workflow in docs/design/HIGGSFIELD.md. Verify account connection and tool capabilities; plugin discovery or an endpoint string is not a working integration. Keep authentication outside version control. Do not add duplicate plugin/MCP/CLI routes without a concrete need. Do not silently substitute another image provider if Higgsfield is unavailable; prepare briefs and continue independent work.
 
-Install ComfyUI at the start of S3 only after explicit owner S2 acceptance, as selected on 2026-09-16. Until then, use mocked media states; do not pull local model downloads or GPU setup into the week-one demo or S1/S2. At S3, verify current hardware and free VRAM, select one reviewed still-image workflow, limit active generation to one job initially, and measure asset latency and UI responsiveness with generation idle and active. Record evidence before claiming a speed benefit. This scheduling decision is not phase acceptance or authorization to install early.
+ComfyUI's earliest installation remains S3 after explicit owner S2 acceptance, as selected on 2026-09-16. It is optional in the reframed research and needs a separately scoped experiment; no local model downloads or GPU setup in E1 or S1/S2. For an authorized S3 trial, verify hardware/free VRAM, select one reviewed still-image workflow, limit active generation to one job, and measure asset latency and UI responsiveness idle/active. Record evidence before claiming a speed benefit. This gate is not acceptance or installation authorization.
 
 The week-one execution plan lives in week1/WEEK1_DEMO_PLANNING.md, with its visual brief in week1/docs/design/WEEK1_DEMO.md. It includes Tauri 2/Rust setup, a normal Windows desktop window, reusable React components, and a narrow read-only Rust command for synthetic memory. Keep native setup within the documented checkpoint and retain the same frontend's browser fallback. The plan does not authorize full product implementation, replace voice/personality research, or count as completion of S0–S2.
 
@@ -85,11 +97,11 @@ Before a visual edit, inspect the accepted screenshot, intervening candidates, s
 
 Store evidence under `docs/design/revisions/<revision-id>/` and update `docs/design/INDEX.md` once actual candidates exist. Include the DESIGN.md manifest fields. Never overwrite old references or automatically promote the newest image. First implementation records no runnable before-state and links the historical concept. Missing capture blocks a visual-completion claim, not unrelated work.
 
-Preserve stable card IDs, geometry, focus, user locks, direct edits, and pin state across patches. Keep drag/resize/dismiss and eye feedback local. Charts use real fixture/data references and explicit units/missingness. Media remains optional and asynchronous; late results cannot attach to dismissed or superseded revisions.
+Preserve stable entity IDs, anchors, geometry, focus, user locks, direct edits, and pin state across patches. Keep manipulation, interruption, intensity, plain answer, dismissal and eye feedback local. Facts/charts use approved fixture/data references and explicit units/missingness. Qualitative motion cannot imply measured confidence or train location. Media remains optional and asynchronous; late results cannot attach to dismissed or superseded revisions.
 
 ## Verification and tooling
 
-Use existing package scripts and documented environment setup once they exist. Milestone 0 plans npm workspaces, Ajv, and Node's built-in test runner; do not claim `npm test`, a desktop build, or Rust checks currently exist without inspecting the manifests. Choose additional visual tooling during scaffolding.
+Use the archive's existing package scripts and setup notes for Week 1; inspect manifests before choosing commands. A future experiment workspace needs its own documented checks. Proposed schemas, tests and renderer benchmarks are not executed evidence. Documentation revisions use diff, local-link, source and consistency checks; do not rerun unrelated application tests merely to imply implementation progress.
 
 | Change | Appropriate evidence |
 | --- | --- |

@@ -1,0 +1,10 @@
+@AGENTS.md
+@docs/development/AGENT_WORKFLOW.md
+
+For this repository, GPT-6 Astra is the development orchestrator inside Claude Code. Model Gateway supplies the provider transport; Ruflo supplies optional coordination. Use the project `eva-*` native subagents for execution and their explicit model fields for routing. Do not substitute the global Ruflo plugin's Sonnet-pinned generic agents.
+
+This project policy refines the global Ruflo instructions: `hooks_route` is advisory; `agent_spawn` creates coordination records, not evidence that a native subagent ran. Launch actual workers with Claude Code's Agent tool. Do not use Ruflo `agent_execute` to introduce an API-key inference path. Never install another router, run `init --wizard`, reset configuration, or enable bypassPermissions to complete a task.
+
+Keep the owner's current objective across steering messages. Delegate independent, substantive tasks with explicit ownership; handle trivial known edits inline. Use at most three workers concurrently, with one writer per file and isolated worktrees for parallel writers. Return actual model/tool provenance, changed files, focused verification, and unresolved limitations. Preserve concurrent GPT edits and all owner acceptance gates.
+
+Higgsfield is the selected development-time visual authoring service. Its project MCP connection is `higgsfield` in `.mcp.json`; discover its actual tools after approval/authentication. The installed `higgsfield.cmd` CLI is also authenticated and can be used through the shell when appropriate. See [Claude Code connection status and activation](docs/development/HIGGSFIELD_CLAUDE_CODE.md) and the visual workflow in docs/design/HIGGSFIELD.md. Codex-only companion skills are not automatically available in Claude Code. The globally installed ComfyUI plugin is not the selected substitute; preserve the repository's separate ComfyUI phase gate. Coordinate visual authoring from the main session, then hand selected outputs to the bounded UI worker. Do not submit the same job through both MCP and CLI or generate assets merely to test this connection.

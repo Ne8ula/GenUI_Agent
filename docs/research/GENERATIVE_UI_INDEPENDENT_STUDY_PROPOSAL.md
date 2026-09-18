@@ -1,116 +1,118 @@
-# Independent Study Proposal: Social Generative Interfaces as Co-Designers
+# Independent Study Proposal: Expressive Responses as Revisable Encounters
 
 - **Student:** [Student name]
 - **Faculty supervisor:** Professor José Sánchez
 - **Research context:** Game Assemblies Lab
-- **Term:** Fall 2026; completion target mid-December
-- **Project testbed:** EVA, a safety-first desktop agent
+- **Term:** Fall 2026. The earlier proposal named mid-December; the present reframe supplies no new deadline or approved schedule.
+- **Status:** Research and design proposal revised 2026-09-17; implementation, study protocol, and phase acceptance remain pending.
+- **Testbed:** EVA's existing Tauri/React/Rust desktop foundation; [Week 1](../../week1/README.md) remains an intact, successfully demonstrated archive.
 
-## Project premise
+## Thesis and continuity
 
-- Investigate how CASA (Computers Are Social Actors) changes when the social actor is not only a voice or character, but a voice-enabled agent and its dynamically generated workspace acting as one entity.
-- Use EVA to study a system that listens, displays affective behavior, retrieves remembered preferences, and constructs or revises task-specific interfaces in real time.
-- Treat EVA's apparent emotion as **bounded computational affect** expressed through voice, language, timing, memory, motion, and eye behavior; the study examines human interpretation rather than claiming machine sentience.
-- Connect three design layers:
-  - **Relational:** voice, social eye, affect, personality, turn-taking, and shared history.
-  - **Generative:** constrained components, layouts, semantic revisions, and temporal continuity.
-  - **Constitutional:** provenance, reversible interaction, inspectable memory, deterministic permissions, and safety-owned controls.
-- Extend Sánchez's research on generative interfaces, combinatorial systems, and player design agency into human-AI co-design.
+EVA investigates the **response**, rather than the dashboard, as an object of generative interaction design. An ordinary request can be answered through readable information and a composition of movement, spatial relationships, imagery, typography, rhythm, language, sound, and silence. The composition should propose an interpretation, attend to a user's intervention, yield, and reconsider. Collaboration must be observable in behavior; announcing empathy or playing a fixed animation is insufficient.
 
-## Primary research question
+The Memory Archive situated generated speech within a character's gaze, voice, emotional state, body, and object encounters. EVA asks what changes when some of that expressive work moves from a character's body into the behavior of an interface. This is a research hypothesis, not an established equivalence. Social interpretation does not prove understanding, feeling, or a relationship. The [literature synthesis](EXPRESSIVE_RESPONSE_SYNTHESIS.md) and [code-grounded transfer study](MEMORY_ARCHIVE_TRANSFER.md) distinguish those claims.
 
-- **How does embodying a constrained generative UI system as a voice-enabled, emotionally expressive social co-designer, rather than an instrumental generator, affect users' perceived shared authorship during iterative dashboard creation?**
+The owner's broader agenda is to challenge perspective, explore generative experience, and eventually develop a personal relationship through remembered context. The first study isolates an immediate encounter. A later personal-agent study would require repeated use and inspectable persistent memory; an exhibit could instead offer a short self-contained encounter without personal retention. Neither is required for the first contribution.
 
-## Supporting questions
+## Candidate questions and recommendation
 
-- What component, layout, and revision rules let EVA conversationally extend an interface without disrupting visual or interaction continuity?
-- How do voice, eye behavior, remembered preferences, conversational timing, and affect make EVA and its workspace appear to be one social actor?
-- How can social expression coexist with calibrated reliance, inspectable provenance, user control, and safety boundaries?
+| Candidate | Contribution | Main difficulty | Decision |
+| --- | --- | --- | --- |
+| How do visual and temporal responses to user intervention shape perceived responsiveness and influence in an ordinary information request? | An actionable grammar of attending, yielding, and revising, with evidence tied to specific events | Separate contingency from spectacle and functional differences | **Recommend first** |
+| How do subject-specific visual materials change emotional interpretation of weather and transit information? | Knowledge about congruence between information and expressive material | Domain, familiarity, aesthetics, and factual complexity vary together | Transit transfer critique first; study later |
+| How does remembered expressive history shape a personal relationship with an agent? | Longitudinal continuity and relationship design | Repeated use, memory governance, and a different study duration | Defer to personal-agent track |
+| How can a brief mediated encounter challenge a visitor's perspective on ordinary information? | An exhibit format and situated interpretation | Venue, audience, staging, and novelty dominate | Separate later exhibit adaptation |
 
-## Intended contributions
+**Recommended research question:** How does a composition's contingent visual and temporal response to user intervention shape perceived responsiveness and user influence during an ordinary information request?
 
-- A CASA-informed design framework for generative interfaces that operate as social co-designers.
-- A constrained generative UI grammar for task-specific, conversationally revised dashboards.
-- An agentic interaction model supporting voice, semantic direct manipulation, memory, interruption, and reversible revisions.
-- A trust-and-safety model separating expressive generated UI from deterministic authority and safety-owned controls.
-- Empirical evidence about shared authorship, trust and reliance, personality or intent attribution, and task support.
+**Proposed contribution:** a bounded expressive-response grammar, an inspectable prototype, and a research-through-design account of which revision behaviors people interpret as attending to their intervention—and when they instead experience them as decorative, obstructive, or manipulative. This is narrower than demonstrating emotional intelligence or shared authorship of a whole interface.
 
-## Prototype and conditions
+## Research basis and resulting design choices
 
-- Build two mocked workflows using the same component grammar:
-  - a seven-day weather dashboard that can add wind, comparison, or detail layers;
-  - a calendar-planning dashboard that can reorganize commitments and priorities.
-- Demonstrate the interaction loop: voice activation, social eye, visible generation, initial dashboard, conversational revision, real-time interface patch, and explicit conversational closure.
-- Visualize retrieval across inspectable memory regions: episodic, semantic, preference, relational, affective, identity, and procedural memory.
-- Compare two functionally equivalent conditions:
-  - **Relational co-designer:** affective voice delivery, social eye behavior, collaborative language, interpreted-intent explanations, and references to shared memory.
-  - **Instrumental generator:** the same voice identity, data, capabilities, memory, grammar, and response timing, but functional language, nonsocial status behavior, and silent preference application.
-- Treat relational framing as one bundled condition. The study will not claim to isolate the individual effects of voice, sarcasm, eye behavior, memory, or affect.
-- Retain restrained sarcasm as part of the relational prototype while flagging cultural and linguistic variability; later study materials will consider literal wit, warm understatement, adjustable sarcasm, and non-ironic alternatives.
+The synthesis gives verified bibliographic records, reading-depth limits, and a concept → predecessor mechanism → EVA interpretation → question → evidence chain. Its consequential commitments are:
 
-## Study design and measures
+- **Attribution is an outcome to examine.** Moving-shape studies and CASA motivate examining people's interpretations, not treating an interface as a person. [Heider and Simmel, 1944](https://doi.org/10.2307/1416950); [Nass and Moon, 2000](https://doi.org/10.1111/0022-4537.00153).
+- **Meaning arises in interaction.** Affective-loop work motivates a sequence in which the person can change the expression and reflect on it. It does not justify classifying emotion from a pause or gaze. [Höök, 2009](https://pmc.ncbi.nlm.nih.gov/articles/PMC2781899/).
+- **Time is design material.** Onset, duration, rhythm, interruption, and return matter independently of a screenshot. Record the episode and alternative timings. [Vallgårda et al., 2015](https://www.ijdesign.org/index.php/IJDesign/article/view/2212/710).
+- **Initiative must remain negotiable.** A proposal can be redirected or simplified without losing the answer or surrendering control. [Horvitz, 1999](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/chi99horvitz.pdf).
+- **An artifact is part of the inquiry.** Preserve alternatives, failures, and rationale so the work can be assessed for process, invention, relevance, and extensibility. [Zimmerman, Forlizzi, and Evenson, 2007](https://doi.org/10.1145/1240624.1240704).
 
-- Plan a counterbalanced within-subject comparison using the weather and planning tasks; finalize recruitment and sample size with faculty and institutional human-subject guidance.
-- Hold functionality, generated results, voice identity, timing, visual grammar, and memory capability constant across conditions.
-- **Primary outcome:** perceived shared authorship and co-agency over the resulting interface.
-- **Secondary outcomes:** perceived control, task success, trust and reliance, personality or intent attribution, willingness to accept revisions, and correction behavior.
-- Collect post-condition scales, interaction logs, generated-artifact comparisons, and semi-structured interview responses.
-- Use synthetic data and no production account access or consequential device actions.
-- Obtain required institutional approval before recruitment; if timing delays recruitment, complete a faculty-reviewed pilot and submission-ready study protocol without weakening the prototype deliverable.
+Artistic precedents inform compositional decisions; they are not empirical support for user outcomes. See [the precedent analysis](ARTISTIC_PRECEDENTS.md) for Kat Zhang / The Poet Engineer, selected ONX and DAT LAB connections, and the owner's unverified numerical recollection from *Sunshine*. Academic primary sources ground the research; creator documentation supports claims about the works.
 
-## Trust-and-safety requirements
+## Prototype and scope
 
-- Generate validated declarative UI data rather than executable model-generated code.
-- Apply identical deterministic safety policy to both experimental conditions.
-- Keep provenance, uncertainty, memory use, and revision history inspectable.
-- Prevent personality, eye behavior, or generated cards from imitating or weakening safety-owned confirmation surfaces.
-- Treat silence as no further request, never as approval or satisfaction.
-- Allow users to interrupt, reject, correct, rewind, or dismiss EVA without emotional pressure or loss of control.
-- Prohibit sarcasm during uncertainty, failure, privacy, distress, confirmation, or security events.
+Use the [canonical grammar](../../DESIGN.md) and proposed [E1 revisable-weather experiment](../design/experiments/E1_REVISABLE_WEATHER.md). A synthetic NYC weather answer appears as readable facts with a dithered field that can gather, part, and reorganize around selected information. The user can redirect the time window, compare periods, pin a fact, request less motion, reject an interpretation, or choose a plain answer. Follow-ups change the ongoing composition while preserving identity and direct edits.
 
-## Semester curriculum
+Weather is the first executable scenario. A clearly synthetic uptown-M transit response is a **design transfer example**, not a second required integration. It explores waiting and anticipated arrival without inventing service or implying live train positions. No production weather/transit account is needed.
 
-Implementation sequencing note (owner decision, 2026-09-16): ComfyUI installation is scheduled for the start of delivery phase S3, after explicit owner acceptance of S2's core weather/calendar interaction, conversational revision, and simulated memory. Earlier phases use synthetic media-state fixtures. S3 evaluates one bounded local still-image workflow; optional imagery must not delay the core prototype or confound matched research conditions. These delivery phases are defined in PLANNING.md and are not calendar week numbers.
+The model may compose bounded authored primitives and phase recipes. Data supplies facts; deterministic runtime code supplies provenance and authority; the user controls interventions and presentation limits. Hand-authored scores can establish the foundation first, but must be labeled as such. Claiming model composition later requires actual outputs, validation traces, and behavior beyond selecting a fixed movie. Memory, dialogue orchestration, and rendering remain separate.
 
-A proposed week-one visual checkpoint is specified in [the demo brief](../../week1/docs/design/WEEK1_DEMO.md). It previews one reusable weather interaction and inspectable synthetic memory storage. It does not replace the planned literature work, later two-workflow prototype, voice/social conditions, or institutional research process.
+## Research-through-design process
 
-- **Weeks 1-2:** CASA, affective computing, mixed-initiative interaction, generative design, agentic UI, and trust literature; finalize constructs and protocol.
-- **Weeks 3-4:** Define the three-layer framework, component ontology, UI schema, affect rules, memory regions, and safety invariants.
-- **Weeks 5-7:** Implement weather and calendar workflows, voice and eye behavior, progressive generation, semantic revision, and simulated memory.
-- **Week 8:** Integrate both research conditions; conduct faculty and lab critique.
-- **Week 9:** Pilot the tasks, instruments, logs, and interview guide; freeze the study protocol and complete required ethics steps.
-- **Weeks 10-11:** Conduct the participant study, subject to approval, while maintaining anonymized research records.
-- **Week 12:** Analyze quantitative, behavioral, artifact, and interview evidence; document limitations and counterevidence.
-- **Weeks 13-14:** Finalize the design framework, constrained grammar, prototype, conference-style manuscript, recorded demonstration, and presentation.
+1. Translate selected literature and predecessor mechanisms into alternative response sketches. Record why each option was retained, changed, or rejected.
+2. Build only the accepted bounded experiment. Compare at least two ways the composition can attend to the same intervention, including an unadorned response. Save scores, seeds, timing, captures, and decision notes.
+3. Use owner/faculty critique to identify unreadable facts, ambiguous agency, coerced interaction, and novelty mistaken for responsiveness. This is design critique, not participant-study evidence.
+4. Prepare and pilot matched conditions, prompts, logging, and interview materials. Obtain required institutional guidance and approval before recruitment or research data collection.
+5. Conduct a small formative study if approved and feasible; revise the grammar using supportive and disconfirming episodes. Report situated findings rather than population-level effects from a small sample.
 
-## Deliverables
+An initial planning envelope is two formative rounds totaling approximately 6–8 participants, subject to faculty agreement and institutional requirements. This is a feasibility proposal, not a power calculation, recruitment decision, or approved sample. If participant work cannot proceed, deliver the prototype, critique record, and submission-ready protocol; do not substitute informal conversations for an approved study.
 
-- Annotated bibliography, precedent matrix, research protocol, and study instruments.
-- `GENERATIVE_UI_DESIGN.md`: framework, grammar, components, affect, memory, motion, trust states, safety rules, and anti-patterns.
-- Versioned declarative UI schema, mocked datasets, and interactive two-task EVA prototype.
-- Participant-study results with anonymized data, analysis materials, limitations, and design recommendations, subject to institutional policy.
-- Conference-style manuscript prepared for later revision and potential submission to CHI or another appropriate HCI venue; acceptance or deadline alignment is not assumed.
-- Portfolio-ready recorded demonstration, final presentation, and concise resume project description.
+## Unit of analysis and comparison
 
-## Assessment proposal
+The **response episode** begins with a request and ends when the user settles, simplifies, dismisses, or stops the revised answer. It includes the initial answer, at least one explicit intervention, the transition, and the user's interpretation of what changed. A screenshot alone is not the unit.
 
-- **15%** research foundation and precedent synthesis.
-- **20%** CASA-informed framework and constrained UI grammar.
-- **25%** iterative prototypes and integrated two-task system.
-- **20%** participant-study design, execution, and analysis.
-- **15%** conference-style manuscript and critical reflection.
-- **5%** final presentation and recorded demonstration.
+| Condition | Shared behavior | Deliberately varied behavior |
+| --- | --- | --- |
+| Contingent expression | Same facts, reading order, revision functions, controls, input methods, and response availability | Expressive material attends to the chosen entity, yields around a lock, and reorganizes in response to the intervention |
+| Matched authored motion | Same functional revision and factual updates; controls remain effective | A prescribed field sequence provides comparable motion and material without coordinated expressive accommodation |
+| Plain answer | Same facts and usable revision controls | Optional reference for comprehension, comfort, and accessibility; not a bundled social-personality manipulation |
 
-## Scope and interpretation
+The comparison is a proposed research instrument, not desired shipping behavior. Stop, reduced motion, and direct manipulation work in every condition. Do not fake a broken control. Match duration, density, palette, and broad motion energy as closely as feasible; exact trajectories cannot be identical when contingency is the manipulation. Document this residual difference.
 
-- Focus on the research surface of [EVA's planning document](../../PLANNING.md); full backend completion, production connectors, unrestricted device control, and Live2D integration remain outside the semester scope.
-- Do not claim that EVA experiences subjective emotion; study how users interpret and respond to computational affect.
-- Do not generalize the bundled relational comparison into causal claims about individual personality cues.
-- Treat personal-use personality preferences as product configuration, not research evidence.
-- Present the resulting framework as provisional beyond the tested weather and planning workflows.
+Start with voice and sound off, identical eye behavior, neutral equivalent wording, and no personal-history references. Avoid bundling personality, sarcasm, memory, voice acting, and timing into one unexplained effect. Later multimodal work can vary one coordinated channel at a time.
 
-## Initial references
+## Evidence and interpretation
 
-- **CASA:** Nass, Steuer, and Tauber, [Computers Are Social Actors](https://doi.org/10.1145/191666.191703), CHI 1994; Nass and Moon, [Machines and Mindlessness](https://doi.org/10.1111/0022-4537.00153), 2000.
-- **Affect and mixed initiative:** Picard, [Affective Computing](https://mitpress.mit.edu/9780262661157/affective-computing/), 2000; Horvitz, [Principles of Mixed-Initiative User Interfaces](https://doi.org/10.1145/302979.303030), CHI 1999; Amershi et al., [Guidelines for Human-AI Interaction](https://doi.org/10.1145/3290605.3300233), CHI 2019.
-- **Generative design:** Sánchez, [Temporal and Spatial Combinatorics in Games for Design](https://pages.sandpoints.org/sandpoints/acadiaarchive-46619c43/article/temporal-spatial-combinatorics-games-design/), ACADIA 2015.
+| Role | Evidence | Interpretation limit |
+| --- | --- | --- |
+| Primary: perceived responsiveness | Brief episode-level ratings and accounts of the exact intervention and observed response | Researcher-authored items are not a validated scale; show items and distributions, not a diagnostic score |
+| Explanatory: user influence | Whether a requested change survives, where control is attributed, rejection/revision traces, interview explanations | Executing a built-in command alone is not proof of co-authorship |
+| Guardrail: comprehension | Correct reading of temperature/time/units/source; recognition of synthetic and missing data | An attractive response that obscures facts fails |
+| Exploratory: emotional interpretation and authorship | Participant language about invitation, anticipation, irritation, agency, ownership, or indifference | Do not require emotion, presume positive affect, or infer a relationship |
+
+Suggested prompts: “What changed because of your action?”, “What did you feel you could influence?”, and “Was anything expressive or distracting? Point to the moment.” Ask open accounts before supplying agentic labels. Record negative and non-social interpretations.
+
+Use equivalent weather variants rather than one memorized answer. A possible session has six short episodes, three per main condition, with task and condition order counterbalanced and a plain-answer reference. Finalize duration and fatigue after the pilot. Within-session repeated exposure can reveal novelty decay; it cannot establish a longitudinal relationship.
+
+- **Novelty and spectacle:** share visual vocabulary, repeat exposure, ask about novelty separately, and keep plain answer available.
+- **Latency:** expose facts at the same time; replay or precompute expressive proposals; log actual delays. A slower model must not be confounded with thoughtfulness.
+- **Information and function:** use identical evidence, uncertainty, wording, controls, and successful factual revisions. Only coordinated expressive behavior varies.
+- **Experimenter suggestion:** do not describe one condition as empathetic or collaborative; analyze concrete accounts before inferred constructs.
+- **Learning and taste:** counterbalance order and tasks; preserve participant preferences and within-person disagreements.
+
+Analyze event traces alongside recordings and interview excerpts using a documented coding process and discrepant cases. Report the actual number of coders and procedure; do not claim independent coding without it. Summarize descriptive ratings and comprehension failures. Later hypothesis tests need separately justified sampling and analysis.
+
+## Authority, privacy, and accessibility
+
+Facts never depend on emotional rapport. Fictional witness/consent framing does not authorize disclosure, data collection, or real actions. No camera, facial emotion classifier, speaker identification, or incidental-screen inference is required. Silence means no new instruction.
+
+Use synthetic fixtures and session-only context first. Approved research recordings and identifiers belong in institutionally approved private storage, not the public repository. Public evidence contains only synthetic data. Persistent personal memory is a later opt-in, inspectable mechanism with separate retention/deletion decisions.
+
+Keep model output declarative and bounded, safety/provenance host-owned, factual speech verified, and interruption propagated. Provide keyboard equivalents, stable reading surfaces, explicit units and missingness, reduced motion, intensity control, and plain answer. Social expression must never resist dismissal or pressure acceptance.
+
+## Delivery phases and assessment
+
+The proposed S0–S4 sequence in [PLANNING.md Section 17](../../PLANNING.md#17-milestones) is a dependency order, not a new deadline. Week 1 success does not accept these phases. Each needs explicit owner review of its actual revision; institutional approval is separate.
+
+The existing ComfyUI decision remains an **earliest-use gate**: no installation before explicit S2 acceptance, and only a separately authorized S3 experiment. Generated imagery is unnecessary for the first response study. Redefining scope does not authorize early installation.
+
+Deliver the annotated synthesis and transfer study, this protocol proposal, **DESIGN.md** as the one canonical grammar, an inspectable response prototype/schema, design iterations and evidence, approved study materials/results if feasible, and a critical manuscript/demo. No duplicate `GENERATIVE_UI_DESIGN.md` will be created. Conference submission and acceptance remain separate decisions.
+
+Suggested assessment weights, for faculty discussion: research foundation 20%; grammar/rationale 25%; prototype/iteration evidence 25%; evaluation design/approved study and analysis 20%; critical reflection/presentation 10%. These replace the two-dashboard deliverable as a proposal, not an approved grading change.
+
+## Boundaries and open decisions
+
+The owner supplied the expressive-response direction. The focused question, grammar, comparison, sample envelope, and experiment are recommendations for review. Decisions remain about preferred attending behavior after executable alternatives exist, faculty agreement on constructs/protocol, and whether a later extension prioritizes personal continuity or an exhibit. These do not block documentation work.
+
+Full backend completion, production accounts, consequential actions, Live2D/Unreal, camera input, and GPU/model installation are outside this phase. The [decision log](DIRECTION_DECISIONS.md) records the change from the dashboard proposal, whose exact text remains [archived](history/2026-09-17-before-reframe/README.md).

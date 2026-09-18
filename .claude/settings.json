@@ -1,0 +1,16 @@
+{
+  "extraKnownMarketplaces": {
+    "eigenwise-toolshed": {
+      "source": {
+        "source": "github",
+        "repo": "Eigenwise/eigenwise-toolshed"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "model-gateway@eigenwise-toolshed": true,
+    "ruflo-core@ruflo": true
+  },
+  "model": "claude-gpt-6-astra[1m]",
+  "effortLevel": "high"
+}

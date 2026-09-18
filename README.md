@@ -1,5 +1,11 @@
 # EVA
 
+EVA explores **expressive responses that users can revise**: ordinary information answered through readable facts, movement, spatial composition, timing, and explicit intervention. The current research asks when a composition's response to correction or redirection is experienced as attention and meaningful influence. See the [research entry point](docs/research/INDEX.md), [canonical plan](PLANNING.md), and [design grammar](DESIGN.md).
+
+The proposed next experiment is [a revisable synthetic NYC weather response](docs/design/experiments/E1_REVISABLE_WEATHER.md). Research/documentation are authorized; the next implementation and study phase remain pending. Personal relationship development and an exhibit are separate later tracks.
+
+Development is orchestrated by **Astra inside Claude Code**, as specified in [AGENTS.md](AGENTS.md) and the [development workflow](docs/development/AGENT_WORKFLOW.md). This harness choice is separate from EVA's application runtime and research conditions.
+
 The successful Week 1 desktop demo is isolated in **[week1/](week1/README.md)**, including its application, Rust backend, fixtures, tests, setup notes and design history.
 
 From this repository root, existing commands still work:
