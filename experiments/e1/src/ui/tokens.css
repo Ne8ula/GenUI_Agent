@@ -1,0 +1,209 @@
+/*
+ * E1 design tokens — DESIGN.md palette/type/spacing candidates.
+ * Owned by experiments/e1/src/ui/** (UI worker scope).
+ */
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk/space-grotesk-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk/space-grotesk-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk/space-grotesk-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk/space-grotesk-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/fonts/ibm-plex-sans/ibm-plex-sans-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/fonts/ibm-plex-sans/ibm-plex-sans-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/fonts/ibm-plex-sans/ibm-plex-sans-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* DESIGN.md Section 3 palette candidates */
+  --e1-void: #080a0b;
+  --e1-surface: #121618;
+  --e1-raised: #1b2124;
+  --e1-bone: #e8e4d9;
+  --e1-muted: #a8ada9;
+  --e1-rule: #2a3033;
+  --e1-red: #ff3b35;
+  --e1-amber: #e8ad56;
+  --e1-error: #f06c68;
+  --e1-focus: #f4d18c;
+  /* Cloud/occlusion tone for the dither-field renderer (kept in sync with
+     FIELD_COLORS.occlusion in render/FieldCanvas.tsx — deliberately not red,
+     so cloud material never reads as an error/host confirmation). */
+  --e1-cloud: #545c60;
+
+  --e1-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --e1-display: "Space Grotesk", system-ui, sans-serif;
+  --e1-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --e1-space-1: 4px;
+  --e1-space-2: 8px;
+  --e1-space-3: 12px;
+  --e1-space-4: 16px;
+  --e1-space-6: 24px;
+  --e1-space-8: 32px;
+  --e1-space-12: 48px;
+
+  --e1-control-min-height: 44px;
+  --e1-radius: 3px;
+
+  color-scheme: normal;
+}
+
+.e1-root, .e1-root * {
+  box-sizing: border-box;
+}
+
+/*
+ * Genuinely transparent overlay (owner refinement, 2026-09-23): the actual
+ * desktop/apps beneath remain visible through empty space, both in a real
+ * native transparent window and in this browser preview. No full-viewport
+ * opaque/void background is painted here or on the document itself — every
+ * readable surface below (`.e1-anchor`, `.e1-shell` sub-blocks, etc.) owns
+ * its own small local backing instead. A plain browser tab without a
+ * transparent-window host will simply show through to its own white/default
+ * canvas; that is an accepted browser-preview limitation (DESIGN.md ss8: "a
+ * browser run is supplementary; browser results cannot establish Tauri
+ * behavior"), not a native rendering claim.
+ */
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+.e1-root {
+  min-height: 100vh;
+  min-width: 320px;
+  background: transparent;
+  color: var(--e1-bone);
+  font-family: var(--e1-sans);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.e1-root :focus {
+  outline: none;
+}
+
+/* Visible, high-contrast focus ring per DESIGN.md; never color-only for meaning elsewhere. */
+.e1-root :focus-visible {
+  outline: 2px solid var(--e1-focus);
+  outline-offset: 2px;
+  border-radius: var(--e1-radius);
+}
+
+.e1-mono {
+  font-family: var(--e1-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.e1-display {
+  font-family: var(--e1-display);
+}
+
+.e1-muted {
+  color: var(--e1-muted);
+}
+
+.e1-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+button.e1-btn {
+  font-family: var(--e1-sans);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--e1-bone);
+  background: transparent;
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+  min-height: var(--e1-control-min-height);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button.e1-btn:hover {
+  border-color: var(--e1-muted);
+}
+
+button.e1-btn[aria-pressed="true"],
+button.e1-btn[data-active="true"] {
+  border-color: var(--e1-red);
+  color: var(--e1-red);
+}
+
+button.e1-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button.e1-btn--protected {
+  border-color: var(--e1-muted);
+  background: var(--e1-surface);
+}

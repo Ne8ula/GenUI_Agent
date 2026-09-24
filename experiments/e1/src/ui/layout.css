@@ -1,0 +1,505 @@
+/*
+ * E1 transparent-overlay composition (owner refinement, 2026-09-23).
+ *
+ * There is no full-window background, dashboard frame, bounded "stage" box,
+ * fixed column, or permanent full-width toolbar. Two independent full-
+ * viewport layers compose the response:
+ *
+ *   .e1-material    — the illustrative dither field + comparison connector.
+ *                     Wholly `pointer-events: none`. In the native two-window
+ *                     contract this is the click-through window that never
+ *                     receives input.
+ *   .e1-interactive — compact, independently positioned fact anchors plus
+ *                     the small corner shell. The layer wrapper itself is
+ *                     `pointer-events: none`; only actual controls opt back
+ *                     into `pointer-events: auto`, so empty space is never an
+ *                     invisible catch-all rectangle (see src/ui/regions.ts).
+ *
+ * Both layers read the SAME `window.innerWidth`/`innerHeight` frame (see
+ * FieldCanvas/FactAnchor), so normalized anchor coordinates resolve
+ * identically whether this file backs one composed document (browser
+ * preview) or two identically-sized native windows.
+ */
+
+.e1-material,
+.e1-interactive {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Material layer -----------------------------------------------------------*/
+.e1-field-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.e1-field-canvas canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.e1-link {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.e1-link line {
+  stroke: var(--e1-muted);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+/* Fact anchors --------------------------------------------------------------
+ * Independently positioned, compact: a small local backing under only the
+ * time + temperature (DESIGN.md's minimal-local-backing rule), a geometric
+ * marker dot at the exact anchor point, and a small pin icon button instead
+ * of a full-width "PIN 12:00" label. Cloud/rain/wind live in an on-demand
+ * disclosure so the default footprint stays tiny relative to the field. */
+.e1-anchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: var(--e1-space-1);
+  padding: 4px;
+  pointer-events: auto;
+}
+.e1-anchor__marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+  background: var(--e1-muted);
+  pointer-events: none;
+}
+.e1-anchor--primary .e1-anchor__marker {
+  background: var(--e1-red);
+  width: 8px;
+  height: 8px;
+}
+.e1-anchor--secondary .e1-anchor__marker {
+  background: var(--e1-red);
+  opacity: 0.7;
+}
+.e1-anchor__handle {
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
+  flex-shrink: 0;
+  gap: var(--e1-space-2);
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: 4px var(--e1-space-2);
+  cursor: grab;
+  touch-action: none;
+  min-height: 44px;
+}
+.e1-anchor--primary .e1-anchor__handle {
+  border-color: var(--e1-red);
+}
+.e1-anchor--secondary .e1-anchor__handle {
+  border-color: var(--e1-red);
+}
+.e1-anchor--muted .e1-anchor__handle {
+  border-color: var(--e1-muted);
+}
+.e1-anchor__handle:active {
+  cursor: grabbing;
+}
+.e1-anchor__time {
+  font-size: 12px;
+  color: var(--e1-muted);
+}
+.e1-anchor__temp {
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 600;
+}
+.e1-anchor--muted .e1-anchor__temp {
+  font-size: 20px;
+}
+.e1-anchor__pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: 50%;
+  color: var(--e1-muted);
+  cursor: pointer;
+}
+.e1-anchor__pin svg {
+  fill: currentColor;
+}
+.e1-anchor__pin[aria-pressed="true"] {
+  border-color: var(--e1-red);
+  color: var(--e1-red);
+}
+.e1-anchor__more {
+  pointer-events: auto;
+}
+.e1-anchor__more > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--e1-muted);
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  list-style: none;
+}
+.e1-anchor__more > summary::-webkit-details-marker {
+  display: none;
+}
+.e1-anchor__details {
+  position: absolute;
+  top: calc(100% + var(--e1-space-1));
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  min-width: 140px;
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+  font-size: 12px;
+  color: var(--e1-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+.e1-anchor__details > div {
+  display: flex;
+  gap: var(--e1-space-2);
+  justify-content: space-between;
+}
+.e1-anchor__details dt::after {
+  content: ":";
+}
+.e1-anchor__details dt,
+.e1-anchor__details dd {
+  margin: 0;
+}
+
+/* Shell: small corner-anchored identity/request/controls cluster -----------
+ * No giant enclosing panel — each block below owns its own small local
+ * backing and the cluster wraps content width, never the full viewport. */
+.e1-shell {
+  position: fixed;
+  top: var(--e1-space-4);
+  left: var(--e1-space-4);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e1-space-2);
+  max-width: min(360px, calc(100vw - 2 * var(--e1-space-4)));
+  pointer-events: none;
+}
+.e1-shell > * {
+  pointer-events: auto;
+}
+.e1-shell__identity {
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+}
+.e1-shell__notice,
+.e1-shell__error {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  width: min(420px, calc(100vw - 32px));
+  z-index: 4;
+}
+.e1-shell__notice {
+  margin: 0;
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-error);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+  font-size: 13px;
+  max-width: 100%;
+}
+
+/* Header (identity/source) ---------------------------------------------- */
+.e1-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.e1-header__wordmark {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.e1-header__source {
+  font-size: 12px;
+  margin: 0;
+  max-width: 46ch;
+}
+
+/* Location / request ------------------------------------------------------ */
+.e1-location {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e1-space-2);
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+}
+.e1-location__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--e1-muted);
+}
+.e1-location__input {
+  background: var(--e1-void);
+  color: var(--e1-bone);
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+  min-height: var(--e1-control-min-height);
+  min-width: 14ch;
+  font-size: 14px;
+}
+.e1-location__variant-disclosure {
+  width: 100%;
+  font-size: 12px;
+  color: var(--e1-muted);
+}
+.e1-location__variant-disclosure > summary {
+  cursor: pointer;
+}
+.e1-location__variant {
+  display: flex;
+  gap: var(--e1-space-3);
+  border: 0;
+  padding: var(--e1-space-1) 0 0;
+  margin: 0;
+  font-size: 12px;
+  color: var(--e1-muted);
+}
+.e1-location__variant label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.e1-location__error {
+  color: var(--e1-error);
+  font-size: 13px;
+  margin: 0;
+  width: 100%;
+}
+
+/* Unavailable notice ------------------------------------------------------ */
+.e1-unavailable {
+  border-left: 3px solid var(--e1-error);
+  background: var(--e1-surface);
+  padding: var(--e1-space-3) var(--e1-space-4);
+  border-radius: var(--e1-radius);
+}
+.e1-unavailable__title {
+  font-family: var(--e1-display);
+  font-weight: 600;
+  margin: 0 0 var(--e1-space-1);
+}
+.e1-unavailable p {
+  margin: var(--e1-space-1) 0;
+}
+
+/* Controls: small discoverable affordance, not a full-width bar ---------- */
+.e1-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e1-space-2);
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+}
+.e1-controls__essential {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e1-space-2);
+}
+.e1-controls__more {
+  font-size: 12px;
+  color: var(--e1-muted);
+}
+.e1-controls__more > summary {
+  cursor: pointer;
+}
+.e1-controls__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e1-space-2);
+  margin-top: var(--e1-space-2);
+}
+
+/* Reading layer: collapsed by default, own small backing ----------------- */
+.e1-reading {
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+  max-width: min(560px, calc(100vw - 2 * var(--e1-space-4)));
+}
+.e1-reading > summary {
+  cursor: pointer;
+  font-size: 13px;
+}
+.e1-reading__table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: var(--e1-space-2);
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+.e1-reading__caption { text-align: left; color: var(--e1-muted); font-size: 12px; padding-block: 8px; }
+.e1-reading__table td { white-space: nowrap; }
+.e1-reading__table th,
+.e1-reading__table td {
+  text-align: left;
+  padding: var(--e1-space-2) 6px;
+  border-bottom: 1px solid var(--e1-rule);
+}
+.e1-reading__table thead th {
+  color: var(--e1-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* Inspector ---------------------------------------------------------------*/
+.e1-inspector {
+  border: 1px solid var(--e1-rule);
+  border-radius: var(--e1-radius);
+  padding: var(--e1-space-2) var(--e1-space-3);
+  background: var(--e1-surface);
+  max-width: min(480px, calc(100vw - 2 * var(--e1-space-4)));
+}
+.e1-inspector > summary {
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: var(--e1-space-1) 0;
+}
+.e1-inspector h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--e1-muted);
+  margin: var(--e1-space-4) 0 var(--e1-space-2);
+}
+.e1-inspector__dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--e1-space-1) var(--e1-space-3);
+  font-size: 12px;
+  margin: 0;
+}
+.e1-inspector__dl div {
+  display: contents;
+}
+.e1-inspector__dl dt,
+.e1-inspector__dl dd {
+  margin: 0;
+}
+.e1-inspector__pre {
+  max-height: 220px;
+  overflow: auto;
+  background: var(--e1-void);
+  padding: var(--e1-space-2);
+  border-radius: var(--e1-radius);
+  font-size: 12px;
+}
+.e1-inspector__events {
+  max-height: 200px;
+  overflow: auto;
+  margin: 0;
+  padding-left: var(--e1-space-4);
+  font-size: 12px;
+}
+.e1-inspector__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e1-space-2);
+  margin-bottom: var(--e1-space-2);
+}
+
+/* A single local affordance; the controls occupy space only when opened. */
+.e1-menu, .e1-anchor { color-scheme: dark; }
+.e1-menu { pointer-events: auto; max-width: calc(100vw - 32px); }
+.e1-menu > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 12px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--e1-bone);
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-muted);
+  border-radius: 4px;
+}
+.e1-menu > summary::-webkit-details-marker { display: none; }
+.e1-menu > summary:focus-visible { outline-offset: -4px; }
+.e1-menu__eye { width: 14px; height: 14px; border: 2px solid var(--e1-red); box-shadow: inset 0 0 0 3px var(--e1-surface); background: var(--e1-red); }
+.e1-menu__source, .e1-menu__keys { color: var(--e1-muted); font-size: 12px; }
+.e1-menu__keys { margin: 0; }
+.e1-menu__body {
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100vh - 104px);
+  overflow: auto;
+  margin-top: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--e1-bone);
+  background: var(--e1-surface);
+  border: 1px solid var(--e1-rule);
+  border-radius: 4px;
+}
+.e1-menu__body summary { min-height: 40px; cursor: pointer; padding-block: 8px; }
+.e1-anchor:focus-within { z-index: 3; }
+.e1-anchor[data-detail-side="above"] .e1-anchor__details { top: auto; bottom: calc(100% + 4px); }
+
+/* Narrow viewport ---------------------------------------------------------*/
+@media (max-width: 480px) {
+  .e1-shell {
+    left: var(--e1-space-2);
+    top: var(--e1-space-2);
+    max-width: calc(100vw - 2 * var(--e1-space-2));
+  }
+}
+
+/* Reduced motion: no travelling/breathing CSS transitions on controls. */
+@media (prefers-reduced-motion: reduce) {
+  .e1-root * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

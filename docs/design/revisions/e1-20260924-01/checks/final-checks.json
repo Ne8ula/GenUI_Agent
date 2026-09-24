@@ -1,0 +1,30 @@
+{
+  "revision": "e1-20260924-01",
+  "baseRevision": "23e0450ebe497fdfcebf04cc77eb424b7bbffefa",
+  "sourceSetSha256": "6f5e6033c8268025b75b255172054d1122638a4ec925bae026ed11c3958c121f",
+  "ownerAcceptance": "pending",
+  "checks": [
+    { "name": "standalone validator freshness", "result": "passed" },
+    { "name": "TypeScript frontend and tooling", "result": "passed" },
+    { "name": "Vitest", "result": "passed", "tests": 49, "files": 5 },
+    { "name": "Vite bundled frontend", "result": "passed" },
+    { "name": "Tauri desktop:build:debug", "result": "passed", "frontendMode": "production", "bundling": "no installer" },
+    { "name": "Rust tests", "result": "passed", "tests": 5 },
+    { "name": "Rust format", "result": "passed" },
+    { "name": "Rust clippy", "result": "passed", "warningsDenied": true },
+    { "name": "native physical pointer/eye routing", "result": "passed", "evidence": "native-pointer.json" },
+    { "name": "native eye lifecycle and renderer fallback", "result": "passed", "evidence": "native-eye-lifecycle.json" },
+    { "name": "native recorded exercise and dismissal", "result": "passed", "evidence": "native-recorded-exercise.json" },
+    { "name": "packaged strict-CSP native smoke", "result": "passed", "checks": 9, "consoleErrors": 0, "evidence": "packaged-native.json" },
+    { "name": "native renderer comparison", "result": "passed", "runs": 24, "secondsPerRun": 30, "summary": "../MEASUREMENTS.md" },
+    { "name": "focused native feedback proxy", "result": "measured", "samples": 30, "p95Ms": 12, "physicalInputToPhoton": false },
+    { "name": "Week 1 archive preservation", "result": "passed", "changedFiles": 0 }
+  ],
+  "notRun": ["native 150% scaling", "macOS/Linux native overlay", "multi-monitor relocation", "taskbar work-area changes", "physical input-to-photon latency", "participant evaluation"],
+  "limitations": [
+    "Performance runs used the instrumented development frontend; packaged-CSP smoke is a separate functional check.",
+    "The executable is unsigned and was exercised after the owner reported switching Smart App Control off; the assistant did not alter Windows security or Claude permissions.",
+    "Native pointer tests used Win32 SendInput; shortcut tests used CDP targeting the focused native WebView.",
+    "No commit, push, external publication, signing purchase, new generation job, or phase acceptance was performed."
+  ]
+}

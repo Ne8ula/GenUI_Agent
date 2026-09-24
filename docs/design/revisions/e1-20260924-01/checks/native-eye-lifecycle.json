@@ -1,0 +1,19 @@
+{
+  "kind": "native-webview-lifecycle",
+  "timestamp": "2026-09-24T08:30:49.721Z",
+  "checks": [
+    "actual archived shader path, not only SVG fallback",
+    "eye context has alpha",
+    "eye self-settles without a perpetual idle loop",
+    "explicit selection triggers a bounded eye cue",
+    "Stop halts eye drawing and does not resume",
+    "reduced motion leaves a static eye",
+    "plain answer removes eye and field effects",
+    "expressive mode recreates and then settles the eye",
+    "native field WebGL is actually alpha-capable",
+    "native WebGL context loss falls back to actual Canvas2D",
+    "no uncaught native lifecycle errors"
+  ],
+  "errors": [],
+  "completed": true
+}

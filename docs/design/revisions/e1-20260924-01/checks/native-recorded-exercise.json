@@ -1,0 +1,17 @@
+{
+  "kind": "native-recorded-exercise",
+  "startedAt": "2026-09-24T09:06:49.416Z",
+  "checks": [
+    "recorded OS movement, pinning and comparison preserve geometry",
+    "recorded real OS click-through reaches underlying application",
+    "native focused Stop shortcut arrests field and eye",
+    "native focused less-motion/plain shortcuts preserve facts and remove effects",
+    "real OS Dismiss closes native windows and rejects delayed output",
+    "former overlay location is usable after dismissal"
+  ],
+  "inputMethods": {
+    "pointer": "Win32 SendInput",
+    "keyboard": "native WebView2 CDP"
+  },
+  "completed": true
+}

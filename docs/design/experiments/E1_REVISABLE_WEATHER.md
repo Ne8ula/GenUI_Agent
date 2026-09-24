@@ -1,6 +1,12 @@
 # E1 — A weather response that yields and recomposes
 
-Status: proposed next bounded implementation experiment, 2026-09-17. **No implementation is authorized by this document.** Current work is research/documentation. Owner review is pending; no study phase has advanced.
+Status: bounded E1 exploration, implementation, testing, and documentation **authorized** by the owner's subsequent 2026-09-17 instruction recorded in [AGENTS.md](../../../AGENTS.md), resumed 2026-09-23 under prompted permissions. This supersedes this document's earlier implementation-pending status. Finished E1 candidate acceptance remains pending; no S1/S2 or later phase is accepted. See the [E1 review record](../acceptance/e1.md).
+
+Owner refinement, 2026-09-23: the first assembled candidate is “still too reliant on texts as a display.” The next candidate must make the weather composition and its response to intervention primary, with compact time/temperature anchors and source context. Full factual details remain immediately accessible on demand and in an effect-free plain answer; reducing text must not reduce factual access, keyboard control, or missing-data honesty. This is a revision request, not acceptance.
+
+The subsequent [desktop-overlay refinement](../revisions/e1-20260923-02/REFINEMENT.md) explicitly authorizes implementing genuine Windows transparency and native empty-region input pass-through within E1. The actual desktop, not an enclosing stage or wallpaper simulation, is the composition space. Dispersed anchors and material preserve pins, focus and direct edits within the usable display area. A small accessible local affordance exposes controls; undrawn areas and dismissed surfaces must not block underlying applications. Capture matching before/after evidence and a short native recording over light, dark and busy **synthetic** backgrounds. No desktop-content inspection, new connector, ComfyUI, or later phase is authorized.
+
+Owner addition, 2026-09-24: integrate the actual archived Week 1 procedural eye into the final E1 composition. Reuse its red dither/square-pupil vocabulary without changing `week1/`; make its surrounding pixels transparent, keep it noninteractive in the material window, and bind gaze to explicit selection rather than incidental desktop/pointer activity. Motion is bounded and interruptible; plain answer and dismissal remove it. This adds no voice, screen-content inspection, provider, or study phase.
 
 ## Question and scope
 
@@ -41,7 +47,7 @@ Two authored interpretations of Step 4 make the design choice reviewable: **part
 
 ## Proposed architecture
 
-Retain Tauri 2 and React/TypeScript. React owns accessible facts, controls, focus, local geometry, and error/provenance presentation. A deterministic response controller owns stable IDs, event order, revisions, locks, cancellation, and resource limits. A small Canvas 2D or authored WebGL layer consumes approved parameters. Rust remains the boundary for privileged commands; no new OS capability is needed for a bundled synthetic fixture.
+Retain Tauri 2 and React/TypeScript. React owns accessible facts, controls, focus, local geometry, and error/provenance presentation. A deterministic response controller owns stable IDs, event order, revisions, locks, cancellation, and resource limits. A small Canvas 2D or authored WebGL layer consumes approved parameters. The fixture still needs no privileged connector. The subsequent transparent-desktop refinement adds narrowly scoped, host-owned Rust commands for the application's own windows, hit regions, and render-scene/status exchange—not desktop-content inspection or a general policy broker. The material window, including the reused Week 1 eye, is noninteractive; the interaction window is clipped to actual local control/reading rectangles.
 
 Define a closed JSON Schema Draft 2020-12 for the model-proposal portion of the [response-score sketch](../../../DESIGN.md#8-response-representation-and-architecture). Keep trusted evidence/status in a host envelope. Validate evidence references, units, primitive compatibility, resource limits, anchor validity, and base revision after structural validation. Do not put an authoritative `verified` or `permission` field in model output.
 

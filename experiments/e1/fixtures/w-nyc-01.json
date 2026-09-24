@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "e1.weather-fixture/1",
+  "fixtureId": "W-NYC-01",
+  "revision": 1,
+  "location": {
+    "id": "nyc",
+    "label": "New York City",
+    "timezone": "America/New_York"
+  },
+  "date": "2026-10-14",
+  "asOfLocal": "08:00",
+  "source": {
+    "kind": "synthetic",
+    "label": "EVA invented E1 weather fixture — not live weather"
+  },
+  "seed": "W-NYC-01-r1-seed-20261014",
+  "records": [
+    {
+      "id": "09:00",
+      "localTime": "09:00",
+      "temperature": { "value": 18, "unit": "°C" },
+      "cloudCover": { "status": "available", "value": 70, "unit": "%" },
+      "precipitationProbability": { "value": 10, "unit": "%" },
+      "wind": { "value": 12, "unit": "km/h" }
+    },
+    {
+      "id": "12:00",
+      "localTime": "12:00",
+      "temperature": { "value": 22, "unit": "°C" },
+      "cloudCover": { "status": "available", "value": 20, "unit": "%" },
+      "precipitationProbability": { "value": 5, "unit": "%" },
+      "wind": { "value": 18, "unit": "km/h" }
+    },
+    {
+      "id": "15:00",
+      "localTime": "15:00",
+      "temperature": { "value": 21, "unit": "°C" },
+      "cloudCover": { "status": "available", "value": 45, "unit": "%" },
+      "precipitationProbability": { "value": 15, "unit": "%" },
+      "wind": { "value": 16, "unit": "km/h" }
+    }
+  ]
+}

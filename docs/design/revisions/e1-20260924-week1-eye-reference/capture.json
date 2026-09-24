@@ -1,0 +1,303 @@
+{
+  "capturedAt": "2026-09-24T14:25:40.696Z",
+  "source": "Week 1 actual browser fallback, no application-source edits",
+  "url": "http://127.0.0.1:1420",
+  "browser": "147.0.7727.15",
+  "platform": "win32",
+  "viewport": {
+    "width": 2560,
+    "height": 1392
+  },
+  "deviceScaleFactor": 1,
+  "reducedMotion": "no-preference",
+  "renderer": {
+    "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "canvas": {
+      "width": 996,
+      "height": 468
+    },
+    "eyeState": "ready"
+  },
+  "eyeBoundsCss": {
+    "x": 782,
+    "y": 436.375,
+    "width": 996,
+    "height": 467.6875
+  },
+  "rawVideo": "week1-cursor-tracking-raw.webm",
+  "trackingStartSeconds": 3.678,
+  "trackingEndSeconds": 12.485,
+  "pointerTrace": [
+    {
+      "name": "left",
+      "x": 512,
+      "y": 670.21875,
+      "startSeconds": 4.386,
+      "heldUntilSeconds": 5.888
+    },
+    {
+      "name": "right",
+      "x": 2048,
+      "y": 670.21875,
+      "startSeconds": 5.888,
+      "heldUntilSeconds": 7.408
+    },
+    {
+      "name": "up",
+      "x": 1280,
+      "y": 322.21875,
+      "startSeconds": 7.408,
+      "heldUntilSeconds": 8.892
+    },
+    {
+      "name": "down",
+      "x": 1280,
+      "y": 1018.21875,
+      "startSeconds": 8.892,
+      "heldUntilSeconds": 10.385
+    },
+    {
+      "name": "center-return",
+      "x": 1280,
+      "y": 670.21875,
+      "startSeconds": 10.385,
+      "heldUntilSeconds": 11.874
+    }
+  ],
+  "microphoneUsed": false,
+  "speechUsed": false,
+  "weatherRequested": false,
+  "requests": [
+    {
+      "path": "/",
+      "method": "GET"
+    },
+    {
+      "path": "/@vite/client",
+      "method": "GET"
+    },
+    {
+      "path": "/src/main.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/@react-refresh",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/react.js",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/react-dom_client.js",
+      "method": "GET"
+    },
+    {
+      "path": "/src/App.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/rolldown-runtime-BvCyGRYZ.js",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/node_modules/vite/dist/client/env.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/packages/protocol/index.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/packages/ui-system/components.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/packages/protocol/voice.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/src/usePanelResize.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/src/MovingEye.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/src/WeatherAssembly.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/src/SomaticFrame.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/src/DitherLink.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/src/useVoice.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/src/useNarration.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/packages/ui-system/tokens.css",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/fixtures/connectors/weather-ithaca-week.json",
+      "method": "GET"
+    },
+    {
+      "path": "/src/memory.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/node_modules/@fontsource/space-grotesk/latin-500.css",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/node_modules/@fontsource/ibm-plex-sans/latin-400.css",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/node_modules/@fontsource/ibm-plex-sans/latin-500.css",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/node_modules/@fontsource/ibm-plex-mono/latin-400.css",
+      "method": "GET"
+    },
+    {
+      "path": "/src/App.css",
+      "method": "GET"
+    },
+    {
+      "path": "/src/Command.css",
+      "method": "GET"
+    },
+    {
+      "path": "/src/Crt.css",
+      "method": "GET"
+    },
+    {
+      "path": "/src/Biomech.css",
+      "method": "GET"
+    },
+    {
+      "path": "/src/Overlay.css",
+      "method": "GET"
+    },
+    {
+      "path": "/src/SignalEye.tsx",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/@tauri-apps_api_window.js",
+      "method": "GET"
+    },
+    {
+      "path": "/src/runtime.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/@tauri-apps_api_core.js",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/packages/protocol/generated/validators.mjs",
+      "method": "GET"
+    },
+    {
+      "path": "/src/speechEnding.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/fixtures/vault/preferences/weather-units.md",
+      "method": "GET"
+    },
+    {
+      "path": "/src/memory-contract.ts",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/core-BU-IfQQM.js",
+      "method": "GET"
+    },
+    {
+      "path": "/node_modules/.vite/deps/react-dom.js",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+      "method": "GET"
+    },
+    {
+      "path": "/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week1/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/voice/status",
+      "method": "GET"
+    },
+    {
+      "path": "/api/narration/status",
+      "method": "GET"
+    },
+    {
+      "path": "/api/voice/status",
+      "method": "GET"
+    },
+    {
+      "path": "/api/narration/status",
+      "method": "GET"
+    }
+  ],
+  "blockedRequests": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "captureOnlyAdjustments": {
+    "stillCrop": "Original .signal-eye element; no CSS override",
+    "fullFrame": "Hide Speak request and native-eye tools with visibility:hidden; preserve layout and original eye renderer",
+    "darkMatte": "#080909",
+    "video": "Same hidden controls and synthetic dark matte; added visible pointer marker tracks actual Playwright pointer events; shader and gaze logic unchanged"
+  },
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "week1/apps/desktop/src/App.css": "f68a3649313e35c3b5ab48ab4144b6af4b8c16dd006d73d0369c0b3f9c984ef2",
+    "week1/apps/desktop/src/App.tsx": "5b2685282a814150fc3b2b76b999562bc72e6427749e800660fefe6740beb6d9",
+    "week1/apps/desktop/src/assets/react.svg": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+    "week1/apps/desktop/src/Biomech.css": "5a5946b990cbb86daa88dda2f5eedd060cc31b8b023163ea836136174b4dae14",
+    "week1/apps/desktop/src/Command.css": "476f38fb50db2d5469bfcedf7e64b99519ef7ec817a8d3ba04083333b8c3c1d8",
+    "week1/apps/desktop/src/Crt.css": "b3d64049ff2334a28f98a16ee675b9bda829d61aedd789b9a3eec95e43401802",
+    "week1/apps/desktop/src/DitherLink.tsx": "9bb0f735918b05fdb68aba01fac260fa45a08cba704e99afaafcd7d4c2c8c24a",
+    "week1/apps/desktop/src/main.tsx": "8f55009f27569355469b6c65ddd242e2b38aa30b7a070ee2e438f4909a47a233",
+    "week1/apps/desktop/src/memory-contract.ts": "f2e207dc913f9f6840b98ccfe4d6ed0de084066675c4e7f28413d05ee310b2c1",
+    "week1/apps/desktop/src/memory.ts": "82c328d0fd49c98408cd87a3f38da4b5cb9db99703840f6d5732ef6d65a859a7",
+    "week1/apps/desktop/src/MovingEye.tsx": "33568cff40fd4157b0f816364e8bb6579886191e30fe51ad45dab01baf7885a4",
+    "week1/apps/desktop/src/Overlay.css": "826da8935c9c4d9fb90bc9c127b16ce223d23edd2810b136e1641e1576ddbf8e",
+    "week1/apps/desktop/src/runtime.ts": "4b428f56640a887fd13302c3e909b1a96ec0927c10e64f9c593f0b989bb4d797",
+    "week1/apps/desktop/src/SignalEye.tsx": "9e58e61061039d4c4556f5e75885992c5c7326bd68d65f68edafac5c1781b915",
+    "week1/apps/desktop/src/SomaticFrame.tsx": "5e4b40453ae6faebe3760b103e0880747cd804d41c13d3191a8d1ed1f03fe36b",
+    "week1/apps/desktop/src/speechEnding.ts": "e4188ebf8a8281ca064ddefc0ec584ac824fcd11b0bd14a05ad66859d86a3a53",
+    "week1/apps/desktop/src/useNarration.ts": "7bea3981fdb86ec2f1e807c5fb50ad89754a79785df582e8c7a3205d1f7a847a",
+    "week1/apps/desktop/src/usePanelResize.ts": "72ea600430389f6199641fe4e8dc11cd0a7b02b8542ca1eb156ecfaa9c4074c1",
+    "week1/apps/desktop/src/useVoice.ts": "eb285451fd03d39093ed38090f31d98afe104d9d2016e6b70baee33d81346fed",
+    "week1/apps/desktop/src/vite-env.d.ts": "424faf9241dd699dda995b367ed36665732da1e6ec1f33b2fd40394488ecac92",
+    "week1/apps/desktop/src/WeatherAssembly.tsx": "45919376d279815d2d49ae7889378150932bce5608c53e49e9d47d9723147e8f"
+  },
+  "limitations": [
+    "Browser capture, not native WebView2 transparency or OS hit-testing evidence",
+    "Video pointer is a capture-only visual marker; eye response is original application code",
+    "PNG alpha outside original eye canvas is browser compositing; original opaque eye-canvas backing is preserved"
+  ]
+}

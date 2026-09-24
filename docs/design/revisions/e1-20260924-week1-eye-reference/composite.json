@@ -1,0 +1,28 @@
+{
+  "output": "K0-week1-eye-on-mock-desktop.png",
+  "size": [
+    2000,
+    1126
+  ],
+  "background": "mock-desktop-owner.png",
+  "backgroundOrigin": "Owner-provided Mock Desktop attachment; preserved byte-for-byte",
+  "backgroundCopyByteIdentical": true,
+  "eye": "week1-eye-only-mock-size.png",
+  "eyeOrigin": "Actual Week 1 renderer, newly captured at 2000 x 1126; source unchanged",
+  "operation": "Pillow Image.alpha_composite(background, eye); no scaling, translation, color key, inpainting or generation",
+  "eyeAlphaBounds": [
+    500,
+    302,
+    1500,
+    774
+  ],
+  "backgroundUnchangedOutsideEye": true,
+  "taskbarVisibleUnchanged": true,
+  "hashes": {
+    "mock-desktop-owner.png": "b7f8917352ea5f473ffa6521cd891a5cdc8c6f0d45648679bd9e577cc919492a",
+    "week1-eye-only-mock-size.png": "e36ab972ced8b9f66ffd15c637ff02562a1880c9325aab16d4317097b5aad809",
+    "K0-week1-eye-on-mock-desktop.png": "70a0b8e70070606b68ead6655f9b3f0b7a5ca360fe0ef6457973fed1c134ae7f"
+  },
+  "status": "Non-generative desktop reference composite, not a native desktop screenshot or accepted E1 implementation",
+  "endpointUsage": "Use this exact output as V1 First Frame and V3 Last Frame; all generated keyframes use the same background and framing"
+}

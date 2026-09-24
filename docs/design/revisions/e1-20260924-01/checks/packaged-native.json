@@ -1,0 +1,17 @@
+{
+  "kind": "bundled-native-production-csp",
+  "timestamp": "2026-09-24T10:11:14.994Z",
+  "checks": [
+    "bundled native main renders all three anchors",
+    "development harness is absent",
+    "production test controls are absent",
+    "root stays transparent under production CSP",
+    "bundled fonts are loaded",
+    "archived eye uses real alpha WebGL in packaged build",
+    "packaged unavailable path retains labeled NYC facts",
+    "packaged missing-cloud path is honest",
+    "no uncaught or CSP console errors"
+  ],
+  "errors": [],
+  "completed": true
+}

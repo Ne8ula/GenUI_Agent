@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "e1.invalid-location-request/1",
+  "location": "Boston",
+  "expectedStatus": "unavailable",
+  "mustNotRelabelFixtureId": "W-NYC-01"
+}

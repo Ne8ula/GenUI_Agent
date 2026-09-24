@@ -1,0 +1,50 @@
+{
+  "name": "@eva/e1-revisable-weather",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "scripts": {
+    "generate:validators": "node scripts/generate-validators.mjs",
+    "generate:validators:check": "node scripts/generate-validators.mjs --check",
+    "predev": "npm run generate:validators",
+    "dev": "vite",
+    "prebuild": "npm run generate:validators",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.node.json && vite build",
+    "pretypecheck": "npm run generate:validators:check",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",
+    "pretypecheck:core": "npm run generate:validators:check",
+    "typecheck:core": "tsc -p tsconfig.core.json",
+    "pretest": "npm run generate:validators:check",
+    "test": "vitest run tests",
+    "pretest:core": "npm run generate:validators:check",
+    "test:core": "vitest run tests/core",
+    "pretest:render": "npm run generate:validators:check",
+    "test:render": "vitest run tests/ui",
+    "desktop:dev": "node scripts/tauri.mjs dev",
+    "desktop:build": "node scripts/tauri.mjs build --no-bundle",
+    "desktop:build:debug": "node scripts/tauri.mjs build --debug --no-bundle",
+    "rust:check": "node scripts/rust.mjs check --locked",
+    "rust:test": "node scripts/rust.mjs test --locked",
+    "rust:fmt": "node scripts/rust.mjs fmt --check",
+    "rust:clippy": "node scripts/rust.mjs clippy --locked -- -D warnings"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.1",
+    "ajv": "^8.20.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.4",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.0",
+    "vitest": "^4.0.0"
+  }
+}

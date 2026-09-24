@@ -1,44 +1,148 @@
-# EVA - Week 1 vertical slice
+# EVA — Week 1 visual demo
 
-**Demo outcome: successful, reported by the owner on 2026-09-17.** Additional notes will be added later. This folder preserves the runnable demo and its development history as a separate npm workspace project. The [outcome record](docs/design/acceptance/week1-outcome.md) records the owner's feedback without assigning an unreported executable hash or advancing later milestones.
+Week 1 was about getting EVA onto the desktop and giving a simple weather request a bit of personality. We built a blinking red eye, a weather panel that draws itself into place, and a spoken follow-up that adds wind without starting over.
 
-## What we built
+**The demo was a success on September 17, 2026.** [Week 1 outcome notes](docs/design/acceptance/week1-outcome.md).
 
-EVA became a working Windows desktop application built with Tauri 2, React, TypeScript and Rust. The demo connects a voice request to a synthetic weather dashboard, retrieves a stored preference through Rust, and visibly constructs and revises the interface while a social eye and spoken responses accompany the interaction.
+![Final Week 1 interface: a small red eye beside a seven-day sample forecast for Ithaca.](docs/design/revisions/week1-speak-only-20260917/after/dashboard.png)
 
-| Area | Week 1 result |
+- **This is where we landed:** red, black, warm white text, chunky pixels, and a small eye beside the forecast.
+- **One way in:** click **Speak request**, ask for the weather, and send the recording.
+- **The numbers are demo data:** seven days of made-up Ithaca weather, clearly marked **Sample**.
+
+All images below are saved screenshots of the Week 1 app. The walkthrough uses browser captures; the early setup image is a native Windows capture. Transparent areas may look black or take on your viewer's background. Earlier captures are labeled because the controls changed along the way.
+
+## Meet the eye
+
+![The final entry screen: a large red, dithered eye with a square pupil and a single Speak request button.](docs/design/revisions/week1-speak-only-20260917/after/1440.png)
+
+- The eye blinks, follows the pointer inside the app window, and reacts while you're recording.
+- The lids, brow, and surrounding shape move along with the pupil. We wanted more than a dot sliding around.
+- When the weather opens, this same eye shrinks and moves to the side to make room.
+- The dotted texture is **dithering**: tiny squares that create shading. The square pupil stayed part of the look.
+
+## Ask for the weather, then watch it come together
+
+Say **“Show me the weather in Ithaca.”** EVA acknowledges the request, looks up a saved temperature preference, and builds the weather view while speaking.
+
+![Earlier Week 1 memory animation showing folders leading to weather-units.md.](docs/design/revisions/week1-v3-prompts-20260917/playback/memory.png)
+
+- **First, the memory moment.** The folder animation points to a small Markdown note that says to use Celsius.
+- Rust really reads that bundled demo record. The animated folder search is something we designed; it isn't scanning the computer.
+- This capture is from before we removed the box around the microphone controls.
+
+![Earlier Week 1 construction animation with a red scan line passing through the weather panel.](docs/design/revisions/week1-v3-prompts-20260917/playback/raster.png)
+
+- **Then, the build-up.** Red scan lines and stepped reveals make the panel feel like an old CRT screen drawing itself.
+- The full weather reveal takes about **15 seconds**, giving the spoken lines room to play. That's deliberate animation timing, not a measure of how long the data takes to load.
+- We also added a reduced-motion path that skips this long reveal.
+
+## “What about the wind speed?”
+
+The follow-up was the other big part of the demo. You ask through the microphone, EVA says **“Give me a second,”** and a new section forms inside the existing panel.
+
+![Earlier Week 1 wind follow-up, with seven placeholder cells being drawn beneath the forecast.](docs/design/revisions/week1-wind-dialogue-20260917/dialogue-02/wind-building.png)
+
+- The wind section builds for **five seconds after the acknowledgement finishes**.
+- The weather stays in the same panel, with your selected day, size, and position kept in place.
+
+![Earlier Week 1 wind follow-up completed, showing daily wind speeds and directions below the forecast.](docs/design/revisions/week1-wind-dialogue-20260917/dialogue-02/wind-ready.png)
+
+- The finished section shows wind speed in **km/h** and direction for each day, followed by a spoken reply.
+- Missing data stays **Unavailable** instead of quietly becoming zero.
+- Asking again doesn't add another copy. Closing the panel cancels an unfinished reveal.
+- These two captures come from just before the final microphone-control cleanup.
+
+[Watch the saved wind sequence](docs/design/revisions/week1-wind-dialogue-20260917/dialogue-02/wind-dialogue.webm). This browser recording has no audio track; it shows the visual timing.
+
+## Move it around. Make it smaller.
+
+![Earlier Week 1 weather panel manually resized, with the forecast changing from columns into rows.](docs/design/revisions/week1-wind-dialogue-20260917/after/resized.png)
+
+- Drag the header handle to move the panel, or the bottom-right grip to resize it.
+- The layout rearranges itself as space gets tighter. Short panels scroll inside the frame.
+- The move and resize handles also work with arrow keys when focused.
+
+<img src="docs/design/revisions/week1-wind-dialogue-20260917/after/wind-400x640.png" alt="Earlier Week 1 layout at 400 pixels wide, with wind values arranged as vertical rows." width="320">
+
+- **At 400 pixels wide:** wind values become a vertical list, and the eye sits above the panel.
+- This is a narrow browser check of the desktop interface. Both resize images predate the final microphone-control cleanup.
+
+[Watch the saved resize walkthrough](docs/design/revisions/week1-wind-dialogue-20260917/after/resize-voice.webm).
+
+## What we used, in normal words
+
+| Tool | What it did in this demo |
 | --- | --- |
-| Native foundation | Installed and checked Rust/Cargo, MSVC/Windows SDK and WebView2; scaffolded Tauri/React; verified the window-to-Rust IPC connection. |
-| Weather and memory | Bundled seven days of synthetic Ithaca weather and an inspectable Markdown Celsius preference; added strict schemas, bounded read-only memory IPC and matching browser fixtures. |
-| Reactive interface | Reusable weather components, day selection, dragging, manual pointer/keyboard resizing, width-dependent reflow and scrolling; patches preserve card identity, geometry and selected day. |
-| Visual identity | Iterated from a setup screen to Evangelion-inspired red, black and bone typography, biomechanical frames, coarse pixel/dither effects and narrow matrix connectors. Fonts: Space Grotesk, IBM Plex Sans and IBM Plex Mono. |
-| Social eye | Anatomical eye shape, square pupil, fast cursor attention, coordinated socket/lid/brow movement and blinking. The same eye shrinks and docks to make room for the dashboard. |
-| Construction sequence | Folder-style memory retrieval followed by progressive CRT scan-line construction. The final weather sequence lasts about 15 seconds to accommodate narration. |
-| Desktop overlay | Transparent frameless window with no Windows title bar or shadow; opaque eye, loading and dashboard surfaces remain connected over the desktop. |
-| Speech input | Microphone capture and a bounded Whisper transcription request; narrow weather and wind intent matching, cancellation and error handling. |
-| Spoken replies | Direct ElevenLabs v3 synthesis with a shared prompt policy, fixture-grounded weather summary, local playback sequencing and cancellation. Each clip has 1000 ms of trailing silence. |
-| Wind follow-up | Only a spoken follow-up reveals wind. EVA acknowledges, the wind section builds for five seconds, then the data appears and EVA speaks again. |
-| Final cleanup | Removed explanatory presentation copy, Weather/Type shortcuts, Celsius controls, Add Wind, Quiet and other demo buttons. Speak request floats below the eye. |
+| **Tauri 2 + Windows WebView2** | Put our web interface inside a Windows desktop app. We configured a transparent, frameless window without the usual title bar. |
+| **React 19 + TypeScript** | Built the eye controls, forecast, day selection, and changing screen states. TypeScript helped catch mismatched data while coding. |
+| **CSS + WebGL** | CSS handled layout, textures, and transitions. WebGL drew the animated eye using the graphics hardware, with a simpler fallback if unavailable. |
+| **Rust** | Handled the desktop side: reading the allowed demo memory file and making voice-service requests. |
+| **OpenAI Whisper** | Turned an explicitly submitted microphone recording into text. A small local matcher recognized the weather and wind requests. |
+| **ElevenLabs v3** | Read EVA's approved replies aloud. We worked on delivery cues, pauses, and when each line played. |
+| **JSON + Markdown files** | Held the sample forecast and the readable Celsius preference. No database was needed for this demo. |
+| **JSON Schema + Ajv** | Checked that weather data and interface updates had the shape we expected before using them. |
+| **Vite + npm** | Ran the development preview, managed packages, and built the frontend. |
+| **Playwright + Node/Rust tests** | Checked interactions in a browser and tested the data, memory, and voice code. |
 
-The weather and memory are deliberately synthetic. Whisper and ElevenLabs can make real configured provider requests, but dashboard generation is a deterministic, validated component/revision flow. This is not a general-purpose LLM agent, semantic memory search or live weather service. The visual folder search is authored choreography, not a filesystem scan. No GPU throughput benefit was benchmarked, and ComfyUI was not installed for this slice.
+The lettering uses **Space Grotesk** for headings, **IBM Plex Sans** for reading and controls, and **IBM Plex Mono** for numbers and small labels.
 
-## Run it
+The voice-to-screen path looked like this:
 
-Requirements and historical installation evidence: [Windows prerequisites](docs/setup/WINDOWS_PREREQUISITES.md). The project expects Node 24.14 or newer, Rust's Windows MSVC toolchain, Visual Studio C++ Build Tools/Windows SDK and WebView2.
+```text
+You record a request
+        ↓
+Whisper turns it into text
+        ↓
+Local code recognizes “weather” or “wind”
+        ↓
+Sample forecast + saved Celsius preference
+        ↓
+React updates the view  +  ElevenLabs reads the reply
+```
+
+- **The voice services were real integrations.** With private keys configured, they made cloud requests. Browser checks also used simulated requests so we could repeat the same scenarios.
+- **The weather, memory, and screen-building steps were deliberately small.** We supplied the data and wrote the animation sequence; an LLM wasn't inventing layouts or fetching live forecasts.
+- **Speech had its own polish pass:** five reply stages, a forecast summary drawn from the displayed data, cancellation, and a one-second silent tail to keep clip endings from feeling cut off. [Voice notes and scripts](docs/design/VOICE_PROMPTING.md).
+
+## Where we started
+
+![Early native Windows setup screen confirming that the React interface could reach the Rust runtime.](docs/design/revisions/week1-resize-20260916/native-03/success.png)
+
+- Our first working screen did one thing: confirm that the interface could talk to Rust.
+- From there we added sample weather, the memory reader, voice, the eye, and the animated reveal.
+- We iterated toward the red, anatomical look, then stripped away extra buttons and explanation text. The final entry point was just **Speak request**.
+- The earlier screenshots and recordings are all kept in the [Week 1 design history](docs/design/INDEX.md).
+
+## Try the demo
+
+With dependencies and private voice settings already in place, run this from the repository root:
+
+```powershell
+npm.cmd run desktop:dev
+```
+
+1. Click **Speak request**, say **“Show me the weather in Ithaca,”** then click **Send recording**.
+2. Let the eye dock and the weather finish building.
+3. Select another day. Move the panel and try its resize grip.
+4. Use **Speak request** again and ask **“What about the wind speed?”**
+5. Watch the wind section appear without resetting the panel. Close it with **×** when you're done.
+
+<details>
+<summary>First time running it? Setup and checks</summary>
+
+You'll need **Node 24.14+**, Rust's Windows MSVC toolchain, Visual Studio C++ Build Tools/Windows SDK, and WebView2. We installed and checked these during Week 1; the steps are in [Windows prerequisites](docs/setup/WINDOWS_PREREQUISITES.md).
 
 From the repository root:
 
 ```powershell
 cd week1
 npm.cmd ci
-# Fresh setup only; preserve existing private configuration:
+# Only create this file if you don't already have one.
 if (-not (Test-Path .env.local)) { Copy-Item .env.example .env.local }
-npm.cmd run desktop:dev
 ```
 
-The existing local dependencies and private `.env.local` were moved here during organization; no credential values were changed or copied into documentation. For this workstation, skip installation/configuration if already present and simply run `npm.cmd run desktop:dev` from either the repository root or `week1/`.
-
-Configure these backend-only settings in `week1/.env.local`:
+Add your private settings to `week1/.env.local`:
 
 ```dotenv
 OPENAI_API_KEY=
@@ -46,46 +150,19 @@ ELEVENLABS_API_KEY=
 ELEVENLABS_VOICE_ID=
 ```
 
-Do not prefix secrets with `VITE_`. Restart desktop development after changing settings. Use one dev server at a time: port 1420 is fixed, so close the previous session before relaunching. Browser fallback is available with `npm.cmd run dev` at `http://127.0.0.1:1420`; it uses the fixture adapter instead of native IPC and does not prove native transparency or permissions.
+Keep these settings private and don't give them a `VITE_` prefix. Restart the app after changing them. Cloud access is needed for the voice services.
 
-## Demo interaction
+Then, from `week1/`:
 
-1. Click **Speak request**, ask for the weather in Ithaca, then click **Send recording**.
-2. EVA acknowledges; the eye docks and the memory/CRT construction plays. The weather panel appears with a short forecast summary and follow-up invitation.
-3. Drag the panel, select a day, and drag its bottom-right grip to demonstrate responsive layout. The move and resize handles also support arrow keys when focused.
-4. Click **Speak request**, say **"What about the wind speed?"**, and send the recording.
-5. EVA says "Give me a second." After that clip completes, a five-second CRT sequence builds the wind section, then EVA introduces it. Existing geometry and selected day persist.
-6. Dismiss the dashboard or press Escape. A new session starts with wind hidden again.
+```powershell
+npm.cmd run desktop:dev
+```
 
-Recording cancellation, synthesis failures and reduced-motion behavior are supported. Repeated wind requests do not duplicate the panel. Starting another microphone request, dismissing or hiding the document cancels pending wind work.
+For a browser preview, use `npm.cmd run dev` and open `http://127.0.0.1:1420`. Use one dev server at a time because both paths use port 1420. The browser uses a demo adapter for memory; it doesn't establish how the native window behaves over the desktop.
 
-## Voice decisions
+The final interface uses microphone entry, so launching a preview without voice configuration doesn't provide a working weather shortcut.
 
-EVA owns the scripts, verified fixture facts, timing and cancellation; ElevenLabs renders speech. The final model is `eleven_v3` with Natural stability `0.5`. Five approved phases cover acknowledgement, building, forecast presentation, wind acknowledgement and wind presentation. The forecast presentation derives Thursday/Friday conditions from the same fixture displayed in the UI.
-
-The owner's cue-first scripts use emotional tags and punctuation; short demo replies have explicit exceptions to the longer-context guidance. `[speed: 1.25x]` and hyphenated phrases are experimental literal cues, not guaranteed provider speed controls. Playback leaves at least 1.2 seconds between completed clips, with stage-specific timing, and adds a 1000 ms silent tail plus a small end-of-waveform fade. See [VOICE_PROMPTING.md](docs/design/VOICE_PROMPTING.md) and the [approved scripts/profile/policy](fixtures/narration/).
-
-## Folder map
-
-| Path | Contents |
-| --- | --- |
-| [apps/desktop/](apps/desktop/README.md) | React interface, Vite development adapters, Tauri configuration and Rust commands. |
-| [packages/protocol/](packages/protocol/) | Closed JSON schemas, validators, weather/revision contracts and voice/narration policies. |
-| [packages/ui-system/](packages/ui-system/) | Shared components and visual tokens used by this slice. |
-| [fixtures/](fixtures/) | Synthetic weather, Markdown memory and approved narration configuration. |
-| [scripts/](scripts/) | Toolchain launchers, validator generation, contract tests, provider checks and historical browser/native harnesses. |
-| [WEEK1_DEMO_PLANNING.md](WEEK1_DEMO_PLANNING.md) | Original execution plan and implementation checkpoints. |
-| [docs/design/WEEK1_DEMO.md](docs/design/WEEK1_DEMO.md) | Original visual brief; later owner refinements are documented in the revision history. |
-| [docs/design/INDEX.md](docs/design/INDEX.md) | Full iteration index, linked manifests, screenshots, recordings and historical results. |
-| [docs/design/acceptance/](docs/design/acceptance/) | Stage-specific reviews and final owner-reported demo outcome. |
-| [docs/setup/](docs/setup/) | Windows installation and memory-contract setup evidence. |
-| [docs/archive/](docs/archive/) | Relocation map, pre-move hashes and post-move verification. |
-
-The shared [product plan](../PLANNING.md), [canonical design guide](../DESIGN.md), [development instructions](../AGENTS.md), research proposal and original research concepts remain outside this folder. They govern the wider project rather than only Week 1.
-
-## Verification and history
-
-Run these from `week1/` or use the same forwarded commands from the repository root:
+These are the Week 1 check commands, also available from the repository root:
 
 ```powershell
 npm.cmd run build
@@ -96,12 +173,33 @@ npm.cmd run rust:fmt
 npm.cmd run rust:clippy
 ```
 
-The [relocation check record](docs/archive/verification.md) distinguishes checks rerun after moving from prior results. Historical evidence includes real Rust IPC, positive/negative memory and schema cases, browser layout/resize checks, motion recordings, Whisper checks and successful v3 provider responses. Earlier Windows Application Control failures and rejected visual candidates are preserved rather than erased by the successful demo report.
+The final microphone-layout check is `node scripts/speak-only-smoke.mjs <new-output-directory>` against a running dev server. The wind check is `node scripts/wind-dialogue-smoke.mjs <new-output-directory>`. Run these from `week1/`; use a new output folder to preserve old captures. They use simulated microphone/provider inputs. Older button-based scripts describe earlier versions of the UI.
 
-For the final microphone-only UI, use `node scripts/speak-only-smoke.mjs <new-output-directory>` against a running dev server. The wind dialogue harness is `node scripts/wind-dialogue-smoke.mjs <new-output-directory>`. These use synthetic microphone/provider fixtures. Older button-based harnesses describe superseded interfaces and may no longer run against the final UI. Do not rerun historical captures into existing evidence directories. The provider checker makes billable live requests; it is not part of routine tests.
+</details>
 
-Historical manifests retain their original source paths, hashes, commands and findings. Their paths were relative to the then-project root, which is now this folder; references to shared documents were adjusted. The [relocation map](docs/archive/relocation.json) records old/new paths and pre-move hashes. It intentionally excludes credentials, installed dependencies and generated build caches. The local npm workspace junctions were refreshed and stale Tauri build metadata was rebuilt after moving.
+## What we checked
 
-## Notes to add later
+The saved end-of-week [verification record](docs/archive/verification.md) reports:
 
-Owner's Week 1 retrospective notes are pending. Add observations, audience feedback, rough edges and candidate next steps here when supplied. This successful demo does not by itself accept S0-S4, full-product milestones, production security, general agent behavior or the relocated build as a newly exercised native release.
+| Check | Saved result |
+| --- | --- |
+| Frontend build | Passed |
+| JavaScript tests | 24 passed |
+| Rust tests | 17 passed |
+| Rust formatting and code checks | Passed |
+| Windows desktop debug build | Passed |
+| Browser interaction checks | Passed, including wide/narrow layouts and microphone-to-weather flow |
+
+These are historical results, not tests rerun for this README. The owner reported the demo successful; the browser screenshots alone don't prove native desktop transparency or live voice playback.
+
+## Find the bits
+
+| Folder | What's inside |
+| --- | --- |
+| [apps/desktop/](apps/desktop/) | The interface and Rust desktop code. |
+| [packages/](packages/) | Shared UI pieces, data rules, and validators. |
+| [fixtures/connectors/](fixtures/connectors/) | The sample Ithaca forecast. |
+| [fixtures/vault/preferences/weather-units.md](fixtures/vault/preferences/weather-units.md) | The demo Celsius preference, as a readable note. |
+| [fixtures/narration/](fixtures/narration/) | The approved speech lines and voice settings. |
+| [docs/design/INDEX.md](docs/design/INDEX.md) | Screenshots, recordings, and notes from each visual iteration. |
+| [WEEK1_DEMO_PLANNING.md](WEEK1_DEMO_PLANNING.md) | The original Week 1 build plan. |

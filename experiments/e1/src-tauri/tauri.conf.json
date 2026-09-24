@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "EVA E1",
+  "version": "0.1.0",
+  "identifier": "dev.eva.e1",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://127.0.0.1:1431",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "material",
+        "url": "index.html?layer=material",
+        "title": "EVA E1 · Material",
+        "width": 1440,
+        "height": 900,
+        "resizable": false,
+        "maximizable": false,
+        "minimizable": false,
+        "focus": false,
+        "focusable": false,
+        "visible": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "shadow": false,
+        "dragDropEnabled": false,
+        "backgroundColor": "#00000000"
+      },
+      {
+        "label": "main",
+        "url": "index.html",
+        "title": "EVA E1 · Revisable weather",
+        "width": 1440,
+        "height": 900,
+        "resizable": false,
+        "maximizable": false,
+        "minimizable": false,
+        "visible": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "shadow": false,
+        "dragDropEnabled": false,
+        "backgroundColor": "#00000000"
+      }
+    ],
+    "security": {
+      "capabilities": ["main-runtime", "material-runtime"],
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src ipc: http://ipc.localhost; media-src 'none'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'",
+      "devCsp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src ipc: http://ipc.localhost http://127.0.0.1:1431 ws://127.0.0.1:1431; media-src 'none'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'"
+    }
+  },
+  "bundle": {
+    "active": false
+  }
+}

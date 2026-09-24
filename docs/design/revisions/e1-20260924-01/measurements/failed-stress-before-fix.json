@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-09-24T09:16:30.140Z",
+  "metadata": {
+    "native": true,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0",
+    "cssWidth": 2560,
+    "cssHeight": 1392,
+    "dpr": 1,
+    "physicalWidth": 2560,
+    "physicalHeight": 1392,
+    "visibility": "visible",
+    "osReducedMotion": false
+  },
+  "count": 8000,
+  "method": "Development WebView2; forced continuous settled field draws; 2s warm-up, then 3 x 30s per backend. rAF intervals, not GPU or input-to-photon timing. No recording during sampling; CDP and React diagnostics remain active.",
+  "runs": [],
+  "failure": "TimeoutError: page.waitForFunction: Timeout 15000ms exceeded."
+}

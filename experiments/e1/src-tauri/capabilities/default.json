@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-runtime",
+  "description": "The trusted E1 controller may receive only native-host material status events; Rust label checks guard every custom command.",
+  "local": true,
+  "windows": ["main"],
+  "permissions": [
+    "core:event:allow-listen",
+    "core:event:allow-unlisten"
+  ]
+}

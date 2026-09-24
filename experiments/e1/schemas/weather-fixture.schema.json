@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/e1/weather-fixture.schema.json",
+  "title": "E1 synthetic weather fixture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "fixtureId",
+    "revision",
+    "location",
+    "date",
+    "asOfLocal",
+    "source",
+    "seed",
+    "records"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "e1.weather-fixture/1" },
+    "fixtureId": { "const": "W-NYC-01" },
+    "revision": { "const": 1 },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "timezone"],
+      "properties": {
+        "id": { "const": "nyc" },
+        "label": { "const": "New York City" },
+        "timezone": { "const": "America/New_York" }
+      }
+    },
+    "date": { "const": "2026-10-14" },
+    "asOfLocal": { "const": "08:00" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "label"],
+      "properties": {
+        "kind": { "const": "synthetic" },
+        "label": { "const": "EVA invented E1 weather fixture — not live weather" }
+      }
+    },
+    "seed": { "const": "W-NYC-01-r1-seed-20261014" },
+    "records": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        { "$ref": "#/$defs/record09" },
+        { "$ref": "#/$defs/record12" },
+        { "$ref": "#/$defs/record15" }
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit"],
+      "properties": {
+        "value": { "type": "number" },
+        "unit": { "enum": ["°C", "%", "km/h"] }
+      }
+    },
+    "cloud": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "value", "unit"],
+          "properties": {
+            "status": { "const": "available" },
+            "value": { "type": "number", "minimum": 0, "maximum": 100 },
+            "unit": { "const": "%" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "unit"],
+          "properties": {
+            "status": { "const": "unavailable" },
+            "unit": { "const": "%" }
+          }
+        }
+      ]
+    },
+    "record09": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "localTime", "temperature", "cloudCover", "precipitationProbability", "wind"],
+      "properties": {
+        "id": { "const": "09:00" },
+        "localTime": { "const": "09:00" },
+        "temperature": { "$ref": "#/$defs/temp18" },
+        "cloudCover": { "$ref": "#/$defs/cloud" },
+        "precipitationProbability": { "$ref": "#/$defs/rain10" },
+        "wind": { "$ref": "#/$defs/wind12" }
+      }
+    },
+    "record12": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "localTime", "temperature", "cloudCover", "precipitationProbability", "wind"],
+      "properties": {
+        "id": { "const": "12:00" },
+        "localTime": { "const": "12:00" },
+        "temperature": { "$ref": "#/$defs/temp22" },
+        "cloudCover": { "$ref": "#/$defs/cloud" },
+        "precipitationProbability": { "$ref": "#/$defs/rain5" },
+        "wind": { "$ref": "#/$defs/wind18" }
+      }
+    },
+    "record15": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "localTime", "temperature", "cloudCover", "precipitationProbability", "wind"],
+      "properties": {
+        "id": { "const": "15:00" },
+        "localTime": { "const": "15:00" },
+        "temperature": { "$ref": "#/$defs/temp21" },
+        "cloudCover": { "$ref": "#/$defs/cloud" },
+        "precipitationProbability": { "$ref": "#/$defs/rain15" },
+        "wind": { "$ref": "#/$defs/wind16" }
+      }
+    },
+    "temp18": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 18 }, "unit": { "const": "°C" } } }
+      ]
+    },
+    "temp22": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 22 }, "unit": { "const": "°C" } } }
+      ]
+    },
+    "temp21": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 21 }, "unit": { "const": "°C" } } }
+      ]
+    },
+    "rain10": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 10 }, "unit": { "const": "%" } } }
+      ]
+    },
+    "rain5": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 5 }, "unit": { "const": "%" } } }
+      ]
+    },
+    "rain15": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 15 }, "unit": { "const": "%" } } }
+      ]
+    },
+    "wind12": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 12 }, "unit": { "const": "km/h" } } }
+      ]
+    },
+    "wind18": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 18 }, "unit": { "const": "km/h" } } }
+      ]
+    },
+    "wind16": {
+      "allOf": [
+        { "$ref": "#/$defs/measurement" },
+        { "type": "object", "properties": { "value": { "const": 16 }, "unit": { "const": "km/h" } } }
+      ]
+    }
+  }
+}

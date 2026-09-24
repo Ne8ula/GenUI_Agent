@@ -1,0 +1,31 @@
+[package]
+name = "eva-e1"
+version = "0.1.0"
+description = "EVA E1 revisable synthetic weather experiment"
+authors = ["EVA contributors"]
+edition = "2021"
+
+[lib]
+name = "eva_e1_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+tauri = { version = "2", features = [] }
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.61.3", features = [
+  "Win32_Foundation",
+  "Win32_Graphics_Gdi",
+  "Win32_UI_WindowsAndMessaging",
+] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true

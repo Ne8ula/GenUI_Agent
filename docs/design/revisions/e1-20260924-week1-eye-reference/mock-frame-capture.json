@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-09-24T14:31:06.211Z",
+  "viewport": {
+    "width": 2000,
+    "height": 1126
+  },
+  "deviceScaleFactor": 1,
+  "browser": "147.0.7727.15",
+  "eyeBoundsCss": {
+    "x": 502,
+    "y": 304.078125,
+    "width": 996,
+    "height": 467.6875
+  },
+  "eyeCenterCss": {
+    "x": 1000,
+    "y": 537.921875
+  },
+  "reducedMotion": "no-preference",
+  "source": "Actual unchanged Week 1 browser renderer; original eye rendered at mock-desktop dimensions, not scaled from the earlier capture",
+  "captureOnlyAdjustment": "Visibility:hidden on surrounding controls, preserving layout; omit browser background in PNG; original eye canvas backing remains",
+  "microphoneUsed": false,
+  "speechUsed": false,
+  "consoleOrPageErrors": [],
+  "blockedRequests": [],
+  "changedSources": []
+}

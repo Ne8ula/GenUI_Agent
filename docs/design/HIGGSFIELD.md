@@ -8,6 +8,8 @@ Current development harness: Astra in Claude Code, following [AGENTS.md](../../A
 
 Use Higgsfield with the development agent to explore complete expressive-response compositions, a coherent primitive vocabulary, intervention/state variations, and motion references. Convert selected work into the native bounded design system in [DESIGN.md](../../DESIGN.md). This is a development workflow; EVA's runtime remains a local interactive renderer consuming validated declarative data.
 
+E1 refinement, 2026-09-23: future authorized studies must depict **transparent desktop overlays**, dispersed independent elements, open space, and intervention sequences over explicitly contextual neutral light/dark/busy backgrounds—not black-artboard or presentation-board framing. Request alpha only after support is verified. The [replacement brief](revisions/e1-20260923-02/HIGGSFIELD_BRIEF.md) is prepared but not submitted; the prior three-job still-image allowance was already reported used. Do not generate again without remaining/new authorization. Actual Windows transparency and OS input pass-through require native evidence, never a concept bitmap.
+
 This extends the authoring role described in PLANNING.md Sections 4.1 and 14.14 following the owner's 2026-09-16 request. The runtime restriction there still applies: optional media services do not generate operational authority, trusted badges, or executable primary-overlay UI. Development-time UI/source generation is reviewed through the ordinary implementation process.
 
 ## Sequencing with ComfyUI

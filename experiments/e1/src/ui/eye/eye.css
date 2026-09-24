@@ -1,0 +1,22 @@
+/* Provenance: layout-only rewrite of the `.signal-eye` rule in
+   week1/apps/desktop/src/Command.css (week1/ archive left unchanged), which
+   set `background: #050708` behind the canvas. E1SignalEye must render inside
+   an already fully click-through, transparent native material window, so
+   this file owns no opaque background and no interactive region. */
+
+.e1-signal-eye {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.e1-signal-eye canvas,
+.e1-signal-eye svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

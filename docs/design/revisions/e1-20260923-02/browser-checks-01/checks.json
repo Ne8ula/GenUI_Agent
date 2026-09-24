@@ -1,0 +1,22 @@
+{
+  "kind": "browser-only",
+  "startedAt": "2026-09-24T05:33:17.234Z",
+  "checks": [
+    "three independent fact anchors",
+    "controls collapse after request",
+    "no enclosing DOM background",
+    "Canvas2D undrawn pixels have zero alpha",
+    "settled renderer is idle",
+    "pointer selection reaches afternoon",
+    "drag applies local geometry",
+    "pin control updates host state",
+    "comparison preserves the exact pin",
+    "keyboard manipulation and focus survive revision",
+    "Stop cancels forced sampling and interrupts expression",
+    "Stop does not resume an old transition",
+    "plain mode retains focus scope",
+    "plain mode hides material and comparison link"
+  ],
+  "pageErrors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: plain answer exposes exact values and context"
+}

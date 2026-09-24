@@ -1,0 +1,680 @@
+{
+  "phase": "final",
+  "startedAt": "2026-09-24T08:38:20.942Z",
+  "checks": [
+    "actual Tauri host and two native layers",
+    "controlled physical coordinate mapping",
+    "real OS request click reaches the overlay, not the backdrop",
+    "native material has actual field points",
+    "empty transparent area passes real OS input to another process",
+    "interactive anchor intercepts its own OS click",
+    "real OS drag changes local geometry",
+    "pin control is interactive in native window",
+    "native comparison preserves the exact pinned position",
+    "decorative material also passes real OS input",
+    "Week 1 eye is integrated in the material window",
+    "eye is genuinely click-through",
+    "no uncaught native page errors"
+  ],
+  "captures": [
+    {
+      "name": "native-noon-light",
+      "mode": "light",
+      "width": 2560,
+      "height": 1392
+    },
+    {
+      "name": "native-comparison-light",
+      "mode": "light",
+      "width": 2560,
+      "height": 1392
+    },
+    {
+      "name": "native-comparison-dark",
+      "mode": "dark",
+      "width": 2560,
+      "height": 1392
+    },
+    {
+      "name": "native-comparison-busy",
+      "mode": "busy-neutral",
+      "width": 2560,
+      "height": 1392
+    }
+  ],
+  "errors": [],
+  "geometry": {
+    "width": 2560,
+    "height": 1392,
+    "dpr": 1,
+    "left": 0,
+    "top": 0,
+    "native": true,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  "snapshot": {
+    "responseId": "response:e1-weather",
+    "revision": 16,
+    "generation": 16,
+    "token": "e1-token-16",
+    "selected": "15:00",
+    "comparison": {
+      "first": "12:00",
+      "second": "15:00"
+    },
+    "anchors": {
+      "09:00": {
+        "id": "09:00",
+        "x": 0.24,
+        "y": 0.62,
+        "pinned": false,
+        "userMoved": false
+      },
+      "12:00": {
+        "id": "12:00",
+        "x": 0.5,
+        "y": 0.4,
+        "pinned": false,
+        "userMoved": false
+      },
+      "15:00": {
+        "id": "15:00",
+        "x": 0.806875,
+        "y": 0.5266091954022988,
+        "pinned": true,
+        "userMoved": true
+      }
+    },
+    "focus": "15:00",
+    "fixture": {
+      "schemaVersion": "e1.weather-fixture/1",
+      "fixtureId": "W-NYC-01",
+      "revision": 1,
+      "location": {
+        "id": "nyc",
+        "label": "New York City",
+        "timezone": "America/New_York"
+      },
+      "date": "2026-10-14",
+      "asOfLocal": "08:00",
+      "source": {
+        "kind": "synthetic",
+        "label": "EVA invented E1 weather fixture — not live weather"
+      },
+      "seed": "W-NYC-01-r1-seed-20261014",
+      "records": [
+        {
+          "id": "09:00",
+          "localTime": "09:00",
+          "temperature": {
+            "value": 18,
+            "unit": "°C"
+          },
+          "cloudCover": {
+            "status": "available",
+            "value": 70,
+            "unit": "%"
+          },
+          "precipitationProbability": {
+            "value": 10,
+            "unit": "%"
+          },
+          "wind": {
+            "value": 12,
+            "unit": "km/h"
+          }
+        },
+        {
+          "id": "12:00",
+          "localTime": "12:00",
+          "temperature": {
+            "value": 22,
+            "unit": "°C"
+          },
+          "cloudCover": {
+            "status": "available",
+            "value": 20,
+            "unit": "%"
+          },
+          "precipitationProbability": {
+            "value": 5,
+            "unit": "%"
+          },
+          "wind": {
+            "value": 18,
+            "unit": "km/h"
+          }
+        },
+        {
+          "id": "15:00",
+          "localTime": "15:00",
+          "temperature": {
+            "value": 21,
+            "unit": "°C"
+          },
+          "cloudCover": {
+            "status": "available",
+            "value": 45,
+            "unit": "%"
+          },
+          "precipitationProbability": {
+            "value": 15,
+            "unit": "%"
+          },
+          "wind": {
+            "value": 16,
+            "unit": "km/h"
+          }
+        }
+      ]
+    },
+    "fixtureVariant": "complete",
+    "requestedLocation": "New York City",
+    "status": "ready",
+    "error": null,
+    "recipe": "part-and-relate",
+    "reducedMotion": false,
+    "plain": false,
+    "phase": "inhabit",
+    "transition": {
+      "id": "transition:16:16",
+      "status": "settled",
+      "recipe": "part-and-relate",
+      "durationMs": 0,
+      "token": "e1-token-16",
+      "fromRevision": 15,
+      "toRevision": 16
+    },
+    "activeScore": {
+      "schemaVersion": "e1.response-score-proposal/1",
+      "responseId": "response:e1-weather",
+      "baseRevision": 16,
+      "evidenceRefs": [
+        "W-NYC-01:r1:15:00:temperature",
+        "W-NYC-01:r1:15:00:cloudCover",
+        "W-NYC-01:r1:12:00:temperature"
+      ],
+      "intent": "invite-comparison",
+      "entities": [
+        {
+          "id": "fact:15:00",
+          "primitive": "fact-anchor",
+          "dataRefs": [
+            "W-NYC-01:r1:15:00:temperature"
+          ],
+          "unit": "°C",
+          "anchor": {
+            "targetId": "15:00",
+            "x": 0.806875,
+            "y": 0.5266091954022988
+          }
+        },
+        {
+          "id": "field:primary",
+          "primitive": "dither-field",
+          "dataRefs": [
+            "W-NYC-01:r1:15:00:temperature"
+          ],
+          "unit": "°C",
+          "anchor": {
+            "targetId": "15:00",
+            "x": 0.806875,
+            "y": 0.5266091954022988
+          },
+          "count": 1200
+        },
+        {
+          "id": "occlusion:primary",
+          "primitive": "occlusion-layer",
+          "dataRefs": [
+            "W-NYC-01:r1:15:00:cloudCover"
+          ],
+          "unit": "%",
+          "anchor": {
+            "targetId": "15:00",
+            "x": 0.806875,
+            "y": 0.5266091954022988
+          },
+          "count": 360
+        },
+        {
+          "id": "comparison:pair",
+          "primitive": "comparison-pair",
+          "dataRefs": [
+            "W-NYC-01:r1:12:00:temperature",
+            "W-NYC-01:r1:15:00:temperature"
+          ],
+          "unit": "°C",
+          "anchor": {
+            "targetId": "15:00",
+            "x": 0.806875,
+            "y": 0.5266091954022988
+          }
+        }
+      ],
+      "phaseRecipe": {
+        "id": "part-and-relate",
+        "durationMs": 900,
+        "elementBudget": 1560
+      }
+    },
+    "scoreStatus": {
+      "state": "active",
+      "origin": "authored-controller"
+    },
+    "host": {
+      "sourceKind": "synthetic",
+      "evidenceStatus": "shape-and-semantics-validated",
+      "confidentiality": "public",
+      "fixtureId": "W-NYC-01",
+      "fixtureRevision": 1,
+      "seed": "W-NYC-01-r1-seed-20261014",
+      "budget": {
+        "maxEntities": 5,
+        "maxEffectFields": 2,
+        "maxElementCount": 2000,
+        "maxTransitionDurationMs": 1200
+      }
+    },
+    "events": [
+      {
+        "sequence": 1,
+        "monotonicMs": 10,
+        "type": "request",
+        "responseId": "response:e1-weather",
+        "revision": 1,
+        "generation": 1,
+        "fixtureId": "W-NYC-01",
+        "reason": "supported-request"
+      },
+      {
+        "sequence": 2,
+        "monotonicMs": 20,
+        "type": "fact_exposed",
+        "responseId": "response:e1-weather",
+        "revision": 1,
+        "generation": 1,
+        "fixtureId": "W-NYC-01",
+        "reason": "supported-request"
+      },
+      {
+        "sequence": 3,
+        "monotonicMs": 30,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 1,
+        "generation": 1,
+        "fixtureId": "W-NYC-01",
+        "reason": "authored-score"
+      },
+      {
+        "sequence": 4,
+        "monotonicMs": 40,
+        "type": "transition_settled",
+        "responseId": "response:e1-weather",
+        "revision": 1,
+        "generation": 1,
+        "fixtureId": "W-NYC-01",
+        "reason": "manual-settle"
+      },
+      {
+        "sequence": 5,
+        "monotonicMs": 50,
+        "type": "selection_changed",
+        "responseId": "response:e1-weather",
+        "revision": 2,
+        "generation": 2,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "user-selection"
+      },
+      {
+        "sequence": 6,
+        "monotonicMs": 60,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 2,
+        "generation": 2,
+        "fixtureId": "W-NYC-01",
+        "reason": "user-selection"
+      },
+      {
+        "sequence": 7,
+        "monotonicMs": 70,
+        "type": "transition_settled",
+        "responseId": "response:e1-weather",
+        "revision": 2,
+        "generation": 2,
+        "fixtureId": "W-NYC-01",
+        "reason": "manual-settle"
+      },
+      {
+        "sequence": 8,
+        "monotonicMs": 80,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 3,
+        "generation": 3,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 9,
+        "monotonicMs": 90,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 3,
+        "generation": 3,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 10,
+        "monotonicMs": 100,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 4,
+        "generation": 4,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 11,
+        "monotonicMs": 110,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 4,
+        "generation": 4,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 12,
+        "monotonicMs": 120,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 5,
+        "generation": 5,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 13,
+        "monotonicMs": 130,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 5,
+        "generation": 5,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 14,
+        "monotonicMs": 140,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 6,
+        "generation": 6,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 15,
+        "monotonicMs": 150,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 6,
+        "generation": 6,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 16,
+        "monotonicMs": 160,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 7,
+        "generation": 7,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 17,
+        "monotonicMs": 170,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 7,
+        "generation": 7,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 18,
+        "monotonicMs": 180,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 8,
+        "generation": 8,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 19,
+        "monotonicMs": 190,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 8,
+        "generation": 8,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 20,
+        "monotonicMs": 200,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 9,
+        "generation": 9,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 21,
+        "monotonicMs": 210,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 9,
+        "generation": 9,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 22,
+        "monotonicMs": 220,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 10,
+        "generation": 10,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 23,
+        "monotonicMs": 230,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 10,
+        "generation": 10,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 24,
+        "monotonicMs": 240,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 11,
+        "generation": 11,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 25,
+        "monotonicMs": 250,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 11,
+        "generation": 11,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 26,
+        "monotonicMs": 260,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 12,
+        "generation": 12,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 27,
+        "monotonicMs": 270,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 12,
+        "generation": 12,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 28,
+        "monotonicMs": 280,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 13,
+        "generation": 13,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 29,
+        "monotonicMs": 290,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 13,
+        "generation": 13,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 30,
+        "monotonicMs": 300,
+        "type": "anchor_moved",
+        "responseId": "response:e1-weather",
+        "revision": 14,
+        "generation": 14,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 31,
+        "monotonicMs": 310,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 14,
+        "generation": 14,
+        "fixtureId": "W-NYC-01",
+        "reason": "local-manipulation"
+      },
+      {
+        "sequence": 32,
+        "monotonicMs": 320,
+        "type": "transition_settled",
+        "responseId": "response:e1-weather",
+        "revision": 14,
+        "generation": 14,
+        "fixtureId": "W-NYC-01",
+        "reason": "manual-settle"
+      },
+      {
+        "sequence": 33,
+        "monotonicMs": 330,
+        "type": "pin_changed",
+        "responseId": "response:e1-weather",
+        "revision": 15,
+        "generation": 15,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "user-pin"
+      },
+      {
+        "sequence": 34,
+        "monotonicMs": 340,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 15,
+        "generation": 15,
+        "fixtureId": "W-NYC-01",
+        "reason": "user-pin"
+      },
+      {
+        "sequence": 35,
+        "monotonicMs": 350,
+        "type": "transition_settled",
+        "responseId": "response:e1-weather",
+        "revision": 15,
+        "generation": 15,
+        "fixtureId": "W-NYC-01",
+        "reason": "manual-settle"
+      },
+      {
+        "sequence": 36,
+        "monotonicMs": 360,
+        "type": "comparison_changed",
+        "responseId": "response:e1-weather",
+        "revision": 16,
+        "generation": 16,
+        "fixtureId": "W-NYC-01",
+        "entityId": "15:00",
+        "reason": "user-comparison"
+      },
+      {
+        "sequence": 37,
+        "monotonicMs": 370,
+        "type": "transition_started",
+        "responseId": "response:e1-weather",
+        "revision": 16,
+        "generation": 16,
+        "fixtureId": "W-NYC-01",
+        "reason": "user-comparison"
+      },
+      {
+        "sequence": 38,
+        "monotonicMs": 380,
+        "type": "transition_settled",
+        "responseId": "response:e1-weather",
+        "revision": 16,
+        "generation": 16,
+        "fixtureId": "W-NYC-01",
+        "reason": "manual-settle"
+      }
+    ],
+    "traceDropped": 0
+  },
+  "backdropClicks": 9,
+  "completed": true
+}
