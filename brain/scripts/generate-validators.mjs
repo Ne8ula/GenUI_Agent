@@ -1,0 +1,189 @@
+/**
+ * Generates standalone Ajv 2020 validators for every `schemas/<name>.schema.json`
+ * into `src/contracts/generated/`, plus a `.d.ts` that types each validator with
+ * the hand-written TypeScript type of the same name in `src/contracts/types.ts`.
+ *
+ * Usage:
+ *   node scripts/generate-validators.mjs                 # write generated files
+ *   node scripts/generate-validators.mjs --check         # exit 1 if generated files are stale
+ *   node scripts/generate-validators.mjs --schemas-dir <dir> --out-dir <dir> [--check]
+ *
+ * The directory flags exist so tests can prove drift detection against a modified
+ * copy of the schemas in a temp directory, without touching the real schemas.
+ *
+ * Approach follows experiments/e1/scripts/generate-validators.mjs (read as a
+ * reference only; nothing is imported from E1).
+ */
+import { createHash } from "node:crypto";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import Ajv2020 from "ajv/dist/2020.js";
+import standaloneCode from "ajv/dist/standalone/index.js";
+
+const workspaceRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
+const options = parseArgs(process.argv.slice(2));
+const schemasDirectory = options.schemasDir ?? join(workspaceRoot, "schemas");
+const generatedDirectory = options.outDir ?? join(workspaceRoot, "src", "contracts", "generated");
+const validatorModule = join(generatedDirectory, "validators.js");
+const validatorDeclaration = join(generatedDirectory, "validators.d.ts");
+
+/** Schemas whose TypeScript type name differs from the PascalCase file name. */
+const typeNameOverrides = {
+  common: "ProvenanceStamp",
+};
+
+function parseArgs(argv) {
+  const parsed = { check: false, schemasDir: undefined, outDir: undefined };
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === "--check") {
+      parsed.check = true;
+    } else if (arg === "--schemas-dir" || arg === "--out-dir") {
+      const value = argv[index + 1];
+      if (!value) throw new Error(`${arg} requires a directory`);
+      parsed[arg === "--schemas-dir" ? "schemasDir" : "outDir"] = resolve(value);
+      index += 1;
+    } else {
+      throw new Error(`Unknown argument: ${arg}`);
+    }
+  }
+  return parsed;
+}
+
+function sha256(value) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function pascalCase(name) {
+  return name
+    .split(/[^A-Za-z0-9]+/)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join("");
+}
+
+async function loadSchemaDefinitions() {
+  let entries;
+  try {
+    entries = await readdir(schemasDirectory);
+  } catch (error) {
+    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") return [];
+    throw error;
+  }
+  const files = entries.filter((entry) => entry.endsWith(".schema.json")).sort();
+  return Promise.all(
+    files.map(async (file) => {
+      const name = file.slice(0, -".schema.json".length);
+      const raw = await readFile(join(schemasDirectory, file), "utf8");
+      const schema = JSON.parse(raw);
+      if (typeof schema.$id !== "string" || schema.$id.length === 0) {
+        throw new Error(`schemas/${file} must declare a non-empty $id`);
+      }
+      const expectedId = `https://eva.local/schemas/brain/${name}.schema.json`;
+      if (schema.$id !== expectedId) {
+        throw new Error(`schemas/${file} $id must be ${expectedId}, found ${schema.$id}`);
+      }
+      const typeName = typeNameOverrides[name] ?? pascalCase(name);
+      return { name, path: `schemas/${file}`, schema, typeName, exportName: `validate${typeName}` };
+    }),
+  );
+}
+
+/** Ajv standalone code uses `require` for runtime helpers; rewrite them as ESM imports. */
+function convertRuntimeHelpersToEsm(source) {
+  const runtimeImports = new Map();
+  const converted = source.replace(
+    /const (func\d+) = require\("(ajv\/dist\/runtime\/[^".]+)"\)\.default;\s*/g,
+    (_match, binding, specifier) => {
+      let importName = runtimeImports.get(specifier);
+      if (!importName) {
+        importName = `ajvRuntime${runtimeImports.size}`;
+        runtimeImports.set(specifier, importName);
+      }
+      return `const ${binding} = typeof ${importName} === "function" ? ${importName} : ${importName}.default;\n`;
+    },
+  );
+  if (/\brequire\s*\(/.test(converted)) {
+    throw new Error("Generated validator contains an unsupported CommonJS runtime helper");
+  }
+  const imports = [...runtimeImports].map(
+    ([specifier, importName]) => `import ${importName} from "${specifier}.js";`,
+  );
+  return `${imports.join("\n")}\n${converted}`;
+}
+
+function renderHeader(definitions) {
+  const manifest = definitions
+    .map(({ path, schema }) => ` * - ${path} (schema-json sha256 ${sha256(JSON.stringify(schema))})`)
+    .join("\n");
+  return `/**\n * Generated by scripts/generate-validators.mjs. Do not edit.\n${manifest || " * (no schemas)"}\n */\n`;
+}
+
+function renderValidators(definitions) {
+  const header = renderHeader(definitions);
+  if (definitions.length === 0) return `${header}export {};\n`;
+
+  const ajv = new Ajv2020({
+    allErrors: true,
+    strict: true,
+    code: { source: true, esm: true, lines: true },
+  });
+  for (const { schema } of definitions) ajv.addSchema(schema);
+  const exportsByName = Object.fromEntries(
+    definitions.map(({ exportName, schema }) => [exportName, schema.$id]),
+  );
+  const standalone = standaloneCode(ajv, exportsByName);
+  return `${header}${convertRuntimeHelpersToEsm(standalone).trimStart()}\n`;
+}
+
+function renderDeclaration(definitions) {
+  const typeImport =
+    definitions.length === 0
+      ? ""
+      : `import type { ${definitions.map(({ typeName }) => typeName).join(", ")} } from "../types.ts";\n`;
+  const exports = definitions
+    .map(({ exportName, typeName }) => `export const ${exportName}: StandaloneValidator<${typeName}>;`)
+    .join("\n");
+  return `/** Generated by scripts/generate-validators.mjs. Do not edit. */
+import type { ErrorObject } from "ajv";
+${typeImport}
+export interface StandaloneValidator<T> {
+  (data: unknown): data is T;
+  errors: ErrorObject[] | null;
+}
+${exports ? `\n${exports}\n` : ""}`;
+}
+
+async function isCurrent(path, expected) {
+  try {
+    return (await readFile(path, "utf8")) === expected;
+  } catch (error) {
+    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") return false;
+    throw error;
+  }
+}
+
+const definitions = await loadSchemaDefinitions();
+const validatorSource = renderValidators(definitions);
+const declarationSource = renderDeclaration(definitions);
+
+if (options.check) {
+  const [moduleCurrent, declarationCurrent] = await Promise.all([
+    isCurrent(validatorModule, validatorSource),
+    isCurrent(validatorDeclaration, declarationSource),
+  ]);
+  if (!moduleCurrent || !declarationCurrent) {
+    console.error("Standalone validators are stale. Run npm run generate:validators.");
+    process.exitCode = 1;
+  } else {
+    console.log(`Standalone validators are current (${definitions.length} schema(s)).`);
+  }
+} else {
+  await mkdir(generatedDirectory, { recursive: true });
+  await Promise.all([
+    writeFile(validatorModule, validatorSource, "utf8"),
+    writeFile(validatorDeclaration, declarationSource, "utf8"),
+  ]);
+  console.log(`Wrote standalone validators for ${definitions.length} schema(s).`);
+}

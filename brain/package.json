@@ -1,0 +1,23 @@
+{
+  "name": "@eva/brain",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "EVA brain: orchestration, memory and personality. Headless TypeScript workspace, isolated from experiments/e1 until Stage B9.",
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "scripts": {
+    "generate:validators": "node scripts/generate-validators.mjs",
+    "generate:validators:check": "node scripts/generate-validators.mjs --check",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "check": "npm run generate:validators:check && npm run typecheck && npm run test"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3"
+  }
+}
