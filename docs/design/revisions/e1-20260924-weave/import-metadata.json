@@ -1,0 +1,50 @@
+[
+  {
+    "file": "experiments/e1/weave/animations/Gen UI Independent Study_V1 — Eye expands into sunshine_2026-09-24_16-46-24.mp4",
+    "duration": 6.041667,
+    "streams": [
+      {
+        "type": "video",
+        "width": 1278,
+        "height": 720,
+        "fps": "24/1"
+      }
+    ]
+  },
+  {
+    "file": "experiments/e1/weave/animations/Gen UI Independent Study_V2 — Tomorrow revision_2026-09-24_16-46-18.mp4",
+    "duration": 6.041667,
+    "streams": [
+      {
+        "type": "video",
+        "width": 1284,
+        "height": 718,
+        "fps": "24/1"
+      }
+    ]
+  },
+  {
+    "file": "experiments/e1/weave/animations/Gen UI Independent Study_V3 — Dismiss weather_2026-09-24_16-46-52.mp4",
+    "duration": 10.041667,
+    "streams": [
+      {
+        "type": "video",
+        "width": 1284,
+        "height": 718,
+        "fps": "24/1"
+      }
+    ]
+  },
+  {
+    "file": "docs/design/revisions/e1-20260924-week1-eye-reference/week1-cursor-tracking.mp4",
+    "duration": 8.84,
+    "streams": [
+      {
+        "type": "video",
+        "width": 2560,
+        "height": 1392,
+        "fps": "25/1"
+      }
+    ]
+  }
+]

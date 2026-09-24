@@ -1,0 +1,50 @@
+{
+  "kind": "software-only browser procedural preview",
+  "flags": [
+    "--disable-gpu",
+    "--disable-gpu-compositing",
+    "--disable-accelerated-2d-canvas",
+    "--disable-webgl",
+    "--disable-software-rasterizer"
+  ],
+  "checks": [
+    "real Rust particle module loaded",
+    "procedural eye responds to local cursor",
+    "facts do not wait for particles",
+    "particle coordinates change during reveal",
+    "keyboard movement retains focus",
+    "tomorrow is distinct dated evidence",
+    "day revision preserves pin and geometry",
+    "rain contains actual droplets and ripples",
+    "droplets and ripple positions evolve",
+    "Stop freezes state and drawing",
+    "plain mode keeps fixture facts",
+    "reduced motion retains static particle state",
+    "dismiss removes facts and restores smaller eye",
+    "Stop also freezes an interrupted return",
+    "revisions retain fixed WASM memory",
+    "particle and raster budgets hold",
+    "narrow preview has no page overflow",
+    "no graphics contexts requested except Canvas2D",
+    "no weather images or videos loaded",
+    "no external provider calls",
+    "microphone and audio stayed off",
+    "no uncaught errors or renderer budget stops"
+  ],
+  "errors": [],
+  "finalStats": {
+    "origin": "rust-procedural-particles",
+    "form": "sun",
+    "motion": "settled",
+    "drawCount": "350",
+    "particleCount": "8192",
+    "visibleCount": "3549",
+    "droplets": "0",
+    "ripples": "0",
+    "memoryBytes": "4390912",
+    "frameMs": "2.00",
+    "width": 336,
+    "height": 720
+  },
+  "completed": true
+}

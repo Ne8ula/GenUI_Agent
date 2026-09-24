@@ -1,0 +1,15 @@
+{
+  "kind": "actual native Rust/wgpu over owned synthetic backdrop; no mic/provider calls",
+  "checks": [
+    "actual native GPU reports wgpu",
+    "controlled physical coordinates"
+  ],
+  "errors": [],
+  "geometry": {
+    "width": 2560,
+    "height": 1392,
+    "dpr": 1,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  "failure": "Error: Command failed: powershell.exe -NoProfile -File C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\experiments\\e1\\scripts\\desktop-probe.ps1 -FixtureProcessId 14672 -StatePath C:\\Users\\alexx\\AppData\\Local\\Temp\\eva-e1-weave-evidence\\gpu-state.json -E1ProcessId 28144 -Action Capture -PrepareFixture\nException calling \"PrepareFixtureForInput\" with \"3\" argument(s): \"SendInput failed.\"\r\nAt C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\experiments\\e1\\scripts\\desktop-probe.ps1:646 char:9\r\n+         [E1DesktopProbeNative]::PrepareFixtureForInput($FixtureProces ...\r\n+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], ParentContainsErrorRecordException\r\n    + FullyQualifiedErrorId : Win32Exception\r\n \r\n"
+}

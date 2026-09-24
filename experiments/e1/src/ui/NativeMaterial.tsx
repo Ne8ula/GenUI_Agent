@@ -3,7 +3,8 @@ import { E1Controller } from "../core";
 import { e1NativeBridge, type MaterialDiagnostic, type MaterialScene, type MaterialStatus } from "../native";
 import { Stage } from "./components/Stage";
 import type { FieldCanvasHandle } from "./components/FieldCanvas";
-import { snapshotFromScene } from "./nativeScene";
+import { snapshotFromScene, EMPTY_RENDERER_STATS } from "./nativeScene";
+import { WeaveMaterial } from "./weave/WeaveMaterial";
 
 const EMPTY = new E1Controller().getSnapshot();
 
@@ -21,9 +22,10 @@ export function NativeMaterial() {
   const report = useCallback((kind: MaterialStatus["kind"], diagnostic?: MaterialDiagnostic) => {
     const current = sceneRef.current;
     const handle = field.current;
-    if (!current || !handle) return;
-    const stats = handle.getStats();
-    const running = handle.benchmarkIsRunning();
+    if (!current) return;
+    const draws = Number(document.querySelector<HTMLCanvasElement>(".weave-material")?.dataset.drawCount ?? 0);
+    const stats = handle?.getStats() ?? { ...EMPTY_RENDERER_STATS, renderer: "webgl" as const, drawCount: draws, framesRendered: draws, settled: kind === "transition-complete" || current.transition.status !== "active" };
+    const running = handle?.benchmarkIsRunning() ?? false;
     // Strict ordering even when stats and completion share a coarse clock tick.
     // Frame measurements come from rAF samples, not this diagnostic ordering clock.
     lastReportClock.current = Math.max(performance.timeOrigin + performance.now(), lastReportClock.current + 0.01);
@@ -41,7 +43,7 @@ export function NativeMaterial() {
         benchmark: {
           runId: current.renderer.benchmark.runId, running,
           // Full samples travel only when a bounded run ends, never every frame.
-          samplesMs: running ? [] : handle.benchmarkGetSamples().slice(0, 18000),
+          samplesMs: running ? [] : handle?.benchmarkGetSamples().slice(0, 18000) ?? [],
         },
       },
     };
@@ -76,7 +78,12 @@ export function NativeMaterial() {
   }), [snapshot.revision, snapshot.transition.id, report]);
 
   useEffect(() => {
-    if (!scene || !field.current) return;
+    if (!scene) return;
+    if (!scene.fixtureId) {
+      const timer = window.setTimeout(() => { void report("scene-applied"); }, 0);
+      return () => clearTimeout(timer);
+    }
+    if (!field.current) return;
     const handle = field.current;
     handle.setRenderer(scene.renderer.kind);
     handle.setCount(scene.renderer.requestedPointCount);
@@ -125,5 +132,7 @@ export function NativeMaterial() {
     report("renderer-failure", { code, message: notice.slice(0, 240) });
   }, [report]);
 
+  const weaveSettled = useCallback(() => { void report("transition-complete"); }, [report]);
+  if (!snapshot.fixture) return <WeaveMaterial snapshot={snapshot} native onSettled={weaveSettled} onFailure={onFailure} />;
   return <Stage controller={completion} snapshot={snapshot} fieldCanvasRef={field} onStatsChange={onStats} onFallbackNotice={onFailure} />;
 }

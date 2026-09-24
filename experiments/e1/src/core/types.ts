@@ -54,6 +54,25 @@ export interface WeatherFixture {
   records: readonly [WeatherRecord, WeatherRecord, WeatherRecord];
 }
 
+export type ForecastDay = "today" | "tomorrow";
+
+export interface DailyForecast {
+  schemaVersion: "e1.daily-forecast/1";
+  fixtureId: "W-NYC-02";
+  revision: 1;
+  scenarioDate: "2026-10-14";
+  asOfLocal: "2026-10-14T08:00:00-04:00";
+  location: WeatherFixture["location"];
+  source: { kind: "synthetic"; label: "EVA invented E1 daily weather fixture — not live weather" };
+  units: { temperature: "°C"; precipitationProbability: "%"; wind: "km/h" };
+  day: ForecastDay;
+  date: "2026-10-14" | "2026-10-15";
+  condition: "sunny" | "rainy";
+  temperatureC: number;
+  precipitationProbabilityPercent: number;
+  windKmh: number;
+}
+
 export interface NormalizedPoint {
   x: number;
   y: number;
@@ -148,7 +167,7 @@ export interface ControllerError {
   code: "invalid-location" | "invalid-variant";
   requestedLocation: string;
   message: string;
-  retainedFixtureId: "W-NYC-01" | null;
+  retainedFixtureId: "W-NYC-01" | "W-NYC-02" | null;
 }
 
 export type ScoreStatus =
@@ -206,7 +225,7 @@ export interface ControllerEvent {
   responseId: "response:e1-weather";
   revision: number;
   generation: number;
-  fixtureId: "W-NYC-01" | null;
+  fixtureId: "W-NYC-01" | "W-NYC-02" | null;
   entityId?: WeatherTimeId;
   reason?: EventReason;
 }
@@ -274,6 +293,8 @@ export interface E1Snapshot {
   anchors: Readonly<Record<WeatherTimeId, AnchorState>>;
   focus: WeatherTimeId | null;
   fixture: WeatherFixture | null;
+  /** Separate day-level evidence; never relabel the intraday fixture. */
+  forecast: Readonly<DailyForecast> | null;
   fixtureVariant: FixtureVariant | null;
   requestedLocation: string | null;
   status: RequestStatus;

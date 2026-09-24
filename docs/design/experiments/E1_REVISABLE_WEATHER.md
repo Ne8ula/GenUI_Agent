@@ -8,6 +8,12 @@ The subsequent [desktop-overlay refinement](../revisions/e1-20260923-02/REFINEME
 
 Owner addition, 2026-09-24: integrate the actual archived Week 1 procedural eye into the final E1 composition. Reuse its red dither/square-pupil vocabulary without changing `week1/`; make its surrounding pixels transparent, keep it noninteractive in the material window, and bind gaze to explicit selection rather than incidental desktop/pointer activity. Motion is bounded and interruptible; plain answer and dismissal remove it. This adds no voice, screen-content inspection, provider, or study phase.
 
+## Later owner direction — voice and faithful Weave recreation
+
+The 2026-09-24 [implementation handoff](../../../experiments/e1/weave/NEW_SESSION_PROMPT.md) and subsequent owner correction supersede this document's earlier silent demo, separate small eye, and dismiss-exits behavior. E1 now follows original eye → sunny today → rainy tomorrow → original eye, hands-free after one microphone enable. The owner explicitly requested Rust GPU rendering, faithful imported keyframe/motion details, and then a smaller eye (60% scale, centered). See [the current packet](../revisions/e1-20260924-faithful/README.md) and [run/retest instructions](../../../experiments/e1/README.md). W-NYC-02 is a separate validated daily fixture, not relabelled W-NYC-01 intraday data. Source-frame assets and the native GPU path do not establish participant results, live voice success, or owner acceptance.
+
+Latest correction: the owner rejected extracted-frame playback and reported native transition black screens/freezing. That native path is quarantined. The [procedural recovery](../revisions/e1-20260924-procedural/README.md) supplies real Rust/WASM particles with software-only browser verification; native relaunch is blocked and requires separate review/owner authorization. No crash cause or native recovery is claimed.
+
 ## Question and scope
 
 Can a small authored response vocabulary make an explicit user intervention legible in the behavior of the whole composition while preserving useful facts and direct control?

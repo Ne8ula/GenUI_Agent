@@ -1,0 +1,47 @@
+{
+  "kind": "browser source-frame preview, muted, no microphone",
+  "checks": [
+    "actual Week1 pupil follows pointer",
+    "facts exposed before imported reveal completes",
+    "original24fps reveal timeline, not shortened effect",
+    "sun endpoint equals source-derived keyframe within one readback code value",
+    "NYC context and separately dated tomorrow retained",
+    "rain endpoint equals source-derived keyframe within one readback code value",
+    "dismiss removes facts immediately",
+    "original eye position and scale restored",
+    "reduced motion skips source timeline",
+    "plain answer retains verified fixture text",
+    "plain dismissal also restores eye",
+    "mid-reveal dismissal reverses without reviving weather",
+    "no uncaught errors",
+    "all endpoint comparisons passed"
+  ],
+  "errors": [],
+  "pixelComparisons": {
+    "sun.png": {
+      "count": 0,
+      "max": 0,
+      "frame": "sun.png",
+      "anchor": {
+        "id": "12:00",
+        "x": 0.5,
+        "y": 0.4,
+        "pinned": false,
+        "userMoved": false
+      }
+    },
+    "rain.png": {
+      "count": 1215,
+      "max": 1,
+      "frame": "rain.png",
+      "anchor": {
+        "id": "12:00",
+        "x": 0.5,
+        "y": 0.4,
+        "pinned": false,
+        "userMoved": false
+      }
+    }
+  },
+  "completed": true
+}

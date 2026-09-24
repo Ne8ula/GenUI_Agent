@@ -1,0 +1,19 @@
+{
+  "kind": "browser-only, mocked recognition; no live audio/provider",
+  "checks": [
+    "original procedural eye, not static replacement",
+    "microphone is opt-in",
+    "facts available without waiting for transition",
+    "single material canvas, no second eye",
+    "keyboard move preserves focus",
+    "tomorrow is separately dated NYC fixture",
+    "pin and geometry survive day revision",
+    "Stop arrests motion",
+    "plain answer retains exact facts",
+    "reduced motion settles immediately",
+    "dismiss immediately clears facts but retains microphone",
+    "dismiss returns to original eye form"
+  ],
+  "errors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: returned eye matches original position scale and pixels"
+}

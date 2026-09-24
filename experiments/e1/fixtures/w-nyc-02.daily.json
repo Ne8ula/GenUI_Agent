@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "e1.daily-weather-fixture/1",
+  "fixtureId": "W-NYC-02",
+  "revision": 1,
+  "scenarioDate": "2026-10-14",
+  "asOfLocal": "2026-10-14T08:00:00-04:00",
+  "location": { "id": "nyc", "label": "New York City", "timezone": "America/New_York" },
+  "source": { "kind": "synthetic", "label": "EVA invented E1 daily weather fixture — not live weather" },
+  "units": { "temperature": "°C", "precipitationProbability": "%", "wind": "km/h" },
+  "records": [
+    { "day": "today", "date": "2026-10-14", "condition": "sunny", "temperatureC": 22, "precipitationProbabilityPercent": 5, "windKmh": 18 },
+    { "day": "tomorrow", "date": "2026-10-15", "condition": "rainy", "temperatureC": 16, "precipitationProbabilityPercent": 85, "windKmh": 22 }
+  ]
+}

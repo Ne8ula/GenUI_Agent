@@ -14,7 +14,17 @@ tauri-build = { version = "2", features = [] }
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+base64 = "0.22"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "multipart"] }
+tokio = { version = "1", features = ["sync", "macros", "rt", "time"] }
 tauri = { version = "2", features = [] }
+wgpu = { version = "=27.0.1", default-features = false, features = ["dx12", "wgsl"] }
+wgpu-types = "=27.0.1"
+pollster = "0.4"
+image = { version = "0.25", default-features = false, features = ["png"] }
+bytemuck = { version = "1", features = ["derive"] }
+raw-window-handle = "0.6"
 
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.61.3", features = [

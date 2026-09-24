@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "kind": "source-derived-foreground",
+  "sequences": {
+    "v1": {
+      "width": 1278,
+      "height": 720,
+      "fps": 24,
+      "frames": 145,
+      "durationMs": 6041.666666666667,
+      "pattern": "v1/{frame:04}.png"
+    },
+    "v2": {
+      "width": 1284,
+      "height": 718,
+      "fps": 24,
+      "frames": 145,
+      "durationMs": 6041.666666666667,
+      "pattern": "v2/{frame:04}.png"
+    },
+    "v3": {
+      "width": 1284,
+      "height": 718,
+      "fps": 24,
+      "frames": 241,
+      "durationMs": 10041.666666666666,
+      "pattern": "v3/{frame:04}.png"
+    }
+  },
+  "keyframes": {
+    "sun": "sun.png",
+    "rain": "rain.png"
+  },
+  "sources": [
+    {
+      "path": "weave/keyframes/Gen UI Independent Study_K1 \u2014 NYC today, sunny_2026-09-24_16-45-15.png",
+      "sha256": "2f473ff598bc5be6df49f436dcc5f19f74cfba4f25579729e75cbb6eae93c9c3"
+    },
+    {
+      "path": "weave/keyframes/Gen UI Independent Study_K2 \u2014 NYC tomorrow, rain_2026-09-24_16-45-04.png",
+      "sha256": "20d49c1a13f68bbf741ec69dbc7f097987f5fd409fc1c551c7d0f41444c6f0dc"
+    },
+    {
+      "path": "weave/animations/Gen UI Independent Study_V1 \u2014 Eye expands into sunshine_2026-09-24_16-46-24.mp4",
+      "sha256": "e943d988d58ebdb8c8c6461b7100d6dc48d4af3bcffd59c5c2c8326c4195c077"
+    },
+    {
+      "path": "weave/animations/Gen UI Independent Study_V2 \u2014 Tomorrow revision_2026-09-24_16-46-18.mp4",
+      "sha256": "288ff9299743503c3e43dfb818d2af683eedd479537915c5262be528df01c2d1"
+    },
+    {
+      "path": "weave/animations/Gen UI Independent Study_V3 \u2014 Dismiss weather_2026-09-24_16-46-52.mp4",
+      "sha256": "ba3c6f8a3dfcc72a296ba870f051d26331ac4f7e22d08597c880d85f0150e6a7"
+    }
+  ],
+  "limitations": [
+    "RGB values retained from original pixels selected by a red chroma matte; these opaque exports contain no source alpha.",
+    "Generated factual text is removed for immediate fixture-bound native labels.",
+    "Background, camera drift and wallpaper animation are deliberately excluded."
+  ]
+}

@@ -230,6 +230,8 @@ pub enum RendererKind {
     Canvas2d,
     #[serde(rename = "webgl")]
     Webgl,
+    #[serde(rename = "wgpu")]
+    Wgpu,
 }
 
 #[derive(Debug, Clone, Copy, Deserialize, Serialize, PartialEq, Eq)]
@@ -258,6 +260,81 @@ pub struct MaterialWeatherRecord {
     pub cloud_cover_percent: Option<f64>,
     pub precipitation_probability_percent: f64,
     pub wind_kmh: f64,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct ForecastLocation {
+    pub id: String,
+    pub label: String,
+    pub timezone: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct ForecastSource {
+    pub kind: String,
+    pub label: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct ForecastUnits {
+    pub temperature: String,
+    pub precipitation_probability: String,
+    pub wind: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct DailyForecast {
+    pub schema_version: String,
+    pub fixture_id: String,
+    pub revision: u32,
+    pub scenario_date: String,
+    pub as_of_local: String,
+    pub location: ForecastLocation,
+    pub source: ForecastSource,
+    pub units: ForecastUnits,
+    pub day: String,
+    pub date: String,
+    pub condition: String,
+    pub temperature_c: f64,
+    pub precipitation_probability_percent: f64,
+    pub wind_kmh: f64,
+}
+
+fn validate_daily_forecast(forecast: &DailyForecast) -> Result<(), String> {
+    if forecast.schema_version != "e1.daily-forecast/1"
+        || forecast.fixture_id != "W-NYC-02"
+        || forecast.revision != 1
+        || forecast.scenario_date != "2026-10-14"
+        || forecast.as_of_local != "2026-10-14T08:00:00-04:00"
+        || forecast.location.id != "nyc"
+        || forecast.location.label != "New York City"
+        || forecast.location.timezone != "America/New_York"
+        || forecast.source.kind != "synthetic"
+        || forecast.source.label != "EVA invented E1 daily weather fixture — not live weather"
+        || forecast.units.temperature != "°C"
+        || forecast.units.precipitation_probability != "%"
+        || forecast.units.wind != "km/h"
+    {
+        return Err("daily forecast context does not match the authored synthetic fixture".into());
+    }
+    let expected = match forecast.day.as_str() {
+        "today" => ("2026-10-14", "sunny", 22.0, 5.0, 18.0),
+        "tomorrow" => ("2026-10-15", "rainy", 16.0, 85.0, 22.0),
+        _ => return Err("unsupported daily forecast day".into()),
+    };
+    if forecast.date != expected.0
+        || forecast.condition != expected.1
+        || forecast.temperature_c != expected.2
+        || forecast.precipitation_probability_percent != expected.3
+        || forecast.wind_kmh != expected.4
+    {
+        return Err("daily forecast values do not match the authored day".into());
+    }
+    Ok(())
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
@@ -303,6 +380,7 @@ pub struct MaterialSceneInput {
     pub revision: u64,
     pub generation: u64,
     pub fixture_id: Option<String>,
+    pub forecast: Option<DailyForecast>,
     pub seed: Option<String>,
     pub status: RequestStatus,
     pub selected: WeatherTimeId,
@@ -379,14 +457,30 @@ pub fn validate_material_scene(scene: &MaterialSceneInput) -> Result<(), String>
         }
         _ => return Err("material fixture identity and records are inconsistent".into()),
     }
-    if scene.status == RequestStatus::Ready && scene.fixture_id.is_none() {
-        return Err("ready material scene requires the synthetic fixture".into());
+    if let Some(forecast) = &scene.forecast {
+        validate_daily_forecast(forecast)?;
+        if scene.fixture_id.is_some() || !scene.records.is_empty() || scene.comparison.is_some() {
+            return Err("daily forecast cannot be mixed with intraday evidence".into());
+        }
     }
-    if scene.status == RequestStatus::Dismissed && scene.fixture_id.is_some() {
-        return Err("dismissed material scene cannot retain fixture material".into());
+    if scene.status == RequestStatus::Ready
+        && scene.fixture_id.is_none()
+        && scene.forecast.is_none()
+    {
+        return Err("ready material scene requires a synthetic fixture".into());
+    }
+    if matches!(scene.status, RequestStatus::Idle | RequestStatus::Dismissed)
+        && (scene.fixture_id.is_some() || scene.forecast.is_some())
+    {
+        return Err("idle or dismissed material scene cannot retain fixture material".into());
     }
     if !valid_identifier(&scene.transition.id, 96)
-        || scene.transition.duration_ms > 1_200
+        || scene.transition.duration_ms
+            > if scene.forecast.is_some() || scene.status == RequestStatus::Dismissed {
+                10_042
+            } else {
+                1_200
+            }
         || scene.transition.from_revision > scene.transition.to_revision
         || scene.transition.to_revision != scene.revision
     {
@@ -711,6 +805,83 @@ mod tests {
         .expect("empty region must remain valid");
         assert!(scaled.rects.is_empty());
         assert_eq!(scaled.clamped_count, 0);
+    }
+
+    fn daily_forecast_value(day: &str) -> serde_json::Value {
+        let mut fixture: serde_json::Value =
+            serde_json::from_str(include_str!("../../fixtures/w-nyc-02.daily.json")).unwrap();
+        let records = fixture.as_object_mut().unwrap().remove("records").unwrap();
+        let record = records
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|record| record["day"] == day)
+            .unwrap();
+        fixture["schemaVersion"] = "e1.daily-forecast/1".into();
+        fixture
+            .as_object_mut()
+            .unwrap()
+            .extend(record.as_object().unwrap().clone());
+        fixture
+    }
+
+    fn daily_scene_value(day: &str) -> serde_json::Value {
+        serde_json::json!({
+            "schemaVersion": "e1.material-scene/1", "sceneSequence": 1,
+            "responseId": "response:e1-weather", "revision": 1, "generation": 1,
+            "fixtureId": null, "seed": null, "forecast": daily_forecast_value(day),
+            "status": "ready", "selected": "12:00", "comparison": null,
+            "anchors": [
+                { "id": "09:00", "x": 0.2, "y": 0.3, "pinned": false, "userMoved": false },
+                { "id": "12:00", "x": 0.5, "y": 0.3, "pinned": false, "userMoved": false },
+                { "id": "15:00", "x": 0.8, "y": 0.3, "pinned": false, "userMoved": false }
+            ],
+            "records": [], "recipe": "part-and-relate", "reducedMotion": false, "plain": false,
+            "transition": { "id": "transition:1:1", "status": "active", "durationMs": 1100, "fromRevision": 0, "toRevision": 1 },
+            "renderer": { "kind": "canvas2d", "requestedPointCount": 2000, "simulatedFailure": null,
+                "benchmark": { "runId": null, "active": false, "durationMs": null } }
+        })
+    }
+
+    #[test]
+    fn daily_fixture_is_dated_and_exact_before_material_delivery() {
+        for day in ["today", "tomorrow"] {
+            let scene: MaterialSceneInput = serde_json::from_value(daily_scene_value(day)).unwrap();
+            assert!(validate_material_scene(&scene).is_ok());
+        }
+        for (field, wrong) in [
+            ("date", serde_json::json!("2026-10-14")),
+            ("condition", serde_json::json!("sunny")),
+            ("temperatureC", serde_json::json!(22)),
+            ("precipitationProbabilityPercent", serde_json::json!(5)),
+            ("windKmh", serde_json::json!(18)),
+        ] {
+            let mut value = daily_scene_value("tomorrow");
+            value["forecast"][field] = wrong;
+            let scene: MaterialSceneInput = serde_json::from_value(value).unwrap();
+            assert!(
+                validate_material_scene(&scene).is_err(),
+                "accepted wrong {field}"
+            );
+        }
+    }
+
+    #[test]
+    fn daily_fixture_rejects_authority_mixing_and_dismissed_content() {
+        let mut value = daily_scene_value("today");
+        value["forecast"]["verified"] = true.into();
+        assert!(serde_json::from_value::<MaterialSceneInput>(value).is_err());
+        let mut value = daily_scene_value("today");
+        value["forecast"]["location"]["permission"] = "granted".into();
+        assert!(serde_json::from_value::<MaterialSceneInput>(value).is_err());
+        let mut value = daily_scene_value("today");
+        value["comparison"] = serde_json::json!({ "first": "12:00", "second": "15:00" });
+        assert!(validate_material_scene(&serde_json::from_value(value).unwrap()).is_err());
+        let mut value = daily_scene_value("today");
+        value["status"] = "dismissed".into();
+        assert!(validate_material_scene(&serde_json::from_value(value.clone()).unwrap()).is_err());
+        value["forecast"] = serde_json::Value::Null;
+        assert!(validate_material_scene(&serde_json::from_value(value).unwrap()).is_ok());
     }
 
     #[test]

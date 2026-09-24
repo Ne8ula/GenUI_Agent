@@ -1,8 +1,10 @@
+import type { DailyForecast } from "../core/types";
+
 export const E1_RESPONSE_ID = "response:e1-weather" as const;
 
 export type E1NativeLayer = "browser" | "interactive" | "material";
 export type WeatherTimeId = "09:00" | "12:00" | "15:00";
-export type MaterialRendererKind = "canvas2d" | "webgl";
+export type MaterialRendererKind = "canvas2d" | "webgl" | "wgpu";
 export type MaterialSimulatedFailure =
   | "canvas-error"
   | "webgl-context-lost"
@@ -98,6 +100,7 @@ export interface MaterialSceneInput {
   readonly revision: number;
   readonly generation: number;
   readonly fixtureId: "W-NYC-01" | null;
+  readonly forecast: Readonly<DailyForecast> | null;
   readonly seed: "W-NYC-01-r1-seed-20261014" | null;
   readonly status: "idle" | "ready" | "unavailable" | "dismissed";
   readonly selected: WeatherTimeId;

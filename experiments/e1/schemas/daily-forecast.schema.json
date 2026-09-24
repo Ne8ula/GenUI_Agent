@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/e1/daily-forecast/1",
+  "title": "E1 authored daily forecast",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "fixtureId", "revision", "scenarioDate", "asOfLocal", "location", "source", "units", "day", "date", "condition", "temperatureC", "precipitationProbabilityPercent", "windKmh"],
+  "properties": {
+    "schemaVersion": { "const": "e1.daily-forecast/1" },
+    "fixtureId": { "const": "W-NYC-02" },
+    "revision": { "const": 1 },
+    "scenarioDate": { "const": "2026-10-14" },
+    "asOfLocal": { "const": "2026-10-14T08:00:00-04:00" },
+    "location": { "const": { "id": "nyc", "label": "New York City", "timezone": "America/New_York" } },
+    "source": { "const": { "kind": "synthetic", "label": "EVA invented E1 daily weather fixture — not live weather" } },
+    "units": { "const": { "temperature": "°C", "precipitationProbability": "%", "wind": "km/h" } },
+    "day": { "enum": ["today", "tomorrow"] },
+    "date": { "enum": ["2026-10-14", "2026-10-15"] },
+    "condition": { "enum": ["sunny", "rainy"] },
+    "temperatureC": { "type": "number" },
+    "precipitationProbabilityPercent": { "type": "number" },
+    "windKmh": { "type": "number" }
+  },
+  "oneOf": [
+    { "properties": { "day": { "const": "today" }, "date": { "const": "2026-10-14" }, "condition": { "const": "sunny" }, "temperatureC": { "const": 22 }, "precipitationProbabilityPercent": { "const": 5 }, "windKmh": { "const": 18 } } },
+    { "properties": { "day": { "const": "tomorrow" }, "date": { "const": "2026-10-15" }, "condition": { "const": "rainy" }, "temperatureC": { "const": 16 }, "precipitationProbabilityPercent": { "const": 85 }, "windKmh": { "const": 22 } } }
+  ]
+}

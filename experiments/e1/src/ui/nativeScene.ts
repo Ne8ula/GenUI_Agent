@@ -1,4 +1,4 @@
-import { E1Controller, E1_DEFAULT_FIXTURE, TIME_IDS, type E1Snapshot, type WeatherFixture } from "../core";
+import { E1Controller, E1_DEFAULT_FIXTURE, TIME_IDS, parseDailyForecast, type E1Snapshot, type WeatherFixture } from "../core";
 import type { MaterialScene, MaterialSceneInput, MaterialStatus } from "../native";
 import type { RendererStats } from "./render";
 
@@ -21,6 +21,7 @@ export function sceneFromSnapshot(
     schemaVersion: "e1.material-scene/1", sceneSequence,
     responseId: snapshot.responseId, revision: snapshot.revision, generation: snapshot.generation,
     fixtureId: snapshot.fixture?.fixtureId ?? null, seed: snapshot.fixture?.seed ?? null,
+    forecast: snapshot.forecast,
     status: snapshot.status, selected: snapshot.selected, comparison: snapshot.comparison,
     anchors: TIME_IDS.map((time) => ({ ...snapshot.anchors[time] })),
     records: snapshot.fixture?.records.map((record) => ({
@@ -58,7 +59,7 @@ export function snapshotFromScene(scene: MaterialScene): Readonly<E1Snapshot> {
   return {
     ...EMPTY_SNAPSHOT,
     responseId: scene.responseId, revision: scene.revision, generation: scene.generation,
-    token: `e1-token-${scene.generation}`, fixture,
+    token: `e1-token-${scene.generation}`, fixture, forecast: parseDailyForecast(scene.forecast),
     selected: scene.selected, comparison: scene.comparison,
     anchors: Object.fromEntries(scene.anchors.map((anchor) => [anchor.id, anchor])) as E1Snapshot["anchors"],
     status: scene.status, recipe: scene.recipe, reducedMotion: scene.reducedMotion, plain: scene.plain,

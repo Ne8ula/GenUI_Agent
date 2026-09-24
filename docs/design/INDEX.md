@@ -10,6 +10,9 @@ Authorized bounded experiment: [E1 — a weather response that yields and recomp
 
 | Revision | Actual evidence and status |
 | --- | --- |
+| [e1-20260924-procedural recovery](revisions/e1-20260924-procedural/README.md) | Real Rust/WASM particles with CPU-only browser evidence, bounded state and redesigned reading surfaces; previous native renderer quarantined after owner-reported black screens/freezes; acceptance pending |
+| [e1-20260924-faithful frame experiment](revisions/e1-20260924-faithful/README.md) | Withdrawn/quarantined: owner rejected extracted frames and reported system-wide graphics failure during transition; historical browser/native-idle evidence is preserved, not proof of stability |
+| [e1-20260924-weave approximation](revisions/e1-20260924-weave/README.md) | Preserved before/candidate captures and recordings; owner rejected approximate shapes/timing and requested faithful source recreation |
 | [e1-20260917-01 authoring](revisions/e1-20260917-01/authoring/brief.md) | Preserved Higgsfield still concepts; not executable or accepted visual evidence |
 | [e1-20260923-01 assembled before-state](revisions/e1-20260923-01/README.md) | Integrated boxed UI, browser and actual Tauri/WebView2 stills; owner requested less text and a true transparent desktop presentation; superseded, not accepted |
 | [e1-20260924-01 transparent response and eye](revisions/e1-20260924-01/README.md) | Actual Windows two-layer overlay, physical input pass-through checks, restored Week 1 eye, native captures/recording and bounded renderer measurements; owner acceptance pending |

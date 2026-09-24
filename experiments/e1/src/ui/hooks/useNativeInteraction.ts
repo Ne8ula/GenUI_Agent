@@ -24,7 +24,6 @@ export function useNativeInteraction(controller: E1Controller, snapshot: Readonl
   const lastSceneKey = useRef("");
   const benchmarkNumber = useRef(0);
   const observedBenchmarkRun = useRef<string | null>(null);
-  const dismissed = useRef(false);
 
   useEffect(() => {
     if (!enabled) return;
@@ -72,13 +71,7 @@ export function useNativeInteraction(controller: E1Controller, snapshot: Readonl
 
   useEffect(() => {
     if (!enabled || !ready) return;
-    if (snapshot.status === "dismissed") {
-      if (!dismissed.current) {
-        dismissed.current = true;
-        void e1NativeBridge.dismiss().catch((error: unknown) => console.error("[E1] Native dismissal failed", error));
-      }
-      return;
-    }
+    // Weather dismissal returns to idle presence; only explicit Exit closes windows.
     const projected = sceneFromSnapshot(snapshot, settings, 0);
     const key = JSON.stringify(projected);
     if (key === lastSceneKey.current) return;
@@ -93,7 +86,7 @@ export function useNativeInteraction(controller: E1Controller, snapshot: Readonl
       if (sceneFailure.current.key === key) sceneFailure.current.count = 0;
     }).catch((error: unknown) => {
       console.error("[E1] Native scene rejected", error);
-      if (lastScene.current?.sceneSequence === scene.sceneSequence && !dismissed.current) {
+      if (lastScene.current?.sceneSequence === scene.sceneSequence) {
         // Keep accepting statuses for the last host-accepted scene. Retry the
         // latest projection once, never a stale captured user revision.
         lastScene.current = acceptedScene.current;
@@ -117,7 +110,7 @@ export function useNativeInteraction(controller: E1Controller, snapshot: Readonl
     let failures = 0;
     const publish = async () => {
       frame = 0;
-      if (!alive || dismissed.current) return;
+      if (!alive) return;
       if (inFlight) { dirty = true; return; }
       const regions = collectElementHitRegions(listHitRegionElements());
       const update = createHitRegionUpdate(0, regions);

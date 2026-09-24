@@ -1,0 +1,12 @@
+{
+  "kind": "browser source-frame preview, muted, no microphone",
+  "checks": [
+    "actual Week1 pupil follows pointer",
+    "facts exposed before imported reveal completes",
+    "original24fps reveal timeline, not shortened effect",
+    "sun endpoint equals source-derived keyframe pixels",
+    "NYC context and separately dated tomorrow retained"
+  ],
+  "errors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: rain endpoint equals source-derived keyframe pixels"
+}

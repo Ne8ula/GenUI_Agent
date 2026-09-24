@@ -1,0 +1,35 @@
+.weave-backdrop{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#101818;pointer-events:none;z-index:-1}
+.weave-material{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;image-rendering:pixelated}
+.weave-facts{position:fixed;pointer-events:none;color:var(--e1-bone);font-family:var(--e1-mono)}
+.weave-readout{position:absolute;left:50%;top:59%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:28px;padding:12px 18px;background:#101615f2;border-top:2px dotted #ff5a50;background-image:repeating-linear-gradient(0deg,#ff3b3508 0 1px,transparent 1px 4px);text-shadow:1px 0 #ff3b3528;white-space:nowrap}
+.weave-readout::before{content:"";position:absolute;left:50%;bottom:100%;height:22px;border-left:2px dotted #ff5a50}
+.weave-readout::after{content:"";position:absolute;left:calc(50% - 2px);top:-27px;width:5px;height:5px;background:#ff5a50;box-shadow:-7px 0 #ff5a5060,7px 0 #ff5a5060}
+.weave-place{display:flex;flex-direction:column;align-items:flex-start;gap:9px;padding-bottom:3px}
+.weave-place>span{font:500 12px var(--e1-mono);letter-spacing:.20em;color:#ff776b}
+.weave-place strong{font:500 clamp(16px,1.6vw,23px)/1.1 var(--e1-mono);letter-spacing:.04em;text-transform:uppercase}
+.weave-answer{display:flex;flex-direction:column;gap:5px;padding-left:22px;border-left:1px dotted #ff5a5080}
+.weave-condition{font:500 12px var(--e1-mono);letter-spacing:.15em;text-transform:uppercase;color:#ff776b}
+.weave-temperature{font:500 clamp(30px,3vw,44px)/1 var(--e1-mono);letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.weave-temperature>span{display:inline-block;font-size:.43em;letter-spacing:0;vertical-align:top;padding-top:.22em;margin-left:5px}
+.weave-facts.is-plain .weave-readout{position:fixed;top:28px;left:50%;background:var(--e1-void);border:none;text-shadow:none}
+.weave-facts.is-plain .weave-readout::before,.weave-facts.is-plain .weave-readout::after{display:none}
+.weave-day-controls{position:fixed;right:28px;bottom:24px;display:flex;gap:8px;z-index:5}
+.weave-day-controls button{font:500 13px var(--e1-sans);min-height:42px;padding:10px 17px;border:1px solid #e8e4d965;background:#101615ed;color:var(--e1-bone);border-radius:2px;cursor:pointer;transition:background-color 120ms,border-color 120ms}
+.weave-day-controls button:hover{background:#252c29;border-color:var(--e1-bone)}
+.weave-day-controls button[aria-pressed=true]{border-color:#fa5549;box-shadow:inset 0 -2px #fa5549}
+.weave-day-controls button:active{scale:.96}
+.weave-notice{position:fixed;left:28px;bottom:130px;max-width:440px;background:var(--e1-void);color:var(--e1-focus);padding:12px;font:13px/1.5 var(--e1-sans)}
+.weave-plain-context{position:fixed;left:50%;top:140px;transform:translateX(-50%);width:min(420px,calc(100vw - 32px));box-sizing:border-box;padding:14px;background:var(--e1-bone);color:var(--e1-void);font:15px/1.6 var(--e1-sans);text-shadow:none}
+.weave-quarantine{margin:32px;padding:24px;max-width:620px;background:var(--e1-void);color:var(--e1-bone);font:16px/1.5 var(--e1-sans);border-left:3px solid var(--e1-error)}
+@media(max-width:700px){.weave-day-controls{right:16px;bottom:24px}.weave-readout{gap:16px;padding:10px 12px;max-width:calc(100vw - 32px);box-sizing:border-box;top:66%}.weave-answer{padding-left:16px}.weave-place strong{font-size:16px}.weave-temperature{font-size:32px}.weave-place>span,.weave-condition{font-size:12px}.weave-notice{left:16px;right:16px;bottom:85px}}
+.weave-readout{animation:weave-readout-in 720ms steps(24,end) both,weave-readout-float 9s ease-in-out 720ms infinite}
+.weave-readout .weave-place::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#05080785 0 1px,transparent 1px 3px);animation:weave-readout-lines 720ms linear both}
+.weave-readout .weave-answer::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#ff948b;box-shadow:0 -2px 7px #ff3b3570;pointer-events:none;animation:weave-readout-scan 720ms linear both}
+@keyframes weave-readout-in{from{opacity:.25;clip-path:inset(-30px 0 100% 0)}to{opacity:1;clip-path:inset(-30px 0 0 0)}}
+@keyframes weave-readout-scan{0%{top:0;opacity:0}8%{opacity:.8}92%{opacity:.8}100%{top:100%;opacity:0}}
+@keyframes weave-readout-lines{0%,75%{opacity:1}100%{opacity:0}}
+@keyframes weave-readout-float{0%,100%{transform:translate(-50%,0)}33%{transform:translate(calc(-50% + 3px),-5px)}67%{transform:translate(calc(-50% - 2px),-2px)}}
+.weave-facts.is-paused .weave-readout,.weave-facts.is-paused .weave-readout .weave-place::after,.weave-facts.is-paused .weave-readout .weave-answer::after{animation-play-state:paused}
+.weave-facts.is-plain .weave-readout,.weave-facts.is-reduced .weave-readout{animation:none}
+.weave-facts.is-plain .weave-readout .weave-place::after,.weave-facts.is-plain .weave-readout .weave-answer::after,.weave-facts.is-reduced .weave-readout .weave-place::after,.weave-facts.is-reduced .weave-readout .weave-answer::after{display:none}
+@media(prefers-reduced-motion:reduce){.weave-readout{animation:none}.weave-readout .weave-place::after,.weave-readout .weave-answer::after{display:none}.weave-day-controls button{transition:none}.weave-day-controls button:active{scale:1}}

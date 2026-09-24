@@ -20,11 +20,11 @@ use windows::Win32::{
         CombineRgn, CreateRectRgn, DeleteObject, SetWindowRgn, ERROR, HGDIOBJ, HRGN, RGN_OR,
     },
     UI::WindowsAndMessaging::{
-        SetWindowPos, SWP_NOACTIVATE, SWP_NOMOVE, SWP_NOOWNERZORDER, SWP_NOSIZE,
+        GetWindowLongPtrW, SetWindowLongPtrW, SetWindowPos, GWL_EXSTYLE, SWP_NOACTIVATE,
+        SWP_NOMOVE, SWP_NOOWNERZORDER, SWP_NOSIZE, WS_EX_LAYERED, WS_EX_NOREDIRECTIONBITMAP,
     },
 };
 
-const MATERIAL_SCENE_EVENT: &str = "eva-e1://material-scene";
 const MATERIAL_STATUS_EVENT: &str = "eva-e1://material-status";
 
 #[derive(Default)]
@@ -199,8 +199,27 @@ pub fn setup_overlay(app: &AppHandle) -> Result<(), String> {
         .map_err(|error| error.to_string())?;
     fail_input_open(&main)?;
 
-    // Material starts as an empty transparent, input-ignored surface. It loads
-    // its event listener before the controller publishes any authored scene.
+    // Rust/wgpu owns the material HWND; its WebView never paints or receives input.
+    material
+        .with_webview(|webview| {
+            // SAFETY: this is the material window's own WebView2 controller.
+            unsafe {
+                let _ = webview.controller().SetIsVisible(false);
+            }
+        })
+        .map_err(|error| error.to_string())?;
+    let hwnd = material.hwnd().map_err(|error| error.to_string())?;
+    // DirectComposition uses premultiplied swapchain alpha, not a layered bitmap.
+    // SAFETY: only this application's fixed material HWND style is changed.
+    unsafe {
+        let style = GetWindowLongPtrW(hwnd, GWL_EXSTYLE);
+        SetWindowLongPtrW(
+            hwnd,
+            GWL_EXSTYLE,
+            (style & !(WS_EX_LAYERED.0 as isize)) | WS_EX_NOREDIRECTIONBITMAP.0 as isize,
+        );
+    }
+    crate::weave_gpu::start(app, hwnd, size.width, size.height)?;
     material.show().map_err(|error| error.to_string())?;
     main.show().map_err(|error| error.to_string())?;
     order_material_below_main(&material, &main)?;
@@ -218,6 +237,10 @@ pub fn e1_get_work_area(
         return Err("native overlay is closing".into());
     }
     fail_input_open(&window)?;
+    window
+        .app_handle()
+        .state::<crate::weave_gpu::GpuState>()
+        .clear();
     let material = required_window(window.app_handle(), MATERIAL_LABEL)?;
     material
         .set_ignore_cursor_events(true)
@@ -366,10 +389,10 @@ pub fn e1_sync_material_scene(
         full_scene
     };
 
-    let material = required_window(window.app_handle(), MATERIAL_LABEL)?;
-    material
-        .emit(MATERIAL_SCENE_EVENT, &full_scene)
-        .map_err(|error| error.to_string())?;
+    window
+        .app_handle()
+        .state::<crate::weave_gpu::GpuState>()
+        .publish(full_scene.clone())?;
 
     Ok(MaterialSceneAck {
         schema_version: "e1.material-scene-ack/1",
@@ -391,11 +414,18 @@ pub fn e1_get_latest_material_scene(
 #[tauri::command]
 pub fn e1_report_material_status(
     window: WebviewWindow,
-    state: State<'_, OverlayState>,
-    status: MaterialStatus,
+    _state: State<'_, OverlayState>,
+    _status: MaterialStatus,
 ) -> Result<MaterialStatusAck, String> {
     authorize_sender(window.label(), SenderRole::Material)?;
+    Err("Native GPU owns material status; WebView reports are disabled".into())
+}
 
+pub fn accept_gpu_status(
+    app: &AppHandle,
+    status: MaterialStatus,
+) -> Result<MaterialStatusAck, String> {
+    let state = app.state::<OverlayState>();
     {
         let mut inner = lock_state(&state)?;
         let latest = inner
@@ -413,16 +443,14 @@ pub fn e1_report_material_status(
         inner.latest_status = Some(status.clone());
     }
 
-    let main = required_window(window.app_handle(), INTERACTIVE_LABEL)?;
+    let main = required_window(app, INTERACTIVE_LABEL)?;
+    let material = required_window(app, MATERIAL_LABEL)?;
     if state.closing.load(Ordering::SeqCst) {
         return Err("native overlay is closing".into());
     }
     if status.kind == MaterialStatusKind::SceneApplied {
-        window
-            .set_ignore_cursor_events(true)
-            .and_then(|()| window.show())
-            .map_err(|error| error.to_string())?;
-        order_material_below_main(&window, &main)?;
+        material.show().map_err(|error| error.to_string())?;
+        order_material_below_main(&material, &main)?;
     }
     main.emit(MATERIAL_STATUS_EVENT, &status)
         .map_err(|error| error.to_string())?;
@@ -462,6 +490,7 @@ fn schedule_exit(app: AppHandle, state: &OverlayState) {
     if state.closing.swap(true, Ordering::SeqCst) {
         return;
     }
+    app.state::<crate::weave_gpu::GpuState>().stop();
     hide_and_open_input(&app);
     std::thread::spawn(move || {
         std::thread::sleep(Duration::from_millis(25));

@@ -4,6 +4,7 @@ import {
   fixtureForVariant,
   isWeatherTimeId,
 } from "./fixtures";
+import { forecastForDay } from "./dailyForecast";
 import { clampNormalized, deepFreeze, safeJsonClone } from "./immutability";
 import { composeAuthoredScore, createDefaultAnchors } from "./score";
 import type {
@@ -14,6 +15,7 @@ import type {
   E1Snapshot,
   EventReason,
   FixtureVariant,
+  ForecastDay,
   ModelProposal,
   NormalizedPoint,
   RecipeId,
@@ -93,6 +95,7 @@ export class E1Controller {
       anchors: createDefaultAnchors(),
       focus: null,
       fixture: null,
+      forecast: null,
       fixtureVariant: null,
       requestedLocation: null,
       status: "idle",
@@ -141,7 +144,7 @@ export class E1Controller {
           message: validLocation
             ? "The requested fixture variant is unavailable."
             : `No synthetic fixture is available for ${requestedLocation}.`,
-          retainedFixtureId: this.snapshot.fixture?.fixtureId ?? null,
+          retainedFixtureId: this.snapshot.forecast?.fixtureId ?? this.snapshot.fixture?.fixtureId ?? null,
         },
         phase: "expose",
         transition: {
@@ -166,6 +169,7 @@ export class E1Controller {
       generation,
       token: tokenFor(generation),
       fixture,
+      forecast: null,
       fixtureVariant: variant,
       requestedLocation,
       status: "ready",
@@ -180,6 +184,46 @@ export class E1Controller {
     const desiredPhase: ResponsePhase =
       this.snapshot.status === "idle" || this.snapshot.status === "dismissed" ? "propose" : "reconsider";
     const next = this.withAuthoredExpression(nextBase, fromRevision, desiredPhase);
+    this.publish(next, [
+      { type: "request", reason: "supported-request" },
+      { type: "fact_exposed", reason: "supported-request" },
+      this.transitionEvent(next, "authored-score"),
+    ]);
+    return true;
+  }
+
+  requestForecast(day: ForecastDay, location?: string): boolean {
+    // An omitted place follows the active request, including an unavailable
+    // correction; it must never silently turn another city's answer into NYC.
+    const requestedLocation = sanitizeLocation(location ?? this.snapshot.requestedLocation ?? undefined);
+    const validLocation = isSupportedLocation(requestedLocation);
+    const validDay = day === "today" || day === "tomorrow";
+    const fromRevision = this.snapshot.revision;
+    const revision = fromRevision + 1;
+    const generation = this.snapshot.generation + 1;
+    if (!validLocation || !validDay) {
+      const reason: EventReason = validLocation ? "unsupported-variant" : "unsupported-location";
+      this.publish({
+        ...this.snapshot, revision, generation, token: tokenFor(generation),
+        requestedLocation, status: "unavailable", phase: "expose",
+        error: {
+          code: validLocation ? "invalid-variant" : "invalid-location", requestedLocation,
+          message: validLocation ? "The requested forecast day is unavailable."
+            : `No synthetic fixture is available for ${requestedLocation}.`,
+          retainedFixtureId: this.snapshot.forecast?.fixtureId ?? this.snapshot.fixture?.fixtureId ?? null,
+        },
+        transition: { ...idleTransition(this.snapshot.recipe, generation, revision), status: "settled", fromRevision },
+        activeScore: null, scoreStatus: { state: "none" },
+      }, [{ type: "request", reason }, { type: "request_unavailable", reason }]);
+      return false;
+    }
+    const next = this.withAuthoredExpression({
+      ...this.snapshot, revision, generation, token: tokenFor(generation),
+      forecast: forecastForDay(day), fixture: null, fixtureVariant: null, host: null,
+      requestedLocation, status: "ready", error: null, comparison: null,
+      activeScore: null, scoreStatus: { state: "none" },
+      focus: this.snapshot.selected,
+    }, fromRevision, this.snapshot.status === "ready" ? "reconsider" : "propose");
     this.publish(next, [
       { type: "request", reason: "supported-request" },
       { type: "fact_exposed", reason: "supported-request" },
@@ -278,7 +322,7 @@ export class E1Controller {
   }
 
   compare(): boolean {
-    if (this.snapshot.status !== "ready") return false;
+    if (this.snapshot.status !== "ready" || this.snapshot.forecast) return false;
     const second = this.snapshot.selected === "12:00" ? "15:00" : this.snapshot.selected;
     const comparison = { first: "12:00" as const, second };
     if (
@@ -310,7 +354,7 @@ export class E1Controller {
   }
 
   stop(): boolean {
-    if (this.snapshot.status !== "ready") return false;
+    if (this.snapshot.status !== "ready" && this.snapshot.status !== "dismissed") return false;
     const fromRevision = this.snapshot.revision;
     const revision = fromRevision + 1;
     const generation = this.snapshot.generation + 1;
@@ -347,7 +391,7 @@ export class E1Controller {
       token: tokenFor(generation),
       reducedMotion,
     };
-    if (next.status === "ready" && next.fixture) {
+    if (next.status === "ready" && (next.fixture || next.forecast)) {
       next = this.withAuthoredExpression(next, fromRevision, "reconsider");
     } else {
       next.transition = idleTransition(next.recipe, generation, revision);
@@ -371,7 +415,7 @@ export class E1Controller {
       token: tokenFor(generation),
       plain,
     };
-    if (next.status === "ready" && next.fixture) {
+    if (next.status === "ready" && (next.fixture || next.forecast)) {
       next = this.withAuthoredExpression(next, fromRevision, plain ? "plain" : "reconsider");
     } else {
       next.phase = plain ? "plain" : next.phase;
@@ -396,7 +440,7 @@ export class E1Controller {
       token: tokenFor(generation),
       recipe,
     };
-    if (next.status === "ready" && next.fixture) {
+    if (next.status === "ready" && (next.fixture || next.forecast)) {
       next = this.withAuthoredExpression(next, fromRevision, "reconsider");
     } else {
       next.transition = idleTransition(recipe, generation, revision);
@@ -432,6 +476,7 @@ export class E1Controller {
       comparison: null,
       focus: null,
       fixture: null,
+      forecast: null,
       fixtureVariant: null,
       requestedLocation: null,
       status: "dismissed",
@@ -604,6 +649,18 @@ export class E1Controller {
     desiredPhase: ResponsePhase,
     maximumDuration?: number,
   ): E1Snapshot {
+    if (state.forecast && state.status === "ready") {
+      const durationMs = state.reducedMotion || state.plain ? 0 : Math.min(maximumDuration ?? 6_042, 6_042);
+      const status = durationMs > 0 ? "active" : "settled";
+      return {
+        ...state, activeScore: null, scoreStatus: { state: "none" },
+        transition: {
+          id: `transition:${state.generation}:${state.revision}`, status, recipe: state.recipe,
+          durationMs, token: state.token, fromRevision, toRevision: state.revision,
+        },
+        phase: state.plain ? "plain" : status === "active" ? desiredPhase : "inhabit",
+      };
+    }
     if (!state.fixture || state.status !== "ready") return state;
     const activeScore = composeAuthoredScore({
       revision: state.revision,
@@ -653,7 +710,7 @@ export class E1Controller {
         responseId: RESPONSE_ID,
         revision: state.revision,
         generation: state.generation,
-        fixtureId: state.fixture?.fixtureId ?? null,
+        fixtureId: state.forecast?.fixtureId ?? state.fixture?.fixtureId ?? null,
         ...(draft.entityId ? { entityId: draft.entityId } : {}),
         ...(draft.reason ? { reason: draft.reason } : {}),
       };

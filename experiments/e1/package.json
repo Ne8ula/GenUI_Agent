@@ -9,9 +9,10 @@
   "scripts": {
     "generate:validators": "node scripts/generate-validators.mjs",
     "generate:validators:check": "node scripts/generate-validators.mjs --check",
-    "predev": "npm run generate:validators",
+    "build:particles": "node scripts/build-particles.mjs",
+    "predev": "npm run generate:validators && npm run build:particles",
     "dev": "vite",
-    "prebuild": "npm run generate:validators",
+    "prebuild": "npm run generate:validators && npm run build:particles",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.node.json && vite build",
     "pretypecheck": "npm run generate:validators:check",
     "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",

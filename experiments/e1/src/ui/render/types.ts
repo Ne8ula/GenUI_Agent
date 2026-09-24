@@ -6,7 +6,7 @@
  * mask, and color mapping). Only the draw call differs between backends.
  */
 
-export type RendererKind = "canvas2d" | "webgl";
+export type RendererKind = "canvas2d" | "webgl" | "wgpu";
 
 /**
  * 0 = primary dither field ("sun"), 1 = cloud occlusion bound to an available

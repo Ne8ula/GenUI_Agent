@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "only two day controls",
+    "study banner and control text removed",
+    "settled sun continuously rotates",
+    "weather labels have no panel background",
+    "rain continues across repeated droplet cycles",
+    "memory and particle budgets unchanged",
+    "Escape dismisses to eye",
+    "no page or renderer errors"
+  ],
+  "errors": [],
+  "completed": true
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "browser-only, mocked recognition; no live audio/provider",
+  "checks": [
+    "original procedural eye, not static replacement",
+    "microphone is opt-in",
+    "facts available without waiting for transition",
+    "single material canvas, no second eye",
+    "keyboard move preserves focus",
+    "tomorrow is separately dated NYC fixture",
+    "pin and geometry survive day revision",
+    "Stop arrests motion",
+    "plain answer retains exact facts",
+    "reduced motion settles immediately",
+    "dismiss immediately clears facts but retains microphone",
+    "dismiss returns to original eye form",
+    "returned eye matches original position scale and pixels",
+    "weather regions removed after dismiss",
+    "late recognition cannot revive dismissed weather",
+    "microphone off distinct from weather dismissal",
+    "narrow viewport no horizontal overflow",
+    "plain dismissal still returns eye",
+    "transparent answer gap is not a native region",
+    "unavailable microphone has honest fallback",
+    "renderer failure settles every new transition",
+    "renderer failure remains disclosed",
+    "denied microphone is off and explained",
+    "no uncaught errors"
+  ],
+  "errors": [],
+  "completed": true
+}
