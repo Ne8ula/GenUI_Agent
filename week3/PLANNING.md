@@ -1,6 +1,6 @@
 # Week 3 — Conversational eye plan
 
-Date: 2026-09-27 · Status: proposed implementation plan; no Week 3 code or runtime evidence yet.
+Date: 2026-09-27 · Status: original proposed implementation plan, retained below. A bounded implementation candidate and executed evidence now exist; see [README.md](README.md) and the [pending acceptance record](docs/design/acceptance/w3-conversational-eye.md). No owner acceptance is implied.
 
 Owner's window: one week for a 1–2 minute visual demo. Working target: 2026-10-04, calculated from this conversation; exact presentation time was not supplied.
 

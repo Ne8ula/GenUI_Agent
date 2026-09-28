@@ -1,6 +1,7 @@
 import type { Capture, Playback, SessionView, VoiceTransport } from './contracts';
+import { clearTimings, noteTiming } from './timing';
 
-const initial = (): SessionView => ({ active: false, starting: false, muted: false, state: 'idle', stance: 'attentive', intensity: .35, seed: 1, transcript: '', reply: '', message: 'Ready when you are.' });
+const initial = (): SessionView => ({ ended: false, active: false, starting: false, muted: false, state: 'idle', stance: 'attentive', intensity: .35, seed: 1, transcript: '', reply: '', message: 'Ready when you are.' });
 
 /** Owns local cancellation; provider cancellation is deliberately never on the stop path. */
 export class Conversation {
@@ -35,6 +36,8 @@ export class Conversation {
       if (epoch !== this.epoch) { await this.transport.end(sessionId); return; }
       this.sessionId = sessionId;
       this.generation = 0;
+      await this.transport.advance(sessionId, 0);
+      if (epoch !== this.epoch) return;
       this.submitted = -1;
       this.advanceChain = Promise.resolve();
       this.capture.discard();
@@ -74,7 +77,9 @@ export class Conversation {
   }
   private onset = () => {
     if (!this.view.active || this.view.muted) return;
+    const detected = performance.now();
     this.invalidate();
+    noteTiming('detected-onset-to-local-stop-ms', performance.now() - detected);
     this.speechPending = true;
     this.update({ state: 'listening', stance: 'attentive', intensity: .3, transcript: '', reply: '', message: 'Listening…' });
   };
@@ -88,6 +93,7 @@ export class Conversation {
     const epoch = this.epoch;
     const sessionId = this.sessionId;
     const current = () => epoch === this.epoch && generation === this.generation && sessionId === this.sessionId;
+    const turnEnded = performance.now();
     this.update({ state: 'processing', message: 'Preparing a response…' });
     void (async () => {
       try {
@@ -98,6 +104,7 @@ export class Conversation {
         this.update({ transcript: reply.transcript });
         await this.playback.play(reply, () => {
           if (!current()) { this.playback.stop(); return; }
+          noteTiming('turn-end-to-playback-ms', performance.now() - turnEnded);
           this.update({ state: 'speaking', stance: reply.stance, intensity: reply.intensity, seed: crypto.getRandomValues(new Uint32Array(1))[0], reply: reply.reply, message: 'Speaking. Interrupt whenever you need.' });
         });
         if (!current()) return;
@@ -128,15 +135,19 @@ export class Conversation {
     this.update({ state: 'interrupted', stance: 'attentive', intensity: .2, reply: '', message: this.view.muted ? 'Response stopped. Microphone muted.' : 'Response stopped. Still listening.' });
   }
   end = () => {
+    const wasEnded = this.view.ended;
+    const hadSession = this.view.active || this.view.starting;
+    const frozen = { stance: this.view.stance, intensity: this.view.intensity, seed: this.view.seed };
     const epoch = ++this.epoch;
     const sessionId = this.sessionId;
     this.clearRawBuffers();
+    clearTimings();
     this.sessionId = null;
     this.speechPending = false;
     this.playback.close();
     this.capture.stop();
     clearTimeout(this.expiry);
-    this.update({ ...initial(), message: 'Session ended. Microphone off; local conversation cleared.' });
+    this.update(hadSession ? { ...initial(), ...frozen, ended: true, message: 'Session ended. Microphone off; local conversation cleared.' } : { ...initial(), ended: wasEnded });
     if (sessionId) void this.transport.end(sessionId).catch(() => {
       if (epoch !== this.epoch) return;
       this.update({ message: 'Microphone and playback stopped locally. Backend disconnect was not confirmed; close the app to clear its context.' });

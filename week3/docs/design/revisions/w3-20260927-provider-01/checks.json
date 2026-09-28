@@ -1,0 +1,8 @@
+{
+  "syntheticInput": true,
+  "microphoneUsed": false,
+  "maxAttemptedTurns": 2,
+  "voiceListeningJudgment": "Not performed",
+  "failure": "Expected values to be strictly equal:\n\nfalse !== true\n",
+  "result": "Failed; no automatic provider retry."
+}

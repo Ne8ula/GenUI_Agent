@@ -3,6 +3,15 @@ import { encodeWav, SpeechGate } from '../src/voice/speech-gate';
 const frame = (level: number) => new Float32Array(320).fill(level);
 
 describe('bounded local speech detection', () => {
+  it('does not invalidate a response for a 100ms noise burst', () => {
+    const onset = vi.fn(); const complete = vi.fn(); const gate = new SpeechGate(onset, complete);
+    for (let i = 0; i < 5; i++) gate.push(frame(.08));
+    for (let i = 0; i < 40; i++) gate.push(frame(0));
+    expect(onset).not.toHaveBeenCalled(); expect(complete).not.toHaveBeenCalled();
+    for (let i = 0; i < 8; i++) gate.push(frame(.08));
+    for (let i = 0; i < 40; i++) gate.push(frame(0));
+    expect(onset).toHaveBeenCalledTimes(1); expect(complete).toHaveBeenCalledTimes(1);
+  });
   it('ignores silence and preserves pre-roll before confirmed onset', () => {
     const onset = vi.fn(); const complete = vi.fn(); const gate = new SpeechGate(onset, complete);
     for (let i = 0; i < 50; i++) gate.push(frame(0));

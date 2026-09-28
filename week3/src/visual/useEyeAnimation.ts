@@ -10,10 +10,11 @@
  * spring's velocity, is never restarted by a retarget
  * (week3/DESIGN.md#6: "don't reset animation clock").
  */
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { DPR_CAP } from "./constants";
 import { advanceRuntime, buildFrame, createAnimationRuntime, type EyeStageProps } from "./runtime";
 import { drawEye } from "./render";
+import { createEyeMotion, pointEye, restEye, stepEyeMotion } from './eye-interaction';
 
 export type { EyeStageProps };
 
@@ -22,7 +23,11 @@ export function useEyeAnimation(props: EyeStageProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
-  const runtimeRef = useRef(createAnimationRuntime());
+  const [failed, setFailed] = useState(false);
+  const runtimeRef = useRef<ReturnType<typeof createAnimationRuntime> | null>(null);
+  runtimeRef.current ??= createAnimationRuntime();
+  const motionRef = useRef(createEyeMotion());
+  const frameCount = useRef(0);
   const propsRef = useRef(props);
   propsRef.current = props;
 
@@ -31,9 +36,20 @@ export function useEyeAnimation(props: EyeStageProps) {
     const canvas = canvasRef.current;
     if (!ctx || !canvas) return;
     const currentProps = propsRef.current;
-    advanceRuntime(runtimeRef.current, currentProps, dt);
-    const frame = buildFrame(runtimeRef.current, currentProps);
-    drawEye(ctx, canvas.width, canvas.height, frame);
+    const drawStart = performance.now();
+    try {
+      advanceRuntime(runtimeRef.current!, currentProps, dt);
+      const frame = buildFrame(runtimeRef.current!, currentProps);
+      const interaction = stepEyeMotion(motionRef.current, currentProps.active ? dt : 0, frame.timeSec, currentProps.reducedMotion);
+      if (import.meta.env.DEV && location.search.includes('fixture')) canvas.dataset.eyePose = JSON.stringify(interaction);
+      drawEye(ctx, canvas.width, canvas.height, frame, interaction);
+      if (import.meta.env.DEV && location.search.includes('fixture')) {
+        canvas.dataset.frameCount = String(++frameCount.current);
+        canvas.dataset.drawMs = String(performance.now() - drawStart);
+      }
+    } catch {
+      setFailed(true);
+    }
   }, []);
 
   // Canvas context + resize handling. Runs once per mount.
@@ -42,11 +58,12 @@ export function useEyeAnimation(props: EyeStageProps) {
     const container = containerRef.current;
     if (!canvas || !container) return undefined;
     ctxRef.current = canvas.getContext("2d");
+    if (!ctxRef.current) { setFailed(true); return; }
 
     function resize() {
       if (!canvas || !container) return;
       const rect = container.getBoundingClientRect();
-      const ratio = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+      const ratio = Math.min(window.devicePixelRatio || 1, DPR_CAP, 1600 / Math.max(1, rect.width), 1000 / Math.max(1, rect.height));
       const nextWidth = Math.max(1, Math.round(rect.width * ratio));
       const nextHeight = Math.max(1, Math.round(rect.height * ratio));
       if (canvas.width !== nextWidth) canvas.width = nextWidth;
@@ -68,18 +85,47 @@ export function useEyeAnimation(props: EyeStageProps) {
     };
   }, [renderOnce]);
 
+  useEffect(() => {
+    const track = (event: PointerEvent) => {
+      if (!propsRef.current.active || propsRef.current.reducedMotion) return;
+      const rect = canvasRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      pointEye(motionRef.current,
+        (event.clientX - rect.left - rect.width / 2) / (innerWidth * .32) * .145,
+        -(event.clientY - rect.top - rect.height / 2) / (innerHeight * .28) * .075);
+    };
+    const rest = () => restEye(motionRef.current);
+    const leave = (event: PointerEvent) => { if (!event.relatedTarget) rest(); };
+    window.addEventListener('pointermove', track, { passive: true });
+    window.addEventListener('pointerout', leave);
+    window.addEventListener('blur', rest);
+    return () => {
+      window.removeEventListener('pointermove', track);
+      window.removeEventListener('pointerout', leave);
+      window.removeEventListener('blur', rest);
+    };
+  }, []);
+
   // Continuous animation loop, only while active and not reduced-motion.
   useEffect(() => {
     if (!props.active || props.reducedMotion) return undefined;
     let frameHandle = 0;
     let disposed = false;
     let last = performance.now();
+    let lastRendered = last;
+    let accumulated = 0;
 
     function tick(now: number) {
       if (disposed) return;
-      const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
+      accumulated += Math.max(0, (now - last) / 1000);
       last = now;
-      renderOnce(dt);
+      // Match the accepted Week 1 draw cap; avoid unbounded CPU work on 144Hz displays.
+      if (!document.hidden && accumulated >= 1 / 45) {
+        const dt = Math.min(0.05, Math.max(0.001, (now - lastRendered) / 1000));
+        accumulated %= 1 / 45;
+        lastRendered = now;
+        renderOnce(dt);
+      }
       frameHandle = requestAnimationFrame(tick);
     }
 
@@ -103,5 +149,6 @@ export function useEyeAnimation(props: EyeStageProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.state, props.stance, props.intensity, props.seed, props.reducedMotion, props.active, renderOnce]);
 
+  if (failed) throw new Error('Eye rendering unavailable');
   return { canvasRef, containerRef };
 }

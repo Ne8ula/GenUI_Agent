@@ -30,15 +30,20 @@ export function normalizeWeights(w: PaletteWeights): PaletteWeights {
   };
 }
 
-function hexToRgb(hex: string): [number, number, number] {
-  const n = parseInt(hex.slice(1), 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+function colorToRgb(color: string): [number, number, number] {
+  if (/^#[0-9a-f]{6}$/i.test(color)) {
+    const n = parseInt(color.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  const match = /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.exec(color);
+  if (match) return [Number(match[1]), Number(match[2]), Number(match[3])];
+  throw new Error('Unsupported authored color');
 }
 
 export function mixHex(a: string, b: string, t: number): string {
   const clampedT = Math.min(1, Math.max(0, t));
-  const [ar, ag, ab] = hexToRgb(a);
-  const [br, bg, bb] = hexToRgb(b);
+  const [ar, ag, ab] = colorToRgb(a);
+  const [br, bg, bb] = colorToRgb(b);
   const r = Math.round(ar + (br - ar) * clampedT);
   const g = Math.round(ag + (bg - ag) * clampedT);
   const b2 = Math.round(ab + (bb - ab) * clampedT);
@@ -58,7 +63,7 @@ export function blendWeightedColor(w: PaletteWeights): string {
   let g = 0;
   let b = 0;
   for (const [key, hex] of entries) {
-    const [hr, hg, hb] = hexToRgb(hex);
+    const [hr, hg, hb] = colorToRgb(hex);
     const weight = n[key];
     r += hr * weight;
     g += hg * weight;
@@ -67,9 +72,8 @@ export function blendWeightedColor(w: PaletteWeights): string {
   return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
 }
 
-export function withAlpha(rgb: string, alpha: number): string {
-  const match = /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.exec(rgb);
-  if (!match) return rgb;
+export function withAlpha(color: string, alpha: number): string {
+  const [r, g, b] = colorToRgb(color);
   const a = Math.min(1, Math.max(0, alpha));
-  return `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${a})`;
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
 }

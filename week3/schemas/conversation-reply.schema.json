@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/week3/conversation-reply.schema.json",
+  "title": "EVA Week 3 conversation reply",
+  "description": "Closed model output for one short conversational response. Rust applies additional word, sentence, plain-text, provenance, and factual-scope policy before speech.",
+  "$comment": "Week 3 live turns are a bounded short-form exception to the extended-narration length target: at most two sentences and 60 spoken words, with only backend-authored approved delivery cues.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reply", "stance", "intensity", "delivery", "scope"],
+  "properties": {
+    "reply": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 480
+    },
+    "stance": {
+      "type": "string",
+      "enum": ["attentive", "comforting", "shared_joy", "congratulatory", "supportive"]
+    },
+    "intensity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "delivery": {
+      "type": "string",
+      "enum": ["neutral", "warm", "upbeat"]
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["conversation", "external_facts"]
+    }
+  }
+}

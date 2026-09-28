@@ -16,6 +16,20 @@ function setup() {
 }
 
 describe('conversation cancellation', () => {
+  it('denied microphone permission never starts a backend session', async () => {
+    const s = setup(); s.capture.start = vi.fn(async () => { throw new Error('NotAllowedError'); });
+    await s.flow.start(); expect(s.transport.start).not.toHaveBeenCalled();
+    expect(s.capture.stop).toHaveBeenCalled(); expect(s.playback.close).toHaveBeenCalled();
+    expect(s.flow.snapshot().state).toBe('unavailable'); expect(s.flow.snapshot().active).toBe(false);
+  });
+  it('Mute during playback lets the existing reply complete and commit', async () => {
+    const s = setup(); const played = deferred<void>();
+    s.playback.play = vi.fn(async (_reply, started) => { started(); await played.promise; });
+    await s.flow.start(); s.onset(); s.utterance(); await tick(); s.pending.resolve(s.reply()); await tick();
+    s.flow.mute(); played.resolve(); await tick();
+    expect(s.transport.delivered).toHaveBeenCalledWith('session1', 1);
+    expect(s.flow.snapshot().muted).toBe(true); s.flow.end();
+  });
   it('starts mic only after explicit start and dispatches after local speech end', async () => {
     const s = setup(); expect(s.capture.start).not.toHaveBeenCalled();
     await s.flow.start(); s.onset(); expect(s.transport.turn).not.toHaveBeenCalled();
@@ -24,7 +38,7 @@ describe('conversation cancellation', () => {
     expect(s.transport.delivered).toHaveBeenCalledWith('session1', 1); s.flow.end();
   });
   it('stops locally on onset before waiting for backend cancellation', async () => {
-    const s = setup(); const cancel = deferred<void>(); s.transport.advance = vi.fn(() => cancel.promise);
+    const s = setup(); const cancel = deferred<void>(); s.transport.advance = vi.fn((_id, generation) => generation === 0 ? Promise.resolve() : cancel.promise);
     await s.flow.start(); s.onset(); expect(s.playback.stop).toHaveBeenCalledTimes(1);
     expect(s.flow.snapshot().state).toBe('listening'); s.flow.end(); cancel.resolve();
   });
@@ -57,6 +71,19 @@ describe('conversation cancellation', () => {
     const s = setup(); await s.flow.start(); s.onset(); s.utterance(); s.utterance(); await tick();
     expect(s.transport.turn).toHaveBeenCalledTimes(1); s.pending.resolve({ ...s.reply(), sessionId: 'wrong' }); await tick();
     expect(s.playback.play).not.toHaveBeenCalled(); s.flow.end();
+  });
+  it('clears mutable in-flight raw audio immediately on End, even if a provider hangs', async () => {
+    const s = setup(); await s.flow.start(); s.onset(); s.utterance(); await tick();
+    const wav = vi.mocked(s.transport.turn).mock.calls[0][2];
+    expect([...wav]).toEqual([1, 2]); s.flow.end(); expect([...wav]).toEqual([0, 0]);
+  });
+  it('an old permission completion cannot stop a newly started microphone', async () => {
+    const s = setup(); const old = deferred<void>();
+    s.capture.start = vi.fn().mockImplementationOnce(() => old.promise).mockResolvedValue(undefined);
+    const first = s.flow.start(); await tick(); s.flow.end();
+    await s.flow.start(); const stops = vi.mocked(s.capture.stop).mock.calls.length;
+    old.resolve(); await first;
+    expect(s.capture.stop).toHaveBeenCalledTimes(stops); expect(s.flow.snapshot().active).toBe(true); s.flow.end();
   });
   it('expires sessions locally at ten minutes', async () => {
     vi.useFakeTimers(); const s = setup(); await s.flow.start(); vi.advanceTimersByTime(600_000);

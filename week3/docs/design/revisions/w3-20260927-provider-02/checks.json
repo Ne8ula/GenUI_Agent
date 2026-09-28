@@ -1,0 +1,81 @@
+{
+  "syntheticInput": true,
+  "microphoneUsed": false,
+  "maxAttemptedTurns": 2,
+  "voiceListeningJudgment": "Not performed",
+  "initialStatus": {
+    "ready": true,
+    "missing": [],
+    "providers": {
+      "stt": "openai/gpt-4o-mini-transcribe-2025-12-15",
+      "reply": "openai/gpt-4.1-mini-2025-04-14",
+      "tts": "elevenlabs/eleven_v3"
+    },
+    "remainingTurns": 2
+  },
+  "unknownFieldsRejected": true,
+  "first": {
+    "state": "listening",
+    "stance": "congratulatory",
+    "states": [
+      {
+        "state": "idle",
+        "at": 23977.70000000298
+      },
+      {
+        "state": "listening",
+        "at": 24014.79999999702
+      },
+      {
+        "state": "processing",
+        "at": 24015.09999999404
+      },
+      {
+        "state": "speaking",
+        "at": 29938.79999999702
+      },
+      {
+        "state": "listening",
+        "at": 37058.5
+      }
+    ],
+    "timing": [
+      {
+        "kind": "detected-onset-to-local-stop-ms",
+        "ms": 0
+      },
+      {
+        "kind": "turn-end-to-playback-ms",
+        "ms": 5923.70000000298
+      }
+    ],
+    "status": {
+      "ready": true,
+      "missing": [],
+      "providers": {
+        "stt": "openai/gpt-4o-mini-transcribe-2025-12-15",
+        "reply": "openai/gpt-4.1-mini-2025-04-14",
+        "tts": "elevenlabs/eleven_v3"
+      },
+      "remainingTurns": 1
+    }
+  },
+  "stopped": {
+    "state": "interrupted",
+    "eventsAfterStop": [
+      {
+        "state": "listening",
+        "at": 37058.5
+      },
+      {
+        "state": "processing",
+        "at": 37065.89999999106
+      },
+      {
+        "state": "interrupted",
+        "at": 37085
+      }
+    ]
+  },
+  "result": "First synthetic-input native STT/reply/TTS/playback turn completed; second turn cancelled after budget consumption. Not hands-free or acoustic evidence."
+}

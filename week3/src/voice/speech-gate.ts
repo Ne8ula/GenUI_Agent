@@ -24,7 +24,7 @@ export class SpeechGate {
     }
     if (!this.speaking) {
       this.pre.push(frame.slice());
-      while (this.pre.reduce((n, c) => n + c.length, 0) > this.sampleRate * .24) this.pre.shift()?.fill(0);
+      while (this.pre.reduce((n, c) => n + c.length, 0) > this.sampleRate * .32) this.pre.shift()?.fill(0);
       this.hot = hot ? this.hot + ms : 0;
       if (this.hot < CONFIRMED_VOICE_MS) return;
       this.speaking = true;

@@ -1,0 +1,23 @@
+{
+  "native": true,
+  "webView": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0",
+  "viewport": null,
+  "status": {
+    "ready": false,
+    "missing": [
+      "ELEVENLABS_VOICE_ID",
+      "EVA_W3_MAX_TURNS"
+    ],
+    "providers": {
+      "stt": "openai/gpt-4o-mini-transcribe-2025-12-15",
+      "reply": "openai/gpt-4.1-mini-2025-04-14",
+      "tts": "elevenlabs/eleven_v3"
+    },
+    "remainingTurns": 0
+  },
+  "startFailure": "w3_not_ready",
+  "providersCalled": 0,
+  "realMicActivated": false,
+  "scope": "Native WebView launch, actual Rust IPC readiness and start fail-closed, visible controls. No live voice or acoustic claim.",
+  "softwareRenderingRequested": true
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-runtime",
+  "description": "The local Week 3 renderer may invoke only the bounded conversation lifecycle; provider routes, credentials, model settings, speech text, and voice settings remain Rust-owned.",
+  "local": true,
+  "windows": ["main"],
+  "permissions": []
+}

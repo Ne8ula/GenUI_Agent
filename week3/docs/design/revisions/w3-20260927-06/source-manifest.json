@@ -1,0 +1,248 @@
+{
+  "revision": "w3-20260927-06",
+  "base": "fc33b6bb284c451b1f46e2acb625a53771b7c233",
+  "codeDigest": "9513cf03f9fcd78e1082bafa89f7b79ef1f0ed6f34cd6c267fc43eabbb4eba11",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "d90fe94cbec55c6cdb6372dd5e1bfadecf91769f96ca8eb63589691ec8cb221b"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "e5c0720f0e38380b8af6ee94f2ba719ce48266772f2713cdd833c20a01d8a2bf"
+    },
+    {
+      "path": "package.json",
+      "sha256": "750fb8318ed73985041285c009eaf6ede0aba20161972eb5f545cab1ec78c0b8"
+    },
+    {
+      "path": "public/licenses/ibm-plex-mono.txt",
+      "sha256": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f"
+    },
+    {
+      "path": "public/licenses/ibm-plex-sans.txt",
+      "sha256": "d0283623ef57e722fd0eb688a8041589670c608ab780cd3612d06ba6f153d3fd"
+    },
+    {
+      "path": "public/licenses/space-grotesk.txt",
+      "sha256": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943"
+    },
+    {
+      "path": "public/microphone-worklet.js",
+      "sha256": "b25ef0a9c57d872b4e8a05ec31877328fe598a5aab723e0b8d7012d889332d10"
+    },
+    {
+      "path": "schemas/conversation-reply.schema.json",
+      "sha256": "9ca677f51a432d3089f815c88b37ff21b9911ac13a6e5f84a8c41393b5e76000"
+    },
+    {
+      "path": "scripts/browser-smoke.mjs",
+      "sha256": "ea54cb32ffb843b81c17782baa4d232bdb6fd21761286e7ce456db69aa919791"
+    },
+    {
+      "path": "scripts/capture.mjs",
+      "sha256": "54456ee2ad864491555d006d0f4e3a06cc1bce741fb8c021925258bbfc047b6d"
+    },
+    {
+      "path": "scripts/desktop.mjs",
+      "sha256": "cbbd750ddde690033a6499236debe5d166b9e6af9c5869ed30be40f1fe070656"
+    },
+    {
+      "path": "scripts/native-smoke.mjs",
+      "sha256": "3c88168a91be0d31367ff426a5f29070b4f0da2b0e34bdf4cf043a9d853d4a4b"
+    },
+    {
+      "path": "scripts/native-visual.mjs",
+      "sha256": "371e4c57aa8b27c756f387d5a8b2e3d8cc447a5c53d7f6b7e4e1ec71c6900457"
+    },
+    {
+      "path": "scripts/provider-check.mjs",
+      "sha256": "2aea68c7d4f6e07a6449af0180ecd1008cb3d713819dccf58bdbafd08cf52ee1"
+    },
+    {
+      "path": "scripts/source-eye-check.mjs",
+      "sha256": "69a55929f925982e505fbc63fd3a89af3bc9f0f3b09aa73108bf6d5a12ab0278"
+    },
+    {
+      "path": "src-tauri/Cargo.lock",
+      "sha256": "189598f3c3903c46ec9689eb8772ade128a22a26089947d991c3be36a48d623c"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "sha256": "37ce0c05dd2637d50cf1e7f6f719968e04d74712b451e75629784668bbf676d5"
+    },
+    {
+      "path": "src-tauri/build.rs",
+      "sha256": "487059eaf8a947b80f20a9aacac038a5047b2ad69d2401b827376c67d6fe847f"
+    },
+    {
+      "path": "src-tauri/capabilities/default.json",
+      "sha256": "dcca885c860c41a3694093ed4dc4350fc874eacbac9e288c3f6338aa562b7f13"
+    },
+    {
+      "path": "src-tauri/icons/icon.ico",
+      "sha256": "e38ca88e1d5490f3dcbc3c3fa525f7fcb7b80fff3cb2f3a4eb1b2d018c0915c1"
+    },
+    {
+      "path": "src-tauri/src/conversation.rs",
+      "sha256": "7a67167d4807c25c2c839292ebebe9072dc54ad77b07a90ec314c045f2c65dc0"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "4e19bc6d3dead47c0a1ad15c2980567652821cb9dbcf45374d7f303ada47895d"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "sha256": "cd1e828bf60dd51782b489c34efa7c06a3ad417e57062b58c1c76f543a3aebc2"
+    },
+    {
+      "path": "src-tauri/src/protocol.rs",
+      "sha256": "c4f6b705a982be71540b493e8276da43bfcc4fd4d55e8d16b1df82abdb047498"
+    },
+    {
+      "path": "src-tauri/src/providers.rs",
+      "sha256": "8837d9a7feea6c71c0b5e48b1201cffde3a9f3115c8300dbd4cc3b78529dd800"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "sha256": "3921fe971d3bb5f4eef5b58a3344c6c5d5a967bf85bf99a97d384e5bdbe987d4"
+    },
+    {
+      "path": "src/App.tsx",
+      "sha256": "cff22b52658510e0ed10589e4ee9a0bfd43af834dae9f84446dae563f2397b28"
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "6ffe860e4d896ece11f7c075cee6accac505b614e27a5461bd94eaf2dccd6880"
+    },
+    {
+      "path": "src/style.css",
+      "sha256": "a5b198f81db595df731abf460f23cd8b3157a8118747c76681278020837959c8"
+    },
+    {
+      "path": "src/visual/EyeStage.tsx",
+      "sha256": "a9033f2e128ea061408ffe8199ff5c07079d532240bfe3ff5e99d95c801ed216"
+    },
+    {
+      "path": "src/visual/constants.ts",
+      "sha256": "1be8fc134ab6797e64fc3aee577a872c902869d856e59caeca6128ce692893e6"
+    },
+    {
+      "path": "src/visual/digital-material.ts",
+      "sha256": "7d5cb5cb04c4df6967a4f5746ca13eb21f1f0dde31b9c889f1b4a9ef4e9baa17"
+    },
+    {
+      "path": "src/visual/eye-interaction.ts",
+      "sha256": "9d36894fd531990be7a7dec824de6199e11464e5c448a754d93d39046483ec35"
+    },
+    {
+      "path": "src/visual/eye-mesh.ts",
+      "sha256": "f58d9d0b22708cb81626db638f0a64f574a289a7de30b20347404c8f3f322b01"
+    },
+    {
+      "path": "src/visual/grammar.ts",
+      "sha256": "a0965d80c9fe634712eb1c6f1ba422cf86bc8aebc6032668452331755ab2fb82"
+    },
+    {
+      "path": "src/visual/palette.ts",
+      "sha256": "d328d2dde58939475ce94513a67582768e65aabb4b4e2d881605f16342db4c72"
+    },
+    {
+      "path": "src/visual/render.ts",
+      "sha256": "1295504b8bc9fa7332cbe55c43230dffbea1adedfa6b2eca808b43832024bba9"
+    },
+    {
+      "path": "src/visual/rng.ts",
+      "sha256": "46ebd2ab700b3f1eeb1c01b64c8588bf7a1be545b37c9a268573ba4487c44e26"
+    },
+    {
+      "path": "src/visual/runtime.ts",
+      "sha256": "890e9eb1b3c767a60b4b653a25bafae6dfc3f1962791491985f47a36e9a0da1f"
+    },
+    {
+      "path": "src/visual/spring.ts",
+      "sha256": "624846b5b331cffbe6f20e01272a5cea688a4e136704f1b504a743b08b64bc17"
+    },
+    {
+      "path": "src/visual/useEyeAnimation.ts",
+      "sha256": "c145cf7cd9a88fd9fbc1d191cc7a16983eef3f0d9323b62cf1a1e1b532cddc13"
+    },
+    {
+      "path": "src/visual/week1-eye.ts",
+      "sha256": "798abaaa665a5958470e9f1c86494e8aa526e518cb4e9915502164c623c7b09f"
+    },
+    {
+      "path": "src/voice/contracts.ts",
+      "sha256": "7c0d961bc12f3045acf8ea1231091e06a5ef1a9135c48c1a73c9df801a367890"
+    },
+    {
+      "path": "src/voice/conversation.ts",
+      "sha256": "99c4eca73b0edeaf8b6e1c0d7a313a6e0797e982563762f00b7a4adf525d86b9"
+    },
+    {
+      "path": "src/voice/microphone.ts",
+      "sha256": "407ea32d8c75c7fd0519f939ec9b3511b7afeb70338b1755fc6d2778a40d3c17"
+    },
+    {
+      "path": "src/voice/playback.ts",
+      "sha256": "6ccc38202ba74e655cfc4f55aab956900076419452cd1a059f3b4297ffce0396"
+    },
+    {
+      "path": "src/voice/speech-gate.ts",
+      "sha256": "76bfe34be0cfbc406bbac427d241aa8f9c5b94e6ea8d0561060712d3de9ff962"
+    },
+    {
+      "path": "src/voice/timing.ts",
+      "sha256": "7492ba3929de6928872f80d32eb8ed2b5ae8fb8d7b29fc3870967d505fecd35f"
+    },
+    {
+      "path": "src/voice/transport.ts",
+      "sha256": "7891dca64e84d2591b761b50038a058255ce18605dd6dfdc81fb3e6a8dbeaa6b"
+    },
+    {
+      "path": "tests/conversation.test.ts",
+      "sha256": "1506a20ff64965a27792c5ec59977e6204f0115a488bc24a477715cfe4c33175"
+    },
+    {
+      "path": "tests/digital-material.test.ts",
+      "sha256": "821b0f109ae18ef11742b35a9256d97a1987ecaf895f26717c29d2cbe0d38c38"
+    },
+    {
+      "path": "tests/eye-interaction.test.ts",
+      "sha256": "4cb5ea06d40904c1912d1188d180610c476aa74f18b3b0eed17ece6f215442ec"
+    },
+    {
+      "path": "tests/eye-mesh.test.ts",
+      "sha256": "df039d9bd539dc385a7f0b5cc8c5a19c9ab61287f28dfab6ba2c28ef6decf385"
+    },
+    {
+      "path": "tests/palette.test.ts",
+      "sha256": "3769ec9e295bfd8b080c8b541da497c503818825a2a0f8ea9da9f1d240255d63"
+    },
+    {
+      "path": "tests/playback.test.ts",
+      "sha256": "b277abc47c105a75bc058cd28366649fad7f7a5cd1deead58f2cfcda80de30ca"
+    },
+    {
+      "path": "tests/speech-gate.test.ts",
+      "sha256": "09cd40c281c7af0b9c3edaebb864fcb4686d63f15479161a3ef624bad55f6238"
+    },
+    {
+      "path": "tests/visual.test.ts",
+      "sha256": "23456d8636e8023a21950f8c94c6eb0ea8ef2c32bda2e152ad809e6e2682a01a"
+    },
+    {
+      "path": "tests/week1-eye.test.ts",
+      "sha256": "9158f52b18edee142542d39ac82e49ff530a40e72dda6c5384a871a7f1fc49f9"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "a5a1ae4a8706a053e9e3a546584f22c0a00b15eb4a6f041e09df9ca7becf296f"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "96fc457b52e8762d81ba9c9cf3a4a523eac1d4261f5edd72c0be51bb2fd60416"
+    }
+  ],
+  "note": "Uncommitted source identification; no environment or private credentials included. Documentation and captures excluded from the code digest."
+}

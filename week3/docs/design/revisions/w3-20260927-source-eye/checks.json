@@ -1,0 +1,25 @@
+{
+  "browser": "153.0.8010.53",
+  "viewport": "1000x700",
+  "dpr": 1,
+  "raster": "280x140",
+  "source": "week1/apps/desktop/src/SignalEye.tsx",
+  "timing": [
+    {
+      "pose": "rest",
+      "rasterMs": 71.90000000596046,
+      "landmarks": 19
+    },
+    {
+      "pose": "left",
+      "rasterMs": 40.29999999701977,
+      "landmarks": 19
+    },
+    {
+      "pose": "right",
+      "rasterMs": 41.79999999701977,
+      "landmarks": 19
+    }
+  ],
+  "note": "Three individual CPU raster durations, not frame-rate or input-to-photon measurements. No microphone, provider calls or owner acceptance."
+}

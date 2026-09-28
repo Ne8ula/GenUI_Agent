@@ -1,0 +1,18 @@
+{
+  "display": {
+    "width": 1180,
+    "height": 780,
+    "dpr": 1,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0"
+  },
+  "intervals": {
+    "count": 180,
+    "median": 6.900000000000091,
+    "p95": 13.900000000000091,
+    "max": 14
+  },
+  "softwareRenderingRequested": true,
+  "fixtureOnly": true,
+  "providerCalls": 0,
+  "note": "Actual native WebView scheduling with a synthetic processing fixture. No microphone, live generation load, acoustic measurements or GPU benchmark."
+}

@@ -37,6 +37,7 @@ export interface Playback {
   close(): void;
 }
 export interface SessionView {
+  ended: boolean;
   active: boolean;
   starting: boolean;
   muted: boolean;

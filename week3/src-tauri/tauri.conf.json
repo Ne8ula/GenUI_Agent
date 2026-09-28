@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "EVA Week 3",
+  "version": "0.1.0",
+  "identifier": "dev.eva.week3",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1430",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "EVA · Conversational eye",
+        "width": 1180,
+        "height": 780,
+        "minWidth": 760,
+        "minHeight": 560,
+        "resizable": true,
+        "maximizable": true,
+        "minimizable": true,
+        "focus": true,
+        "focusable": true,
+        "visible": true,
+        "decorations": true,
+        "transparent": false,
+        "alwaysOnTop": false,
+        "skipTaskbar": false,
+        "shadow": true,
+        "dragDropEnabled": false,
+        "additionalBrowserArgs": "--disable-gpu",
+        "backgroundColor": "#111316"
+      }
+    ],
+    "security": {
+      "capabilities": ["main-runtime"],
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src ipc: http://ipc.localhost; media-src 'self' data: blob:; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'",
+      "devCsp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src ipc: http://ipc.localhost http://localhost:1430 ws://localhost:1430; media-src 'self' data: blob:; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'"
+    }
+  },
+  "bundle": {
+    "active": false
+  }
+}

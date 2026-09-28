@@ -8,6 +8,8 @@ You speak naturally; EVA answers in a human-sounding voice while its eye becomes
 
 Companion: [seven-day implementation plan](PLANNING.md).
 
+Later owner clarification (2026-09-27): retain **Week 1's actual eye silhouette, square pupil, dithering and cursor responsiveness**. Transform that eye itself into distinct related forms, with broader colors during responses and original red at rest—not a replacement orb. See the [clarification and reference-effects record](docs/design/REFERENCE_REFINEMENT.md) and [current implementation/evidence](README.md). This refines the proposal below; visual acceptance remains pending.
+
 ## 2. Confirmed direction and scope
 
 The owner requested a Week 3 pivot after feedback that the weather/dashboard direction remained too two-dimensional. Confirmed choices:

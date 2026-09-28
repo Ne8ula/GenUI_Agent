@@ -1,0 +1,116 @@
+{
+  "revision": "w3-20260927-04",
+  "fixtures": [
+    {
+      "stance": "attentive",
+      "variation": 1,
+      "seed": 315,
+      "path": "attentive-1.png"
+    },
+    {
+      "stance": "attentive",
+      "variation": 2,
+      "seed": 452,
+      "path": "attentive-2.png"
+    },
+    {
+      "stance": "attentive",
+      "variation": 3,
+      "seed": 589,
+      "path": "attentive-3.png"
+    },
+    {
+      "stance": "comforting",
+      "variation": 1,
+      "seed": 863,
+      "path": "comforting-1.png"
+    },
+    {
+      "stance": "comforting",
+      "variation": 2,
+      "seed": 1000,
+      "path": "comforting-2.png"
+    },
+    {
+      "stance": "comforting",
+      "variation": 3,
+      "seed": 1137,
+      "path": "comforting-3.png"
+    },
+    {
+      "stance": "shared_joy",
+      "variation": 1,
+      "seed": 1411,
+      "path": "shared_joy-1.png"
+    },
+    {
+      "stance": "shared_joy",
+      "variation": 2,
+      "seed": 1548,
+      "path": "shared_joy-2.png"
+    },
+    {
+      "stance": "shared_joy",
+      "variation": 3,
+      "seed": 1685,
+      "path": "shared_joy-3.png"
+    },
+    {
+      "stance": "congratulatory",
+      "variation": 1,
+      "seed": 1959,
+      "path": "congratulatory-1.png"
+    },
+    {
+      "stance": "congratulatory",
+      "variation": 2,
+      "seed": 2096,
+      "path": "congratulatory-2.png"
+    },
+    {
+      "stance": "congratulatory",
+      "variation": 3,
+      "seed": 2233,
+      "path": "congratulatory-3.png"
+    },
+    {
+      "stance": "supportive",
+      "variation": 1,
+      "seed": 2507,
+      "path": "supportive-1.png"
+    },
+    {
+      "stance": "supportive",
+      "variation": 2,
+      "seed": 2644,
+      "path": "supportive-2.png"
+    },
+    {
+      "stance": "supportive",
+      "variation": 3,
+      "seed": 2781,
+      "path": "supportive-3.png"
+    }
+  ],
+  "browser": "153.0.8010.53",
+  "viewport": "1400x900",
+  "deviceScaleFactor": 1,
+  "fixturesOnly": true,
+  "providersCalled": 0,
+  "timing": {
+    "samples": 180,
+    "median": 6.900000000001455,
+    "p95": 7.100000000002183,
+    "max": 7.100000000002183,
+    "note": "Headless Chrome rAF intervals while a synthetic processing fixture runs with video recording. Not native, GPU, voice-load or acoustic latency measurements."
+  },
+  "reducedStatic": true,
+  "endStatic": true,
+  "noOverflow": true,
+  "browserLiveDisabled": true,
+  "keyboardFocus": {
+    "tag": "SUMMARY",
+    "visible": true
+  },
+  "errors": []
+}

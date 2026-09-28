@@ -7,9 +7,14 @@
     "dev": "vite --host 127.0.0.1 --port 1430 --strictPort",
     "build": "tsc --noEmit && vite build",
     "test": "vitest run",
-    "desktop": "tauri dev",
+    "desktop": "node scripts/desktop.mjs",
     "rust:test": "cargo test --manifest-path src-tauri/Cargo.toml",
-    "capture": "node scripts/capture.mjs"
+    "capture": "node scripts/capture.mjs",
+    "smoke": "node scripts/browser-smoke.mjs",
+    "native:smoke": "node scripts/native-smoke.mjs",
+    "native:visual": "node scripts/native-visual.mjs",
+    "source:eye": "node scripts/source-eye-check.mjs",
+    "provider:check": "node scripts/provider-check.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",

@@ -42,15 +42,15 @@ export function App() {
       motion.removeEventListener('change', change);
     };
   }, [conversation]);
-  const active = fixture ? fixtureActive : view.active;
-  const state = fixture ? fixtureState : view.state;
+  const active = fixture ? fixtureActive : view.active || (!view.ended && view.state === 'idle');
+  const state = fixture ? fixtureState : view.muted && view.state === 'listening' ? 'idle' : view.state;
   return <main className="experience">
     <header className="masthead">
       <span className="wordmark">eva<span className="wordmark-dot">.</span></span>
       <div className="mic-status"><span className={`status-dot ${view.active && !view.muted ? 'is-live' : ''}`} />{view.starting ? 'Microphone permission pending' : view.active ? view.muted ? 'Microphone muted' : 'Microphone on' : 'Microphone off'}</div>
     </header>
-    {fixture && <aside className="fixture-banner">Synthetic visual fixture · no microphone, inference or speech playback</aside>}
-    <section className="presence" aria-label="Expressive eye; decorative interpretation, not emotion detection">
+    {fixture && <aside className="fixture-banner">Synthetic visual fixture · no microphone, inference or speech playback <a href="/">Conversation setup</a></aside>}
+    <section className="presence" data-seed={fixture ? seed : undefined} aria-label="Expressive eye; decorative interpretation, not emotion detection">
       {!visualFailed && <VisualBoundary onError={() => setVisualFailed(true)}>
         <EyeStage state={state} stance={fixture ? fixtureStance : view.stance} intensity={fixture ? .65 : view.intensity} seed={fixture ? seed : view.seed} reducedMotion={reduced} active={active} />
       </VisualBoundary>}
@@ -89,6 +89,7 @@ export function App() {
     <footer className="preferences">
       <button aria-pressed={captions} onClick={() => setCaptions(c => !c)}>Captions {captions ? 'on' : 'off'}</button>
       <button aria-pressed={reduced} onClick={() => setReduced(r => !r)}>Reduced motion {reduced ? 'on' : 'off'}</button>
+      {import.meta.env.DEV && !fixture && <a href="?fixture&state=processing">Visual rehearsal · no microphone</a>}
       <span>Week 3 · experimental conversation</span>
     </footer>
   </main>;
