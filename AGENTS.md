@@ -8,6 +8,10 @@ The owner reported the Week 1 demo successful. Its app, Rust backend, npm worksp
 
 Week 2's E1 revisable-weather work now lives under `week2/`. That includes the Vite/React app, the Rust/WASM particles, the quarantined Tauri shell, fixtures, schemas, the Weave exports, the E1 specification, the acceptance record and the revision evidence. Start with [week2/README.md](week2/README.md) and run its scripts with `npm --prefix week2 …`. E1 evidence belongs under `week2/docs/design/`. On the owner's 2026-09-27 instruction, redundant files were pruned: superseded iterations, raw recordings, dead code, quarantined frames and byte-identical duplicates, including duplicates in `week1/`. All of them are recoverable from commit `56f056d`. E1 owner acceptance remains pending, and this organization does not accept or start any phase.
 
+## Week 3 conversational-eye pivot (2026-09-27)
+
+The owner requested a separate [Week 3 design guide](week3/DESIGN.md) and [one-week demo plan](week3/PLANNING.md): a sculptural eye that transforms into abstract emotional responses during live, hands-free conversation with ElevenLabs speech and interruption. The target is a 1–2 minute full vertical slice, not another dashboard. For Week 3 only, this explicitly permits departure from DESIGN.md's visual vocabulary and weather-first presentation; retain architecture, privacy, cancellation, accessibility and acceptance boundaries. The guides are proposals, not implementation evidence or owner acceptance. Preserve Week 1 and Week 2. This pivot does not accept E1 or S0–S4, and does not authorize ComfyUI installation or inherit an earlier paid-generation allowance.
+
 ## Scope and source of truth
 
 This file governs development work in this repository. EVA's runtime specialists, permissions, and model routes are separate product mechanisms; do not confuse them with development agents.

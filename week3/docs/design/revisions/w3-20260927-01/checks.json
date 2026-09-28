@@ -1,0 +1,26 @@
+{
+  "revision": "w3-20260927-01",
+  "browser": "153.0.8010.53",
+  "viewport": "1400x900",
+  "deviceScaleFactor": 1,
+  "fixturesOnly": true,
+  "providersCalled": 0,
+  "timing": {
+    "samples": 180,
+    "median": 6.900000000001455,
+    "p95": 7.099999999998545,
+    "max": 7.19999999999709,
+    "note": "Headless Chrome rAF intervals while a synthetic processing fixture runs with video recording. Not native, GPU, voice-load or acoustic latency measurements."
+  },
+  "reducedStatic": true,
+  "endStatic": true,
+  "noOverflow": true,
+  "browserLiveDisabled": true,
+  "keyboardFocus": {
+    "tag": "SUMMARY",
+    "visible": true
+  },
+  "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+}
