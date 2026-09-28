@@ -1,4 +1,5 @@
 import { chromium } from '@playwright/test';
+import { browserOptions } from './browser-options.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
@@ -9,7 +10,7 @@ const directory = resolve('docs/design/revisions', revision);
 await mkdir(resolve('docs/design/revisions'), { recursive: true });
 // Refuse to overwrite an earlier rendition, including a rejected candidate.
 await mkdir(directory);
-const browser = await chromium.launch({ channel: 'chrome', headless: true });
+const browser = await chromium.launch(browserOptions());
 const context = await browser.newContext({ viewport: { width: 1400, height: 900 }, deviceScaleFactor: 1, recordVideo: { dir: directory, size: { width: 1400, height: 900 } } });
 const page = await context.newPage();
 const errors = [];

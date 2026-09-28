@@ -1,8 +1,11 @@
 import { chromium } from '@playwright/test';
+import { browserOptions } from './browser-options.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
-const dir = 'docs/design/revisions/w3-20260927-source-eye';
+const revision = process.env.EVA_CAPTURE_REVISION ?? 'w3-20260927-source-eye';
+if (!/^[a-z0-9-]+$/.test(revision)) throw new Error('Invalid evidence revision');
+const dir = `docs/design/revisions/${revision}`;
 await mkdir(dir);
-const browser = await chromium.launch({ channel: 'chrome', headless: true });
+const browser = await chromium.launch(browserOptions());
 try {
   const page = await browser.newPage({ viewport: { width: 1000, height: 700 }, deviceScaleFactor: 1 });
   await page.route('**/src/main.tsx', route => route.fulfill({ contentType: 'application/javascript', body: '' }));

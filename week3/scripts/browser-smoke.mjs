@@ -1,9 +1,10 @@
 import { chromium } from '@playwright/test';
+import { browserOptions } from './browser-options.mjs';
 import assert from 'node:assert/strict';
 
 // Hardware-free integration of the real controls, worklet and capture lifecycle.
 // Every provider method is replaced with a labeled in-memory test double.
-const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] });
+const browser = await chromium.launch({ ...browserOptions(), args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] });
 const context = await browser.newContext({ permissions: ['microphone'] });
 const page = await context.newPage();
 const errors = [];
