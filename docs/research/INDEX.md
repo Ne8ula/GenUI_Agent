@@ -9,7 +9,7 @@ Current direction, 2026-09-17: investigate what changes when the expressive role
 | [Artistic precedents](ARTISTIC_PRECEDENTS.md) | Specific works, action/response/time, direct observation versus description/inference, date checks |
 | [Independent-study proposal](GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md) | Candidate questions, recommendation, response-episode unit, feasible RtD/evaluation and confounds |
 | [Canonical design grammar](../../DESIGN.md) | Authored/model/data/user boundaries, temporal and visual vocabulary, synthetic weather/transit examples |
-| [E1 experiment](../design/experiments/E1_REVISABLE_WEATHER.md) | One proposed implementation scope, sequence, interventions, renderer comparison, evidence and acceptance |
+| [E1 experiment](../../week2/docs/design/experiments/E1_REVISABLE_WEATHER.md) | One proposed implementation scope, sequence, interventions, renderer comparison, evidence and acceptance |
 | [Decision log](DIRECTION_DECISIONS.md) | Owner direction, proposed refinements, retained boundaries, unresolved decisions |
 
 [PLANNING.md](../../PLANNING.md) remains the single scope/architecture plan. The successful [Week 1 archive](../../week1/README.md) is preserved. [Earlier document snapshots](history/2026-09-17-before-reframe/README.md), existing visual concepts, and exported artifacts are historical, not competing current instructions. No new phase is accepted or implementation started by these documents.

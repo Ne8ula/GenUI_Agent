@@ -9,7 +9,7 @@
 
 ## Review scenario and expected result
 
-Read the [research index](../../research/INDEX.md), [decision log](../../research/DIRECTION_DECISIONS.md), [canonical plan](../../../PLANNING.md), [design grammar](../../../DESIGN.md), [study proposal](../../research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md), and [E1 experiment](../experiments/E1_REVISABLE_WEATHER.md).
+Read the [research index](../../research/INDEX.md), [decision log](../../research/DIRECTION_DECISIONS.md), [canonical plan](../../../PLANNING.md), [design grammar](../../../DESIGN.md), [study proposal](../../research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md), and [E1 experiment](../../../week2/docs/design/experiments/E1_REVISABLE_WEATHER.md).
 
 Expected: one clear response-level research contribution; traceable academic/source evidence with limits; explicit A–G transfer decisions; synthetic weather/transit grammar; a bounded next implementation; separation from personal/exhibit/product tracks; and compatibility with Astra in Claude Code. History and authority boundaries remain intact.
 

@@ -51,4 +51,4 @@ Dates verified from institutional pages as of 2026-09-17:
 5. **Continuity:** the current response becomes the material for the next one. User placement, selection, and refusal survive the revision.
 6. **Temporal invitation:** allow the user to linger, skip, simplify, or close. Artful waiting cannot be used to conceal avoidable system latency.
 
-These consequences are design hypotheses derived from precedent analysis. The [next experiment](../design/experiments/E1_REVISABLE_WEATHER.md) tests them as response behavior rather than claiming that the references have already demonstrated EVA's intended effects.
+These consequences are design hypotheses derived from precedent analysis. The [next experiment](../../week2/docs/design/experiments/E1_REVISABLE_WEATHER.md) tests them as response behavior rather than claiming that the references have already demonstrated EVA's intended effects.

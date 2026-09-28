@@ -127,4 +127,4 @@ The short interpretations above are limited to the material inspected. Entries l
 
 ## Remaining evidence work
 
-Recover the two named original internal documents if available; verify edition-specific historical passages; read full methods before selecting any published instrument; obtain lawful access to artist motion references if exact temporal analysis becomes important. None blocks this documentation revision. The first bounded experiment is specified in [E1](../design/experiments/E1_REVISABLE_WEATHER.md); it has no implementation authorization or acceptance yet.
+Recover the two named original internal documents if available; verify edition-specific historical passages; read full methods before selecting any published instrument; obtain lawful access to artist motion references if exact temporal analysis becomes important. None blocks this documentation revision. The first bounded experiment is specified in [E1](../../week2/docs/design/experiments/E1_REVISABLE_WEATHER.md); it has no implementation authorization or acceptance yet.

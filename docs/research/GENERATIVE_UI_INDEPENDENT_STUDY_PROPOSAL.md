@@ -42,7 +42,7 @@ Artistic precedents inform compositional decisions; they are not empirical suppo
 
 ## Prototype and scope
 
-Use the [canonical grammar](../../DESIGN.md) and proposed [E1 revisable-weather experiment](../design/experiments/E1_REVISABLE_WEATHER.md). A synthetic NYC weather answer appears as readable facts with a dithered field that can gather, part, and reorganize around selected information. The user can redirect the time window, compare periods, pin a fact, request less motion, reject an interpretation, or choose a plain answer. Follow-ups change the ongoing composition while preserving identity and direct edits.
+Use the [canonical grammar](../../DESIGN.md) and proposed [E1 revisable-weather experiment](../../week2/docs/design/experiments/E1_REVISABLE_WEATHER.md). A synthetic NYC weather answer appears as readable facts with a dithered field that can gather, part, and reorganize around selected information. The user can redirect the time window, compare periods, pin a fact, request less motion, reject an interpretation, or choose a plain answer. Follow-ups change the ongoing composition while preserving identity and direct edits.
 
 Weather is the first executable scenario. A clearly synthetic uptown-M transit response is a **design transfer example**, not a second required integration. It explores waiting and anticipated arrival without inventing service or implying live train positions. No production weather/transit account is needed.
 

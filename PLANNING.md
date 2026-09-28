@@ -26,7 +26,7 @@ The owner's agenda has three strands: challenge perspective; explore generative 
 
 ### 1.2 Next bounded experiment
 
-Proposed [E1 — revisable NYC weather](docs/design/experiments/E1_REVISABLE_WEATHER.md) uses explicit synthetic data. Facts appear immediately; dithered material gathers around a time anchor. Selecting afternoon, pinning a fact, and inviting comparison changes the active composition without erasing the user's edits. Interruption and plain answer are always available.
+Proposed [E1 — revisable NYC weather](week2/docs/design/experiments/E1_REVISABLE_WEATHER.md) uses explicit synthetic data. Facts appear immediately; dithered material gathers around a time anchor. Selecting afternoon, pinning a fact, and inviting comparison changes the active composition without erasing the user's edits. Interruption and plain answer are always available.
 
 E1 tests a local authored vocabulary and renderer options first. It does not by itself prove model generativity or perceived emotional understanding. A later bounded score-composition trial must record actual model outputs and validation. The synthetic uptown-M transit example in [DESIGN.md](DESIGN.md) tests conceptual transfer; it is not a required second connector.
 
