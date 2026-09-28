@@ -2,6 +2,10 @@
 
 **Current review candidate: [06 — the Week 1 eye](revisions/w3-20260927-06/README.md). Accepted baseline: none.** [Owner acceptance remains pending](acceptance/w3-conversational-eye.md). A synthetic fixture or provider check is not the real hands-free loudspeaker exercise.
 
+## New Weave reference reviews
+
+For future UI changes, use [the categorized review-folder template](../../../docs/design/templates/weave-review/REVIEW.md) and [the mandatory Weave workflow](../../../docs/design/FIGMA_WEAVE.md). Each actual candidate gets a direct REVIEW.md link here, with its contact sheet, selected image/video references and separate before/after app evidence. Direct Weave models or reusable workflows are both allowed. No new reference generation or candidate is claimed by this index update; existing revision records below are unchanged.
+
 ## Direction
 
 [Owner clarification and reference transfer](REFERENCE_REFINEMENT.md): preserve the actual Week 1 silhouette, square pupil, dithering and cursor response; transform that eye into related forms; broader colors during responses and original red at rest. No brain integration this week; the interim backend decider remains replaceable.

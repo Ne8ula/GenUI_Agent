@@ -1,0 +1,43 @@
+{
+  "templateOnly": true,
+  "status": "not-started",
+  "changeId": null,
+  "phase": null,
+  "sourceRevision": null,
+  "acceptedBaseline": null,
+  "scope": null,
+  "ownedUiFiles": [],
+  "motionRequired": null,
+  "runs": [],
+  "runRecordFields": [
+    "route: direct-model or workflow",
+    "modelId or recipeId and workflowVersion; only actual exposed identifiers",
+    "predictionId or runId",
+    "sanitized inputs and settings",
+    "per-run quotedCost, costApprovalRef and reportedCost; null if unavailable",
+    "output asset paths, kind, source and license information",
+    "actual retrieval and inspection results"
+  ],
+  "selectedAssets": [],
+  "contactSheet": null,
+  "inspection": {
+    "status": "not-performed",
+    "inspector": null,
+    "method": null,
+    "observations": [],
+    "limitations": []
+  },
+  "implementationGuidance": [],
+  "writerInspections": [],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": []
+  },
+  "ownerDecision": {
+    "status": "pending",
+    "date": null,
+    "feedback": null
+  }
+}

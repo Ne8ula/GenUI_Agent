@@ -11,6 +11,42 @@
     "model-gateway@eigenwise-toolshed": true,
     "ruflo-core@ruflo": true
   },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/agents/weave-reference-reminder.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/agents/weave-reference-reminder.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|Bash|PowerShell|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/agents/weave-reference-reminder.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "model": "claude-gpt-6-astra[1m]",
   "effortLevel": "high"
 }

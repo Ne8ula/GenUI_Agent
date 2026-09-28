@@ -1,5 +1,7 @@
 # Higgsfield: UI and vocabulary authoring
 
+> Historical record, superseded 2026-09-28: the owner selected [Figma Weave](FIGMA_WEAVE.md) for future development authoring. The setup, preferred routes and briefs below describe earlier work, not current instructions or spending authorization. Preserve existing assets and evidence; do not reconnect or generate with Higgsfield by default.
+
 Historical setup report, 2026-09-16: official CLI 1.1.25 and three Codex companion skills installed; browser sign-in started, account authorization pending verification. This research revision does not reverify connection or generate assets. Check the actual current capabilities before a future authoring run.
 
 Current development harness: Astra in Claude Code, following [AGENTS.md](../../AGENTS.md) and [the development workflow](../development/AGENT_WORKFLOW.md). The Codex setup references below are historical client-specific notes, not a requirement to return to Codex. Verify CLI authentication and available tools in the active Claude Code session; do not assume Codex companion skills are automatically installed there or add a duplicate connection.

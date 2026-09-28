@@ -8,10 +8,6 @@
       "env": {
         "npm_config_update_notifier": "false"
       }
-    },
-    "higgsfield": {
-      "type": "http",
-      "url": "https://mcp.higgsfield.ai/mcp"
     }
   }
 }

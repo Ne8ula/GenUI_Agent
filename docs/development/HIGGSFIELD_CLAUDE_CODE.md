@@ -1,5 +1,7 @@
 # Higgsfield in Claude Code
 
+> Historical record, superseded 2026-09-28: the owner selected [Figma Weave](../design/FIGMA_WEAVE.md). The Higgsfield project registration was removed; the activation steps and verified status below describe the earlier setup, not the current configuration. Existing CLI installation, credentials and historical assets were not removed or revoked.
+
 Connection update, 2026-09-17, following the owner's report that only ComfyUI was visible. This updates the connection status described in [the visual authoring guide](../design/HIGGSFIELD.md) without modifying that concurrently edited guide.
 
 ## What was missing

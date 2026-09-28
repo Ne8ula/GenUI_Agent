@@ -178,7 +178,7 @@ Inspect the existing implementation before replacing it. The archive includes lo
 | Reading and interaction | React/TypeScript | Crisp facts, accessible order, local manipulation, focus, stop and plain answer |
 | Expressive rendering | Compare a small Canvas 2D and authored WebGL field in E1 | Same fixture/seed/load; actual Tauri-window measurements determine choice |
 | Privileged operations | Rust policy boundary | Expression and model affect never confer authority; full broker remains deferred |
-| Design exploration | Higgsfield when actually connected and authorized | Whole compositions/state boards/motion references; review source before adoption |
+| Design exploration | Mandatory change-specific Figma Weave references via direct models or reusable workflows before every UI change/pass | Generate and inspect images plus video for motion; missing prerequisites block UI edits; runtime media remains optional |
 | Optional future media | Narrow ComfyUI or other approved adapter | No early installation; no critical-path dependence |
 | Alternative renderer | Native wgpu, WebGPU, or exhibit-oriented tooling only after a measured need | Separate proposal and compatibility/access review; no automatic replacement |
 
@@ -1473,7 +1473,7 @@ DESIGN.md fulfills the formerly named GENERATIVE_UI_DESIGN.md deliverable; no se
 
 ### 14.14 Bounded media and authoring
 
-Use Higgsfield for response compositions, vocabulary/state boards and motion studies when connected and authorized, following [the workflow](docs/design/HIGGSFIELD.md). Do not reduce it to decorative backgrounds or silently substitute a provider. Exact factual labels are rebuilt from data. Optional assets use validated catalog entries and cancellation/expiry; late results cannot attach to dismissed revisions.
+Before every frontend/UI change, redesign, reimplementation or new visual pass, all development agents/environments must generate and inspect fresh change-specific references through direct Weave model calls OR a reusable Weave workflow: images, plus video for motion/temporal changes. No manual graph-building is required for each task. Follow [the required reference-packet gate and categorized review folders](docs/design/FIGMA_WEAVE.md#mandatory-prerequisite-for-every-ui-change) before editing. Missing access, usable model/workflow, cost approval or inspectable output blocks UI work; unrelated non-UI work may continue. This is mandatory development preparation, not a runtime generation dependency. The owner's 2026-09-28 selection supersedes Higgsfield for development authoring only; preserve historical outputs and all phase/budget gates. The official Figma MCP supports direct Weave generation or existing tool runs after capability verification; graph editing remains in Weave only when a custom workflow is chosen. Do not reduce it to decorative backgrounds or silently substitute a provider. Exact factual labels are rebuilt from data. Optional assets use validated catalog entries and cancellation/expiry; late results cannot attach to dismissed revisions.
 
 ComfyUI is not necessary for E1 or the core study. Preserve the owner gate: earliest S3 after explicit S2 acceptance, with a separately scoped, measured experiment. No model downloads or GPU installation now.
 
@@ -2222,7 +2222,8 @@ For the current research argument, start with the [annotated academic synthesis]
 - [NVIDIA RTX 5080 specifications](https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5080/)
 - [ComfyUI official repository](https://github.com/Comfy-Org/ComfyUI)
 - [ComfyUI local HTTP and WebSocket API](https://docs.comfy.org/development/comfyui-server/comms_routes)
-- [Higgsfield asynchronous media API](https://docs.higgsfield.ai/docs)
+- [Figma Weave external-agent MCP connection](https://help.weavy.ai/en/articles/16202764-running-weave-tools-from-external-agents-mcp)
+- [Figma node in Weave](https://help.weavy.ai/en/articles/16440592-figma-node)
 - [Modal cold-start performance](https://modal.com/docs/guide/cold-start)
 - [WebGL GPU rendering](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API)
 - [wgpu portable graphics library](https://wgpu.rs/)
