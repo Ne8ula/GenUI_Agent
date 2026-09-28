@@ -1,0 +1,15 @@
+{
+  "description": "Packet labels are closed.",
+  "base": "normal.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/authority",
+      "value": "constitution"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

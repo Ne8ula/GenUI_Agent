@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "brain.memory-node/1",
+  "id": "mem_affect_rushed",
+  "type": "affective",
+  "subject": "morning pace",
+  "claim": "The user seemed rushed during morning weather checks.",
+  "labels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "sensitive"
+  },
+  "sourceRef": {
+    "kind": "episode",
+    "id": "ep_0007"
+  },
+  "evidence": {
+    "kind": "event",
+    "eventRef": {
+      "kind": "episode",
+      "id": "ep_0007",
+      "locator": "seq=7"
+    }
+  },
+  "createdAt": "2026-09-24T15:00:00Z",
+  "updatedAt": "2026-09-24T15:00:00Z",
+  "validFrom": "2026-09-24T15:00:00Z",
+  "validUntil": "2026-09-25T15:00:00Z",
+  "confidence": 0.3,
+  "assertion": "inferred",
+  "sensitivity": "moderate",
+  "reviewState": "temporary",
+  "reviewDecisionId": "rd_0002",
+  "supersedes": [],
+  "contradictedBy": [],
+  "tags": [],
+  "links": []
+}

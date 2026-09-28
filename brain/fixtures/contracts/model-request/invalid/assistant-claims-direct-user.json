@@ -1,0 +1,27 @@
+{
+  "description": "Prior assistant turns are model output.",
+  "base": "extractor-structured.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/messages/-",
+      "value": {
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "text",
+            "text": "Noted.",
+            "labels": {
+              "integrity": "direct_user",
+              "confidentiality": "private"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/messages/1/parts/0/labels/integrity"
+  }
+}

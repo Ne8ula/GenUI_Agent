@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/review-decision.schema.json",
+  "title": "EVA brain memory review decision",
+  "description": "The user's decision on one memory candidate (PLANNING.md \u00a79.8). Only the user reviews; the decision carries direct_user integrity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "decisionId",
+    "candidateId",
+    "decision",
+    "reviewer",
+    "decidedAt",
+    "labels"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.review-decision/1"
+    },
+    "decisionId": {
+      "$ref": "common.schema.json#/$defs/reviewDecisionId"
+    },
+    "candidateId": {
+      "$ref": "common.schema.json#/$defs/candidateId"
+    },
+    "decision": {
+      "enum": [
+        "accept",
+        "edit",
+        "reject",
+        "make-temporary"
+      ]
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "const": "direct_user"
+        },
+        "id": {
+          "$ref": "common.schema.json#/$defs/userId"
+        }
+      }
+    },
+    "decidedAt": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "editedClaim": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "validUntil": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "integrity",
+        "confidentiality"
+      ],
+      "properties": {
+        "integrity": {
+          "const": "direct_user"
+        },
+        "confidentiality": {
+          "$ref": "common.schema.json#/$defs/confidentialityLabel"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "const": "edit"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "editedClaim"
+        ]
+      },
+      "else": {
+        "not": {
+          "type": "object",
+          "required": [
+            "editedClaim"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "const": "make-temporary"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "validUntil"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "const": "reject"
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "type": "object",
+          "required": [
+            "validUntil"
+          ]
+        }
+      }
+    }
+  ]
+}

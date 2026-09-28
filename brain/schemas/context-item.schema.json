@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/context-item.schema.json",
+  "title": "EVA brain context item",
+  "description": "One labelled piece of context offered to a worker or narrator (PLANNING.md \u00a713.3). Content is evidence, never instruction or authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "origin",
+    "sourceRef",
+    "labels",
+    "lineage",
+    "freshness",
+    "content"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.context-item/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/contextItemId"
+    },
+    "origin": {
+      "$ref": "common.schema.json#/$defs/origin"
+    },
+    "sourceRef": {
+      "$ref": "common.schema.json#/$defs/sourceRef"
+    },
+    "labels": {
+      "$ref": "common.schema.json#/$defs/labels"
+    },
+    "lineage": {
+      "$ref": "common.schema.json#/$defs/lineage"
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observedAt",
+        "volatile"
+      ],
+      "properties": {
+        "observedAt": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "expiresAt": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "volatile": {
+          "description": "True for current external facts (weather, schedules) that must not be answered from memory alone.",
+          "type": "boolean"
+        }
+      },
+      "if": {
+        "properties": {
+          "volatile": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "expiresAt"
+        ]
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "signature"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "unvalidated",
+            "schema_valid",
+            "schema_invalid"
+          ]
+        },
+        "signature": {
+          "enum": [
+            "none",
+            "verified",
+            "failed"
+          ]
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mediaType",
+        "body"
+      ],
+      "properties": {
+        "mediaType": {
+          "enum": [
+            "text/plain",
+            "text/markdown",
+            "application/json"
+          ]
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16000
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/originIntegrityRules"
+    }
+  ]
+}

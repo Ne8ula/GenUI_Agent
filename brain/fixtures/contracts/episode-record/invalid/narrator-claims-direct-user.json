@@ -1,0 +1,15 @@
+{
+  "description": "Only direct-user events carry direct_user integrity.",
+  "base": "narrator-reply.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "direct_user"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

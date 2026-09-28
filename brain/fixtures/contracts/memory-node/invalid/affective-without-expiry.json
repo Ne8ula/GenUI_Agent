@@ -1,0 +1,14 @@
+{
+  "description": "Emotional patterns must expire.",
+  "base": "affective-temporary.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/validUntil"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

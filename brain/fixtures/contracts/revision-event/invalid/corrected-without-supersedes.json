@@ -1,0 +1,15 @@
+{
+  "description": "A correction must name the revision it replaces.",
+  "base": "corrected.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/supersedes",
+      "value": null
+    }
+  ],
+  "expect": {
+    "keyword": "type",
+    "instancePath": "/supersedes"
+  }
+}

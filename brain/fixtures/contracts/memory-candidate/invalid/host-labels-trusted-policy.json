@@ -1,0 +1,15 @@
+{
+  "description": "A candidate's integrity is never above untrusted_generated.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/host/labels/integrity",
+      "value": "trusted_policy"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/host/labels/integrity"
+  }
+}

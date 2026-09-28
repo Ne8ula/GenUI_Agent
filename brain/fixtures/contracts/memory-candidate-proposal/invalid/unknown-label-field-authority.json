@@ -1,0 +1,15 @@
+{
+  "description": "Proposed labels are closed.",
+  "base": "inferred-without-quote.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/proposedLabels/authority",
+      "value": "user"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/proposedLabels"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Only the narrator receives the persona packet.",
+  "base": "extractor-structured.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/personaPacketHash",
+      "value": "sha256:67770487f694320660ad02481a78265879058e5852d7707f23d356fc9505ab90"
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/purpose"
+  }
+}

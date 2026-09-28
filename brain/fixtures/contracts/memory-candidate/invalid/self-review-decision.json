@@ -1,0 +1,15 @@
+{
+  "description": "A candidate cannot set its own review decision.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/proposal/reviewDecision",
+      "value": "accept"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/proposal"
+  }
+}

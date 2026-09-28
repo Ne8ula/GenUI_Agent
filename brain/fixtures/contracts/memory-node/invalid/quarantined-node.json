@@ -1,0 +1,15 @@
+{
+  "description": "Quarantined content never becomes a durable node.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "quarantined"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

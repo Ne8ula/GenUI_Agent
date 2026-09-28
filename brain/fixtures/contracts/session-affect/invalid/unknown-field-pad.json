@@ -1,0 +1,15 @@
+{
+  "description": "PAD state is Investigate-only and not part of the contract.",
+  "base": "reconsider.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/pleasure",
+      "value": 0.2
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

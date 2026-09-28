@@ -1,0 +1,14 @@
+{
+  "description": "Identity changes need an explicit review decision.",
+  "base": "fictional-juniper.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/approval"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

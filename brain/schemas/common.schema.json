@@ -1,0 +1,1103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/common.schema.json",
+  "title": "EVA brain shared definitions",
+  "description": "Shared IDs, timestamps, provenance labels, lineage and source references (PLANNING.md \u00a713.3). The root validates a provenance stamp: the origin, source, labels and lineage every context item and artifact carries.",
+  "$ref": "#/$defs/provenanceStamp",
+  "$defs": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^brain\\.[a-z][a-z0-9-]{1,40}/[1-9][0-9]{0,2}$"
+    },
+    "timestamp": {
+      "description": "RFC 3339 date-time with an explicit offset. Checked by pattern because Ajv formats are not a dependency.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]{1,9})?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$",
+      "maxLength": 40
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "entityId": {
+      "description": "Any synthetic brain ID: a lowercase kind prefix, an underscore, and a bounded opaque suffix.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]{0,11}_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "artifactId": {
+      "type": "string",
+      "pattern": "^art_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "revisionId": {
+      "type": "string",
+      "pattern": "^rev_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "contextItemId": {
+      "type": "string",
+      "pattern": "^ctx_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "taskId": {
+      "type": "string",
+      "pattern": "^task_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "planId": {
+      "type": "string",
+      "pattern": "^plan_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "sessionId": {
+      "type": "string",
+      "pattern": "^sess_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "turnId": {
+      "type": "string",
+      "pattern": "^turn_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "episodeId": {
+      "type": "string",
+      "pattern": "^ep_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "memoryNodeId": {
+      "type": "string",
+      "pattern": "^mem_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "candidateId": {
+      "type": "string",
+      "pattern": "^cand_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "reviewDecisionId": {
+      "type": "string",
+      "pattern": "^rd_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "requestId": {
+      "type": "string",
+      "pattern": "^mreq_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "responseId": {
+      "type": "string",
+      "pattern": "^mres_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "traceId": {
+      "type": "string",
+      "pattern": "^trace_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "userId": {
+      "type": "string",
+      "pattern": "^user_[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "personaVersion": {
+      "type": "string",
+      "pattern": "^persona-v(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})$"
+    },
+    "generation": {
+      "description": "Monotonic generation token. A result whose generation is older than the consumer's current generation is late and must be rejected.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "logicalRoute": {
+      "description": "Configured logical route name (for example narrator.default). Routes are data; model IDs are configuration.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,31}(\\.[a-z][a-z0-9_]{0,31}){0,3}$"
+    },
+    "modelId": {
+      "description": "Provider model identifier carried as opaque data, never as authority.",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@\\[\\]-]{0,127}$"
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logicalRoute",
+        "modelId"
+      ],
+      "properties": {
+        "logicalRoute": {
+          "$ref": "#/$defs/logicalRoute"
+        },
+        "modelId": {
+          "$ref": "#/$defs/modelId"
+        }
+      }
+    },
+    "brainSchemaRef": {
+      "type": "string",
+      "pattern": "^https://eva\\.local/schemas/brain/[a-z][a-z0-9-]{1,48}\\.schema\\.json$"
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,39}(/[a-z][a-z0-9-]{0,39}){0,2}$"
+    },
+    "integrityLabel": {
+      "description": "PLANNING.md \u00a713.3 initial integrity labels. Order and propagation live in src/provenance/labels.ts.",
+      "enum": [
+        "trusted_policy",
+        "direct_user",
+        "verified_local",
+        "verified_tool",
+        "untrusted_external",
+        "untrusted_generated",
+        "quarantined"
+      ]
+    },
+    "confidentialityLabel": {
+      "enum": [
+        "public",
+        "private",
+        "sensitive",
+        "secret"
+      ]
+    },
+    "labels": {
+      "description": "Integrity and confidentiality label pair. Closed: no authority or extra label field is accepted.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "integrity",
+        "confidentiality"
+      ],
+      "properties": {
+        "integrity": {
+          "$ref": "#/$defs/integrityLabel"
+        },
+        "confidentiality": {
+          "$ref": "#/$defs/confidentialityLabel"
+        }
+      }
+    },
+    "generatedLabels": {
+      "description": "Labels for model-produced content: never above untrusted_generated.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "integrity",
+        "confidentiality"
+      ],
+      "properties": {
+        "integrity": {
+          "enum": [
+            "untrusted_generated",
+            "quarantined"
+          ]
+        },
+        "confidentiality": {
+          "$ref": "#/$defs/confidentialityLabel"
+        }
+      }
+    },
+    "originKind": {
+      "enum": [
+        "direct_user",
+        "policy",
+        "host",
+        "model",
+        "tool",
+        "memory",
+        "persona",
+        "fixture"
+      ]
+    },
+    "origin": {
+      "description": "Identity of whatever produced the item. Origin identifies; it does not grant authority.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/originKind"
+        },
+        "id": {
+          "$ref": "#/$defs/entityId"
+        }
+      }
+    },
+    "lineageEntry": {
+      "description": "One append-only transformation step. sequence equals the entry's index; src/provenance/labels.ts enforces append-only order.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "operation",
+        "actor",
+        "inputRefs",
+        "at"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4095
+        },
+        "operation": {
+          "enum": [
+            "ingest",
+            "retrieve",
+            "extract",
+            "summarize",
+            "join",
+            "derive",
+            "relabel",
+            "validate",
+            "verify",
+            "correct",
+            "revoke",
+            "redact",
+            "compile",
+            "review"
+          ]
+        },
+        "actor": {
+          "$ref": "#/$defs/origin"
+        },
+        "inputRefs": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/entityId"
+          }
+        },
+        "at": {
+          "$ref": "#/$defs/timestamp"
+        }
+      }
+    },
+    "lineage": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "$ref": "#/$defs/lineageEntry"
+      },
+      "minItems": 1,
+      "description": "Append-only transformation history. Never empty: every item records at least how it entered the system."
+    },
+    "sourceKind": {
+      "enum": [
+        "user_turn",
+        "episode",
+        "artifact",
+        "revision",
+        "memory_node",
+        "tool_result",
+        "policy",
+        "persona_file",
+        "fixture"
+      ]
+    },
+    "sourceRef": {
+      "description": "Pointer to a source by synthetic ID plus an optional bounded locator (for example a character range). Never a filesystem path or URL. The ID prefix must match the kind, so a memory or episode ID cannot pose as a policy source.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/sourceKind"
+        },
+        "id": {
+          "$ref": "#/$defs/entityId"
+        },
+        "locator": {
+          "type": "string",
+          "pattern": "^(chars=[0-9]{1,7}-[0-9]{1,7}|line=[0-9]{1,7}(-[0-9]{1,7})?|field=[A-Za-z][A-Za-z0-9_.]{0,63}|seq=[0-9]{1,9})$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "user_turn"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^turn_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "episode"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^ep_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "artifact"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^art_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "revision"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^rev_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "memory_node"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^mem_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "tool_result"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^tool_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "policy"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^policy_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "persona_file"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^persona_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "fixture"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^fixture_"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "provenanceStamp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origin",
+        "sourceRef",
+        "labels",
+        "lineage"
+      ],
+      "properties": {
+        "origin": {
+          "$ref": "#/$defs/origin"
+        },
+        "sourceRef": {
+          "$ref": "#/$defs/sourceRef"
+        },
+        "labels": {
+          "$ref": "#/$defs/labels"
+        },
+        "lineage": {
+          "$ref": "#/$defs/lineage"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/$defs/originIntegrityRules"
+        }
+      ]
+    },
+    "boundedText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8000
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inputTokens",
+        "outputTokens"
+      ],
+      "properties": {
+        "inputTokens": {
+          "$ref": "#/$defs/count"
+        },
+        "outputTokens": {
+          "$ref": "#/$defs/count"
+        },
+        "cacheReadTokens": {
+          "$ref": "#/$defs/count"
+        },
+        "cacheWriteTokens": {
+          "$ref": "#/$defs/count"
+        },
+        "costMicroUsd": {
+          "$ref": "#/$defs/count"
+        }
+      }
+    },
+    "stopReason": {
+      "enum": [
+        "end_turn",
+        "max_tokens",
+        "stop_sequence",
+        "refusal",
+        "error",
+        "cancelled",
+        "timeout"
+      ]
+    },
+    "refusal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "category"
+      ],
+      "properties": {
+        "category": {
+          "enum": [
+            "safety",
+            "policy",
+            "capability",
+            "other"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    },
+    "modelError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "retryable"
+      ],
+      "properties": {
+        "code": {
+          "enum": [
+            "rate_limited",
+            "overloaded",
+            "context_exceeded",
+            "invalid_request",
+            "provider_error",
+            "network",
+            "malformed_output",
+            "schema_invalid",
+            "timeout",
+            "cancelled"
+          ]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    },
+    "memoryType": {
+      "description": "PLANNING.md \u00a79.2 categories.",
+      "enum": [
+        "working",
+        "episodic",
+        "semantic",
+        "procedural",
+        "preference",
+        "affective",
+        "identity",
+        "prospective"
+      ]
+    },
+    "sensitivity": {
+      "enum": [
+        "low",
+        "moderate",
+        "high"
+      ]
+    },
+    "assertion": {
+      "enum": [
+        "explicit",
+        "inferred"
+      ]
+    },
+    "revisionStatus": {
+      "description": "PLANNING.md \u00a77.7 revision statuses.",
+      "enum": [
+        "provisional",
+        "verified",
+        "corrected",
+        "revoked",
+        "stale"
+      ]
+    },
+    "expressiveIntention": {
+      "enum": [
+        "attend",
+        "invite-comparison",
+        "reconsider",
+        "settle"
+      ]
+    },
+    "sarcasmSuppressionReason": {
+      "description": "PLANNING.md \u00a78.3 contexts where sarcasm is prohibited.",
+      "enum": [
+        "safety_confirmation",
+        "user_distress",
+        "failed_action",
+        "factual_uncertainty",
+        "privacy_block",
+        "security_event"
+      ]
+    },
+    "unitInterval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "originIntegrityRules": {
+      "description": "Origin-to-integrity ceilings for any object carrying origin, sourceRef and labels. Referenced by the provenance stamp and context items.",
+      "allOf": [
+        {
+          "description": "model origin is capped.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "model"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "tool origin is capped.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "tool"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "verified_tool",
+                      "untrusted_external",
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "fixture origin is capped.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "fixture"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "verified_tool",
+                      "untrusted_external",
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "host origin is capped.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "host"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "verified_local",
+                      "verified_tool",
+                      "untrusted_external",
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "persona origin is capped.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "persona"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "verified_local",
+                      "verified_tool",
+                      "untrusted_external",
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "memory origin is capped.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "memory"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "direct_user",
+                      "verified_local",
+                      "verified_tool",
+                      "untrusted_external",
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "direct_user origin is capped.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "direct_user"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "direct_user",
+                      "verified_local",
+                      "verified_tool",
+                      "untrusted_external",
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "direct_user integrity comes only from the user or from memory attested as the user's words.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "const": "direct_user"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "direct_user",
+                      "memory"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "trusted_policy integrity comes only from a policy origin and a policy source.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "const": "trusted_policy"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "policy"
+                  }
+                }
+              },
+              "sourceRef": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "policy"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "Any model step in the lineage makes the item model output, whatever its origin.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "lineage": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "actor": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "const": "model"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "enum": [
+                      "untrusted_generated",
+                      "quarantined"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "direct_user integrity cites its user source: a user turn or episode for direct_user origin, a memory node for memory origin.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "integrity": {
+                    "const": "direct_user"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "direct_user"
+                      }
+                    }
+                  },
+                  "sourceRef": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "user_turn",
+                          "episode"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "memory"
+                      }
+                    }
+                  },
+                  "sourceRef": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "memory_node"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

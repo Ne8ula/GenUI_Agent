@@ -1,0 +1,15 @@
+{
+  "description": "Suppression names its reason.",
+  "base": "suppressed-with-affect.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/sarcasm/reasons",
+      "value": []
+    }
+  ],
+  "expect": {
+    "keyword": "minItems",
+    "instancePath": "/sarcasm/reasons"
+  }
+}

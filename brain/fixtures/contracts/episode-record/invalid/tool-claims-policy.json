@@ -1,0 +1,24 @@
+{
+  "description": "A tool event is at most verified_tool.",
+  "base": "narrator-reply.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/origin",
+      "value": "tool"
+    },
+    {
+      "op": "remove",
+      "path": "/revisionId"
+    },
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "trusted_policy"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

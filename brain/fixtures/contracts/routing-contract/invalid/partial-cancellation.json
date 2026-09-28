@@ -1,0 +1,15 @@
+{
+  "description": "Cancellation always propagates to all dependents.",
+  "base": "narrator-simple-answer.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/cancellation/propagate",
+      "value": "none"
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/cancellation/propagate"
+  }
+}

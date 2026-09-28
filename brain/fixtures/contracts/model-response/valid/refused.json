@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "brain.model-response/1",
+  "responseId": "mres_0002",
+  "requestId": "mreq_0002",
+  "generation": 3,
+  "route": {
+    "logicalRoute": "memory.extract",
+    "modelId": "mock-model-1"
+  },
+  "outcome": "refused",
+  "stopReason": "refusal",
+  "refusal": {
+    "category": "policy"
+  },
+  "labels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "private"
+  },
+  "usage": {
+    "inputTokens": 120,
+    "outputTokens": 0
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Traces carry no raw prompt text.",
+  "base": "turn-completed.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/prompt",
+      "value": "Will it be warm at noon?"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

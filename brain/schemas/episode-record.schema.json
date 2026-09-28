@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/episode-record.schema.json",
+  "title": "EVA brain episode record",
+  "description": "One append-only conversation event (PLANNING.md \u00a79.6). Only direct_user-origin events may carry direct_user integrity. prevEntryHash chains records so a rewrite is detectable.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "sessionId",
+    "turnId",
+    "sequence",
+    "prevEntryHash",
+    "at",
+    "origin",
+    "labels",
+    "content"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.episode-record/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/episodeId"
+    },
+    "sessionId": {
+      "$ref": "common.schema.json#/$defs/sessionId"
+    },
+    "turnId": {
+      "$ref": "common.schema.json#/$defs/turnId"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "prevEntryHash": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/sha256"
+        }
+      ]
+    },
+    "at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "origin": {
+      "enum": [
+        "direct_user",
+        "narrator",
+        "host",
+        "tool",
+        "system_event"
+      ]
+    },
+    "labels": {
+      "$ref": "common.schema.json#/$defs/labels"
+    },
+    "revisionId": {
+      "$ref": "common.schema.json#/$defs/revisionId"
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mediaType",
+        "text"
+      ],
+      "properties": {
+        "mediaType": {
+          "const": "text/plain"
+        },
+        "text": {
+          "$ref": "common.schema.json#/$defs/boundedText"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "const": "direct_user"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "const": "direct_user"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "enum": [
+                  "verified_local",
+                  "verified_tool",
+                  "untrusted_external",
+                  "untrusted_generated",
+                  "quarantined"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "const": "tool"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "enum": [
+                  "verified_tool",
+                  "untrusted_external",
+                  "untrusted_generated",
+                  "quarantined"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "const": "narrator"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "revisionId"
+        ],
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "enum": [
+                  "untrusted_generated",
+                  "quarantined"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "sequence": {
+            "const": 0
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "prevEntryHash": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "type": "object",
+        "properties": {
+          "prevEntryHash": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          }
+        }
+      }
+    }
+  ]
+}

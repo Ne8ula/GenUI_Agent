@@ -1,0 +1,18 @@
+{
+  "description": "An unreviewed node must cite a user turn or episode.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/sourceRef",
+      "value": {
+        "kind": "tool_result",
+        "id": "tool_weather"
+      }
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/sourceRef/kind"
+  }
+}

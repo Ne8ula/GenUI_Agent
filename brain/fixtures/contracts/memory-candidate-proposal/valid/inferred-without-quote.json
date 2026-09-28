@@ -1,0 +1,15 @@
+{
+  "type": "procedural",
+  "subject": "weather check routine",
+  "claim": "The user usually checks the weather before leaving.",
+  "assertion": "inferred",
+  "confidence": 0.4,
+  "sensitivity": "low",
+  "evidence": {
+    "episodeId": "ep_0003"
+  },
+  "proposedLabels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "private"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/memory-candidate-proposal.schema.json",
+  "title": "EVA brain memory candidate proposal (extractor output)",
+  "description": "Fields the extractor model may propose. All untrusted; the write policy recomputes assertion and sensitivity from the cited episode rather than trusting them.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "subject",
+    "claim",
+    "assertion",
+    "confidence",
+    "sensitivity",
+    "evidence"
+  ],
+  "properties": {
+    "type": {
+      "$ref": "common.schema.json#/$defs/memoryType"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "assertion": {
+      "$ref": "common.schema.json#/$defs/assertion"
+    },
+    "confidence": {
+      "$ref": "common.schema.json#/$defs/confidence"
+    },
+    "sensitivity": {
+      "$ref": "common.schema.json#/$defs/sensitivity"
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "episodeId"
+      ],
+      "properties": {
+        "episodeId": {
+          "$ref": "common.schema.json#/$defs/episodeId"
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      }
+    },
+    "proposedLabels": {
+      "description": "A model may propose stricter labels, never higher integrity than untrusted_generated.",
+      "$ref": "common.schema.json#/$defs/generatedLabels"
+    },
+    "validUntil": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/tag"
+      }
+    }
+  },
+  "if": {
+    "type": "object",
+    "properties": {
+      "assertion": {
+        "const": "explicit"
+      }
+    }
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "evidence": {
+        "type": "object",
+        "required": [
+          "quote"
+        ]
+      }
+    }
+  }
+}

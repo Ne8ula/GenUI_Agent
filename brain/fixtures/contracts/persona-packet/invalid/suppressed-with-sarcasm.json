@@ -1,0 +1,15 @@
+{
+  "description": "A suppressed packet has sarcasm level 0.",
+  "base": "suppressed-with-affect.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/sarcasm/level",
+      "value": 0.3
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/sarcasm/level"
+  }
+}

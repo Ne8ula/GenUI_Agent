@@ -1,0 +1,15 @@
+{
+  "description": "Episode labels are closed.",
+  "base": "user-turn-first.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/verified",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

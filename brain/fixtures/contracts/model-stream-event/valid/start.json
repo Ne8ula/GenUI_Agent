@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "brain.model-stream-event/1",
+  "requestId": "mreq_0001",
+  "generation": 3,
+  "sequence": 0,
+  "type": "start",
+  "route": {
+    "logicalRoute": "narrator.default",
+    "modelId": "mock-model-1"
+  }
+}

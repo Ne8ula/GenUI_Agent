@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/trace-event.schema.json",
+  "title": "EVA brain trace event",
+  "description": "One redacted trace event (PLANNING.md \u00a74.2 invariant 10). Synthetic IDs, hashes and timings only: there is no field for raw prompt, response, transcript or memory text.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "traceId",
+    "turnId",
+    "generation",
+    "sequence",
+    "at",
+    "kind",
+    "outcome"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.trace-event/1"
+    },
+    "traceId": {
+      "$ref": "common.schema.json#/$defs/traceId"
+    },
+    "turnId": {
+      "$ref": "common.schema.json#/$defs/turnId"
+    },
+    "generation": {
+      "$ref": "common.schema.json#/$defs/generation"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "kind": {
+      "enum": [
+        "turn_started",
+        "route_selected",
+        "model_call",
+        "retrieval",
+        "revision_emitted",
+        "memory_candidate",
+        "cancelled",
+        "late_result_rejected",
+        "turn_completed"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "ok",
+        "refused",
+        "error",
+        "cancelled",
+        "timeout",
+        "rejected"
+      ]
+    },
+    "route": {
+      "$ref": "common.schema.json#/$defs/route"
+    },
+    "requestId": {
+      "$ref": "common.schema.json#/$defs/requestId"
+    },
+    "personaVersion": {
+      "$ref": "common.schema.json#/$defs/personaVersion"
+    },
+    "personaHash": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "citedNodeIds": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/memoryNodeId"
+      }
+    },
+    "revisionIds": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/revisionId"
+      }
+    },
+    "candidateIds": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/candidateId"
+      }
+    },
+    "timings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "durationMs"
+      ],
+      "properties": {
+        "durationMs": {
+          "$ref": "common.schema.json#/$defs/count"
+        },
+        "firstEventMs": {
+          "$ref": "common.schema.json#/$defs/count"
+        }
+      }
+    },
+    "usage": {
+      "$ref": "common.schema.json#/$defs/usage"
+    }
+  },
+  "allOf": [
+    {
+      "description": "Every answer's trace records route, persona version and hash, cited nodes and revisions.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "const": "turn_completed"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "route",
+          "personaVersion",
+          "personaHash",
+          "citedNodeIds",
+          "revisionIds",
+          "timings"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "enum": [
+              "model_call",
+              "route_selected"
+            ]
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "route"
+        ]
+      }
+    }
+  ]
+}

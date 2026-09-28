@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "brain.persona-packet/1",
+  "recipient": "narrator",
+  "personaVersion": "persona-v0.1.0",
+  "styleVersion": 1,
+  "compiledAt": "2026-09-24T15:00:00Z",
+  "contentHash": "sha256:687145a290daa0ef0d1e51062dedfd4494c716bef404e83da8d877675b0bca66",
+  "layerHashes": {
+    "constitution": "sha256:eb9a7650cd532b61ca9fec0cf82924c7ba7390bfc898e2d45bc067967b989cc5",
+    "identity": "sha256:689f6a627384c7dcb2dcc1487e540223e77bdf9dcd0d8be8a326eda65b0ce9a4",
+    "style": "sha256:2e19aab062315c3439daf9a530b911ef301bdf5c662bde8ac318a598d9fad303",
+    "affect": "sha256:557588f6b1dd147d69c89d1692f5499176975efc08a54e0c42cac81f6337f9ca"
+  },
+  "labels": {
+    "integrity": "verified_local",
+    "confidentiality": "private"
+  },
+  "register": {
+    "register": "mid",
+    "brevity": 0.7,
+    "initiative": 0.4,
+    "warmth": 0.6,
+    "formality": 0.35,
+    "hedging": "minimal"
+  },
+  "sarcasm": {
+    "level": 0,
+    "suppressed": true,
+    "reasons": [
+      "factual_uncertainty",
+      "privacy_block"
+    ]
+  },
+  "affect": {
+    "intention": "settle",
+    "intensity": 0.2,
+    "expiresAt": "2026-09-24T15:05:00Z"
+  }
+}

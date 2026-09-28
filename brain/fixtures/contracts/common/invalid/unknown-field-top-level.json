@@ -1,0 +1,15 @@
+{
+  "description": "A stamp cannot carry an extra top-level field.",
+  "base": "user-turn-stamp.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/grantedBy",
+      "value": "user_fixture01"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

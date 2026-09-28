@@ -1,0 +1,14 @@
+{
+  "description": "Volatile external facts must expire.",
+  "base": "volatile-weather-fixture.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/freshness/expiresAt"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": "/freshness"
+  }
+}

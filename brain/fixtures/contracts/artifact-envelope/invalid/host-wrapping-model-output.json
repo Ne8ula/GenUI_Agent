@@ -1,0 +1,23 @@
+{
+  "description": "A model step in the lineage makes the artifact model output.",
+  "base": "worker-summary-v1.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/producer",
+      "value": {
+        "role": "host",
+        "id": "host_wrapper"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "verified_local"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

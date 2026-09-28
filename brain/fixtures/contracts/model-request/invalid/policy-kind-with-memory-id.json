@@ -1,0 +1,15 @@
+{
+  "description": "A memory ID cannot enter the system role by calling itself policy.",
+  "base": "narrator-with-persona.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/messages/0/parts/0/sourceRef/id",
+      "value": "mem_units_celsius"
+    }
+  ],
+  "expect": {
+    "keyword": "pattern",
+    "instancePath": "/messages/0/parts/0/sourceRef/id"
+  }
+}

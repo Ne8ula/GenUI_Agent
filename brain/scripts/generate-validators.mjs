@@ -127,6 +127,10 @@ function renderValidators(definitions) {
   const ajv = new Ajv2020({
     allErrors: true,
     strict: true,
+    // Ajv applies if/then before properties, so strictRequired rejects every
+    // conditional `required`. tests/contracts-schemas.test.ts replaces it with a
+    // check that each required name is declared on its enclosing object schema.
+    strictRequired: false,
     code: { source: true, esm: true, lines: true },
   });
   for (const { schema } of definitions) ajv.addSchema(schema);
@@ -134,7 +138,11 @@ function renderValidators(definitions) {
     definitions.map(({ exportName, schema }) => [exportName, schema.$id]),
   );
   const standalone = standaloneCode(ajv, exportsByName);
-  return `${header}${convertRuntimeHelpersToEsm(standalone).trimStart()}\n`;
+  const byId = definitions
+    .map(({ exportName, schema }) => `  ${JSON.stringify(schema.$id)}: ${exportName},`)
+    .join("\n");
+  const lookup = `\n/** Validators keyed by schema $id, for callers that hold a schema reference. */\nexport const validatorsBySchemaId = Object.freeze({\n${byId}\n});\n`;
+  return `${header}${convertRuntimeHelpersToEsm(standalone).trimStart()}${lookup}`;
 }
 
 function renderDeclaration(definitions) {
@@ -152,7 +160,14 @@ export interface StandaloneValidator<T> {
   (data: unknown): data is T;
   errors: ErrorObject[] | null;
 }
-${exports ? `\n${exports}\n` : ""}`;
+${exports ? `\n${exports}\n` : ""}${definitions.length === 0 ? "" : renderLookupDeclaration(definitions)}`;
+}
+
+function renderLookupDeclaration(definitions) {
+  const entries = definitions
+    .map(({ exportName, schema }) => `  readonly ${JSON.stringify(schema.$id)}: typeof ${exportName};`)
+    .join("\n");
+  return `\n/** Validators keyed by schema $id. */\nexport const validatorsBySchemaId: {\n${entries}\n};\n`;
 }
 
 async function isCurrent(path, expected) {

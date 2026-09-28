@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/routing-contract.schema.json",
+  "title": "EVA brain routing contract",
+  "description": "Per-task routing contract (PLANNING.md §7.3). Safety and permission checks are not tradeable latency parameters, so no field can disable them.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "deadlines",
+    "qualityTier",
+    "riskCeiling",
+    "privacy",
+    "budgets",
+    "cancellation",
+    "fallback",
+    "provisionalDisplayAllowed",
+    "externalToolsPermitted",
+    "specialistsPermitted"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "brain.routing-contract/1" },
+    "taskId": { "$ref": "common.schema.json#/$defs/taskId" },
+    "deadlines": {
+      "description": "Relative to task start. The router rejects preferredMs greater than hardMs.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hardMs", "preferredMs"],
+      "properties": {
+        "hardMs": { "type": "integer", "minimum": 1, "maximum": 600000 },
+        "preferredMs": { "type": "integer", "minimum": 1, "maximum": 600000 }
+      }
+    },
+    "qualityTier": { "enum": ["fast", "standard", "high", "frontier"] },
+    "riskCeiling": {
+      "description": "PLANNING.md §12.1 classes. Prohibited is never a ceiling.",
+      "enum": ["read_only", "low", "medium", "high"]
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxConfidentiality", "localOnly"],
+      "properties": {
+        "maxConfidentiality": { "$ref": "common.schema.json#/$defs/confidentialityLabel" },
+        "localOnly": { "type": "boolean" }
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxInputTokens", "maxOutputTokens", "maxCostMicroUsd"],
+      "properties": {
+        "maxInputTokens": { "$ref": "common.schema.json#/$defs/count" },
+        "maxOutputTokens": { "$ref": "common.schema.json#/$defs/count" },
+        "maxCostMicroUsd": { "$ref": "common.schema.json#/$defs/count" },
+        "maxCpuMs": { "$ref": "common.schema.json#/$defs/count" },
+        "maxMemoryMb": { "$ref": "common.schema.json#/$defs/count" },
+        "maxNetworkBytes": { "$ref": "common.schema.json#/$defs/count" }
+      }
+    },
+    "cancellation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["propagate", "onHardDeadline"],
+      "properties": {
+        "propagate": {
+          "description": "Cancellation always reaches dependent workers, streams and pending candidates (invariant 9).",
+          "const": "all_dependents"
+        },
+        "onHardDeadline": { "enum": ["cancel_and_fail", "cancel_and_fallback", "cancel_and_keep_provisional"] }
+      }
+    },
+    "fallback": { "enum": ["none", "cheaper_route", "deterministic_text"] },
+    "provisionalDisplayAllowed": { "type": "boolean" },
+    "externalToolsPermitted": { "type": "boolean" },
+    "specialistsPermitted": { "type": "boolean" }
+  }
+}

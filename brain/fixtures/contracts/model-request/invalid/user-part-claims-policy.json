@@ -1,0 +1,15 @@
+{
+  "description": "trusted_policy text appears only in the system role.",
+  "base": "narrator-with-persona.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/messages/1/parts/1/labels/integrity",
+      "value": "trusted_policy"
+    }
+  ],
+  "expect": {
+    "keyword": "not",
+    "instancePath": "/messages/1/parts/1/labels/integrity"
+  }
+}

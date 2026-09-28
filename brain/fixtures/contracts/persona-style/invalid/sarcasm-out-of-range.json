@@ -1,0 +1,15 @@
+{
+  "description": "Style values are bounded to [0, 1].",
+  "base": "baseline.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/style/sarcasm",
+      "value": 1.5
+    }
+  ],
+  "expect": {
+    "keyword": "maximum",
+    "instancePath": "/style/sarcasm"
+  }
+}

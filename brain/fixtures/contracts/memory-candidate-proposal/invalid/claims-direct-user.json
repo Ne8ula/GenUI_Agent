@@ -1,0 +1,15 @@
+{
+  "description": "A proposal cannot claim direct_user integrity.",
+  "base": "inferred-without-quote.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/proposedLabels/integrity",
+      "value": "direct_user"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/proposedLabels/integrity"
+  }
+}

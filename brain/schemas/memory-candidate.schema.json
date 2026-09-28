@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/memory-candidate.schema.json",
+  "title": "EVA brain memory candidate",
+  "description": "A proposal only (PLANNING.md \u00a79.6). The model-proposed fields and the host-owned fields are separate objects. Neither can carry a review decision or a durable-write flag, and the candidate's integrity can never be above untrusted_generated. The write policy (Stage B4) decides; the candidate cannot.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "proposal",
+    "host"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.memory-candidate/1"
+    },
+    "proposal": {
+      "$ref": "memory-candidate-proposal.schema.json"
+    },
+    "host": {
+      "$ref": "#/$defs/host"
+    }
+  },
+  "$defs": {
+    "host": {
+      "description": "Fields the host computes from provenance. Not model-writable.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateId",
+        "generation",
+        "extractedAt",
+        "sourceEpisodeIds",
+        "labels",
+        "lineage",
+        "originRevision"
+      ],
+      "properties": {
+        "candidateId": {
+          "$ref": "common.schema.json#/$defs/candidateId"
+        },
+        "generation": {
+          "$ref": "common.schema.json#/$defs/generation"
+        },
+        "extractedAt": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "extractorRoute": {
+          "$ref": "common.schema.json#/$defs/route"
+        },
+        "sourceEpisodeIds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/episodeId"
+          }
+        },
+        "originRevision": {
+          "description": "The revision the candidate came from, or null when it came directly from an episode. Required so a provisional, revoked or stale origin cannot be omitted.",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "revisionId",
+                "status"
+              ],
+              "properties": {
+                "revisionId": {
+                  "$ref": "common.schema.json#/$defs/revisionId"
+                },
+                "status": {
+                  "$ref": "common.schema.json#/$defs/revisionStatus"
+                }
+              }
+            }
+          ]
+        },
+        "labels": {
+          "$ref": "common.schema.json#/$defs/generatedLabels"
+        },
+        "lineage": {
+          "$ref": "common.schema.json#/$defs/lineage"
+        }
+      }
+    }
+  }
+}

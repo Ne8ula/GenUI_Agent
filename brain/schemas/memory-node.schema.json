@@ -1,0 +1,368 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/memory-node.schema.json",
+  "title": "EVA brain memory node frontmatter",
+  "description": "Frontmatter of one durable Markdown memory node (PLANNING.md \u00a79.4). Written only by the deterministic write pipeline; quarantined content never becomes a node.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "type",
+    "subject",
+    "claim",
+    "labels",
+    "sourceRef",
+    "evidence",
+    "createdAt",
+    "updatedAt",
+    "validFrom",
+    "confidence",
+    "assertion",
+    "sensitivity",
+    "reviewState",
+    "supersedes",
+    "contradictedBy",
+    "tags",
+    "links"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.memory-node/1"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/memoryNodeId"
+    },
+    "type": {
+      "$ref": "common.schema.json#/$defs/memoryType"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "artifactId": {
+          "$ref": "common.schema.json#/$defs/artifactId"
+        },
+        "revisionId": {
+          "$ref": "common.schema.json#/$defs/revisionId"
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "integrity",
+        "confidentiality"
+      ],
+      "properties": {
+        "integrity": {
+          "enum": [
+            "direct_user",
+            "verified_local",
+            "verified_tool",
+            "untrusted_external",
+            "untrusted_generated"
+          ]
+        },
+        "confidentiality": {
+          "$ref": "common.schema.json#/$defs/confidentialityLabel"
+        }
+      },
+      "description": "Memory is evidence, never policy: trusted_policy and quarantined are excluded."
+    },
+    "sourceRef": {
+      "$ref": "common.schema.json#/$defs/sourceRef"
+    },
+    "evidence": {
+      "description": "Exact source quotation or an event pointer.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "quote"
+          ],
+          "properties": {
+            "kind": {
+              "const": "quote"
+            },
+            "quote": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "eventRef"
+          ],
+          "properties": {
+            "kind": {
+              "const": "event"
+            },
+            "eventRef": {
+              "$ref": "common.schema.json#/$defs/sourceRef"
+            }
+          }
+        }
+      ]
+    },
+    "createdAt": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "updatedAt": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "validFrom": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "validUntil": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "confidence": {
+      "$ref": "common.schema.json#/$defs/confidence"
+    },
+    "assertion": {
+      "$ref": "common.schema.json#/$defs/assertion"
+    },
+    "sensitivity": {
+      "$ref": "common.schema.json#/$defs/sensitivity"
+    },
+    "reviewState": {
+      "description": "Pending candidates stay in the review queue and rejected ones are never written, so neither is a node state.",
+      "enum": [
+        "not_required",
+        "accepted",
+        "edited",
+        "temporary"
+      ]
+    },
+    "reviewDecisionId": {
+      "description": "The user decision behind a reviewed node.",
+      "$ref": "common.schema.json#/$defs/reviewDecisionId"
+    },
+    "supersedes": {
+      "type": "array",
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/memoryNodeId"
+      }
+    },
+    "contradictedBy": {
+      "type": "array",
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/memoryNodeId"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/tag"
+      }
+    },
+    "links": {
+      "description": "Typed wikilinks (PLANNING.md \u00a79.5).",
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relation",
+          "target"
+        ],
+        "properties": {
+          "relation": {
+            "enum": [
+              "prefers",
+              "works_on",
+              "decided",
+              "supersedes",
+              "contradicts",
+              "evidenced_by",
+              "experienced_during",
+              "related_to",
+              "depends_on",
+              "committed_to"
+            ]
+          },
+          "target": {
+            "$ref": "common.schema.json#/$defs/memoryNodeId"
+          }
+        }
+      }
+    },
+    "personaVersion": {
+      "$ref": "common.schema.json#/$defs/personaVersion"
+    }
+  },
+  "allOf": [
+    {
+      "description": "Emotional patterns and temporary memories carry an expiry (PLANNING.md \u00a79.7).",
+      "if": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "affective"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "reviewState": {
+                "const": "temporary"
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "validUntil"
+        ]
+      }
+    },
+    {
+      "description": "Inferred, affective, identity and high-sensitivity nodes require review; they are never auto-written.",
+      "if": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "assertion": {
+                "const": "inferred"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  "affective",
+                  "identity"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "sensitivity": {
+                "const": "high"
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "reviewState": {
+            "not": {
+              "const": "not_required"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "A reviewed node names its review decision; an unreviewed node has none.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "reviewState": {
+            "enum": [
+              "accepted",
+              "edited",
+              "temporary"
+            ]
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "reviewDecisionId"
+        ]
+      },
+      "else": {
+        "type": "object",
+        "not": {
+          "required": [
+            "reviewDecisionId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "Only a direct_user statement backed by a quote from a user turn or episode is written without review.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "reviewState": {
+            "const": "not_required"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "const": "direct_user"
+              }
+            }
+          },
+          "evidence": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "quote"
+              }
+            }
+          },
+          "sourceRef": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "episode",
+                  "user_turn"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

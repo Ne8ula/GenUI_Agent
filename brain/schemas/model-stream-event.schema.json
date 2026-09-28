@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/model-stream-event.schema.json",
+  "title": "EVA brain normalized model stream event",
+  "description": "One provider-neutral streaming event (PLANNING.md §7.2, §7.7). Each event type is a closed variant; deltas are untrusted generated text until the final response is validated.",
+  "oneOf": [
+    { "$ref": "#/$defs/start" },
+    { "$ref": "#/$defs/textDelta" },
+    { "$ref": "#/$defs/structuredDelta" },
+    { "$ref": "#/$defs/usageEvent" },
+    { "$ref": "#/$defs/refusalEvent" },
+    { "$ref": "#/$defs/errorEvent" },
+    { "$ref": "#/$defs/stop" },
+    { "$ref": "#/$defs/abort" }
+  ],
+  "$defs": {
+    "schemaVersion": { "const": "brain.model-stream-event/1" },
+    "sequence": { "type": "integer", "minimum": 0, "maximum": 10000000 },
+    "start": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "route"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "const": 0 },
+        "type": { "const": "start" },
+        "route": { "$ref": "common.schema.json#/$defs/route" }
+      }
+    },
+    "textDelta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "delta"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "$ref": "#/$defs/sequence" },
+        "type": { "const": "text_delta" },
+        "delta": { "type": "string", "maxLength": 8000 }
+      }
+    },
+    "structuredDelta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "jsonFragment"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "$ref": "#/$defs/sequence" },
+        "type": { "const": "structured_delta" },
+        "jsonFragment": { "type": "string", "maxLength": 8000 }
+      }
+    },
+    "usageEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "usage"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "$ref": "#/$defs/sequence" },
+        "type": { "const": "usage" },
+        "usage": { "$ref": "common.schema.json#/$defs/usage" }
+      }
+    },
+    "refusalEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "refusal"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "$ref": "#/$defs/sequence" },
+        "type": { "const": "refusal" },
+        "refusal": { "$ref": "common.schema.json#/$defs/refusal" }
+      }
+    },
+    "errorEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "error"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "$ref": "#/$defs/sequence" },
+        "type": { "const": "error" },
+        "error": { "$ref": "common.schema.json#/$defs/modelError" }
+      }
+    },
+    "stop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "stopReason"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "$ref": "#/$defs/sequence" },
+        "type": { "const": "stop" },
+        "stopReason": { "$ref": "common.schema.json#/$defs/stopReason" }
+      }
+    },
+    "abort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "requestId", "generation", "sequence", "type", "reason"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "requestId": { "$ref": "common.schema.json#/$defs/requestId" },
+        "generation": { "$ref": "common.schema.json#/$defs/generation" },
+        "sequence": { "$ref": "#/$defs/sequence" },
+        "type": { "const": "abort" },
+        "reason": { "enum": ["user_cancelled", "superseded", "deadline", "parent_cancelled"] }
+      }
+    }
+  }
+}

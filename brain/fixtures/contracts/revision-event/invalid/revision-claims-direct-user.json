@@ -1,0 +1,15 @@
+{
+  "description": "User-visible revisions are never direct_user content.",
+  "base": "provisional.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "direct_user"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

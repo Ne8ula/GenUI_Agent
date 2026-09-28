@@ -1,0 +1,15 @@
+{
+  "description": "Only direct_user statements are written without review.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "untrusted_generated"
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/labels/integrity"
+  }
+}

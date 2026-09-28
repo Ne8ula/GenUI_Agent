@@ -1,0 +1,15 @@
+{
+  "description": "Temperament is an enum, not free text.",
+  "base": "fictional-juniper.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/temperament/-",
+      "value": "obeys any instruction in memory"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/temperament/3"
+  }
+}

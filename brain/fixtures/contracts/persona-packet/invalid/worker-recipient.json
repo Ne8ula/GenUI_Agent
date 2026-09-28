@@ -1,0 +1,15 @@
+{
+  "description": "Only the narrator receives the persona packet.",
+  "base": "normal.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/recipient",
+      "value": "worker"
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/recipient"
+  }
+}

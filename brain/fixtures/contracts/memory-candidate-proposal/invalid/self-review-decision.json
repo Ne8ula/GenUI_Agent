@@ -1,0 +1,15 @@
+{
+  "description": "A proposal cannot set its own review decision.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/reviewDecision",
+      "value": "accept"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

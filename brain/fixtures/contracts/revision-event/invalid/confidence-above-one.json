@@ -1,0 +1,15 @@
+{
+  "description": "Confidence is in [0, 1].",
+  "base": "provisional.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/confidence",
+      "value": 1.2
+    }
+  ],
+  "expect": {
+    "keyword": "maximum",
+    "instancePath": "/confidence"
+  }
+}

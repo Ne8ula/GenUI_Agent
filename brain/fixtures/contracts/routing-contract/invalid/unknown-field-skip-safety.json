@@ -1,0 +1,15 @@
+{
+  "description": "Safety checks are not a tradeable routing parameter.",
+  "base": "narrator-simple-answer.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/skipSafetyChecks",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

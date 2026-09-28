@@ -1,0 +1,15 @@
+{
+  "description": "Only an edit carries an edited claim.",
+  "base": "edit.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/decision",
+      "value": "accept"
+    }
+  ],
+  "expect": {
+    "keyword": "not",
+    "instancePath": ""
+  }
+}

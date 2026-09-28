@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "brain.context-item/1",
+  "id": "ctx_mem_units",
+  "origin": {
+    "kind": "memory",
+    "id": "mem_units_celsius"
+  },
+  "sourceRef": {
+    "kind": "memory_node",
+    "id": "mem_units_celsius"
+  },
+  "labels": {
+    "integrity": "verified_local",
+    "confidentiality": "private"
+  },
+  "lineage": [
+    {
+      "sequence": 0,
+      "operation": "retrieve",
+      "actor": {
+        "kind": "host",
+        "id": "host_retriever"
+      },
+      "inputRefs": [
+        "mem_units_celsius"
+      ],
+      "at": "2026-09-24T15:00:00Z"
+    }
+  ],
+  "freshness": {
+    "observedAt": "2026-09-24T15:00:00Z",
+    "volatile": false
+  },
+  "validation": {
+    "state": "schema_valid",
+    "signature": "none"
+  },
+  "content": {
+    "mediaType": "text/plain",
+    "body": "The user prefers temperatures in Celsius."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "brain.model-response/1",
+  "responseId": "mres_0003",
+  "requestId": "mreq_0002",
+  "generation": 3,
+  "route": {
+    "logicalRoute": "memory.extract",
+    "modelId": "mock-model-1"
+  },
+  "outcome": "timeout",
+  "stopReason": "timeout",
+  "error": {
+    "code": "timeout",
+    "retryable": true
+  },
+  "labels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "private"
+  },
+  "usage": {
+    "inputTokens": 120,
+    "outputTokens": 0
+  }
+}

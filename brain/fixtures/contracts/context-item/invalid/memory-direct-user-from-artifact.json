@@ -1,0 +1,23 @@
+{
+  "description": "Attested memory cites a memory node.",
+  "base": "retrieved-memory.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "direct_user"
+    },
+    {
+      "op": "replace",
+      "path": "/sourceRef",
+      "value": {
+        "kind": "artifact",
+        "id": "art_worker_summary"
+      }
+    }
+  ],
+  "expect": {
+    "keyword": "anyOf",
+    "instancePath": ""
+  }
+}

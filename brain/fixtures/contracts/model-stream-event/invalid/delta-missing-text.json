@@ -1,0 +1,14 @@
+{
+  "description": "A text delta carries its delta.",
+  "base": "text-delta.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/delta"
+    }
+  ],
+  "expect": {
+    "keyword": "oneOf",
+    "instancePath": ""
+  }
+}

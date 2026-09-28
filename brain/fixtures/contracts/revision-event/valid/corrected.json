@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "brain.revision-event/1",
+  "revisionId": "rev_0001_b",
+  "turnId": "turn_0001",
+  "producer": "narrator",
+  "generation": 3,
+  "sequence": 1,
+  "status": "corrected",
+  "supersedes": "rev_0001_a",
+  "sourceRefs": [
+    "art_weather_summary_v2"
+  ],
+  "confidence": 0.82,
+  "expiresAt": "2026-09-24T18:00:00Z",
+  "labels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "public"
+  }
+}

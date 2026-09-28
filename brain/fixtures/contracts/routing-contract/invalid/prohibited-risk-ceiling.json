@@ -1,0 +1,15 @@
+{
+  "description": "Prohibited is never a risk ceiling.",
+  "base": "narrator-simple-answer.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/riskCeiling",
+      "value": "prohibited"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/riskCeiling"
+  }
+}

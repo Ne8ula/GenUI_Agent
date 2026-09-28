@@ -1,0 +1,15 @@
+{
+  "description": "Labels cannot carry an override flag.",
+  "base": "worker-summary-v1.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/override",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

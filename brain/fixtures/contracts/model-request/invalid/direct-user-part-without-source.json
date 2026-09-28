@@ -1,0 +1,14 @@
+{
+  "description": "direct_user text must cite the user turn, episode or memory node.",
+  "base": "narrator-with-persona.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/messages/1/parts/0/sourceRef"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": "/messages/1/parts/0"
+  }
+}

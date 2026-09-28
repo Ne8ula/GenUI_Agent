@@ -1,0 +1,23 @@
+{
+  "description": "A verifier is model-backed.",
+  "base": "worker-summary-v1.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/producer",
+      "value": {
+        "role": "verifier",
+        "id": "verifier_refine"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "verified_local"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

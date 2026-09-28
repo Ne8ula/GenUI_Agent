@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "brain.model-response/1",
+  "responseId": "mres_0001",
+  "requestId": "mreq_0001",
+  "generation": 3,
+  "route": {
+    "logicalRoute": "narrator.default",
+    "modelId": "mock-model-1"
+  },
+  "outcome": "completed",
+  "stopReason": "end_turn",
+  "output": {
+    "kind": "text",
+    "text": "Around eighteen degrees at noon, by the fixture's numbers."
+  },
+  "labels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "private"
+  },
+  "usage": {
+    "inputTokens": 512,
+    "outputTokens": 18,
+    "costMicroUsd": 0
+  }
+}

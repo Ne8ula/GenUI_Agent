@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/persona-style.schema.json",
+  "title": "EVA brain adaptive style state (style-state.yaml)",
+  "description": "Adaptive style layer (PLANNING.md §8.1, §8.3): bounded numbers and enums only, versioned. The sarcasm level always exists so the persona compiler can suppress it deterministically.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "styleVersion", "personaVersion", "updatedAt", "style", "phrasing"],
+  "properties": {
+    "schemaVersion": { "const": "brain.persona-style/1" },
+    "styleVersion": { "type": "integer", "minimum": 1, "maximum": 1000000 },
+    "personaVersion": { "$ref": "common.schema.json#/$defs/personaVersion" },
+    "updatedAt": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["brevity", "initiative", "warmth", "formality", "sarcasm"],
+      "properties": {
+        "brevity": { "$ref": "common.schema.json#/$defs/unitInterval" },
+        "initiative": { "$ref": "common.schema.json#/$defs/unitInterval" },
+        "warmth": { "$ref": "common.schema.json#/$defs/unitInterval" },
+        "formality": { "$ref": "common.schema.json#/$defs/unitInterval" },
+        "sarcasm": { "$ref": "common.schema.json#/$defs/unitInterval" }
+      }
+    },
+    "phrasing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hedging", "contractions", "spelling"],
+      "properties": {
+        "hedging": { "enum": ["minimal", "moderate", "careful"] },
+        "contractions": { "type": "boolean" },
+        "spelling": { "enum": ["british", "american"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "brain.trace-event/1",
+  "traceId": "trace_0001",
+  "turnId": "turn_0001",
+  "generation": 3,
+  "sequence": 9,
+  "at": "2026-09-24T15:00:02.250Z",
+  "kind": "turn_completed",
+  "outcome": "ok",
+  "route": {
+    "logicalRoute": "narrator.default",
+    "modelId": "mock-model-1"
+  },
+  "requestId": "mreq_0001",
+  "personaVersion": "persona-v0.1.0",
+  "personaHash": "sha256:687145a290daa0ef0d1e51062dedfd4494c716bef404e83da8d877675b0bca66",
+  "citedNodeIds": [
+    "mem_units_celsius"
+  ],
+  "revisionIds": [
+    "rev_0001_a",
+    "rev_0001_b"
+  ],
+  "timings": {
+    "durationMs": 2250,
+    "firstEventMs": 380
+  },
+  "usage": {
+    "inputTokens": 512,
+    "outputTokens": 18
+  }
+}

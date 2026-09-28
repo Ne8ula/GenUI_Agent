@@ -1,0 +1,14 @@
+{
+  "description": "Artifacts carry a generation token for late-result rejection.",
+  "base": "worker-summary-v1.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/generation"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

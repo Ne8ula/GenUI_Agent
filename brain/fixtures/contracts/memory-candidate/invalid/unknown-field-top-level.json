@@ -1,0 +1,15 @@
+{
+  "description": "A candidate has only proposal and host parts.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/notes",
+      "value": "looks fine"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

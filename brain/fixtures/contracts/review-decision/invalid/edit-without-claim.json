@@ -1,0 +1,14 @@
+{
+  "description": "An edit must supply the edited claim.",
+  "base": "edit.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/editedClaim"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

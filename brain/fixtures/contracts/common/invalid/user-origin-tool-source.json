@@ -1,0 +1,18 @@
+{
+  "description": "direct_user content cites a user turn or episode.",
+  "base": "user-turn-stamp.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/sourceRef",
+      "value": {
+        "kind": "tool_result",
+        "id": "tool_weather"
+      }
+    }
+  ],
+  "expect": {
+    "keyword": "anyOf",
+    "instancePath": ""
+  }
+}

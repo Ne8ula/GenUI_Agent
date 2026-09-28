@@ -1,0 +1,29 @@
+{
+  "origin": {
+    "kind": "direct_user",
+    "id": "user_fixture01"
+  },
+  "sourceRef": {
+    "kind": "user_turn",
+    "id": "turn_0001",
+    "locator": "chars=0-42"
+  },
+  "labels": {
+    "integrity": "direct_user",
+    "confidentiality": "private"
+  },
+  "lineage": [
+    {
+      "sequence": 0,
+      "operation": "ingest",
+      "actor": {
+        "kind": "host",
+        "id": "host_turnrecorder"
+      },
+      "inputRefs": [
+        "turn_0001"
+      ],
+      "at": "2026-09-24T15:00:00Z"
+    }
+  ]
+}

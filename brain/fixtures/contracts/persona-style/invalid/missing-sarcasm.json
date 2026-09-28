@@ -1,0 +1,14 @@
+{
+  "description": "The sarcasm level must exist so it can be suppressed.",
+  "base": "baseline.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/style/sarcasm"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": "/style"
+  }
+}

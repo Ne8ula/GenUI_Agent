@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "brain.memory-candidate/1",
+  "proposal": {
+    "type": "preference",
+    "subject": "temperature units",
+    "claim": "The user prefers temperatures in Celsius.",
+    "assertion": "explicit",
+    "confidence": 0.9,
+    "sensitivity": "low",
+    "evidence": {
+      "episodeId": "ep_0001",
+      "quote": "I prefer Celsius, please."
+    },
+    "tags": [
+      "units"
+    ]
+  },
+  "host": {
+    "candidateId": "cand_0001",
+    "generation": 3,
+    "extractedAt": "2026-09-24T15:00:02.250Z",
+    "extractorRoute": {
+      "logicalRoute": "memory.extract",
+      "modelId": "mock-model-1"
+    },
+    "sourceEpisodeIds": [
+      "ep_0001"
+    ],
+    "originRevision": {
+      "revisionId": "rev_0001_b",
+      "status": "verified"
+    },
+    "labels": {
+      "integrity": "untrusted_generated",
+      "confidentiality": "private"
+    },
+    "lineage": [
+      {
+        "sequence": 0,
+        "operation": "ingest",
+        "actor": {
+          "kind": "host",
+          "id": "host_turnrecorder"
+        },
+        "inputRefs": [
+          "ep_0001"
+        ],
+        "at": "2026-09-24T15:00:00Z"
+      },
+      {
+        "sequence": 1,
+        "operation": "extract",
+        "actor": {
+          "kind": "model",
+          "id": "extractor_memory"
+        },
+        "inputRefs": [
+          "ep_0001"
+        ],
+        "at": "2026-09-24T15:00:02.250Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "description": "A node cannot carry a review bypass flag.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/autoApproved",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

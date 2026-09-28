@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/persona-packet.schema.json",
+  "title": "EVA brain compiled persona packet",
+  "description": "Compiled persona for the narrator only (PLANNING.md \u00a78.1\u20138.2). Sarcasm suppression is enforced here, on the packet, not requested in a prompt: a suppressed packet has sarcasm level 0 and names why.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "recipient",
+    "personaVersion",
+    "styleVersion",
+    "compiledAt",
+    "contentHash",
+    "layerHashes",
+    "labels",
+    "register",
+    "sarcasm"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.persona-packet/1"
+    },
+    "recipient": {
+      "const": "narrator"
+    },
+    "personaVersion": {
+      "$ref": "common.schema.json#/$defs/personaVersion"
+    },
+    "styleVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "compiledAt": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "contentHash": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "layerHashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "constitution",
+        "identity",
+        "style"
+      ],
+      "properties": {
+        "constitution": {
+          "$ref": "common.schema.json#/$defs/sha256"
+        },
+        "identity": {
+          "$ref": "common.schema.json#/$defs/sha256"
+        },
+        "style": {
+          "$ref": "common.schema.json#/$defs/sha256"
+        },
+        "voice": {
+          "$ref": "common.schema.json#/$defs/sha256"
+        },
+        "exemplars": {
+          "$ref": "common.schema.json#/$defs/sha256"
+        },
+        "affect": {
+          "$ref": "common.schema.json#/$defs/sha256"
+        }
+      }
+    },
+    "labels": {
+      "description": "Compiled from user-approved persona files: never trusted_policy or direct_user.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "integrity",
+        "confidentiality"
+      ],
+      "properties": {
+        "integrity": {
+          "enum": [
+            "verified_local",
+            "verified_tool",
+            "untrusted_external",
+            "untrusted_generated",
+            "quarantined"
+          ]
+        },
+        "confidentiality": {
+          "$ref": "common.schema.json#/$defs/confidentialityLabel"
+        }
+      }
+    },
+    "register": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "register",
+        "brevity",
+        "initiative",
+        "warmth",
+        "formality",
+        "hedging"
+      ],
+      "properties": {
+        "register": {
+          "enum": [
+            "low",
+            "lower_mid",
+            "mid",
+            "upper_mid",
+            "high"
+          ]
+        },
+        "brevity": {
+          "$ref": "common.schema.json#/$defs/unitInterval"
+        },
+        "initiative": {
+          "$ref": "common.schema.json#/$defs/unitInterval"
+        },
+        "warmth": {
+          "$ref": "common.schema.json#/$defs/unitInterval"
+        },
+        "formality": {
+          "$ref": "common.schema.json#/$defs/unitInterval"
+        },
+        "hedging": {
+          "enum": [
+            "minimal",
+            "moderate",
+            "careful"
+          ]
+        }
+      }
+    },
+    "sarcasm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "suppressed",
+        "reasons"
+      ],
+      "properties": {
+        "level": {
+          "$ref": "common.schema.json#/$defs/unitInterval"
+        },
+        "suppressed": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/sarcasmSuppressionReason"
+          }
+        }
+      },
+      "if": {
+        "type": "object",
+        "properties": {
+          "suppressed": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "const": 0
+          },
+          "reasons": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      },
+      "else": {
+        "type": "object",
+        "properties": {
+          "reasons": {
+            "type": "array",
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    "affect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intention",
+        "intensity",
+        "expiresAt"
+      ],
+      "properties": {
+        "intention": {
+          "$ref": "common.schema.json#/$defs/expressiveIntention"
+        },
+        "intensity": {
+          "$ref": "common.schema.json#/$defs/unitInterval"
+        },
+        "expiresAt": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        }
+      }
+    }
+  },
+  "if": {
+    "type": "object",
+    "required": [
+      "affect"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "layerHashes": {
+        "type": "object",
+        "required": [
+          "affect"
+        ]
+      }
+    }
+  }
+}

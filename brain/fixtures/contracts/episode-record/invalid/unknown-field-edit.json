@@ -1,0 +1,15 @@
+{
+  "description": "Episodes are append-only; no edit metadata.",
+  "base": "user-turn-first.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/editedAt",
+      "value": "2026-09-24T15:00:02.250Z"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

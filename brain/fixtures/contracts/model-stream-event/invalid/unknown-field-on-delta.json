@@ -1,0 +1,15 @@
+{
+  "description": "Stream variants are closed.",
+  "base": "text-delta.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/toolCall",
+      "value": "vault.write"
+    }
+  ],
+  "expect": {
+    "keyword": "oneOf",
+    "instancePath": ""
+  }
+}

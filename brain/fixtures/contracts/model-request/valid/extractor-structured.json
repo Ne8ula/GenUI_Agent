@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "brain.model-request/1",
+  "requestId": "mreq_0002",
+  "taskId": "task_0002",
+  "generation": 3,
+  "purpose": "extractor",
+  "route": {
+    "logicalRoute": "memory.extract",
+    "modelId": "mock-model-1"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "type": "text",
+          "text": "I prefer Celsius, please.",
+          "labels": {
+            "integrity": "direct_user",
+            "confidentiality": "private"
+          },
+          "sourceRef": {
+            "kind": "episode",
+            "id": "ep_0001"
+          }
+        }
+      ]
+    }
+  ],
+  "outputSchemaRef": "https://eva.local/schemas/brain/memory-candidate-proposal.schema.json",
+  "maxOutputTokens": 300,
+  "deadlineMs": 5000,
+  "stream": false
+}

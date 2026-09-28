@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "brain.trace-event/1",
+  "traceId": "trace_0001",
+  "turnId": "turn_0001",
+  "generation": 2,
+  "sequence": 10,
+  "at": "2026-09-24T15:00:02.250Z",
+  "kind": "late_result_rejected",
+  "outcome": "rejected",
+  "requestId": "mreq_0000"
+}

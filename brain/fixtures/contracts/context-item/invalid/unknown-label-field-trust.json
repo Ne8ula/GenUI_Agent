@@ -1,0 +1,15 @@
+{
+  "description": "Labels are closed: no extra trust field.",
+  "base": "retrieved-memory.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/trustLevel",
+      "value": "high"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

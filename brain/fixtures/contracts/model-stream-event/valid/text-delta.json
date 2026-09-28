@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "brain.model-stream-event/1",
+  "requestId": "mreq_0001",
+  "generation": 3,
+  "sequence": 1,
+  "type": "text_delta",
+  "delta": "Around eighteen"
+}

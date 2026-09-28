@@ -1,0 +1,14 @@
+{
+  "description": "Every answer's trace records the persona hash.",
+  "base": "turn-completed.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/personaHash"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

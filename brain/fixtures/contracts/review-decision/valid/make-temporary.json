@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "brain.review-decision/1",
+  "decisionId": "rd_0002",
+  "candidateId": "cand_0003",
+  "decision": "make-temporary",
+  "reviewer": {
+    "kind": "direct_user",
+    "id": "user_fixture01"
+  },
+  "decidedAt": "2026-09-24T18:00:00Z",
+  "validUntil": "2026-09-25T15:00:00Z",
+  "labels": {
+    "integrity": "direct_user",
+    "confidentiality": "sensitive"
+  }
+}

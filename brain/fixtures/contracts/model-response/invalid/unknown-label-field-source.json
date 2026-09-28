@@ -1,0 +1,15 @@
+{
+  "description": "Output labels are closed.",
+  "base": "completed-text.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/source",
+      "value": "user"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

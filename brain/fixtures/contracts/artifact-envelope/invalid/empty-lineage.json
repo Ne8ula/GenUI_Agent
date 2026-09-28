@@ -1,0 +1,15 @@
+{
+  "description": "Lineage is never empty.",
+  "base": "worker-summary-v1.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/lineage",
+      "value": []
+    }
+  ],
+  "expect": {
+    "keyword": "minItems",
+    "instancePath": "/lineage"
+  }
+}

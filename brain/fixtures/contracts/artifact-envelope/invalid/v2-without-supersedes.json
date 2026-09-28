@@ -1,0 +1,15 @@
+{
+  "description": "A later version must name what it supersedes.",
+  "base": "verified-superseding-v2.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/supersedes",
+      "value": null
+    }
+  ],
+  "expect": {
+    "keyword": "type",
+    "instancePath": "/supersedes"
+  }
+}

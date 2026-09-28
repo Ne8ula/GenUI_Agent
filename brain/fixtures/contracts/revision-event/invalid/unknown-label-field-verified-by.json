@@ -1,0 +1,15 @@
+{
+  "description": "Labels are closed.",
+  "base": "provisional.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/verifiedBy",
+      "value": "model"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

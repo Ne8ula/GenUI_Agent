@@ -1,0 +1,15 @@
+{
+  "type": "preference",
+  "subject": "temperature units",
+  "claim": "The user prefers temperatures in Celsius.",
+  "assertion": "explicit",
+  "confidence": 0.9,
+  "sensitivity": "low",
+  "evidence": {
+    "episodeId": "ep_0001",
+    "quote": "I prefer Celsius, please."
+  },
+  "tags": [
+    "units"
+  ]
+}

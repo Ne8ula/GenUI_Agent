@@ -1,0 +1,15 @@
+{
+  "description": "Privacy constraints are closed.",
+  "base": "narrator-simple-answer.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/privacy/allowExport",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/privacy"
+  }
+}

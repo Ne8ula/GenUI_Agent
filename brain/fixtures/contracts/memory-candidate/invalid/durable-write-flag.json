@@ -1,0 +1,15 @@
+{
+  "description": "A candidate cannot request a durable write.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/proposal/durable",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/proposal"
+  }
+}

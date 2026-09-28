@@ -1,0 +1,23 @@
+{
+  "description": "Model-originated context is at most untrusted_generated.",
+  "base": "retrieved-memory.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/origin",
+      "value": {
+        "kind": "model",
+        "id": "worker_weather"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "direct_user"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "brain.routing-contract/1",
+  "taskId": "task_0001",
+  "deadlines": {
+    "hardMs": 8000,
+    "preferredMs": 3000
+  },
+  "qualityTier": "standard",
+  "riskCeiling": "read_only",
+  "privacy": {
+    "maxConfidentiality": "private",
+    "localOnly": false
+  },
+  "budgets": {
+    "maxInputTokens": 8000,
+    "maxOutputTokens": 600,
+    "maxCostMicroUsd": 20000
+  },
+  "cancellation": {
+    "propagate": "all_dependents",
+    "onHardDeadline": "cancel_and_keep_provisional"
+  },
+  "fallback": "deterministic_text",
+  "provisionalDisplayAllowed": true,
+  "externalToolsPermitted": false,
+  "specialistsPermitted": true
+}

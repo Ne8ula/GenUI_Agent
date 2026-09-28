@@ -1,0 +1,15 @@
+{
+  "description": "A direct-user event must carry direct_user integrity.",
+  "base": "user-turn-first.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "untrusted_external"
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/labels/integrity"
+  }
+}

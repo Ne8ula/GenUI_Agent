@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/revision-event.schema.json",
+  "title": "EVA brain revision event",
+  "description": "One user-visible revision in an ordered, cancellable stream (PLANNING.md \u00a77.7). generation lets consumers reject late results from a superseded or cancelled turn.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "revisionId",
+    "turnId",
+    "producer",
+    "generation",
+    "sequence",
+    "status",
+    "supersedes",
+    "sourceRefs",
+    "confidence",
+    "expiresAt",
+    "labels"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.revision-event/1"
+    },
+    "revisionId": {
+      "$ref": "common.schema.json#/$defs/revisionId"
+    },
+    "turnId": {
+      "$ref": "common.schema.json#/$defs/turnId"
+    },
+    "producer": {
+      "description": "narrator for model prose; host_template for deterministic host text.",
+      "enum": [
+        "narrator",
+        "host_template"
+      ]
+    },
+    "generation": {
+      "$ref": "common.schema.json#/$defs/generation"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/revisionStatus"
+    },
+    "supersedes": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/revisionId"
+        }
+      ]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/entityId"
+      }
+    },
+    "confidence": {
+      "$ref": "common.schema.json#/$defs/confidence"
+    },
+    "expiresAt": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "labels": {
+      "description": "Revisions are narrator or deterministic host output: never trusted_policy or direct_user.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "integrity",
+        "confidentiality"
+      ],
+      "properties": {
+        "integrity": {
+          "enum": [
+            "verified_local",
+            "verified_tool",
+            "untrusted_external",
+            "untrusted_generated",
+            "quarantined"
+          ]
+        },
+        "confidentiality": {
+          "$ref": "common.schema.json#/$defs/confidentialityLabel"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "description": "Corrections and revocations must name the revision they replace.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "corrected",
+              "revoked"
+            ]
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "supersedes": {
+            "$ref": "common.schema.json#/$defs/revisionId"
+          }
+        }
+      }
+    },
+    {
+      "description": "A verified revision cites at least one source.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "sourceRefs": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "Narrator prose is model output.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "producer": {
+            "const": "narrator"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "enum": [
+                  "untrusted_generated",
+                  "quarantined"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

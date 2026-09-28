@@ -1,0 +1,15 @@
+{
+  "description": "Only the first entry may omit the chain hash.",
+  "base": "narrator-reply.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/prevEntryHash",
+      "value": null
+    }
+  ],
+  "expect": {
+    "keyword": "type",
+    "instancePath": "/prevEntryHash"
+  }
+}

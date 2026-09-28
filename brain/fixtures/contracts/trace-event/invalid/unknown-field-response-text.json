@@ -1,0 +1,15 @@
+{
+  "description": "Traces carry no raw response text.",
+  "base": "turn-completed.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/responseText",
+      "value": "Around eighteen degrees."
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

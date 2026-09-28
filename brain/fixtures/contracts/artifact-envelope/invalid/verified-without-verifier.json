@@ -1,0 +1,14 @@
+{
+  "description": "Verified state needs verifier identity and time.",
+  "base": "verified-superseding-v2.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/verification/verifierId"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": "/verification"
+  }
+}

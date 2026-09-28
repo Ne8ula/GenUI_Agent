@@ -1,0 +1,15 @@
+{
+  "description": "Narrator prose is model output.",
+  "base": "provisional.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "verified_local"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

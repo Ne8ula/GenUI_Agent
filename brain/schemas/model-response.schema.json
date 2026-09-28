@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/model-response.schema.json",
+  "title": "EVA brain normalized model response",
+  "description": "Provider-neutral final response (PLANNING.md \u00a77.2). Model output is labelled no higher than untrusted_generated. Structured output is carried as a raw JSON string so the adapter must parse and validate it against outputSchemaRef before use.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "responseId",
+    "requestId",
+    "generation",
+    "route",
+    "outcome",
+    "stopReason",
+    "labels",
+    "usage"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.model-response/1"
+    },
+    "responseId": {
+      "$ref": "common.schema.json#/$defs/responseId"
+    },
+    "requestId": {
+      "$ref": "common.schema.json#/$defs/requestId"
+    },
+    "generation": {
+      "$ref": "common.schema.json#/$defs/generation"
+    },
+    "route": {
+      "description": "The observed route and model, recorded as reported by the adapter.",
+      "$ref": "common.schema.json#/$defs/route"
+    },
+    "outcome": {
+      "enum": [
+        "completed",
+        "refused",
+        "error",
+        "cancelled",
+        "timeout"
+      ]
+    },
+    "stopReason": {
+      "$ref": "common.schema.json#/$defs/stopReason"
+    },
+    "output": {
+      "$ref": "#/$defs/output"
+    },
+    "labels": {
+      "$ref": "common.schema.json#/$defs/generatedLabels"
+    },
+    "refusal": {
+      "$ref": "common.schema.json#/$defs/refusal"
+    },
+    "error": {
+      "$ref": "common.schema.json#/$defs/modelError"
+    },
+    "usage": {
+      "$ref": "common.schema.json#/$defs/usage"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "output"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "refusal"
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "error"
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "stopReason": {
+            "enum": [
+              "end_turn",
+              "max_tokens",
+              "stop_sequence"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "const": "refused"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "refusal"
+        ],
+        "properties": {
+          "stopReason": {
+            "const": "refusal"
+          }
+        },
+        "not": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "output"
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "error"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "const": "error"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "stopReason": {
+            "const": "error"
+          }
+        },
+        "not": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "output"
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "refusal"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "enum": [
+              "cancelled",
+              "timeout"
+            ]
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "stopReason": {
+            "enum": [
+              "cancelled",
+              "timeout"
+            ]
+          }
+        },
+        "not": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "output"
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "refusal"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "output": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "text"
+          ],
+          "properties": {
+            "kind": {
+              "const": "text"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 64000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "schemaRef",
+            "json"
+          ],
+          "properties": {
+            "kind": {
+              "const": "structured"
+            },
+            "schemaRef": {
+              "$ref": "common.schema.json#/$defs/brainSchemaRef"
+            },
+            "json": {
+              "type": "string",
+              "maxLength": 64000
+            }
+          }
+        }
+      ]
+    }
+  }
+}

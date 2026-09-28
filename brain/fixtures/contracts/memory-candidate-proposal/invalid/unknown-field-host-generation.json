@@ -1,0 +1,15 @@
+{
+  "description": "The model cannot write host-owned fields such as generation.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/generation",
+      "value": 99
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

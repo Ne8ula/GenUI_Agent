@@ -1,0 +1,15 @@
+{
+  "description": "A persona packet is never trusted_policy.",
+  "base": "normal.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "trusted_policy"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

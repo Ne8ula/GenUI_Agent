@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/persona-identity.schema.json",
+  "title": "EVA brain persona identity (persona.yaml)",
+  "description": "Identity layer (PLANNING.md §8.1–8.3). Changes need an explicit user review decision. Values are enums or bounded numbers; secrets such as a voice ID are never part of this file.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "personaVersion",
+    "name",
+    "pronouns",
+    "relationship",
+    "temperament",
+    "voice",
+    "approval",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "brain.persona-identity/1" },
+    "personaVersion": { "$ref": "common.schema.json#/$defs/personaVersion" },
+    "name": { "type": "string", "pattern": "^[A-Z][A-Za-z]{0,23}( [A-Z][A-Za-z]{0,23}){0,2}$" },
+    "pronouns": { "enum": ["she/her", "he/him", "they/them", "it/its"] },
+    "relationship": { "enum": ["assistant", "collaborator", "companion"] },
+    "temperament": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "enum": ["dry_warmth", "high_competence", "observant", "calm", "curious", "playful", "reserved", "direct"]
+      }
+    },
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["language", "accent", "perceivedAge", "register", "timbre", "articulation", "pacing"],
+      "properties": {
+        "language": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$" },
+        "accent": { "enum": ["british", "american", "australian", "irish", "scottish", "neutral"] },
+        "perceivedAge": { "type": "integer", "minimum": 18, "maximum": 80 },
+        "register": { "enum": ["low", "lower_mid", "mid", "upper_mid", "high"] },
+        "timbre": { "enum": ["smooth_controlled", "bright", "warm", "breathy", "resonant"] },
+        "articulation": { "enum": ["crisp", "relaxed"] },
+        "pacing": { "type": "number", "minimum": 0.75, "maximum": 1.25 }
+      }
+    },
+    "approval": {
+      "description": "The user review decision that approved this identity version.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewDecisionId", "approvedAt"],
+      "properties": {
+        "reviewDecisionId": { "$ref": "common.schema.json#/$defs/reviewDecisionId" },
+        "approvedAt": { "$ref": "common.schema.json#/$defs/timestamp" }
+      }
+    },
+    "updatedAt": { "$ref": "common.schema.json#/$defs/timestamp" }
+  }
+}

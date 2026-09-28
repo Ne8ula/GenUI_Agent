@@ -1,0 +1,15 @@
+{
+  "description": "Raw provider payloads are not part of the normalized shape.",
+  "base": "completed-text.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/rawProviderResponse",
+      "value": "{}"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

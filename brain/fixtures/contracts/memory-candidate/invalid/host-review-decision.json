@@ -1,0 +1,15 @@
+{
+  "description": "Even the host part cannot carry a review decision.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/host/reviewDecision",
+      "value": "accept"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/host"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "description": "Memory can never be placed in the system role, even mislabelled.",
+  "base": "narrator-with-persona.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/messages/0/parts/0/sourceRef",
+      "value": {
+        "kind": "memory_node",
+        "id": "mem_units_celsius"
+      }
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/messages/0/parts/0/sourceRef/kind"
+  }
+}

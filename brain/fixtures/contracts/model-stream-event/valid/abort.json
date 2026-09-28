@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "brain.model-stream-event/1",
+  "requestId": "mreq_0001",
+  "generation": 3,
+  "sequence": 2,
+  "type": "abort",
+  "reason": "user_cancelled"
+}

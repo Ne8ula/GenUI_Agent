@@ -1,0 +1,15 @@
+{
+  "description": "The start event is sequence 0.",
+  "base": "start.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/sequence",
+      "value": 4
+    }
+  ],
+  "expect": {
+    "keyword": "oneOf",
+    "instancePath": ""
+  }
+}

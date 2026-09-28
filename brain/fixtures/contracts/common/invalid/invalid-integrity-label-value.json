@@ -1,0 +1,15 @@
+{
+  "description": "Integrity must be one of the seven \u00a713.3 labels.",
+  "base": "user-turn-stamp.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "trusted_user"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

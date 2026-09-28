@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "brain.context-item/1",
+  "id": "ctx_weather_w01",
+  "origin": {
+    "kind": "fixture",
+    "id": "fixture_weather_w01"
+  },
+  "sourceRef": {
+    "kind": "fixture",
+    "id": "fixture_weather_w01",
+    "locator": "field=hourly.temperature"
+  },
+  "labels": {
+    "integrity": "untrusted_external",
+    "confidentiality": "public"
+  },
+  "lineage": [
+    {
+      "sequence": 0,
+      "operation": "ingest",
+      "actor": {
+        "kind": "tool",
+        "id": "tool_weatherfixture"
+      },
+      "inputRefs": [
+        "fixture_weather_w01"
+      ],
+      "at": "2026-09-24T15:00:00Z"
+    }
+  ],
+  "freshness": {
+    "observedAt": "2026-09-24T15:00:00Z",
+    "expiresAt": "2026-09-24T18:00:00Z",
+    "volatile": true
+  },
+  "content": {
+    "mediaType": "application/json",
+    "body": "{\"12:00\":{\"temperatureC\":18}}"
+  }
+}

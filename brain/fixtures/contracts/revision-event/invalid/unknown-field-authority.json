@@ -1,0 +1,15 @@
+{
+  "description": "A revision cannot claim authority.",
+  "base": "provisional.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/approvedAction",
+      "value": "send_email"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

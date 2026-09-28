@@ -1,0 +1,31 @@
+{
+  "description": "A model step in the lineage makes the item model output.",
+  "base": "retrieved-memory.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "direct_user"
+    },
+    {
+      "op": "add",
+      "path": "/lineage/-",
+      "value": {
+        "sequence": 1,
+        "operation": "summarize",
+        "actor": {
+          "kind": "model",
+          "id": "model_summarizer"
+        },
+        "inputRefs": [
+          "mem_units_celsius"
+        ],
+        "at": "2026-09-24T15:00:01Z"
+      }
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

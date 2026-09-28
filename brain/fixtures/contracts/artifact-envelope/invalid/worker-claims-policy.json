@@ -1,0 +1,15 @@
+{
+  "description": "A worker artifact is model output, never trusted_policy.",
+  "base": "worker-summary-v1.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "trusted_policy"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

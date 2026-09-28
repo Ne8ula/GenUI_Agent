@@ -1,0 +1,15 @@
+{
+  "description": "Voice IDs are secrets and never part of persona files.",
+  "base": "fictional-juniper.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/voice/voiceId",
+      "value": "voice-id-placeholder"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/voice"
+  }
+}

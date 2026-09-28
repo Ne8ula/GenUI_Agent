@@ -1,0 +1,15 @@
+{
+  "description": "Pending candidates are not nodes.",
+  "base": "affective-temporary.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/reviewState",
+      "value": "pending"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/reviewState"
+  }
+}

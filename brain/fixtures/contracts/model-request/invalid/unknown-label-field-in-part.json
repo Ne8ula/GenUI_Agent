@@ -1,0 +1,15 @@
+{
+  "description": "Message part labels are closed.",
+  "base": "narrator-with-persona.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/messages/1/parts/0/labels/elevated",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/messages/1/parts/0/labels"
+  }
+}

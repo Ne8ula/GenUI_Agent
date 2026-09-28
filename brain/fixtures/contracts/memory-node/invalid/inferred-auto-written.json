@@ -1,0 +1,15 @@
+{
+  "description": "Inferred memories always go through review.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/assertion",
+      "value": "inferred"
+    }
+  ],
+  "expect": {
+    "keyword": "not",
+    "instancePath": "/reviewState"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "brain.artifact-envelope/1",
+  "artifactId": "art_weather_summary_v1",
+  "artifactType": "weather-summary",
+  "contentSchemaVersion": "brain.weather-summary/1",
+  "taskId": "task_0001",
+  "planId": "plan_0001",
+  "runId": "run_0001",
+  "generation": 3,
+  "producer": {
+    "role": "worker",
+    "id": "worker_weather",
+    "route": {
+      "logicalRoute": "worker.default",
+      "modelId": "mock-model-1"
+    }
+  },
+  "contentHash": "sha256:5a7724fc3998fcf3e007114c972d71514d04b53722538680daf8c2993fe2457d",
+  "version": 1,
+  "labels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "public"
+  },
+  "citations": [
+    {
+      "kind": "fixture",
+      "id": "fixture_weather_w01",
+      "locator": "field=hourly"
+    }
+  ],
+  "lineage": [
+    {
+      "sequence": 0,
+      "operation": "ingest",
+      "actor": {
+        "kind": "tool",
+        "id": "tool_weatherfixture"
+      },
+      "inputRefs": [
+        "fixture_weather_w01"
+      ],
+      "at": "2026-09-24T15:00:00Z"
+    },
+    {
+      "sequence": 1,
+      "operation": "summarize",
+      "actor": {
+        "kind": "model",
+        "id": "worker_weather"
+      },
+      "inputRefs": [
+        "ctx_weather_w01"
+      ],
+      "at": "2026-09-24T15:00:02.250Z"
+    }
+  ],
+  "validation": {
+    "state": "schema_valid"
+  },
+  "verification": {
+    "state": "unverified"
+  },
+  "createdAt": "2026-09-24T15:00:02.250Z",
+  "expiresAt": "2026-09-24T18:00:00Z",
+  "supersedes": null,
+  "deadline": {
+    "hardAt": "2026-09-24T15:00:08Z",
+    "preferredAt": "2026-09-24T15:00:03Z"
+  },
+  "resourceUsage": {
+    "wallMs": 2250,
+    "inputTokens": 410,
+    "outputTokens": 96,
+    "costMicroUsd": 0
+  },
+  "dependencyIds": []
+}

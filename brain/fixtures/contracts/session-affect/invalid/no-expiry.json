@@ -1,0 +1,14 @@
+{
+  "description": "Session affect always expires.",
+  "base": "reconsider.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/expiresAt"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

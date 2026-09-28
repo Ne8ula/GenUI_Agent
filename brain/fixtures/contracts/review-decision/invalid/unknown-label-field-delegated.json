@@ -1,0 +1,15 @@
+{
+  "description": "Decision labels are closed.",
+  "base": "edit.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/delegatedTo",
+      "value": "agent_x"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

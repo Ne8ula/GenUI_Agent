@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "brain.episode-record/1",
+  "id": "ep_0002",
+  "sessionId": "sess_0001",
+  "turnId": "turn_0001",
+  "sequence": 1,
+  "prevEntryHash": "sha256:1fbc5afd8ad0515834e4808d9f9b2394acb974ebea3b181ca19cbef6af5e6095",
+  "at": "2026-09-24T15:00:02.250Z",
+  "origin": "narrator",
+  "labels": {
+    "integrity": "untrusted_generated",
+    "confidentiality": "private"
+  },
+  "revisionId": "rev_0001_b",
+  "content": {
+    "mediaType": "text/plain",
+    "text": "Noted. Celsius it is."
+  }
+}

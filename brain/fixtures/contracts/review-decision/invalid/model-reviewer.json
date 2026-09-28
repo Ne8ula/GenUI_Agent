@@ -1,0 +1,15 @@
+{
+  "description": "Only the user reviews.",
+  "base": "edit.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/reviewer/kind",
+      "value": "model"
+    }
+  ],
+  "expect": {
+    "keyword": "const",
+    "instancePath": "/reviewer/kind"
+  }
+}

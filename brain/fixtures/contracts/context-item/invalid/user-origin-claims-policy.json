@@ -1,0 +1,31 @@
+{
+  "description": "The user's words can never become policy.",
+  "base": "retrieved-memory.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/origin",
+      "value": {
+        "kind": "direct_user",
+        "id": "user_fixture01"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/sourceRef",
+      "value": {
+        "kind": "user_turn",
+        "id": "turn_0001"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "trusted_policy"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

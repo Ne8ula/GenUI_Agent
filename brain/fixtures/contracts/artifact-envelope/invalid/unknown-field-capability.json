@@ -1,0 +1,15 @@
+{
+  "description": "Artifact content cannot transfer a capability.",
+  "base": "worker-summary-v1.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/capabilityLease",
+      "value": "lease_write_vault"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

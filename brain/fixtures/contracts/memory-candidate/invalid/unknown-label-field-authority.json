@@ -1,0 +1,15 @@
+{
+  "description": "Candidate labels are closed.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/host/labels/authority",
+      "value": "user"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/host/labels"
+  }
+}

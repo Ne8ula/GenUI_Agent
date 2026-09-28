@@ -1,0 +1,15 @@
+{
+  "description": "Only the five \u00a77.7 statuses exist.",
+  "base": "provisional.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/status",
+      "value": "final"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/status"
+  }
+}

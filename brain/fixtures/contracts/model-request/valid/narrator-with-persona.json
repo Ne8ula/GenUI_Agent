@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "brain.model-request/1",
+  "requestId": "mreq_0001",
+  "taskId": "task_0001",
+  "generation": 3,
+  "purpose": "narrator",
+  "route": {
+    "logicalRoute": "narrator.default",
+    "modelId": "mock-model-1"
+  },
+  "messages": [
+    {
+      "role": "system",
+      "parts": [
+        {
+          "type": "text",
+          "text": "Answer using only the cited context.",
+          "labels": {
+            "integrity": "trusted_policy",
+            "confidentiality": "public"
+          },
+          "sourceRef": {
+            "kind": "policy",
+            "id": "policy_narrator"
+          }
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "type": "text",
+          "text": "Will it be warm at noon?",
+          "labels": {
+            "integrity": "direct_user",
+            "confidentiality": "private"
+          },
+          "sourceRef": {
+            "kind": "user_turn",
+            "id": "turn_0001"
+          }
+        },
+        {
+          "type": "text",
+          "text": "{\"12:00\":{\"temperatureC\":18}}",
+          "labels": {
+            "integrity": "untrusted_external",
+            "confidentiality": "public"
+          },
+          "sourceRef": {
+            "kind": "fixture",
+            "id": "fixture_weather_w01"
+          }
+        }
+      ]
+    }
+  ],
+  "personaPacketHash": "sha256:67770487f694320660ad02481a78265879058e5852d7707f23d356fc9505ab90",
+  "reasoning": {
+    "effort": "low"
+  },
+  "maxOutputTokens": 400,
+  "deadlineMs": 8000,
+  "stream": true
+}

@@ -1,0 +1,14 @@
+{
+  "description": "A completed response must carry output.",
+  "base": "completed-text.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/output"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

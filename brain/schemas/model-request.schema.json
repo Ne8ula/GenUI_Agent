@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/model-request.schema.json",
+  "title": "EVA brain normalized model request",
+  "description": "Provider-neutral request (PLANNING.md \u00a77.2). Route and model ID are data. Every message part carries labels; only trusted_policy parts may appear in the system role, so retrieved memory or external text can never become instruction. Provider-specific options belong inside the adapter, not here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "taskId",
+    "generation",
+    "purpose",
+    "route",
+    "messages",
+    "maxOutputTokens",
+    "deadlineMs",
+    "stream"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.model-request/1"
+    },
+    "requestId": {
+      "$ref": "common.schema.json#/$defs/requestId"
+    },
+    "taskId": {
+      "$ref": "common.schema.json#/$defs/taskId"
+    },
+    "generation": {
+      "$ref": "common.schema.json#/$defs/generation"
+    },
+    "purpose": {
+      "enum": [
+        "narrator",
+        "worker",
+        "extractor",
+        "verifier",
+        "classifier"
+      ]
+    },
+    "route": {
+      "$ref": "common.schema.json#/$defs/route"
+    },
+    "messages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "items": {
+        "$ref": "#/$defs/message"
+      }
+    },
+    "outputSchemaRef": {
+      "$ref": "common.schema.json#/$defs/brainSchemaRef"
+    },
+    "personaPacketHash": {
+      "description": "Only the narrator receives the persona packet (PLANNING.md \u00a78.1).",
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "reasoning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "effort"
+      ],
+      "properties": {
+        "effort": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    },
+    "maxOutputTokens": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 200000
+    },
+    "deadlineMs": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 600000
+    },
+    "stream": {
+      "type": "boolean"
+    }
+  },
+  "if": {
+    "type": "object",
+    "required": [
+      "personaPacketHash"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "purpose": {
+        "const": "narrator"
+      }
+    }
+  },
+  "$defs": {
+    "part": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text",
+        "labels"
+      ],
+      "properties": {
+        "type": {
+          "const": "text"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32000
+        },
+        "labels": {
+          "$ref": "common.schema.json#/$defs/labels"
+        },
+        "sourceRef": {
+          "$ref": "common.schema.json#/$defs/sourceRef"
+        }
+      },
+      "if": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "const": "direct_user"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "required": [
+          "sourceRef"
+        ],
+        "properties": {
+          "sourceRef": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "user_turn",
+                  "episode",
+                  "memory_node"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "parts"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "system",
+            "user",
+            "assistant"
+          ]
+        },
+        "parts": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/part"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "description": "System-role parts are trusted_policy text from a policy source.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "const": "system"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "parts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "sourceRef"
+                  ],
+                  "properties": {
+                    "labels": {
+                      "type": "object",
+                      "properties": {
+                        "integrity": {
+                          "const": "trusted_policy"
+                        }
+                      }
+                    },
+                    "sourceRef": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "const": "policy"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "Assistant-role parts are prior model output.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "const": "assistant"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "parts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "labels": {
+                      "type": "object",
+                      "properties": {
+                        "integrity": {
+                          "enum": [
+                            "untrusted_generated",
+                            "quarantined"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "trusted_policy text appears only in the system role.",
+          "if": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "enum": [
+                  "user",
+                  "assistant"
+                ]
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "parts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "labels": {
+                      "type": "object",
+                      "properties": {
+                        "integrity": {
+                          "not": {
+                            "const": "trusted_policy"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

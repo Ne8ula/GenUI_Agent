@@ -1,0 +1,373 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/artifact-envelope.schema.json",
+  "title": "EVA brain artifact envelope",
+  "description": "Immutable envelope for every cross-worker deliverable (PLANNING.md \u00a76.4). The payload is stored separately and bound by contentHash; it cannot carry capabilities, relabel confidentiality, or remove provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactId",
+    "artifactType",
+    "contentSchemaVersion",
+    "taskId",
+    "planId",
+    "runId",
+    "generation",
+    "producer",
+    "contentHash",
+    "version",
+    "labels",
+    "citations",
+    "lineage",
+    "validation",
+    "verification",
+    "createdAt",
+    "supersedes",
+    "deadline",
+    "resourceUsage",
+    "dependencyIds"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "brain.artifact-envelope/1"
+    },
+    "artifactId": {
+      "$ref": "common.schema.json#/$defs/artifactId"
+    },
+    "artifactType": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,47}$"
+    },
+    "contentSchemaVersion": {
+      "$ref": "common.schema.json#/$defs/schemaVersion"
+    },
+    "taskId": {
+      "$ref": "common.schema.json#/$defs/taskId"
+    },
+    "planId": {
+      "$ref": "common.schema.json#/$defs/planId"
+    },
+    "runId": {
+      "$ref": "common.schema.json#/$defs/runId"
+    },
+    "generation": {
+      "$ref": "common.schema.json#/$defs/generation"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "id"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "worker",
+            "retriever",
+            "extractor",
+            "verifier",
+            "narrator",
+            "host"
+          ]
+        },
+        "id": {
+          "$ref": "common.schema.json#/$defs/entityId"
+        },
+        "route": {
+          "$ref": "common.schema.json#/$defs/route"
+        }
+      }
+    },
+    "contentHash": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "labels": {
+      "$ref": "common.schema.json#/$defs/labels"
+    },
+    "citations": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "$ref": "common.schema.json#/$defs/sourceRef"
+      }
+    },
+    "lineage": {
+      "$ref": "common.schema.json#/$defs/lineage"
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "pending",
+            "schema_valid",
+            "schema_invalid"
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "unverified",
+            "verified",
+            "failed",
+            "not_applicable"
+          ]
+        },
+        "verifierId": {
+          "$ref": "common.schema.json#/$defs/entityId"
+        },
+        "verifiedAt": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        }
+      },
+      "if": {
+        "properties": {
+          "state": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "verifierId",
+          "verifiedAt"
+        ]
+      }
+    },
+    "createdAt": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "expiresAt": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "supersedes": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/artifactId"
+        }
+      ]
+    },
+    "deadline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hardAt",
+        "preferredAt"
+      ],
+      "properties": {
+        "hardAt": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "preferredAt": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        }
+      }
+    },
+    "resourceUsage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wallMs"
+      ],
+      "properties": {
+        "wallMs": {
+          "$ref": "common.schema.json#/$defs/count"
+        },
+        "inputTokens": {
+          "$ref": "common.schema.json#/$defs/count"
+        },
+        "outputTokens": {
+          "$ref": "common.schema.json#/$defs/count"
+        },
+        "costMicroUsd": {
+          "$ref": "common.schema.json#/$defs/count"
+        }
+      }
+    },
+    "parentId": {
+      "$ref": "common.schema.json#/$defs/artifactId"
+    },
+    "dependencyIds": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/artifactId"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "number",
+            "minimum": 2
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "supersedes": {
+            "$ref": "common.schema.json#/$defs/artifactId"
+          }
+        }
+      }
+    },
+    {
+      "description": "Model-backed producers emit generated labels.",
+      "if": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "producer": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "enum": [
+                      "worker",
+                      "extractor",
+                      "narrator",
+                      "verifier"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "producer": {
+                "type": "object",
+                "required": [
+                  "route"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "enum": [
+                  "untrusted_generated",
+                  "quarantined"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Retrieved or host-produced artifacts are never policy or direct-user content.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "producer": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "enum": [
+                  "retriever",
+                  "host"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "enum": [
+                  "verified_local",
+                  "verified_tool",
+                  "untrusted_external",
+                  "untrusted_generated",
+                  "quarantined"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Any model step in the lineage makes the artifact model output, whatever its producer role.",
+      "if": {
+        "type": "object",
+        "properties": {
+          "lineage": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "properties": {
+                "actor": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "model"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "properties": {
+              "integrity": {
+                "enum": [
+                  "untrusted_generated",
+                  "quarantined"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

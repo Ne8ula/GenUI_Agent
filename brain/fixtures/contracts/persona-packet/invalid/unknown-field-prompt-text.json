@@ -1,0 +1,15 @@
+{
+  "description": "Suppression is enforced on the packet, not requested in prompt text.",
+  "base": "normal.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/promptOverride",
+      "value": "be as sarcastic as you like"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

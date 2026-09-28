@@ -1,0 +1,31 @@
+{
+  "description": "Persona files are at most verified_local.",
+  "base": "retrieved-memory.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/origin",
+      "value": {
+        "kind": "persona",
+        "id": "persona_juniper"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/sourceRef",
+      "value": {
+        "kind": "persona_file",
+        "id": "persona_identity"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "trusted_policy"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

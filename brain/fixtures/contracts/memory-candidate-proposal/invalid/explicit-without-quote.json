@@ -1,0 +1,14 @@
+{
+  "description": "An explicit claim must quote its evidence.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/evidence/quote"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": "/evidence"
+  }
+}

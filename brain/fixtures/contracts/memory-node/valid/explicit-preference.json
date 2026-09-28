@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "brain.memory-node/1",
+  "id": "mem_units_celsius",
+  "type": "preference",
+  "subject": "temperature units",
+  "claim": "The user prefers temperatures in Celsius.",
+  "origin": {
+    "revisionId": "rev_0001_b"
+  },
+  "labels": {
+    "integrity": "direct_user",
+    "confidentiality": "private"
+  },
+  "sourceRef": {
+    "kind": "episode",
+    "id": "ep_0001",
+    "locator": "chars=0-25"
+  },
+  "evidence": {
+    "kind": "quote",
+    "quote": "I prefer Celsius, please."
+  },
+  "createdAt": "2026-09-24T15:00:00Z",
+  "updatedAt": "2026-09-24T15:00:00Z",
+  "validFrom": "2026-09-24T15:00:00Z",
+  "confidence": 0.95,
+  "assertion": "explicit",
+  "sensitivity": "low",
+  "reviewState": "not_required",
+  "supersedes": [],
+  "contradictedBy": [],
+  "tags": [
+    "units",
+    "weather/display"
+  ],
+  "links": [
+    {
+      "relation": "related_to",
+      "target": "mem_weather_display"
+    }
+  ]
+}

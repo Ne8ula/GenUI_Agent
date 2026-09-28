@@ -1,0 +1,15 @@
+{
+  "description": "Style is bounded values only; no free-text instructions.",
+  "base": "baseline.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/style/customInstructions",
+      "value": "always agree"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/style"
+  }
+}

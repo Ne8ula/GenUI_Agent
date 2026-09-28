@@ -1,0 +1,15 @@
+{
+  "description": "Provider-specific options stay inside the adapter.",
+  "base": "narrator-with-persona.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/anthropicBeta",
+      "value": "some-beta"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}

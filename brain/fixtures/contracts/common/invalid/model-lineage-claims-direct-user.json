@@ -1,0 +1,26 @@
+{
+  "description": "A model step in the lineage makes the stamp model output.",
+  "base": "user-turn-stamp.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/lineage/-",
+      "value": {
+        "sequence": 1,
+        "operation": "summarize",
+        "actor": {
+          "kind": "model",
+          "id": "model_summarizer"
+        },
+        "inputRefs": [
+          "mem_units_celsius"
+        ],
+        "at": "2026-09-24T15:00:01Z"
+      }
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

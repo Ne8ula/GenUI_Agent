@@ -1,0 +1,15 @@
+{
+  "description": "Model output can never be labelled above untrusted_generated.",
+  "base": "completed-text.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/labels/integrity",
+      "value": "direct_user"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/labels/integrity"
+  }
+}

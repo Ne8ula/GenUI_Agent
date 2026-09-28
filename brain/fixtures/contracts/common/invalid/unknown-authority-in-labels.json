@@ -1,0 +1,15 @@
+{
+  "description": "A label pair cannot carry an authority claim.",
+  "base": "user-turn-stamp.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/authority",
+      "value": "admin"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "brain.episode-record/1",
+  "id": "ep_0001",
+  "sessionId": "sess_0001",
+  "turnId": "turn_0001",
+  "sequence": 0,
+  "prevEntryHash": null,
+  "at": "2026-09-24T15:00:00Z",
+  "origin": "direct_user",
+  "labels": {
+    "integrity": "direct_user",
+    "confidentiality": "private"
+  },
+  "content": {
+    "mediaType": "text/plain",
+    "text": "I prefer Celsius, please."
+  }
+}

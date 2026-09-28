@@ -1,0 +1,15 @@
+{
+  "description": "A locator is a bounded pointer, never a filesystem path.",
+  "base": "user-turn-stamp.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/sourceRef/locator",
+      "value": "EVA/Identity/persona.yaml"
+    }
+  ],
+  "expect": {
+    "keyword": "pattern",
+    "instancePath": "/sourceRef/locator"
+  }
+}

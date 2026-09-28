@@ -1,0 +1,15 @@
+{
+  "description": "Only the four expressive intentions exist.",
+  "base": "reconsider.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/intention",
+      "value": "joy"
+    }
+  ],
+  "expect": {
+    "keyword": "enum",
+    "instancePath": "/intention"
+  }
+}

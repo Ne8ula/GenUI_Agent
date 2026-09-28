@@ -1,0 +1,15 @@
+{
+  "description": "Node labels are closed.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/labels/authority",
+      "value": "policy"
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": "/labels"
+  }
+}

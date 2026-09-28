@@ -1,0 +1,14 @@
+{
+  "description": "The origin revision (or null) must be stated.",
+  "base": "explicit-preference.json",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/host/originRevision"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": "/host"
+  }
+}

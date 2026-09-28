@@ -1,0 +1,19 @@
+{
+  "description": "A reviewed node names its review decision.",
+  "base": "affective-temporary.json",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/reviewState",
+      "value": "accepted"
+    },
+    {
+      "op": "remove",
+      "path": "/reviewDecisionId"
+    }
+  ],
+  "expect": {
+    "keyword": "required",
+    "instancePath": ""
+  }
+}

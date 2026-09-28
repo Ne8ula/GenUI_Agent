@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/brain/session-affect.schema.json",
+  "title": "EVA brain session affect",
+  "description": "Temporary expressive intention (PLANNING.md §8.1, §8.5). Always expires. Uses the simple intention vocabulary; PAD/Plutchik state is Investigate-only and deliberately absent. Affect never gates facts or disclosure.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sessionId", "turnId", "intention", "intensity", "setAt", "expiresAt", "origin"],
+  "properties": {
+    "schemaVersion": { "const": "brain.session-affect/1" },
+    "sessionId": { "$ref": "common.schema.json#/$defs/sessionId" },
+    "turnId": { "$ref": "common.schema.json#/$defs/turnId" },
+    "intention": { "$ref": "common.schema.json#/$defs/expressiveIntention" },
+    "intensity": { "$ref": "common.schema.json#/$defs/unitInterval" },
+    "setAt": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "expiresAt": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "origin": { "enum": ["host_rule", "narrator_proposal", "user_signal"] }
+  }
+}

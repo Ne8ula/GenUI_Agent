@@ -1,0 +1,15 @@
+{
+  "description": "A decision cannot carry an automation flag.",
+  "base": "edit.json",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/autoApplied",
+      "value": true
+    }
+  ],
+  "expect": {
+    "keyword": "additionalProperties",
+    "instancePath": ""
+  }
+}
