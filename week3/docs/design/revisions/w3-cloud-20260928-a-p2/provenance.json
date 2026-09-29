@@ -1,0 +1,169 @@
+{
+  "templateOnly": false,
+  "status": "references-approved; implementation captured (p2-a6)",
+  "changeId": "w3-cloud-20260928-a-p2",
+  "phase": "week3-conversational-eye",
+  "sourceRevision": "8227623 + uncommitted pass-1 changes (p1-a2, owner-approved)",
+  "acceptedBaseline": null,
+  "scope": "Pass 2: seeded variation. Each occurrence of an emotion composes its formation differently (placement, fold/strand/current structure, crest/burst direction) while staying recognisably the same family; supportive currents curve and sway; joy keeps a visible red eye ring.",
+  "ownedUiFiles": [
+    "week3/src/visual/particles.ts",
+    "week3/src/visual/render.ts",
+    "week3/tests/particles.test.ts"
+  ],
+  "motionRequired": true,
+  "runs": [
+    {
+      "run": 1,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "61b4a6b8-0ba6-41b5-8e59-c73449a5077e",
+      "inputs": {
+        "summary": "Board A: comfort x3 and congratulation x3 variations; inputs p1 img-14 and img-22",
+        "settings": "3:2 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner 'Generate both', 2026-09-29",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-01-board-a-comfort-congratulation-variations.png",
+        "retrieved": true
+      },
+      "review": "rejected by owner (redo): comfort panels 2/3 and congratulation panels 1/2 near-duplicates"
+    },
+    {
+      "run": 2,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "51a3b1c0-8c6d-47a7-afcb-30fd273ff6e7",
+      "inputs": {
+        "summary": "Board B: supportive x3 and joy x3 variations; inputs p1 img-19 and img-21",
+        "settings": "3:2 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner 'Generate both', 2026-09-29",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-02-board-b-supportive-joy-variations.png",
+        "retrieved": true
+      },
+      "review": "approved by owner (structured choice 'Approve B, redo A')"
+    },
+    {
+      "run": 3,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "84cfd94d-d6ee-406e-80bc-2fa1dce5398e",
+      "inputs": {
+        "summary": "Board A redo: explicitly distinct comfort x3 and congratulation x3",
+        "settings": "3:2 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-03-board-a-redo.png",
+        "retrieved": true
+      },
+      "review": "approved by owner (structured Approve)"
+    },
+    {
+      "run": 4,
+      "route": "direct-model",
+      "modelId": "kling (Kling Video, default 2.5 Turbo Pro)",
+      "weaveModelId": "wnfmbl8VwUCfX2a1XcdfDlone",
+      "predictionId": "7686901e-6b7c-4e64-9969-8f216a6b7612",
+      "inputs": {
+        "summary": "first frame p1 img-19 supportive; currents flow and sway toward a softly pulsing light; locked camera",
+        "settings": "16:9, 5 s"
+      },
+      "quotedCost": 35,
+      "costApprovalRef": "owner structured Approve",
+      "reportedCost": 35,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "video",
+        "path": "references/videos/vid-01-supportive-currents.mp4",
+        "retrieved": true,
+        "width": 1924,
+        "height": 1076,
+        "durationSec": 5.042
+      },
+      "review": "selected; inspected as 12 timestamped samples (references/videos/vid-01-frames.png), not watched in real time"
+    }
+  ],
+  "budget": {
+    "allowanceCredits": 500,
+    "spentCreditsBatch": 243,
+    "weaveReportedRemainingBalance": 741.8
+  },
+  "selectedAssets": [
+    "references/images/img-02-board-b-supportive-joy-variations.png",
+    "references/images/img-03-board-a-redo.png",
+    "references/videos/vid-01-supportive-currents.mp4"
+  ],
+  "contactSheet": null,
+  "inspection": {
+    "status": "partial",
+    "inspector": "Claude Code main Cloud session",
+    "method": "full-size image review",
+    "observations": [
+      "Board A: comfort panel 1 distinct (hanging corner), panels 2-3 near-duplicate low wavy drapes; congratulation panels 1-2 near-duplicate, panel 3 upright with wider scattered crest; helix built from several loose parallel ribbons.",
+      "Board B: supportive three distinct (light low-left with long trailing current; high-centred with horizontal wings; right-of-centre with wavy currents converging from all sides); joy three distinct (upward, all-around, sideways) with a clearly visible red eye ring.",
+      "Board A redo: six distinct panels (comfort: hanging corner / low double wave / inward curl; congratulation: slim leaning two-strand / thick many-ribbon wide crest / tall S-wisp).",
+      "Video: light anchored and steady; currents sway as a travelling wave, still near the light and freer toward tails; wings undulate over about 3-4 s and slowly widen; tails shed drifting wisps."
+    ],
+    "limitations": []
+  },
+  "implementationGuidance": [
+    "Three archetypes per family chosen by seed (comfort, congratulation, supportive, joy) plus continuous per-seed jitter, rotation and scale.",
+    "Reject repeats: a new composition avoids the previous two compositions' archetypes (bounded session-local memory of composition parameters only).",
+    "Supportive currents sway as a travelling wave anchored at the light (from vid-01).",
+    "Joy keeps the red iris ring and a sparse eye trace.",
+    "Retarget continuity: consecutive compositions hand over particle by particle with a staggered drifting arc over 1.2 s; static draws switch directly."
+  ],
+  "writerInspections": [
+    {
+      "writer": "Claude Code main Cloud session (sole UI writer)",
+      "inspected": "img-02, img-03 at full size; vid-01 12-frame sample sheet",
+      "date": "2026-09-29"
+    }
+  ],
+  "implementation": {
+    "beforeCaptures": [
+      "../w3-cloud-20260928-a-p1-a2/"
+    ],
+    "afterCaptures": [
+      "../w3-cloud-20260928-a-p2-a1/",
+      "../w3-cloud-20260928-a-p2-a2/",
+      "../w3-cloud-20260928-a-p2-a3/",
+      "../w3-cloud-20260928-a-p2-a4/",
+      "../w3-cloud-20260928-a-p2-a5/",
+      "../w3-cloud-20260928-a-p2-a6/"
+    ],
+    "checks": [
+      "session.sh test: 121 Vitest (7 particle tests), build, browser smoke passed on the final source",
+      "protected-file guard unchanged (1041 files)",
+      "p2-a3 was captured while one variation test failed (recorded, superseded)"
+    ],
+    "deviations": [
+      "Headless Chromium 141 via shim, not the pinned 153",
+      "p2-a5 capture reported 30.2 ms median draw while recording video; a separate sampler without recording measured 8-20 ms median, 22-26 ms p95; p2-a6 capture measured 18.8 / 23.8 ms"
+    ]
+  },
+  "ownerDecision": {
+    "status": "superseded-approved-via-p3-a2",
+    "date": "2026-09-29",
+    "feedback": "Approve p3, the video provided is what I am looking for. The animations and transitions as well.",
+    "note": "p2-a6 was not decided separately. p3-a2 contains this pass's seeded variation and staggered handover."
+  }
+}

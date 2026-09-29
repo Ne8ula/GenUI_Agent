@@ -1,0 +1,578 @@
+{
+  "templateOnly": false,
+  "status": "references-approved-by-owner; implementation in progress",
+  "changeId": "w3-cloud-20260928-a-p1",
+  "phase": "week3-conversational-eye",
+  "sourceRevision": "8227623",
+  "acceptedBaseline": null,
+  "scope": "Pass 1: dissolve-and-reform grammar, revised with owner during generation: the Week 1 eye becomes a red particle cloud with depth at rest; processing thins it into a filament point cloud with soft smears; while speaking the particles flow into abstract, contained emotional formations (comfort = draped fold, joy = eye bursting into immersive shimmer, congratulation = outward bloom, supportive = upward mass beneath a held light) and return. EVA is a floating agent over the desktop, not a wallpaper.",
+  "ownedUiFiles": [],
+  "motionRequired": true,
+  "runs": [
+    {
+      "run": 1,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "80cfd8fe-661c-4631-9068-0d917504cb4d",
+      "inputs": {
+        "summary": "2x2 smooth sculptural forms board (Week1 eye input)",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-01-four-forms-board.png",
+        "retrieved": true
+      },
+      "review": "rejected by owner: too realistic"
+    },
+    {
+      "run": 2,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "454870ea-2ce0-47be-8e9e-b701b65faff6",
+      "inputs": {
+        "summary": "five-lobed congratulation end frame",
+        "settings": "3:2 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-02-congratulation-endframe.png",
+        "retrieved": true
+      },
+      "review": "rejected: too realistic"
+    },
+    {
+      "run": 3,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "0f68bfe6-bc4f-468c-b0b3-8e4d03e8ec5a",
+      "inputs": {
+        "summary": "clean Week1 eye plate, UI removed",
+        "settings": "3:2 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-03-clean-eye-plate.png",
+        "retrieved": true
+      },
+      "review": "utility: identity plate"
+    },
+    {
+      "run": 4,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "09580647-95ea-4594-8f39-ad60ea014df1",
+      "inputs": {
+        "summary": "flat abstract colour fields, square dither",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-04-abstract-forms-board.png",
+        "retrieved": true
+      },
+      "review": "rejected: too pixelated; dither must not be 2D pixels"
+    },
+    {
+      "run": 5,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "f3d3c161-e4d2-44a6-8f0d-d27dc78f3c7a",
+      "inputs": {
+        "summary": "stipple-shaded abstract volumes (text only)",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-05-stipple-volumes-board.png",
+        "retrieved": true
+      },
+      "review": "rejected: too graphic/intense; research Anadol/Kurokawa/Chevalier"
+    },
+    {
+      "run": 6,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "ae278550-5c38-4eb9-9515-dbd322c218e1",
+      "inputs": {
+        "summary": "particle installation 3x2 board (rest, thinking, 4 emotions)",
+        "settings": "3:2 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-06-particle-grammar-board.png",
+        "retrieved": true
+      },
+      "review": "owner: likes a lot; must show uncropped forms"
+    },
+    {
+      "run": 7,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "46b2c40c-7843-40c8-b23c-0734e7fd5104",
+      "inputs": {
+        "summary": "rest eye full 16:9 frame",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-07-rest-eye-full.png",
+        "retrieved": true
+      },
+      "review": "candidate: contained"
+    },
+    {
+      "run": 8,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "33d87dd5-cce9-44da-a667-91f881bcf581",
+      "inputs": {
+        "summary": "thinking full frame",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-08-thinking-full.png",
+        "retrieved": true
+      },
+      "review": "candidate: contained"
+    },
+    {
+      "run": 9,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "c7ff598d-ec84-41f2-89d1-a47cfa68e247",
+      "inputs": {
+        "summary": "comfort full frame",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-09-comfort-full.png",
+        "retrieved": true
+      },
+      "review": "superseded by img-14"
+    },
+    {
+      "run": 10,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "82f4061f-1900-4b4a-9e49-5c1149166578",
+      "inputs": {
+        "summary": "joy full frame",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-10-joy-full.png",
+        "retrieved": true
+      },
+      "review": "cropped; joy form unreadable"
+    },
+    {
+      "run": 11,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "cd1d942f-0df3-4130-b407-061734fde57e",
+      "inputs": {
+        "summary": "congratulation full frame",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-11-congratulation-full.png",
+        "retrieved": true
+      },
+      "review": "cropped at bottom; outpainted as img-13"
+    },
+    {
+      "run": 12,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "ca70f0e4-6f80-426f-a645-872fd10a3e9a",
+      "inputs": {
+        "summary": "supportive full frame",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-12-supportive-full.png",
+        "retrieved": true
+      },
+      "review": "cropped; form unreadable"
+    },
+    {
+      "run": 13,
+      "route": "direct-model",
+      "modelId": "black-forest-labs/flux-fill-pro",
+      "weaveModelId": "v6ivwh6HSko2SMwqTzdx",
+      "predictionId": "0dd5db6d-bfbb-48a7-988d-8625e1659a1c",
+      "inputs": {
+        "summary": "outpaint zoom-out 1.5x of img-11",
+        "settings": "outpaint Zoom out 1.5x",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-13-congratulation-outpaint.png",
+        "retrieved": true
+      },
+      "review": "candidate: contained flower-like bloom"
+    },
+    {
+      "run": 14,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "abed4997-b6ce-4b1d-ad1b-997c1ff348fd",
+      "inputs": {
+        "summary": "comfort: abstract single draped fold",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-14-comfort-fold.png",
+        "retrieved": true
+      },
+      "review": "candidate (owner chose blanket-fold principle)"
+    },
+    {
+      "run": 15,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "418614ce-2671-45ca-82d2-2116583d3e30",
+      "inputs": {
+        "summary": "joy: rising clusters",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-15-joy-clusters.png",
+        "retrieved": true
+      },
+      "review": "rejected by owner: clusters a bad idea"
+    },
+    {
+      "run": 16,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "0e4fa114-6701-47f6-9235-4c1d175cc85f",
+      "inputs": {
+        "summary": "supportive: mass beneath a held light",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-16-supportive-held-light.png",
+        "retrieved": true
+      },
+      "review": "hard spherical edge; fixed as img-19"
+    },
+    {
+      "run": 17,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "c7d8cf19-07aa-4b52-a0e9-e7e1cc05d24c",
+      "inputs": {
+        "summary": "rest eye with strong depth",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-17-rest-eye-depth.png",
+        "retrieved": true
+      },
+      "review": "depth test: foreground bokeh too heavy"
+    },
+    {
+      "run": 18,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "1c57c30f-2a58-4dd7-b7c2-e8c311f5ed12",
+      "inputs": {
+        "summary": "congratulation with depth",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-18-congratulation-depth.png",
+        "retrieved": true
+      },
+      "review": "depth test: calm depth works"
+    },
+    {
+      "run": 19,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "bc660790-6758-4e2c-8270-197cb376e625",
+      "inputs": {
+        "summary": "supportive edge dissolved, calm depth",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-19-supportive-soft-edge.png",
+        "retrieved": true
+      },
+      "review": "candidate"
+    },
+    {
+      "run": 20,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "a99327a4-c334-4620-b8ad-b3df80b8a71b",
+      "inputs": {
+        "summary": "synthetic Windows 11 desktop for overlay mockups (invented content; contains OS/browser UI icons; local review only)",
+        "settings": "16:9 2K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 9,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 9,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-20-synthetic-desktop.png",
+        "retrieved": true
+      },
+      "review": "utility: overlay background"
+    },
+    {
+      "run": 21,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "8b81b82d-65df-4f74-ba67-069ddcfe171f",
+      "inputs": {
+        "summary": "joy: eye bursts into immersive scattered shimmer",
+        "settings": "16:9 1K",
+        "note": "full prompt text retained in session transcript; output URLs withheld"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-28/29, within 250-credit allowance",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-21-joy-shimmer.png",
+        "retrieved": true
+      },
+      "review": "candidate (owner direction)"
+    },
+    {
+      "run": 22,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "ebe5ccf1-27da-4101-b8c7-4b87cdab06d5",
+      "inputs": {
+        "summary": "congratulation: rising particle helix opening at crest (img-18 as material/depth input)",
+        "settings": "16:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve, 2026-09-29",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-22-congratulation-helix.png",
+        "retrieved": true
+      },
+      "review": "candidate"
+    },
+    {
+      "run": 23,
+      "route": "direct-model",
+      "modelId": "kling (First & Last Frame, default model O1 Pro)",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "predictionId": "61c16015-adf7-49de-a348-d63465bcce43",
+      "inputs": {
+        "summary": "first frame img-07 rest eye, last frame img-14 comfort drape; locked camera; particles loosen, drift, cool to rose-pearl, settle into fold",
+        "settings": "duration 5, negative prompt: text, camera motion, cuts, strobing, realistic eye, cloth/blanket/objects"
+      },
+      "quotedCost": 55,
+      "costApprovalRef": "owner structured Approve after approving the image set, 2026-09-29",
+      "reportedCost": 55,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "video",
+        "path": "references/videos/vid-01-rest-to-comfort.mp4",
+        "width": 1924,
+        "height": 1076,
+        "durationSec": 5.083,
+        "fps": 24,
+        "retrieved": true
+      },
+      "review": "selected motion reference; inspected as 12 timestamped samples (references/videos/vid-01-frames.png), not watched in real time"
+    }
+  ],
+  "budget": {
+    "allowanceCredits": 500,
+    "allowanceHistory": "250 initially; owner raised to 500 on 2026-09-29",
+    "spentCredits": 190,
+    "weaveReportedRemainingBalance": 794.8
+  },
+  "selectedAssets": [
+    "references/images/img-07-rest-eye-full.png",
+    "references/images/img-08-thinking-full.png",
+    "references/images/img-14-comfort-fold.png",
+    "references/images/img-21-joy-shimmer.png",
+    "references/images/img-22-congratulation-helix.png",
+    "references/images/img-19-supportive-soft-edge.png",
+    "references/videos/vid-01-rest-to-comfort.mp4"
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "performed-by-agent",
+    "inspector": "Claude Code main Cloud session",
+    "method": "each image viewed at full size or in labelled contact sheets; overlay mockups composited locally with ffmpeg",
+    "observations": [
+      "see REVIEW.md"
+    ],
+    "limitations": [
+      "agent selection is not owner acceptance",
+      "overlay mockups are local composites over a generated synthetic desktop, not app captures",
+      "no motion generated yet"
+    ]
+  },
+  "implementationGuidance": [
+    "Particles, not pixels: each lit cell of the Week 1 raster is a particle with depth; the rest state keeps the actual eye (square pupil, dither density, gaze, blink).",
+    "Staggered release from the video: upper lid first, lower tissue next, iris and square pupil last; the return reverses, so the eye re-forms from the pupil outward.",
+    "Timing from the video: about 1 s anticipation, about 2 s morph, about 1.5 s settle; colour cools progressively from the particles that move first.",
+    "Formations: comfort = one broad drape folding over itself, settling low; joy = eye bursts into shimmer spreading toward the viewer (a faint eye trace remains); congratulation = particle helix climbing, rotating, opening into sparks at the crest; supportive = upward-curving currents converging on one small steady warm light, edges dissolving into wisps; processing = sparse white filament eye with soft RGB horizontal smears.",
+    "Presentation: pure additive light over black (no dark halo), calm depth (small near motes, far haze), small eye at rest that grows while responding; joy may reach the stage edges, other formations stay contained.",
+    "Abstract only: no depiction of objects."
+  ],
+  "writerInspections": [
+    {
+      "writer": "Claude Code main Cloud session (sole UI writer)",
+      "inspected": "all selected images at full size and the 12-frame video sample sheet",
+      "date": "2026-09-29"
+    }
+  ],
+  "implementation": {
+    "beforeCaptures": [
+      "../w3-cloud-20260928-a-baseline/"
+    ],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": []
+  },
+  "ownerDecision": {
+    "status": "pending",
+    "date": null,
+    "feedback": null
+  }
+}

@@ -6,6 +6,12 @@
 
 For future UI changes, use [the categorized review-folder template](../../../docs/design/templates/weave-review/REVIEW.md) and [the mandatory Weave workflow](../../../docs/design/FIGMA_WEAVE.md). Each actual candidate gets a direct REVIEW.md link here, with its contact sheet, selected image/video references and separate before/after app evidence. Direct Weave models or reusable workflows are both allowed. No new reference generation or candidate is claimed by this index update; existing revision records below are unchanged.
 
+| Review | Status |
+| --- | --- |
+| [w3-cloud-20260928-a-p1](revisions/w3-cloud-20260928-a-p1/REVIEW.md) — particle eye dissolving into abstract formations (batch [ledger](revisions/w3-cloud-20260928-a/LEDGER.md)) | References and implementation [p1-a2](revisions/w3-cloud-20260928-a-p1-a2/) approved by the owner 2026-09-29 as a pass result; Week 3 phase not accepted |
+| [w3-cloud-20260928-a-p2](revisions/w3-cloud-20260928-a-p2/REVIEW.md) — seeded variation per emotion | References approved by owner; implementation [p2-a6](revisions/w3-cloud-20260928-a-p2-a6/) captured; superseded by p3-a2, whose approval covers the p2 variation and transitions |
+| [w3-cloud-20260928-a-p3](revisions/w3-cloud-20260928-a-p3/REVIEW.md) — minor glitch boxes during state transitions | References approved by owner; implementation [p3-a2](revisions/w3-cloud-20260928-a-p3-a2/) approved by the owner 2026-09-29 as a pass result ([p3-a1](revisions/w3-cloud-20260928-a-p3-a1/) superseded); Week 3 phase not accepted |
+
 ## Direction
 
 [Owner clarification and reference transfer](REFERENCE_REFINEMENT.md): preserve the actual Week 1 silhouette, square pupil, dithering and cursor response; transform that eye into related forms; broader colors during responses and original red at rest. No brain integration this week; the interim backend decider remains replaceable.

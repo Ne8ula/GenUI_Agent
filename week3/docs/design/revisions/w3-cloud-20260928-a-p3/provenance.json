@@ -1,0 +1,130 @@
+{
+  "templateOnly": false,
+  "status": "owner-approved-pass",
+  "changeId": "w3-cloud-20260928-a-p3",
+  "phase": "week3-conversational-eye",
+  "sourceRevision": "8227623 + uncommitted p1/p2 changes (p2-a6)",
+  "acceptedBaseline": null,
+  "scope": "Pass 3 (owner request 2026-09-29): during transitions between states, add very minor GIF-style glitch accents: only a few small glitch boxes (horizontal RGB scanline smears, colour-split edges, mosaic gaps) on the particle form, briefly.",
+  "ownedUiFiles": [
+    "week3/src/visual/render.ts",
+    "week3/src/visual/glitch.ts",
+    "week3/tests/glitch.test.ts"
+  ],
+  "motionRequired": true,
+  "runs": [
+    {
+      "run": 1,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "aa08f15d-0918-4e24-a45c-bd90b9e512f2",
+      "inputs": {
+        "summary": "3-moment strip: particle eye dissolving with 2-4 small glitch boxes each; inputs p1 img-07 and week3/pivot_references/0268915e2cc8124b9d5b9c99545f8736.gif (public repo raw URL)",
+        "settings": "21:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-01-transition-glitch-strip.png",
+        "retrieved": true
+      },
+      "review": "approved by owner"
+    },
+    {
+      "run": 2,
+      "route": "direct-model",
+      "modelId": "kling (Kling Video, default 2.5 Turbo Pro)",
+      "weaveModelId": "wnfmbl8VwUCfX2a1XcdfDlone",
+      "predictionId": "7364490d-03d2-42aa-b47a-45dfc3576f9e",
+      "inputs": {
+        "summary": "first frame p1 img-07; eye dissolves while 2-3 small glitch boxes flicker briefly",
+        "settings": "16:9, 5 s"
+      },
+      "quotedCost": 35,
+      "costApprovalRef": "owner structured Approve",
+      "reportedCost": 35,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "video",
+        "path": "references/videos/vid-01-transition-glitch.mp4",
+        "retrieved": true
+      },
+      "review": "inspected (24 sampled frames); timing adopted"
+    }
+  ],
+  "budget": {
+    "allowanceCredits": 500,
+    "spentCreditsBatch": 284,
+    "weaveReportedRemainingBalance": 700.8
+  },
+  "selectedAssets": [
+    "references/images/img-01-transition-glitch-strip.png",
+    "references/videos/vid-01-transition-glitch.mp4"
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "complete",
+    "inspector": "Claude Code main Cloud session",
+    "method": "full-size image review; video sampled as 24 frames (not watched in real time)",
+    "observations": [
+      "img-01: 2-4 small boxes per moment; horizontal scanline stripes in cyan/magenta/lime/white, colour-split edges, thin sideways trail lines past box edges, a few mosaic cells; boxes sit on the form and never obscure the pupil region's identity; count drops as the form dissolves.",
+      "vid-01 (5.04 s): about four glitch events over ~3 s, mostly one at a time, each ~0.2-0.6 s: a thin vertical line opens into a small dark-backed box of vertical colour stripes with an outline, a thin horizontal trail line crosses the eye, then it vanishes. The model did not dissolve the eye (it only brightened), so only the glitch timing and box grammar were used."
+    ],
+    "limitations": [
+      "Video frames sampled, not watched in real time.",
+      "img-01 shows horizontal scanlines; the video shows vertical stripes. The implementation follows the video's box (vertical stripes, dark backing) because the first horizontal-row attempt (p3-a1) was nearly invisible over bright particles."
+    ]
+  },
+  "implementationGuidance": [
+    "Glitches only while the eye changes: expressive energy rising/falling or a composition handover; none when settled, in reduced motion, or when the clock is frozen (End).",
+    "At most 3 at once; ~3-4 per transition in the real runtime.",
+    "Each event 0.2-0.48 s: line -> striped box -> trail -> fade, anchored on moving eye landmarks.",
+    "Small: box width 0.12-0.22 of the eye display scale."
+  ],
+  "writerInspections": [
+    {
+      "writer": "Claude Code main Cloud session (sole UI writer this pass)",
+      "inspected": [
+        "references/images/img-01-transition-glitch-strip.png",
+        "references/videos/vid-01-frames.png"
+      ],
+      "before": "edits"
+    }
+  ],
+  "implementation": {
+    "beforeCaptures": [
+      "../w3-cloud-20260928-a-p2-a6/"
+    ],
+    "afterCaptures": [
+      "../w3-cloud-20260928-a-p3-a1/",
+      "../w3-cloud-20260928-a-p3-a2/"
+    ],
+    "transitionEvidence": [
+      "implementation/p3-a1-comforting-dissolve-strip.png",
+      "implementation/p3-a2-comforting-transition-strips.png",
+      "implementation/p3-a2-congratulatory-transition-strips.png",
+      "implementation/p3-a2-glitch-detail.png",
+      "implementation/p3-reference-vs-a2.png",
+      "implementation/p3-a2-transitions.mp4 (33.5 s headless Playwright recording, H.264; comfort, congratulation, supportive out/back plus one variation handover)"
+    ],
+    "checks": [
+      "session.sh test: 127 Vitest passed (6 new glitch tests incl. real-runtime turn: 0 events settled, 4 on listening->speaking, 3 on speaking->listening), tsc, vite build, browser smoke PASS, protected paths unchanged (1041)",
+      "p3-a2 capture: errors []; synchronous draw median 20.9 ms / p95 27.4 ms (headless Chromium 141, 1400x900, DPR 1; not native/GPU)"
+    ],
+    "deviations": [
+      "p3-a1 (horizontal scanline rows, additive) was too faint to read and is superseded by p3-a2; kept as evidence.",
+      "Standard fixture stills are settled states, so they show no glitches by design; transition strips were captured separately with a scratch Playwright script (/tmp, not committed)."
+    ]
+  },
+  "ownerDecision": {
+    "status": "approved",
+    "date": "2026-09-29",
+    "candidate": "w3-cloud-20260928-a-p3-a2",
+    "feedback": "Approve p3, the video provided is what I am looking for. The animations and transitions as well.",
+    "note": "Given on implementation/p3-a2-transitions.mp4. Covers the p3-a2 working tree, which contains the p2 seeded variation and handover. Not Week 3 phase acceptance."
+  }
+}

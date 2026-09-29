@@ -36,7 +36,8 @@ import { PALETTE, withAlpha } from "./palette";
 import { buildSmearBands, buildTrackingBoxesFromLandmarks, type DigitalColorKey, type LandmarkPoint } from "./digital-material";
 import { rasterizeWeek1Eye, type EyeInteraction, type Week1Pose } from "./week1-eye";
 import type { EyeFrame, WarpChannels } from "./runtime";
-import { createEyeMesh, drawEyeMesh, projectEyePoint } from './eye-mesh';
+import { createGlitchState, glitchEnvelope, stepGlitches, type GlitchEvent, type GlitchState } from "./glitch";
+import { cellHash, formationStrength, formationTarget, formationVariation, formationWeights, perspective, releaseDelay, releaseProgress, tilt, type FormationVariation, type ParticlePoint } from "./particles";
 
 export type { EyeInteraction, Week1Pose } from "./week1-eye";
 
@@ -52,11 +53,358 @@ export const DEFAULT_EYE_INTERACTION: EyeInteraction = {
 // Bounded well under week1-eye.ts's own 360x180 / 64,800px hard cap. 224x112
 // keeps the per-frame-refresh raster within budget; a settled/quiet single
 // draw affords a larger, sharper one-off raster instead.
-const LIVE_RASTER_WIDTH = 224;
-const LIVE_RASTER_HEIGHT = 112;
+const LIVE_RASTER_WIDTH = 192;
+const LIVE_RASTER_HEIGHT = 96;
 const QUIET_RASTER_WIDTH = 320;
 const QUIET_RASTER_HEIGHT = 160;
 const RASTER_REFRESH_INTERVAL_MS = 1000 / 30;
+
+/** Normalized-eye-unit size as a fraction of min(viewport): small at rest, grown while speaking. */
+const REST_SCALE = 0.22;
+const SPEAKING_SCALE = 0.4;
+/** Particle splat buffer width cap (the buffer is drawn scaled to the canvas). */
+const PARTICLE_BUFFER_MAX_WIDTH = 820;
+const FORMATION_TILT = -0.28;
+
+interface ParticleBuffers {
+  width: number;
+  height: number;
+  accum: Float32Array;
+  image: ImageData | null;
+  canvas: HTMLCanvasElement | null;
+  glow: HTMLCanvasElement | null;
+  positions: Float32Array;
+}
+
+const particleBuffers = new WeakMap<CanvasRenderingContext2D, ParticleBuffers>();
+interface VariationMemory {
+  seed: number;
+  variation: FormationVariation;
+  previous?: FormationVariation;
+  /** Animation clock when this variation arrived; the previous one blends out from here. */
+  changedAt: number;
+}
+
+const variationMemory = new WeakMap<CanvasRenderingContext2D, VariationMemory>();
+const glitchStates = new WeakMap<CanvasRenderingContext2D, GlitchState>();
+
+/** 0..1 progress of the current composition handover (1 = settled). */
+function variationHandover(ctx: CanvasRenderingContext2D, timeSec: number): number {
+  const remembered = variationMemory.get(ctx);
+  if (!remembered || !remembered.previous) return 1;
+  return clamp01((timeSec - remembered.changedAt) / VARIATION_BLEND_SECONDS);
+}
+/** Seconds to morph from one occurrence's composition to the next without a jump. */
+const VARIATION_BLEND_SECONDS = 1.2;
+
+function ensureParticleBuffers(ctx: CanvasRenderingContext2D, width: number, height: number, cells: number): ParticleBuffers {
+  const bufferWidth = Math.max(1, Math.round(Math.min(width, PARTICLE_BUFFER_MAX_WIDTH)));
+  const bufferHeight = Math.max(1, Math.round(height * (bufferWidth / width)));
+  let buffers = particleBuffers.get(ctx);
+  if (!buffers || buffers.width !== bufferWidth || buffers.height !== bufferHeight || buffers.positions.length !== cells * 2) {
+    const hasDom = typeof document !== "undefined" && typeof ImageData !== "undefined";
+    const canvas = hasDom ? document.createElement("canvas") : null;
+    const glow = hasDom ? document.createElement("canvas") : null;
+    if (canvas) { canvas.width = bufferWidth; canvas.height = bufferHeight; }
+    if (glow) { glow.width = Math.max(1, Math.round(bufferWidth / 4)); glow.height = Math.max(1, Math.round(bufferHeight / 4)); }
+    buffers = {
+      width: bufferWidth,
+      height: bufferHeight,
+      accum: new Float32Array(bufferWidth * bufferHeight * 3),
+      image: hasDom ? new ImageData(bufferWidth, bufferHeight) : null,
+      canvas,
+      glow,
+      positions: new Float32Array(cells * 2),
+    };
+    particleBuffers.set(ctx, buffers);
+  }
+  return buffers;
+}
+
+interface CellCache {
+  width: number;
+  height: number;
+  hx: Float32Array;
+  hy: Float32Array;
+  hz: Float32Array;
+  /** Oval fade matching the approved rest-eye reference (no rectangular panel edge). */
+  oval: Float32Array;
+  keep: Float32Array;
+  h4: Float32Array;
+  h5: Float32Array;
+  h6: Float32Array;
+  h8: Float32Array;
+  h9: Float32Array;
+}
+
+const cellCaches = new Map<string, CellCache>();
+
+function ensureCellCache(width: number, height: number): CellCache {
+  const key = `${width}x${height}`;
+  const existing = cellCaches.get(key);
+  if (existing) return existing;
+  const cells = width * height;
+  const aspect = height / width;
+  const cache: CellCache = {
+    width, height,
+    hx: new Float32Array(cells), hy: new Float32Array(cells), hz: new Float32Array(cells),
+    oval: new Float32Array(cells), keep: new Float32Array(cells),
+    h4: new Float32Array(cells), h5: new Float32Array(cells), h6: new Float32Array(cells),
+    h8: new Float32Array(cells), h9: new Float32Array(cells),
+  };
+  for (let row = 0, i = 0; row < height; row++) {
+    for (let col = 0; col < width; col++, i++) {
+      // Sub-cell jitter so particles never sit on a visible grid.
+      const hx = ((col + 0.5 + (cellHash(i, 11) - 0.5) * 0.9) / width - 0.5) * 2;
+      const hy = ((row + 0.5 + (cellHash(i, 12) - 0.5) * 0.9) / height - 0.5) * 2 * aspect;
+      cache.hx[i] = hx;
+      cache.hy[i] = hy;
+      cache.hz[i] = 0.2 * (1 - hx * hx * 0.7 - hy * hy * 2) + (cellHash(i, 13) - 0.5) * 0.12;
+      const radial = Math.hypot(hx / 0.96, hy / 0.44);
+      const fade = clamp01((radial - 0.72) / 0.32);
+      cache.oval[i] = 1 - fade * fade * (3 - 2 * fade);
+      cache.keep[i] = cellHash(i, 14);
+      cache.h4[i] = cellHash(i, 4);
+      cache.h5[i] = cellHash(i, 5) * 20;
+      cache.h6[i] = cellHash(i, 6) * 20;
+      cache.h8[i] = cellHash(i, 8);
+      cache.h9[i] = cellHash(i, 9);
+    }
+  }
+  if (cellCaches.size > 4) cellCaches.clear();
+  cellCaches.set(key, cache);
+  return cache;
+}
+
+/**
+ * Splat every raster cell of the source eye as a particle with depth
+ * (particles.ts). Additive light over the charcoal stage: black adds nothing,
+ * matching the owner's "pure light, no halo" decision. Returns each cell's
+ * projected canvas position (landmark cells always; others only when drawn)
+ * so tracking boxes follow the moving particles.
+ */
+function drawParticleField(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  cx: number,
+  cy: number,
+  displayScale: number,
+  rasterWidth: number,
+  rasterHeight: number,
+  data: Uint8ClampedArray,
+  landmarks: Array<{ x: number; y: number }>,
+  frame: EyeFrame,
+  quiet: boolean,
+): Float32Array {
+  const cells = rasterWidth * rasterHeight;
+  const buffers = ensureParticleBuffers(ctx, width, height, cells);
+  const cache = ensureCellCache(rasterWidth, rasterHeight);
+  const { accum, positions } = buffers;
+  const bw = buffers.width;
+  const bh = buffers.height;
+  const k = bw / width;
+  accum.fill(0);
+
+  const landmarkCells = new Set<number>();
+  for (const lm of landmarks) {
+    landmarkCells.add(Math.min(rasterHeight - 1, Math.max(0, Math.round(lm.y))) * rasterWidth + Math.min(rasterWidth - 1, Math.max(0, Math.round(lm.x))));
+  }
+  const aspect = rasterHeight / rasterWidth;
+  const pupilLandmark = landmarks[10] ?? { x: rasterWidth / 2, y: rasterHeight / 2 };
+  const pupilX = ((pupilLandmark.x + 0.5) / rasterWidth - 0.5) * 2;
+  const pupilY = ((pupilLandmark.y + 0.5) / rasterHeight - 0.5) * 2 * aspect;
+  const weights = formationWeights(frame.warp);
+  const strength = formationStrength(frame.warp);
+  // A fresh composition (new turn or stance) carries a fresh seeded variation of its
+  // formation, never repeating either of the previous two compositions' archetypes.
+  let remembered = variationMemory.get(ctx);
+  if (!remembered || remembered.seed !== frame.fragmentSeed) {
+    remembered = {
+      seed: frame.fragmentSeed,
+      variation: formationVariation(frame.fragmentSeed, remembered?.variation, remembered?.previous),
+      previous: remembered?.variation,
+      changedAt: frame.timeSec,
+    };
+    variationMemory.set(ctx, remembered);
+  }
+  const variation = remembered.variation;
+  // Retarget continuity: morph from the previous occurrence's composition instead of
+  // jumping. Static draws (reduced motion, frozen End) show the new composition directly.
+  const blendLinear = quiet || !remembered.previous ? 1 : clamp01((frame.timeSec - remembered.changedAt) / VARIATION_BLEND_SECONDS);
+  const variationBlend = blendLinear * blendLinear * (3 - 2 * blendLinear);
+  const previousVariation = variationBlend < 1 ? remembered.previous : undefined;
+  const previousTarget: ParticlePoint = { x: 0, y: 0, z: 0, r: 0, g: 0, b: 0, a: 0 };
+  const hasFormation = strength > 0 && weights.comfort + weights.joy + weights.congratulation + weights.supportive > 0;
+  const energy = clamp01(frame.energy);
+  const fragmentation = clamp01(frame.fragmentation);
+  const t = frame.timeSec;
+  const live = quiet ? 0 : 1;
+  // Joy: part of the eye stays behind as a faint trace while the rest bursts.
+  const joyTrace = weights.joy;
+  const target: ParticlePoint = { x: 0, y: 0, z: 0, r: 0, g: 0, b: 0, a: 0 };
+  const scale = displayScale * k;
+  const ccx = cx * k;
+  const ccy = cy * k;
+
+  for (let index = 0; index < cells; index++) {
+    const byte = index * 4;
+    const coverage = data[byte + 3] / 255;
+    const red = data[byte] / 255;
+    const green = data[byte + 1] / 255;
+    const blue = data[byte + 2] / 255;
+    const peak = red > green ? (red > blue ? red : blue) : (green > blue ? green : blue);
+    const keep = cache.keep[index];
+    // Thin the resting eye so particles read as separate points of light.
+    let alpha = peak * coverage * cache.oval[index] * (keep < 0.62 ? 1 : 0.18);
+    if (live) alpha *= 0.8 + 0.2 * Math.sin(t * 1.3 + cache.h5[index] * 2);
+
+    const hx = cache.hx[index];
+    const hy = cache.hy[index];
+    let progress = 0;
+    if (hasFormation && energy > 0.001) {
+      const pupilDistance = Math.hypot(hx - pupilX, hy - pupilY);
+      progress = strength * releaseProgress(energy, releaseDelay(hy, pupilDistance, cache.h4[index]));
+      // Joy leaves the eye's red ring (iris rim) and a sparse trace of the eye behind.
+      if (joyTrace > 0.01 && (keep < 0.22 || (pupilDistance > 0.17 && pupilDistance < 0.34 && keep < 0.62))) progress *= 1 - joyTrace;
+    }
+    const isLandmark = landmarkCells.has(index);
+    if (alpha < 0.03 && progress < 0.001 && fragmentation < 0.001 && !isLandmark) continue;
+
+    const hasHue = peak > 0.02;
+    let r = hasHue ? red / peak : frame.phosphor[0];
+    let g = hasHue ? green / peak : frame.phosphor[1];
+    let b = hasHue ? blue / peak : frame.phosphor[2];
+    let x = hx + live * Math.sin(t * 0.9 + hy * 7) * 0.003;
+    let y = hy + live * Math.sin(t * 0.7 + hx * 5) * 0.003;
+    let z = cache.hz[index];
+
+    if (progress > 0.001 && formationTarget(index, weights, t, target, variation)) {
+      if (previousVariation && formationTarget(index, weights, t, previousTarget, previousVariation)) {
+        // Each particle hands over at its own staggered moment and travels on a small
+        // drifting arc, so the two compositions never average into a collapsed shape.
+        const start = cache.h8[index] * 0.6;
+        const own = clamp01((variationBlend - start) / 0.4);
+        const handover = own * own * (3 - 2 * own);
+        const keepOld = 1 - handover;
+        const drift = Math.sin(handover * Math.PI) * 0.12;
+        target.x += (previousTarget.x - target.x) * keepOld + Math.sin(t * 0.9 + cache.h5[index]) * drift;
+        target.y += (previousTarget.y - target.y) * keepOld - drift * 0.6;
+        target.z += (previousTarget.z - target.z) * keepOld;
+        target.r += (previousTarget.r - target.r) * keepOld;
+        target.g += (previousTarget.g - target.g) * keepOld;
+        target.b += (previousTarget.b - target.b) * keepOld;
+        target.a += (previousTarget.a - target.a) * keepOld;
+      }
+      tilt(target, FORMATION_TILT);
+      const transit = Math.sin(progress * Math.PI);
+      const flow = transit * 0.16;
+      x += (target.x - x) * progress + Math.sin(t * 0.8 + cache.h5[index]) * flow;
+      y += (target.y - y) * progress - transit * 0.1;
+      z += (target.z - z) * progress + Math.cos(t * 0.6 + cache.h6[index]) * flow * 0.5;
+      r += (target.r - r) * progress;
+      g += (target.g - g) * progress;
+      b += (target.b - b) * progress;
+      // Joy keeps a share of the particles in the shimmer; the rest fade out.
+      const joyThin = joyTrace > 0.01 && keep >= 0.6 ? joyTrace : 0;
+      alpha += (target.a * (1 - joyThin) - alpha) * progress;
+    }
+
+    if (fragmentation > 0.001) {
+      // Processing: the eye thins into a sparse white filament point cloud.
+      const kept = cache.h8[index] < 0.24 ? 1 : 0.08;
+      alpha *= 1 - fragmentation * (1 - kept);
+      r += (0.86 - r) * fragmentation * 0.85;
+      g += (0.94 - g) * fragmentation * 0.85;
+      b += (1 - b) * fragmentation * 0.85;
+      x += Math.sin(t * 2.3 + hy * 90) * 0.022 * fragmentation;
+    }
+
+    const depth = perspective(z);
+    const bx = ccx + x * scale * depth;
+    const by = ccy + y * scale * depth;
+    positions[index * 2] = bx / k;
+    positions[index * 2 + 1] = by / k;
+    if (alpha < 0.03) continue;
+
+    const attenuated = alpha * (0.5 + 0.5 * Math.min(1.5, depth)) * 0.75;
+    splatParticle(accum, bw, bh, bx, by, r, g, b, attenuated, depth);
+    if (fragmentation > 0.001 && cache.h9[index] < 0.1) {
+      const split = scale * 0.06 * fragmentation;
+      splatParticle(accum, bw, bh, bx - split, by, 1, 0.25, 0.3, attenuated * 0.5, 1);
+      splatParticle(accum, bw, bh, bx + split, by, 0.3, 0.55, 1, attenuated * 0.5, 1);
+    }
+  }
+
+  if (buffers.image && buffers.canvas && buffers.glow) {
+    const pixels = buffers.image.data;
+    // Soft-clip additive light so dense regions keep their hue instead of burning to white.
+    for (let i = 0, j = 0; i < accum.length; i += 3, j += 4) {
+      const ar = accum[i], ag = accum[i + 1], ab = accum[i + 2];
+      pixels[j] = (ar / (0.55 + ar)) * 400;
+      pixels[j + 1] = (ag / (0.55 + ag)) * 400;
+      pixels[j + 2] = (ab / (0.55 + ab)) * 400;
+      pixels[j + 3] = 255;
+    }
+    const bufferCtx = buffers.canvas.getContext("2d");
+    const glowCtx = buffers.glow.getContext("2d");
+    if (!bufferCtx || !glowCtx) throw new Error("Particle buffer unavailable");
+    bufferCtx.putImageData(buffers.image, 0, 0);
+    glowCtx.imageSmoothingEnabled = true;
+    glowCtx.drawImage(buffers.canvas, 0, 0, buffers.glow.width, buffers.glow.height);
+    ctx.globalCompositeOperation = "lighter";
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(buffers.canvas, 0, 0, width, height);
+    ctx.globalAlpha = 0.45;
+    ctx.drawImage(buffers.glow, 0, 0, width, height);
+    ctx.globalAlpha = 1;
+  }
+
+  // Supportive: the one small steady warm light the currents converge on.
+  const lightStrength = weights.supportive * strength * clamp01((energy - 0.3) / 0.5);
+  if (lightStrength > 0.01) {
+    const from = previousVariation ?? variation;
+    const peak: ParticlePoint = {
+      x: from.lightX + (variation.lightX - from.lightX) * variationBlend,
+      y: from.lightY + (variation.lightY - from.lightY) * variationBlend,
+      z: 0, r: 0, g: 0, b: 0, a: 0,
+    };
+    tilt(peak, FORMATION_TILT);
+    const depth = perspective(peak.z);
+    const lx = cx + peak.x * displayScale * depth;
+    const ly = cy + peak.y * displayScale * depth;
+    const radius = displayScale * 0.2;
+    const gradient = ctx.createRadialGradient(lx, ly, 0, lx, ly, radius);
+    gradient.addColorStop(0, withAlpha("#ffd9a8", 0.8 * lightStrength));
+    gradient.addColorStop(0.16, withAlpha("#ff9f6b", 0.3 * lightStrength));
+    gradient.addColorStop(1, withAlpha("#ff9f6b", 0));
+    ctx.globalCompositeOperation = "lighter";
+    ctx.fillStyle = gradient;
+    ctx.fillRect(lx - radius, ly - radius, radius * 2, radius * 2);
+  }
+  ctx.globalCompositeOperation = "source-over";
+  return positions;
+}
+
+/** Depth-sized splat: far particles are single points, near ones soft 2x2, very near ones dim 3x3 bokeh. */
+function splatParticle(accum: Float32Array, bw: number, bh: number, x: number, y: number, r: number, g: number, b: number, alpha: number, depth: number): void {
+  const px = x | 0;
+  const py = y | 0;
+  if (px < 1 || py < 1 || px >= bw - 2 || py >= bh - 2) return;
+  if (depth < 1.1) {
+    const i = (py * bw + px) * 3;
+    accum[i] += r * alpha; accum[i + 1] += g * alpha; accum[i + 2] += b * alpha;
+    return;
+  }
+  const radius = depth < 1.35 ? 1 : 2;
+  const spread = alpha / (radius === 1 ? 2.2 : 4.5);
+  for (let dy = -radius + 1; dy <= radius; dy++) {
+    for (let dx = -radius + 1; dx <= radius; dx++) {
+      const i = ((py + dy) * bw + px + dx) * 3;
+      accum[i] += r * spread; accum[i + 1] += g * spread; accum[i + 2] += b * spread;
+    }
+  }
+}
 
 function nowMs(): number {
   return typeof performance !== "undefined" && typeof performance.now === "function" ? performance.now() : Date.now();
@@ -67,44 +415,29 @@ interface RasterCache {
   height: number;
   data: Uint8ClampedArray;
   landmarks: Array<{ x: number; y: number }>;
-  canvas: HTMLCanvasElement | null;
   lastRasterMs: number;
 }
 
 const rasterCaches = new WeakMap<CanvasRenderingContext2D, RasterCache>();
 
 /**
- * Rasterize (and cache) the source eye. Only the expensive per-pixel
- * `rasterizeWeek1Eye` call is throttled/cached; callers still get fresh
- * `landmarks` every ~33ms even during continuous motion, and a bypassed,
- * immediate, higher-resolution raster while `bypassThrottle` (quiet/reduced
- * motion) is set.
+ * Rasterize (and cache) the source eye. The particle field reads the raster
+ * bytes directly, so no offscreen raster canvas is needed. The expensive
+ * per-pixel `rasterizeWeek1Eye` call is throttled; while the eye is dissolved
+ * into a formation (`energy` high) it refreshes less often, since most of its
+ * particles are away from home. `bypassThrottle` (quiet/reduced motion)
+ * always rasterizes immediately.
  */
 function ensureRaster(ctx: CanvasRenderingContext2D, rasterWidth: number, rasterHeight: number, pose: Week1Pose, bypassThrottle: boolean): RasterCache {
   let rasterCache = rasterCaches.get(ctx) ?? null;
   const now = nowMs();
   const dimensionsChanged = !rasterCache || rasterCache.width !== rasterWidth || rasterCache.height !== rasterHeight;
-  const stale = !rasterCache || now - rasterCache.lastRasterMs >= RASTER_REFRESH_INTERVAL_MS;
+  const interval = RASTER_REFRESH_INTERVAL_MS * (1 + 2 * clamp01(pose.energy));
+  const stale = !rasterCache || now - rasterCache.lastRasterMs >= interval;
   if (dimensionsChanged || bypassThrottle || stale) {
     const reuseTarget = !dimensionsChanged && rasterCache ? rasterCache.data : undefined;
     const { data, landmarks } = rasterizeWeek1Eye(rasterWidth, rasterHeight, pose, reuseTarget);
-    // The offscreen canvas is only needed to hand the raster to
-    // ctx.drawImage; it requires a real DOM (browser), which vitest's
-    // "node" test environment intentionally does not provide. Skip it
-    // there -- the pure rasterize/warp/landmark path above still runs and
-    // stays fully testable; only the final pixel paint is browser-only.
-    let canvas = !dimensionsChanged && rasterCache ? rasterCache.canvas : null;
-    if (typeof document !== "undefined") {
-      if (!canvas) canvas = document.createElement("canvas");
-      if (dimensionsChanged || canvas.width !== rasterWidth || canvas.height !== rasterHeight) {
-        canvas.width = rasterWidth;
-        canvas.height = rasterHeight;
-      }
-      const offCtx = canvas.getContext("2d");
-      if (!offCtx) throw new Error('Source eye canvas unavailable');
-      offCtx.putImageData(new ImageData(new Uint8ClampedArray(data), rasterWidth, rasterHeight), 0, 0);
-    }
-    rasterCache = { width: rasterWidth, height: rasterHeight, data, landmarks, canvas, lastRasterMs: now };
+    rasterCache = { width: rasterWidth, height: rasterHeight, data, landmarks, lastRasterMs: now };
     rasterCaches.set(ctx, rasterCache);
   }
   if (!rasterCache) throw new Error('Source eye raster unavailable');
@@ -207,46 +540,74 @@ export function drawEye(
   const isQuiet = interaction.quiet === true;
   const rasterWidth = isQuiet ? QUIET_RASTER_WIDTH : LIVE_RASTER_WIDTH;
   const rasterHeight = isQuiet ? QUIET_RASTER_HEIGHT : LIVE_RASTER_HEIGHT;
-  const { landmarks, canvas } = ensureRaster(ctx, rasterWidth, rasterHeight, pose, isQuiet);
+  const { landmarks, data } = ensureRaster(ctx, rasterWidth, rasterHeight, pose, isQuiet);
 
-  const displayScale = minDim * 0.52;
-  const rasterAspect = rasterHeight / rasterWidth;
-  const toNormalized = (px: number, py: number) => ({
-    x: (px / rasterWidth - 0.5) * 2,
-    y: (py / rasterHeight - 0.5) * 2 * rasterAspect,
+  // Small eye at rest that grows while responding (owner decision, batch w3-cloud-20260928-a).
+  const displayScale = minDim * (REST_SCALE + (SPEAKING_SCALE - REST_SCALE) * clamp01(frame.energy));
+  const positions = drawParticleField(ctx, width, height, cx, cy, displayScale, rasterWidth, rasterHeight, data, landmarks, frame, isQuiet);
+  const trackedLandmarks: LandmarkPoint[] = landmarks.map(lm => {
+    const index = Math.min(rasterHeight - 1, Math.max(0, Math.round(lm.y))) * rasterWidth + Math.min(rasterWidth - 1, Math.max(0, Math.round(lm.x)));
+    return { x: positions[index * 2], y: positions[index * 2 + 1] };
   });
-  const toCanvas = (nx: number, ny: number) => ({ x: cx + nx * displayScale, y: cy + ny * displayScale });
-  const center = landmarks[10] ?? { x: rasterWidth / 2, y: rasterHeight / 2 };
-  const pupil = toNormalized(center.x + .5, center.y + .5);
-  const hasWarp = frame.energy > .001 || Object.values(frame.warp).some(value => Math.abs(value) > .001);
-  const project = (sx: number, sy: number) => {
-    const p = toNormalized(sx, sy);
-    if (!hasWarp) return toCanvas(p.x, p.y);
-    const warped = warpPoint(p.x, p.y, frame.warp);
-    const angle = Math.atan2(p.y - pupil.y, p.x - pupil.x);
-    const varied = frame.harmonics.reduce((sum, harmonic) => sum + harmonic.amp * Math.sin(angle * harmonic.k + harmonic.phase + frame.timeSec * .25), 0);
-    const ripple = Math.max(-.14, Math.min(.14, varied * 3 * frame.energy));
-    warped.x += Math.cos(angle) * ripple;
-    warped.y += Math.sin(angle) * ripple;
-    // Preserve the square pupil while the surrounding eye material unfolds.
-    const distance = Math.hypot(p.x - pupil.x, p.y - pupil.y);
-    const t = clamp01((distance - .22) / .34);
-    const strength = t * t * (3 - 2 * t);
-    return toCanvas(p.x + (warped.x - p.x) * strength, p.y + (warped.y - p.y) * strength);
-  };
-  const mesh = createEyeMesh(rasterWidth, rasterHeight, project);
-  if (canvas) {
-    ctx.imageSmoothingEnabled = false;
-    if (hasWarp) drawEyeMesh(ctx, canvas, mesh);
-    else ctx.drawImage(canvas, cx - displayScale, cy - rasterAspect * displayScale, displayScale * 2, rasterAspect * displayScale * 2);
-  }
-  // Piecewise interpolation matches the very same triangles used to paint the pixels.
-  const warpedLandmarks: LandmarkPoint[] = landmarks.map(lm => projectEyePoint(mesh, lm.x + .5, lm.y + .5));
 
-  drawSmearBands(ctx, cx, cy, minDim, frame);
-  drawTrackingBoxes(ctx, warpedLandmarks, minDim, frame);
+  drawSmearBands(ctx, cx, cy, displayScale * 1.9, frame);
+  drawTrackingBoxes(ctx, trackedLandmarks, minDim, frame);
+
+  // Pass p3: a few brief glitch boxes only while the eye is changing state.
+  let glitchState = glitchStates.get(ctx);
+  if (!glitchState) { glitchState = createGlitchState(); glitchStates.set(ctx, glitchState); }
+  const glitches = stepGlitches(glitchState, frame.timeSec, clamp01(frame.energy), variationHandover(ctx, frame.timeSec), frame.fragmentSeed, !isQuiet);
+  drawTransitionGlitches(ctx, glitches, trackedLandmarks, displayScale, frame.timeSec);
 
   ctx.restore();
+}
+
+const GLITCH_STRIPE_COLORS = ["#e0625a", "#c94fa0", "#3fbfd8", "#9fd44a", PALETTE.pearl, "#7a2a2e"] as const;
+
+/**
+ * Transition glitch accents from the p3 packet (img-01, vid-01): each event
+ * opens from a thin vertical line into a small dark-backed box of vertical
+ * colour stripes with a thin outline, briefly throws a thin horizontal trail
+ * across the form, then vanishes. Anchored on the eye's (moving) feature
+ * landmarks. A few at most; see glitch.ts for scheduling.
+ */
+function drawTransitionGlitches(ctx: CanvasRenderingContext2D, events: GlitchEvent[], anchors: LandmarkPoint[], displayScale: number, timeSec: number): void {
+  if (events.length === 0 || anchors.length === 0) return;
+  const line = Math.max(1, displayScale * 0.006);
+  for (const event of events) {
+    const { grow, alpha, trail } = glitchEnvelope(event, timeSec);
+    if (alpha <= 0.02) continue;
+    const anchor = anchors[Math.min(anchors.length - 1, Math.floor(event.anchor * anchors.length))];
+    const fullWidth = event.width * displayScale;
+    const w = Math.max(line * 1.5, fullWidth * grow);
+    const h = fullWidth * event.aspect;
+    const x0 = anchor.x - w / 2;
+    const y0 = anchor.y - h / 2;
+    if (trail > 0) {
+      const length = displayScale * (1.3 + 0.6 * cellHash(event.id, 43));
+      const ty = anchor.y + (cellHash(event.id, 47) - 0.5) * h * 0.4;
+      const tx = anchor.x - length / 2 + (cellHash(event.id, 41) - 0.5) * displayScale * 0.3;
+      ctx.fillStyle = withAlpha(PALETTE.pearl, 0.55 * alpha);
+      ctx.fillRect(tx, ty, length, line * 0.8);
+      ctx.fillStyle = withAlpha("#3fbfd8", 0.25 * alpha);
+      ctx.fillRect(tx + line * 3, ty + line, length, line * 0.6);
+    }
+    // Dark backing so the stripes read over bright particles.
+    ctx.fillStyle = withAlpha(PALETTE.charcoal, 0.72 * alpha);
+    ctx.fillRect(x0, y0, w, h);
+    const stripe = Math.max(1.5, fullWidth / 13);
+    for (let sx = 0, c = 0; sx < w - 0.5; sx += stripe, c++) {
+      const hc = cellHash(event.id * 131 + c, 17);
+      if (hc < 0.2) continue; // gap
+      const color = GLITCH_STRIPE_COLORS[Math.floor(cellHash(event.id * 131 + c, 23) * GLITCH_STRIPE_COLORS.length) % GLITCH_STRIPE_COLORS.length];
+      const inset = h * 0.08 * cellHash(event.id * 131 + c, 29);
+      ctx.fillStyle = withAlpha(color, 0.6 * alpha);
+      ctx.fillRect(x0 + sx, y0 + inset, Math.min(stripe * 0.7, w - sx), h - inset * 2);
+    }
+    ctx.strokeStyle = withAlpha(PALETTE.pearl, 0.55 * alpha);
+    ctx.lineWidth = Math.max(0.6, line * 0.6);
+    ctx.strokeRect(x0, y0, w, h);
+  }
 }
 
 /**
