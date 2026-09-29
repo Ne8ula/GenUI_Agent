@@ -11,6 +11,7 @@ For future UI changes, use [the categorized review-folder template](../../../doc
 | [w3-cloud-20260928-a-p1](revisions/w3-cloud-20260928-a-p1/REVIEW.md) — particle eye dissolving into abstract formations (batch [ledger](revisions/w3-cloud-20260928-a/LEDGER.md)) | References and implementation [p1-a2](revisions/w3-cloud-20260928-a-p1-a2/) approved by the owner 2026-09-29 as a pass result; Week 3 phase not accepted |
 | [w3-cloud-20260928-a-p2](revisions/w3-cloud-20260928-a-p2/REVIEW.md) — seeded variation per emotion | References approved by owner; implementation [p2-a6](revisions/w3-cloud-20260928-a-p2-a6/) captured; superseded by p3-a2, whose approval covers the p2 variation and transitions |
 | [w3-cloud-20260928-a-p3](revisions/w3-cloud-20260928-a-p3/REVIEW.md) — minor glitch boxes during state transitions | References approved by owner; implementation [p3-a2](revisions/w3-cloud-20260928-a-p3-a2/) approved by the owner 2026-09-29 as a pass result ([p3-a1](revisions/w3-cloud-20260928-a-p3-a1/) superseded); Week 3 phase not accepted |
+| [w3-cloud-20260929-b-p1](revisions/w3-cloud-20260929-b-p1/REVIEW.md) — floating light over the desktop: no stage, alpha from emitted light, pure-light glitch boxes (batch [ledger](revisions/w3-cloud-20260929-b/LEDGER.md)) | References approved by owner (7 images + 1 video); implementation [p1-a1](revisions/w3-cloud-20260929-b-p1-a1/) captured, awaiting owner review; native overlay not yet built or tested |
 
 ## Direction
 

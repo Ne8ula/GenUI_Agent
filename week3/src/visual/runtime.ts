@@ -12,6 +12,7 @@
  * position and velocity instead of popping (week3/DESIGN.md#6).
  */
 
+import type { BackdropSampler } from "./backdrop";
 import { ENERGY_RELEASE_SMOOTH_TIME, HARMONIC_INDICES, LAYER_SPREAD_FACTOR, MAX_BOXES, MAX_LAYERS } from "./constants";
 import {
   bloomMultiplier,
@@ -50,6 +51,8 @@ export interface EyeStageProps {
   seed: number;
   reducedMotion: boolean;
   active: boolean;
+  /** Luminance behind the canvas; selects light vs ink per particle. Absent = dark (pure light). */
+  backdrop?: BackdropSampler;
 }
 
 interface BoxSlot {

@@ -14,6 +14,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { DPR_CAP } from "./constants";
 import { advanceRuntime, buildFrame, createAnimationRuntime, type EyeStageProps } from "./runtime";
 import { drawEye } from "./render";
+import { BACKDROP_SAMPLE_INTERVAL_MS, smoothLuma, type LumaGrid } from "./backdrop";
 import { createEyeMotion, pointEye, restEye, stepEyeMotion } from './eye-interaction';
 
 export type { EyeStageProps };
@@ -30,6 +31,8 @@ export function useEyeAnimation(props: EyeStageProps) {
   const frameCount = useRef(0);
   const propsRef = useRef(props);
   propsRef.current = props;
+  // Luminance behind the canvas: sampled at a low rate, smoothed every frame.
+  const backdropRef = useRef<{ target: LumaGrid | null; current: LumaGrid | null; sampledAt: number }>({ target: null, current: null, sampledAt: -Infinity });
 
   const renderOnce = useCallback((dt: number) => {
     const ctx = ctxRef.current;
@@ -41,8 +44,15 @@ export function useEyeAnimation(props: EyeStageProps) {
       advanceRuntime(runtimeRef.current!, currentProps, dt);
       const frame = buildFrame(runtimeRef.current!, currentProps);
       const interaction = stepEyeMotion(motionRef.current, currentProps.active ? dt : 0, frame.timeSec, currentProps.reducedMotion);
+      const backdrop = backdropRef.current;
+      if (currentProps.backdrop && (dt === 0 || drawStart - backdrop.sampledAt >= BACKDROP_SAMPLE_INTERVAL_MS)) {
+        const rect = canvas.getBoundingClientRect();
+        backdrop.target = currentProps.backdrop.sample({ left: rect.left, top: rect.top, width: rect.width, height: rect.height }) ?? backdrop.target;
+        backdrop.sampledAt = drawStart;
+      }
+      backdrop.current = currentProps.backdrop ? smoothLuma(backdrop.current, backdrop.target, dt) : null;
       if (import.meta.env.DEV && location.search.includes('fixture')) canvas.dataset.eyePose = JSON.stringify(interaction);
-      drawEye(ctx, canvas.width, canvas.height, frame, interaction);
+      drawEye(ctx, canvas.width, canvas.height, frame, interaction, backdrop.current);
       if (import.meta.env.DEV && location.search.includes('fixture')) {
         canvas.dataset.frameCount = String(++frameCount.current);
         canvas.dataset.drawMs = String(performance.now() - drawStart);
@@ -146,8 +156,12 @@ export function useEyeAnimation(props: EyeStageProps) {
   useEffect(() => {
     if (props.active && !props.reducedMotion) return;
     renderOnce(0);
+    // The material still follows what is behind a static eye (a window moved under it).
+    if (!props.backdrop) return undefined;
+    const follow = window.setInterval(() => renderOnce(0), BACKDROP_SAMPLE_INTERVAL_MS);
+    return () => window.clearInterval(follow);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.state, props.stance, props.intensity, props.seed, props.reducedMotion, props.active, renderOnce]);
+  }, [props.state, props.stance, props.intensity, props.seed, props.reducedMotion, props.active, props.backdrop, renderOnce]);
 
   if (failed) throw new Error('Eye rendering unavailable');
   return { canvasRef, containerRef };

@@ -1,0 +1,261 @@
+{
+  "templateOnly": false,
+  "status": "implementation p1-a1 captured; awaiting owner review",
+  "changeId": "w3-cloud-20260929-b-p1",
+  "phase": "week3-conversational-eye (not accepted)",
+  "sourceRevision": "f32de6d",
+  "acceptedBaseline": null,
+  "approvedPassBaseline": "w3-cloud-20260928-a-p3-a2 (owner-approved pass result, not phase acceptance)",
+  "scope": "Floating light: transparent stage, alpha from emitted light, pure-light glitch boxes, native transparent overlay window config. Owner redo decision: dual material - pure light over dark, pigment/ink over bright, driven by a local-only native brightness sample of the area under the eye (never stored or sent).",
+  "ownedUiFiles": [
+    "week3/src/visual/render.ts",
+    "week3/src/visual/backdrop.ts (new)",
+    "week3/src/visual/EyeStage.tsx",
+    "week3/src/visual/useEyeAnimation.ts",
+    "week3/src/style.css",
+    "week3/src/App.tsx (fixture test backdrop only)",
+    "week3/tests/backdrop.test.ts (new)"
+  ],
+  "motionRequired": true,
+  "runs": [
+    {
+      "run": 1,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "a46ef240-6a09-4297-b1e5-cbbf11ce6733",
+      "inputs": {
+        "summary": "Small red particle eye as floating pure light, lower right over dark wallpaper; no rectangle/halo/shadow. Inputs: batch-a p1 img-20 synthetic desktop and img-07 rest eye (public repo raw URLs at f32de6d).",
+        "settings": "16:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-01-rest-corner-pure-light.png",
+        "width": 1376,
+        "height": 768,
+        "retrieved": true
+      },
+      "review": "selected by agent"
+    },
+    {
+      "run": 2,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "dbdc91f1-4220-480a-98f9-2bed96342678",
+      "inputs": {
+        "summary": "Grown supportive currents + warm light straddling a bright window and dark wallpaper, pure additive light, no muddy patch. Inputs: batch-a p1 img-20 and img-19 supportive.",
+        "settings": "16:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-02-supportive-straddle-bright-dark.png",
+        "width": 1376,
+        "height": 768,
+        "retrieved": true
+      },
+      "review": "superseded: owner said the veil over white is too weak"
+    },
+    {
+      "run": 3,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "79d30fa4-964c-41f4-80b3-e765d3351865",
+      "inputs": {
+        "summary": "Three-panel strip: dissolving eye with 1-3 pure-light glitch boxes, no dark backing, one over a white window. Inputs: batch-a p1 img-20 and p3 img-01 glitch strip.",
+        "settings": "21:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner structured Approve",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-03-glitch-pure-light-strip.png",
+        "width": 1584,
+        "height": 672,
+        "retrieved": true
+      },
+      "review": "box grammar selected; dark particles/black pupil and scale rejected"
+    },
+    {
+      "run": 4,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "8dea4a71-29e8-46d0-a47d-fa18a7762d61",
+      "inputs": {
+        "summary": "Redo of img-02 per owner: supportive straddling Notepad (white) and wallpaper (dark); pure light over dark, deep saturated pigment/ink over white. Inputs: batch-a p1 img-20, img-19.",
+        "settings": "16:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner standing instruction: auto approve credit usage (quote obtained first)",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-04-supportive-light-to-ink-straddle.png",
+        "width": 1376,
+        "height": 768,
+        "retrieved": true
+      },
+      "review": "selected by agent"
+    },
+    {
+      "run": 5,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "6ba91fc9-71b0-4766-b8a6-b5db9c2a800d",
+      "inputs": {
+        "summary": "Five-panel board on white: rest eye, comfort, joy, congratulation, supportive as pigment/ink particle forms. Input: batch-a p2 img-02 Board B (style only).",
+        "settings": "21:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner standing instruction: auto approve credit usage (quote obtained first)",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-05-ink-state-board.png",
+        "width": 1584,
+        "height": 672,
+        "retrieved": true
+      },
+      "review": "rest, congratulation, supportive panels approved by owner; joy and comfort panels to redo"
+    },
+    {
+      "run": 6,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "507a0285-e56b-4600-a298-190b74767679",
+      "inputs": {
+        "summary": "Comfort ink redo: same form as batch-a p1 img-14, porous cloud of separate pigment particles on white; explicitly not fabric/blanket.",
+        "settings": "16:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner standing instruction: auto approve credit usage (quote obtained first)",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-06-comfort-ink-particles.png",
+        "width": 1376,
+        "height": 768,
+        "retrieved": true
+      },
+      "review": "selected by agent"
+    },
+    {
+      "run": 7,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "predictionId": "b8a2da16-0051-4e1a-9110-00509527b8a5",
+      "inputs": {
+        "summary": "Joy ink redo: same composition as batch-a p1 img-21 (faint eye trace bursting into 3D shimmer) as pigment specks on white; not powder/confetti.",
+        "settings": "16:9 1K"
+      },
+      "quotedCost": 6,
+      "costApprovalRef": "owner standing instruction: auto approve credit usage (quote obtained first)",
+      "reportedCost": 6,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-07-joy-ink-shimmer.png",
+        "width": 1376,
+        "height": 768,
+        "retrieved": true
+      },
+      "review": "selected by agent"
+    },
+    {
+      "run": 8,
+      "route": "direct-model",
+      "modelId": "kling (Kling Video, 2.5 Turbo Pro)",
+      "weaveModelId": "wnfmbl8VwUCfX2a1XcdfDlone",
+      "predictionId": "d208da2b-ed89-4e7d-8292-5c75b104c7f1",
+      "inputs": {
+        "summary": "First frame = run 4 output (img-04, passed as its Weave output URL; the repo copy is not pushed). Static camera; one supportive form drifts across the Notepad/wallpaper edge; each particle is ink over white, light over dark, changing particle by particle.",
+        "settings": "16:9, 5 s, 2.5 Turbo Pro"
+      },
+      "quotedCost": 35,
+      "costApprovalRef": "owner approved p1 image set and chose 'Approve both, make video'; standing auto-approve instruction",
+      "reportedCost": 35,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "video",
+        "path": "references/videos/vid-01-light-ink-edge-drift.mp4",
+        "width": 1924,
+        "height": 1076,
+        "durationSec": 5.042,
+        "codec": "h264",
+        "retrieved": true
+      },
+      "review": "selected by agent (timing and per-particle material rule)"
+    }
+  ],
+  "budget": {
+    "batchAllowance": 250,
+    "spentThisPass": 77,
+    "spentBatch": 77,
+    "costPolicy": "Per-run structured approval for runs 1-3; owner then instructed auto-approval within the 250 allowance (quote still obtained and logged per run)."
+  },
+  "selectedAssets": [
+    "references/images/img-01-rest-corner-pure-light.png",
+    "references/images/img-04-supportive-light-to-ink-straddle.png",
+    "references/images/img-05-ink-state-board.png (rest, congratulation, supportive panels)",
+    "references/images/img-06-comfort-ink-particles.png",
+    "references/images/img-07-joy-ink-shimmer.png",
+    "references/images/img-03-glitch-pure-light-strip.png (box grammar only)",
+    "references/videos/vid-01-light-ink-edge-drift.mp4"
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": "All seven images opened and viewed at full resolution by the main session. See REVIEW.md observations.",
+  "implementationGuidance": "See REVIEW.md 'Implementation rules extracted'.",
+  "writerInspections": [
+    {
+      "writer": "main session (Claude Code on the web)",
+      "inspected": [
+        "img-01",
+        "img-03",
+        "img-04",
+        "img-05",
+        "img-06",
+        "img-07",
+        "vid-01 frames + edge detail"
+      ],
+      "date": "2026-09-29"
+    }
+  ],
+  "implementation": {
+    "before": "../w3-cloud-20260929-b-baseline/",
+    "after": [
+      "../w3-cloud-20260929-b-p1-a1/",
+      "implementation/after/"
+    ],
+    "transitionsMp4": "implementation/after/p1-a1-transitions.mp4"
+  },
+  "ownerDecision": "p1 image set approved 2026-09-29 (img-01, img-04, img-05 rest/congratulation/supportive panels, img-06, img-07, img-03 box grammar). Implementation pending.",
+  "deferredToP2": [
+    "week3/src-tauri/tauri.conf.json",
+    "week3/src-tauri/capabilities/*.json",
+    "week3/src-tauri/src window/cursor/backdrop-sample module"
+  ],
+  "checks": {
+    "sessionTest": "passed: guard unchanged 1041, vitest 137/137, tsc+build, browser smoke PASS",
+    "capture": "reducedStatic, endStatic, noOverflow, keyboard focus, gaze both directions, 0 errors",
+    "perf": "capture 31.1/45.5 ms sync draw vs baseline capture 20/26.7; same-load A/B vs f32de6d: no difference (processing 32.4 vs 29.7 median; comfort 35.4 vs 36.1)",
+    "native": "not tested (Cloud)"
+  }
+}

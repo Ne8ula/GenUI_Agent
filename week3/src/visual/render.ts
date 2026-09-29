@@ -37,6 +37,7 @@ import { buildSmearBands, buildTrackingBoxesFromLandmarks, type DigitalColorKey,
 import { rasterizeWeek1Eye, type EyeInteraction, type Week1Pose } from "./week1-eye";
 import type { EyeFrame, WarpChannels } from "./runtime";
 import { createGlitchState, glitchEnvelope, stepGlitches, type GlitchEvent, type GlitchState } from "./glitch";
+import { compositePixel, hexToRgb, inkTint, inkWeight, lumaAt, materialColor, rgba, type LumaGrid, type Rgb } from "./backdrop";
 import { cellHash, formationStrength, formationTarget, formationVariation, formationWeights, perspective, releaseDelay, releaseProgress, tilt, type FormationVariation, type ParticlePoint } from "./particles";
 
 export type { EyeInteraction, Week1Pose } from "./week1-eye";
@@ -73,6 +74,9 @@ interface ParticleBuffers {
   image: ImageData | null;
   canvas: HTMLCanvasElement | null;
   glow: HTMLCanvasElement | null;
+  /** Quarter-resolution light-only accumulation for the soft bloom (never ink: no dark haze). */
+  glowAccum: Float32Array;
+  glowImage: ImageData | null;
   positions: Float32Array;
 }
 
@@ -106,7 +110,9 @@ function ensureParticleBuffers(ctx: CanvasRenderingContext2D, width: number, hei
     const canvas = hasDom ? document.createElement("canvas") : null;
     const glow = hasDom ? document.createElement("canvas") : null;
     if (canvas) { canvas.width = bufferWidth; canvas.height = bufferHeight; }
-    if (glow) { glow.width = Math.max(1, Math.round(bufferWidth / 4)); glow.height = Math.max(1, Math.round(bufferHeight / 4)); }
+    const glowWidth = Math.max(1, Math.ceil(bufferWidth / 4));
+    const glowHeight = Math.max(1, Math.ceil(bufferHeight / 4));
+    if (glow) { glow.width = glowWidth; glow.height = glowHeight; }
     buffers = {
       width: bufferWidth,
       height: bufferHeight,
@@ -114,6 +120,8 @@ function ensureParticleBuffers(ctx: CanvasRenderingContext2D, width: number, hei
       image: hasDom ? new ImageData(bufferWidth, bufferHeight) : null,
       canvas,
       glow,
+      glowAccum: new Float32Array(glowWidth * glowHeight * 3),
+      glowImage: hasDom ? new ImageData(glowWidth, glowHeight) : null,
       positions: new Float32Array(cells * 2),
     };
     particleBuffers.set(ctx, buffers);
@@ -178,8 +186,10 @@ function ensureCellCache(width: number, height: number): CellCache {
 
 /**
  * Splat every raster cell of the source eye as a particle with depth
- * (particles.ts). Additive light over the charcoal stage: black adds nothing,
- * matching the owner's "pure light, no halo" decision. Returns each cell's
+ * (particles.ts). No stage (batch w3-cloud-20260929-b): accumulated light
+ * becomes alpha, so black is fully transparent and the desktop shows through.
+ * Each pixel's material follows the backdrop behind it (backdrop.ts): light
+ * over dark, pigment over bright, one form. Returns each cell's
  * projected canvas position (landmark cells always; others only when drawn)
  * so tracking boxes follow the moving particles.
  */
@@ -196,6 +206,7 @@ function drawParticleField(
   landmarks: Array<{ x: number; y: number }>,
   frame: EyeFrame,
   quiet: boolean,
+  backdrop: LumaGrid | null,
 ): Float32Array {
   const cells = rasterWidth * rasterHeight;
   const buffers = ensureParticleBuffers(ctx, width, height, cells);
@@ -336,25 +347,48 @@ function drawParticleField(
     }
   }
 
-  if (buffers.image && buffers.canvas && buffers.glow) {
+  const tint = inkTint(weights, strength);
+  if (buffers.image && buffers.canvas && buffers.glow && buffers.glowImage) {
     const pixels = buffers.image.data;
-    // Soft-clip additive light so dense regions keep their hue instead of burning to white.
-    for (let i = 0, j = 0; i < accum.length; i += 3, j += 4) {
-      const ar = accum[i], ag = accum[i + 1], ab = accum[i + 2];
-      pixels[j] = (ar / (0.55 + ar)) * 400;
-      pixels[j + 1] = (ag / (0.55 + ag)) * 400;
-      pixels[j + 2] = (ab / (0.55 + ab)) * 400;
-      pixels[j + 3] = 255;
+    const glowAccum = buffers.glowAccum;
+    glowAccum.fill(0);
+    const gw = buffers.glow.width;
+    const scratch: [number, number, number] = [0, 0, 0];
+    // Per-column u is constant; the backdrop grid is coarse, so sample ink per 4x4 block.
+    let blockInk = 0;
+    for (let y = 0, i = 0, j = 0; y < bh; y++) {
+      const v = (y + 0.5) / bh;
+      const gRow = (y >> 2) * gw;
+      for (let x = 0; x < bw; x++, i += 3, j += 4) {
+        const ar = accum[i], ag = accum[i + 1], ab = accum[i + 2];
+        if (ar + ag + ab < 1e-4) { pixels[j + 3] = 0; continue; }
+        if ((x & 3) === 0 || blockInk < 0) blockInk = backdrop ? inkWeight(lumaAt(backdrop, (x + 0.5) / bw, v)) : 0;
+        const lightShare = compositePixel(ar, ag, ab, blockInk, tint, pixels, j, scratch);
+        if (lightShare > 0.004) {
+          const g = (gRow + (x >> 2)) * 3;
+          const a = pixels[j + 3] > 0 ? lightShare / 255 : 0;
+          glowAccum[g] += pixels[j] * a; glowAccum[g + 1] += pixels[j + 1] * a; glowAccum[g + 2] += pixels[j + 2] * a;
+        }
+      }
+      blockInk = -1;
+    }
+    const glowPixels = buffers.glowImage.data;
+    for (let g = 0, q = 0; g < glowAccum.length; g += 3, q += 4) {
+      const gr = glowAccum[g] / 16, gg = glowAccum[g + 1] / 16, gb = glowAccum[g + 2] / 16;
+      const m = gr > gg ? (gr > gb ? gr : gb) : (gg > gb ? gg : gb);
+      if (m < 1 / 255) { glowPixels[q + 3] = 0; continue; }
+      glowPixels[q] = (gr / m) * 255; glowPixels[q + 1] = (gg / m) * 255; glowPixels[q + 2] = (gb / m) * 255; glowPixels[q + 3] = Math.min(1, m) * 255;
     }
     const bufferCtx = buffers.canvas.getContext("2d");
     const glowCtx = buffers.glow.getContext("2d");
     if (!bufferCtx || !glowCtx) throw new Error("Particle buffer unavailable");
     bufferCtx.putImageData(buffers.image, 0, 0);
-    glowCtx.imageSmoothingEnabled = true;
-    glowCtx.drawImage(buffers.canvas, 0, 0, buffers.glow.width, buffers.glow.height);
-    ctx.globalCompositeOperation = "lighter";
+    glowCtx.putImageData(buffers.glowImage, 0, 0);
+    ctx.globalCompositeOperation = "source-over";
     ctx.imageSmoothingEnabled = true;
     ctx.drawImage(buffers.canvas, 0, 0, width, height);
+    // Soft bloom from the light share only: over bright areas there is no light, so no haze.
+    ctx.globalCompositeOperation = "lighter";
     ctx.globalAlpha = 0.45;
     ctx.drawImage(buffers.glow, 0, 0, width, height);
     ctx.globalAlpha = 1;
@@ -374,13 +408,29 @@ function drawParticleField(
     const lx = cx + peak.x * displayScale * depth;
     const ly = cy + peak.y * displayScale * depth;
     const radius = displayScale * 0.2;
-    const gradient = ctx.createRadialGradient(lx, ly, 0, lx, ly, radius);
-    gradient.addColorStop(0, withAlpha("#ffd9a8", 0.8 * lightStrength));
-    gradient.addColorStop(0.16, withAlpha("#ff9f6b", 0.3 * lightStrength));
-    gradient.addColorStop(1, withAlpha("#ff9f6b", 0));
-    ctx.globalCompositeOperation = "lighter";
-    ctx.fillStyle = gradient;
-    ctx.fillRect(lx - radius, ly - radius, radius * 2, radius * 2);
+    const ink = backdrop ? inkWeight(lumaAt(backdrop, lx / width, ly / height)) : 0;
+    if (ink < 0.999) {
+      const glow = lightStrength * (1 - ink);
+      const gradient = ctx.createRadialGradient(lx, ly, 0, lx, ly, radius);
+      gradient.addColorStop(0, withAlpha("#ffd9a8", 0.8 * glow));
+      gradient.addColorStop(0.16, withAlpha("#ff9f6b", 0.3 * glow));
+      gradient.addColorStop(1, withAlpha("#ff9f6b", 0));
+      ctx.globalCompositeOperation = "lighter";
+      ctx.fillStyle = gradient;
+      ctx.fillRect(lx - radius, ly - radius, radius * 2, radius * 2);
+    }
+    if (ink > 0.001) {
+      // Over bright areas the warm light becomes a small deep-amber pigment core (img-04/05).
+      const core = lightStrength * ink;
+      const inkRadius = radius * 0.55;
+      const gradient = ctx.createRadialGradient(lx, ly, 0, lx, ly, inkRadius);
+      gradient.addColorStop(0, rgba([0.78, 0.33, 0.04], 0.85 * core));
+      gradient.addColorStop(0.35, rgba([0.62, 0.22, 0.05], 0.4 * core));
+      gradient.addColorStop(1, rgba([0.62, 0.22, 0.05], 0));
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = gradient;
+      ctx.fillRect(lx - inkRadius, ly - inkRadius, inkRadius * 2, inkRadius * 2);
+    }
   }
   ctx.globalCompositeOperation = "source-over";
   return positions;
@@ -518,7 +568,8 @@ export function drawEye(
   width: number,
   height: number,
   frame: EyeFrame,
-  interaction: EyeInteraction = DEFAULT_EYE_INTERACTION
+  interaction: EyeInteraction = DEFAULT_EYE_INTERACTION,
+  backdrop: LumaGrid | null = null
 ): void {
   if (!(width > 0) || !(height > 0)) return;
   const minDim = Math.min(width, height);
@@ -526,9 +577,8 @@ export function drawEye(
   const cy = height / 2;
 
   ctx.save();
+  // No stage: EVA floats over the user's desktop (batch w3-cloud-20260929-b).
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = PALETTE.charcoal;
-  ctx.fillRect(0, 0, width, height);
 
   const pose: Week1Pose = {
     ...interaction,
@@ -544,20 +594,22 @@ export function drawEye(
 
   // Small eye at rest that grows while responding (owner decision, batch w3-cloud-20260928-a).
   const displayScale = minDim * (REST_SCALE + (SPEAKING_SCALE - REST_SCALE) * clamp01(frame.energy));
-  const positions = drawParticleField(ctx, width, height, cx, cy, displayScale, rasterWidth, rasterHeight, data, landmarks, frame, isQuiet);
+  const positions = drawParticleField(ctx, width, height, cx, cy, displayScale, rasterWidth, rasterHeight, data, landmarks, frame, isQuiet, backdrop);
+  const tint = inkTint(formationWeights(frame.warp), formationStrength(frame.warp));
+  const inkAt = (x: number, y: number) => (backdrop ? inkWeight(lumaAt(backdrop, x / width, y / height)) : 0);
   const trackedLandmarks: LandmarkPoint[] = landmarks.map(lm => {
     const index = Math.min(rasterHeight - 1, Math.max(0, Math.round(lm.y))) * rasterWidth + Math.min(rasterWidth - 1, Math.max(0, Math.round(lm.x)));
     return { x: positions[index * 2], y: positions[index * 2 + 1] };
   });
 
-  drawSmearBands(ctx, cx, cy, displayScale * 1.9, frame);
-  drawTrackingBoxes(ctx, trackedLandmarks, minDim, frame);
+  drawSmearBands(ctx, cx, cy, displayScale * 1.9, frame, inkAt, tint);
+  drawTrackingBoxes(ctx, trackedLandmarks, minDim, frame, inkAt, tint);
 
   // Pass p3: a few brief glitch boxes only while the eye is changing state.
   let glitchState = glitchStates.get(ctx);
   if (!glitchState) { glitchState = createGlitchState(); glitchStates.set(ctx, glitchState); }
   const glitches = stepGlitches(glitchState, frame.timeSec, clamp01(frame.energy), variationHandover(ctx, frame.timeSec), frame.fragmentSeed, !isQuiet);
-  drawTransitionGlitches(ctx, glitches, trackedLandmarks, displayScale, frame.timeSec);
+  drawTransitionGlitches(ctx, glitches, trackedLandmarks, displayScale, frame.timeSec, inkAt, tint);
 
   ctx.restore();
 }
@@ -566,12 +618,17 @@ const GLITCH_STRIPE_COLORS = ["#e0625a", "#c94fa0", "#3fbfd8", "#9fd44a", PALETT
 
 /**
  * Transition glitch accents from the p3 packet (img-01, vid-01): each event
- * opens from a thin vertical line into a small dark-backed box of vertical
- * colour stripes with a thin outline, briefly throws a thin horizontal trail
- * across the form, then vanishes. Anchored on the eye's (moving) feature
- * landmarks. A few at most; see glitch.ts for scheduling.
+ * opens from a thin vertical line into a small box of vertical colour
+ * stripes with a thin outline, briefly throws a thin horizontal trail across
+ * the form, then vanishes. Anchored on the eye's (moving) feature landmarks.
+ * A few at most; see glitch.ts for scheduling.
+ *
+ * Batch w3-cloud-20260929-b p1 (owner): pure light, no dark backing. Over
+ * dark areas the stripes are emitted light (a little brighter than p3-a2 so
+ * they don't vanish like p3-a1); over bright areas the same stripes turn to
+ * ink, like the particles.
  */
-function drawTransitionGlitches(ctx: CanvasRenderingContext2D, events: GlitchEvent[], anchors: LandmarkPoint[], displayScale: number, timeSec: number): void {
+function drawTransitionGlitches(ctx: CanvasRenderingContext2D, events: GlitchEvent[], anchors: LandmarkPoint[], displayScale: number, timeSec: number, inkAt: (x: number, y: number) => number, tint: Rgb): void {
   if (events.length === 0 || anchors.length === 0) return;
   const line = Math.max(1, displayScale * 0.006);
   for (const event of events) {
@@ -583,32 +640,38 @@ function drawTransitionGlitches(ctx: CanvasRenderingContext2D, events: GlitchEve
     const h = fullWidth * event.aspect;
     const x0 = anchor.x - w / 2;
     const y0 = anchor.y - h / 2;
+    const ink = inkAt(anchor.x, anchor.y);
+    // Light is added (never darkens); ink is laid over with normal alpha.
+    const paint = (light: Rgb, lightAlpha: number, inkAlpha: number, draw: () => void) => {
+      if (ink < 0.999) { ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = ctx.strokeStyle = rgba(light, lightAlpha * GLITCH_LIGHT_GAIN * alpha * (1 - ink)); draw(); }
+      if (ink > 0.001) { ctx.globalCompositeOperation = "source-over"; ctx.fillStyle = ctx.strokeStyle = rgba(materialColor(light, 1, tint), inkAlpha * alpha * ink); draw(); }
+    };
     if (trail > 0) {
       const length = displayScale * (1.3 + 0.6 * cellHash(event.id, 43));
       const ty = anchor.y + (cellHash(event.id, 47) - 0.5) * h * 0.4;
       const tx = anchor.x - length / 2 + (cellHash(event.id, 41) - 0.5) * displayScale * 0.3;
-      ctx.fillStyle = withAlpha(PALETTE.pearl, 0.55 * alpha);
-      ctx.fillRect(tx, ty, length, line * 0.8);
-      ctx.fillStyle = withAlpha("#3fbfd8", 0.25 * alpha);
-      ctx.fillRect(tx + line * 3, ty + line, length, line * 0.6);
+      paint(PEARL, 0.55, 0.6, () => ctx.fillRect(tx, ty, length, line * 0.8));
+      paint(hexToRgb("#3fbfd8"), 0.25, 0.35, () => ctx.fillRect(tx + line * 3, ty + line, length, line * 0.6));
     }
-    // Dark backing so the stripes read over bright particles.
-    ctx.fillStyle = withAlpha(PALETTE.charcoal, 0.72 * alpha);
-    ctx.fillRect(x0, y0, w, h);
     const stripe = Math.max(1.5, fullWidth / 13);
     for (let sx = 0, c = 0; sx < w - 0.5; sx += stripe, c++) {
       const hc = cellHash(event.id * 131 + c, 17);
       if (hc < 0.2) continue; // gap
       const color = GLITCH_STRIPE_COLORS[Math.floor(cellHash(event.id * 131 + c, 23) * GLITCH_STRIPE_COLORS.length) % GLITCH_STRIPE_COLORS.length];
       const inset = h * 0.08 * cellHash(event.id * 131 + c, 29);
-      ctx.fillStyle = withAlpha(color, 0.6 * alpha);
-      ctx.fillRect(x0 + sx, y0 + inset, Math.min(stripe * 0.7, w - sx), h - inset * 2);
+      paint(hexToRgb(color), 0.6, 0.7, () => ctx.fillRect(x0 + sx, y0 + inset, Math.min(stripe * 0.7, w - sx), h - inset * 2));
     }
-    ctx.strokeStyle = withAlpha(PALETTE.pearl, 0.55 * alpha);
     ctx.lineWidth = Math.max(0.6, line * 0.6);
-    ctx.strokeRect(x0, y0, w, h);
+    paint(PEARL, 0.55, 0.6, () => ctx.strokeRect(x0, y0, w, h));
   }
+  ctx.globalCompositeOperation = "source-over";
 }
+
+const PEARL = hexToRgb(PALETTE.pearl);
+/** Pure-light stripes need a little more energy than the dark-backed p3-a2 boxes to stay visible. */
+const GLITCH_LIGHT_GAIN = 1.35;
+/** Hairline ink for tracking boxes over bright areas. */
+const HAIRLINE_INK: Rgb = [0.17, 0.14, 0.2];
 
 /**
  * A dense field of varying-size tracking boxes attached to the eye's actual
@@ -623,9 +686,16 @@ function drawTrackingBoxes(
   ctx: CanvasRenderingContext2D,
   landmarks: LandmarkPoint[],
   minDim: number,
-  frame: EyeFrame
+  frame: EyeFrame,
+  inkAt: (x: number, y: number) => number,
+  _tint: Rgb
 ): void {
   if (frame.boxes.length === 0 || landmarks.length === 0) return;
+  // Pearl light over dark areas, a dark ink hairline over bright ones.
+  const hairline = (x: number, y: number, alpha: number) => {
+    const ink = inkAt(x, y);
+    return rgba([PEARL[0] + (HAIRLINE_INK[0] - PEARL[0]) * ink, PEARL[1] + (HAIRLINE_INK[1] - PEARL[1]) * ink, PEARL[2] + (HAIRLINE_INK[2] - PEARL[2]) * ink], alpha);
+  };
   const anchorOpacityAvg = frame.boxes.reduce((sum, b) => sum + b.opacity, 0) / frame.boxes.length;
   if (anchorOpacityAvg <= 0.01) return;
 
@@ -638,11 +708,11 @@ function drawTrackingBoxes(
   });
   if (boxes.length === 0) return;
 
-  ctx.strokeStyle = withAlpha(PALETTE.pearl, clamp01(0.28 * anchorOpacityAvg));
   ctx.lineWidth = Math.max(0.4, minDim * 0.001);
   for (let i = 0; i < boxes.length; i++) {
     const to = boxes[i].connectToIndex;
     if (to === null || to === undefined || !boxes[to]) continue;
+    ctx.strokeStyle = hairline((boxes[i].x + boxes[to].x) / 2, (boxes[i].y + boxes[to].y) / 2, clamp01(0.28 * anchorOpacityAvg));
     ctx.beginPath();
     ctx.moveTo(boxes[i].x, boxes[i].y);
     ctx.lineTo(boxes[to].x, boxes[to].y);
@@ -656,7 +726,7 @@ function drawTrackingBoxes(
     const alpha = clamp01(box.opacity * anchorOpacityAvg * pulse);
     if (alpha <= 0.02) continue;
 
-    ctx.strokeStyle = withAlpha(PALETTE.pearl, Math.min(0.6, alpha));
+    ctx.strokeStyle = hairline(box.x, box.y, Math.min(0.6, alpha));
     ctx.lineWidth = Math.max(0.4, minDim * 0.0012);
     ctx.strokeRect(box.x - size / 2, box.y - size / 2, size, size);
 
@@ -687,7 +757,7 @@ function drawTrackingBoxes(
  * interrupt/End). An overlay on top of the source eye, never a replacement
  * for it.
  */
-function drawSmearBands(ctx: CanvasRenderingContext2D, cx: number, cy: number, minDim: number, frame: EyeFrame): void {
+function drawSmearBands(ctx: CanvasRenderingContext2D, cx: number, cy: number, minDim: number, frame: EyeFrame, inkAt: (x: number, y: number) => number, tint: Rgb): void {
   const bands = buildSmearBands({
     seed: frame.fragmentSeed,
     fragmentation: frame.fragmentation,
@@ -705,11 +775,14 @@ function drawSmearBands(ctx: CanvasRenderingContext2D, cx: number, cy: number, m
     const startX = cx - halfWidth + band.horizontalShiftFrac * minDim;
     const totalWidth = halfWidth * 2;
     const hex = DIGITAL_COLOR_HEX[band.colorKey];
+    // Over bright areas the smear is laid down as ink instead of added light.
+    const ink = inkAt(startX + totalWidth / 2, y);
+    const inked = (color: string) => (ink > 0.5 ? rgba(materialColor(hexToRgb(color), 1, tint), 1) : color);
 
     const sorted = [...band.dropouts].sort((a, b) => a.startFrac - b.startFrac);
     const draw = (offset: number, color: string, opacity: number) => {
       let cursor = 0;
-      ctx.fillStyle = withAlpha(color, opacity);
+      ctx.fillStyle = color.startsWith('rgba') ? color.replace(/,[^,]*\)$/, `,${clamp01(opacity).toFixed(3)})`) : withAlpha(color, opacity);
       const scan = (x: number, span: number) => {
         for (let row = 0; row < height; row += 2) ctx.fillRect(x + offset + (row % 4 === 0 ? -1 : 1), y + row, span, Math.min(1, height - row));
       };
@@ -721,11 +794,11 @@ function drawSmearBands(ctx: CanvasRenderingContext2D, cx: number, cy: number, m
       if (cursor < 1) scan(startX + cursor * totalWidth, (1 - cursor) * totalWidth);
     };
     if (band.channelSeparated) {
-      ctx.globalCompositeOperation = 'lighter';
-      draw(-minDim * .006, '#ff4d6d', baseAlpha * .5);
-      draw(0, '#4dffb8', baseAlpha * .5);
-      draw(minDim * .006, '#4d9dff', baseAlpha * .5);
+      ctx.globalCompositeOperation = ink > 0.5 ? 'source-over' : 'lighter';
+      draw(-minDim * .006, inked('#ff4d6d'), baseAlpha * .5);
+      draw(0, inked('#4dffb8'), baseAlpha * .5);
+      draw(minDim * .006, inked('#4d9dff'), baseAlpha * .5);
       ctx.globalCompositeOperation = 'source-over';
-    } else draw(0, hex, baseAlpha);
+    } else draw(0, inked(hex), baseAlpha);
   }
 }

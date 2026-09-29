@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { EyeStage } from './visual/EyeStage';
+import { imageSampler, splitSampler, uniformSampler, type BackdropSampler } from './visual/backdrop';
 import { Conversation } from './voice/conversation';
 import { Microphone } from './voice/microphone';
 import { LocalPlayback } from './voice/playback';
@@ -10,6 +11,16 @@ const stances: Stance[] = ['attentive', 'comforting', 'shared_joy', 'congratulat
 const states: TurnState[] = ['idle', 'listening', 'processing', 'speaking', 'interrupted', 'unavailable'];
 const query = new URLSearchParams(location.search);
 const fixture = import.meta.env.DEV && query.has('fixture');
+// Review-only test backdrops behind the transparent page (dev fixture only). They simulate the
+// luminance a native sample would report; they are not native transparency evidence.
+const TEST_BACKDROPS: Record<string, { css: string; sampler: () => BackdropSampler; label: string }> = {
+  desktop: { css: 'center / cover no-repeat url("/docs/design/revisions/w3-cloud-20260928-a-p1/references/images/img-20-synthetic-desktop.png") #0b1633', sampler: () => imageSampler('/docs/design/revisions/w3-cloud-20260928-a-p1/references/images/img-20-synthetic-desktop.png'), label: 'synthetic desktop image' },
+  white: { css: '#ffffff', sampler: () => uniformSampler(1), label: 'white' },
+  dark: { css: '#0b1633', sampler: () => uniformSampler(0.06), label: 'dark' },
+  split: { css: 'linear-gradient(to right, #ffffff 50%, #0b1633 50%)', sampler: () => splitSampler(), label: 'white left / dark right' },
+};
+// A transparent page in a plain browser sits on white, so the fixture defaults to the dark test backdrop; `backdrop=none` shows raw transparency.
+const testBackdrop = fixture ? TEST_BACKDROPS[query.get('backdrop') ?? 'dark'] : undefined;
 
 export function App() {
   const conversation = useMemo(() => new Conversation(nativeTransport, new Microphone(), new LocalPlayback()), []);
@@ -23,6 +34,12 @@ export function App() {
   const [seed, setSeed] = useState(Number(query.get('seed')) || 42);
   const [fixtureActive, setFixtureActive] = useState(true);
   const [visualFailed, setVisualFailed] = useState(false);
+  const backdrop = useMemo(() => testBackdrop?.sampler(), []);
+  useEffect(() => {
+    if (!testBackdrop) return;
+    document.body.style.background = testBackdrop.css;
+    return () => { document.body.style.background = ''; };
+  }, []);
   const refresh = () => { void nativeTransport.status().then(setStatus).catch(() => setStatus({ ready: false, missing: ['Backend unavailable. Relaunch the native app.'], providers: { stt: '', reply: '', tts: '' }, remainingTurns: 0 })); };
   useEffect(() => {
     refresh();
@@ -49,10 +66,10 @@ export function App() {
       <span className="wordmark">eva<span className="wordmark-dot">.</span></span>
       <div className="mic-status"><span className={`status-dot ${view.active && !view.muted ? 'is-live' : ''}`} />{view.starting ? 'Microphone permission pending' : view.active ? view.muted ? 'Microphone muted' : 'Microphone on' : 'Microphone off'}</div>
     </header>
-    {fixture && <aside className="fixture-banner">Synthetic visual fixture · no microphone, inference or speech playback <a href="/">Conversation setup</a></aside>}
+    {fixture && <aside className="fixture-banner">Synthetic visual fixture · no microphone, inference or speech playback{testBackdrop && ` · test backdrop: ${testBackdrop.label} (browser, not native)`} <a href="/">Conversation setup</a></aside>}
     <section className="presence" data-seed={fixture ? seed : undefined} aria-label="Expressive eye; decorative interpretation, not emotion detection">
       {!visualFailed && <VisualBoundary onError={() => setVisualFailed(true)}>
-        <EyeStage state={state} stance={fixture ? fixtureStance : view.stance} intensity={fixture ? .65 : view.intensity} seed={fixture ? seed : view.seed} reducedMotion={reduced} active={active} />
+        <EyeStage state={state} stance={fixture ? fixtureStance : view.stance} intensity={fixture ? .65 : view.intensity} seed={fixture ? seed : view.seed} reducedMotion={reduced} active={active} backdrop={backdrop} />
       </VisualBoundary>}
       {visualFailed && <p className="visual-fallback">Visuals unavailable. Voice controls remain active.</p>}
     </section>
