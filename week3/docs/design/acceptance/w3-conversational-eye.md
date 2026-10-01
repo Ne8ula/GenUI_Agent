@@ -1,12 +1,12 @@
 # Week 3 acceptance — conversational eye
 
-**Owner decision: pending.** No acceptance date or accepted visual baseline. This record does not accept E1, S0–S4, or the separate brain adapter.
+**Owner decision: visual appearance approved on 2026-10-01 at `83bb46a` (p2-a2); full live conversational-eye acceptance remains pending.** The approval covers the owner's Windows visual review, not unreported interaction checks or live voice. See the dated exercise below. This record does not accept E1, S0–S4, or the separate brain adapter.
 
 ## Authorized scope and revision
 
 Owner authorized the bounded Week 3 live conversational-eye implementation and at most ten short billable voice rehearsal turns, using existing OpenAI and ElevenLabs API access. They subsequently authorized reading only the existing nonsecret Week 1 voice ID for the test process. No image/video generation, ComfyUI, deployment or commits were authorized or performed by this session.
 
-Source started at `53203fa`; a concurrent session created `fc33b6b` (“cloud working start”) during implementation. That checkpoint was preserved. Current candidate: **w3-20260927-06**, identified by its [source manifest](../revisions/w3-20260927-06/source-manifest.json). Original planning prose is retained with minimal current-status/owner-clarification links; archived weeks remain unchanged.
+Source started at `53203fa`; a concurrent session created `fc33b6b` (“cloud working start”) during implementation. That checkpoint was preserved. Historical candidate: **w3-20260927-06**, identified by its [source manifest](../revisions/w3-20260927-06/source-manifest.json). Current owner-reviewed visual candidate: **p2-a2 at `83bb46a`**, with its [p2 review packet](../revisions/w3-cloud-20260929-b-p2/REVIEW.md). Original planning prose is retained with minimal current-status/owner-clarification links; archived weeks remain unchanged.
 
 ## Reproducible owner exercise
 
@@ -43,6 +43,17 @@ Expected: explicit mic activation; hands-free turns; comfort → congratulation 
 ## Owner feedback, fixes and decision
 
 - Owner steering: implement Week 3; use bounded native agents; preserve the future brain decider seam. They rejected the replacement-eye direction and clarified retaining Week 1's silhouette/square pupil, dithering and cursor response, with source-eye transformations and broader response colors. Candidate 06 implements that clarification. None of this is acceptance of the new candidate.
-- Retest: run candidate 06's native rehearsal on real speakers/microphone, judging eye identity, distinct related forms, reference overlays and spoken interruption together. Six authorized turn slots remain; obtain a fresh budget before exceeding ten total attempts across restarts.
-- Owner exercised revision: **not yet recorded**.
-- Decision/date: **pending**.
+- Live-voice retest: run the current candidate's native rehearsal on real speakers/microphone, judging eye identity, distinct related forms, reference overlays and spoken interruption together. Six authorized turn slots remain; obtain a fresh budget before exceeding ten total attempts across restarts.
+- Owner exercised revision: **`83bb46a`, Windows visual appearance review on 2026-10-01**, detailed below.
+- Decision/date: **visual appearance approved, 2026-10-01; full live conversational-eye acceptance pending**.
+
+### 2026-10-01 — Windows visual appearance approval
+
+- Scope/build: existing p2-a2 native overlay, branch `week-3`, clean source revision `83bb46a` at launch. No UI edits or new generation were performed for this exercise.
+- Launch: `$env:EVA_W3_MAX_TURNS = '0'; npm.cmd --prefix week3 run desktop -- --reuse-preview`, reusing the verified Week 3 Vite preview on port 1430. Owner was directed to **Visual rehearsal · no microphone**, without enabling microphone consent.
+- Expected: the existing eye and controls render as a floating Windows overlay; synthetic rehearsal requires no microphone, provider turn or speech playback.
+- Actual checks: native compilation completed and `target\debug\eva-w3.exe` started; Windows reported the `EVA` window responding. No automated native UI interaction or new screenshot was captured in this exercise. The existing p2 captures remain historical visual evidence, not captures of this run.
+- Owner feedback: “It looks great. I approve. However, I can't seem to be able to let Snipping tool screen capture this?”
+- Decision: record explicit approval of the visible Windows appearance at this revision. Do not infer that every hit-testing, gaze, keyboard, recording, reduced-motion or live-voice check passed.
+- Capture issue/retest: the existing native control defaults to **Visible to recordings off**. Owner was instructed to hover over the eye, switch it to **Visible to recordings on**, then retry **Win + Shift + S**. Capture success is pending confirmation; brightness sampling pauses while recording visibility is on.
+- Remaining gate: physical microphone/loudspeaker conversation, interruption, echo behavior, voice/congruence and live latency remain pending. This visual approval authorizes no additional generation spend or later phase.
