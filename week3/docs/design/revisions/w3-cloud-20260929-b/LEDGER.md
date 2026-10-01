@@ -1,6 +1,6 @@
 # Batch w3-cloud-20260929-b — floating agent over the desktop
 
-Status: **pass 1 implemented (p1-a1); awaiting owner review.** Week 3 phase acceptance remains pending. No accepted Week 3 visual baseline.
+Status: **pass 1 approved by the owner (p1-a1, commit `d4da63e`); pass 2 implemented (p2-a2), awaiting owner review.** Week 3 phase acceptance remains pending. No accepted Week 3 visual baseline.
 
 ## Source and environment
 
@@ -32,7 +32,7 @@ Goal: make the eye a true floating agent over the desktop — no background, jus
 | Pass | Hypothesis | Weave packet | Capture | Critique |
 | --- | --- | --- | --- | --- |
 | p1 | Floating light: transparent stage, real alpha from emitted light, pure-light glitch boxes, native transparent overlay window config | [p1 packet](../w3-cloud-20260929-b-p1/REVIEW.md): 7 image runs + 1 video, 77 cr; image set approved by owner (img-02 redone as img-04 + ink board img-05) | Before: [baseline](../w3-cloud-20260929-b-baseline/); after: [p1-a1](../w3-cloud-20260929-b-p1-a1/), [transitions mp4](../w3-cloud-20260929-b-p1/implementation/after/p1-a1-transitions.mp4) | [p1 REVIEW critique](../w3-cloud-20260929-b-p1/REVIEW.md#pass-p1-critique-agent-self-critique-not-an-owner-rating); native pieces moved to p2 |
-| p2 | Agent chrome and interaction: corner placement, drag, click-through, cursor poll, card/pill/captions | not started | — | — |
+| p2 | Agent chrome and interaction: corner placement, drag, click-through, cursor poll, card/pill/captions; Windows overlay + luma sampler | [p2 packet](../w3-cloud-20260929-b-p2/REVIEW.md): 3 image runs + 1 video, 62 cr; images approved by owner | Before: [p1-a1](../w3-cloud-20260929-b-p1-a1/); after: [p2-a2](../w3-cloud-20260929-b-p2-a2/) ([p2-a1](../w3-cloud-20260929-b-p2-a1/) superseded), [transitions mp4](../w3-cloud-20260929-b-p2/implementation/after/p2-a2-transitions.mp4) | [p2 critique](../w3-cloud-20260929-b-p2/REVIEW.md#pass-p2-critique-agent-self-critique-not-an-owner-rating); native not run |
 | p3 | Form gaps: comfort and supportive | not started | — | — |
 
 ## Spend
@@ -48,8 +48,29 @@ Goal: make the eye a true floating agent over the desktop — no background, jus
 | 7 | p1 redo 2 | Nano Banana 2 edit | 6 | owner auto-approve instruction | 6 |
 | 8 | p1 video | Kling Video 2.5 Turbo Pro | 35 | owner "Approve both, make video" + auto-approve | 35 |
 
-Batch total: **77 / 250**.
+| 9–11 | p2 | Nano Banana 2 edit (2K) | 9 each | owner auto-approve instruction | 27 |
+| 12 | p2 video | Kling Video 2.5 Turbo Pro, 5 s | 35 | owner "create video" + auto-approve | 35 |
+
+Batch total: **139 / 250**.
 
 ## Native limits
 
 Cloud cannot test real Windows/macOS behaviour: window transparency, native screen sampling and its OS permission, click-through, always-on-top, drag, multi-monitor clamping and native cursor polling. Browser captures over a synthetic test backdrop show the renderer's alpha only; they are not native evidence.
+
+## Owner decision on pass 1 — 2026-09-30
+
+The owner replied *"Approved. Start p2"* after reviewing [p1-a1-transitions.mp4](../w3-cloud-20260929-b-p1/implementation/after/p1-a1-transitions.mp4) and stills. Recorded as owner approval of pass-1 candidate **w3-cloud-20260929-b-p1-a1** (commit `d4da63e`), including the ink-over-text trade-off as captured. Not Week 3 phase acceptance; native overlay behaviour is untested.
+
+## Owner decisions for pass 2 — 2026-09-30
+
+| Question | Owner answer |
+| --- | --- |
+| Self-capture vs recordings | **Exclude EVA's window from capture** (Windows `WDA_EXCLUDEFROMCAPTURE`) so the luminance sample never reads EVA's own particles. Add a **"Visible to recordings"** toggle in the pill: while on, the exclusion is lifted, sampling pauses and each particle keeps the last light/ink map. |
+| Platform | **Windows only.** macOS gets the same window behaviour but no sampling (pure light) until a later pass. |
+| Monitors | **Primary monitor only.** Joy may exceed the eye's area but is clipped at the monitor edge. |
+
+Technical finding: Tauri 2.12's JS API already provides `cursorPosition`, `setIgnoreCursorEvents`, `primaryMonitor`, `setPosition`/`setSize`, so gaze, drag and click-through need capability permissions only. Custom Rust is limited to the luminance sampler and capture exclusion. The Linux webview dev libraries are not preinstalled here; crates.io is reachable.
+
+## Protected files changed in pass 2 (owner-authorized 2026-09-29)
+
+`week3/src-tauri/tauri.conf.json`, `week3/src-tauri/capabilities/default.json`, `week3/src-tauri/src/lib.rs`, new `week3/src-tauri/src/overlay.rs`. No voice, provider, schema or credential code changed; `Cargo.toml`/`Cargo.lock` unchanged (hand-declared Win32 calls, no new crate). The guard reports exactly these four; its baseline was not rewritten.

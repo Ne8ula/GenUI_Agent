@@ -1,8 +1,16 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "main-runtime",
-  "description": "The local Week 3 renderer may invoke only the bounded conversation lifecycle; provider routes, credentials, model settings, speech text, and voice settings remain Rust-owned.",
+  "description": "The local Week 3 renderer may invoke only the bounded conversation lifecycle and the floating-overlay helpers (cursor position for gaze, click-through toggling, a local luminance grid, capture visibility); provider routes, credentials, model settings, speech text, and voice settings remain Rust-owned.",
   "local": true,
-  "windows": ["main"],
-  "permissions": []
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:window:allow-cursor-position",
+    "core:window:allow-outer-position",
+    "core:window:allow-scale-factor",
+    "core:window:allow-set-ignore-cursor-events",
+    "core:window:allow-close"
+  ]
 }

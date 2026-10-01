@@ -32,6 +32,9 @@ export function useEyeAnimation(props: EyeStageProps) {
   const propsRef = useRef(props);
   propsRef.current = props;
   // Luminance behind the canvas: sampled at a low rate, smoothed every frame.
+  // Last drawn eye centre (CSS px, viewport space); gaze is measured from here.
+  const eyeCentreRef = useRef<{ x: number; y: number } | null>(null);
+  const reportedRef = useRef({ x: NaN, y: NaN, scale: NaN });
   const backdropRef = useRef<{ target: LumaGrid | null; current: LumaGrid | null; sampledAt: number }>({ target: null, current: null, sampledAt: -Infinity });
 
   const renderOnce = useCallback((dt: number) => {
@@ -52,7 +55,21 @@ export function useEyeAnimation(props: EyeStageProps) {
       }
       backdrop.current = currentProps.backdrop ? smoothLuma(backdrop.current, backdrop.target, dt) : null;
       if (import.meta.env.DEV && location.search.includes('fixture')) canvas.dataset.eyePose = JSON.stringify(interaction);
-      drawEye(ctx, canvas.width, canvas.height, frame, interaction, backdrop.current);
+      const rect = canvas.getBoundingClientRect();
+      const ratio = rect.width > 0 ? canvas.width / rect.width : 1;
+      // Same on-screen size as the approved p1 presence area: min(45vh, 600px).
+      const placement = currentProps.anchor
+        ? { anchorX: currentProps.anchor.x * canvas.width, anchorY: currentProps.anchor.y * canvas.height, sizeBasis: Math.max(220, Math.min(innerHeight * 0.45, 600)) * ratio }
+        : null;
+      const layout = drawEye(ctx, canvas.width, canvas.height, frame, interaction, backdrop.current, placement);
+      const centre = { x: rect.left + layout.cx / ratio, y: rect.top + layout.cy / ratio };
+      eyeCentreRef.current = centre;
+      const reported = reportedRef.current;
+      const scale = layout.scale / ratio;
+      if (currentProps.onLayout && (Math.abs(centre.x - reported.x) > 0.5 || Math.abs(centre.y - reported.y) > 0.5 || Math.abs(scale - reported.scale) > 0.5 || Number.isNaN(reported.x))) {
+        reportedRef.current = { x: centre.x, y: centre.y, scale };
+        currentProps.onLayout({ x: centre.x, y: centre.y, scale, restScale: layout.restScale / ratio });
+      }
       if (import.meta.env.DEV && location.search.includes('fixture')) {
         canvas.dataset.frameCount = String(++frameCount.current);
         canvas.dataset.drawMs = String(performance.now() - drawStart);
@@ -96,21 +113,27 @@ export function useEyeAnimation(props: EyeStageProps) {
   }, [renderOnce]);
 
   useEffect(() => {
-    const track = (event: PointerEvent) => {
+    const look = (clientX: number, clientY: number) => {
       if (!propsRef.current.active || propsRef.current.reducedMotion) return;
       const rect = canvasRef.current?.getBoundingClientRect();
       if (!rect) return;
+      const centre = eyeCentreRef.current ?? { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
       pointEye(motionRef.current,
-        (event.clientX - rect.left - rect.width / 2) / (innerWidth * .32) * .145,
-        -(event.clientY - rect.top - rect.height / 2) / (innerHeight * .28) * .075);
+        (clientX - centre.x) / (innerWidth * .32) * .145,
+        -(clientY - centre.y) / (innerHeight * .28) * .075);
     };
+    const track = (event: PointerEvent) => look(event.clientX, event.clientY);
+    // A click-through native overlay receives no pointer events; the native poll dispatches these instead.
+    const nativeCursor = (event: Event) => { const d = (event as CustomEvent<{ x: number; y: number }>).detail; if (d) look(d.x, d.y); };
     const rest = () => restEye(motionRef.current);
     const leave = (event: PointerEvent) => { if (!event.relatedTarget) rest(); };
     window.addEventListener('pointermove', track, { passive: true });
+    window.addEventListener('eva:cursor', nativeCursor);
     window.addEventListener('pointerout', leave);
     window.addEventListener('blur', rest);
     return () => {
       window.removeEventListener('pointermove', track);
+      window.removeEventListener('eva:cursor', nativeCursor);
       window.removeEventListener('pointerout', leave);
       window.removeEventListener('blur', rest);
     };
@@ -161,7 +184,7 @@ export function useEyeAnimation(props: EyeStageProps) {
     const follow = window.setInterval(() => renderOnce(0), BACKDROP_SAMPLE_INTERVAL_MS);
     return () => window.clearInterval(follow);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.state, props.stance, props.intensity, props.seed, props.reducedMotion, props.active, props.backdrop, renderOnce]);
+  }, [props.state, props.stance, props.intensity, props.seed, props.reducedMotion, props.active, props.backdrop, props.anchor, renderOnce]);
 
   if (failed) throw new Error('Eye rendering unavailable');
   return { canvasRef, containerRef };

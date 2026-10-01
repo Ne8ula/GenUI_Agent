@@ -1,0 +1,150 @@
+{
+  "revision": "w3-cloud-20260929-b-p2-a1",
+  "fixtures": [
+    {
+      "stance": "attentive",
+      "variation": 1,
+      "seed": 315,
+      "path": "attentive-1.png"
+    },
+    {
+      "stance": "attentive",
+      "variation": 2,
+      "seed": 452,
+      "path": "attentive-2.png"
+    },
+    {
+      "stance": "attentive",
+      "variation": 3,
+      "seed": 589,
+      "path": "attentive-3.png"
+    },
+    {
+      "stance": "comforting",
+      "variation": 1,
+      "seed": 863,
+      "path": "comforting-1.png"
+    },
+    {
+      "stance": "comforting",
+      "variation": 2,
+      "seed": 1000,
+      "path": "comforting-2.png"
+    },
+    {
+      "stance": "comforting",
+      "variation": 3,
+      "seed": 1137,
+      "path": "comforting-3.png"
+    },
+    {
+      "stance": "shared_joy",
+      "variation": 1,
+      "seed": 1411,
+      "path": "shared_joy-1.png"
+    },
+    {
+      "stance": "shared_joy",
+      "variation": 2,
+      "seed": 1548,
+      "path": "shared_joy-2.png"
+    },
+    {
+      "stance": "shared_joy",
+      "variation": 3,
+      "seed": 1685,
+      "path": "shared_joy-3.png"
+    },
+    {
+      "stance": "congratulatory",
+      "variation": 1,
+      "seed": 1959,
+      "path": "congratulatory-1.png"
+    },
+    {
+      "stance": "congratulatory",
+      "variation": 2,
+      "seed": 2096,
+      "path": "congratulatory-2.png"
+    },
+    {
+      "stance": "congratulatory",
+      "variation": 3,
+      "seed": 2233,
+      "path": "congratulatory-3.png"
+    },
+    {
+      "stance": "supportive",
+      "variation": 1,
+      "seed": 2507,
+      "path": "supportive-1.png"
+    },
+    {
+      "stance": "supportive",
+      "variation": 2,
+      "seed": 2644,
+      "path": "supportive-2.png"
+    },
+    {
+      "stance": "supportive",
+      "variation": 3,
+      "seed": 2781,
+      "path": "supportive-3.png"
+    }
+  ],
+  "gazeChecks": {
+    "leftPose": {
+      "gazeX": -0.14452681920431373,
+      "gazeY": 0.07481726063794132,
+      "tissueX": -0.10499060512060568,
+      "tissueY": 0.05919607228143262,
+      "closure": 0,
+      "quiet": false
+    },
+    "rightPose": {
+      "gazeX": 0.031070772414295917,
+      "gazeY": 0.07499999999999415,
+      "tissueX": 0.024081146502120683,
+      "tissueY": 0.07497981816809547,
+      "closure": 0.9446064139941713,
+      "quiet": false
+    },
+    "blinkPose": {
+      "gazeX": 0.03107142857142857,
+      "gazeY": 0.075,
+      "tissueX": 0.031071428571428562,
+      "tissueY": 0.07499999999999998,
+      "closure": 0.9933091839999972,
+      "quiet": false
+    },
+    "bothDirections": true,
+    "tissueLagsAtOnset": true
+  },
+  "browser": "141.0.7390.37",
+  "viewport": "1400x900",
+  "deviceScaleFactor": 1,
+  "fixturesOnly": true,
+  "providersCalled": 0,
+  "timing": {
+    "samples": 180,
+    "median": 16.700000000004366,
+    "p95": 33.400000000001455,
+    "max": 50,
+    "authoredDrawsPerSecond": 36.490412550842166,
+    "synchronousDrawMs": {
+      "samples": 157,
+      "median": 18,
+      "p95": 28.899999999906868
+    },
+    "note": "Headless Chrome rAF intervals while a synthetic processing fixture runs with video recording. Not native, GPU, voice-load or acoustic latency measurements."
+  },
+  "reducedStatic": true,
+  "endStatic": true,
+  "noOverflow": true,
+  "browserLiveDisabled": true,
+  "keyboardFocus": {
+    "tag": "BUTTON",
+    "visible": true
+  },
+  "errors": []
+}

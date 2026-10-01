@@ -38,6 +38,7 @@ import { rasterizeWeek1Eye, type EyeInteraction, type Week1Pose } from "./week1-
 import type { EyeFrame, WarpChannels } from "./runtime";
 import { createGlitchState, glitchEnvelope, stepGlitches, type GlitchEvent, type GlitchState } from "./glitch";
 import { compositePixel, hexToRgb, inkTint, inkWeight, lumaAt, materialColor, rgba, type LumaGrid, type Rgb } from "./backdrop";
+import { formCenter } from "./placement";
 import { cellHash, formationStrength, formationTarget, formationVariation, formationWeights, perspective, releaseDelay, releaseProgress, tilt, type FormationVariation, type ParticlePoint } from "./particles";
 
 export type { EyeInteraction, Week1Pose } from "./week1-eye";
@@ -563,18 +564,46 @@ const DIGITAL_COLOR_HEX: Record<DigitalColorKey, string> = {
   pearl: PALETTE.pearl,
 };
 
+/** Where EVA rests on a full-overlay canvas (batch w3-cloud-20260929-b p2). Absent = centred, sized to the canvas. */
+export interface EyePlacement {
+  /** Rest anchor in canvas px. */
+  anchorX: number;
+  anchorY: number;
+  /** Length (canvas px) that the approved rest/speaking scales are fractions of. */
+  sizeBasis: number;
+}
+
+/** What was drawn, for placing chrome and hit-testing (canvas px). */
+export interface EyeLayout {
+  cx: number;
+  cy: number;
+  scale: number;
+  restScale: number;
+}
+
 export function drawEye(
   ctx: CanvasRenderingContext2D,
   width: number,
   height: number,
   frame: EyeFrame,
   interaction: EyeInteraction = DEFAULT_EYE_INTERACTION,
-  backdrop: LumaGrid | null = null
-): void {
-  if (!(width > 0) || !(height > 0)) return;
-  const minDim = Math.min(width, height);
-  const cx = width / 2;
-  const cy = height / 2;
+  backdrop: LumaGrid | null = null,
+  placement: EyePlacement | null = null
+): EyeLayout {
+  if (!(width > 0) || !(height > 0)) return { cx: 0, cy: 0, scale: 0, restScale: 0 };
+  const minDim = placement ? placement.sizeBasis : Math.min(width, height);
+  // Small eye at rest that grows while responding (owner decision, batch w3-cloud-20260928-a).
+  const displayScale = minDim * (REST_SCALE + (SPEAKING_SCALE - REST_SCALE) * clamp01(frame.energy));
+  let cx = width / 2;
+  let cy = height / 2;
+  if (placement) {
+    // Grow around the anchor, pulled inward only as far as needed to stay on the monitor.
+    // Joy is the one form allowed past the edge, so its share relaxes the clamp continuously.
+    const clamped = formCenter(placement.anchorX, placement.anchorY, displayScale, clamp01(frame.energy), width, height);
+    const free = clamp01(formationWeights(frame.warp).joy * formationStrength(frame.warp));
+    cx = clamped.x + (placement.anchorX - clamped.x) * free;
+    cy = clamped.y + (placement.anchorY - clamped.y) * free;
+  }
 
   ctx.save();
   // No stage: EVA floats over the user's desktop (batch w3-cloud-20260929-b).
@@ -592,8 +621,6 @@ export function drawEye(
   const rasterHeight = isQuiet ? QUIET_RASTER_HEIGHT : LIVE_RASTER_HEIGHT;
   const { landmarks, data } = ensureRaster(ctx, rasterWidth, rasterHeight, pose, isQuiet);
 
-  // Small eye at rest that grows while responding (owner decision, batch w3-cloud-20260928-a).
-  const displayScale = minDim * (REST_SCALE + (SPEAKING_SCALE - REST_SCALE) * clamp01(frame.energy));
   const positions = drawParticleField(ctx, width, height, cx, cy, displayScale, rasterWidth, rasterHeight, data, landmarks, frame, isQuiet, backdrop);
   const tint = inkTint(formationWeights(frame.warp), formationStrength(frame.warp));
   const inkAt = (x: number, y: number) => (backdrop ? inkWeight(lumaAt(backdrop, x / width, y / height)) : 0);
@@ -612,6 +639,7 @@ export function drawEye(
   drawTransitionGlitches(ctx, glitches, trackedLandmarks, displayScale, frame.timeSec, inkAt, tint);
 
   ctx.restore();
+  return { cx, cy, scale: displayScale, restScale: minDim * REST_SCALE };
 }
 
 const GLITCH_STRIPE_COLORS = ["#e0625a", "#c94fa0", "#3fbfd8", "#9fd44a", PALETTE.pearl, "#7a2a2e"] as const;

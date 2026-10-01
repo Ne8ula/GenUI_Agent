@@ -1,0 +1,56 @@
+# Weave reference review — w3-cloud-20260929-b-p2
+
+## Quick review
+
+- Pass: **p2, agent chrome and native overlay** — EVA lives in the lower-right corner of the desktop and can be dragged; clicks pass through everywhere except the eye and its controls; a setup card appears once; a slim control pill appears on hover or focus; captions float below the eye. Windows transparent overlay on the primary monitor, with a local brightness sample. Source `d4da63e` (owner-approved p1-a1). Batch ledger: [LEDGER.md](../w3-cloud-20260929-b/LEDGER.md).
+- Status: **image set approved by the owner (2026-09-30)**, with the agent's fixes: add the missing "Visible to recordings" toggle, keep the approved rest size, and use much smaller captions. Motion reference generated and inspected at the owner's request. **Implementation p2-a2 captured; awaiting owner review.**
+- Contact sheet: [references/contact-sheet.png](references/contact-sheet.png).
+- Candidates selected by the agent (not owner-accepted):
+  - [img-01 control pill on hover](references/images/img-01-control-pill-hover.png)
+  - [img-02 first-run setup card](references/images/img-02-setup-card.png)
+  - [img-03 captions over bright and dark](references/images/img-03-captions-bright-dark.png)
+- Video: [vid-01 corner grow](references/videos/vid-01-corner-grow-return-pill.mp4) (5 s, H.264), with [12 sampled frames](references/videos/vid-01-frames.png) (sampled, not watched in real time). **Partially used.** The eye stays anchored in the corner, and its response extends inward (up and left, toward the screen centre) over about 2 s. That confirms the anchoring and inward-growth rule. **Rejected:** the form is a comet-like light streak (too literal and not the supportive currents), it never returns within 5 s, the pill never appears, and there is no ink over the white window. Forms and timing stay as approved in p1.
+- Before: [p1-a1](../w3-cloud-20260929-b-p1-a1/). After: [p2-a2](../w3-cloud-20260929-b-p2-a2/) (current). [p2-a1](../w3-cloud-20260929-b-p2-a1/) is superseded: the drag release reopened the pill and captions had a weak shadow.
+- **Transition recording (H.264): [implementation/after/p2-a2-transitions.mp4](implementation/after/p2-a2-transitions.mp4)** (53 s), with [20 sampled frames](implementation/after/p2-a2-motion-samples.png). It shows hover revealing the pill, dragging the eye, the pill receding, supportive and congratulation growing inward with captions, then the comfort form dragged across a white/dark split while speaking.
+- Evidence: [before vs after](implementation/compare-before-after.png), [start screen 1400×900](implementation/after/p2-a2-start-1400.png), [key moments](implementation/after/p2-a2-key-moments.png), stills at [3.6 s](implementation/after/p2-a2-still-3.6.png), [12.5 s](implementation/after/p2-a2-still-12.5.png) and [44.5 s](implementation/after/p2-a2-still-44.5.png). Superseded: [p2-a1 transitions](implementation/after/p2-a1-transitions.mp4).
+- **Browser evidence only.** Window transparency, always-on-top, click-through, the cursor poll, capture exclusion, the "Visible to recordings" toggle and the luminance sampler were **not run**; they need the owner's Windows machine.
+
+## Candidates
+
+| Asset | Status | Observation |
+| --- | --- | --- |
+| img-01 control pill | selected | A slim smoked-glass capsule just above-left of the eye, with a thin pale border and no halo. Contents: teal mic dot "Mic on", divider, Mute (keyboard focus ring), Stop with Esc hint, End in a brick-red outline, Captions, Reduced motion switch. Readable over the wallpaper; its left end overlaps the white Notepad edge and stays readable. **Deviations:** the "Visible to recordings" toggle is missing (it will be added), and the eye was enlarged (rest size stays as approved). |
+| img-02 setup card | selected | A compact smoked card left of the eye, above the taskbar, about 17% of the screen wide. It has the "eva." wordmark, the heading "A little room to talk.", muted privacy text including the local brightness line, the consent checkbox, a bone-coloured Start conversation button and a Not now link. Legible; the square corners follow DESIGN tokens. |
+| img-03 captions | selected for placement/colour only | Captions float centred below the form with no box. Over white the text is charcoal with a faint light shadow; over dark it is bone white with a faint dark shadow. The "You said" line is small and muted; the reply is larger. **Deviations:** the caption text is far too large (use about 13 px / 18–20 px); the model added a title line and a light-blue backdrop, both ignored. |
+
+## Implementation rules extracted
+
+1. **Overlay layout.** The canvas covers the whole window (the primary monitor natively, the viewport in the browser). EVA is anchored at a remembered spot, defaulting to the lower right (about 86% × 78% of the monitor). The drawing centre follows the anchor and is clamped inward as the form grows, so forms stay on the monitor; joy is allowed past.
+2. **Drag.** Press and drag the eye itself (pointer within the rest-eye bounds). The anchor moves and is saved (`localStorage`, local only). Keyboard alternative: when the eye has focus, arrow keys move it.
+3. **Click-through (native).** Poll `cursorPosition()` at about 30 Hz. The window is click-through unless the cursor is over the eye bounds or a UI element marked as a hit target (pill, card, captions when hovered). The same poll feeds cursor gaze, because a click-through window receives no pointer events.
+4. **Pill (img-01).** A smoked capsule (`rgba(17,19,22,.86)`, 1px `rgba(228,222,210,.18)` border, 999 px radius, IBM Plex Sans 12–13 px) placed above-left of the eye. It appears on hover of the eye or pill, or when anything inside it has keyboard focus, and hides about 1.2 s after leaving. Active contents: mic status, Mute/Unmute, Stop (Esc), End session, Captions, Reduced motion, **Visible to recordings**. Idle contents: Start conversation, Captions, Reduced motion, Visible to recordings, Quit.
+5. **Setup card (img-02).** Shown on first run and whenever the session is inactive and not dismissed. It contains the consent text (updated: the local brightness line replaces "No camera or screen is captured"), checkbox, Start conversation, Not now and setup notes. Buttons are at least 44 px tall.
+6. **Captions (img-03).** Boxless and centred below the eye's current form. Text is bone over dark and charcoal over bright, chosen from the same luminance grid at the caption position, with a soft opposite-tone text shadow. Sizes: "You said" 13 px muted, reply 18–20 px, max width 420 px.
+7. **Native window (Windows).** Transparent, undecorated, always on top, skip taskbar, no shadow, not resizable, sized and positioned to the primary monitor at start. `WDA_EXCLUDEFROMCAPTURE` is on by default; "Visible to recordings" switches it off and pauses sampling. The luminance sample is a 64×36 grid of the primary monitor via GDI `StretchBlt` (HALFTONE) at 2 Hz. Only the numbers leave the Rust function, and nothing is stored or logged.
+8. **Unchanged:** voice/controller contracts, captions content, Esc/Stop/Mute/End behaviour, reduced motion, all approved forms, motion and glitches.
+
+Route, model IDs, settings, prediction IDs and costs: [provenance.json](provenance.json).
+
+Writer inspection: main session (sole UI writer for p2) viewed img-01 to img-03 at full resolution and the video samples before editing, 2026-09-30.
+
+## Pass p2 critique (agent self-critique, not an owner rating)
+
+- **Corner agent — met in the browser.** EVA rests lower right by default at the approved rest size. It can be dragged with the eye itself (or moved with the arrow keys on the focused eye, Shift for bigger steps), and its position is saved locally. While responding it grows around its spot and is pulled inward only as far as needed to stay on screen; joy relaxes that pull continuously. The video reference's anchoring rule is reproduced.
+- **Setup card (img-02) — met.** It sits beside the eye with the consent text updated for the local brightness sample ("No camera is used"; the screen text now describes the coarse grid, never stored or sent). The pill moves above the card while the card is open; an invisible pill had been swallowing clicks on the checkbox, which the smoke test caught and which is now fixed.
+- **Pill (img-01) — met, with the toggle added.** It fades in on hover of the eye, on click/Enter (which focuses the first control) or on keyboard focus, and recedes 1.2 s after leaving. While a session runs it shows mic status, Mute, Stop (Esc) and End, plus Captions, Reduced motion and **Visible to recordings** (disabled outside the desktop app). Quit appears natively when no session is active. A persistent mic dot by the eye keeps mic status visible while the pill is hidden.
+- **Captions (img-03) — met, with a known edge case.** They are boxless, at about 13 px / 19 px, and placed below the form (above it when there is no room). The text colour follows the backdrop at the caption centre; a soft opposite-tone outline keeps it readable where a caption straddles a light/dark edge, but the far half is noticeably weaker than in the reference.
+- **Native overlay — implemented, compile-checked, not run.** The window is transparent, undecorated, always on top, kept off the taskbar and sized to the primary monitor's **work area**, so the taskbar stays clear. Click-through applies everywhere except the eye, the visible pill, the card and the fixture panel, driven by a 30 Hz cursor poll that also drives gaze. `WDA_EXCLUDEFROMCAPTURE` is on by default, and Visible to recordings lifts it and pauses sampling. A 64×36 HALFTONE luminance grid of the window's own screen area is taken at 2 Hz or less. Only numbers leave Rust; nothing is stored or logged. If a native call fails, the controls keep working.
+- **Risks for the native test:** WebView2 transparency combined with the existing `--disable-gpu` flag; `SetWindowDisplayAffinity` needs Windows 10 2004 or later; GDI capture under some GPU/HDR setups; cursor-poll latency (hover may feel up to ~33 ms late); keyboard focus requires the overlay window to have focus (no global hotkey in this pass).
+- **Performance (headless Chromium 141, not native):** p2-a2 synchronous draw 19.7 / 26.5 ms (median/p95), in line with p1.
+
+Checks:
+- Vitest **145/145** (8 new in `tests/placement.test.ts`), tsc and build passed.
+- Browser smoke **PASS** (it mocks Tauri IPC, so it exercised the native-path fallbacks).
+- Capture checks passed: gaze in both directions, reduced motion static, End static, no overflow at 390 px, keyboard focus visible (first Tab lands on the eye handle), browser live start disabled, 0 errors.
+- Native crate: Linux `cargo check` and **31/31 Rust tests** (3 new) on a scratch copy, because Linux needs an `icons/icon.png` the repo does not ship. `overlay.rs` compile-checked for **x86_64-pc-windows-msvc** against Tauri 2.12.0 in a scratch crate; the full crate cannot be cross-checked here because `ring` needs Windows SDK headers.
+- **Protected-file guard:** it reports exactly the four owner-authorized files (`src-tauri/capabilities/default.json`, `src/lib.rs`, `tauri.conf.json`, new `src/overlay.rs`). Its baseline was not rewritten, so `session.sh start/test/capture` refuse; the same steps were run directly.

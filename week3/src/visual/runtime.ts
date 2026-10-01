@@ -13,6 +13,7 @@
  */
 
 import type { BackdropSampler } from "./backdrop";
+import type { Anchor } from "./placement";
 import { ENERGY_RELEASE_SMOOTH_TIME, HARMONIC_INDICES, LAYER_SPREAD_FACTOR, MAX_BOXES, MAX_LAYERS } from "./constants";
 import {
   bloomMultiplier,
@@ -53,6 +54,10 @@ export interface EyeStageProps {
   active: boolean;
   /** Luminance behind the canvas; selects light vs ink per particle. Absent = dark (pure light). */
   backdrop?: BackdropSampler;
+  /** Floating overlay (p2): where EVA rests, as a fraction of the canvas. Absent = centred. */
+  anchor?: Anchor;
+  /** Reports where the eye was drawn (CSS px, viewport space) for chrome placement and hit-testing. */
+  onLayout?: (layout: { x: number; y: number; scale: number; restScale: number }) => void;
 }
 
 interface BoxSlot {

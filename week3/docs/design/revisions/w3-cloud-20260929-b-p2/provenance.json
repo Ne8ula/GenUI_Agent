@@ -1,0 +1,172 @@
+{
+  "templateOnly": false,
+  "status": "implementation p2-a2 captured; awaiting owner review",
+  "changeId": "w3-cloud-20260929-b-p2",
+  "phase": "week3-conversational-eye (not accepted)",
+  "sourceRevision": "d4da63e",
+  "acceptedBaseline": null,
+  "approvedPassBaseline": "w3-cloud-20260929-b-p1-a1 (owner-approved pass result)",
+  "scope": "Agent chrome and native overlay: corner placement, drag, click-through except eye/controls, cursor gaze via native poll, setup card, hover control pill, floating adaptive captions, Windows transparent always-on-top overlay on the primary monitor, local luma sampler with capture exclusion and 'Visible to recordings' toggle.",
+  "ownedUiFiles": [
+    "week3/src/App.tsx",
+    "week3/src/style.css",
+    "week3/src/visual/EyeStage.tsx",
+    "week3/src/visual/useEyeAnimation.ts",
+    "week3/src/visual/render.ts",
+    "week3/src/visual/placement.ts (new)",
+    "week3/src/overlay/native.ts (new)",
+    "week3/tests/placement.test.ts (new)"
+  ],
+  "motionRequired": true,
+  "runs": [
+    {
+      "run": 1,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "quotedCost": 9,
+      "costApprovalRef": "owner standing instruction: auto approve credit usage (quote obtained first)",
+      "reportedCost": 9,
+      "status": "COMPLETED",
+      "predictionId": "a50df68d-67bf-4134-8c14-9f49e504c6ac",
+      "inputs": {
+        "summary": "Control pill appears on hover next to the corner rest eye: smoked translucent capsule, mic dot, Mute, Stop Esc, End, Captions, Reduced motion, Visible to recordings toggle, focus ring. Input: p1 img-01 (raw URL at d4da63e).",
+        "settings": "16:9 2K"
+      },
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-01-control-pill-hover.png",
+        "width": 2752,
+        "height": 1536,
+        "retrieved": true
+      },
+      "review": "selected by agent; missing 'Visible to recordings' toggle; eye enlarged"
+    },
+    {
+      "run": 2,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "quotedCost": 9,
+      "costApprovalRef": "owner standing instruction: auto approve credit usage (quote obtained first)",
+      "reportedCost": 9,
+      "status": "COMPLETED",
+      "predictionId": "e5aaf680-8148-4539-b7f7-d8e4f60948fa",
+      "inputs": {
+        "summary": "First-run setup/consent card beside the corner eye; wordmark, heading, privacy text incl. local brightness sample, checkbox, Start conversation, Not now. Input: p1 img-01.",
+        "settings": "16:9 2K"
+      },
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-02-setup-card.png",
+        "width": 2752,
+        "height": 1536,
+        "retrieved": true
+      },
+      "review": "selected by agent"
+    },
+    {
+      "run": 3,
+      "route": "direct-model",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "quotedCost": 9,
+      "costApprovalRef": "owner standing instruction: auto approve credit usage (quote obtained first)",
+      "reportedCost": 9,
+      "status": "COMPLETED",
+      "predictionId": "76ac69d2-6af6-4eb2-8026-30a8d2f036b7",
+      "inputs": {
+        "summary": "Two panels: supportive form speaking over white (ink) and over dark (light) with boxless floating captions below; text colour adapts. Inputs: p1 img-01, img-04.",
+        "settings": "21:9 2K"
+      },
+      "output": {
+        "kind": "image",
+        "path": "references/images/img-03-captions-bright-dark.png",
+        "width": 3168,
+        "height": 1344,
+        "retrieved": true
+      },
+      "review": "selected by agent; caption size too large; invented title line ignored"
+    },
+    {
+      "run": 4,
+      "route": "direct-model",
+      "modelId": "kling (Kling Video, 2.5 Turbo Pro)",
+      "weaveModelId": "wnfmbl8VwUCfX2a1XcdfDlone",
+      "predictionId": "c71f2c6d-2b81-4a7a-9af3-45c95953a3d0",
+      "inputs": {
+        "summary": "First frame p1 img-01 (raw URL at d4da63e). Static desktop; corner eye grows into supportive currents around its spot (light over dark, ink over white), returns, then pill fades in on hover.",
+        "settings": "16:9, 5 s, 2.5 Turbo Pro (10 s quoted at 70 cr and declined to stay within the stated ~35 cr estimate)"
+      },
+      "quotedCost": 35,
+      "costApprovalRef": "owner: 'Sorry I meant create video' + standing auto-approve",
+      "reportedCost": 35,
+      "status": "COMPLETED",
+      "output": {
+        "kind": "video",
+        "path": "references/videos/vid-01-corner-grow-return-pill.mp4",
+        "width": 1924,
+        "height": 1076,
+        "durationSec": 5.042,
+        "codec": "h264",
+        "retrieved": true
+      },
+      "review": "partially used: anchoring and inward growth only; form (comet streak), missing return, missing pill and missing ink rejected"
+    }
+  ],
+  "budget": {
+    "batchAllowance": 250,
+    "spentThisPass": 62,
+    "spentBatch": 139,
+    "costPolicy": "owner standing auto-approve instruction; quote obtained and logged per run"
+  },
+  "selectedAssets": [
+    "references/images/img-01-control-pill-hover.png",
+    "references/images/img-02-setup-card.png",
+    "references/images/img-03-captions-bright-dark.png",
+    "references/videos/vid-01-corner-grow-return-pill.mp4 (anchoring/inward growth only)"
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": "All three images viewed at full resolution by the main session; see REVIEW.md.",
+  "implementationGuidance": "See REVIEW.md.",
+  "writerInspections": [
+    {
+      "writer": "main session (Claude Code on the web)",
+      "inspected": [
+        "img-01",
+        "img-02",
+        "img-03",
+        "vid-01 12 cropped samples"
+      ],
+      "date": "2026-09-30"
+    }
+  ],
+  "implementation": {
+    "before": "../w3-cloud-20260929-b-p1-a1/",
+    "after": [
+      "../w3-cloud-20260929-b-p2-a2/",
+      "implementation/after/"
+    ],
+    "superseded": [
+      "../w3-cloud-20260929-b-p2-a1/"
+    ],
+    "transitionsMp4": "implementation/after/p2-a2-transitions.mp4"
+  },
+  "ownerDecision": "p2 image set approved 2026-09-30 with agent fixes (add Visible to recordings toggle, keep rest size, smaller captions); owner then asked for the video (\"Sorry I meant create video\").",
+  "nativeFiles": [
+    "week3/src-tauri/tauri.conf.json",
+    "week3/src-tauri/capabilities/main.json",
+    "week3/src-tauri/src/lib.rs",
+    "week3/src-tauri/src/overlay.rs (new)"
+  ],
+  "checks": {
+    "vitest": "145/145",
+    "build": "passed",
+    "smoke": "PASS (mocked Tauri IPC; native fallbacks exercised)",
+    "capture": "gaze both directions, reducedStatic, endStatic, noOverflow, keyboard focus visible, browserLiveDisabled, 0 errors",
+    "perf": "p2-a2 sync draw 19.7/26.5 ms median/p95 (headless Chromium 141)",
+    "rust": "Linux cargo check + 31/31 tests on scratch copy (temporary icon.png); overlay.rs windows-msvc check vs tauri 2.12.0 in scratch crate; full-crate Windows check blocked by ring needing Windows SDK headers",
+    "guard": "reports exactly the 4 owner-authorized protected files; baseline not rewritten",
+    "native": "NOT RUN: transparency, always-on-top, click-through, cursor poll, capture exclusion, recordings toggle, luminance sampler"
+  }
+}

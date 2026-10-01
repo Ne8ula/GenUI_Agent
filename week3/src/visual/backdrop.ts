@@ -224,3 +224,21 @@ export function splitSampler(cols = 64, rows = 4): BackdropSampler {
     },
   };
 }
+
+/**
+ * Resample a grid that covers the whole viewport down to the part behind
+ * `rect` (viewport px). A rect equal to the viewport returns the grid itself.
+ */
+export function cropGrid(grid: LumaGrid, rect: { left: number; top: number; width: number; height: number }, viewportWidth: number, viewportHeight: number): LumaGrid {
+  if (!(viewportWidth > 0) || !(viewportHeight > 0)) return grid;
+  if (Math.abs(rect.left) < 0.5 && Math.abs(rect.top) < 0.5 && Math.abs(rect.width - viewportWidth) < 0.5 && Math.abs(rect.height - viewportHeight) < 0.5) return grid;
+  const data = new Float32Array(grid.cols * grid.rows);
+  for (let r = 0; r < grid.rows; r++) {
+    for (let c = 0; c < grid.cols; c++) {
+      const u = (rect.left + ((c + 0.5) / grid.cols) * rect.width) / viewportWidth;
+      const v = (rect.top + ((r + 0.5) / grid.rows) * rect.height) / viewportHeight;
+      data[r * grid.cols + c] = lumaAt(grid, u, v);
+    }
+  }
+  return { cols: grid.cols, rows: grid.rows, data };
+}

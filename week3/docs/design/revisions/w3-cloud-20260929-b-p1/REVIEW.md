@@ -3,7 +3,7 @@
 ## Quick review
 
 - Pass: **p1, floating light** — the eye as pure emitted light over the user's desktop, with no stage, rectangle or halo. Source `f32de6d` (owner-approved p3-a2). Batch ledger: [LEDGER.md](../w3-cloud-20260929-b/LEDGER.md).
-- Status: **image set approved by the owner (2026-09-29); motion reference generated and inspected; implementation in progress.** Owner acceptance of any implementation starts pending.
+- Status: **implementation p1-a1 approved by the owner 2026-09-30** ("Approved. Start p2"; commit `d4da63e`). Not Week 3 phase acceptance. Owner acceptance of any implementation starts pending.
 - Contact sheet: [references/contact-sheet.png](references/contact-sheet.png) (first round: [contact-sheet-v1.png](references/contact-sheet-v1.png)).
 - Owner feedback on round 2 (2026-09-29): img-04 understood; **one form, per-particle light/ink by what is behind each particle** (not a whole-form switch). img-05: rest, congratulation and supportive **approved**; **joy ink redo**; **comfort ink redo** ("way too concise and not abstract enough ... feels less particles but an actual blanket").
 - Owner feedback on round 1 (2026-09-29): img-02's veil over white is **too weak**; *"each emotion [should] have a different visual state when it's on a [white vs] dark background."* Follow-up decisions: **sample the pixels under EVA locally** (native, low rate, reduced to one brightness value, never stored or sent; consent text updated to say so), and over bright areas use a **pigment/ink version** of the same forms.
