@@ -1,5 +1,7 @@
 # Candidate 05 — source eye restored
 
+> **Week 3 cleanup:** the screenshots and recordings linked below were removed. Recover them from git commit `7c44235`.
+
 2026-09-27, Week 3, accepted baseline **none**. Source `fc33b6b` plus uncommitted changes. **Intermediate, superseded by candidate 06; not accepted.**
 
 This replaces the rejected invented eye with the real Week 1 equations transferred to bounded CPU rasterization. Main added original gaze/tissue/blink dynamics and a shared triangular mesh for transformed pixels and tracking landmarks, protecting the square pupil. Seeded harmonic variation supplements the five fold/lift/bloom/fan/twist families. Broader colors occur during actual speaking; rest returns red.

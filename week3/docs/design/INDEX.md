@@ -31,4 +31,6 @@ For future UI changes, use [the categorized review-folder template](../../../doc
 | [Provider attempt 01](revisions/w3-20260927-provider-01/README.md) | Harness encountered exhausted process allowance | Failed preflight; not a provider success claim |
 | [Provider check 02](revisions/w3-20260927-provider-02/README.md) | Real STT/reply/TTS/playback with synthetic input, then cancelled processing | Passed scoped integration; 5.924 s first playback sample |
 
+Week 3 cleanup (2026-10-02): media from superseded attempts (01–05, p1-a1, p2-a1–a6, p3-a1, b-p2-a1), unlinked raw Playwright recordings, unlinked intermediate mockup frames and byte-identical copies were removed. Their README/checks records remain. All of them can be recovered from git commit `7c44235`.
+
 Provenance and actual limitations are in the manifests and acceptance record. Four of the ten authorized turn slots are counted; at most six remain. No commit, deployment, paid visual generation, ComfyUI installation or prior-phase acceptance was performed.

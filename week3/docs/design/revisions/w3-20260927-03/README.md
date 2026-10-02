@@ -1,5 +1,7 @@
 # Candidate 03 — digital material
 
+> **Week 3 cleanup:** the screenshots and recordings linked below were removed. Recover them from git commit `7c44235`.
+
 2026-09-27, Week 3, accepted baseline **none**. Source: concurrent `fc33b6b` plus uncommitted changes; no exact source digest was recorded for this intermediate. **Superseded, not accepted.**
 
 Added a dense seeded pixel matrix, connected feature-style boxes, and broad processing smears after the owner rejected the simplistic first effect. Main inspected [processing](processing.png): the invented eye remained too small and the bands too solid. Candidate 04 refined scale, shading and scanlines. The subsequent owner clarification rejects this replacement-eye identity altogether in favor of Week 1's actual eye.

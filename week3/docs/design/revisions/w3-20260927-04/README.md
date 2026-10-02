@@ -1,5 +1,7 @@
 # Candidate 04 — matrix refinement
 
+> **Week 3 cleanup:** the screenshots and recordings linked below were removed. Recover them from git commit `7c44235`.
+
 2026-09-27, Week 3, accepted baseline **none**. Source: `fc33b6b` plus then-uncommitted changes; no exact intermediate source digest. **Rejected direction / superseded by the owner's Week 1 identity clarification.**
 
 Main enlarged the invented eye, added annular shading and multiscale connected boxes, and replaced solid processing bands with fine RGB scanline smears. [Processing](processing.png), [celebration](congratulatory-2.png), [motion](page@d41da21be9c417e2c6a073bb8eb5befc.webm). This is preserved, not presented as the requested original eye.

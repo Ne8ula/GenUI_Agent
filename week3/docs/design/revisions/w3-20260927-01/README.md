@@ -1,5 +1,7 @@
 # Candidate 01 — initial procedural renderer
 
+> **Week 3 cleanup:** the screenshots and recordings linked below were removed. Recover them from git commit `7c44235`.
+
 - Revision: `w3-20260927-01`, 2026-09-27. Week 3, accepted baseline **none**. Initial source base `53203fa`; another session checkpointed part of the in-progress work as `fc33b6b`. No commit was made by this implementation session.
 - Status: **rejected by the integration review for further refinement**, not an owner decision. No runnable Week 3 before-state existed. Historical inspiration is linked from [DESIGN.md](../../../../DESIGN.md#3-reference-interpretation); reference artwork is not bundled runtime media.
 - Requested change: first authored Canvas 2D eye, all five procedural families, tracking boxes and processing fragments. Main review found an overlarge clipped bloom and overly flat outlined layers. A later candidate must improve bounded framing, material depth, eye identity and continuous motion, preserving this rendition.
