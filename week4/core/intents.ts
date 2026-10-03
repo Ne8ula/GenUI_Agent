@@ -101,20 +101,32 @@ const PLACE_REQUEST = /\b(?:take me to|go to|show me|bring me to|let us go to|i 
 const PARIS = /\bparis\b/;
 const CAFE_WORDS = /\b(?:cafe|coffee|terrace|bistro|espresso|era80)\b/;
 
+// Text inside quotation marks, and a control word that is only being named, are not requests.
+const QUOTED = /"[^"]*"|\u201c[^\u201d]*\u201d|\u2018[^\u2019]*\u2019|(?<![a-z])'[^']*'(?![a-z])/gi;
+const MENTION = /\b(?:the word|word|say|says|said|saying|spell|means?)\s+(?:cancel|abort|stop)\b/gi;
+
+function withoutQuotesOrMentions(raw: string): string {
+  return raw.replace(QUOTED, ' ').replace(MENTION, ' ');
+}
+
 export function routeTranscript(raw: string): Routed {
   if (raw.length > MAX_TRANSCRIPT_CHARS) return { intent: 'unknown', reason: 'too_long' };
   const s = normalizeTranscript(raw);
   if (s.length === 0) return { intent: 'unknown', reason: 'empty' };
   const tokens = s.split(' ');
 
-  // Safety first: an emergency cancel outranks every other reading.
-  if (CANCEL.some((re) => has(s, re))) {
+  // Safety first: a genuine emergency cancel outranks every other reading. Quoted speech
+  // ("he said 'cancel'") and mentions ("what does the word cancel do") are not requests.
+  const used = normalizeTranscript(withoutQuotesOrMentions(raw));
+  const usedTokens = used.split(' ');
+  if (CANCEL.some((re) => has(used, re))) {
     // Only verb-level negation ("do not cancel", "never cancel") blocks the kill switch;
     // a leading interjection ("No, cancel", "Never mind, cancel that") must not.
-    const at = tokens.findIndex((t) => CANCEL_WORD.test(t));
-    const before = tokens[at - 1];
+    const at = usedTokens.findIndex((t) => CANCEL_WORD.test(t));
+    const before = usedTokens[at - 1];
     return before === 'not' || before === 'never' ? { intent: 'unknown', reason: 'negated' } : { intent: 'cancel_experience' };
   }
+  if (CANCEL.some((re) => has(s, re))) return { intent: 'unknown', reason: 'unrecognized' };
   if (STOP_SPEAKING.some((re) => has(s, re))) return { intent: 'stop_speaking' };
   if (has(s, GO_BACK_AMBIGUOUS)) return { intent: 'unknown', reason: 'ambiguous', candidates: ['undo', 'return_home'] };
   if (RETURN_HOME.some((re) => has(s, re))) {

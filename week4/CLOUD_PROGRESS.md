@@ -24,16 +24,27 @@ Status keys: **planned**, **in progress**, **passed**, **failed**, **blocked**, 
 | 0b | Fresh-Weave prerequisite inventory | blocked | No packet, no cost approval, mode `foundations`. **All UI, rendering and visual work is blocked** |
 | A | Standalone Week 4 workspace | passed | `package.json` + lock; deps ajv, typescript, @types/node; installed with `--ignore-scripts`; Node native type stripping + `node:test` |
 | B | Scene contracts, schema and reducer | passed | `core/scene.ts`, `core/director.ts`, scene/stage/transcript schemas; 10 scene + 35 director tests |
-| C | Voice intents and narration manifest | passed | `core/intents.ts` (91 synthetic transcripts), `core/narration.ts`; all audio `missing` |
+| C | Voice intents and narration manifest | passed | `core/intents.ts` (97 synthetic transcripts), `core/narration.ts`; all audio `missing` |
 | D | Timeline and projection math | passed | `core/timeline.ts`, `core/projection.ts`, `core/tracking.ts`; synthetic poses only |
 | E | Mocked desktop broker and recovery (Rust) | passed | `broker/` integrated from the worktree in two rounds; 62/62 tests; fmt and clippy clean; IPC aligned to the schema by the main session |
 | F | Asset inventory, Weave checklist and research | passed | `fixtures/assets/inventory.json`, `docs/design/weave-jobs.json` (26 jobs, none run), `docs/research/SOURCE_CHECKS.md`; six JPGs inspected by main session |
-| G | Integration, verification, Windows smoke handoff and report | passed | 95/95 TS + 62/62 Rust after the review fixes; independent review done (H1 and M1–M4 fixed); `WINDOWS_SMOKE.md` (all steps not run); `CLOUD_REPORT.md` final |
+| G | Integration, verification, Windows smoke handoff and report | passed | At the checkpoint: 95/95 TS + 62/62 Rust. After consolidation: 103/103 TS + 69/69 Rust. Independent review reconciled; `WINDOWS_SMOKE.md` (all steps not run) |
 
-## Not authorized and therefore not done
+## Consolidation (owner instruction, 2026-10-03)
 
-UI, rendering or visual blockout; Weave generation; paid STT/TTS or other provider calls; camera or microphone access; real wallpaper or window effects; commit, push or PR; any change outside `week4/`.
+| Step | Status | Notes |
+| --- | --- | --- |
+| Checkpoint commit and push to `week4` | passed | `1206a22` pushed (fast-forward from `da6eba5`); no `main` write, PR or force push |
+| Wallpaper wording (per-monitor image, global settings) | passed | `planning.md` §6.4 corrected; existing broker tests cover the globals |
+| Staging order (B entry, D wallpaper under veil) | passed | New director tests: order, Esc before D, skip ordering, wallpaper declined |
+| Parking: no resizing by default; reject unsafe fit | passed | `ParkingPolicy::RejectIfResizeNeeded`; 7 tests in `broker/tests/consolidation.rs` |
+| Torn final journal record | passed (fail closed) | Fault-injection test; `broker/DURABLE_JOURNAL_REQUIREMENT.md`; native staging disabled until met |
+| Voice routing (quoted/mentioned cancel) | passed | 6 new fixtures (97 total) |
+| Nine proposed voice lines | recorded, unreviewed | Text and triggers in `CLOUD_REPORT.md` §6; audio missing |
+| Low review items L1–L9 | reconciled | `CLOUD_REPORT.md` §7: fixed L3, L6, L7, L9; retained with rationale L1, L4, L5; blocked L2, L8 |
+| Final checks | passed | TypeScript 103/103; Rust 69/69; fmt (after one formatting fix), clippy and setup tests (15/15) clean |
+| Second commit and push to `week4` | see the hand-back message for the SHA | |
 
-## Session end
+## Still not authorized or not done
 
-Backlog A–G is complete within the non-visual scope. No commit or push was made; the platform stop hook's requests were declined under the owner's explicit instruction. See [CLOUD_REPORT.md](CLOUD_REPORT.md).
+Weave generation without per-run cost approval; paid STT/TTS or other provider calls; camera or microphone access; real wallpaper or window effects; native staging before the durable-journal requirement; any `main` write or PR; owner acceptance. Every Windows smoke step is not run. The owner has authorized Weave-led visual work as the **next** session's task. Its entry point is `CLOUD_REPORT.md` §0.

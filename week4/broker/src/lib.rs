@@ -29,7 +29,7 @@ pub mod unsupported;
 
 pub use broker::{
     BrokerConfig, DegradedReason, EnterOutcome, EnterReport, ExclusionReason, FarFieldOutcome,
-    PrepareSummary, StageBroker,
+    ParkingPolicy, PrepareSummary, StageBroker,
 };
 pub use error::BrokerError;
 pub use ledger::LedgerError;

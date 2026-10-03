@@ -57,4 +57,4 @@ Pages read: [web guide](https://ai.google.dev/edge/mediapipe/solutions/vision/fa
 - Window identity uses handle + PID + process start time, and a recycled handle is never acted on.
 - Head-pose input stays generic and approximate.
 
-`planning.md` was not edited. The §6.4 "per-monitor" wording conflicts with the API documentation, and this file records the correction for the owner.
+The owner approved the correction on 2026-10-03, and `planning.md` §6.4 now says per-monitor image, global position/colour/enabled.

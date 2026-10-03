@@ -7,7 +7,9 @@ use eva_w4_stage_broker::consent::{ConsentChoices, ConsentReceipt};
 use eva_w4_stage_broker::fake::{rect, synthetic_window, FakeAdapter};
 use eva_w4_stage_broker::ids::{SceneId, VariantId};
 use eva_w4_stage_broker::journal::{JournalRecord, MemoryJournal, MotionPhase};
-use eva_w4_stage_broker::{BrokerConfig, EnterReport, MemoryRecoveryLock, StageBroker};
+use eva_w4_stage_broker::{
+    BrokerConfig, EnterReport, MemoryRecoveryLock, ParkingPolicy, StageBroker,
+};
 use std::sync::Arc;
 
 pub const W1: u64 = 11;
@@ -29,6 +31,9 @@ pub fn config() -> BrokerConfig {
             .map(|k| AppKey(k.to_string()))
             .collect(),
         motion_steps: 4,
+        // The shared synthetic windows (600 px wide) only park when shrunk into
+        // the 240 px mock column. Production default is RejectIfResizeNeeded.
+        parking: ParkingPolicy::MockFitToStrip,
         ..BrokerConfig::default()
     }
 }

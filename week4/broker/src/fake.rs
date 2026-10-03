@@ -46,6 +46,9 @@ pub struct FakeDesktop {
     pub fail_next_placement: BTreeSet<u64>,
     /// `set_window_placement` "succeeds" but lands 7 px off for these.
     pub drift_placement: BTreeSet<u64>,
+    /// Minimum normal-rect size per handle, enforced like an application's
+    /// minimum track size: a smaller target is silently enlarged.
+    pub min_size: BTreeMap<u64, (i32, i32)>,
     pub fail_set_wallpaper: bool,
     /// `set_monitor_wallpaper` returns Ok but changes nothing.
     pub ignore_set_wallpaper: bool,
@@ -242,6 +245,7 @@ impl FakeAdapter {
             fail_placement: BTreeSet::new(),
             fail_next_placement: BTreeSet::new(),
             drift_placement: BTreeSet::new(),
+            min_size: BTreeMap::new(),
             fail_set_wallpaper: false,
             ignore_set_wallpaper: false,
             placement_calls: 0,
@@ -342,6 +346,11 @@ impl StageAdapter for FakeAdapter {
         if d.drift_placement.contains(&identity.hwnd) {
             applied.normal_rect.left += 7;
             applied.normal_rect.right += 7;
+        }
+        if let Some(&(min_w, min_h)) = d.min_size.get(&identity.hwnd) {
+            let r = &mut applied.normal_rect;
+            r.right = r.right.max(r.left + min_w);
+            r.bottom = r.bottom.max(r.top + min_h);
         }
         w.snapshot.placement = applied;
         w.minimized = applied.show_state == ShowState::Minimized;

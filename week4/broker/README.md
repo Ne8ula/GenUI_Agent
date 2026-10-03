@@ -23,4 +23,15 @@ cargo clippy --manifest-path week4/Cargo.toml --all-targets -- -D warnings
 
 ## Not implemented
 
-Native Win32/COM adapter, file journal in private app data, cross-process lock, watchdog process, hotkey or tray, and Tauri IPC wiring. Two decisions are open for the owner: whether recovery should tolerate a torn final journal line, which is currently rejected (fail closed), and whether the `enter`/`set_far_field` split is acceptable.
+Not implemented: native Win32/COM adapter, durable file journal in private app data, cross-process lock, watchdog process, hotkey or tray, and Tauri IPC wiring.
+
+Owner decisions of 2026-10-03:
+- Keep the `enter` (phase B) / `set_far_field` (phase D, under the veil) split.
+- Keep fail-closed handling of a torn final journal record for now. The requirement for crash-safe durable records is in [DURABLE_JOURNAL_REQUIREMENT.md](DURABLE_JOURNAL_REQUIREMENT.md), and real Windows staging stays disabled until it is met.
+- The 240 px column is a mock fixture only.
+
+## Parking policy
+
+`BrokerConfig::parking` defaults to `ParkingPolicy::RejectIfResizeNeeded`. A window is parked only if an edge slot inside the stage monitor's work area keeps its exact size; otherwise it is excluded as `DoesNotFit` and left untouched, with nothing journaled. `ParkingPolicy::MockFitToStrip`, which shrinks windows into the 240 px column, exists only for the shared synthetic test fixture.
+
+Neither option is the approved choreography: that is selected through the visual packet and verified on Windows. Windows that enforce a minimum size the slot cannot meet fail read-back verification and are undone (`MoveFailed`).
