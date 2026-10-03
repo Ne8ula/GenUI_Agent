@@ -31,8 +31,12 @@ The 95 TS / 62 Rust numbers in the earlier hand-back were from checkpoint `1206a
 | Job | Route / model | Run ID | Quote | Approval | Result |
 | --- | --- | --- | --- | --- | --- |
 | S1 master | direct-model, `fal-ai/nano-banana-2/edit`, text-only, 16:9, 2K, 1 output | `ff83853e-952e-428f-a283-edc58ff2ee90` | 9 credits | Owner, structured Approve | Completed once, 2752×1536 PNG, inspected |
+| S2a oblique | same model, edit of S1 | `a084a81d-bb01-4eb5-af2f-65398a5aef75` | 9 | Owner | Completed, inspected; not selected |
+| S2b receding | same model, edit of S1 | `2e6899ad-feea-4719-8135-651d0ff5f875` | 9 | Owner | Completed, inspected; not selected |
+| S2c layered | same model, edit of S1. The first quote call was blocked by the session's permission check (no spend); the owner asked for a retry | `64035bab-b53b-4204-8490-b3c28d1f71c9` | 9 | Owner | Completed, inspected; not selected |
+| S2d combined | same model, edit of S2c with S2b as a reference | `f41cdb9c-65c4-4bd9-9af0-4362c2a2fe46` | 9 | Owner | Completed, inspected; **provisional environment base**, walkers unresolved |
 
-Packet: [revisions/w4-20261003-paris-p1-s1/REVIEW.md](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md). No other job has been quoted or run.
+Packet: [revisions/w4-20261003-paris-p1-s1/REVIEW.md](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 36 are used (S2a–d). Workspace balance after the last submit: 516.8. No other job has been quoted or run.
 
 ## 4. Status
 
@@ -43,5 +47,5 @@ Packet: [revisions/w4-20261003-paris-p1-s1/REVIEW.md](docs/design/revisions/w4-2
 
 ## 5. Pending owner decisions
 
-1. Keep the S1 framing as the registration base, or revise first (see REVIEW "Proposed next jobs").
-2. A finite credit ceiling for the rest of P1, with each run still quoted and approved individually.
+1. Accept S2d as the environment base, with walker depth solved natively from the A3 sheet (REVIEW, S2 round), or continue iterating on walkers.
+2. Credit ceiling: about 500 for the rest of P1 (owner, 2026-10-03). Each run is still quoted and approved individually.

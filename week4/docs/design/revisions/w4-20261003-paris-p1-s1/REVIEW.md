@@ -1,12 +1,18 @@
-# w4-20261003-paris-p1-s1: S1 master scene
+# w4-20261003-paris-p1-s1: S1 master scene and S2 depth variants
 
-**Status:** S1 generated and inspected. It is a **provisional framing reference** selected by the coordinating agent. Owner review is pending. **The P1 packet is incomplete.** Construction keyframes and video studies have not run, so no UI or renderer work is cleared by this folder.
+**Status:** S1 and four S2 depth variants generated and inspected. **S2d is the provisional environment base**, selected by the coordinating agent; owner review is pending. Walker depth is **not resolved** in any candidate (see the S2 round). **The P1 packet is incomplete.** Construction keyframes and video studies have not run, so no UI or renderer work is cleared by this folder.
 
 ![Contact sheet](references/contact-sheet.png)
 
 | Candidate | Job | Selection | Owner |
 | --- | --- | --- | --- |
-| [img-01-s1-master.png](references/images/img-01-s1-master.png) (2752×1536) | S1 | Provisional framing reference | Pending |
+| [img-01-s1-master.png](references/images/img-01-s1-master.png) (2752×1536) | S1 | Superseded as base (flat façade, walkers at one depth) | Pending |
+| [img-02-s2a-oblique.png](references/images/img-02-s2a-oblique.png) | S2a | Not selected: strong oblique recession, but a second lamp post was added and the walkers are unchanged | Pending |
+| [img-03-s2b-receding.png](references/images/img-03-s2b-receding.png) | S2b | Not selected: best recession, but the walkers are unchanged | Pending |
+| [img-04-s2c-layered.png](references/images/img-04-s2c-layered.png) | S2c | Not selected: best walker layering (teen far), near lamp post, cobbles; façade still flat | Pending |
+| [img-05-s2d-combined.png](references/images/img-05-s2d-combined.png) | S2d | **Provisional environment base** | Pending |
+
+All images are 2752×1536.
 
 There are no videos yet. `references/videos/` and `implementation/` will be created when real outputs or captures exist.
 
@@ -43,6 +49,26 @@ The full frame was viewed, plus full-resolution crops of the table objects, the 
 6. **The near table edge is sharp, not softly out of focus.** The cup is clean rather than chipped, and there is no ring stain.
 7. **Era plausibility is unverified.** The hatchback silhouette could read as late-1980s or early-1990s. The wardrobe is a hypothesis (DESIGN_PROMPT §9).
 
+## S2 round: depth and walker fixes
+
+Owner direction (2026-10-03): fix depth and walkers first, with each run quoted and approved separately and a ceiling of about 500 credits for the rest of P1. All four runs were edits of earlier outputs with the same model and settings (16:9, 2K, 9 credits each). Prediction IDs are in [provenance.json](provenance.json).
+
+| Variant | Depth | Walkers | Other |
+| --- | --- | --- | --- |
+| S2a oblique (S1 input) | The façade recedes strongly to a right-side vanishing point; the roofline converges and fades to paper | Unchanged from S1: all three at one depth | A second lamp post appeared mid-frame; the car is now foreshortened |
+| S2b receding (S1 input) | A central side street recedes to a vanishing point near x 49%, y 57%; its far end fades to paper | The main three are unchanged; a small fourth figure appears far down the street | Lamp post moved to x ≈ 66%, but it occludes no walker |
+| S2c layered (S1 input) | Façade still frontal, but lighter and more linear; cobbles converge | **Teen moved far and small.** Woman and man are still at one depth | Lamp post moved to the near curb at x ≈ 73%, in front of the car; newspaper now plain |
+| S2d combined (S2c and S2b inputs) | **S2b's central street inside S2c's layout**, fading to paper | The man was **not** moved; the teen was replaced by a far figure walking toward the viewer with a visible face | At full resolution a halftone dot texture appears, a degradation after repeated edits; newspaper pseudo-glyphs are back |
+
+**Finding.** The edit model reliably changes architecture and depth, but it resists resizing or moving figures it already contains. Two attempts each left the man at the woman's size. More edits of this kind are unlikely to fix walker depth at 9 credits a try.
+
+**Recommendation.** Use S2d as the *environment* base: recession, a near lamp-post occluder, a cobbled ground plane and a paper far field. Solve walker depth natively. The renderer places passers-by as separate depth layers anyway (the plan's pavement band, with the lamp post occluding them in turn), sourced from the A3 passer-by sheet. Target walker depths:
+- near, on our pavement, cut by the table;
+- middle, on the street, passing behind the lamp post;
+- small, in the side street, in profile and not facing us.
+
+S2d's frontal far figure and its halftone texture are excluded from any plate.
+
 ## Implementation guidance (provisional)
 
 This is for planning only. It must not be implemented until the rest of P1 exists and has been inspected.
@@ -59,7 +85,11 @@ This is for planning only. It must not be implemented until the rest of P1 exist
 
 ## Proposed next jobs (not run, need per-run quotes and approval)
 
-The next jobs are S2 alternatives as **edits of this S1** (S1 as the image input, which keeps registration). They would target issues 1–4: deeper street recession and a lower horizon; walkers overlapping at two or three depths with the lamp post forward; looser watercolour with a stronger paper fade above the roofline. After that come C2–C4 and the V1/V2 studies. See [VISUAL_CLOUD_REPORT.md](../../../../VISUAL_CLOUD_REPORT.md).
+After the owner decides on the S2d base:
+1. C2–C4 construction keyframes, and the A1–A3 plates and sheets, as edits of the selected base.
+2. Discover a video model (read-only), then quote the V1–V4 studies individually.
+
+See [VISUAL_CLOUD_REPORT.md](../../../../VISUAL_CLOUD_REPORT.md).
 
 ## Owner acceptance
 

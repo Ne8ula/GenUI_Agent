@@ -60,5 +60,6 @@ Report: [VISUAL_CLOUD_REPORT.md](VISUAL_CLOUD_REPORT.md). Mode `visual-gated`, p
 | Weave discovery (read-only) | passed | Figma MCP authenticated; no workflows listed; direct-model route via Nano Banana 2 |
 | S1 quote and run | passed | 9 credits, owner-approved, prediction `ff83853e-…`, submitted once |
 | S1 inspection and packet | passed | [w4-20261003-paris-p1-s1](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md); provisional framing, owner review pending |
-| Rest of P1 (S2, C1–C6, A1–A3, V1–V4) | blocked | Needs the owner's framing decision and per-run approvals |
+| S2a–d depth variants | passed | 4 × 9 credits, each owner-approved; S2d provisional environment base; walker depth unresolved by edits |
+| Rest of P1 (C1–C6, A1–A3, V1–V4) | blocked | Needs the owner's decision on the S2d base and per-run approvals (ceiling ~500; 36 used) |
 | UI/renderer passes A–D | blocked | No complete inspected packet |
