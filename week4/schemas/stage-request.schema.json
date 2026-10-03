@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/week4/schemas/stage-request.schema.json",
+  "title": "Renderer to stage-broker request (closed IPC)",
+  "description": "planning.md §6.1: the renderer may only prepare, enter a variant, set the far field to a variant, or restore. It never passes window handles, file paths, image bytes or speech text.",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "sceneId"],
+      "properties": {
+        "op": { "const": "prepare" },
+        "sceneId": { "const": "scene:paris-1980s-terrace" }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "variantId"],
+      "properties": {
+        "op": { "enum": ["enter", "setFarField"] },
+        "variantId": { "enum": ["afternoon-clear", "afternoon-rain", "evening-clear", "evening-rain"] }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "mode"],
+      "properties": {
+        "op": { "const": "restore" },
+        "mode": { "enum": ["graceful", "emergency"] }
+      }
+    }
+  ]
+}

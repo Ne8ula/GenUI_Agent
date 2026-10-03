@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "scene:paris-1980s-terrace",
+  "status": "provisional-blockout-anchors",
+  "interpretationNotice": "An artistic interpretation of an afternoon in 1980s Paris, not a record of a real cafe, address or date.",
+  "units": {
+    "length": "metre-virtual-compressed",
+    "frame": "screen-centred-x-right-y-up-z-toward-viewer"
+  },
+  "anchors": [
+    { "id": "anchor:seat", "position": [0, 0.03, 0.6] },
+    { "id": "anchor:table-top", "position": [0, -0.16, -0.05] },
+    { "id": "anchor:cup", "position": [0.06, -0.1, 0] },
+    { "id": "anchor:ashtray", "position": [-0.11, -0.12, -0.08] },
+    { "id": "anchor:coins", "position": [-0.16, -0.125, -0.04] },
+    { "id": "anchor:awning", "position": [0, 0.17, 0.1] },
+    { "id": "anchor:neighbour-chair", "position": [-0.33, -0.12, -0.12] },
+    { "id": "anchor:pavement", "position": [0, -0.42, -2.6] },
+    { "id": "anchor:lamp-post", "position": [0.55, -0.2, -3.2] },
+    { "id": "anchor:facade", "position": [0, 0.35, -9] },
+    { "id": "anchor:far", "position": [0, 1.2, -40] }
+  ],
+  "objects": [
+    { "id": "obj:table", "band": "near", "anchor": "anchor:table-top", "size": [0.6, 0.03, 0.6], "persistence": "fixed", "occludes": ["layer:pavement"] },
+    { "id": "obj:saucer", "band": "near", "anchor": "anchor:cup", "size": [0.13, 0.015, 0.13], "persistence": "fixed" },
+    { "id": "obj:cup", "band": "near", "anchor": "anchor:cup", "size": [0.08, 0.06, 0.08], "persistence": "fixed", "occludes": ["obj:ashtray"] },
+    { "id": "obj:ashtray", "band": "near", "anchor": "anchor:ashtray", "size": [0.11, 0.03, 0.11], "persistence": "fixed" },
+    { "id": "obj:cigarette", "band": "near", "anchor": "anchor:ashtray", "size": [0.08, 0.008, 0.008], "persistence": "fixed" },
+    { "id": "obj:coins", "band": "near", "anchor": "anchor:coins", "size": [0.05, 0.004, 0.03], "persistence": "fixed" },
+    { "id": "obj:neighbour-chair", "band": "near", "anchor": "anchor:neighbour-chair", "size": [0.45, 0.85, 0.45], "persistence": "fixed", "occludes": ["actors:passersby"] },
+    { "id": "obj:awning", "band": "overhead", "anchor": "anchor:awning", "size": [1.4, 0.06, 0.02], "persistence": "fixed" },
+    { "id": "layer:pavement", "band": "pavement", "anchor": "anchor:pavement", "size": [8, 0.02, 3], "persistence": "state-dependent" },
+    { "id": "actors:passersby", "band": "pavement", "anchor": "anchor:pavement", "size": [8, 1.8, 2], "persistence": "state-dependent" },
+    { "id": "obj:lamp-post", "band": "pavement", "anchor": "anchor:lamp-post", "size": [0.2, 3.6, 0.2], "persistence": "state-dependent", "occludes": ["actors:passersby"] },
+    { "id": "layer:facade", "band": "facade", "anchor": "anchor:facade", "size": [24, 14, 1], "persistence": "state-dependent" },
+    { "id": "layer:far", "band": "far", "anchor": "anchor:far", "size": [120, 60, 1], "persistence": "state-dependent" },
+    { "id": "fx:steam", "band": "near", "anchor": "anchor:cup", "size": [0.04, 0.12, 0.04], "persistence": "state-dependent" },
+    { "id": "fx:smoke", "band": "near", "anchor": "anchor:ashtray", "size": [0.05, 0.25, 0.05], "persistence": "state-dependent" },
+    { "id": "fx:rain", "band": "pavement", "anchor": "anchor:pavement", "size": [10, 6, 6], "persistence": "state-dependent" }
+  ],
+  "states": ["afternoon-clear", "afternoon-rain", "evening-clear", "evening-rain"],
+  "defaultState": { "weather": "clear", "light": "afternoon" }
+}

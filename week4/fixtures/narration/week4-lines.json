@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "policy": {
+    "modelId": "eleven_v3",
+    "stability": 0.5,
+    "maxStackedTags": 3,
+    "maxCharacters": 1200,
+    "targetMinCharacters": 251,
+    "allowedTags": [
+      "speed: 1.25x",
+      "analytical",
+      "warm",
+      "curious",
+      "calm",
+      "happy",
+      "softly",
+      "excited",
+      "frustrated",
+      "whispers",
+      "whispering",
+      "shouts",
+      "shouting",
+      "sarcastic",
+      "sarcastically",
+      "laughs",
+      "chuckles",
+      "exhales"
+    ],
+    "quietTags": [
+      "whispers",
+      "whispering",
+      "softly"
+    ],
+    "loudTags": [
+      "shouts",
+      "shouting"
+    ],
+    "source": "Copied from week1/fixtures/narration/prompt-policy.json (v1) and week1/docs/design/VOICE_PROMPTING.md; Week 4 short-form exceptions below."
+  },
+  "lines": [
+    {
+      "lineId": "arrival.promise",
+      "text": "[softly] Nineteen-eighties Paris. Stay with me a moment.",
+      "origin": "planning.md §3",
+      "shortFormException": "Opening promise; the construction minute carries the rest.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "arrival.settle",
+      "text": "[softly] There. Your coffee's still warm.",
+      "origin": "planning.md §3",
+      "shortFormException": "Arrival line near 0:55; silence follows.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "followup.rain",
+      "text": "[warm] Let it rain, then. We're under the awning.",
+      "origin": "planning.md §3",
+      "shortFormException": "Follow-up acknowledgement during an in-place change.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "followup.evening",
+      "text": "[calm] The lamps come on about now.",
+      "origin": "planning.md §3",
+      "shortFormException": "Follow-up acknowledgement during an in-place change.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "undo.to-rain",
+      "text": "[calm] Back to the rain, then.",
+      "origin": "planning.md §3",
+      "shortFormException": "Undo acknowledgement when the restored look is rain.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "unknown.offer",
+      "text": "[calm] I haven't built that one yet. I can make it rain, bring the evening, or take you home.",
+      "origin": "planning.md §3",
+      "shortFormException": "Honest refusal; nothing is generated or claimed.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "return.leaving",
+      "text": "[softly] Let's go back. I'll restore what I changed.",
+      "origin": "planning.md §3",
+      "shortFormException": "Spoken during the five-second graceful return.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "era.framing",
+      "text": "[calm] This is my picture of the eighties, not a record of one day.",
+      "origin": "planning.md §6.5",
+      "shortFormException": "Honest framing for historical questions.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "followup.clear",
+      "text": "[calm] The rain's passing.",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed short acknowledgement; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "followup.afternoon",
+      "text": "[calm] Back to the afternoon light.",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed short acknowledgement; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "undo.generic",
+      "text": "[calm] All right. As it was.",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed undo acknowledgement for looks other than rain; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "undo.nothing",
+      "text": "[calm] There's nothing to undo yet.",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed reply when the undo stack is empty; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "followup.already",
+      "text": "[calm] It already is.",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed reply when the requested look is current; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "clarify.undo-or-return",
+      "text": "[calm] Undo the last change, or go home?",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed clarification for an ambiguous 'go back'; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "clarify.one-at-a-time",
+      "text": "[calm] One change at a time. Which first?",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed clarification for combined requests; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "clarify.not-sure",
+      "text": "[calm] I didn't catch that. You can ask for rain, the evening, or to go home.",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed reply for unrecognized or negated requests; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    },
+    {
+      "lineId": "failure.restoring",
+      "text": "[calm] Something went wrong. I'm putting your desktop back.",
+      "origin": "cloud-proposal-unreviewed",
+      "shortFormException": "Proposed failure notice; restoration never waits for it; owner review pending.",
+      "audio": {
+        "status": "missing"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/week4/schemas/transcript-event.schema.json",
+  "title": "STT adapter transcript event",
+  "description": "A final transcript for one utterance. Synthetic fixtures only in W4-1; raw audio never crosses this boundary.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sessionId", "utteranceSeq", "text"],
+  "properties": {
+    "sessionId": { "type": "string", "pattern": "^w4s-[0-9]{1,9}$" },
+    "utteranceSeq": { "type": "integer", "minimum": 0, "maximum": 1000000, "description": "Monotonic for the whole app run, not reset per session; the director rejects non-increasing values as out of order." },
+    "text": { "type": "string", "minLength": 0, "maxLength": 400 }
+  }
+}

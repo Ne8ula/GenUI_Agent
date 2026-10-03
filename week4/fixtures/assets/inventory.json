@@ -1,0 +1,1102 @@
+{
+  "schemaVersion": 1,
+  "references": [
+    {
+      "id": "ref:owner-28b48b61",
+      "file": "references/28b48b610729cef693cd04600eb23b36.jpg",
+      "sha256": "8bc965c343c65d62f2275675155ee7806183b85d970d8a46a5f5f2c5cb8cd315",
+      "role": "owner-mood-reference",
+      "runtimeUse": "prohibited",
+      "notes": "Watercolour corner cafe; English 'COFFEE' sign and signature present. Mood only."
+    },
+    {
+      "id": "ref:owner-6d5d8291",
+      "file": "references/6d5d82913fd3585257cce0069c4d7c6b.jpg",
+      "sha256": "f8c9611decdc6feeaafaadfc01b7f63d713b8a02a408f3aeddf177a474349bcf",
+      "role": "owner-mood-reference",
+      "runtimeUse": "prohibited",
+      "notes": "Lived-in terrace; contemporary wardrobe; signature present."
+    },
+    {
+      "id": "ref:owner-898605f3",
+      "file": "references/898605f339e51b8a604fa64ab26b7eb4.jpg",
+      "sha256": "5c6f103ee5e9f1aae076061aa0f7d680fdacf07ff80f8ebee77ac9d646767c68",
+      "role": "owner-mood-reference",
+      "runtimeUse": "prohibited",
+      "notes": "Canal alley depth reference; not Paris geography."
+    },
+    {
+      "id": "ref:owner-a207be6c",
+      "file": "references/a207be6cdddf6b4e346131af1a7a44f0.jpg",
+      "sha256": "dc8e6a5c58f5234e851860cee8c3decd96dc3df3126bb5ba98079de78af98b8d",
+      "role": "owner-mood-reference",
+      "runtimeUse": "prohibited",
+      "notes": "Navy shopfront, rattan chairs, striped awning. DESIGN_PROMPT reports a faint stock-watermark-like overlay; Cloud inspection could not confirm it clearly at this resolution. Do not reproduce."
+    },
+    {
+      "id": "ref:owner-a54e0060",
+      "file": "references/a54e00607a02c92656355ff4c7b6e0d4.jpg",
+      "sha256": "a4dc29bc832eb63d9e55e29f108dc0d738f41b9537b48d0c5bb0fc9c20e91aa4",
+      "role": "owner-mood-reference",
+      "runtimeUse": "prohibited",
+      "notes": "Construction-line reference; brand-like name present. Do not copy text."
+    },
+    {
+      "id": "ref:owner-e0f47b19",
+      "file": "references/e0f47b195de820d773545eae34f70f96.jpg",
+      "sha256": "aa47015397895f7f9d567a9a0c00c70296fe6669ce9b7c14a49baeab5c4dc3f9",
+      "role": "owner-mood-reference",
+      "runtimeUse": "prohibited",
+      "notes": "Closest seated viewpoint; fade-to-paper periphery."
+    }
+  ],
+  "assets": [
+    {
+      "id": "mesh:table",
+      "kind": "mesh",
+      "sceneIds": [
+        "obj:table"
+      ],
+      "variants": [],
+      "layers": [
+        "colour",
+        "line",
+        "wash"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review"
+      ]
+    },
+    {
+      "id": "mesh:cup-saucer",
+      "kind": "mesh",
+      "sceneIds": [
+        "obj:cup",
+        "obj:saucer"
+      ],
+      "variants": [],
+      "layers": [
+        "colour",
+        "line",
+        "wash"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review"
+      ]
+    },
+    {
+      "id": "mesh:ashtray-cigarette",
+      "kind": "mesh",
+      "sceneIds": [
+        "obj:ashtray",
+        "obj:cigarette"
+      ],
+      "variants": [],
+      "layers": [
+        "colour",
+        "alpha",
+        "line"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review"
+      ]
+    },
+    {
+      "id": "card:coins",
+      "kind": "card",
+      "sceneIds": [
+        "obj:coins"
+      ],
+      "variants": [],
+      "layers": [
+        "colour",
+        "alpha"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review",
+        "period-authenticity-research"
+      ]
+    },
+    {
+      "id": "card:neighbour-chair",
+      "kind": "card",
+      "sceneIds": [
+        "obj:neighbour-chair"
+      ],
+      "variants": [],
+      "layers": [
+        "colour",
+        "alpha",
+        "line"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review"
+      ]
+    },
+    {
+      "id": "card:awning-valance",
+      "kind": "card",
+      "sceneIds": [
+        "obj:awning"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [
+        "colour",
+        "alpha"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review",
+        "weave-packet-P3"
+      ]
+    },
+    {
+      "id": "tex:pavement",
+      "kind": "texture",
+      "sceneIds": [
+        "layer:pavement"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [
+        "colour",
+        "normal"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review",
+        "weave-packet-P3"
+      ]
+    },
+    {
+      "id": "card:passersby-sheet",
+      "kind": "card",
+      "sceneIds": [
+        "actors:passersby"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [
+        "colour",
+        "alpha",
+        "line"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review",
+        "weave-packet-P3",
+        "period-authenticity-research"
+      ]
+    },
+    {
+      "id": "anim:passerby-paths",
+      "kind": "animation-curve",
+      "sceneIds": [
+        "actors:passersby"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1"
+      ]
+    },
+    {
+      "id": "card:lamp-post",
+      "kind": "card",
+      "sceneIds": [
+        "obj:lamp-post"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [
+        "colour",
+        "alpha",
+        "emissive"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review",
+        "weave-packet-P3"
+      ]
+    },
+    {
+      "id": "tex:facade-relief",
+      "kind": "texture",
+      "sceneIds": [
+        "layer:facade"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [
+        "colour",
+        "depth",
+        "line",
+        "wash",
+        "emissive"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review",
+        "weave-packet-P3"
+      ]
+    },
+    {
+      "id": "tex:far-sky-roofline",
+      "kind": "texture",
+      "sceneIds": [
+        "layer:far"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [
+        "colour",
+        "wash"
+      ],
+      "source": "weave-reference-then-native-reconstruction",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "cost-approval",
+        "rights-review",
+        "weave-packet-P3"
+      ]
+    },
+    {
+      "id": "card:steam-smoke",
+      "kind": "card",
+      "sceneIds": [
+        "fx:steam",
+        "fx:smoke"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [
+        "alpha"
+      ],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1"
+      ]
+    },
+    {
+      "id": "card:rain",
+      "kind": "card",
+      "sceneIds": [
+        "fx:rain"
+      ],
+      "variants": [
+        "afternoon-rain",
+        "evening-rain"
+      ],
+      "layers": [
+        "alpha"
+      ],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P3"
+      ]
+    },
+    {
+      "id": "anim:construction-curves",
+      "kind": "animation-curve",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1"
+      ]
+    },
+    {
+      "id": "wallpaper:paris-1980s-terrace:afternoon-clear",
+      "kind": "wallpaper-render",
+      "sceneIds": [
+        "layer:far"
+      ],
+      "variants": [
+        "afternoon-clear"
+      ],
+      "layers": [
+        "colour"
+      ],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P1",
+        "renderer-spike",
+        "demo-monitor-resolution"
+      ]
+    },
+    {
+      "id": "wallpaper:paris-1980s-terrace:afternoon-rain",
+      "kind": "wallpaper-render",
+      "sceneIds": [
+        "layer:far"
+      ],
+      "variants": [
+        "afternoon-rain"
+      ],
+      "layers": [
+        "colour"
+      ],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P3",
+        "renderer-spike",
+        "demo-monitor-resolution"
+      ]
+    },
+    {
+      "id": "wallpaper:paris-1980s-terrace:evening-clear",
+      "kind": "wallpaper-render",
+      "sceneIds": [
+        "layer:far"
+      ],
+      "variants": [
+        "evening-clear"
+      ],
+      "layers": [
+        "colour"
+      ],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P3",
+        "renderer-spike",
+        "demo-monitor-resolution"
+      ]
+    },
+    {
+      "id": "wallpaper:paris-1980s-terrace:evening-rain",
+      "kind": "wallpaper-render",
+      "sceneIds": [
+        "layer:far"
+      ],
+      "variants": [
+        "evening-rain"
+      ],
+      "layers": [
+        "colour"
+      ],
+      "source": "native-authoring",
+      "rights": "unreviewed",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "weave-packet-P3",
+        "renderer-spike",
+        "demo-monitor-resolution"
+      ]
+    },
+    {
+      "id": "sfx:room-tone",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:city-hum",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:pen-scratch",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:cup-on-saucer",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:espresso-hiss",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:murmur",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:footsteps-stone",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:moped-far",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:chair-scrape",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:pigeons",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "sfx:rain-awning",
+      "kind": "sound-effect",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [
+        "afternoon-rain",
+        "evening-rain"
+      ],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "amb:terrace-bed",
+      "kind": "ambience",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [
+        "afternoon-clear",
+        "afternoon-rain",
+        "evening-clear",
+        "evening-rain"
+      ],
+      "layers": [],
+      "source": "licensed-library",
+      "rights": "licence-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ambience-licence-sourcing"
+      ]
+    },
+    {
+      "id": "voice:arrival.promise",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:arrival.settle",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:followup.rain",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:followup.evening",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:undo.to-rain",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:unknown.offer",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:return.leaving",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:era.framing",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review"
+      ]
+    },
+    {
+      "id": "voice:followup.clear",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:followup.afternoon",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:undo.generic",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:undo.nothing",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:followup.already",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:clarify.undo-or-return",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:clarify.one-at-a-time",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:clarify.not-sure",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "voice:failure.restoring",
+      "kind": "voice-take",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "eleven-v3-take",
+      "rights": "terms-review-required",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "new-runtime-tts-budget",
+        "owner-listening-review",
+        "owner-line-review"
+      ]
+    },
+    {
+      "id": "font:ibm-plex-sans",
+      "kind": "font",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "open-font",
+      "rights": "ofl-pending-bundle",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ui-pass-after-weave-packet"
+      ]
+    },
+    {
+      "id": "font:space-grotesk",
+      "kind": "font",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "open-font",
+      "rights": "ofl-pending-bundle",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ui-pass-after-weave-packet"
+      ]
+    },
+    {
+      "id": "font:ibm-plex-mono",
+      "kind": "font",
+      "sceneIds": [
+        "scene:paris-1980s-terrace"
+      ],
+      "variants": [],
+      "layers": [],
+      "source": "open-font",
+      "rights": "ofl-pending-bundle",
+      "status": "missing",
+      "file": null,
+      "sha256": null,
+      "blockedBy": [
+        "ui-pass-after-weave-packet"
+      ]
+    }
+  ]
+}

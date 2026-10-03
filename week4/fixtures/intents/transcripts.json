@@ -1,0 +1,394 @@
+{
+  "note": "Synthetic transcript fixtures only. No recorded speech or private data.",
+  "cases": [
+    {
+      "text": "What does it feel like to be in 1980s Paris, drinking coffee.",
+      "intent": "arrive_paris_cafe"
+    },
+    {
+      "text": "what does it feel like to be in nineteen-eighties paris drinking coffee",
+      "intent": "arrive_paris_cafe"
+    },
+    {
+      "text": "Take me to a café in Paris in the eighties.",
+      "intent": "arrive_paris_cafe"
+    },
+    {
+      "text": "I'd like a coffee in 80s Paris",
+      "intent": "arrive_paris_cafe"
+    },
+    {
+      "text": "Show me Paris in the '80s",
+      "intent": "arrive_paris_cafe"
+    },
+    {
+      "text": "Can we go to Paris, 1984, for an espresso?",
+      "intent": "arrive_paris_cafe"
+    },
+    {
+      "text": "Take me to Paris",
+      "intent": "arrive_paris_cafe"
+    },
+    {
+      "text": "Can it rain?",
+      "intent": "weather_rain"
+    },
+    {
+      "text": "Make it rain.",
+      "intent": "weather_rain"
+    },
+    {
+      "text": "Could we have some rain",
+      "intent": "weather_rain"
+    },
+    {
+      "text": "Let it drizzle",
+      "intent": "weather_rain"
+    },
+    {
+      "text": "I'd love a rainy afternoon",
+      "intent": "unknown",
+      "reason": "multiple_requests"
+    },
+    {
+      "text": "Take me back to the rain",
+      "intent": "weather_rain"
+    },
+    {
+      "text": "Stop the rain.",
+      "intent": "weather_clear"
+    },
+    {
+      "text": "No more rain please",
+      "intent": "weather_clear"
+    },
+    {
+      "text": "Make the rain stop",
+      "intent": "weather_clear"
+    },
+    {
+      "text": "Can it clear up?",
+      "intent": "weather_clear"
+    },
+    {
+      "text": "Bring back the sun",
+      "intent": "weather_clear"
+    },
+    {
+      "text": "Make it sunny",
+      "intent": "weather_clear"
+    },
+    {
+      "text": "Make it evening.",
+      "intent": "light_evening"
+    },
+    {
+      "text": "Can it be dusk?",
+      "intent": "light_evening"
+    },
+    {
+      "text": "Let's see the sunset",
+      "intent": "light_evening"
+    },
+    {
+      "text": "Turn the lamps on",
+      "intent": "light_evening"
+    },
+    {
+      "text": "Make it night",
+      "intent": "light_evening"
+    },
+    {
+      "text": "Make it a bit later in the day",
+      "intent": "light_evening"
+    },
+    {
+      "text": "Back to the afternoon",
+      "intent": "light_afternoon"
+    },
+    {
+      "text": "Make it daytime again",
+      "intent": "light_afternoon"
+    },
+    {
+      "text": "Make it day again",
+      "intent": "light_afternoon"
+    },
+    {
+      "text": "Undo that.",
+      "intent": "undo"
+    },
+    {
+      "text": "undo",
+      "intent": "undo"
+    },
+    {
+      "text": "Change it back",
+      "intent": "undo"
+    },
+    {
+      "text": "Put it back the way it was",
+      "intent": "undo"
+    },
+    {
+      "text": "Revert that",
+      "intent": "undo"
+    },
+    {
+      "text": "Go back one step",
+      "intent": "undo"
+    },
+    {
+      "text": "Skip ahead.",
+      "intent": "skip"
+    },
+    {
+      "text": "Just take me there",
+      "intent": "skip"
+    },
+    {
+      "text": "skip",
+      "intent": "skip"
+    },
+    {
+      "text": "Fast forward please",
+      "intent": "skip"
+    },
+    {
+      "text": "Take me back.",
+      "intent": "return_home"
+    },
+    {
+      "text": "Take me home",
+      "intent": "return_home"
+    },
+    {
+      "text": "I want to go home",
+      "intent": "return_home"
+    },
+    {
+      "text": "Let's go back now",
+      "intent": "return_home"
+    },
+    {
+      "text": "Bring me home please",
+      "intent": "return_home"
+    },
+    {
+      "text": "Leave Paris",
+      "intent": "return_home"
+    },
+    {
+      "text": "Back to my desktop",
+      "intent": "return_home"
+    },
+    {
+      "text": "Cancel",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Stop the experience",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Stop everything!",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Abort",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Get me out",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Cancel the rain",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Stop",
+      "intent": "stop_speaking"
+    },
+    {
+      "text": "Stop talking",
+      "intent": "stop_speaking"
+    },
+    {
+      "text": "Be quiet",
+      "intent": "stop_speaking"
+    },
+    {
+      "text": "Shh",
+      "intent": "stop_speaking"
+    },
+    {
+      "text": "Hush please",
+      "intent": "stop_speaking"
+    },
+    {
+      "text": "quiet",
+      "intent": "stop_speaking"
+    },
+    {
+      "text": "What year is it?",
+      "intent": "ask_about_era"
+    },
+    {
+      "text": "Is this real?",
+      "intent": "ask_about_era"
+    },
+    {
+      "text": "Is this really the eighties?",
+      "intent": "ask_about_era"
+    },
+    {
+      "text": "Where are we?",
+      "intent": "ask_about_era"
+    },
+    {
+      "text": "Is this a real café?",
+      "intent": "ask_about_era"
+    },
+    {
+      "text": "Take me to Tokyo.",
+      "intent": "unknown",
+      "reason": "unsupported_place"
+    },
+    {
+      "text": "Show me the moon",
+      "intent": "unknown",
+      "reason": "unsupported_place"
+    },
+    {
+      "text": "Build me a beach",
+      "intent": "unknown",
+      "reason": "unsupported_place"
+    },
+    {
+      "text": "Generate a forest",
+      "intent": "unknown",
+      "reason": "unsupported_place"
+    },
+    {
+      "text": "Go to London",
+      "intent": "unknown",
+      "reason": "unsupported_place"
+    },
+    {
+      "text": "Paris in the 1920s",
+      "intent": "unknown",
+      "reason": "unsupported_era"
+    },
+    {
+      "text": "Take me to modern Paris",
+      "intent": "unknown",
+      "reason": "unsupported_era"
+    },
+    {
+      "text": "Paris today with coffee",
+      "intent": "unknown",
+      "reason": "unsupported_era"
+    },
+    {
+      "text": "Don't make it rain",
+      "intent": "unknown",
+      "reason": "negated"
+    },
+    {
+      "text": "I don't want the evening",
+      "intent": "unknown",
+      "reason": "negated"
+    },
+    {
+      "text": "Don't take me to Paris",
+      "intent": "unknown",
+      "reason": "negated"
+    },
+    {
+      "text": "Don't cancel",
+      "intent": "unknown",
+      "reason": "negated"
+    },
+    {
+      "text": "Go back",
+      "intent": "unknown",
+      "reason": "ambiguous"
+    },
+    {
+      "text": "go back please",
+      "intent": "unknown",
+      "reason": "ambiguous"
+    },
+    {
+      "text": "Make it a rainy evening",
+      "intent": "unknown",
+      "reason": "multiple_requests"
+    },
+    {
+      "text": "rain and evening",
+      "intent": "unknown",
+      "reason": "multiple_requests"
+    },
+    {
+      "text": "",
+      "intent": "unknown",
+      "reason": "empty"
+    },
+    {
+      "text": "   ",
+      "intent": "unknown",
+      "reason": "empty"
+    },
+    {
+      "text": "What's the weather in Ithaca?",
+      "intent": "unknown",
+      "reason": "unrecognized"
+    },
+    {
+      "text": "Tell me a joke",
+      "intent": "unknown",
+      "reason": "unrecognized"
+    },
+    {
+      "text": "Make it snow",
+      "intent": "unknown",
+      "reason": "unrecognized"
+    },
+    {
+      "text": "I'd love some rain",
+      "intent": "weather_rain"
+    },
+    {
+      "text": "Can we go back?",
+      "intent": "unknown",
+      "reason": "ambiguous"
+    },
+    {
+      "text": "No, cancel",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Never mind, cancel that",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "No no, stop everything",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Nothing works, abort",
+      "intent": "cancel_experience"
+    },
+    {
+      "text": "Never cancel",
+      "intent": "unknown",
+      "reason": "negated"
+    },
+    {
+      "text": "Please do not abort",
+      "intent": "unknown",
+      "reason": "negated"
+    }
+  ]
+}

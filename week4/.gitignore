@@ -1,0 +1,6 @@
+node_modules/
+target/
+# Private runtime/recovery data must never be stored in the repository.
+*.journal
+*.journal.jsonl
+recovery/

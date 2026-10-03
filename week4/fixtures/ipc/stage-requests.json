@@ -1,0 +1,28 @@
+{
+  "note": "Shared renderer-to-broker IPC examples. Checked by both the TypeScript schema test and the Rust parser test so the two contracts cannot drift.",
+  "valid": [
+    { "op": "prepare", "sceneId": "scene:paris-1980s-terrace" },
+    { "op": "enter", "variantId": "afternoon-clear" },
+    { "op": "enter", "variantId": "evening-rain" },
+    { "op": "setFarField", "variantId": "afternoon-rain" },
+    { "op": "setFarField", "variantId": "evening-clear" },
+    { "op": "restore", "mode": "graceful" },
+    { "op": "restore", "mode": "emergency" }
+  ],
+  "invalid": [
+    { "op": "enter", "variantId": "afternoon-clear", "hwnd": 66012 },
+    { "op": "setFarField", "variantId": "evening-rain", "path": "C:/Windows/Web/a.jpg" },
+    { "op": "setFarField", "imageBytes": "iVBORw0" },
+    { "op": "speak", "text": "hello" },
+    { "op": "enter", "variantId": "tokyo-night" },
+    { "op": "restore", "mode": "graceful", "windows": [1, 2] },
+    { "op": "restore", "mode": "later" },
+    { "op": "prepare", "sceneId": "scene:tokyo" },
+    { "op": "exec", "command": "rm -rf /" },
+    { "op": "set_far_field", "variant": "evening-rain" },
+    { "op": "cancel" },
+    { "op": "enter" },
+    { "variantId": "afternoon-clear" },
+    "enter"
+  ]
+}

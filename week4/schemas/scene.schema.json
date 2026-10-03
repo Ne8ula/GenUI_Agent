@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/week4/schemas/scene.schema.json",
+  "title": "EVA Week 4 fixed scene definition",
+  "description": "Pre-authored scene data. Carries stable IDs and provisional geometry anchors only: no code, paths, URLs, handles or speech text.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sceneId", "status", "interpretationNotice", "units", "anchors", "objects", "states", "defaultState"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "sceneId": { "const": "scene:paris-1980s-terrace" },
+    "status": { "enum": ["provisional-blockout-anchors"] },
+    "interpretationNotice": { "$ref": "#/$defs/plainText" },
+    "units": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["length", "frame"],
+      "properties": {
+        "length": { "const": "metre-virtual-compressed" },
+        "frame": { "const": "screen-centred-x-right-y-up-z-toward-viewer" }
+      }
+    },
+    "anchors": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "position"],
+        "properties": {
+          "id": { "$ref": "#/$defs/anchorId" },
+          "position": { "$ref": "#/$defs/vec3" }
+        }
+      }
+    },
+    "objects": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "band", "anchor", "size", "persistence"],
+        "properties": {
+          "id": { "$ref": "#/$defs/objectId" },
+          "band": { "enum": ["near", "overhead", "pavement", "facade", "far"] },
+          "anchor": { "$ref": "#/$defs/anchorId" },
+          "size": { "$ref": "#/$defs/vec3Positive" },
+          "persistence": { "enum": ["fixed", "state-dependent"] },
+          "occludes": {
+            "type": "array",
+            "maxItems": 16,
+            "uniqueItems": true,
+            "items": { "$ref": "#/$defs/objectId" }
+          }
+        }
+      }
+    },
+    "states": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/variantId" }
+    },
+    "defaultState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["weather", "light"],
+      "properties": {
+        "weather": { "enum": ["clear", "rain"] },
+        "light": { "enum": ["afternoon", "evening"] }
+      }
+    }
+  },
+  "$defs": {
+    "plainText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[^<>`\\\\{}]*$"
+    },
+    "anchorId": { "type": "string", "maxLength": 64, "pattern": "^anchor:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "objectId": { "type": "string", "maxLength": 64, "pattern": "^(?:obj|layer|actors|fx):[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "variantId": { "enum": ["afternoon-clear", "afternoon-rain", "evening-clear", "evening-rain"] },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "number", "minimum": -200, "maximum": 200 }
+    },
+    "vec3Positive": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "number", "exclusiveMinimum": 0, "maximum": 200 }
+    }
+  }
+}
