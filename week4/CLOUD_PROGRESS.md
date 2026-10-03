@@ -48,3 +48,17 @@ Status keys: **planned**, **in progress**, **passed**, **failed**, **blocked**, 
 ## Still not authorized or not done
 
 Weave generation without per-run cost approval; paid STT/TTS or other provider calls; camera or microphone access; real wallpaper or window effects; native staging before the durable-journal requirement; any `main` write or PR; owner acceptance. Every Windows smoke step is not run. The owner has authorized Weave-led visual work as the **next** session's task. Its entry point is `CLOUD_REPORT.md` §0.
+
+## Visual-gated session (2026-10-03, second Cloud task)
+
+Report: [VISUAL_CLOUD_REPORT.md](VISUAL_CLOUD_REPORT.md). Mode `visual-gated`, provider mode `mock`.
+
+| Step | Status | Notes |
+| --- | --- | --- |
+| Baseline fast-forward `da6eba5` → `2e640b5` | passed | Remote `week4` held the W4-1 commits |
+| Setup and checks | passed | TS 103/103; Rust 69/69; fmt and clippy clean; setup tests 15/15 |
+| Weave discovery (read-only) | passed | Figma MCP authenticated; no workflows listed; direct-model route via Nano Banana 2 |
+| S1 quote and run | passed | 9 credits, owner-approved, prediction `ff83853e-…`, submitted once |
+| S1 inspection and packet | passed | [w4-20261003-paris-p1-s1](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md); provisional framing, owner review pending |
+| Rest of P1 (S2, C1–C6, A1–A3, V1–V4) | blocked | Needs the owner's framing decision and per-run approvals |
+| UI/renderer passes A–D | blocked | No complete inspected packet |

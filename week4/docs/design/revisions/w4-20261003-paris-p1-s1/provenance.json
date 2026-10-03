@@ -1,0 +1,101 @@
+{
+  "templateOnly": false,
+  "status": "s1-generated-and-inspected; P1 packet incomplete; UI edits still blocked",
+  "changeId": "w4-20261003-paris-p1-s1",
+  "phase": "Week 4 visual-gated, P1 arrival packet (first job only)",
+  "sourceRevision": "2e640b5885295a7417afea6acf2dab7a95b8d586",
+  "acceptedBaseline": null,
+  "scope": "One S1 master seated-terrace image to choose framing before quoting the rest of P1. Not a motion reference and not sufficient for any UI pass on its own.",
+  "ownedUiFiles": [],
+  "motionRequired": true,
+  "coordinator": {
+    "environment": "Claude Code on the web (Cloud), main session; see the Cloud session record for the resolved model. The platform withholds model identifiers from repository artifacts.",
+    "figmaAccount": "Figma MCP whoami handle 'Alex Xiong'; plans 'Silverjay Studio' (student) and 'Road Sign' (starter). Email not recorded here."
+  },
+  "discovery": {
+    "date": "2026-10-03",
+    "weaveListTools": "{\"tools\":[],\"totalCount\":0}: workflow route unavailable in the active workspace; direct-model route used",
+    "weaveFindModel": [
+      { "query": "nano banana 2", "candidates": [
+        { "label": "Nano Banana 2", "id": "bebebed5-50c1-4701-98b3-86929db21585", "modelId": "fal-ai/nano-banana-2/edit", "costEstimate": 6 },
+        { "label": "Nano Banana 2 Lite", "id": "e3182874-8f56-4b8f-ae09-83677c914cf8", "modelId": "fal-ai/nano-banana-2-lite/edit", "costEstimate": 3 } ] },
+      { "query": "imagen 4", "outcome": "unresolved" },
+      { "query": "flux pro", "candidates": [
+        { "label": "Flux Pro 1.1 Ultra", "id": "rp8wcsp5ViyuITMAdemY", "modelId": "black-forest-labs/flux-1.1-pro-ultra", "costEstimate": 7 },
+        { "label": "Flux Pro 1.1", "id": "l7FCkacqk0zPmkVTtbt9", "modelId": "black-forest-labs/flux-1.1-pro", "costEstimate": 5 },
+        { "label": "Flux Pro Outpaint", "id": "v6ivwh6HSko2SMwqTzdx", "modelId": "black-forest-labs/flux-fill-pro", "costEstimate": 6 },
+        { "label": "Flux Fill Pro", "id": "a7034751-f2cf-4fac-b50f-6d78554d8e00", "modelId": "fal-ai/flux-pro/v1/fill", "costEstimate": 10 } ] }
+    ],
+    "selectionRationale": "Nano Banana 2 (full): same model family as the Week 3 direct-model packets, text-only use needs no upload, supports 16:9 and 2K, and accepts up to 14 reference images so later P1/P3 jobs can be edits of the selected S1 for registration."
+  },
+  "runs": [
+    {
+      "jobId": "S1",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "predictionId": "ff83853e-952e-428f-a283-edc58ff2ee90",
+      "inputs": {
+        "prompt": "week4/DESIGN_PROMPT.md section 11 master prompt, verbatim (three paragraphs: scene, Style, Exclude). No stage line prepended; S1 is the master.",
+        "images": null,
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "uploads": "none",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits (not Figma AI credits)",
+      "costApprovalRef": "Owner structured Approve/Cancel prompt in Cloud session, 2026-10-03: 'Approve (9 credits)' for this exact run",
+      "reportedCost": 9,
+      "remainingCreditsAfterSubmit": 552.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/images/img-01-s1-master.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "3df6ac54ce5d739627f7c8534ba8a17c0bacf205f1e923bbdc4504d0d775813b",
+          "source": "Weave model output retrieved with curl from the media host returned by weave_get_model_run_output; URL not recorded",
+          "license": "Generated development reference; provider terms not reviewed for runtime use. Not an adopted runtime asset."
+        }
+      ]
+    }
+  ],
+  "selectedAssets": [
+    {
+      "path": "references/images/img-01-s1-master.png",
+      "selection": "provisional framing reference by the coordinating agent; not owner acceptance",
+      "pendingOwnerQuestion": "Keep this framing as the registration base for S2/C/F edits, or revise first?"
+    }
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "performed",
+    "inspector": "Cloud main session (coordinator)",
+    "method": "Full-frame view of the 2752x1536 PNG downscaled for display, plus two full-resolution crops (table objects; newspaper, cassette player, car and wall) made with ImageMagick in a scratch directory",
+    "observations": "See REVIEW.md 'Inspection'",
+    "limitations": [
+      "Single still; says nothing about construction, gait, smoke or timing",
+      "Agent visual reading only; no colour measurement against the proposed palette hexes",
+      "Historical plausibility of wardrobe and car is not researched (DESIGN_PROMPT section 9)"
+    ]
+  },
+  "implementationGuidance": "See REVIEW.md 'Implementation guidance (provisional)'",
+  "writerInspections": [],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": [],
+    "note": "No Week 4 renderer exists. First implementation has no runnable before-state; implementation folders are created only when real captures exist."
+  },
+  "ownerDecision": {
+    "status": "pending",
+    "date": null,
+    "feedback": null
+  }
+}
