@@ -20,7 +20,36 @@
 
 **T1 inspection.** The scallops are gone: the awning is a seamed crimson-speck plane with a straight fringed hem. But it fills the top ~32% of the frame as a deep ceiling receding toward the street, so the view reads as an arcade or tunnel. It also washes the upper street pink and hides the mansard roofline, against the brief's "nothing red-washes the environment". Everything below the hem is unchanged from S3d. A shallower version (only the hem strip at the top ~10%) has been quoted, not run.
 
-Construction sequence, C2 → C3 → C4 → S3d. C2–C4 still carry the scalloped awning and will need the same top-edge change once one is chosen: ![Construction strip](references/construction-strip.png)
+| [img-09-h1-no-hem.png](references/images/img-09-h1-no-hem.png) | H1, edit of T1 with the hem removed | **Provisional arrival master** (supersedes S3d) | Pending |
+| [img-10-g1-wireframe-glitch.png](references/images/img-10-g1-wireframe-glitch.png) | G1, wireframe and glitch boxes | **Provisional construction keyframe** | Pending |
+| [img-11-g2-tiles-materialising.png](references/images/img-11-g2-tiles-materialising.png) | G2, tiles materialising | **Provisional construction keyframe** (canopy deviation) | Pending |
+| [img-12-g3-settling.png](references/images/img-12-g3-settling.png) | G3, settling | **Provisional construction keyframe** | Pending |
+
+**Owner direction (2026-10-04):** "Just remove the hem, also ensure the creation process is more wireframe and box overlays glitching into creation. Like the Animus from Assassins Creed." The owner confirmed H1 (keep the canopy, remove the hem).
+
+The Animus idea is interpreted in EVA's own approved vocabulary: Week 3's transition glitch boxes (owner-approved [img-01](../../../../../week3/docs/design/revisions/w3-cloud-20260928-a-p3/references/images/img-01-transition-glitch-strip.png), passed as its Weave output) plus hairline tracking boxes. The brief's prohibitions stand: no Animus HUD, logo, hexagons, glyph rain, sync bars, numbers or blue-white void ([DESIGN_PROMPT §6](../../../../DESIGN_PROMPT.md#6-restraint-and-negative-rules)).
+
+Glitch construction sequence, G1 → G2 → G3 → H1: ![Glitch construction](references/glitch-construction-strip.png)
+
+**H1.** The hem and fringe are gone; the canopy's crimson specks now thin and dissolve into the street. A softer pink haze remains over the street end and roofline. The canopy is still large (~30% of frame height), which the owner accepted.
+
+**G1, wireframe and glitch.** The strongest response to the owner's references:
+- Every object is a 3D wireframe mesh: the woman, cup, chair and table in crimson; the far street, walkers and lamp in graphite.
+- The canopy is a ruled perspective grid, and full-frame guide lines radiate to the vanishing point.
+- About ten small RGB-scanline glitch boxes sit in the Week 3 style, and corner-bracket tracking boxes frame the woman, the walkers and the cup.
+- **Deviations:** the ashtray became square instead of round glass; the table shows a radial polar mesh with a crimson pole at its centre (CAD-like); the woman faces forward with an unfeatured mesh face.
+
+**G2, tiles materialising.** It glitches into creation:
+- The woman is split half wireframe, half particles inside a bounding box, and the walkers sit in boxes.
+- The cup sits in a wireframe cube with a cyan colour-split edge, and the lamp is half particles.
+- Misregistered particle tiles with colour-split edges float over the façades.
+- **Deviation:** the canopy came back as a **flat, solid salmon-red plane with a hard bottom edge**. That is both the removed hem and a red wash. The renderer must not adopt it; the canopy should build as specks.
+
+**G3, settling.** It is H1 with four or five glitch boxes near the roof and far street, faint guide lines converging, and a hairline on the cup rim. It works as the last beat before arrival.
+
+**Status of C2–C4.** These earlier keyframes are superseded for construction by G1–G3, which follow the owner's newer direction. They are retained as rejected or historical candidates, and they still carry the scallops.
+
+Earlier construction sequence, C2 → C3 → C4 → S3d (superseded): ![Construction strip](references/construction-strip.png)
 
 No video exists yet. Motion is **not** reviewed; these stills do not clear any motion or UI pass.
 

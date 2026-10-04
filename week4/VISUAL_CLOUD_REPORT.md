@@ -43,8 +43,12 @@ The 95 TS / 62 Rust numbers in the earlier hand-back were from checkpoint `1206a
 | C3 massing | edit of S3d | `ef3f14a8-90de-4fca-9adc-76313474a773` | 9 | Owner | Completed, inspected; provisional keyframe |
 | C4 nearly arrived | edit of S3d | `4e8c628b-3385-49cf-852c-a041a53b82db` | 9 | Owner | Completed, inspected; provisional keyframe |
 | T1 awning underside | edit of S3d, after owner feedback that the scallops read as spheres | `1cf75875-f25e-4f45-a6c0-b20859047c6a` | 9 | Owner (chosen over T2/T3) | Completed, inspected; canopy too large; not selected |
+| H1 no hem | edit of T1 | `749be315-e37b-4fbb-8f71-899aa31cf0e9` | 9 | Owner | Completed, inspected; **provisional arrival master** |
+| G1 wireframe + glitch | T1 plus Week 3 glitch strip | `0b67896c-e655-4c68-bdf1-ef444e0e57b4` | 9 | Owner | Completed, inspected; provisional keyframe |
+| G2 tiles materialising | same inputs | `fbaf84fd-0d64-4d24-b815-7a117b36e61b` | 9 | Owner | Completed, inspected; provisional keyframe (flat red canopy not adopted) |
+| G3 settling | same inputs | `4785db01-4e48-4dd6-aa6a-853caaf1086f` | 9 | Owner | Completed, inspected; provisional keyframe |
 
-Packets: [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 108 are used (S2a–d, S3a–d, C2–C4, T1). Workspace balance after the last submit: 444.8. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first). No other job has been quoted or run.
+Packets: [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 144 are used (S2a–d, S3a–d, C2–C4, T1, H1, G1–G3). Workspace balance after the last submit: 408.8. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first). Then quoted: V1 G1→G2 at 5 s and V2 G2→G3 at 5 s, 55 each, not run). No other job has been quoted or run.
 
 ## 4. Status
 
