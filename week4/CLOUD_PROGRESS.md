@@ -63,5 +63,6 @@ Report: [VISUAL_CLOUD_REPORT.md](VISUAL_CLOUD_REPORT.md). Mode `visual-gated`, p
 | S2a–d depth variants | passed | 4 × 9 credits, each owner-approved; S2d provisional environment base; walker depth unresolved by edits |
 | S3a–d Week 3 aesthetic | passed | Owner asked for Week 3's emotional aesthetics; 4 × 9 credits, each approved; S3d provisional P1 master |
 | C2–C4 construction keyframes | passed | 3 × 9 credits, approved; owner construction references used as text only |
-| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 99 used) |
+| Awning top edge (owner: scallops read as spheres) | in progress | T1 underside run (9): too large; shallower version quoted |
+| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 108 used) |
 | UI/renderer passes A–D | blocked | No complete inspected packet |

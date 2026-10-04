@@ -293,12 +293,51 @@
           "license": "Generated development reference; not an adopted runtime asset."
         }
       ]
+    },
+    {
+      "jobId": "T1",
+      "predictionId": "1cf75875-f25e-4f45-a6c0-b20859047c6a",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "S3d output (img-04)"
+        ],
+        "prompt": "Owner feedback 2026-10-04: the scalloped awning reads as strange spheres. Edit of S3d replacing only the scalloped awning with the underside of a canvas awning seen from below: a taut plane with straight seams, a straight sagging hem and thin fringe, in crimson specks thinning toward the hem; no curves, domes or scallops. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 444.8,
+      "costApprovalRef": "Owner structured multi-select, 2026-10-04: T1 approved at 9 credits (T2, T3 not selected, not run)",
+      "outputs": [
+        {
+          "path": "references/images/img-08-t1-awning-underside.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "b676181a6712d45e1ae4e90d3413900a8d6beaa509c098c0381a8f28a2d31498",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
     }
   ],
   "creditLedger": {
     "ceiling": "about 500 for the rest of P1 (owner, 2026-10-03)",
-    "usedUnderCeilingIncludingThisRevision": 99,
-    "remainingWorkspaceCreditsAfterLastSubmit": 453.8
+    "usedUnderCeilingIncludingThisRevision": 108,
+    "remainingWorkspaceCreditsAfterLastSubmit": 444.8
   },
   "selectedAssets": [
     {
@@ -389,7 +428,23 @@
       {
         "job": "V1 C2->C3, O1 Pro, 10 s",
         "quotedCost": 109
+      },
+      {
+        "job": "V1 C2->C3, O1 Pro, 5 s",
+        "quotedCost": 55,
+        "status": "not approved; owner redirected to the awning issue"
       }
     ]
-  }
+  },
+  "ownerFeedbackLog": [
+    {
+      "date": "2026-10-04",
+      "text": "I like the overall direction for s3c ... reference images for the construction process"
+    },
+    {
+      "date": "2026-10-04",
+      "text": "The spheres on the top is really strange. Try for something else.",
+      "response": "V1 video not run; T1/T2/T3 top-edge alternatives quoted; owner chose T1"
+    }
+  ]
 }

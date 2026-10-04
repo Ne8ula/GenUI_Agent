@@ -14,7 +14,13 @@
 | [img-06-c3-massing-condense.png](references/images/img-06-c3-massing-condense.png) | C3 massing, edit of S3d | **Provisional construction keyframe** | Pending |
 | [img-07-c4-nearly-arrived.png](references/images/img-07-c4-nearly-arrived.png) | C4 nearly arrived, edit of S3d | **Provisional construction keyframe** | Pending |
 
-Construction sequence, C2 → C3 → C4 → S3d: ![Construction strip](references/construction-strip.png)
+| [img-08-t1-awning-underside.png](references/images/img-08-t1-awning-underside.png) | T1, edit of S3d (awning underside) | Not selected: scallops gone, but the canopy is too large | Pending |
+
+**Owner feedback (2026-10-04):** "The spheres on the top is really strange. Try for something else." The scalloped valance read as a row of spheres. The owner chose T1 (an awning underside) over T2 (plane-tree branches) and T3 (open top).
+
+**T1 inspection.** The scallops are gone: the awning is a seamed crimson-speck plane with a straight fringed hem. But it fills the top ~32% of the frame as a deep ceiling receding toward the street, so the view reads as an arcade or tunnel. It also washes the upper street pink and hides the mansard roofline, against the brief's "nothing red-washes the environment". Everything below the hem is unchanged from S3d. A shallower version (only the hem strip at the top ~10%) has been quoted, not run.
+
+Construction sequence, C2 → C3 → C4 → S3d. C2–C4 still carry the scalloped awning and will need the same top-edge change once one is chosen: ![Construction strip](references/construction-strip.png)
 
 No video exists yet. Motion is **not** reviewed; these stills do not clear any motion or UI pass.
 
