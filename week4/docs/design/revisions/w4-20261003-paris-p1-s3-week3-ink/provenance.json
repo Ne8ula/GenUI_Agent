@@ -1,0 +1,179 @@
+{
+  "templateOnly": false,
+  "status": "S3a-S3c inspected; S3c provisional aesthetic direction; P1 incomplete; UI blocked",
+  "changeId": "w4-20261003-paris-p1-s3-week3-ink",
+  "phase": "Week 4 visual-gated, P1 arrival packet: aesthetic direction",
+  "sourceRevision": "97f3dca",
+  "acceptedBaseline": null,
+  "scope": "Owner feedback 2026-10-03 on S2d: composition liked, but it reads as a generic AI image with no specific aesthetic. Incorporate Week 3 emotional states and their aesthetics.",
+  "ownerFeedback": "I enjoy S2D, however, these images dont feel like a specific aesthetic, and just feels like a general ai generated image. Try incorporating the emotional states and its aesthetics from week 3.",
+  "week3Sources": [
+    "week3/DESIGN.md sections 4-6",
+    "week3/docs/design/revisions/w3-cloud-20260929-b-p1 img-05 ink state board (rest/congratulation/supportive owner-approved) and img-07 joy ink",
+    "week3/docs/design/revisions/w3-cloud-20260928-a-p3-a2 implementation capture comforting-2.png"
+  ],
+  "motionRequired": true,
+  "ownedUiFiles": [],
+  "runs": [
+    {
+      "jobId": "S3a",
+      "predictionId": "f4adad0e-c6cf-4c8c-b78e-dc3ff35c337b",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "S2d (w4-20261003-paris-p1-s1 img-05)",
+          "Week 3 ink state board",
+          "Week 3 joy ink"
+        ],
+        "prompt": "Re-render S2d entirely in Week 3 stippled particle ink on warm paper; same composition and objects; no outlines; depth from particle density and near bokeh; crimson awning (rest eye), apricot/gold light (joy), plum/rose shade (comfort), mint/teal shade; warm, comforting. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 507.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-03, S3a 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-01-s3a-arrived-ink.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "957d0ef56f95a56ed9a3ef67a74c5627607446a73dddd4c7cc288453d36cc5f0",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "S3b",
+      "predictionId": "c3b2a13c-11bd-43a9-ab7d-d1e8cb489c13",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "S2d",
+          "Week 3 ink state board",
+          "Week 3 joy ink"
+        ],
+        "prompt": "Same as S3a, but resolution follows closeness (near objects dense, walkers looser speck clouds, facades as indigo/teal particle currents thinning to paper) and hairline square outlines rest on the cup and ashtray. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 498.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-03, S3b 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-02-s3b-remembered-ink.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "ad2fc62ebd12c63a26812827b4c9bc7a78d421eb51e2377302fe158732b41b1f",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "S3c",
+      "predictionId": "31d01533-3f3b-4869-b87f-1fcfd5ffbc69",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "Week 3 ink state board (primary)",
+          "Week 3 joy ink",
+          "S2d (loose layout guide only)"
+        ],
+        "prompt": "New image made purely of Week 3 particle material: no outlines anywhere; forms only as particle density fraying at edges; the cafe from S2d as a loose layout; walkers as soft speck clouds; facades as sparse vertical drifts; apricot/gold near, plum/rose shade, indigo/teal far; near bokeh; like a memory of the place. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 489.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-04, S3c 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-03-s3c-particle-memory.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "3ed4ad79090aaab0988ded634666715c093bd223ee82500c610f1cb38eae411a",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    }
+  ],
+  "creditLedger": {
+    "ceiling": "about 500 for the rest of P1 (owner, 2026-10-03)",
+    "usedUnderCeilingIncludingThisRevision": 63,
+    "remainingWorkspaceCreditsAfterLastSubmit": 489.8
+  },
+  "selectedAssets": [
+    {
+      "path": "references/images/img-03-s3c-particle-memory.png",
+      "selection": "provisional aesthetic direction (agent); owner review pending"
+    },
+    {
+      "path": "../w4-20261003-paris-p1-s1/references/images/img-05-s2d-combined.png",
+      "selection": "layout reference only"
+    }
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "performed for S3a, S3b, S3c",
+    "inspector": "Cloud main session (coordinator)",
+    "method": "Full frames plus full-resolution crops (street/walkers; cup/table)",
+    "observations": "See REVIEW.md",
+    "limitations": [
+      "Stills only; no motion"
+    ]
+  },
+  "writerInspections": [],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": []
+  },
+  "ownerDecision": {
+    "status": "pending",
+    "date": null,
+    "feedback": null
+  }
+}

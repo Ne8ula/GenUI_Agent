@@ -34,9 +34,12 @@ The 95 TS / 62 Rust numbers in the earlier hand-back were from checkpoint `1206a
 | S2a oblique | same model, edit of S1 | `a084a81d-bb01-4eb5-af2f-65398a5aef75` | 9 | Owner | Completed, inspected; not selected |
 | S2b receding | same model, edit of S1 | `2e6899ad-feea-4719-8135-651d0ff5f875` | 9 | Owner | Completed, inspected; not selected |
 | S2c layered | same model, edit of S1. The first quote call was blocked by the session's permission check (no spend); the owner asked for a retry | `64035bab-b53b-4204-8490-b3c28d1f71c9` | 9 | Owner | Completed, inspected; not selected |
-| S2d combined | same model, edit of S2c with S2b as a reference | `f41cdb9c-65c4-4bd9-9af0-4362c2a2fe46` | 9 | Owner | Completed, inspected; **provisional environment base**, walkers unresolved |
+| S2d combined | same model, edit of S2c with S2b as a reference | `f41cdb9c-65c4-4bd9-9af0-4362c2a2fe46` | 9 | Owner | Completed, inspected; composition liked by the owner, but the aesthetic was judged generic; now the layout reference |
+| S3a arrived ink | edit of S2d, with Week 3 ink board and joy ink as style inputs | `f4adad0e-c6cf-4c8c-b78e-dc3ff35c337b` | 9 | Owner | Completed, inspected; outlines kept; not selected |
+| S3b remembered ink | same inputs | `c3b2a13c-11bd-43a9-ab7d-d1e8cb489c13` | 9 | Owner | Completed, inspected; not selected |
+| S3c particle memory | new image; Week 3 references primary, S2d as loose layout | `31d01533-3f3b-4869-b87f-1fcfd5ffbc69` | 9 | Owner | Completed, inspected; **provisional aesthetic direction** |
 
-Packet: [revisions/w4-20261003-paris-p1-s1/REVIEW.md](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 36 are used (S2a–d). Workspace balance after the last submit: 516.8. No other job has been quoted or run.
+Packets: [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–c)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 63 are used (S2a–d, S3a–c). Workspace balance after the last submit: 489.8. No other job has been quoted or run.
 
 ## 4. Status
 
@@ -47,5 +50,5 @@ Packet: [revisions/w4-20261003-paris-p1-s1/REVIEW.md](docs/design/revisions/w4-2
 
 ## 5. Pending owner decisions
 
-1. Accept S2d as the environment base, with walker depth solved natively from the A3 sheet (REVIEW, S2 round), or continue iterating on walkers.
+1. Owner direction 2026-10-03: S2d's composition is liked but generic; use Week 3's emotional states and aesthetics. Pending: confirm S3c's particle material as the Week 4 direction and the proposed mapping of scene states to Week 3 stances (p1-s3 REVIEW).
 2. Credit ceiling: about 500 for the rest of P1 (owner, 2026-10-03). Each run is still quoted and approved individually.
