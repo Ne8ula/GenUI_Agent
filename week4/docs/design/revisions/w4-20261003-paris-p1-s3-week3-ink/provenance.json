@@ -1,6 +1,6 @@
 {
   "templateOnly": false,
-  "status": "S3a-S3d inspected; S3d provisional P1 master; P1 incomplete; UI blocked",
+  "status": "S3a-S3d, C2-C4 inspected; S3d provisional master; C2-C4 provisional construction keyframes; no video yet; UI blocked",
   "changeId": "w4-20261003-paris-p1-s3-week3-ink",
   "phase": "Week 4 visual-gated, P1 arrival packet: aesthetic direction",
   "sourceRevision": "97f3dca",
@@ -176,12 +176,129 @@
           "license": "Generated development reference; not an adopted runtime asset."
         }
       ]
+    },
+    {
+      "jobId": "C2",
+      "predictionId": "806933aa-46ec-49cc-a442-f350d5ec9fc7",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "S3d output (img-04)"
+        ],
+        "prompt": "S3d redrawn as a pure transparent perspective wireframe on blank paper: one-point scaffold, paving grid, see-through facade boxes, overshooting guide lines, near objects as ellipses; near lines crimson, far lines graphite; no particles. Construction style described in text from two owner-supplied construction references (not uploaded). Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 471.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-04, C2 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-05-c2-survey-wireframe.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "e4e8c5c6174b9aa4dc3ca19f8cc175c0d5384373b1d2755ac1695a3f981dc227",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "C3",
+      "predictionId": "ef3f14a8-90de-4fca-9adc-76313474a773",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "S3d output (img-04)"
+        ],
+        "prompt": "S3d halfway built: wireframe scaffold everywhere; particles condensing near-first along construction lines; walkers forming as speck clouds; street and facades still lines. Construction style described in text from two owner-supplied construction references (not uploaded). Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 462.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-04, C3 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-06-c3-massing-condense.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "9b10594eafe4f87b28b24758b6af0fcfa06cfcc2d009819b3485cc7f00167364",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "C4",
+      "predictionId": "4e8c628b-3385-49cf-852c-a041a53b82db",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "S3d output (img-04)"
+        ],
+        "prompt": "S3d nearly built: only the far street end, roof and upper facades partly graphite wireframe; last lines fading; hairline boxes on cup and ashtray. Construction style described in text from two owner-supplied construction references (not uploaded). Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 453.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-04, C4 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-07-c4-nearly-arrived.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "725cabc0143ccf9063ebe494540275d54c7879ad758a0a5b0df8188cad97a58b",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
     }
   ],
   "creditLedger": {
     "ceiling": "about 500 for the rest of P1 (owner, 2026-10-03)",
-    "usedUnderCeilingIncludingThisRevision": 72,
-    "remainingWorkspaceCreditsAfterLastSubmit": 480.8
+    "usedUnderCeilingIncludingThisRevision": 99,
+    "remainingWorkspaceCreditsAfterLastSubmit": 453.8
   },
   "selectedAssets": [
     {
@@ -191,6 +308,18 @@
     {
       "path": "references/images/img-03-s3c-particle-memory.png",
       "selection": "material/bokeh reference"
+    },
+    {
+      "path": "references/images/img-05-c2-survey-wireframe.png",
+      "selection": "provisional C2 keyframe"
+    },
+    {
+      "path": "references/images/img-06-c3-massing-condense.png",
+      "selection": "provisional C3 keyframe"
+    },
+    {
+      "path": "references/images/img-07-c4-nearly-arrived.png",
+      "selection": "provisional C4 keyframe"
     }
   ],
   "contactSheet": "references/contact-sheet.png",
@@ -214,5 +343,53 @@
     "status": "pending",
     "date": null,
     "feedback": null
+  },
+  "ownerConstructionReferences": {
+    "note": "Two owner-supplied construction references shared in chat on 2026-10-04 (dense one-point perspective wireframe street with overshooting scaffold lines and a figure inside the grid; loose low-angle architectural construction sketch). Creator and rights unknown: not committed, not uploaded; described in text only (owner choice).",
+    "files": [
+      {
+        "name": "1.webp",
+        "size": "736x919",
+        "sha256": "f3b571618edff2eb5fd06895f07510762081d79b895ed92b62f44e1ee65366d6"
+      },
+      {
+        "name": "2.webp",
+        "size": "1000x562",
+        "sha256": "9f451b43e319174fff362f894bc8ae9456901653c90c2df50df13b6a23def5b9"
+      }
+    ]
+  },
+  "videoDiscovery": {
+    "date": "2026-10-04",
+    "candidates": [
+      {
+        "label": "Kling First & Last Frame",
+        "id": "85caf705-a459-48dd-96cd-953a04b4c08e",
+        "modelId": "kling",
+        "costEstimate": 55,
+        "options": "O1 Pro / O1 Standard / 2.5 Turbo Pro; 5 or 10 s"
+      },
+      {
+        "label": "Kling 3",
+        "id": "f3220409-436a-4585-b3d3-adca16f4db19",
+        "costEstimate": 82
+      },
+      {
+        "label": "Kling Video",
+        "id": "wnfmbl8VwUCfX2a1XcdfDlone",
+        "costEstimate": 35
+      },
+      {
+        "label": "Veo 3.1 Image to Video",
+        "id": "fg6e8647-d90a-4bad-a845-69fdc102a14j",
+        "costEstimate": 90
+      }
+    ],
+    "quotes": [
+      {
+        "job": "V1 C2->C3, O1 Pro, 10 s",
+        "quotedCost": 109
+      }
+    ]
   }
 }

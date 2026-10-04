@@ -39,8 +39,11 @@ The 95 TS / 62 Rust numbers in the earlier hand-back were from checkpoint `1206a
 | S3b remembered ink | same inputs | `c3b2a13c-11bd-43a9-ab7d-d1e8cb489c13` | 9 | Owner | Completed, inspected; not selected |
 | S3c particle memory | new image; Week 3 references primary, S2d as loose layout | `31d01533-3f3b-4869-b87f-1fcfd5ffbc69` | 9 | Owner | Completed, inspected; aesthetic direction found |
 | S3d refined | edit of S3c | `6eab4405-ee75-43d9-8a72-48ef784baf99` | 9 | Owner | Completed, inspected; **provisional P1 master** |
+| C2 survey | edit of S3d; owner's construction references described in text | `806933aa-46ec-49cc-a442-f350d5ec9fc7` | 9 | Owner | Completed, inspected; provisional keyframe |
+| C3 massing | edit of S3d | `ef3f14a8-90de-4fca-9adc-76313474a773` | 9 | Owner | Completed, inspected; provisional keyframe |
+| C4 nearly arrived | edit of S3d | `4e8c628b-3385-49cf-852c-a041a53b82db` | 9 | Owner | Completed, inspected; provisional keyframe |
 
-Packets: [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 72 are used (S2a–d, S3a–d). Workspace balance after the last submit: 480.8. No other job has been quoted or run.
+Packets: [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 99 are used (S2a–d, S3a–d, C2–C4). Workspace balance after the last submit: 453.8. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109). No other job has been quoted or run.
 
 ## 4. Status
 

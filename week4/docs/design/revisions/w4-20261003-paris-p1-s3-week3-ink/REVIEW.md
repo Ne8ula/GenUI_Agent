@@ -10,6 +10,13 @@
 | [img-02-s3b-remembered-ink.png](references/images/img-02-s3b-remembered-ink.png) | S3b, edit of S2d | Not selected: as S3a, plus indigo/teal currents and a hairline box on the cup | Pending |
 | [img-03-s3c-particle-memory.png](references/images/img-03-s3c-particle-memory.png) | S3c, new image from the Week 3 references | Aesthetic direction; material and near-bokeh reference | Pending |
 | [img-04-s3d-refined-particle.png](references/images/img-04-s3d-refined-particle.png) | S3d, edit of S3c | **Provisional P1 master** | Pending |
+| [img-05-c2-survey-wireframe.png](references/images/img-05-c2-survey-wireframe.png) | C2 survey, edit of S3d | **Provisional construction keyframe** | Pending |
+| [img-06-c3-massing-condense.png](references/images/img-06-c3-massing-condense.png) | C3 massing, edit of S3d | **Provisional construction keyframe** | Pending |
+| [img-07-c4-nearly-arrived.png](references/images/img-07-c4-nearly-arrived.png) | C4 nearly arrived, edit of S3d | **Provisional construction keyframe** | Pending |
+
+Construction sequence, C2 → C3 → C4 → S3d: ![Construction strip](references/construction-strip.png)
+
+No video exists yet. Motion is **not** reviewed; these stills do not clear any motion or UI pass.
 
 All images are 2752×1536. Run IDs, approvals and costs are in [provenance.json](provenance.json).
 
@@ -62,6 +69,35 @@ Both reference images were passed as their existing Weave outputs. Nothing was u
   3. The mansard at the street end is the one denser, harder-edged far element. It sits centrally below the awning, so it is foreground, not far-field wallpaper.
   4. With the large near bokeh gone, the near-defocus depth cue is weaker. The renderer can restore a few defocused near particles.
   5. The rattan weave is still a regular diamond grid.
+
+## Construction keyframes (C2–C4)
+
+The owner supplied two construction references in chat (2026-10-04):
+- **A:** a dense one-point-perspective street drawn as a transparent wireframe. Full-frame scaffold lines run past the forms, there is a paving grid, and a figure stands inside the grid.
+- **B:** a loose low-angle architectural sketch with overshooting lines, braced volumes and uneven finish.
+
+Their creators and rights are unknown. By owner choice they were not committed or uploaded; their style was described in text. Hashes are in provenance.
+
+**C2 survey.** The scene is a pure wireframe: near construction in crimson (EVA), far construction in graphite.
+- The awning scallops are built with radial construction arcs.
+- The table is an ellipse with a perspective grid; the cup and ashtray are see-through stacked ellipses; the chair is a lattice.
+- The paving grid runs to the vanishing point. The façades are see-through, with shutters and balcony rails; the mansard closes the street.
+- The walkers are wireframe figures. The woman is now seen **from behind**, which fixes the facing issue.
+- Steam and smoke are thin curves.
+- **Gap against the references:** the lines are cleaner and more ruled, with fewer full-frame overshooting guide lines than reference A. It reads closer to tidy CAD than to a quick confident sketch.
+
+**C3 massing.** Particles condense near-first: the table, chair, cup and ashtray are dense, and the walkers are speck clouds. Notably, the awning fills from the left while its right half is still outline scallops, a construction sweep worth keeping. The façades and paving are still lines; the lamp post is partly teal specks.
+
+**C4 nearly arrived.** Close to S3d. The façades are stippled with faint guide lines remaining, and a thin hairline box sits on the cup (the Week 3 tracking-box language).
+
+**Registration.** S3d, C2, C3 and C4 keep the same viewpoint and anchors closely, so they can serve as native timeline keyframes:
+
+| Keyframe | Planning phase | Window |
+| --- | --- | --- |
+| C2 | C, survey | 12–22 s |
+| C3 | D/E, massing and wash | 22–44 s |
+| C4 | F, inhabiting | 44–54 s |
+| S3d | G, arrival | 54 s onward |
 
 ## Proposed rule: scene states borrow Week 3 stances
 
