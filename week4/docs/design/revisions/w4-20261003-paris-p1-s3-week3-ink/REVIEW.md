@@ -1,6 +1,6 @@
 # w4-20261003-paris-p1-s3-week3-ink: the café in Week 3's emotional material
 
-**Status:** three candidates generated and inspected. **S3c is the provisional aesthetic direction**, selected by the coordinating agent; owner review is pending. P1 is incomplete (no construction keyframes or video studies yet), so UI and renderer work stay blocked.
+**Status:** four candidates generated and inspected. **S3d is the provisional P1 master and registration base**, refining the S3c direction; selected by the coordinating agent; owner review is pending. P1 is incomplete (no construction keyframes or video studies yet), so UI and renderer work stay blocked.
 
 ![Contact sheet](references/contact-sheet.png)
 
@@ -8,7 +8,8 @@
 | --- | --- | --- | --- |
 | [img-01-s3a-arrived-ink.png](references/images/img-01-s3a-arrived-ink.png) | S3a, edit of S2d | Not selected: stipple fill, but S2d's outlines survive | Pending |
 | [img-02-s3b-remembered-ink.png](references/images/img-02-s3b-remembered-ink.png) | S3b, edit of S2d | Not selected: as S3a, plus indigo/teal currents and a hairline box on the cup | Pending |
-| [img-03-s3c-particle-memory.png](references/images/img-03-s3c-particle-memory.png) | S3c, new image from the Week 3 references | **Provisional aesthetic direction** | Pending |
+| [img-03-s3c-particle-memory.png](references/images/img-03-s3c-particle-memory.png) | S3c, new image from the Week 3 references | Aesthetic direction; material and near-bokeh reference | Pending |
+| [img-04-s3d-refined-particle.png](references/images/img-04-s3d-refined-particle.png) | S3d, edit of S3c | **Provisional P1 master** | Pending |
 
 All images are 2752×1536. Run IDs, approvals and costs are in [provenance.json](provenance.json).
 
@@ -47,6 +48,20 @@ Both reference images were passed as their existing Weave outputs. Nothing was u
 - **The ashtray is a thin black dotted ring** and the cigarette is barely visible.
 - **The rattan weave is a regular diamond grid**, which looks like a pattern rather than woven cane.
 - **The cup moved** to x ≈ 71%, y ≈ 83% and the ashtray to x ≈ 33%, y ≈ 87%, so registration with S2d is loose.
+
+**S3d** (an edit of S3c; full frame plus a full-resolution crop of the walkers and the street end):
+- **Kept:** S3c's particle-only material and stance palette: the crimson awning, the apricot table, the plum cup with its gold steam, the teal lamp post.
+- **Fixed:**
+  - Bokeh is down to a few small specks.
+  - The street now reads as Paris: grey stippled shutters, wrought-iron balcony rails and cornices on both sides, and a zinc mansard with chimney pots closing the street. Everything stays airy and fades to paper.
+  - The ashtray reads as heavy glass, with an unbranded cigarette on its lip, an ember and a smoke thread.
+  - The woman wears a belted, broad-shouldered trench coat and is the nearest walker. A teen in headphones and a man with a plain newspaper are further away.
+- **Remaining issues:**
+  1. The teen and the man are at the **same** depth, and the man is beside the lamp post rather than behind it. Native placement still owns walker depth.
+  2. The woman walks **toward** the viewer. Her face is an unreadable speck mass, so she doesn't look at the camera, but the brief prefers people turned away.
+  3. The mansard at the street end is the one denser, harder-edged far element. It sits centrally below the awning, so it is foreground, not far-field wallpaper.
+  4. With the large near bokeh gone, the near-defocus depth cue is weaker. The renderer can restore a few defocused near particles.
+  5. The rattan weave is still a regular diamond grid.
 
 ## Proposed rule: scene states borrow Week 3 stances
 

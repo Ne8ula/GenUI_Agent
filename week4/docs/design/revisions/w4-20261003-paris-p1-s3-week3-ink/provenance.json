@@ -1,6 +1,6 @@
 {
   "templateOnly": false,
-  "status": "S3a-S3c inspected; S3c provisional aesthetic direction; P1 incomplete; UI blocked",
+  "status": "S3a-S3d inspected; S3d provisional P1 master; P1 incomplete; UI blocked",
   "changeId": "w4-20261003-paris-p1-s3-week3-ink",
   "phase": "Week 4 visual-gated, P1 arrival packet: aesthetic direction",
   "sourceRevision": "97f3dca",
@@ -137,26 +137,65 @@
           "license": "Generated development reference; not an adopted runtime asset."
         }
       ]
+    },
+    {
+      "jobId": "S3d",
+      "predictionId": "6eab4405-ee75-43d9-8a72-48ef784baf99",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none: inputs are Weave-hosted outputs of this account (Week 4 S2d; Week 3 predictions 6ba91fc9 ink state board and b8a2da16 joy ink, both owner-approved in week3/docs/design/revisions/w3-cloud-20260929-b-p1); URLs not recorded",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "S3c output (img-03)"
+        ],
+        "prompt": "Edit S3c keeping its particle material and palette: only a handful of bokeh at the lower corners; faint particle drifts of shutters, balcony rails, cornices and a zinc roofline with chimneys; three walkers at clear depths (trench coat near, newspaper man behind the lamp post, headphones teen far), turned away; a clear heavy-glass ashtray with an unbranded cigarette and smoke. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 480.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-04, S3d 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-04-s3d-refined-particle.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "b26b3fdbfca0cc02cc64956cf27c5183cd6f2a1e67f47ee24cbecaad7a23202b",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
     }
   ],
   "creditLedger": {
     "ceiling": "about 500 for the rest of P1 (owner, 2026-10-03)",
-    "usedUnderCeilingIncludingThisRevision": 63,
-    "remainingWorkspaceCreditsAfterLastSubmit": 489.8
+    "usedUnderCeilingIncludingThisRevision": 72,
+    "remainingWorkspaceCreditsAfterLastSubmit": 480.8
   },
   "selectedAssets": [
     {
-      "path": "references/images/img-03-s3c-particle-memory.png",
-      "selection": "provisional aesthetic direction (agent); owner review pending"
+      "path": "references/images/img-04-s3d-refined-particle.png",
+      "selection": "provisional P1 master and registration base (agent); owner review pending"
     },
     {
-      "path": "../w4-20261003-paris-p1-s1/references/images/img-05-s2d-combined.png",
-      "selection": "layout reference only"
+      "path": "references/images/img-03-s3c-particle-memory.png",
+      "selection": "material/bokeh reference"
     }
   ],
   "contactSheet": "references/contact-sheet.png",
   "inspection": {
-    "status": "performed for S3a, S3b, S3c",
+    "status": "performed for S3a-S3d",
     "inspector": "Cloud main session (coordinator)",
     "method": "Full frames plus full-resolution crops (street/walkers; cup/table)",
     "observations": "See REVIEW.md",
