@@ -1,6 +1,6 @@
 {
   "templateOnly": false,
-  "status": "H1 provisional arrival master; G1-G3 provisional glitch-construction keyframes (supersede C2-C4 for construction); no video yet; UI blocked",
+  "status": "H1 provisional arrival master; G1-G3 keyframes; V1/V2 motion studies inspected (sampled); UI blocked pending owner review and remaining P1 items",
   "changeId": "w4-20261003-paris-p1-s3-week3-ink",
   "phase": "Week 4 visual-gated, P1 arrival packet: aesthetic direction",
   "sourceRevision": "97f3dca",
@@ -491,12 +491,90 @@
           "license": "Generated development reference; not an adopted runtime asset."
         }
       ]
+    },
+    {
+      "jobId": "V1",
+      "predictionId": "64661ac0-feb5-4766-a538-7da732b1c153",
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "modelId": "kling (Kling First & Last Frame, O1 Pro)",
+      "inputs": {
+        "image": "G1 output (img-10)",
+        "tail_image_url": "G2 output (img-11)",
+        "prompt": "Wireframe glitching into particle tiles, nearest first; sparse RGB glitch boxes; tracking boxes; locked camera; no strobing. Full text in the Cloud session record.",
+        "negative_prompt": "camera movement, zoom, pan, cuts, flashing/strobing, text, numbers, logos, watermark, hexagons, HUD, people turning to face the camera",
+        "model": "O1 Pro",
+        "duration": 5,
+        "cfg_scale": 0.5
+      },
+      "uploads": "none (Weave-hosted outputs passed by URL)",
+      "outputCount": 1,
+      "quotedCost": 55,
+      "costUnit": "Weave workspace credits",
+      "costApprovalRef": "Owner structured multi-select Approve, 2026-10-04, V1 55 credits",
+      "reportedCost": 55,
+      "remainingCreditsAfterSubmit": 353.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/videos/vid-01-v1-g1-to-g2-glitch.mp4",
+          "kind": "video/mp4 (H.264)",
+          "width": 1928,
+          "height": 1072,
+          "fps": 24,
+          "frames": 122,
+          "durationSeconds": 5.083,
+          "sha256": "dd4fcca6c769f7a21a286d843efdc1a2a4f589f6c6bfaa5b737e6403864138c5",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not a runtime clip."
+        }
+      ]
+    },
+    {
+      "jobId": "V2",
+      "predictionId": "9625c40c-5f18-488b-9a8b-8107380b11b0",
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "modelId": "kling (Kling First & Last Frame, O1 Pro)",
+      "inputs": {
+        "image": "G2 output (img-11)",
+        "tail_image_url": "G3 output (img-12)",
+        "prompt": "Tiles locking in and settling; canopy fills as speck gradient dissolving to paper; walkers become whole and keep walking; few glitch boxes fade; no strobing. Full text in the Cloud session record.",
+        "negative_prompt": "camera movement, zoom, pan, cuts, flashing/strobing, text, numbers, logos, watermark, hexagons, HUD, people turning to face the camera",
+        "model": "O1 Pro",
+        "duration": 5,
+        "cfg_scale": 0.5
+      },
+      "uploads": "none (Weave-hosted outputs passed by URL)",
+      "outputCount": 1,
+      "quotedCost": 55,
+      "costUnit": "Weave workspace credits",
+      "costApprovalRef": "Owner structured multi-select Approve, 2026-10-04, V2 55 credits",
+      "reportedCost": 55,
+      "remainingCreditsAfterSubmit": 298.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/videos/vid-02-v2-g2-to-g3-settle.mp4",
+          "kind": "video/mp4 (H.264)",
+          "width": 1928,
+          "height": 1072,
+          "fps": 24,
+          "frames": 122,
+          "durationSeconds": 5.083,
+          "sha256": "7518abc0d51c84dfd955c23befc2b7891c22dc79e660e1626efa3e5e18352e99",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not a runtime clip."
+        }
+      ]
     }
   ],
   "creditLedger": {
     "ceiling": "about 500 for the rest of P1 (owner, 2026-10-03)",
-    "usedUnderCeilingIncludingThisRevision": 144,
-    "remainingWorkspaceCreditsAfterLastSubmit": 408.8
+    "usedUnderCeilingIncludingThisRevision": 254,
+    "remainingWorkspaceCreditsAfterLastSubmit": 298.8
   },
   "selectedAssets": [
     {
@@ -610,5 +688,27 @@
       "text": "Just remove the hem, also ensure the creation process is more wireframe and box overlays glitching into creation. Like the Animus from Assassins Creed.",
       "response": "H1 (hem removed) and G1-G3 glitch construction keyframes in EVA Week 3 glitch-box vocabulary; brief prohibitions on Animus HUD/hexagons/glyph rain/numbers kept"
     }
-  ]
+  ],
+  "motionInspection": {
+    "method": "Frames sampled at 4 fps into labelled contact sheets (references/videos/vid-0N-frames.png) plus per-frame luma-difference (ffmpeg signalstats YDIF at 480 px over all 122 frames). Not watched in real time by the agent; audio not inspected (none requested).",
+    "v1": {
+      "ydif": {
+        "mean": 0.88,
+        "median": 0.81,
+        "p95": 1.97,
+        "max": 2.39,
+        "maxAtSeconds": 1.96
+      }
+    },
+    "v2": {
+      "ydif": {
+        "mean": 0.59,
+        "median": 0.56,
+        "p95": 1.04,
+        "max": 1.22,
+        "maxAtSeconds": 1.67
+      }
+    },
+    "limitation": "Perceived pace and smoothness need the owner to watch the clips; sampling can miss sub-250 ms events, but YDIF shows no full-frame flash."
+  }
 }

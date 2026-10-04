@@ -65,5 +65,6 @@ Report: [VISUAL_CLOUD_REPORT.md](VISUAL_CLOUD_REPORT.md). Mode `visual-gated`, p
 | C2–C4 construction keyframes | passed | 3 × 9 credits, approved; owner construction references used as text only |
 | Awning top edge (owner: scallops read as spheres) | passed | T1 underside (too large), then H1 with the hem removed (owner-confirmed) |
 | Glitch construction (owner: more wireframe + glitching boxes, Animus-like) | passed | G1–G3, 3 × 9, approved; EVA Week 3 glitch vocabulary; no Animus HUD |
-| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 144 used) |
+| V1/V2 construction motion studies | passed (sampled) | 2 × 55, approved; 4 fps samples and per-frame luma difference; not watched in real time |
+| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 254 used) |
 | UI/renderer passes A–D | blocked | No complete inspected packet |

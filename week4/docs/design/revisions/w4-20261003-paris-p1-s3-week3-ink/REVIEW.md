@@ -47,6 +47,42 @@ Glitch construction sequence, G1 → G2 → G3 → H1: ![Glitch construction](re
 
 **G3, settling.** It is H1 with four or five glitch boxes near the roof and far street, faint guide lines converging, and a hairline on the cup rim. It works as the last beat before arrival.
 
+### Motion studies V1 and V2
+
+| Video | Job | Selection |
+| --- | --- | --- |
+| [vid-01-v1-g1-to-g2-glitch.mp4](references/videos/vid-01-v1-g1-to-g2-glitch.mp4), [frames](references/videos/vid-01-frames.png) | V1, G1 → G2, Kling First & Last Frame (O1 Pro), 5.08 s, 24 fps, 1928×1072 | **Provisional motion reference** (order and glitch grammar) |
+| [vid-02-v2-g2-to-g3-settle.mp4](references/videos/vid-02-v2-g2-to-g3-settle.mp4), [frames](references/videos/vid-02-frames.png) | V2, G2 → G3, same model and settings | **Provisional motion reference** (settling) |
+
+**How they were inspected:**
+- Frames sampled at 4 fps into labelled sheets.
+- The average frame-to-frame brightness change measured over all 122 frames (`ffmpeg signalstats`, on a 0–255 scale): V1 mean 0.88, max 2.39 at 1.96 s; V2 mean 0.59, max 1.22 at 1.67 s.
+- The agent did not watch the clips in real time, so perceived pace and smoothness still need the owner's viewing. No full-frame flash appears in the measurement.
+
+**V1 (wireframe → tiles):**
+- **0–1 s:** wireframe holds while a few small RGB scanline glitch boxes flicker and drift. This is the right amount of glitch.
+- **1.25–1.75 s:** the cup resolves first, wireframe to particles with a cyan colour-split edge, and its steam turns gold.
+- **1.75–2.5 s:** the table fills with apricot particles from the right, and the ashtray resolves.
+- **2.75 s onward:** the woman turns solid, then splits half wireframe, half figure. Particle tiles pop onto the façades.
+
+Nearest-first order holds. **Problems:**
+1. The canopy fills as a torn, flat red sheet sweeping in from the top left, the single biggest movement on screen. It should build from specks or tiles, not as a paint fill.
+2. The chair loses its crimson wireframe and becomes faint grey.
+3. Much happens in 5 s. The real construction phases run about 20 s, so the renderer stretches this pacing about four times.
+
+**V2 (tiles → settled):**
+- **0–1.25 s:** the flat red canopy has white rectangular blocks punching out of it, a tile-glitch idea worth keeping. The chair resolves to apricot particles at about 1 s.
+- **1.5–2.25 s:** the canopy dissolves into a crimson speck gradient that fades downward. This is the right end state. The walkers become whole particle figures and walk; their positions change between frames.
+- **2.5–4.75 s:** small RGB glitch boxes **increase** near the far street and roof, six to ten at once, before a few fade. That is busier than "the last few"; native timing should taper them.
+- **Throughout:** the woman walks toward the viewer. Her face is unreadable specks, but the brief prefers people turned away.
+
+**Motion rules for the renderer (provisional):**
+- **Order:** near-first: cup, then table and ashtray, then chair, then the near walker, then façade tiles, then the far street and roof.
+- **Glitch boxes:** small and short-lived, roughly 0.2–0.5 s each, with no full-frame flashes.
+- **Tiles:** tiles land slightly offset and slide into register with a cyan/magenta colour-split edge.
+- **Canopy:** builds from specks or tiles; never a flat red sheet.
+- **Reduced motion:** cut between G1, G2, G3 and H1 as still crossfades, with no glitch boxes.
+
 **Status of C2–C4.** These earlier keyframes are superseded for construction by G1–G3, which follow the owner's newer direction. They are retained as rejected or historical candidates, and they still carry the scallops.
 
 Earlier construction sequence, C2 → C3 → C4 → S3d (superseded): ![Construction strip](references/construction-strip.png)
