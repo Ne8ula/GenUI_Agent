@@ -53,9 +53,11 @@ The 95 TS / 62 Rust numbers in the earlier hand-back were from checkpoint `1206a
 | R1 Paris recolour | edit of H1 | `950e5e30-0410-42e9-b9ca-d0f7aa64630a` | 9 | Owner | Completed, inspected; **provisional arrival master** |
 | K1 early glitch-in | edit of H1 | `bc9713de-0c76-4a87-9ba7-541c336ccb5c` | 9 | Owner | Completed, inspected; glitch grammar reference, style drift |
 | K2 two-thirds glitch-in | edit of H1 | `7980aa3e-266e-4328-acce-55acf55c5f06` | 9 | Owner | Completed, inspected; **owner-chosen look (painterly, shop awning)** |
-| V4 K1→K2 glitch-in video | Kling First & Last Frame, O1 Pro, 10 s | `1eef5b9f-4c5e-44d6-ae22-790a4710f06d` | 109 | Owner (K1→R1 version superseded, not run) | Completed; recurring tears and flicker met; box density improved but not met; ends mid-glitch |
+| V4 K1→K2 glitch-in video | Kling First & Last Frame, O1 Pro, 10 s | `1eef5b9f-4c5e-44d6-ae22-790a4710f06d` | 109 | Owner (K1→R1 version superseded, not run) | Completed; strips later rejected by the owner (particles converging instead) |
+| P1 settled painterly | edit of K2 | `cf5f9adf-8d07-4761-8e7e-c1537d16d6ae` | 9 | Owner (beyond ~500, acknowledged) | Completed, inspected; **provisional arrival master** |
+| A0 particles converging | edit of K2 | `44be3fb4-80b9-4908-b692-91887900d3c7` | 9 | Owner (beyond ~500, acknowledged) | Completed, inspected; provisional convergence keyframe |
 
-Packets: [p1-glitch-paris (R1, K1, K2, V4)](docs/design/revisions/w4-20261005-paris-p1-glitch-paris/REVIEW.md), [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4, T1, H1, G1–G3, V1–V3)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, **499 are used** (S2a–d, S3a–d, C2–C4, T1, H1, G1–G3, V1–V4, R1, K1, K2): the ceiling is effectively reached. Workspace balance after the last submit: 53.8. A settled painterly end frame (P1, 9) is quoted, not run. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first).) V1 and V2 then ran at 5 s, 55 each. No other job has been quoted or run.
+Packets: [p1-converge (P1, A0)](docs/design/revisions/w4-20261005-paris-p1-converge/REVIEW.md), [p1-glitch-paris (R1, K1, K2, V4)](docs/design/revisions/w4-20261005-paris-p1-glitch-paris/REVIEW.md), [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4, T1, H1, G1–G3, V1–V3)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, **517 are used** (S2a–d, S3a–d, C2–C4, T1, H1, G1–G3, V1–V4, R1, K1, K2, P1, A0), past the ~500 allowance with owner acknowledgement. Workspace balance after the last submit: 35.8. V5 (A0→P1, 10 s, 109) and E0 (earlier start frame, 9) are quoted, not run; the owner will top up credits for the video. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first).) V1 and V2 then ran at 5 s, 55 each. No other job has been quoted or run.
 
 ## 4. Status
 
@@ -66,7 +68,7 @@ Packets: [p1-glitch-paris (R1, K1, K2, V4)](docs/design/revisions/w4-20261005-pa
 
 ## 5. Pending owner decisions
 
-1. Review V4: is this glitch-in (recurring tears, state flicker, linked X-boxes, Paris painterly) the construction to build?
+1. Owner (2026-10-05): no strips; particles converging with box and glitch overlays as accents. Review P1/A0, and approve V5 (and optionally E0) after the top-up.
 2. The ~500 P1 allowance is used (499). A new budget is needed for a settled painterly end frame (9) and any remaining P1 references (walker, steam and smoke studies, layer sheets).
 3. Approve starting the native renderer pass against the selected packet (with a native box and tear layer), or continue references first.
 
