@@ -1,6 +1,6 @@
 {
   "templateOnly": false,
-  "status": "E0, A0, P1 inspected; V5 E0->P1 quoted (109), awaiting top-up/approval; UI blocked",
+  "status": "E0, A0, P1, V5 inspected; provisional convergence packet complete for owner review; UI blocked pending owner acceptance of the packet",
   "changeId": "w4-20261005-paris-p1-converge",
   "phase": "Week 4 visual-gated, P1 arrival: particle-convergence construction",
   "sourceRevision": "aba0de2",
@@ -128,26 +128,58 @@
           "license": "Generated development reference; not an adopted runtime asset."
         }
       ]
+    },
+    {
+      "jobId": "V5",
+      "predictionId": "fff3bbc2-fd52-4ced-9b44-df575c156ade",
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "modelId": "kling (Kling First & Last Frame, O1 Pro)",
+      "inputs": {
+        "image": "E0 (img-03)",
+        "tail_image_url": "P1 (img-01)",
+        "prompt": "Locked camera; particles in the scene colours stream in curving trails and condense nearest first; wireframe fades as filled; accents only: a few hairline X-boxes linked by lines and 1-2 small glitch boxes blink and fade; calm complete end; no strips, no flashes. Full text in the Cloud session record.",
+        "negative_prompt": "camera movement, zoom, pan, cuts, horizontal strips, smear bands, torn bands, flashing, neon colours, text, numbers, labels, logos, watermark, hexagons, game HUD, people facing the camera",
+        "model": "O1 Pro",
+        "duration": 10,
+        "cfg_scale": 0.5
+      },
+      "uploads": "none",
+      "outputCount": 1,
+      "quotedCost": 109,
+      "costUnit": "Weave workspace credits",
+      "costApprovalRef": "Owner structured Approve after top-up, 2026-10-05, V5 109 credits",
+      "reportedCost": 109,
+      "remainingCreditsAfterSubmit": 3917.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/videos/vid-01-v5-e0-to-p1-converge.mp4",
+          "kind": "video/mp4 (H.264)",
+          "width": 1928,
+          "height": 1072,
+          "fps": 24,
+          "frames": 242,
+          "durationSeconds": 10.083,
+          "sha256": "f1661c82a908b65b5d0dfdd8b80a1e59ab821c80e55c07ee9435ed7afb845d45",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not a runtime clip."
+        }
+      ]
     }
   ],
   "quotes": [
     {
-      "job": "V5 E0->P1 converging, Kling First & Last Frame O1 Pro, 10 s",
-      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
-      "quotedCost": 109,
-      "status": "quoted; awaiting owner top-up and approval"
-    },
-    {
-      "job": "V5 A0->P1 (superseded by E0->P1 at owner choice)",
+      "job": "V5 A0->P1 (superseded by E0->P1)",
       "quotedCost": 109,
       "status": "not run"
     }
   ],
   "creditLedger": {
-    "ceiling": "about 500 (owner, 2026-10-03), exceeded with owner acknowledgement",
-    "usedTotal": 526,
-    "remainingWorkspaceCreditsAfterLastSubmit": 26.8,
-    "note": "Owner said they will top up for the 10 s video"
+    "ceiling": "about 500 (owner, 2026-10-03); exceeded with owner acknowledgement; owner topped up workspace credits on 2026-10-05",
+    "usedTotal": 635,
+    "remainingWorkspaceCreditsAfterLastSubmit": 3917.8
   },
   "selectedAssets": [
     {
@@ -161,6 +193,10 @@
     {
       "path": "references/images/img-02-a0-particles-converging.png",
       "selection": "provisional convergence keyframe (agent); owner pending"
+    },
+    {
+      "path": "references/videos/vid-01-v5-e0-to-p1-converge.mp4",
+      "selection": "provisional convergence motion reference (agent); owner pending"
     }
   ],
   "contactSheet": "references/contact-sheet.png",
@@ -184,5 +220,17 @@
     "status": "pending",
     "date": null,
     "feedback": null
+  },
+  "motionInspection": {
+    "method": "3 fps contact sheet over 10 s, 12 fps sheet for 2-3 s, per-frame luma difference over all 242 frames; not watched in real time",
+    "v5": {
+      "ydif": {
+        "mean": 0.38,
+        "median": 0.29,
+        "p95": 0.86,
+        "max": 1.76,
+        "maxAtSeconds": 0.08
+      }
+    }
   }
 }

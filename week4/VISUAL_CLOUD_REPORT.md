@@ -57,8 +57,9 @@ The 95 TS / 62 Rust numbers in the earlier hand-back were from checkpoint `1206a
 | P1 settled painterly | edit of K2 | `cf5f9adf-8d07-4761-8e7e-c1537d16d6ae` | 9 | Owner (beyond ~500, acknowledged) | Completed, inspected; **provisional arrival master** |
 | A0 particles converging | edit of K2 | `44be3fb4-80b9-4908-b692-91887900d3c7` | 9 | Owner (beyond ~500, acknowledged) | Completed, inspected; provisional convergence keyframe |
 | E0 early converging | edit of A0 | `0ed6f1b8-27f1-4a89-bed0-542f657b5e93` | 9 | Owner | Completed, inspected; provisional start frame |
+| V5 E0→P1 convergence video | Kling First & Last Frame, O1 Pro, 10 s | `fff3bbc2-fd52-4ced-9b44-df575c156ade` | 109 | Owner (after top-up) | Completed; particles converge (near field), overlays as accents, no strips; far field paints in as a wash |
 
-Packets: [p1-converge (E0, A0, P1)](docs/design/revisions/w4-20261005-paris-p1-converge/REVIEW.md), [p1-glitch-paris (R1, K1, K2, V4)](docs/design/revisions/w4-20261005-paris-p1-glitch-paris/REVIEW.md), [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4, T1, H1, G1–G3, V1–V3)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, **526 are used** (S2a–d, S3a–d, C2–C4, T1, H1, G1–G3, V1–V4, R1, K1, K2, P1, A0, E0), past the ~500 allowance with owner acknowledgement. Workspace balance after the last submit: 26.8. V5 (E0→P1, 10 s) is quoted at 109, awaiting the owner's top-up and approval. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first).) V1 and V2 then ran at 5 s, 55 each. No other job has been quoted or run.
+Packets: [p1-converge (E0, A0, P1, V5)](docs/design/revisions/w4-20261005-paris-p1-converge/REVIEW.md), [p1-glitch-paris (R1, K1, K2, V4)](docs/design/revisions/w4-20261005-paris-p1-glitch-paris/REVIEW.md), [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4, T1, H1, G1–G3, V1–V3)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, **635 are used** (S2a–d, S3a–d, C2–C4, T1, H1, G1–G3, V1–V5, R1, K1, K2, P1, A0, E0), past the ~500 allowance with owner acknowledgement. The owner topped up workspace credits on 2026-10-05; the balance after the last submit is 3917.8. No new standing budget has been set; each run is still quoted and approved. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first).) V1 and V2 then ran at 5 s, 55 each. No other job has been quoted or run.
 
 ## 4. Status
 
@@ -69,8 +70,8 @@ Packets: [p1-converge (E0, A0, P1)](docs/design/revisions/w4-20261005-paris-p1-c
 
 ## 5. Pending owner decisions
 
-1. Owner (2026-10-05): no strips; particles converging with box and glitch overlays as accents. Review P1/A0, and approve V5 (and optionally E0) after the top-up.
-2. The ~500 P1 allowance is used (499). A new budget is needed for a settled painterly end frame (9) and any remaining P1 references (walker, steam and smoke studies, layer sheets).
-3. Approve starting the native renderer pass against the selected packet (with a native box and tear layer), or continue references first.
+1. Owner (2026-10-05): no strips; particles converging with box and glitch overlays as accents. Review E0 → A0 → P1 and V5; accept or redirect this packet as the reference for the renderer pass.
+2. Set a budget for any remaining P1 references (walker, steam and smoke studies, layer sheets). The ~500 allowance is exceeded (635), and each run is still quoted and approved.
+3. Approve starting the native renderer pass (particle convergence plus sparse overlay accents) against the converge packet, or continue references first.
 
 Direction history (owner, 2026-10-03 to 10-05): S2d composition liked but generic, then Week 3 emotional aesthetics, then construction references, the awning simplified (hem removed, then a shop awning), glitch boxes like the Week 3 animal reference, a Paris palette, and a painterly finish.

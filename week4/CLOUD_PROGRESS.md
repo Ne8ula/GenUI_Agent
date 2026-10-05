@@ -69,6 +69,6 @@ Report: [VISUAL_CLOUD_REPORT.md](VISUAL_CLOUD_REPORT.md). Mode `visual-gated`, p
 | V3 full-process video (owner: more boxes, longer) | passed (sampled) | 109, approved; whole process shown; box density not met by the model |
 | Paris palette and glitch-in stills (owner: glitching, animal-video boxes, Paris colours) | passed | R1, K1, K2, 3 × 9, approved; new revision w4-20261005-paris-p1-glitch-paris |
 | V4 glitch-in video K1→K2 (owner: painterly, shop awning) | passed (sampled) | 109, approved; tears recur and states flicker; box density partial |
-| Particle convergence (owner: no strips; particles converging, overlays as accents) | in progress | P1, A0, E0, 3 × 9, approved; V5 E0→P1 10 s (109) quoted, awaiting top-up and approval |
-| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 526 used, exceeded with owner acknowledgement) |
+| Particle convergence (owner: no strips; particles converging, overlays as accents) | passed (sampled) | P1, A0, E0 (3 × 9) and V5 E0→P1 10 s (109), all approved; provisional packet ready for owner review |
+| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 635 used, exceeded with owner acknowledgement; workspace topped up) |
 | UI/renderer passes A–D | blocked | No complete inspected packet |

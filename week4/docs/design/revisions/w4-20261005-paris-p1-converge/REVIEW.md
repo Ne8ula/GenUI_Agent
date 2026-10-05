@@ -1,6 +1,6 @@
 # w4-20261005-paris-p1-converge: particles converging, overlays as accents
 
-**Status:** three images generated and inspected. The provisional sequence, selected by the agent, is **E0 (start) → A0 (mid) → P1 (arrival)**; owner review is pending. The 10 s convergence video E0 → P1 (109 credits) is quoted and awaiting the owner's credit top-up and approval. UI stays blocked.
+**Status:** three images and one 10 s video generated and inspected. The provisional packet, selected by the agent, is **E0 → A0 → P1 plus [V5](references/videos/vid-01-v5-e0-to-p1-converge.mp4)**; owner review is pending. UI stays blocked until the owner accepts this packet as the reference for the renderer pass.
 
 ![Contact sheet](references/contact-sheet.png)
 
@@ -50,6 +50,34 @@ Both are 2752×1536 Nano Banana 2 edits of [K2](../w4-20261005-paris-p1-glitch-p
 - **Notes:**
   - The rattan chair is a pencil lattice half filled with specks.
   - A few stray teal and coral dots remain, as in A0 and P1.
+
+## V5: the convergence video (E0 → P1)
+
+| Video | Job | Selection |
+| --- | --- | --- |
+| [vid-01-v5-e0-to-p1-converge.mp4](references/videos/vid-01-v5-e0-to-p1-converge.mp4), [frames 3 fps](references/videos/vid-01-frames.png), [frames 12 fps, 2–3 s](references/videos/vid-01-frames-12fps-2to3s.png) | V5, Kling First & Last Frame (O1 Pro), 10.08 s, 24 fps, 1928×1072, 109 credits after the owner's top-up | **Provisional convergence motion reference** |
+
+**Inspection.** Frames were sampled at 3 fps, with a 12 fps burst for 2–3 s. The average frame-to-frame brightness change was measured over all 242 frames: mean 0.38, max 1.76 at 0.08 s. This is the smoothest clip of the session, with no flashes. The agent did not watch it in real time.
+
+**Sequence:**
+
+| Time | What happens |
+| --- | --- |
+| 0–2.3 s | Sand-coloured particle streams curve in from the left and right edges, sweep across the marble table and wrap around the ashtray and chair. A few hairline X-boxes linked by lines frame the woman and the lamp, then fade by ~2 s. The chair fills with honey colour |
+| 2.3–3 s | The woman condenses as a pale ghost and the shop awning appears as a pale wash. A tiny red and green glitch box blinks near the cup (~2.9 s) |
+| 3–4.3 s | Two or three hollow hairline rectangles blink around the table edge, as accents |
+| 3.3–6 s | Colour arrives: the awning reddens, the woman's camel coat and the dark iron lamp resolve, the left façade's sage shutters fill, then the right façade, then the mansard |
+| 6–10 s | Settled and calm: the walkers stroll, steam rises from the cup, smoke from the cigarette |
+
+**Against the owner's direction:**
+- **No strips: met.**
+- **Overlays as accents: met.** They are sparse and brief, then gone.
+- **Particles converging: met for the near field.** Visible speck streams build the table, chair and ashtray in the first ~3 s.
+- **Far field: partly met.** From ~3.3 s the façades **paint in as a colour wash** rather than visibly condensing from specks. The renderer should keep particle convergence for the far field too, with sparser, finer specks.
+
+**Other observations:**
+- The woman still walks toward the viewer, with an unreadable face.
+- The ghosted walker pair from P1 persists into the ending.
 
 ## Implementation guidance (provisional)
 
