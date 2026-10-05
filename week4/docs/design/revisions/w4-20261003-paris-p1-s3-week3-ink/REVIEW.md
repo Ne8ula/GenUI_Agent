@@ -76,6 +76,43 @@ Nearest-first order holds. **Problems:**
 - **2.5–4.75 s:** small RGB glitch boxes **increase** near the far street and roof, six to ten at once, before a few fade. That is busier than "the last few"; native timing should taper them.
 - **Throughout:** the woman walks toward the viewer. Her face is unreadable specks, but the brief prefers people turned away.
 
+### V3: the full process (owner request)
+
+**Owner feedback (2026-10-04):** "V1 is a lot better, however, I want the process to have more rectangle overlay boxes that glitch in and out as the experience loads. Can you make it longer so I can see the entire visualization process."
+
+| Video | Job | Selection |
+| --- | --- | --- |
+| [vid-03-v3-full-process-boxes.mp4](references/videos/vid-03-v3-full-process-boxes.mp4), [frames](references/videos/vid-03-frames.png) | V3, G1 → H1, Kling First & Last Frame (O1 Pro), 10.08 s, 24 fps, 1928×1072, 109 credits | **Provisional reference for whole-process order and pacing**; box density **not** met |
+
+**Inspection.** Frames were sampled at 3 fps. The average frame-to-frame brightness change was measured over all 242 frames: mean 0.67, max 1.43 at 1.92 s, so there are no flashes.
+
+**Sequence:**
+
+| Time | What happens |
+| --- | --- |
+| 0–2 s | The wireframe holds with small RGB scanline boxes drifting, two to five at a time |
+| ~2.0 s | The cup resolves, briefly as a plain white near-photographic cup |
+| 2.3–3 s | The chair turns to apricot specks, and the ashtray gets a dark outline |
+| 3.3–4.3 s | The table fills from the left with scattered specks |
+| ~4.3 s | The woman becomes solid; the walkers resolve |
+| 5.3–6.7 s | The canopy drops in from the top as crimson specks: a speck build, not a flat sheet. The lamp turns teal |
+| 7–10 s | It settles, with steam and walking. The façades stay pale, wireframe-like linework to the end |
+
+**Against the request:**
+- **Length and whole process: met.** Every step from wireframe to arrival is visible.
+- **"More rectangle overlay boxes glitching in and out": not met.**
+  - The model drew only small scanline strips, and they all but disappear after ~4.7 s.
+  - There are no large hairline rectangles snapping around regions or scanning, and no corner brackets.
+
+This matches every earlier video: the video model under-draws overlay boxes.
+
+**Recommendation.** Make the box layer **native and authored**, not baked into imagery:
+- hairline region rectangles that snap around objects and scan across the façades;
+- RGB scanline boxes with colour-split edges;
+- corner brackets locking onto targets.
+
+Drive them from the construction timeline, densest during tiling and thinning toward arrival, as the approved Week 3 implementation already does at a smaller scale. That makes the density a tunable parameter the owner can review live, rather than a lottery of video generations.
+
 **Motion rules for the renderer (provisional):**
 - **Order:** near-first: cup, then table and ashtray, then chair, then the near walker, then façade tiles, then the far street and roof.
 - **Glitch boxes:** small and short-lived, roughly 0.2–0.5 s each, with no full-frame flashes.

@@ -49,8 +49,9 @@ The 95 TS / 62 Rust numbers in the earlier hand-back were from checkpoint `1206a
 | G3 settling | same inputs | `4785db01-4e48-4dd6-aa6a-853caaf1086f` | 9 | Owner | Completed, inspected; provisional keyframe |
 | V1 G1→G2 video | Kling First & Last Frame, O1 Pro, 5 s | `64661ac0-feb5-4766-a538-7da732b1c153` | 55 | Owner | Completed; inspected via 4 fps samples and per-frame luma difference; provisional motion reference |
 | V2 G2→G3 video | same | `9625c40c-5f18-488b-9a8b-8107380b11b0` | 55 | Owner | Completed; inspected likewise; provisional motion reference |
+| V3 G1→H1 full-process video | Kling First & Last Frame, O1 Pro, 10 s (Kling 3.0 15 s quoted at 185/246, not run) | `279cb077-1151-4daf-a4af-4dd99b2bec1b` | 109 | Owner | Completed; whole process visible; overlay-box density not met; recommend a native box layer |
 
-Packets: [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4, T1, H1, G1–G3, V1–V2)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 254 are used (S2a–d, S3a–d, C2–C4, T1, H1, G1–G3, V1, V2). Workspace balance after the last submit: 298.8. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first).) V1 and V2 then ran at 5 s, 55 each. No other job has been quoted or run.
+Packets: [p1-s1 (S1, S2a–d)](docs/design/revisions/w4-20261003-paris-p1-s1/REVIEW.md) and [p1-s3-week3-ink (S3a–d, C2–C4, T1, H1, G1–G3, V1–V3)](docs/design/revisions/w4-20261003-paris-p1-s3-week3-ink/REVIEW.md). Credit ledger: S1 was approved separately (9). Under the owner's ~500-credit P1 ceiling, 363 are used (S2a–d, S3a–d, C2–C4, T1, H1, G1–G3, V1–V3). Workspace balance after the last submit: 189.8. Video route discovered read-only: Kling First & Last Frame (O1 Pro: 5 s quoted at 55, 10 s at 109; neither run, because the owner redirected to the awning first).) V1 and V2 then ran at 5 s, 55 each. No other job has been quoted or run.
 
 ## 4. Status
 

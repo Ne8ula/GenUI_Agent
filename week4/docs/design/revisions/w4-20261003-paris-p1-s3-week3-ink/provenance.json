@@ -569,12 +569,51 @@
           "license": "Generated development reference; not a runtime clip."
         }
       ]
+    },
+    {
+      "jobId": "V3",
+      "predictionId": "279cb077-1151-4daf-a4af-4dd99b2bec1b",
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "modelId": "kling (Kling First & Last Frame, O1 Pro)",
+      "inputs": {
+        "image": "G1 output (img-10)",
+        "tail_image_url": "H1 output (img-09)",
+        "prompt": "Owner: more rectangle overlay boxes glitching in and out as the experience loads; longer, to see the entire process. Full process G1->H1 with many hairline region rectangles, RGB scanline boxes and corner brackets throughout; near-first tile resolution; canopy from specks; no strobing. Full text in the Cloud session record.",
+        "negative_prompt": "camera movement, zoom, pan, cuts, flashing/strobing, text, numbers, logos, watermark, hexagons, HUD, people turning to face the camera",
+        "model": "O1 Pro",
+        "duration": 10,
+        "cfg_scale": 0.5
+      },
+      "uploads": "none (Weave-hosted outputs passed by URL)",
+      "outputCount": 1,
+      "quotedCost": 109,
+      "costUnit": "Weave workspace credits",
+      "costApprovalRef": "Owner structured Approve, 2026-10-05, V3 O1 Pro 10 s 109 credits (chosen over Kling 3.0 Standard 15 s at 185 and Kling 3.0 Pro 15 s at 246, both quoted, not run)",
+      "reportedCost": 109,
+      "remainingCreditsAfterSubmit": 189.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/videos/vid-03-v3-full-process-boxes.mp4",
+          "kind": "video/mp4 (H.264)",
+          "width": 1928,
+          "height": 1072,
+          "fps": 24,
+          "frames": 242,
+          "durationSeconds": 10.083,
+          "sha256": "33c65e063b3593b2fa2a1bd5545b99efc5dc6263f606f9b06da02cef63d0dc68",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not a runtime clip."
+        }
+      ]
     }
   ],
   "creditLedger": {
     "ceiling": "about 500 for the rest of P1 (owner, 2026-10-03)",
-    "usedUnderCeilingIncludingThisRevision": 254,
-    "remainingWorkspaceCreditsAfterLastSubmit": 298.8
+    "usedUnderCeilingIncludingThisRevision": 363,
+    "remainingWorkspaceCreditsAfterLastSubmit": 189.8
   },
   "selectedAssets": [
     {
@@ -687,6 +726,11 @@
       "date": "2026-10-04",
       "text": "Just remove the hem, also ensure the creation process is more wireframe and box overlays glitching into creation. Like the Animus from Assassins Creed.",
       "response": "H1 (hem removed) and G1-G3 glitch construction keyframes in EVA Week 3 glitch-box vocabulary; brief prohibitions on Animus HUD/hexagons/glyph rain/numbers kept"
+    },
+    {
+      "date": "2026-10-04",
+      "text": "V1 is a lot better, however, I want the process to have more rectangle overlay boxes that glitch in and out as the experience loads. Can you make it longer so I can see the entire visualization process.",
+      "response": "V3 10 s G1->H1 run; boxes remain sparse (model limitation); recommend native authored box layer"
     }
   ],
   "motionInspection": {
@@ -709,6 +753,16 @@
         "maxAtSeconds": 1.67
       }
     },
-    "limitation": "Perceived pace and smoothness need the owner to watch the clips; sampling can miss sub-250 ms events, but YDIF shows no full-frame flash."
+    "limitation": "Perceived pace and smoothness need the owner to watch the clips; sampling can miss sub-250 ms events, but YDIF shows no full-frame flash.",
+    "v3": {
+      "ydif": {
+        "mean": 0.67,
+        "median": 0.73,
+        "p95": 1.23,
+        "max": 1.43,
+        "maxAtSeconds": 1.92
+      },
+      "samples": "3 fps contact sheet references/videos/vid-03-frames.png"
+    }
   }
 }
