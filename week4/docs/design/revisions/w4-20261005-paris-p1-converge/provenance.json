@@ -1,6 +1,6 @@
 {
   "templateOnly": false,
-  "status": "P1 and A0 inspected; video and earlier start frame quoted, not run; UI blocked",
+  "status": "E0, A0, P1 inspected; V5 E0->P1 quoted (109), awaiting top-up/approval; UI blocked",
   "changeId": "w4-20261005-paris-p1-converge",
   "phase": "Week 4 visual-gated, P1 arrival: particle-convergence construction",
   "sourceRevision": "aba0de2",
@@ -89,28 +89,71 @@
           "license": "Generated development reference; not an adopted runtime asset."
         }
       ]
+    },
+    {
+      "jobId": "E0",
+      "predictionId": "0ed6f1b8-27f1-4a89-bed0-542f657b5e93",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (K2 passed as its Weave-hosted output)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "A0 (img-02)"
+        ],
+        "prompt": "Much earlier formation: mostly paper and pencil wireframe; specks just starting to stream in from the edges; only cup, saucer and table edge condensed; swirling clouds hint at ashtray, chair and woman; accents: 4-5 hairline boxes (2 X-crossed, linked) and 1 small glitch box; no strips. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 26.8,
+      "costApprovalRef": "Owner structured choice, 2026-10-05: E0 first, then video (9 credits)",
+      "outputs": [
+        {
+          "path": "references/images/img-03-e0-early-converging.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "210090a84862b59a9bb4a550f0d573cdf25b55c2354fc2815241d8c3069d0a9c",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
     }
   ],
   "quotes": [
     {
-      "job": "V5 A0->P1 converging, Kling First & Last Frame O1 Pro, 10 s",
+      "job": "V5 E0->P1 converging, Kling First & Last Frame O1 Pro, 10 s",
       "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
       "quotedCost": 109,
-      "status": "quoted; owner said they will top up; awaiting approval"
+      "status": "quoted; awaiting owner top-up and approval"
     },
     {
-      "job": "E0 earlier start frame (edit of A0)",
-      "quotedCost": 9,
-      "status": "quoted, awaiting approval"
+      "job": "V5 A0->P1 (superseded by E0->P1 at owner choice)",
+      "quotedCost": 109,
+      "status": "not run"
     }
   ],
   "creditLedger": {
     "ceiling": "about 500 (owner, 2026-10-03), exceeded with owner acknowledgement",
-    "usedTotal": 517,
-    "remainingWorkspaceCreditsAfterLastSubmit": 35.8,
+    "usedTotal": 526,
+    "remainingWorkspaceCreditsAfterLastSubmit": 26.8,
     "note": "Owner said they will top up for the 10 s video"
   },
   "selectedAssets": [
+    {
+      "path": "references/images/img-03-e0-early-converging.png",
+      "selection": "provisional convergence start frame (agent); owner pending"
+    },
     {
       "path": "references/images/img-01-p1-settled-painterly.png",
       "selection": "provisional arrival master (agent); owner pending"
