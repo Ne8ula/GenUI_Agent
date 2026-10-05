@@ -68,5 +68,6 @@ Report: [VISUAL_CLOUD_REPORT.md](VISUAL_CLOUD_REPORT.md). Mode `visual-gated`, p
 | V1/V2 construction motion studies | passed (sampled) | 2 × 55, approved; 4 fps samples and per-frame luma difference; not watched in real time |
 | V3 full-process video (owner: more boxes, longer) | passed (sampled) | 109, approved; whole process shown; box density not met by the model |
 | Paris palette and glitch-in stills (owner: glitching, animal-video boxes, Paris colours) | passed | R1, K1, K2, 3 × 9, approved; new revision w4-20261005-paris-p1-glitch-paris |
-| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 390 used) |
+| V4 glitch-in video K1→K2 (owner: painterly, shop awning) | passed (sampled) | 109, approved; tears recur and states flicker; box density partial |
+| Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 499 used, effectively reached) |
 | UI/renderer passes A–D | blocked | No complete inspected packet |

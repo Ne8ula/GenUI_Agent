@@ -1,6 +1,6 @@
 {
   "templateOnly": false,
-  "status": "R1, K1, K2 inspected; video quoted, not run; UI blocked",
+  "status": "R1, K1, K2, V4 inspected; owner chose painterly + shop awning; UI blocked pending owner review of V4 and a settled end frame",
   "changeId": "w4-20261005-paris-p1-glitch-paris",
   "phase": "Week 4 visual-gated, P1 arrival packet: Paris palette and glitch-in construction",
   "sourceRevision": "f3f48ba",
@@ -141,33 +141,81 @@
           "license": "Generated development reference; not an adopted runtime asset."
         }
       ]
+    },
+    {
+      "jobId": "V4",
+      "predictionId": "1eef5b9f-4c5e-44d6-ae22-790a4710f06d",
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "modelId": "kling (Kling First & Last Frame, O1 Pro)",
+      "inputs": {
+        "image": "K1 output (img-02)",
+        "tail_image_url": "K2 output (img-03)",
+        "prompt": "Unstable stuttering glitch-in: horizontal strips tear, jump and smear with red/cyan fringes then snap back; slices duplicate; regions flicker between pencil wireframe and painted image before holding; dozens of X-crossed hairline boxes linked by lines pop, jump and regroup; nearest first; muted Paris colours; no full-frame flashes. Full text in the Cloud session record.",
+        "negative_prompt": "camera movement, zoom, pan, cuts, full-frame flashes, neon colours, text, numbers, labels, logos, watermark, hexagons, game HUD, people facing the camera",
+        "model": "O1 Pro",
+        "duration": 10,
+        "cfg_scale": 0.5
+      },
+      "uploads": "none",
+      "outputCount": 1,
+      "quotedCost": 109,
+      "costUnit": "Weave workspace credits",
+      "costApprovalRef": "Owner approved V4 at 109; after the agent flagged that the K1->R1 ending conflicted with the owner choices (painterly, shop awning), the owner chose K1->K2 at 109 (structured prompt, 2026-10-05). The K1->R1 version was not run.",
+      "reportedCost": 109,
+      "remainingCreditsAfterSubmit": 53.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/videos/vid-01-v4-k1-to-k2-glitch.mp4",
+          "kind": "video/mp4 (H.264)",
+          "width": 1928,
+          "height": 1072,
+          "fps": 24,
+          "frames": 242,
+          "durationSeconds": 10.083,
+          "sha256": "c4ff18d91787f4c7efc308b63ffdb6062639687ae50eaf4270b46b8bcd0583d8",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not a runtime clip."
+        }
+      ]
     }
   ],
   "quotes": [
     {
-      "job": "V4 K1->R1, Kling First & Last Frame O1 Pro, 10 s",
-      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "job": "V4 K1->R1",
       "quotedCost": 109,
-      "status": "quoted, awaiting owner decision"
+      "status": "superseded by K1->K2 per owner; not run"
+    },
+    {
+      "job": "P1 settled painterly (edit of K2)",
+      "quotedCost": 9,
+      "status": "quoted, not run"
     }
   ],
   "creditLedger": {
     "ceiling": "about 500 (owner, 2026-10-03)",
-    "usedUnderCeiling": 390,
-    "remainingWorkspaceCreditsAfterLastSubmit": 162.8
+    "usedUnderCeiling": 499,
+    "remainingWorkspaceCreditsAfterLastSubmit": 53.8,
+    "note": "Ceiling effectively reached; further generation needs a new owner budget"
   },
   "selectedAssets": [
     {
-      "path": "references/images/img-01-r1-paris-recolour.png",
-      "selection": "provisional arrival master (agent); owner pending"
+      "path": "references/images/img-03-k2-two-thirds-glitch.png",
+      "selection": "owner-chosen look (painterly, shop awning); not settled"
     },
     {
       "path": "references/images/img-02-k1-early-glitch.png",
-      "selection": "glitch grammar reference (agent); style drift noted"
+      "selection": "glitch-in start keyframe"
     },
     {
-      "path": "references/images/img-03-k2-two-thirds-glitch.png",
-      "selection": "glitch grammar reference (agent); canopy/style change noted"
+      "path": "references/videos/vid-01-v4-k1-to-k2-glitch.mp4",
+      "selection": "provisional glitch-in motion reference"
+    },
+    {
+      "path": "references/images/img-01-r1-paris-recolour.png",
+      "selection": "not selected for finished look (owner chose painterly); palette reference"
     }
   ],
   "contactSheet": "references/contact-sheet.png",
@@ -191,5 +239,22 @@
     "status": "pending",
     "date": null,
     "feedback": null
+  },
+  "motionInspection": {
+    "method": "3 fps contact sheet over 10 s, 12 fps sheet for 2-3 s, per-frame luma difference over all 242 frames; not watched in real time",
+    "v4": {
+      "ydif": {
+        "mean": 0.77,
+        "median": 0.66,
+        "p95": 1.83,
+        "max": 2.74,
+        "maxAtSeconds": 7.46
+      }
+    }
+  },
+  "ownerChoices": {
+    "date": "2026-10-05",
+    "finishedLook": "painterly (K1/K2), not stipple (R1)",
+    "awning": "shop awning on the facade (K2), not the overhead canopy"
   }
 }
