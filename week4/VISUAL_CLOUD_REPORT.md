@@ -75,3 +75,17 @@ Packets: [p1-converge (E0, A0, P1, V5)](docs/design/revisions/w4-20261005-paris-
 3. Approve starting the native renderer pass (particle convergence plus sparse overlay accents) against the converge packet, or continue references first.
 
 Direction history (owner, 2026-10-03 to 10-05): S2d composition liked but generic, then Week 3 emotional aesthetics, then construction references, the awning simplified (hem removed, then a shop awning), glitch boxes like the Week 3 animal reference, a Paris palette, and a painterly finish.
+
+## 6. Hand-off to VS Code (2026-10-07)
+
+At the owner's request, [VSCODE_PROMPT.md](VSCODE_PROMPT.md) is the task prompt for implementing the selected design in a local VS Code Claude Code session. It defines eight owner-gated steps:
+1. renderer and the arrival frame;
+2. off-axis depth;
+3. particle convergence;
+4. overlay accents;
+5. the full minute;
+6. the native Windows build;
+7. desktop choreography (needs a fresh P2 packet);
+8. follow-ups (needs a fresh P3 packet).
+
+Each step requires real screenshots, video and a reference comparison, then an explicit owner decision recorded in `week4/docs/design/acceptance/w4-visual-steps.md` before the next step starts. No implementation was started in this Cloud session.

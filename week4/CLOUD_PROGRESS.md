@@ -72,3 +72,5 @@ Report: [VISUAL_CLOUD_REPORT.md](VISUAL_CLOUD_REPORT.md). Mode `visual-gated`, p
 | Particle convergence (owner: no strips; particles converging, overlays as accents) | passed (sampled) | P1, A0, E0 (3 × 9) and V5 E0→P1 10 s (109), all approved; provisional packet ready for owner review |
 | Rest of P1 (C1, C5–C6, A1–A3, V1–V4) | blocked | Needs the owner's direction decision and per-run approvals (ceiling ~500; 635 used, exceeded with owner acknowledgement; workspace topped up) |
 | UI/renderer passes A–D | blocked | No complete inspected packet |
+
+| VS Code implementation prompt | passed | `week4/VSCODE_PROMPT.md`: eight owner-gated visual steps with screenshot/video evidence; no implementation started here |
