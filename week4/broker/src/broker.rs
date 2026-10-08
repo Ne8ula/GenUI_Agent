@@ -20,11 +20,25 @@ use crate::error::BrokerError;
 use crate::ids::{approved_wallpaper_asset, SceneId, VariantId};
 use crate::journal::{EffectId, Journal, JournalRecord, MonitorContext, MotionPhase, RestoreMode};
 use crate::ledger::Ledger;
-use crate::motion::{edge_slot, plan_steps};
+use crate::motion::{contains, edge_slot, plan_steps};
 use crate::recovery::{LockGuard, RecoveryLock};
 use crate::restore::{restore_from_journal, RestoreConfig, RestoreReport};
 use std::collections::{BTreeMap, BTreeSet};
 use std::sync::Arc;
+
+/// How a displaced window is parked. Neither option is the approved final
+/// choreography; that is chosen through the visual packet and verified on
+/// Windows.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ParkingPolicy {
+    /// Default. A window is parked only if its edge slot keeps its exact size
+    /// inside the stage monitor's work area; otherwise it is excluded
+    /// (`DoesNotFit`) and left untouched. EVA never resizes user windows.
+    RejectIfResizeNeeded,
+    /// Synthetic mock fixture only: fit windows into the `edge_strip_px`
+    /// column, shrinking them. Not permission to resize real user windows.
+    MockFitToStrip,
+}
 
 #[derive(Debug, Clone)]
 pub struct BrokerConfig {
@@ -36,6 +50,7 @@ pub struct BrokerConfig {
     /// Width of the edge column, inside the stage monitor's work area, that a
     /// displaced window is fitted into. Slots never leave the stage monitor.
     pub edge_strip_px: i32,
+    pub parking: ParkingPolicy,
     pub restore: RestoreConfig,
 }
 
@@ -46,6 +61,7 @@ impl Default for BrokerConfig {
             consent_ttl_ms: 120_000,
             motion_steps: 8,
             edge_strip_px: 240,
+            parking: ParkingPolicy::RejectIfResizeNeeded,
             restore: RestoreConfig::default(),
         }
     }
@@ -78,6 +94,8 @@ pub enum ExclusionReason {
     FullscreenExclusive,
     NotAllowlisted,
     MoveFailed,
+    /// No safe in-monitor slot without resizing (default parking policy).
+    DoesNotFit,
     ClosedDuringMotion,
     UserMovedDuringMotion,
 }
@@ -514,34 +532,40 @@ impl StageBroker {
         let count = eligible.len();
         let n = self.config.motion_steps.max(1);
         let active = self.active.as_mut().ok_or(BrokerError::NotEntered)?;
-        let mut movers: Vec<Mover> = eligible
-            .into_iter()
-            .enumerate()
-            .map(|(i, w)| {
-                let prior = w.snapshot;
-                let slot = edge_slot(
-                    monitor.work_area,
-                    prior.placement.normal_rect,
-                    i,
-                    count,
-                    self.config.edge_strip_px,
-                );
-                let target = Placement {
-                    show_state: ShowState::Normal,
-                    normal_rect: slot,
-                    min_position: prior.placement.min_position,
-                    max_position: prior.placement.max_position,
-                };
-                Mover {
-                    effect: active.next_effect(),
-                    identity: w.identity,
-                    steps: plan_steps(&prior.placement, &target, n),
-                    expected: prior.placement,
-                    prior,
-                    moving: true,
-                }
-            })
-            .collect();
+        let mut movers: Vec<Mover> = Vec::with_capacity(count);
+        for (i, w) in eligible.into_iter().enumerate() {
+            let prior = w.snapshot;
+            let original = prior.placement.normal_rect;
+            let slot = edge_slot(
+                monitor.work_area,
+                original,
+                i,
+                count,
+                self.config.edge_strip_px,
+            );
+            let resized = slot.width() != original.width() || slot.height() != original.height();
+            let unsafe_slot = !contains(monitor.work_area, slot)
+                || (resized && self.config.parking == ParkingPolicy::RejectIfResizeNeeded);
+            if unsafe_slot {
+                // Reject rather than force: nothing is journaled or moved.
+                report.exclude(ExclusionReason::DoesNotFit);
+                continue;
+            }
+            let target = Placement {
+                show_state: ShowState::Normal,
+                normal_rect: slot,
+                min_position: prior.placement.min_position,
+                max_position: prior.placement.max_position,
+            };
+            movers.push(Mover {
+                effect: active.next_effect(),
+                identity: w.identity,
+                steps: plan_steps(&prior.placement, &target, n),
+                expected: prior.placement,
+                prior,
+                moving: true,
+            });
+        }
 
         let adapter = &*self.adapter;
         let journal = &*self.journal;

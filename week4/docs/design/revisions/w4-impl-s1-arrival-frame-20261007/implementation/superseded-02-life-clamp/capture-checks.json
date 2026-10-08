@@ -1,0 +1,205 @@
+{
+  "ok": true,
+  "startedAt": "2026-10-07T20:08:01.490Z",
+  "versions": {
+    "node": "v22.22.0",
+    "playwright": "1.56.1",
+    "chromium": "141.0.7390.37"
+  },
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "deviceScaleFactor": 1,
+  "baseUrl": "http://127.0.0.1:1447",
+  "seed": 7,
+  "idleSeconds": 25,
+  "environment": "linux 6.18.44-fc-v77 (x64, 4 CPU); browser-only evidence (Playwright headless Chromium). WebGL2 renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (software GL). No WebView2, Windows shell, camera or pose input was involved.",
+  "backends": {
+    "webgl2": {
+      "requested": "webgl2",
+      "arrivals": {
+        "away": {
+          "file": "webgl2-arrival-facing-away.png",
+          "backend": "webgl2",
+          "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "particles": 168910,
+          "degraded": false,
+          "seed": 7,
+          "density": 1,
+          "facing": "away",
+          "lifeMs": 3000,
+          "paused": true
+        },
+        "toward": {
+          "file": "webgl2-arrival-facing-toward.png",
+          "backend": "webgl2",
+          "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "particles": 169329,
+          "degraded": false,
+          "seed": 7,
+          "density": 1,
+          "facing": "toward",
+          "lifeMs": 3000,
+          "paused": true
+        }
+      },
+      "timing": {
+        "label": "headless Chromium on linux 6.18.44-fc-v77 (x64, 4 CPU); WebGL2 renderer \"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\" — software GL, not GPU evidence; not a WebView2 or Windows-shell measurement",
+        "backend": "webgl2",
+        "frameIntervalMs": {
+          "samples": 300,
+          "median": 116.7,
+          "p95": 149.91,
+          "max": 166.7
+        },
+        "drawMs": {
+          "samples": 301,
+          "median": 3.3,
+          "p95": 4.4,
+          "max": 8.4
+        }
+      }
+    },
+    "canvas2d": {
+      "requested": "canvas2d",
+      "arrivals": {
+        "away": {
+          "file": "canvas2d-arrival-facing-away.png",
+          "backend": "canvas2d",
+          "detail": "Canvas2D · stride 3",
+          "particles": 56302,
+          "degraded": false,
+          "seed": 7,
+          "density": 1,
+          "facing": "away",
+          "lifeMs": 3000,
+          "paused": true
+        },
+        "toward": {
+          "file": "canvas2d-arrival-facing-toward.png",
+          "backend": "canvas2d",
+          "detail": "Canvas2D · stride 3",
+          "particles": 56444,
+          "degraded": false,
+          "seed": 7,
+          "density": 1,
+          "facing": "toward",
+          "lifeMs": 3000,
+          "paused": true
+        }
+      },
+      "timing": {
+        "label": "headless Chromium on linux 6.18.44-fc-v77 (x64, 4 CPU); Canvas2D on the CPU; browser evidence, not a WebView2 or Windows-shell measurement",
+        "backend": "canvas2d",
+        "frameIntervalMs": {
+          "samples": 300,
+          "median": 200,
+          "p95": 233.4,
+          "max": 300.1
+        },
+        "drawMs": {
+          "samples": 301,
+          "median": 172.2,
+          "p95": 200,
+          "max": 260
+        }
+      }
+    }
+  },
+  "videoLife": {
+    "lifeMs": 15217,
+    "wallMs": 27182,
+    "frames": 153,
+    "lifeToWallRatio": 0.56,
+    "note": "life ms / wall ms during the recording; drawn frames over the same span"
+  },
+  "video": {
+    "webm": "webgl2-idle-25s.webm",
+    "ffmpeg": true,
+    "mp4": "webgl2-idle-25s.mp4",
+    "mp4Probe": {
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "reportedFps": 30,
+      "averageFps": 30,
+      "frames": 826,
+      "durationSeconds": 27.533333
+    },
+    "webmProbe": {
+      "codec": "vp8",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "reportedFps": 25,
+      "averageFps": 25,
+      "frames": 688,
+      "durationSeconds": 27.52
+    },
+    "frameSheet": "webgl2-idle-frames-4fps.png",
+    "frameSheetLayout": "10 columns x 12 rows at 4 fps, 480 px wide, timestamps from the start of the recording"
+  },
+  "focus": {
+    "tag": "select",
+    "accessibleName": "Backend",
+    "matchesFocusVisible": true,
+    "outline": "rgb(58, 47, 42) solid 2px",
+    "barHeightPx": 65,
+    "stageHeightPx": 1015,
+    "barOverlapsStage": false,
+    "ariaSnapshot": "- combobox \"Backend\":\n  - option \"Auto\"\n  - option \"WebGL2\" [selected]\n  - option \"Canvas2D\""
+  },
+  "finishedAt": "2026-10-07T20:11:05.118Z",
+  "commands": [
+    "(cd /home/user/GenUI_Agent/week4/app && ../node_modules/.bin/vite --host 127.0.0.1 --port 1447 --strictPort)",
+    "node scripts/capture-s1.mjs (EVA_CAPTURE_SECONDS=25, EVA_CAPTURE_PORT=1447, EVA_CAPTURE_SEED=7)",
+    "ffmpeg -y -v error -i /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.webm -r 30 -c:v libx264 -pix_fmt yuv420p -crf 18 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.mp4",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.mp4",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.webm",
+    "ffmpeg -y -v error -i /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.webm -vf fps=4,scale=480:-1,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='%{pts\\:hms}':x=8:y=8:fontsize=20:fontcolor=black:box=1:boxcolor=white@0.7,tile=10x12 -frames:v 1 -update 1 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-frames-4fps.png"
+  ],
+  "pageErrors": [],
+  "failures": [],
+  "files": [
+    {
+      "name": "after/canvas2d-arrival-facing-away.png",
+      "bytes": 2810342
+    },
+    {
+      "name": "after/canvas2d-arrival-facing-toward.png",
+      "bytes": 2820745
+    },
+    {
+      "name": "after/fixture-controls-focus.png",
+      "bytes": 3297249
+    },
+    {
+      "name": "after/webgl2-arrival-facing-away.png",
+      "bytes": 3512258
+    },
+    {
+      "name": "after/webgl2-arrival-facing-toward.png",
+      "bytes": 3522632
+    },
+    {
+      "name": "after/webgl2-idle-25s.mp4",
+      "bytes": 12138737
+    },
+    {
+      "name": "after/webgl2-idle-25s.webm",
+      "bytes": 4033816
+    },
+    {
+      "name": "after/webgl2-idle-frames-4fps.png",
+      "bytes": 6543827
+    }
+  ],
+  "labels": {
+    "browser": true,
+    "native": false,
+    "camera": "none",
+    "pose": "none"
+  }
+}

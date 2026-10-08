@@ -1,0 +1,1 @@
+Empty until the first approved run completes. Images go in `images/`, videos in `videos/`, and the contact sheet is built from the retrieved outputs. No file here is a reference until it was retrieved from a real run recorded in `../provenance.json`.

@@ -1,0 +1,37 @@
+{
+  "name": "eva-week4-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "EVA Week 4 renderer host: Vite + React + TypeScript over week4/core. Fixture-only; no providers, camera, microphone or desktop effects.",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 1440 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 1441 --strictPort",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "check": "npm run typecheck && npm test && npm run build",
+    "capture": "node scripts/capture-s33.mjs",
+    "capture:s1": "node scripts/capture-s1.mjs"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "ajv": "^8.20.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.0",
+    "playwright": "~1.56.1",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.3"
+  }
+}

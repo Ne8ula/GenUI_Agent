@@ -1,0 +1,413 @@
+{
+  "revision": "w4-impl-s1-arrival-frame-20261007",
+  "step": 1,
+  "sourceRevision": {
+    "commit": "e7d1424507045b4e4504d10ea54844335272b7eb",
+    "branch": "week4",
+    "workingTree": "uncommitted changes under week4/ (see manifest); not committed",
+    "manifestRootSha256": "34c62ecb1c84d248d0d64d756982f8430d1f10a6f50f30def89488400e756241",
+    "manifestFiles": 74
+  },
+  "environment": {
+    "note": "linux 6.18.44-fc-v77 (x64, 4 CPU); browser-only evidence (Playwright headless Chromium). WebGL2 renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (software GL). No WebView2, Windows shell, camera or pose input was involved.",
+    "os": "Linux container (anthropic_cloud), 4 vCPU, 16 GB RAM",
+    "node": "v22.22.0",
+    "npm": "10.9.4",
+    "playwright": "1.56.1",
+    "chromium": "141.0.7390.37",
+    "gpu": {
+      "devices": "none (/dev/dri absent)",
+      "webgl2Renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "meaning": "software WebGL2 (SwiftShader); not GPU evidence"
+    },
+    "webview2": "not available in this environment; the native WebView2/GPU test is blocked (see REVIEW §7)"
+  },
+  "labels": {
+    "browser": true,
+    "native": false,
+    "camera": "none",
+    "pose": "none"
+  },
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "deviceScaleFactor": 1,
+  "seed": 7,
+  "idleSeconds": 25,
+  "commands": [
+    "git rev-parse HEAD; git status --short",
+    "npm --prefix week4 ci --ignore-scripts",
+    "npm --prefix week4 run check   (core: tsc + node --test; app: tsc + node --test + vite build)",
+    "cargo test --manifest-path week4/Cargo.toml",
+    "cargo fmt --all --manifest-path week4/Cargo.toml -- --check",
+    "node week4/app/scripts/render-smoke.mjs",
+    "(cd /home/user/GenUI_Agent/week4/app && ../node_modules/.bin/vite --host 127.0.0.1 --port 1448 --strictPort)",
+    "node scripts/capture-s1.mjs (EVA_CAPTURE_SECONDS=25, EVA_CAPTURE_PORT=1448, EVA_CAPTURE_SEED=7)",
+    "ffmpeg -y -v error -i /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.webm -r 30 -c:v libx264 -pix_fmt yuv420p -crf 18 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.mp4",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.mp4",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.webm",
+    "ffmpeg -y -v error -i /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.webm -vf fps=4,scale=480:-1,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='%{pts\\:hms}':x=8:y=8:fontsize=20:fontcolor=black:box=1:boxcolor=white@0.7,tile=10x12 -frames:v 1 -update 1 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-frames-4fps.png",
+    "python3 week4/app/scripts/compare-sheet.py --ref <P1 img-01> --impl implementation/after/webgl2-arrival-facing-away.png --out implementation/compare"
+  ],
+  "counts": {
+    "coreTypescriptTests": {
+      "pass": 103,
+      "fail": 0,
+      "command": "npm --prefix week4 run check (core part)"
+    },
+    "appTypescriptTests": {
+      "pass": 44,
+      "fail": 0,
+      "files": {
+        "store": 3,
+        "scene-arrival": 7,
+        "life": 5,
+        "host-params": 10,
+        "host-stats": 10,
+        "render-pack": 9
+      },
+      "command": "npm --prefix week4 run check (app part: tsc, node --test, vite build)"
+    },
+    "rustTests": {
+      "pass": 69,
+      "fail": 0,
+      "command": "cargo test --manifest-path week4/Cargo.toml (rerun after the capture)",
+      "fmt": "cargo fmt --check clean"
+    },
+    "viteBuild": "ok",
+    "renderSmoke": "ok after the review fixes (webgl2, canvas2d, auto→webgl2, canvas2d stress 100000 → stride 2)"
+  },
+  "particles": {
+    "density1": 168913,
+    "capacity": 262144,
+    "densityRange": "0.25–1.25 (host offers 0.5 / 0.75 / 1 / 1.25)",
+    "perRegionAtDensity1": {
+      "layer:far": 579,
+      "layer:facade/mansard": 9567,
+      "layer:facade/right": 52081,
+      "layer:facade/left": 47856,
+      "obj:awning": 5993,
+      "obj:lamp-post/far": 315,
+      "actors:passersby/third": 1148,
+      "actors:passersby/man": 1269,
+      "obj:lamp-post": 1914,
+      "actors:passersby/woman": 4833,
+      "obj:neighbour-chair": 8515,
+      "obj:table": 25906,
+      "obj:ashtray": 2580,
+      "obj:cigarette": 317,
+      "fx:smoke": 240,
+      "obj:saucer": 3151,
+      "obj:cup": 1971,
+      "fx:steam": 170
+    },
+    "note": "Counts from the offline authoring diagnostic at seed 7, facing away, after the review fixes; the capture's data-particles is the drawn count (alpha > 0.002)."
+  },
+  "capture": {
+    "startedAt": "2026-10-07T20:12:44.645Z",
+    "finishedAt": "2026-10-07T20:15:50.446Z",
+    "stillLifeMs": 3000,
+    "backends": {
+      "webgl2": {
+        "requested": "webgl2",
+        "arrivals": {
+          "away": {
+            "file": "webgl2-arrival-facing-away.png",
+            "backend": "webgl2",
+            "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "particles": 168910,
+            "degraded": false,
+            "seed": 7,
+            "density": 1,
+            "facing": "away",
+            "lifeMs": 3000,
+            "paused": true
+          },
+          "toward": {
+            "file": "webgl2-arrival-facing-toward.png",
+            "backend": "webgl2",
+            "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "particles": 169329,
+            "degraded": false,
+            "seed": 7,
+            "density": 1,
+            "facing": "toward",
+            "lifeMs": 3000,
+            "paused": true
+          }
+        },
+        "timing": {
+          "label": "headless Chromium on linux 6.18.44-fc-v77 (x64, 4 CPU); WebGL2 renderer \"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\" — software GL, not GPU evidence; not a WebView2 or Windows-shell measurement",
+          "backend": "webgl2",
+          "frameIntervalMs": {
+            "samples": 300,
+            "median": 133.2,
+            "p95": 150,
+            "max": 183.3
+          },
+          "drawMs": {
+            "samples": 301,
+            "median": 3.5,
+            "p95": 5.6,
+            "max": 11.9
+          }
+        }
+      },
+      "canvas2d": {
+        "requested": "canvas2d",
+        "arrivals": {
+          "away": {
+            "file": "canvas2d-arrival-facing-away.png",
+            "backend": "canvas2d",
+            "detail": "Canvas2D · stride 3",
+            "particles": 56302,
+            "degraded": false,
+            "seed": 7,
+            "density": 1,
+            "facing": "away",
+            "lifeMs": 3000,
+            "paused": true
+          },
+          "toward": {
+            "file": "canvas2d-arrival-facing-toward.png",
+            "backend": "canvas2d",
+            "detail": "Canvas2D · stride 3",
+            "particles": 56444,
+            "degraded": false,
+            "seed": 7,
+            "density": 1,
+            "facing": "toward",
+            "lifeMs": 3000,
+            "paused": true
+          }
+        },
+        "timing": {
+          "label": "headless Chromium on linux 6.18.44-fc-v77 (x64, 4 CPU); Canvas2D on the CPU; browser evidence, not a WebView2 or Windows-shell measurement",
+          "backend": "canvas2d",
+          "frameIntervalMs": {
+            "samples": 300,
+            "median": 200.1,
+            "p95": 233.4,
+            "max": 333.3
+          },
+          "drawMs": {
+            "samples": 301,
+            "median": 173.2,
+            "p95": 194.5,
+            "max": 285.5
+          }
+        }
+      }
+    },
+    "video": {
+      "webm": "webgl2-idle-25s.webm",
+      "ffmpeg": true,
+      "mp4": "webgl2-idle-25s.mp4",
+      "mp4Probe": {
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "reportedFps": 30,
+        "averageFps": 30,
+        "frames": 826,
+        "durationSeconds": 27.533333
+      },
+      "webmProbe": {
+        "codec": "vp8",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "reportedFps": 25,
+        "averageFps": 25,
+        "frames": 688,
+        "durationSeconds": 27.52
+      },
+      "frameSheet": "webgl2-idle-frames-4fps.png",
+      "frameSheetLayout": "10 columns x 12 rows at 4 fps, 480 px wide, timestamps from the start of the recording"
+    },
+    "videoLife": {
+      "lifeMs": 27099,
+      "wallMs": 27099,
+      "frames": 147,
+      "lifeToWallRatio": 1,
+      "note": "life ms / wall ms during the recording; drawn frames over the same span"
+    },
+    "focus": {
+      "tag": "select",
+      "accessibleName": "Backend",
+      "matchesFocusVisible": true,
+      "outline": "rgb(58, 47, 42) solid 2px",
+      "barHeightPx": 65,
+      "stageHeightPx": 1015,
+      "barOverlapsStage": false,
+      "ariaSnapshot": "- combobox \"Backend\":\n  - option \"Auto\"\n  - option \"WebGL2\" [selected]\n  - option \"Canvas2D\""
+    },
+    "pageErrors": [],
+    "failures": [],
+    "files": [
+      {
+        "name": "after/canvas2d-arrival-facing-away.png",
+        "bytes": 2810342
+      },
+      {
+        "name": "after/canvas2d-arrival-facing-toward.png",
+        "bytes": 2820745
+      },
+      {
+        "name": "after/fixture-controls-focus.png",
+        "bytes": 3297702
+      },
+      {
+        "name": "after/webgl2-arrival-facing-away.png",
+        "bytes": 3512258
+      },
+      {
+        "name": "after/webgl2-arrival-facing-toward.png",
+        "bytes": 3522632
+      },
+      {
+        "name": "after/webgl2-idle-25s.mp4",
+        "bytes": 11282920
+      },
+      {
+        "name": "after/webgl2-idle-25s.webm",
+        "bytes": 3894149
+      },
+      {
+        "name": "after/webgl2-idle-frames-4fps.png",
+        "bytes": 6630601
+      }
+    ],
+    "ok": true
+  },
+  "supersededCaptures": [
+    "implementation/superseded-01-cup-defect/ (first capture set, cup-body defect found by the independent review; see its README)",
+    "implementation/superseded-02-life-clamp/ (second capture set, life-to-wall ratio 0.56; see its README)"
+  ],
+  "provenance": {
+    "mainSession": {
+      "configuredModel": "claude-opus-5-5 (session configured_model)",
+      "servedModel": "claude-fable-5-1 (session_context.model and last_served_model; user_switched_model)",
+      "role": "orchestration, packet inspection, scaffold, core refactor, scene authoring (palette/author/arrival/life), integration, docs, captures",
+      "tools": "Read/Bash/Write/Edit, Playwright via scripts, ffmpeg, Pillow, Figma MCP read-only (whoami, weave_list_tools)"
+    },
+    "hostWorker": {
+      "agent": "eva-ui-designer",
+      "configured": "sonnet",
+      "selfReported": "claude-sonnet-5-5 (self-report, not independent evidence)",
+      "owned": "app/src/App.tsx, main.tsx, style.css, src/host/*, tests/host-*.test.ts, scripts/browser-options.mjs, scripts/capture-s1.mjs",
+      "integration": "copied byte-for-byte; one later change by the main session (live region announces state only; formatLiveState + test)"
+    },
+    "rendererWorker": {
+      "agent": "general-purpose (built-in; disclosed fallback)",
+      "reason": "eva-implementer (claude-gpt-5.6-sol[1m]) returned API model_not_found 404 in this Cloud environment (no Model Gateway); not transient, not retried",
+      "selfReported": "claude-fable-5-1 (self-report)",
+      "owned": "app/src/render/*, app/render-dev.html, tests/render-pack.test.ts, scripts/render-smoke.mjs",
+      "integration": "copied byte-for-byte; types.ts degraded doc comment adjusted by the main session"
+    },
+    "reviewer": {
+      "agent": "eva-reviewer",
+      "configured": "opus",
+      "selfReported": "claude-opus-5-5 (self-report)",
+      "status": "read-only review received 2026-10-07; 1 blocking + 13 should-fix + 8 notes; dispositions in REVIEW §9.3",
+      "ranCommands": false
+    },
+    "unavailableRoutes": [
+      "eva-implementer (Sol)",
+      "eva-mechanical (Luna)",
+      "eva-researcher (Terra)",
+      "claude-flow MCP (connection closed)"
+    ],
+    "weave": {
+      "connection": "Figma MCP authenticated (whoami: owner handle, two plans); weave_list_tools empty; direct-model route listed",
+      "generation": "none; 0 credits spent; packet w4-20261005-paris-p1-converge used as selected by the owner for steps 1–6"
+    }
+  },
+  "notRun": [
+    "Windows / WebView2 / Tauri shell (step 6)",
+    "GPU rendering on real hardware (blocked here: software GL only)",
+    "camera, microphone, STT/TTS, any provider call",
+    "wallpaper or window effects (broker remains the mock)",
+    "head coupling (step 2), convergence (step 3), overlays (step 4), the A–G director in the host (step 5)",
+    "commit or push (not authorized in this session)",
+    "automatic fallback after an unrestored WebGL2 context loss (step 6)"
+  ],
+  "manifest": {
+    "week4/VISUAL_IMPLEMENTATION_PROGRESS.md": "1e7b2668fb4fcb2a726421345ae23a9994fff31fb244becb0187025b6856976d",
+    "week4/app/LICENSES/OFL-IBM-Plex-Mono.txt": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f",
+    "week4/app/LICENSES/OFL-IBM-Plex-Sans.txt": "d0283623ef57e722fd0eb688a8041589670c608ab780cd3612d06ba6f153d3fd",
+    "week4/app/LICENSES/OFL-Space-Grotesk.txt": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
+    "week4/app/LICENSES/README.md": "df708125ab2bc42baeafa1d2da2f340bc24e01797563c51428233d7007132840",
+    "week4/app/index.html": "30b3fef12ef8a7a5b77df15ec70aaad12b3a42cb59ebb8ef0398c51742d341d4",
+    "week4/app/package.json": "c837a63abf135cbe84c749a1f4dfb3f85aa929a7a74c824387c78d277c5cee4d",
+    "week4/app/render-dev.html": "01ef47eff3fd6d06fd9403868e61c5f9f9cffce8dd8f892145c61b03f104307e",
+    "week4/app/scripts/browser-options.mjs": "49c6db4a9a810d8d52154cdea6e0a6a6021c44501e7e69b182c4e29642e6109e",
+    "week4/app/scripts/capture-s1.mjs": "77c3ccd274bca8b9fb42d52bde079240eeaf2615a0afdde2472a52f028aba8c7",
+    "week4/app/scripts/compare-sheet.py": "d14dbd48313522002ad96f199ea45e368b0475f4c7fdf5d96b4e20e8d9d6a0da",
+    "week4/app/scripts/render-smoke.mjs": "4852c80b15a328b5a6c0b7084951ed71a36cc3188b231bd2d7266335798ad211",
+    "week4/app/src/App.tsx": "006e75076e7da3ef83d4e48e91522aa66a0eaafb560bfc4cbd60c42501c7f876",
+    "week4/app/src/host/FixtureControls.tsx": "74a7802408cb2911fd2f7bd659c7dbac6df6aa2af1ad57b994ec81638cc5345e",
+    "week4/app/src/host/Stage.tsx": "419f43292155acd9b3ef24328794fc632721a262d101c23642863911e37f2048",
+    "week4/app/src/host/frameStats.ts": "068e5308ea039b19fc4505749d51655d64c00948eb4462ee777ad5d311e45633",
+    "week4/app/src/host/params.ts": "f52ab6a2fd251ce646f32f1a72aa07f7c84affa583ebf080387dd471b8d27d69",
+    "week4/app/src/host/useRenderLoop.ts": "f5fd0095bdf985f4710dee6cc8cdc4fffc82ef9e55fce5204dcc39809d74a506",
+    "week4/app/src/main.tsx": "c3662e284d6648220e99923486fc68980e56bae24eade14ab7ebf2c8047ee42d",
+    "week4/app/src/render/canvas2d.ts": "d7dc00f466398aa23bbdd1194f345dff6e52a1ba82d990aab53d7e18d5f06641",
+    "week4/app/src/render/create.ts": "20c19bceecbfd9a1cc8e66ee9a3457c509adffab453d0e904f34fba03eebcd45",
+    "week4/app/src/render/dev.ts": "f7ca74cf3cf0ac85f1e62281120710df11f88175da1261b52593013c39909acc",
+    "week4/app/src/render/pack.ts": "e0cb45a3e71c73f50b37dcdbb220bed60287320e017b901777a87dde84251179",
+    "week4/app/src/render/paper.ts": "dfa108cddfb2253a5fefe2bae050a55edcc987f061d55ae8c1f027273664196c",
+    "week4/app/src/render/webgl2.ts": "aaac634924206bb7f285358d45105f59f410b1653c60bfe58498ac366003c1c1",
+    "week4/app/src/scene/arrival.ts": "bda14b5161ab810d8cab8c525863d1ade35074e8fe420b73e329463c4b942b34",
+    "week4/app/src/scene/author.ts": "697703c0a7f1c9c4402e6313ed673620d10201b712395599e19e53eb3b8a490f",
+    "week4/app/src/scene/life.ts": "09e5ae7f991ee5801707b5cbb343143c6d88b5287239d1d730e9e393d74ac76e",
+    "week4/app/src/scene/palette.ts": "c155461ee35bd1f810525bae7437673258c149b12e835b3543c45f52ca8008b7",
+    "week4/app/src/scene/placeholder.ts": "b5a8a922a7f4bc7bc75a430a03c2e05e7512f0d90edd71ca956e285a7406acbf",
+    "week4/app/src/scene/rng.ts": "561a33b1a1ae35558332b4da0933e096264c76ea4beeabb260275a12e719028d",
+    "week4/app/src/scene/store.ts": "4102f12ca3cbb680c7aa2a5509c541478b3036000cbd63e9f4df0e434d2d8ea9",
+    "week4/app/src/scene/types.ts": "ddecb05d12baf83fd61cd546acd843f73ab297261c75c6d56b3bf5b637579cdb",
+    "week4/app/src/style.css": "3b8ef2dc266e41527518f0e617144ed282c81f92d057bd33f9cf88f0ff50b261",
+    "week4/app/tests/host-params.test.ts": "ea10ac36dce966547a20e48f32a1b756fb7d36c9898264bd2f1f9a1aa788343b",
+    "week4/app/tests/host-stats.test.ts": "87119fca4dc7ed2baba8e8e272b875a7465d52ea8367794d99c33da21b4a8c5c",
+    "week4/app/tests/life.test.ts": "301ae34a13c062d184b470636d4a83d7e177cac365cfe83bbe7c2a367e2644d0",
+    "week4/app/tests/render-pack.test.ts": "d92db97b39d391d1b82e188408e27136e44dfa0de57f3059f495df3ee2e4ac29",
+    "week4/app/tests/scene-arrival.test.ts": "aa563d1a9af41fdcef87a377f22afbc5698081a7014f0c90d2b3cb8c1c404fb9",
+    "week4/app/tests/store.test.ts": "574b23975d5abed6ba4553e5b1f3868b220e66d930297d623af637bf4b5edc46",
+    "week4/app/tsconfig.json": "821fd4a8c0af5093723a2ee36757633fa45211ff8e3649799b94f0ab9ba8f328",
+    "week4/app/vite.config.ts": "009bed58f9654511c0b9fe612f698ec56167266a884f9e66d9cbb8b9586ccf49",
+    "week4/core/validate.ts": "fe4fa98ca0ef4579c0eb21d0fe9f3aea5ad84c589ef967fd36ea3e876a480344",
+    "week4/docs/design/INDEX.md": "f04649eb59e29cc905473e3594973aeaea18b4c300a50e64223ddb81d2e7d273",
+    "week4/docs/design/revisions/w4-20261005-paris-p1-converge/REVIEW.md": "2d624d2961a036dda12fe571380cb309bb65475af49a9d4712f0aefe8700fc96",
+    "week4/docs/design/revisions/w4-20261005-paris-p1-converge/provenance.json": "e4d367f4056d534fe55831e6830400aab0c5d4edbf970ca92a9cd7371a4a0dc1",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/REVIEW.md": "e25cb6fc5c4aa179afcaad8e8f0712efc65c5dc360f5211e3fbcfdb4ed408806",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/checks.json": "1a9805319639fd219c27e9180cfa4018bda0c40773f9e9ae60d8d00607de19a1",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/canvas2d-arrival-facing-away.png": "08c347a78a181dfac54fa3eb2e21bcc45533cf8c8a71c66e8531227299c303b7",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/canvas2d-arrival-facing-toward.png": "d3121cc0cf6ccf092b9f0716c5678ef7956e551d04a60b7d9cc0933e01d2d956",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/fixture-controls-focus.png": "b4aa3cf4ac3749c5d07c580b7471165f5e03d67a31c494c1beb635cece8c0dc5",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-arrival-facing-away.png": "018cf9b9e6ed0e5655254081d207ad275794983d94a9fc0e3727cbabf59348dc",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-arrival-facing-toward.png": "efa70e34166a4726a93bf8dfa90718e834b5f73676fa64bde386eba446973bf0",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.mp4": "43537c04e946b817244f19df14a0cfe3e64c5df6f63f10a5809b801aa0d983ff",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-25s.webm": "f0fbd223cbefa5f685a36790b7f39bf92633152ea8e1c922f4dd96e0f57dfc93",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/after/webgl2-idle-frames-4fps.png": "23b5202fa2da54dc0437484dd778501b3b659f028f223b45fea1a78484a42ab6",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/before/README.md": "f36b4020b2da5f6e8bf1cd9d62b438f37015f21459e93d2fc8cd5fcf28f0357d",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/checks.json": "4343cb825ed9826065f8caec4dd687a0e1a1fae658bf8b7636368f2a63871b09",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/compare/canvas2d/compare-details.png": "fec098484edf8be9da2c44d9e1b44b1d1ba79b6ee3cc99c33711e56cf4a5070b",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/compare/canvas2d/compare-full.png": "aba618718e5cb666ab45b097a05816f882d5230c496f44ede2550e9cd0a4ef07",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/compare/compare-details.png": "35df1c1d4e03ef8a91ead0c5a0ae6b1ae6451e8b887deab0163cd0d4294b4617",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/compare/compare-full.png": "4d4448881286ba3b43f895e677e5035baefed60def97b52d00dcce40cc24496a",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/compare/toward/compare-details.png": "e801ebeb47288b8b94d1a3a5da0d03b060b477357598957285efd786ceb627f8",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/compare/toward/compare-full.png": "a6e5cb5e47dade02a50588979b3cb3d7d5a78a894bb3e606656e18a15b9fe2ce",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/superseded-01-cup-defect/README.md": "bf971031b920490217f78377373d1eff249e7937bb8af887361cc63a776b8af2",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/superseded-01-cup-defect/capture-checks.json": "e7a97e403ae7c82ff0530e5e4e9cd0e21ae459093088eaa6ce31c8d517de9a2e",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/superseded-01-cup-defect/compare-details.png": "6c5dc0478e6d53da45a1ffe044a558f2452d27ccf18c59b1f5a3be327d78f13f",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/superseded-01-cup-defect/compare-full.png": "4a3da9636374154be9949f0c5d74d63916909445aea971326fef862a87fa5a6f",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/superseded-01-cup-defect/webgl2-arrival-facing-away.png": "3ead7a7fec8cf3d1b241b04769872f0b8748e4ff0ab0c9c45c8627f70d71492f",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/superseded-02-life-clamp/README.md": "47959d1c68433068bee03d56636a0b132a8529d3a831466e12ab0a263ede149f",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/implementation/superseded-02-life-clamp/capture-checks.json": "bc8ed9b342c961609a25cb7b6a7800babb58276647d0eb8f428d55b1458f9075",
+    "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/references/README.md": "357ae1d1f73367d99b0c3b4be47159208d570b6c16a23d6d94074a228f49e692",
+    "week4/package-lock.json": "6edae9760d950efc22752b5ac4048c2cd3dadd67eef93acc599ba0da77c40e00",
+    "week4/package.json": "d2463ae77fd53b40f74a79611b62bb3dd19d3fe867f68c0d7bc85e73464e9cc6"
+  }
+}

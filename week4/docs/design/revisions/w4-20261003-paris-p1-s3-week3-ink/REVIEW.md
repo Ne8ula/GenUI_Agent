@@ -1,0 +1,231 @@
+# w4-20261003-paris-p1-s3-week3-ink: the café in Week 3's emotional material
+
+**Status:** four candidates generated and inspected. **S3d is the provisional P1 master and registration base**, refining the S3c direction; selected by the coordinating agent; owner review is pending. P1 is incomplete (no construction keyframes or video studies yet), so UI and renderer work stay blocked.
+
+![Contact sheet](references/contact-sheet.png)
+
+| Candidate | Job | Selection | Owner |
+| --- | --- | --- | --- |
+| [img-01-s3a-arrived-ink.png](references/images/img-01-s3a-arrived-ink.png) | S3a, edit of S2d | Not selected: stipple fill, but S2d's outlines survive | Pending |
+| [img-02-s3b-remembered-ink.png](references/images/img-02-s3b-remembered-ink.png) | S3b, edit of S2d | Not selected: as S3a, plus indigo/teal currents and a hairline box on the cup | Pending |
+| [img-03-s3c-particle-memory.png](references/images/img-03-s3c-particle-memory.png) | S3c, new image from the Week 3 references | Aesthetic direction; material and near-bokeh reference | Pending |
+| [img-04-s3d-refined-particle.png](references/images/img-04-s3d-refined-particle.png) | S3d, edit of S3c | **Provisional P1 master** | Pending |
+| [img-05-c2-survey-wireframe.png](references/images/img-05-c2-survey-wireframe.png) | C2 survey, edit of S3d | **Provisional construction keyframe** | Pending |
+| [img-06-c3-massing-condense.png](references/images/img-06-c3-massing-condense.png) | C3 massing, edit of S3d | **Provisional construction keyframe** | Pending |
+| [img-07-c4-nearly-arrived.png](references/images/img-07-c4-nearly-arrived.png) | C4 nearly arrived, edit of S3d | **Provisional construction keyframe** | Pending |
+
+| [img-08-t1-awning-underside.png](references/images/img-08-t1-awning-underside.png) | T1, edit of S3d (awning underside) | Not selected: scallops gone, but the canopy is too large | Pending |
+
+**Owner feedback (2026-10-04):** "The spheres on the top is really strange. Try for something else." The scalloped valance read as a row of spheres. The owner chose T1 (an awning underside) over T2 (plane-tree branches) and T3 (open top).
+
+**T1 inspection.** The scallops are gone: the awning is a seamed crimson-speck plane with a straight fringed hem. But it fills the top ~32% of the frame as a deep ceiling receding toward the street, so the view reads as an arcade or tunnel. It also washes the upper street pink and hides the mansard roofline, against the brief's "nothing red-washes the environment". Everything below the hem is unchanged from S3d. A shallower version (only the hem strip at the top ~10%) has been quoted, not run.
+
+| [img-09-h1-no-hem.png](references/images/img-09-h1-no-hem.png) | H1, edit of T1 with the hem removed | **Provisional arrival master** (supersedes S3d) | Pending |
+| [img-10-g1-wireframe-glitch.png](references/images/img-10-g1-wireframe-glitch.png) | G1, wireframe and glitch boxes | **Provisional construction keyframe** | Pending |
+| [img-11-g2-tiles-materialising.png](references/images/img-11-g2-tiles-materialising.png) | G2, tiles materialising | **Provisional construction keyframe** (canopy deviation) | Pending |
+| [img-12-g3-settling.png](references/images/img-12-g3-settling.png) | G3, settling | **Provisional construction keyframe** | Pending |
+
+**Owner direction (2026-10-04):** "Just remove the hem, also ensure the creation process is more wireframe and box overlays glitching into creation. Like the Animus from Assassins Creed." The owner confirmed H1 (keep the canopy, remove the hem).
+
+The Animus idea is interpreted in EVA's own approved vocabulary: Week 3's transition glitch boxes (owner-approved [img-01](../../../../../week3/docs/design/revisions/w3-cloud-20260928-a-p3/references/images/img-01-transition-glitch-strip.png), passed as its Weave output) plus hairline tracking boxes. The brief's prohibitions stand: no Animus HUD, logo, hexagons, glyph rain, sync bars, numbers or blue-white void ([DESIGN_PROMPT §6](../../../../DESIGN_PROMPT.md#6-restraint-and-negative-rules)).
+
+Glitch construction sequence, G1 → G2 → G3 → H1: ![Glitch construction](references/glitch-construction-strip.png)
+
+**H1.** The hem and fringe are gone; the canopy's crimson specks now thin and dissolve into the street. A softer pink haze remains over the street end and roofline. The canopy is still large (~30% of frame height), which the owner accepted.
+
+**G1, wireframe and glitch.** The strongest response to the owner's references:
+- Every object is a 3D wireframe mesh: the woman, cup, chair and table in crimson; the far street, walkers and lamp in graphite.
+- The canopy is a ruled perspective grid, and full-frame guide lines radiate to the vanishing point.
+- About ten small RGB-scanline glitch boxes sit in the Week 3 style, and corner-bracket tracking boxes frame the woman, the walkers and the cup.
+- **Deviations:** the ashtray became square instead of round glass; the table shows a radial polar mesh with a crimson pole at its centre (CAD-like); the woman faces forward with an unfeatured mesh face.
+
+**G2, tiles materialising.** It glitches into creation:
+- The woman is split half wireframe, half particles inside a bounding box, and the walkers sit in boxes.
+- The cup sits in a wireframe cube with a cyan colour-split edge, and the lamp is half particles.
+- Misregistered particle tiles with colour-split edges float over the façades.
+- **Deviation:** the canopy came back as a **flat, solid salmon-red plane with a hard bottom edge**. That is both the removed hem and a red wash. The renderer must not adopt it; the canopy should build as specks.
+
+**G3, settling.** It is H1 with four or five glitch boxes near the roof and far street, faint guide lines converging, and a hairline on the cup rim. It works as the last beat before arrival.
+
+### Motion studies V1 and V2
+
+| Video | Job | Selection |
+| --- | --- | --- |
+| [vid-01-v1-g1-to-g2-glitch.mp4](references/videos/vid-01-v1-g1-to-g2-glitch.mp4), [frames](references/videos/vid-01-frames.png) | V1, G1 → G2, Kling First & Last Frame (O1 Pro), 5.08 s, 24 fps, 1928×1072 | **Provisional motion reference** (order and glitch grammar) |
+| [vid-02-v2-g2-to-g3-settle.mp4](references/videos/vid-02-v2-g2-to-g3-settle.mp4), [frames](references/videos/vid-02-frames.png) | V2, G2 → G3, same model and settings | **Provisional motion reference** (settling) |
+
+**How they were inspected:**
+- Frames sampled at 4 fps into labelled sheets.
+- The average frame-to-frame brightness change measured over all 122 frames (`ffmpeg signalstats`, on a 0–255 scale): V1 mean 0.88, max 2.39 at 1.96 s; V2 mean 0.59, max 1.22 at 1.67 s.
+- The agent did not watch the clips in real time, so perceived pace and smoothness still need the owner's viewing. No full-frame flash appears in the measurement.
+
+**V1 (wireframe → tiles):**
+- **0–1 s:** wireframe holds while a few small RGB scanline glitch boxes flicker and drift. This is the right amount of glitch.
+- **1.25–1.75 s:** the cup resolves first, wireframe to particles with a cyan colour-split edge, and its steam turns gold.
+- **1.75–2.5 s:** the table fills with apricot particles from the right, and the ashtray resolves.
+- **2.75 s onward:** the woman turns solid, then splits half wireframe, half figure. Particle tiles pop onto the façades.
+
+Nearest-first order holds. **Problems:**
+1. The canopy fills as a torn, flat red sheet sweeping in from the top left, the single biggest movement on screen. It should build from specks or tiles, not as a paint fill.
+2. The chair loses its crimson wireframe and becomes faint grey.
+3. Much happens in 5 s. The real construction phases run about 20 s, so the renderer stretches this pacing about four times.
+
+**V2 (tiles → settled):**
+- **0–1.25 s:** the flat red canopy has white rectangular blocks punching out of it, a tile-glitch idea worth keeping. The chair resolves to apricot particles at about 1 s.
+- **1.5–2.25 s:** the canopy dissolves into a crimson speck gradient that fades downward. This is the right end state. The walkers become whole particle figures and walk; their positions change between frames.
+- **2.5–4.75 s:** small RGB glitch boxes **increase** near the far street and roof, six to ten at once, before a few fade. That is busier than "the last few"; native timing should taper them.
+- **Throughout:** the woman walks toward the viewer. Her face is unreadable specks, but the brief prefers people turned away.
+
+### V3: the full process (owner request)
+
+**Owner feedback (2026-10-04):** "V1 is a lot better, however, I want the process to have more rectangle overlay boxes that glitch in and out as the experience loads. Can you make it longer so I can see the entire visualization process."
+
+| Video | Job | Selection |
+| --- | --- | --- |
+| [vid-03-v3-full-process-boxes.mp4](references/videos/vid-03-v3-full-process-boxes.mp4), [frames](references/videos/vid-03-frames.png) | V3, G1 → H1, Kling First & Last Frame (O1 Pro), 10.08 s, 24 fps, 1928×1072, 109 credits | **Provisional reference for whole-process order and pacing**; box density **not** met |
+
+**Inspection.** Frames were sampled at 3 fps. The average frame-to-frame brightness change was measured over all 242 frames: mean 0.67, max 1.43 at 1.92 s, so there are no flashes.
+
+**Sequence:**
+
+| Time | What happens |
+| --- | --- |
+| 0–2 s | The wireframe holds with small RGB scanline boxes drifting, two to five at a time |
+| ~2.0 s | The cup resolves, briefly as a plain white near-photographic cup |
+| 2.3–3 s | The chair turns to apricot specks, and the ashtray gets a dark outline |
+| 3.3–4.3 s | The table fills from the left with scattered specks |
+| ~4.3 s | The woman becomes solid; the walkers resolve |
+| 5.3–6.7 s | The canopy drops in from the top as crimson specks: a speck build, not a flat sheet. The lamp turns teal |
+| 7–10 s | It settles, with steam and walking. The façades stay pale, wireframe-like linework to the end |
+
+**Against the request:**
+- **Length and whole process: met.** Every step from wireframe to arrival is visible.
+- **"More rectangle overlay boxes glitching in and out": not met.**
+  - The model drew only small scanline strips, and they all but disappear after ~4.7 s.
+  - There are no large hairline rectangles snapping around regions or scanning, and no corner brackets.
+
+This matches every earlier video: the video model under-draws overlay boxes.
+
+**Recommendation.** Make the box layer **native and authored**, not baked into imagery:
+- hairline region rectangles that snap around objects and scan across the façades;
+- RGB scanline boxes with colour-split edges;
+- corner brackets locking onto targets.
+
+Drive them from the construction timeline, densest during tiling and thinning toward arrival, as the approved Week 3 implementation already does at a smaller scale. That makes the density a tunable parameter the owner can review live, rather than a lottery of video generations.
+
+**Motion rules for the renderer (provisional):**
+- **Order:** near-first: cup, then table and ashtray, then chair, then the near walker, then façade tiles, then the far street and roof.
+- **Glitch boxes:** small and short-lived, roughly 0.2–0.5 s each, with no full-frame flashes.
+- **Tiles:** tiles land slightly offset and slide into register with a cyan/magenta colour-split edge.
+- **Canopy:** builds from specks or tiles; never a flat red sheet.
+- **Reduced motion:** cut between G1, G2, G3 and H1 as still crossfades, with no glitch boxes.
+
+**Status of C2–C4.** These earlier keyframes are superseded for construction by G1–G3, which follow the owner's newer direction. They are retained as rejected or historical candidates, and they still carry the scallops.
+
+Earlier construction sequence, C2 → C3 → C4 → S3d (superseded): ![Construction strip](references/construction-strip.png)
+
+No video exists yet. Motion is **not** reviewed; these stills do not clear any motion or UI pass.
+
+All images are 2752×1536. Run IDs, approvals and costs are in [provenance.json](provenance.json).
+
+## Why this revision exists
+
+Owner feedback on [S2d](../w4-20261003-paris-p1-s1/REVIEW.md) (2026-10-03): the composition was liked, but the images "don't feel like a specific aesthetic" and read as generic AI illustration. The owner asked to incorporate Week 3's emotional states and their aesthetics.
+
+This changes the art direction in [DESIGN_PROMPT.md](../../../../DESIGN_PROMPT.md) (ink line over watercolour) at the owner's request. The brief's composition, depth, anchors, restraint rules and arc still apply. Only the material changes.
+
+**Week 3 sources (owner-approved, inspected):**
+- [ink state board](../../../../../week3/docs/design/revisions/w3-cloud-20260929-b-p1/references/images/img-05-ink-state-board.png);
+- [joy ink](../../../../../week3/docs/design/revisions/w3-cloud-20260929-b-p1/references/images/img-07-joy-ink-shimmer.png);
+- the approved comfort implementation capture ([p3-a2](../../../../../week3/docs/design/revisions/w3-cloud-20260928-a-p3-a2/comforting-2.png));
+- [week3/DESIGN.md](../../../../../week3/DESIGN.md) §4–6.
+
+Both reference images were passed as their existing Weave outputs. Nothing was uploaded.
+
+## Inspection
+
+**S3a and S3b.** These are edits of S2d. Close up, fills, steam and the awning became stipple, and near bokeh appeared. S3b also added indigo/teal particle currents and a faint hairline box on the cup. But every S2d outline survived, so both read as a conventional illustration with effects layered on top. The newspaper pseudo-text also persists. Editing preserves structure, which is the wrong tool for a material change.
+
+**S3c** is a new image with the Week 3 references as the primary inputs.
+- **Material:** particles only. There are no outlines; every form frays into loose specks. This matches the Week 3 board.
+- **Emotional palette:**
+  - the awning is dense crimson, the rest-eye colour;
+  - the table is apricot/gold/coral (joy);
+  - the cup and walkers are plum/rose (comfort);
+  - the lamp post and far specks are teal/indigo (supportive);
+  - steam is a gold speck thread; smoke is a pale plum thread.
+- **Depth reads from the material itself:** dense large specks near, sparse fine specks far, large soft bokeh closest. The street fades out with no hard roofline. That is exactly what the wallpaper far field needs.
+- **Fit with the renderer:** a particle scene with a depth value per particle is the natural input for real off-axis parallax, and Week 3's renderer is already particle-based.
+
+**S3c weaknesses** (targets for the proposed S3d):
+- **Too many large bokeh discs.** They cover the sky and right edge and start to read as polka dots; Week 3 flagged the same risk.
+- **Paris and the 1980s have nearly vanished.** No balconies, shutters, zinc roof or car remain. The four walkers are generic, clustered at similar depths and walking away.
+- **The ashtray is a thin black dotted ring** and the cigarette is barely visible.
+- **The rattan weave is a regular diamond grid**, which looks like a pattern rather than woven cane.
+- **The cup moved** to x ≈ 71%, y ≈ 83% and the ashtray to x ≈ 33%, y ≈ 87%, so registration with S2d is loose.
+
+**S3d** (an edit of S3c; full frame plus a full-resolution crop of the walkers and the street end):
+- **Kept:** S3c's particle-only material and stance palette: the crimson awning, the apricot table, the plum cup with its gold steam, the teal lamp post.
+- **Fixed:**
+  - Bokeh is down to a few small specks.
+  - The street now reads as Paris: grey stippled shutters, wrought-iron balcony rails and cornices on both sides, and a zinc mansard with chimney pots closing the street. Everything stays airy and fades to paper.
+  - The ashtray reads as heavy glass, with an unbranded cigarette on its lip, an ember and a smoke thread.
+  - The woman wears a belted, broad-shouldered trench coat and is the nearest walker. A teen in headphones and a man with a plain newspaper are further away.
+- **Remaining issues:**
+  1. The teen and the man are at the **same** depth, and the man is beside the lamp post rather than behind it. Native placement still owns walker depth.
+  2. The woman walks **toward** the viewer. Her face is an unreadable speck mass, so she doesn't look at the camera, but the brief prefers people turned away.
+  3. The mansard at the street end is the one denser, harder-edged far element. It sits centrally below the awning, so it is foreground, not far-field wallpaper.
+  4. With the large near bokeh gone, the near-defocus depth cue is weaker. The renderer can restore a few defocused near particles.
+  5. The rattan weave is still a regular diamond grid.
+
+## Construction keyframes (C2–C4)
+
+The owner supplied two construction references in chat (2026-10-04):
+- **A:** a dense one-point-perspective street drawn as a transparent wireframe. Full-frame scaffold lines run past the forms, there is a paving grid, and a figure stands inside the grid.
+- **B:** a loose low-angle architectural sketch with overshooting lines, braced volumes and uneven finish.
+
+Their creators and rights are unknown. By owner choice they were not committed or uploaded; their style was described in text. Hashes are in provenance.
+
+**C2 survey.** The scene is a pure wireframe: near construction in crimson (EVA), far construction in graphite.
+- The awning scallops are built with radial construction arcs.
+- The table is an ellipse with a perspective grid; the cup and ashtray are see-through stacked ellipses; the chair is a lattice.
+- The paving grid runs to the vanishing point. The façades are see-through, with shutters and balcony rails; the mansard closes the street.
+- The walkers are wireframe figures. The woman is now seen **from behind**, which fixes the facing issue.
+- Steam and smoke are thin curves.
+- **Gap against the references:** the lines are cleaner and more ruled, with fewer full-frame overshooting guide lines than reference A. It reads closer to tidy CAD than to a quick confident sketch.
+
+**C3 massing.** Particles condense near-first: the table, chair, cup and ashtray are dense, and the walkers are speck clouds. Notably, the awning fills from the left while its right half is still outline scallops, a construction sweep worth keeping. The façades and paving are still lines; the lamp post is partly teal specks.
+
+**C4 nearly arrived.** Close to S3d. The façades are stippled with faint guide lines remaining, and a thin hairline box sits on the cup (the Week 3 tracking-box language).
+
+**Registration.** S3d, C2, C3 and C4 keep the same viewpoint and anchors closely, so they can serve as native timeline keyframes:
+
+| Keyframe | Planning phase | Window |
+| --- | --- | --- |
+| C2 | C, survey | 12–22 s |
+| C3 | D/E, massing and wash | 22–44 s |
+| C4 | F, inhabiting | 44–54 s |
+| S3d | G, arrival | 54 s onward |
+
+## Proposed rule: scene states borrow Week 3 stances
+
+This is a proposal for the owner, not adopted:
+
+| Scene state | Week 3 stance and material |
+| --- | --- |
+| EVA, construction and leaving | Rest eye, crimson; tracking and glitch boxes |
+| Arrival, late afternoon | Joy warmth (apricot/gold) with comfort shade (plum/rose) |
+| Rain | Comfort: plum/rose drape, softened, slower particles |
+| Evening | Supportive: indigo/teal currents around an amber core, which becomes the lamp |
+| Rain and evening together | Comfort drape over supportive currents |
+
+## Implementation guidance (provisional)
+
+- Build the scene as particles with a depth value per particle, not as textured planes. Near objects get dense large particles; far objects get sparse fine ones; a few large defocused particles sit closest to the viewer.
+- Keep the far field as sparse specks fading into paper, so the wallpaper split falls in empty paper rather than across a roofline.
+- Reuse Week 3's palettes and its hairline tracking-box language for the construction phases.
+- Walkers are separate particle clouds at distinct depths (native placement, as recommended in the S2 round).
+
+## Owner acceptance
+
+Pending. The agent's selection is not acceptance.

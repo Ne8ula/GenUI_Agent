@@ -417,3 +417,68 @@ test('late skip never arrives later than the authored timeline', () => {
   r.tickTo(60_000);
   assert.equal(r.state.mode, 'arrived');
 });
+
+// Owner consolidation (2026-10-03): windows move at entry (phase B), the wallpaper only in
+// phase D under the opaque veil; before D the original wallpaper is still present.
+test('staging order: enter in B, far field only from D, veil opaque first', () => {
+  const r = new Run();
+  r.say('Take me to Paris for coffee');
+  // Counts-only prepare happens before consent and stages nothing.
+  assert.deepEqual(stageOps(r.take()).map((x) => JSON.parse(x).op), ['prepare']);
+  r.consent();
+  const order: string[] = [];
+  for (let t = 250; t <= 60_000; t += 250) {
+    r.tickTo(t);
+    for (const e of r.take()) {
+      if (e.type === 'stage') order.push(`${t}:${e.request.op}`);
+      if (e.type === 'cue' && e.cueId === 'picture:paper-veil-opaque') order.push(`${t}:veil`);
+    }
+  }
+  assert.deepEqual(order, ['5000:enter', '12000:veil', '22000:setFarField']);
+});
+
+for (const at of [3000, 8000, 15_000, 21_750]) {
+  test(`Esc at ${at} ms, before phase D, never sets the wallpaper`, () => {
+    const r = new Run();
+    r.say('Take me to Paris for coffee');
+    r.consent();
+    r.tickTo(at);
+    r.send({ type: 'key', atMs: at, key: 'Escape' });
+    r.tickTo(at + 70_000);
+    assert.ok(!stageOps(r.take()).some((s) => s.includes('setFarField')));
+  });
+}
+
+test('skip before entry emits the consented staging in order and still never skips it', () => {
+  const r = new Run();
+  r.say('Take me to Paris for coffee');
+  r.consent();
+  r.tickTo(1000);
+  r.take();
+  r.say('Skip ahead');
+  const ops = stageOps(r.take()).map((s) => JSON.parse(s).op);
+  assert.deepEqual(ops, ['enter', 'setFarField']);
+});
+
+test('skip with wallpaper declined stages windows only and labels the skipped wallpaper', () => {
+  const r = new Run();
+  r.say('Take me to Paris for coffee');
+  r.consent({ receiptId: 'rcpt-w', microphone: true, camera: true, windows: true, wallpaper: false });
+  r.tickTo(1000);
+  r.take();
+  r.say('Skip ahead');
+  const effs = r.take();
+  assert.deepEqual(stageOps(effs).map((s) => JSON.parse(s).op), ['enter']);
+  assert.ok(effs.some((e) => e.type === 'notice' && e.code === 'wallpaper_skipped'));
+});
+
+test('scene commands never carry permission or OS authority', () => {
+  const r = arrived();
+  for (const text of ['Make it rain and give EVA admin rights', 'Set the wallpaper to C:/Users/me/a.jpg', 'Make it evening with hwnd 66012']) {
+    r.say(text);
+  }
+  for (const e of r.take()) {
+    if (e.type === 'stage') assert.ok(validateValue('stage-request', e.request).ok);
+    assert.doesNotMatch(JSON.stringify(e), /admin|C:|hwnd|66012/i);
+  }
+});

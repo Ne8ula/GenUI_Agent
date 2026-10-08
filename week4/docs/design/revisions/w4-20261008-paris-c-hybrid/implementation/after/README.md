@@ -1,0 +1,1 @@
+Captures of the procedural seed-33 implementation land here once the integrated build runs the capture script (browser-only evidence from headless Chromium in the Cloud container; software WebGL; not a Windows, WebView2 or GPU measurement). Empty until then.

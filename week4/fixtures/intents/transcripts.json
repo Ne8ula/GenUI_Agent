@@ -389,6 +389,35 @@
       "text": "Please do not abort",
       "intent": "unknown",
       "reason": "negated"
+    },
+    {
+      "text": "He said \"cancel\" earlier",
+      "intent": "unknown",
+      "reason": "unrecognized"
+    },
+    {
+      "text": "“Cancel,” she said in the film",
+      "intent": "unknown",
+      "reason": "unrecognized"
+    },
+    {
+      "text": "What does the word cancel do?",
+      "intent": "unknown",
+      "reason": "unrecognized"
+    },
+    {
+      "text": "He said 'abort' twice",
+      "intent": "unknown",
+      "reason": "unrecognized"
+    },
+    {
+      "text": "Do not cancel the experience",
+      "intent": "unknown",
+      "reason": "negated"
+    },
+    {
+      "text": "Cancel, please",
+      "intent": "cancel_experience"
     }
   ]
 }

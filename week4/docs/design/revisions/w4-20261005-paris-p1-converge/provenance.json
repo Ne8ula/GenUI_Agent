@@ -1,0 +1,274 @@
+{
+  "templateOnly": false,
+  "status": "E0, A0, P1, V5 inspected; provisional convergence packet complete for owner review; UI blocked pending owner acceptance of the packet; 2026-10-07: designated by the owner's implementation task as the reference packet for implementation steps 1–6 (see w4-impl-s1-arrival-frame-20261007/REVIEW.md §2); owner acceptance of the packet itself still pending",
+  "changeId": "w4-20261005-paris-p1-converge",
+  "phase": "Week 4 visual-gated, P1 arrival: particle-convergence construction",
+  "sourceRevision": "aba0de2",
+  "acceptedBaseline": null,
+  "ownerFeedback": {
+    "date": "2026-10-05",
+    "text": "I dont like how there are strips floating across the generation, it should feel like particles converging with the rectangle overlays and glitch overlays as accents."
+  },
+  "motionRequired": true,
+  "ownedUiFiles": [],
+  "runs": [
+    {
+      "jobId": "P1",
+      "predictionId": "cf5f9adf-8d07-4761-8e7e-c1537d16d6ae",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (K2 passed as its Weave-hosted output)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "K2 (w4-20261005-paris-p1-glitch-paris img-03)"
+        ],
+        "prompt": "Settled finished painterly state of K2: remove all strips, ghosts, boxes, lines and wireframe; one walker each; complete the street. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 44.8,
+      "costApprovalRef": "Owner structured multi-select, 2026-10-05, P1 9 credits (beyond the ~500 allowance, owner-acknowledged)",
+      "outputs": [
+        {
+          "path": "references/images/img-01-p1-settled-painterly.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "514478685d86e5b141af6620e8eda05cad5d84a4602d1e19a05d22349696a318",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "A0",
+      "predictionId": "44be3fb4-80b9-4908-b692-91887900d3c7",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (K2 passed as its Weave-hosted output)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "K2"
+        ],
+        "prompt": "Same scene forming from converging particles in the scene colours, nearest first, streaming in curving trails; no strips; accents only: 5-6 hairline boxes, some X-crossed and linked, plus 1-2 small glitch boxes. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 35.8,
+      "costApprovalRef": "Owner structured multi-select, 2026-10-05, A0 9 credits (beyond the ~500 allowance, owner-acknowledged)",
+      "outputs": [
+        {
+          "path": "references/images/img-02-a0-particles-converging.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "b1578c6877d095d1ea22e138ca07571bbb1876d5df994d19bfaf730c908622dd",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "E0",
+      "predictionId": "0ed6f1b8-27f1-4a89-bed0-542f657b5e93",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (K2 passed as its Weave-hosted output)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "A0 (img-02)"
+        ],
+        "prompt": "Much earlier formation: mostly paper and pencil wireframe; specks just starting to stream in from the edges; only cup, saucer and table edge condensed; swirling clouds hint at ashtray, chair and woman; accents: 4-5 hairline boxes (2 X-crossed, linked) and 1 small glitch box; no strips. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 26.8,
+      "costApprovalRef": "Owner structured choice, 2026-10-05: E0 first, then video (9 credits)",
+      "outputs": [
+        {
+          "path": "references/images/img-03-e0-early-converging.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "210090a84862b59a9bb4a550f0d573cdf25b55c2354fc2815241d8c3069d0a9c",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "V5",
+      "predictionId": "fff3bbc2-fd52-4ced-9b44-df575c156ade",
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "modelId": "kling (Kling First & Last Frame, O1 Pro)",
+      "inputs": {
+        "image": "E0 (img-03)",
+        "tail_image_url": "P1 (img-01)",
+        "prompt": "Locked camera; particles in the scene colours stream in curving trails and condense nearest first; wireframe fades as filled; accents only: a few hairline X-boxes linked by lines and 1-2 small glitch boxes blink and fade; calm complete end; no strips, no flashes. Full text in the Cloud session record.",
+        "negative_prompt": "camera movement, zoom, pan, cuts, horizontal strips, smear bands, torn bands, flashing, neon colours, text, numbers, labels, logos, watermark, hexagons, game HUD, people facing the camera",
+        "model": "O1 Pro",
+        "duration": 10,
+        "cfg_scale": 0.5
+      },
+      "uploads": "none",
+      "outputCount": 1,
+      "quotedCost": 109,
+      "costUnit": "Weave workspace credits",
+      "costApprovalRef": "Owner structured Approve after top-up, 2026-10-05, V5 109 credits",
+      "reportedCost": 109,
+      "remainingCreditsAfterSubmit": 3917.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/videos/vid-01-v5-e0-to-p1-converge.mp4",
+          "kind": "video/mp4 (H.264)",
+          "width": 1928,
+          "height": 1072,
+          "fps": 24,
+          "frames": 242,
+          "durationSeconds": 10.083,
+          "sha256": "f1661c82a908b65b5d0dfdd8b80a1e59ab821c80e55c07ee9435ed7afb845d45",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not a runtime clip."
+        }
+      ]
+    }
+  ],
+  "quotes": [
+    {
+      "job": "V5 A0->P1 (superseded by E0->P1)",
+      "quotedCost": 109,
+      "status": "not run"
+    }
+  ],
+  "creditLedger": {
+    "ceiling": "about 500 (owner, 2026-10-03); exceeded with owner acknowledgement; owner topped up workspace credits on 2026-10-05",
+    "usedTotal": 635,
+    "remainingWorkspaceCreditsAfterLastSubmit": 3917.8
+  },
+  "selectedAssets": [
+    {
+      "path": "references/images/img-03-e0-early-converging.png",
+      "selection": "provisional convergence start frame (agent); owner pending"
+    },
+    {
+      "path": "references/images/img-01-p1-settled-painterly.png",
+      "selection": "provisional arrival master (agent); owner pending"
+    },
+    {
+      "path": "references/images/img-02-a0-particles-converging.png",
+      "selection": "provisional convergence keyframe (agent); owner pending"
+    },
+    {
+      "path": "references/videos/vid-01-v5-e0-to-p1-converge.mp4",
+      "selection": "provisional convergence motion reference (agent); owner pending"
+    }
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "performed",
+    "inspector": "Cloud main session (coordinator)",
+    "method": "Full frames viewed",
+    "observations": "See REVIEW.md",
+    "limitations": [
+      "Stills only"
+    ]
+  },
+  "writerInspections": [
+    {
+      "date": "2026-10-07",
+      "writer": "main session (Cloud; configured claude-opus-5-5, served claude-fable-5-1)",
+      "assets": [
+        "img-01",
+        "img-02",
+        "img-03",
+        "vid-01-frames.png",
+        "own 2 fps extraction of vid-01 (20 frames)"
+      ],
+      "scope": "step 1 scene authoring, palette, integration",
+      "record": "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/REVIEW.md §2"
+    },
+    {
+      "date": "2026-10-07",
+      "writer": "eva-ui-designer (alias sonnet; self-report claude-sonnet-5-5)",
+      "assets": [
+        "img-01",
+        "img-02",
+        "img-03",
+        "vid-01-frames.png"
+      ],
+      "scope": "step 1 host, fixture controls, capture script",
+      "record": "hand-back quoted in the step-1 REVIEW §2"
+    },
+    {
+      "date": "2026-10-07",
+      "writer": "renderer worker (built-in general-purpose; disclosed fallback for the failed eva-implementer route; self-report claude-fable-5-1)",
+      "assets": [
+        "img-01",
+        "img-02",
+        "img-03",
+        "vid-01-frames.png"
+      ],
+      "scope": "step 1 WebGL2/Canvas2D renderers",
+      "record": "hand-back quoted in the step-1 REVIEW §2"
+    }
+  ],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": []
+  },
+  "ownerDecision": {
+    "status": "pending",
+    "date": null,
+    "feedback": null
+  },
+  "motionInspection": {
+    "method": "3 fps contact sheet over 10 s, 12 fps sheet for 2-3 s, per-frame luma difference over all 242 frames; not watched in real time",
+    "v5": {
+      "ydif": {
+        "mean": 0.38,
+        "median": 0.29,
+        "p95": 0.86,
+        "max": 1.76,
+        "maxAtSeconds": 0.08
+      }
+    }
+  }
+}

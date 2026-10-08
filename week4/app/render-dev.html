@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>EVA — Week 4 renderer dev (placeholder scene, dev sky and test tiles)</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #f4efe6; overflow: hidden; }
+      #scene { display: block; width: 100vw; height: 100vh; }
+      #hud {
+        position: fixed; left: 12px; top: 12px; margin: 0; padding: 6px 8px;
+        font: 12px/1.4 ui-monospace, 'IBM Plex Mono', monospace; color: #1a1a1a;
+        background: rgba(244, 239, 230, 0.85); border: 1px solid #1a1a1a; white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Query parameters: backend, stress, hud, sky=0, tiles=0, look=dark, build=<ms>; see src/render/dev.ts. -->
+    <canvas id="scene" aria-label="EVA Week 4 renderer development canvas"></canvas>
+    <pre id="hud" hidden></pre>
+    <script type="module" src="/src/render/dev.ts"></script>
+  </body>
+</html>

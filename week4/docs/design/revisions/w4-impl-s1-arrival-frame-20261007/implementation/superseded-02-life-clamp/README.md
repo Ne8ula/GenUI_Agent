@@ -1,0 +1,3 @@
+# Superseded capture set 02 (2026-10-07 20:08–20:11 UTC): life clock at 0.56 of wall time
+
+Second full capture of the corrected scene. Its own honesty metric (`videoLife.lifeToWallRatio`) came out at **0.56**: the host now passed up to 250 ms per frame, but `stepLife` still capped each step at 100 ms while the recorder pushed frames to about 178 ms, so idle life in the video ran at roughly half speed. Only this `capture-checks.json` is kept for the record; the stills were deterministic (life 3.0 s, paused) and identical in content to the next set. Fix: the host now sub-steps life in slices of at most 50 ms (`advanceLife`, `week4/app/src/scene/life.ts`). The set was re-captured into `../after/`.

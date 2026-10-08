@@ -1,0 +1,260 @@
+{
+  "templateOnly": false,
+  "status": "R1, K1, K2, V4 inspected; owner chose painterly + shop awning; UI blocked pending owner review of V4 and a settled end frame",
+  "changeId": "w4-20261005-paris-p1-glitch-paris",
+  "phase": "Week 4 visual-gated, P1 arrival packet: Paris palette and glitch-in construction",
+  "sourceRevision": "f3f48ba",
+  "acceptedBaseline": null,
+  "ownerFeedback": {
+    "date": "2026-10-05",
+    "text": "The glitch strips should be glitching not neatly falling into places, refer to the animal gif with overlay boxes, thats how I want the scenes to slowly appear. Also change the color, the colors of these particles kind of ruin the vibes of the request, change the colors into what fits best with the paris environment."
+  },
+  "referencesInterpreted": {
+    "note": "Owner-selected Week 3 pivot references, inspected locally, described in text only (not uploaded; rights unverified).",
+    "files": [
+      {
+        "path": "week3/pivot_references/From Klickpin.com- Minimal small business branding ideas ... .mp4",
+        "observed": "45 s, 720x720, 30 fps; animals/shells/flowers; every ~0.125-0.25 s a constellation of 5-30 hairline grey rectangles (many X-crossed) appears, jumps, resizes and regroups on detail regions, linked by thin straight lines; tiny red numeric labels (excluded here); subjects flicker between outline sketch and filled image"
+      },
+      {
+        "path": "week3/pivot_references/0268915e2cc8124b9d5b9c99545f8736.gif",
+        "observed": "1.14 s, 19 frames; walking figure torn by horizontal smeared colour bands and pixel fragments that change every frame"
+      }
+    ]
+  },
+  "motionRequired": true,
+  "ownedUiFiles": [],
+  "runs": [
+    {
+      "jobId": "R1",
+      "predictionId": "950e5e30-0410-42e9-b9ca-d0f7aa64630a",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (H1 passed as its Weave-hosted output; URL not recorded)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "H1 (w4-20261003-paris-p1-s3-week3-ink img-09)"
+        ],
+        "prompt": "Recolour only to a 1980s Paris late-afternoon palette (paper, cream limestone, sage shutters, zinc, dark iron, faded brick-red awning, white-grey marble, porcelain and espresso, honey rattan, camel/oatmeal/denim/navy walkers); remove teal/coral/apricot/magenta/plum. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 180.8,
+      "costApprovalRef": "Owner structured multi-select, 2026-10-05, R1 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-01-r1-paris-recolour.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "e6017c98dfe4d4384298a731e2a0db724dd6fe0331d026091cb9b9d472de79a5",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "K1",
+      "predictionId": "bc9713de-0c76-4a87-9ba7-541c336ccb5c",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (H1 passed as its Weave-hosted output; URL not recorded)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "H1"
+        ],
+        "prompt": "Early glitch-in in the Paris palette: mostly paper and graphite wireframe; scattered resolved regions torn into sideways-smeared horizontal strips with red/cyan fringes, duplicated slices; dense network of 30-40 hairline boxes, many X-crossed, linked by lines. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 171.8,
+      "costApprovalRef": "Owner structured multi-select, 2026-10-05, K1 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-02-k1-early-glitch.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "c9f98aa8f2781d58567d681e4ed3815a20dd4d2047fe41020a5d8b324ec90f8d",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "K2",
+      "predictionId": "7980aa3e-266e-4328-acce-55acf55c5f06",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (H1 passed as its Weave-hosted output; URL not recorded)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "inputs": {
+        "images": [
+          "H1"
+        ],
+        "prompt": "Two-thirds glitch-in in the Paris palette: 3-4 torn displaced bands, a duplicated walker, far street and awning still wireframe; about 20 X-crossed hairline boxes linked by lines. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 162.8,
+      "costApprovalRef": "Owner structured multi-select, 2026-10-05, K2 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-03-k2-two-thirds-glitch.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "b510035dd06717abf72b3a35af0f43cbc853d6b7ce17781d5aaa3075c4daa720",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "V4",
+      "predictionId": "1eef5b9f-4c5e-44d6-ae22-790a4710f06d",
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "modelId": "kling (Kling First & Last Frame, O1 Pro)",
+      "inputs": {
+        "image": "K1 output (img-02)",
+        "tail_image_url": "K2 output (img-03)",
+        "prompt": "Unstable stuttering glitch-in: horizontal strips tear, jump and smear with red/cyan fringes then snap back; slices duplicate; regions flicker between pencil wireframe and painted image before holding; dozens of X-crossed hairline boxes linked by lines pop, jump and regroup; nearest first; muted Paris colours; no full-frame flashes. Full text in the Cloud session record.",
+        "negative_prompt": "camera movement, zoom, pan, cuts, full-frame flashes, neon colours, text, numbers, labels, logos, watermark, hexagons, game HUD, people facing the camera",
+        "model": "O1 Pro",
+        "duration": 10,
+        "cfg_scale": 0.5
+      },
+      "uploads": "none",
+      "outputCount": 1,
+      "quotedCost": 109,
+      "costUnit": "Weave workspace credits",
+      "costApprovalRef": "Owner approved V4 at 109; after the agent flagged that the K1->R1 ending conflicted with the owner choices (painterly, shop awning), the owner chose K1->K2 at 109 (structured prompt, 2026-10-05). The K1->R1 version was not run.",
+      "reportedCost": 109,
+      "remainingCreditsAfterSubmit": 53.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/videos/vid-01-v4-k1-to-k2-glitch.mp4",
+          "kind": "video/mp4 (H.264)",
+          "width": 1928,
+          "height": 1072,
+          "fps": 24,
+          "frames": 242,
+          "durationSeconds": 10.083,
+          "sha256": "c4ff18d91787f4c7efc308b63ffdb6062639687ae50eaf4270b46b8bcd0583d8",
+          "source": "Weave output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not a runtime clip."
+        }
+      ]
+    }
+  ],
+  "quotes": [
+    {
+      "job": "V4 K1->R1",
+      "quotedCost": 109,
+      "status": "superseded by K1->K2 per owner; not run"
+    },
+    {
+      "job": "P1 settled painterly (edit of K2)",
+      "quotedCost": 9,
+      "status": "quoted, not run"
+    }
+  ],
+  "creditLedger": {
+    "ceiling": "about 500 (owner, 2026-10-03)",
+    "usedUnderCeiling": 499,
+    "remainingWorkspaceCreditsAfterLastSubmit": 53.8,
+    "note": "Ceiling effectively reached; further generation needs a new owner budget"
+  },
+  "selectedAssets": [
+    {
+      "path": "references/images/img-03-k2-two-thirds-glitch.png",
+      "selection": "owner-chosen look (painterly, shop awning); not settled"
+    },
+    {
+      "path": "references/images/img-02-k1-early-glitch.png",
+      "selection": "glitch-in start keyframe"
+    },
+    {
+      "path": "references/videos/vid-01-v4-k1-to-k2-glitch.mp4",
+      "selection": "provisional glitch-in motion reference"
+    },
+    {
+      "path": "references/images/img-01-r1-paris-recolour.png",
+      "selection": "not selected for finished look (owner chose painterly); palette reference"
+    }
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "performed",
+    "inspector": "Cloud main session (coordinator)",
+    "method": "Full frames viewed",
+    "observations": "See REVIEW.md",
+    "limitations": [
+      "Stills only; glitch timing needs video"
+    ]
+  },
+  "writerInspections": [],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": []
+  },
+  "ownerDecision": {
+    "status": "pending",
+    "date": null,
+    "feedback": null
+  },
+  "motionInspection": {
+    "method": "3 fps contact sheet over 10 s, 12 fps sheet for 2-3 s, per-frame luma difference over all 242 frames; not watched in real time",
+    "v4": {
+      "ydif": {
+        "mean": 0.77,
+        "median": 0.66,
+        "p95": 1.83,
+        "max": 2.74,
+        "maxAtSeconds": 7.46
+      }
+    }
+  },
+  "ownerChoices": {
+    "date": "2026-10-05",
+    "finishedLook": "painterly (K1/K2), not stipple (R1)",
+    "awning": "shop awning on the facade (K2), not the overhead canopy"
+  }
+}

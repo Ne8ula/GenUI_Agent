@@ -1,5 +1,8 @@
 node_modules/
 target/
+# Vite build output and Playwright scratch.
+app/dist/
+app/.vite/
 # Private runtime/recovery data must never be stored in the repository.
 *.journal
 *.journal.jsonl

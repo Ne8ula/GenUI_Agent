@@ -1,0 +1,299 @@
+{
+  "templateOnly": false,
+  "status": "s1-generated-and-inspected; P1 packet incomplete; UI edits still blocked",
+  "changeId": "w4-20261003-paris-p1-s1",
+  "phase": "Week 4 visual-gated, P1 arrival packet (first job only)",
+  "sourceRevision": "2e640b5885295a7417afea6acf2dab7a95b8d586",
+  "acceptedBaseline": null,
+  "scope": "One S1 master seated-terrace image to choose framing before quoting the rest of P1. Not a motion reference and not sufficient for any UI pass on its own.",
+  "ownedUiFiles": [],
+  "motionRequired": true,
+  "coordinator": {
+    "environment": "Claude Code on the web (Cloud), main session; see the Cloud session record for the resolved model. The platform withholds model identifiers from repository artifacts.",
+    "figmaAccount": "Figma MCP whoami handle 'Alex Xiong'; plans 'Silverjay Studio' (student) and 'Road Sign' (starter). Email not recorded here."
+  },
+  "discovery": {
+    "date": "2026-10-03",
+    "weaveListTools": "{\"tools\":[],\"totalCount\":0}: workflow route unavailable in the active workspace; direct-model route used",
+    "weaveFindModel": [
+      {
+        "query": "nano banana 2",
+        "candidates": [
+          {
+            "label": "Nano Banana 2",
+            "id": "bebebed5-50c1-4701-98b3-86929db21585",
+            "modelId": "fal-ai/nano-banana-2/edit",
+            "costEstimate": 6
+          },
+          {
+            "label": "Nano Banana 2 Lite",
+            "id": "e3182874-8f56-4b8f-ae09-83677c914cf8",
+            "modelId": "fal-ai/nano-banana-2-lite/edit",
+            "costEstimate": 3
+          }
+        ]
+      },
+      {
+        "query": "imagen 4",
+        "outcome": "unresolved"
+      },
+      {
+        "query": "flux pro",
+        "candidates": [
+          {
+            "label": "Flux Pro 1.1 Ultra",
+            "id": "rp8wcsp5ViyuITMAdemY",
+            "modelId": "black-forest-labs/flux-1.1-pro-ultra",
+            "costEstimate": 7
+          },
+          {
+            "label": "Flux Pro 1.1",
+            "id": "l7FCkacqk0zPmkVTtbt9",
+            "modelId": "black-forest-labs/flux-1.1-pro",
+            "costEstimate": 5
+          },
+          {
+            "label": "Flux Pro Outpaint",
+            "id": "v6ivwh6HSko2SMwqTzdx",
+            "modelId": "black-forest-labs/flux-fill-pro",
+            "costEstimate": 6
+          },
+          {
+            "label": "Flux Fill Pro",
+            "id": "a7034751-f2cf-4fac-b50f-6d78554d8e00",
+            "modelId": "fal-ai/flux-pro/v1/fill",
+            "costEstimate": 10
+          }
+        ]
+      }
+    ],
+    "selectionRationale": "Nano Banana 2 (full): same model family as the Week 3 direct-model packets, text-only use needs no upload, supports 16:9 and 2K, and accepts up to 14 reference images so later P1/P3 jobs can be edits of the selected S1 for registration."
+  },
+  "runs": [
+    {
+      "jobId": "S1",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "predictionId": "ff83853e-952e-428f-a283-edc58ff2ee90",
+      "inputs": {
+        "prompt": "week4/DESIGN_PROMPT.md section 11 master prompt, verbatim (three paragraphs: scene, Style, Exclude). No stage line prepended; S1 is the master.",
+        "images": null,
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "uploads": "none",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits (not Figma AI credits)",
+      "costApprovalRef": "Owner structured Approve/Cancel prompt in Cloud session, 2026-10-03: 'Approve (9 credits)' for this exact run",
+      "reportedCost": 9,
+      "remainingCreditsAfterSubmit": 552.8,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "outputs": [
+        {
+          "path": "references/images/img-01-s1-master.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "3df6ac54ce5d739627f7c8534ba8a17c0bacf205f1e923bbdc4504d0d775813b",
+          "source": "Weave model output retrieved with curl from the media host returned by weave_get_model_run_output; URL not recorded",
+          "license": "Generated development reference; provider terms not reviewed for runtime use. Not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "S2a",
+      "predictionId": "a084a81d-bb01-4eb5-af2f-65398a5aef75",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (inputs are this packet's own Weave-hosted outputs, passed by URL; URLs not recorded)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits (not Figma AI credits)",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "budget": "Owner ceiling of about 500 credits for the rest of P1 (2026-10-03); each run still quoted and approved individually",
+      "inputs": {
+        "images": [
+          "S1 output (img-01)"
+        ],
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "remainingCreditsAfterSubmit": 543.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-03, S2a 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/99a76cb84defb201fc69f1623ed0c4c709128c3c362e3bd38a0a5741450c38cc",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "Edit prompt: keep the S1 style, palette, paper and the valance/table/cup/ashtray/coins/chair at the same size and position; change only the street; three-depth walkers (woman near cut by the table, man mid, teen far); lamp post on the near curb at about 3/4 width; horizon about 42% from top; sky dissolves into paper; remove text-like marks; same exclusions as section 11. Full text in the Cloud session record. Variant A: facade recedes diagonally to a vanishing point on the right.",
+          "source": "Weave model output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "S2b",
+      "predictionId": "2e6899ad-feea-4719-8135-651d0ff5f875",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (inputs are this packet's own Weave-hosted outputs, passed by URL; URLs not recorded)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits (not Figma AI credits)",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "budget": "Owner ceiling of about 500 credits for the rest of P1 (2026-10-03); each run still quoted and approved individually",
+      "inputs": {
+        "images": [
+          "S1 output (img-01)"
+        ],
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "remainingCreditsAfterSubmit": 534.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-03, S2b 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/dc7a7667d702b12c80d6e29dfb88bf6fe60d86f2643e7c137a82828efaad3132",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "Edit prompt: keep the S1 style, palette, paper and the valance/table/cup/ashtray/coins/chair at the same size and position; change only the street; three-depth walkers (woman near cut by the table, man mid, teen far); lamp post on the near curb at about 3/4 width; horizon about 42% from top; sky dissolves into paper; remove text-like marks; same exclusions as section 11. Full text in the Cloud session record. Variant B: long street receding straight to a vanishing point slightly left of centre, facades both sides, far end fading to paper.",
+          "source": "Weave model output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "S2c",
+      "predictionId": "64035bab-b53b-4204-8490-b3c28d1f71c9",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (inputs are this packet's own Weave-hosted outputs, passed by URL; URLs not recorded)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits (not Figma AI credits)",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "budget": "Owner ceiling of about 500 credits for the rest of P1 (2026-10-03); each run still quoted and approved individually",
+      "inputs": {
+        "images": [
+          "S1 output (img-01)"
+        ],
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null
+      },
+      "remainingCreditsAfterSubmit": 525.8,
+      "costApprovalRef": "First quote call blocked by the session auto-mode permission check (no spend); owner explicitly asked to retry the quote; then owner structured Approve, 2026-10-03, S2c 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/d6b4c2aa95c22d169fbb9f66d3b32558b24b295fdfbd184f832aad602ee45bce",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "Edit prompt: keep the S1 style, palette, paper and the valance/table/cup/ashtray/coins/chair at the same size and position; change only the street; three-depth walkers (woman near cut by the table, man mid, teen far); lamp post on the near curb at about 3/4 width; horizon about 42% from top; sky dissolves into paper; remove text-like marks; same exclusions as section 11. Full text in the Cloud session record. Variant C: facade kept frontal but set back, lighter and more line; wide pavement and cobbled street with paving lines converging to a central vanishing point.",
+          "source": "Weave model output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    },
+    {
+      "jobId": "S2d",
+      "predictionId": "f41cdb9c-65c4-4bd9-9af0-4362c2a2fe46",
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "uploads": "none (inputs are this packet's own Weave-hosted outputs, passed by URL; URLs not recorded)",
+      "outputCount": 1,
+      "quotedCost": 9,
+      "costUnit": "Weave workspace credits (not Figma AI credits)",
+      "reportedCost": 9,
+      "submissions": 1,
+      "status": "COMPLETED",
+      "budget": "Owner ceiling of about 500 credits for the rest of P1 (2026-10-03); each run still quoted and approved individually",
+      "inputs": {
+        "images": [
+          "S2c output (img-04), primary",
+          "S2b output (img-03), reference"
+        ],
+        "aspect_ratio": "16:9",
+        "resolution": "2K",
+        "enable_web_search": false,
+        "seed": null,
+        "prompt": "Edit S2c: keep anchors, woman, cobbles, near lamp post and car; open the middle of the facade into S2b-like receding side street fading to paper; move the man to middle depth; keep the teen small and far; sky to paper; plain newspaper and coins; same exclusions. Full text in the Cloud session record."
+      },
+      "remainingCreditsAfterSubmit": 516.8,
+      "costApprovalRef": "Owner structured Approve, 2026-10-03, S2d 9 credits",
+      "outputs": [
+        {
+          "path": "references/images/img-05-s2d-combined.png",
+          "kind": "image/png",
+          "width": 2752,
+          "height": 1536,
+          "sha256": "01b2f54b29140088f667da35f3566f3273d9b774f1b0df73e08b8f46104d9beb",
+          "source": "Weave model output retrieved with curl; URL not recorded",
+          "license": "Generated development reference; not an adopted runtime asset."
+        }
+      ]
+    }
+  ],
+  "selectedAssets": [
+    {
+      "path": "references/images/img-05-s2d-combined.png",
+      "selection": "provisional environment base (recession, near lamp-post occluder, cobbles, far field to paper); walker placement NOT resolved; agent selection, owner review pending"
+    }
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "performed",
+    "inspector": "Cloud main session (coordinator)",
+    "method": "Full-frame view of the 2752x1536 PNG downscaled for display, plus two full-resolution crops (table objects; newspaper, cassette player, car and wall) made with ImageMagick in a scratch directory",
+    "observations": "See REVIEW.md 'Inspection'",
+    "limitations": [
+      "Single still; says nothing about construction, gait, smoke or timing",
+      "Agent visual reading only; no colour measurement against the proposed palette hexes",
+      "Historical plausibility of wardrobe and car is not researched (DESIGN_PROMPT section 9)"
+    ]
+  },
+  "implementationGuidance": "See REVIEW.md 'Implementation guidance (provisional)'",
+  "writerInspections": [],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": [],
+    "note": "No Week 4 renderer exists. First implementation has no runnable before-state; implementation folders are created only when real captures exist."
+  },
+  "ownerDecision": {
+    "status": "pending",
+    "date": null,
+    "feedback": null
+  },
+  "creditLedger": {
+    "ceiling": "about 500 for the rest of P1 (owner, 2026-10-03)",
+    "usedUnderCeiling": 36,
+    "separatelyApprovedBeforeCeiling": {
+      "S1": 9
+    },
+    "remainingWorkspaceCreditsAfterLastSubmit": 516.8
+  }
+}
