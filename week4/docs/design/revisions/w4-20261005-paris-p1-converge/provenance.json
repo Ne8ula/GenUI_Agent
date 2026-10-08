@@ -1,6 +1,6 @@
 {
   "templateOnly": false,
-  "status": "E0, A0, P1, V5 inspected; provisional convergence packet complete for owner review; UI blocked pending owner acceptance of the packet",
+  "status": "E0, A0, P1, V5 inspected; provisional convergence packet complete for owner review; UI blocked pending owner acceptance of the packet; 2026-10-07: designated by the owner's implementation task as the reference packet for implementation steps 1–6 (see w4-impl-s1-arrival-frame-20261007/REVIEW.md §2); owner acceptance of the packet itself still pending",
   "changeId": "w4-20261005-paris-p1-converge",
   "phase": "Week 4 visual-gated, P1 arrival: particle-convergence construction",
   "sourceRevision": "aba0de2",
@@ -209,7 +209,45 @@
       "Stills only"
     ]
   },
-  "writerInspections": [],
+  "writerInspections": [
+    {
+      "date": "2026-10-07",
+      "writer": "main session (Cloud; configured claude-opus-5-5, served claude-fable-5-1)",
+      "assets": [
+        "img-01",
+        "img-02",
+        "img-03",
+        "vid-01-frames.png",
+        "own 2 fps extraction of vid-01 (20 frames)"
+      ],
+      "scope": "step 1 scene authoring, palette, integration",
+      "record": "week4/docs/design/revisions/w4-impl-s1-arrival-frame-20261007/REVIEW.md §2"
+    },
+    {
+      "date": "2026-10-07",
+      "writer": "eva-ui-designer (alias sonnet; self-report claude-sonnet-5-5)",
+      "assets": [
+        "img-01",
+        "img-02",
+        "img-03",
+        "vid-01-frames.png"
+      ],
+      "scope": "step 1 host, fixture controls, capture script",
+      "record": "hand-back quoted in the step-1 REVIEW §2"
+    },
+    {
+      "date": "2026-10-07",
+      "writer": "renderer worker (built-in general-purpose; disclosed fallback for the failed eva-implementer route; self-report claude-fable-5-1)",
+      "assets": [
+        "img-01",
+        "img-02",
+        "img-03",
+        "vid-01-frames.png"
+      ],
+      "scope": "step 1 WebGL2/Canvas2D renderers",
+      "record": "hand-back quoted in the step-1 REVIEW §2"
+    }
+  ],
   "implementation": {
     "beforeCaptures": [],
     "afterCaptures": [],

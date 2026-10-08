@@ -49,3 +49,20 @@ Executed integration checks:
 - Final Git status: only `week4/` untracked; no tracked-file changes. No application code, dependencies, root instructions, agent configuration or historical workspace changed.
 
 No UI implementation, camera capture, application test, desktop manipulation, Weave run, image/video generation, audio generation, upload, publication, commit or owner acceptance occurred. Weave's finite generation allowance, actual model/workflow selection, inspected reference packets and Windows feasibility checks remain outstanding. CLI cost metadata is not an invoice or a Weave budget.
+
+## 2026-10-08 addendum: direction-C art direction
+
+After the owner rejected the step-1 direction, the owner chose "Claude Opus 5.5 via the `opus` route (as before; self-report caveat recorded)" for the direction-C art direction. [DESIGN_PROMPT_C.md](DESIGN_PROMPT_C.md), the [C packet job list](docs/design/revisions/w4-20261008-paris-c-hybrid/JOBS.md) and [RENDERER_CONTRACT_C.md](RENDERER_CONTRACT_C.md) were authored in one read-only run of the project `eva-reviewer` agent through Claude Code's Agent tool in the Cloud session (configured `model: opus` in `.claude/agents/eva-reviewer.md`; tools Read/Glob/Grep; no edits, commands, runs or persistence).
+
+- **Self-report:** the worker reported its system context names it Claude Opus 5.5, `claude-opus-5-5`. It could not see what the alias resolved to and said so.
+- **Independent evidence:** none available here. The Cloud container has no Model Gateway route log, and the Agent tool's result carries no model field. The 2026-10-03 record above shows the `opus` alias resolving to `claude-opus-4-8[1m]` on the workstation at that time; the Cloud resolution may differ and is unverified.
+- **Integration:** the main session (configured `claude-opus-5-5`, served `claude-fable-5-1`) split the hand-back into the three files, added the source-revision and live-contract notes in the headers, and changed nothing else in the authored text.
+- **Not done:** no Weave run, upload, cost or acceptance. The author viewed P1, A0, E0, the V5 frame sheet and the step-1 comparison sheets; it did not watch the V5 clip in real time.
+
+### Second run, 2026-10-08: alternatives after the RC1 rejection
+
+After the owner rejected RC1 ("Reject the realistic look"; reasons recorded in the decision record) and supplied five reference images with the instruction to refer especially to Cyberpunk 2077's Blackwall aesthetic and shaders ("aesthetics, not colors"), the same `eva-reviewer` route (configured `model: opus`; self-report Claude Opus 5.5; transport unverified here) authored [ALTERNATIVES.md](docs/design/revisions/w4-20261008-paris-c-hybrid/ALTERNATIVES.md) in one read-only run. It viewed P1, RC1 and its comparison sheets, E0, the step-1 comparison, the six mood references and the five owner references from the session scratchpad; it did not see the owner's motion video, which had not been delivered. The main session integrated the text unchanged. The five owner references are third-party or game imagery, kept out of the repository and recorded by description and hash in the packet provenance; the document refers to them by number only. No run, upload, cost or acceptance occurred.
+
+### Third item, 2026-10-08: RECONSTRUCTION.md authored by the main session
+
+After the owner rejected batch 1 and asked for a reconstruction from the ground up around their references and video, an `eva-reviewer` (alias `opus`) authoring run was launched for `RECONSTRUCTION.md`; the owner stopped that run and said "Continue". The main session (configured `claude-opus-5-5`, served `claude-fable-5-1`) therefore authored [RECONSTRUCTION.md](docs/design/revisions/w4-20261008-paris-c-hybrid/RECONSTRUCTION.md) directly, reusing the earlier Opus-authored scene content where it fit. This is a disclosed departure from the owner's "Opus authors the art direction" decision, made at the owner's interruption, and can be re-authored through the Opus route if the owner asks.

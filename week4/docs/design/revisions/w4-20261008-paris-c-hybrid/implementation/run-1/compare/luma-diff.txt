@@ -1,0 +1,16 @@
+Luma difference per frame (YDIF, 0-255). VB2 stored: mean 3.18, max 6.2.
+(The recomputed VB2 row omits frame 0, so its mean reads ~3.21; 3.21 x 120/121 = the stored 3.18. Captured clips are measured like the recomputed row.)
+clip / segment                          frames  mean  median  p95   max   max at
+--------------------------------------  ------  ----  ------  ----  ----  ------
+VB2 recomputed - whole (24 fps)         120     3.21  3.16    4.77  6.20  4.54s 
+stepped - whole (30 fps)                660     0.35  0.34    0.66  2.00  8.33s 
+stepped - build (30 fps)                359     0.37  0.38    0.66  2.00  8.33s 
+stepped - idle (30 fps)                 289     0.30  0.29    0.62  1.59  20.47s
+stepped - idle (resampled to 24 fps)    231     0.35  0.33    0.71  1.59  20.46s
+stepped - whole (resampled to 24 fps)   528     0.41  0.38    0.88  2.00  8.33s 
+realtime - whole (30 fps)               682     0.44  0.20    1.48  5.61  9.83s 
+realtime - build (30 fps)               359     0.49  0.34    1.47  5.61  9.83s 
+realtime - idle (30 fps)                311     0.38  0.06    1.39  4.90  20.07s
+realtime - idle (resampled to 24 fps)   248     0.46  0.28    1.56  5.25  20.08s
+realtime - whole (resampled to 24 fps)  545     0.53  0.38    1.64  5.61  9.83s 
+Reading: a captured clip is calm in the VB2 sense when its idle-segment mean and max sit at or below VB2's; the build segment is allowed to move more because beads and tiles are being born. These numbers measure frame-to-frame change, not how the motion looks.

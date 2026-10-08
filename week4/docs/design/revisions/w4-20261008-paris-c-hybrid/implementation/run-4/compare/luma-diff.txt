@@ -1,0 +1,21 @@
+Luma difference per frame (YDIF, 0-255). VB2 stored: mean 3.18, max 6.2.
+(The recomputed VB2 row omits frame 0, so its mean reads ~3.21; 3.21 x 120/121 = the stored 3.18. Captured clips are measured like the recomputed row.)
+clip / segment                          frames  mean  median  p95   max   max at
+--------------------------------------  ------  ----  ------  ----  ----  ------
+VB2 recomputed - whole (24 fps)         120     3.21  3.16    4.77  6.20  4.54s 
+stepped - whole (30 fps)                660     0.28  0.23    0.59  1.25  8.33s 
+stepped - build (30 fps)                359     0.32  0.28    0.61  1.25  8.33s 
+stepped - idle (30 fps)                 289     0.24  0.21    0.31  1.20  14.83s
+stepped - idle (resampled to 24 fps)    231     0.28  0.23    0.45  1.34  12.75s
+stepped - whole (resampled to 24 fps)   528     0.34  0.25    0.71  1.75  1.58s 
+realtime - whole (30 fps)               692     0.39  0.07    1.58  9.17  0.03s 
+realtime - build (30 fps)               359     0.41  0.09    1.63  9.17  0.03s 
+realtime - idle (30 fps)                321     0.36  0.05    1.35  5.40  19.97s
+realtime - idle (resampled to 24 fps)   256     0.44  0.13    1.58  5.40  19.96s
+realtime - whole (resampled to 24 fps)  553     0.47  0.16    1.68  9.17  0.04s 
+Reading: a captured clip is calm in the VB2 sense when its idle-segment mean and max sit at or below VB2's; the build segment is allowed to move more because beads and tiles are being born. These numbers measure frame-to-frame change, not how the motion looks.
+
+Idle reading against VB2, as comfort and as fidelity (a gap is any idle mean below 0.50x of VB2's 3.18):
+stepped idle (resampled to 24 fps, VB2's rate): mean 0.28 / max 1.34 against VB2 3.18 / 6.2 -> ratio 0.088x (mean), 0.216x (max). Comfort: calm (idle mean and max at or below VB2's). Fidelity: FIDELITY GAP, less life than the reference (idle mean is 0.088x VB2's, below the 0.50x line).
+realtime idle (resampled to 24 fps, VB2's rate): mean 0.44 / max 5.40 against VB2 3.18 / 6.2 -> ratio 0.138x (mean), 0.871x (max). Comfort: calm (idle mean and max at or below VB2's). Fidelity: FIDELITY GAP, less life than the reference (idle mean is 0.138x VB2's, below the 0.50x line).
+A clip that is far below VB2 is calm but has less life than the approved reference: it passes comfort and shows a fidelity gap to close, so it is not a finished match.

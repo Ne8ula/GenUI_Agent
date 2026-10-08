@@ -1,0 +1,3 @@
+# Before-state: none runnable
+
+Step 1 is the first renderer step of Week 4. No Week 4 application existed before it (W4-1 delivered pure-data cores, mocks and tests only; see `week4/CLOUD_REPORT.md` §2), so there is no runnable before-state to capture. The historical concept the step implements is the selected Weave packet [w4-20261005-paris-p1-converge](../../../w4-20261005-paris-p1-converge/REVIEW.md), in particular `img-01-p1-settled-painterly.png` (arrival) and the settled 6–10 s of `vid-01-v5-e0-to-p1-converge.mp4`. Week 3's eye renderer (`week3/src/visual/`) is a different application and is not a before-state of this scene.

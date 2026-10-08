@@ -1,0 +1,431 @@
+{
+  "ok": true,
+  "startedAt": "2026-10-08T08:25:35.062Z",
+  "versions": {
+    "node": "v22.22.0",
+    "playwright": "1.56.1",
+    "chromium": "141.0.7390.37"
+  },
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "deviceScaleFactor": 1,
+  "baseUrl": "http://127.0.0.1:1443",
+  "look": "seed33",
+  "seed": 7,
+  "buildMs": 12000,
+  "idleSeconds": 10,
+  "environment": "linux 6.18.44-fc-v80 (x64, 4 CPU); browser-only evidence (Playwright headless Chromium). WebGL2 renderer reported: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) (software GL). No WebView2, Windows shell, camera or pose input was involved.",
+  "stills": [
+    {
+      "file": "webgl2-seed33-build-000pct.png",
+      "name": "build-000pct",
+      "requestedMs": 0,
+      "backend": "webgl2",
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 0,
+      "timeMs": 0,
+      "lifeMs": 0,
+      "particles": 62840,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": false,
+      "degraded": false,
+      "paused": true
+    },
+    {
+      "file": "webgl2-seed33-build-025pct.png",
+      "name": "build-025pct",
+      "requestedMs": 3000,
+      "backend": "webgl2",
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 3000,
+      "timeMs": 3000,
+      "lifeMs": 3000,
+      "particles": 63247,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": false,
+      "degraded": false,
+      "paused": true
+    },
+    {
+      "file": "webgl2-seed33-build-050pct.png",
+      "name": "build-050pct",
+      "requestedMs": 6000,
+      "backend": "webgl2",
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 6000,
+      "timeMs": 6000,
+      "lifeMs": 6000,
+      "particles": 63241,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": false,
+      "degraded": false,
+      "paused": true
+    },
+    {
+      "file": "webgl2-seed33-build-100pct.png",
+      "name": "build-100pct",
+      "requestedMs": 12000,
+      "backend": "webgl2",
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 12000,
+      "timeMs": 12000,
+      "lifeMs": 12000,
+      "particles": 63246,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": false,
+      "degraded": false,
+      "paused": true
+    },
+    {
+      "file": "webgl2-seed33-complete-plus-5s.png",
+      "name": "complete-plus-5s",
+      "requestedMs": 17000,
+      "backend": "webgl2",
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 17000,
+      "timeMs": 17000,
+      "lifeMs": 17000,
+      "particles": 61527,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": false,
+      "degraded": false,
+      "paused": true
+    },
+    {
+      "file": "webgl2-seed33-reduced-complete-plus-5s.png",
+      "name": "reduced-complete-plus-5s",
+      "requestedMs": 17000,
+      "backend": "webgl2",
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 17000,
+      "timeMs": 17000,
+      "lifeMs": 17000,
+      "particles": 63239,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": true,
+      "degraded": false,
+      "paused": true
+    },
+    {
+      "file": "canvas2d-seed33-build-050pct.png",
+      "name": "build-050pct",
+      "requestedMs": 6000,
+      "backend": "canvas2d",
+      "detail": "Canvas2D",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 6000,
+      "timeMs": 6000,
+      "lifeMs": 6000,
+      "particles": 41945,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": false,
+      "degraded": false,
+      "paused": true
+    },
+    {
+      "file": "canvas2d-seed33-complete-plus-5s.png",
+      "name": "complete-plus-5s",
+      "requestedMs": 17000,
+      "backend": "canvas2d",
+      "detail": "Canvas2D",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 17000,
+      "timeMs": 17000,
+      "lifeMs": 17000,
+      "particles": 61527,
+      "tiles": 18,
+      "tilesAuthored": 18,
+      "reduced": false,
+      "degraded": false,
+      "paused": true
+    }
+  ],
+  "backends": {
+    "webgl2": {
+      "requested": "webgl2",
+      "detail": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "timing": {
+        "construction": {
+          "note": "first 300 frame intervals of the build, from t = 0",
+          "label": "headless Chromium on linux 6.18.44-fc-v80 (x64, 4 CPU); WebGL2 renderer \"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\" — software GL, not GPU evidence; not a WebView2 or Windows-shell measurement",
+          "backend": "webgl2",
+          "frameIntervalMs": {
+            "samples": 300,
+            "median": 49.9,
+            "p95": 66.51,
+            "max": 83.4
+          },
+          "drawMs": {
+            "samples": 301,
+            "median": 1.7,
+            "p95": 2.8,
+            "max": 7.7
+          }
+        },
+        "idle": {
+          "note": "300 frame intervals at idle, from t = 17000 ms (build complete)",
+          "label": "headless Chromium on linux 6.18.44-fc-v80 (x64, 4 CPU); WebGL2 renderer \"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\" — software GL, not GPU evidence; not a WebView2 or Windows-shell measurement",
+          "backend": "webgl2",
+          "frameIntervalMs": {
+            "samples": 300,
+            "median": 50,
+            "p95": 66.6,
+            "max": 83.4
+          },
+          "drawMs": {
+            "samples": 301,
+            "median": 1.5,
+            "p95": 2.2,
+            "max": 4.8
+          }
+        }
+      }
+    },
+    "canvas2d": {
+      "requested": "canvas2d",
+      "detail": "Canvas2D",
+      "timing": {
+        "idle": {
+          "note": "90 frame intervals at idle, from t = 17000 ms (build complete)",
+          "label": "headless Chromium on linux 6.18.44-fc-v80 (x64, 4 CPU); Canvas2D on the CPU; browser evidence, not a WebView2 or Windows-shell measurement",
+          "backend": "canvas2d",
+          "frameIntervalMs": {
+            "samples": 90,
+            "median": 183.4,
+            "p95": 216.6,
+            "max": 233.4
+          },
+          "drawMs": {
+            "samples": 91,
+            "median": 153.6,
+            "p95": 171.3,
+            "max": 201.6
+          }
+        }
+      }
+    }
+  },
+  "realtime": {
+    "requestedMs": 22000,
+    "lifeMs": 22815.7,
+    "startMs": 0,
+    "wallMs": 22799,
+    "frames": 324,
+    "meanFrameMs": 70.37,
+    "lifeToWallRatio": 1.001,
+    "note": "(life ms - start ms) / wall ms from the first drawn frame to the end of the recording; near 1 means life kept pace with the clock. Frames is the number of drawn frames over the same span, so wall/frames is this machine's real frame time.",
+    "video": {
+      "webm": "webgl2-realtime-build-idle.webm",
+      "ffmpeg": true,
+      "trimStartSeconds": 0.45,
+      "webmProbe": {
+        "codec": "vp8",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "reportedFps": 25,
+        "averageFps": 25,
+        "frames": 584,
+        "durationSeconds": 23.36
+      },
+      "mp4": "webgl2-realtime-build-idle.mp4",
+      "mp4Probe": {
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "reportedFps": 30,
+        "averageFps": 30,
+        "frames": 686,
+        "durationSeconds": 22.866667
+      },
+      "frameSheet": "webgl2-realtime-build-idle-frames-4fps.png",
+      "frameSheetLayout": "10 columns x 10 rows at 4 fps, 480 px wide, timestamps from the start of the clip",
+      "trimMethod": "clip length 23.36 s - 22.8 s of wall time since the first drawn frame - 0.11 s context-close latency; approximate to a few tenths of a second",
+      "nominalFps": "Playwright screencast, nominally 25 fps, transcoded with -r 30; duplicated or dropped frames are possible and the real frame time is meanFrameMs above"
+    }
+  },
+  "stepped": {
+    "fps": 30,
+    "stepMs": 33.3333,
+    "framesRequested": 661,
+    "framesWritten": 661,
+    "wallSeconds": 369.5,
+    "meanSecondsPerFrame": 0.556,
+    "finalHostMs": 22000,
+    "finalLifeMs": 22000,
+    "expectedFinalMs": 22000,
+    "ffmpegExit": 0,
+    "label": "frames are page screenshots at 1920x1080 taken after each 33.33 ms virtual step on clock=manual; 141.0.7390.37 on linux 6.18.44-fc-v80 (x64, 4 CPU). This shows the intended motion at 30 fps, not real-time performance of this machine.",
+    "mp4": "webgl2-stepped-30fps-build-idle.mp4",
+    "mp4Probe": {
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "reportedFps": 30,
+      "averageFps": 30,
+      "frames": 661,
+      "durationSeconds": 22.033333
+    },
+    "frameSheet": "webgl2-stepped-30fps-build-idle-frames-4fps.png",
+    "frameSheetLayout": "10 columns x 9 rows at 4 fps, 480 px wide, timestamps from the start of the clip"
+  },
+  "statusLines": {
+    "midBuild": "Backend: WebGL2 · ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) · particles 63,241 · tiles 18 · Build: constructing 6.0 s of 12 s · clock 6.0 s (paused) · frame 50.0 ms median / 77.5 ms p95 (last 28) · draw 1.6 ms · Head tracking: off (not in this step)",
+    "complete": "Backend: WebGL2 · ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) · particles 61,527 · tiles 18 · Build: complete · clock 17.0 s (paused) · frame 50.0 ms median / 50.1 ms p95 (last 106) · draw 1.6 ms · Head tracking: off (not in this step)"
+  },
+  "focus": {
+    "tag": "select",
+    "accessibleName": "Look",
+    "matchesFocusVisible": true,
+    "outline": "rgb(58, 47, 42) solid 2px",
+    "barHeightPx": 147,
+    "stageHeightPx": 933,
+    "barOverlapsStage": false,
+    "ariaSnapshot": "- combobox \"Look\":\n  - option \"Seed 33 (selected)\" [selected]\n  - option \"Arrival (earlier frame)\"",
+    "tabOrderFromFirst": [
+      "Look",
+      "Build length",
+      "Start time",
+      "Backend",
+      "Resume",
+      "Tiles: on",
+      "Reduced motion: off",
+      "Density",
+      "Seed",
+      "Reseed",
+      "EVA Week 4 — Paris frame (fixture)Fixture controls — Week 4 Paris frame, not the live demoLookSeed 33 (selected)Arrival (earlier frame)Build lengthComplete (no build)3 s6 s12 s24 sStart time6.0 sBackendAutoWebGL2Canvas2DResumeTiles: onReduced motion: offNear walker facing (arrival look only)AwayTowardDensity0.50.7511.25SeedReseedBackend: WebGL2 · ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) · particles 63,241 · tiles 18 · Build: constructing 6.0 s of 12 s · clock 6.0 s (paused) · frame 50.0 ms median / 66.7 ms p95 (last 70) · draw 1.5 ms · Head tracking: off (not in this step)Backend: WebGL2 · Build: constructing",
+      "Look",
+      "Build length"
+    ]
+  },
+  "tilesToggle": {
+    "before": {
+      "shown": 18,
+      "authored": 18
+    },
+    "afterOff": {
+      "shown": 0,
+      "authored": 18
+    },
+    "afterOn": {
+      "shown": 18,
+      "authored": 18
+    },
+    "statusWhenHidden": "Backend: WebGL2 · ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver) · particles 61,527 · tiles hidden (18 authored) · Build: complete · clock 17.0 s (paused) · frame 50.0 ms median / 66.6 ms p95 (last 76) · draw 1.5 ms · Head tracking: off (not in this step)",
+    "ok": true
+  },
+  "lookSwitch": {
+    "lookAfter": "arrival",
+    "tiles": 0,
+    "buildSelectDisabled": true,
+    "tilesButtonDisabled": true,
+    "tilesButtonText": "Tiles: none in this look"
+  },
+  "finishedAt": "2026-10-08T08:34:11.166Z",
+  "commands": [
+    "(cd /home/user/GenUI_Agent/week4/app && ../node_modules/.bin/vite --host 127.0.0.1 --port 1443 --strictPort)",
+    "node scripts/capture-s33.mjs (EVA_CAPTURE_BUILD_MS=12000, EVA_CAPTURE_IDLE_SECONDS=10, EVA_CAPTURE_SEED=7, EVA_CAPTURE_PORT=1443, EVA_CAPTURE_REALTIME=1, EVA_CAPTURE_STEPPED=1)",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-realtime-build-idle.webm",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-realtime-build-idle.webm",
+    "ffmpeg -y -v error -ss 0.45499999999999996 -i /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-realtime-build-idle.webm -r 30 -c:v libx264 -pix_fmt yuv420p -crf 18 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-realtime-build-idle.mp4",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-realtime-build-idle.mp4",
+    "ffmpeg -y -v error -i /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-realtime-build-idle.mp4 -vf fps=4,scale=480:-1,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='%{pts\\:hms}':x=8:y=8:fontsize=20:fontcolor=black:box=1:boxcolor=white@0.7,tile=10x10 -frames:v 1 -update 1 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-realtime-build-idle-frames-4fps.png",
+    "ffmpeg -y -v error -f image2pipe -framerate 30 -vcodec png -i - -c:v libx264 -pix_fmt yuv420p -crf 18 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-stepped-30fps-build-idle.mp4   # fed 661 page screenshots (png) on stdin",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-stepped-30fps-build-idle.mp4",
+    "ffmpeg -y -v error -i /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-stepped-30fps-build-idle.mp4 -vf fps=4,scale=480:-1,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='%{pts\\:hms}':x=8:y=8:fontsize=20:fontcolor=black:box=1:boxcolor=white@0.7,tile=10x9 -frames:v 1 -update 1 /home/user/GenUI_Agent/week4/docs/design/revisions/w4-20261008-paris-c-hybrid/implementation/run-2/after/webgl2-stepped-30fps-build-idle-frames-4fps.png"
+  ],
+  "pageErrors": [],
+  "failures": [],
+  "files": [
+    {
+      "name": "after/canvas2d-seed33-build-050pct.png",
+      "bytes": 1007640
+    },
+    {
+      "name": "after/canvas2d-seed33-complete-plus-5s.png",
+      "bytes": 1600907
+    },
+    {
+      "name": "after/fixture-controls-focus.png",
+      "bytes": 791281
+    },
+    {
+      "name": "after/webgl2-realtime-build-idle-frames-4fps.png",
+      "bytes": 8209031
+    },
+    {
+      "name": "after/webgl2-realtime-build-idle.mp4",
+      "bytes": 12301632
+    },
+    {
+      "name": "after/webgl2-realtime-build-idle.webm",
+      "bytes": 3520230
+    },
+    {
+      "name": "after/webgl2-seed33-build-000pct.png",
+      "bytes": 10018
+    },
+    {
+      "name": "after/webgl2-seed33-build-025pct.png",
+      "bytes": 819951
+    },
+    {
+      "name": "after/webgl2-seed33-build-050pct.png",
+      "bytes": 919550
+    },
+    {
+      "name": "after/webgl2-seed33-build-100pct.png",
+      "bytes": 1530489
+    },
+    {
+      "name": "after/webgl2-seed33-complete-plus-5s.png",
+      "bytes": 1476297
+    },
+    {
+      "name": "after/webgl2-seed33-reduced-complete-plus-5s.png",
+      "bytes": 1556065
+    },
+    {
+      "name": "after/webgl2-stepped-30fps-build-idle-frames-4fps.png",
+      "bytes": 7756708
+    },
+    {
+      "name": "after/webgl2-stepped-30fps-build-idle.mp4",
+      "bytes": 15150369
+    }
+  ],
+  "labels": {
+    "browser": true,
+    "native": false,
+    "camera": "none",
+    "pose": "none",
+    "realtimeClip": "Playwright screencast of the page on this machine's clock; shows real pacing",
+    "steppedClip": "page screenshots at a fixed virtual frame time; shows the intended motion, not machine performance",
+    "stillsFrameNote": "stills are paused with the host clock and the life clock both at the stated t"
+  }
+}

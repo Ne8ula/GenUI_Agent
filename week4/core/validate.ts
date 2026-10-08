@@ -1,7 +1,14 @@
 // EVA-owned JSON Schema Draft 2020-12 validation with byte limits applied before parsing.
-import { readFileSync } from 'node:fs';
+// Schemas are imported statically so this module runs unchanged under Node (tests) and in
+// the browser renderer host; nothing here touches the file system at runtime.
 import { Ajv2020 } from 'ajv/dist/2020.js';
 import type { ValidateFunction } from 'ajv/dist/2020.js';
+import sceneSchema from '../schemas/scene.schema.json' with { type: 'json' };
+import stageRequestSchema from '../schemas/stage-request.schema.json' with { type: 'json' };
+import transcriptEventSchema from '../schemas/transcript-event.schema.json' with { type: 'json' };
+import narrationManifestSchema from '../schemas/narration-manifest.schema.json' with { type: 'json' };
+import assetInventorySchema from '../schemas/asset-inventory.schema.json' with { type: 'json' };
+import weaveJobsSchema from '../schemas/weave-jobs.schema.json' with { type: 'json' };
 
 export const SCHEMA_NAMES = [
   'scene',
@@ -12,6 +19,15 @@ export const SCHEMA_NAMES = [
   'weave-jobs',
 ] as const;
 export type SchemaName = (typeof SCHEMA_NAMES)[number];
+
+const SCHEMAS: Readonly<Record<SchemaName, object>> = {
+  scene: sceneSchema,
+  'stage-request': stageRequestSchema,
+  'transcript-event': transcriptEventSchema,
+  'narration-manifest': narrationManifestSchema,
+  'asset-inventory': assetInventorySchema,
+  'weave-jobs': weaveJobsSchema,
+};
 
 // Upper bounds on serialized input, checked before JSON.parse.
 export const BYTE_LIMITS: Readonly<Record<SchemaName, number>> = {
@@ -27,12 +43,12 @@ export type Validation<T> = { ok: true; value: T } | { ok: false; errors: string
 
 const ajv = new Ajv2020({ allErrors: true, strict: true, allowUnionTypes: false });
 const compiled = new Map<SchemaName, ValidateFunction>();
+const utf8 = new TextEncoder();
 
 function validatorFor(name: SchemaName): ValidateFunction {
   let fn = compiled.get(name);
   if (!fn) {
-    const url = new URL(`../schemas/${name}.schema.json`, import.meta.url);
-    fn = ajv.compile(JSON.parse(readFileSync(url, 'utf8')) as object);
+    fn = ajv.compile(SCHEMAS[name]);
     compiled.set(name, fn);
   }
   return fn;
@@ -46,7 +62,7 @@ export function validateValue<T>(name: SchemaName, value: unknown): Validation<T
 }
 
 export function parseJson<T>(name: SchemaName, text: string): Validation<T> {
-  const bytes = Buffer.byteLength(text, 'utf8');
+  const bytes = utf8.encode(text).length;
   if (bytes > BYTE_LIMITS[name]) {
     return { ok: false, errors: [`input is ${bytes} bytes; limit is ${BYTE_LIMITS[name]}`] };
   }

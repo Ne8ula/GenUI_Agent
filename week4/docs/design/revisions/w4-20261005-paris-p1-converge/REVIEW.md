@@ -2,6 +2,8 @@
 
 **Status:** three images and one 10 s video generated and inspected. The provisional packet, selected by the agent, is **E0 → A0 → P1 plus [V5](references/videos/vid-01-v5-e0-to-p1-converge.mp4)**; owner review is pending. UI stays blocked until the owner accepts this packet as the reference for the renderer pass.
 
+> **2026-10-07 note.** The owner's implementation task for Week 4 (quoted verbatim in [w4-impl-s1-arrival-frame-20261007/REVIEW.md §2](../w4-impl-s1-arrival-frame-20261007/REVIEW.md)) names this packet as the selected reference for implementation steps 1–6, which lifts the "UI blocked" note above for those steps. The owner's acceptance of this packet *as a packet*, and of each implementation step, remains pending and is recorded separately.
+
 ![Contact sheet](references/contact-sheet.png)
 
 | Candidate | Job | Selection | Owner |
