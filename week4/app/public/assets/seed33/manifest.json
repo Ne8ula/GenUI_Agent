@@ -1,0 +1,569 @@
+{
+  "revision": "w4-20261008-seed33-fidelity-r1",
+  "sourceStill": {
+    "path": "week4/docs/design/revisions/w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png",
+    "sha256": "0a734f967dc4791203e8ba5d26994b5f5699890e484a90378ebfdf23763997f0",
+    "nativeSize": [
+      2752,
+      1536
+    ]
+  },
+  "generatedBy": "week4/app/scripts/extract-seed33-assets.py",
+  "ownerAuthorization": "See revision REVIEW.md; seed33-derived assets allowed for this bounded local browser pass; no video pixels",
+  "aspectHandling": {
+    "mode": "crop",
+    "nativeSize": [
+      2752,
+      1536
+    ],
+    "outputSize": [
+      2731,
+      1536
+    ],
+    "cropLeftPx": 10,
+    "cropRightPx": 11
+  },
+  "background": {
+    "file": "background.png",
+    "sha256": "a98103a873cd0be911fd9e7b513ce97d8f416b38a346a94cda2de81da7709aa7",
+    "size": [
+      2731,
+      1536
+    ]
+  },
+  "figure": {
+    "file": "figure-woman.png",
+    "sha256": "a309fb14e4b580d66655f9d9b86c1bcdaff914894dc16b5712da2881f64b8e4a",
+    "size": [
+      228,
+      623
+    ],
+    "cropBoxInBackgroundPx": [
+      877,
+      536,
+      1105,
+      1159
+    ],
+    "cropBoxInBackgroundFrac": [
+      0.32112779201757596,
+      0.3489583333333333,
+      0.4046136946173563,
+      0.7545572916666666
+    ],
+    "method": "Manually traced actual img13 silhouette,1.2px alpha feather; not run4 silhouette geometry"
+  },
+  "foreground": {
+    "file": "foreground.png",
+    "sha256": "f3f72fd24c3832a8d87fa604389bce10cdebf5a7da1a21419df95c028d44f944",
+    "size": [
+      2731,
+      1536
+    ],
+    "cropBoxInBackgroundPx": [
+      0,
+      0,
+      2731,
+      1536
+    ],
+    "method": "Source-traced foreground rim/cup; tile regions removed"
+  },
+  "tiles": {
+    "file": "tiles.png",
+    "sha256": "0236576b25e24ec39f199bd160df11e92c29e6303925fcee720c3eb5131ede1f",
+    "size": [
+      2731,
+      1536
+    ],
+    "regions": [
+      {
+        "id": "left-coral",
+        "group": "left",
+        "sourceBoxPx": [
+          249,
+          153,
+          426,
+          304
+        ],
+        "rect": [
+          0.09117539362870743,
+          0.099609375,
+          0.06481142438667155,
+          0.09830729166666667
+        ]
+      },
+      {
+        "id": "left-dither",
+        "group": "left",
+        "sourceBoxPx": [
+          426,
+          0,
+          539,
+          304
+        ],
+        "rect": [
+          0.15598681801537898,
+          0.0,
+          0.04137678506041743,
+          0.19791666666666666
+        ]
+      },
+      {
+        "id": "left-cream",
+        "group": "left",
+        "sourceBoxPx": [
+          272,
+          454,
+          418,
+          606
+        ],
+        "rect": [
+          0.09959721713658001,
+          0.2955729166666667,
+          0.05346027096301721,
+          0.09895833333333333
+        ]
+      },
+      {
+        "id": "right-tall-dither",
+        "group": "right",
+        "sourceBoxPx": [
+          2014,
+          183,
+          2146,
+          438
+        ],
+        "rect": [
+          0.7374588062980593,
+          0.119140625,
+          0.048333943610399124,
+          0.166015625
+        ]
+      },
+      {
+        "id": "right-dither-top",
+        "group": "right",
+        "sourceBoxPx": [
+          2146,
+          153,
+          2284,
+          304
+        ],
+        "rect": [
+          0.7857927499084585,
+          0.099609375,
+          0.05053094104723545,
+          0.09830729166666667
+        ]
+      },
+      {
+        "id": "right-dot-cream",
+        "group": "right",
+        "sourceBoxPx": [
+          2284,
+          153,
+          2428,
+          304
+        ],
+        "rect": [
+          0.8363236909556939,
+          0.099609375,
+          0.05272793848407177,
+          0.09830729166666667
+        ]
+      },
+      {
+        "id": "right-dither-low",
+        "group": "right",
+        "sourceBoxPx": [
+          2146,
+          304,
+          2284,
+          456
+        ],
+        "rect": [
+          0.7857927499084585,
+          0.19791666666666666,
+          0.05053094104723545,
+          0.09895833333333333
+        ]
+      },
+      {
+        "id": "right-coral",
+        "group": "right",
+        "sourceBoxPx": [
+          2284,
+          304,
+          2428,
+          456
+        ],
+        "rect": [
+          0.8363236909556939,
+          0.19791666666666666,
+          0.05272793848407177,
+          0.09895833333333333
+        ]
+      },
+      {
+        "id": "right-dot-dark",
+        "group": "right",
+        "sourceBoxPx": [
+          2428,
+          304,
+          2672,
+          456
+        ],
+        "rect": [
+          0.8890516294397657,
+          0.19791666666666666,
+          0.08934456243134382,
+          0.09895833333333333
+        ]
+      },
+      {
+        "id": "right-edge-cream",
+        "group": "right",
+        "sourceBoxPx": [
+          2672,
+          153,
+          2731,
+          304
+        ],
+        "rect": [
+          0.9783961918711095,
+          0.099609375,
+          0.021603808128890515,
+          0.09830729166666667
+        ]
+      },
+      {
+        "id": "right-honey",
+        "group": "right",
+        "sourceBoxPx": [
+          2432,
+          504,
+          2573,
+          655
+        ],
+        "rect": [
+          0.8905162943976566,
+          0.328125,
+          0.05162943976565361,
+          0.09830729166666667
+        ]
+      },
+      {
+        "id": "right-small-honey",
+        "group": "right",
+        "sourceBoxPx": [
+          2014,
+          438,
+          2113,
+          502
+        ],
+        "rect": [
+          0.7374588062980593,
+          0.28515625,
+          0.03625045770779934,
+          0.041666666666666664
+        ]
+      },
+      {
+        "id": "right-scanlines",
+        "group": "right",
+        "sourceBoxPx": [
+          2014,
+          502,
+          2146,
+          570
+        ],
+        "rect": [
+          0.7374588062980593,
+          0.3268229166666667,
+          0.048333943610399124,
+          0.044270833333333336
+        ]
+      },
+      {
+        "id": "right-sage",
+        "group": "right",
+        "sourceBoxPx": [
+          2014,
+          570,
+          2113,
+          615
+        ],
+        "rect": [
+          0.7374588062980593,
+          0.37109375,
+          0.03625045770779934,
+          0.029296875
+        ]
+      },
+      {
+        "id": "right-mini-cream",
+        "group": "right",
+        "sourceBoxPx": [
+          2014,
+          615,
+          2055,
+          654
+        ],
+        "rect": [
+          0.7374588062980593,
+          0.400390625,
+          0.015012815818381545,
+          0.025390625
+        ]
+      },
+      {
+        "id": "right-mini-grey",
+        "group": "right",
+        "sourceBoxPx": [
+          2055,
+          615,
+          2113,
+          654
+        ],
+        "rect": [
+          0.7524716221164409,
+          0.400390625,
+          0.021237641889417794,
+          0.025390625
+        ]
+      },
+      {
+        "id": "right-mini-dots",
+        "group": "right",
+        "sourceBoxPx": [
+          2113,
+          615,
+          2150,
+          654
+        ],
+        "rect": [
+          0.7737092640058587,
+          0.400390625,
+          0.013548150860490663,
+          0.025390625
+        ]
+      },
+      {
+        "id": "table-left-grey",
+        "group": "table",
+        "sourceBoxPx": [
+          584,
+          1265,
+          644,
+          1379
+        ],
+        "rect": [
+          0.21384108385206885,
+          0.8235677083333334,
+          0.021969974368363236,
+          0.07421875
+        ]
+      },
+      {
+        "id": "table-left-dots",
+        "group": "table",
+        "sourceBoxPx": [
+          645,
+          1153,
+          816,
+          1281
+        ],
+        "rect": [
+          0.2361772244599048,
+          0.7506510416666666,
+          0.06261442694983523,
+          0.08333333333333333
+        ]
+      },
+      {
+        "id": "table-cream-dots",
+        "group": "table",
+        "sourceBoxPx": [
+          1098,
+          1153,
+          1228,
+          1412
+        ],
+        "rect": [
+          0.40205053094104726,
+          0.7506510416666666,
+          0.04760161113145368,
+          0.16861979166666666
+        ]
+      },
+      {
+        "id": "table-dark-dither",
+        "group": "table",
+        "sourceBoxPx": [
+          1228,
+          1153,
+          1367,
+          1437
+        ],
+        "rect": [
+          0.4496521420725009,
+          0.7506510416666666,
+          0.05089710728670817,
+          0.18489583333333334
+        ]
+      },
+      {
+        "id": "table-honey",
+        "group": "table",
+        "sourceBoxPx": [
+          1367,
+          1207,
+          1471,
+          1437
+        ],
+        "rect": [
+          0.5005492493592091,
+          0.7858072916666666,
+          0.03808128890516294,
+          0.14973958333333334
+        ]
+      },
+      {
+        "id": "table-dither",
+        "group": "table",
+        "sourceBoxPx": [
+          1471,
+          1301,
+          1548,
+          1437
+        ],
+        "rect": [
+          0.538630538264372,
+          0.8470052083333334,
+          0.028194800439399488,
+          0.08854166666666667
+        ]
+      },
+      {
+        "id": "table-cream",
+        "group": "table",
+        "sourceBoxPx": [
+          1548,
+          1301,
+          1689,
+          1412
+        ],
+        "rect": [
+          0.5668253387037715,
+          0.8470052083333334,
+          0.05162943976565361,
+          0.072265625
+        ]
+      },
+      {
+        "id": "table-middle-strip",
+        "group": "table",
+        "sourceBoxPx": [
+          1548,
+          1412,
+          1689,
+          1437
+        ],
+        "rect": [
+          0.5668253387037715,
+          0.9192708333333334,
+          0.05162943976565361,
+          0.016276041666666668
+        ]
+      },
+      {
+        "id": "table-bottom",
+        "group": "table",
+        "sourceBoxPx": [
+          1471,
+          1437,
+          1689,
+          1536
+        ],
+        "rect": [
+          0.538630538264372,
+          0.935546875,
+          0.07982424020505309,
+          0.064453125
+        ]
+      },
+      {
+        "id": "table-right-coral",
+        "group": "table",
+        "sourceBoxPx": [
+          2340,
+          1244,
+          2493,
+          1353
+        ],
+        "rect": [
+          0.8568290003661663,
+          0.8098958333333334,
+          0.056023434639326256,
+          0.07096354166666667
+        ]
+      },
+      {
+        "id": "table-right-glass",
+        "group": "table",
+        "sourceBoxPx": [
+          2340,
+          1378,
+          2431,
+          1536
+        ],
+        "rect": [
+          0.8568290003661663,
+          0.8971354166666666,
+          0.033321127792017576,
+          0.10286458333333333
+        ]
+      }
+    ],
+    "method": "Original source rectangles separated into independently rendered textured quads"
+  },
+  "limitations": [
+    "The hidden facade uses source-column texture reconstruction; behind tiles uses neighbouring facade strips or projectively sampled lower-table texture. Neither is recovered unseen geometry.",
+    "Figure remains a2D matte for a fixed camera, with live mesh articulation; no3D or head-coupling claim.",
+    "Original third-party input rights not independently cleared; see RUNTIME_ASSETS.md."
+  ],
+  "vb2Measurement": {
+    "method": "Direct visual reference guides only, no automated tracking measurement or video pixels claimed",
+    "approachSamples": [
+      {
+        "tMs": 0,
+        "centerX": 0.3646,
+        "headTopY": 0.3558,
+        "height": 0.3933
+      },
+      {
+        "tMs": 1250,
+        "centerX": 0.371,
+        "headTopY": 0.345,
+        "height": 0.421
+      },
+      {
+        "tMs": 2500,
+        "centerX": 0.383,
+        "headTopY": 0.323,
+        "height": 0.463
+      },
+      {
+        "tMs": 3750,
+        "centerX": 0.407,
+        "headTopY": 0.281,
+        "height": 0.54
+      },
+      {
+        "tMs": 4960,
+        "centerX": 0.461,
+        "headTopY": 0.215,
+        "height": 0.721
+      }
+    ]
+  }
+}

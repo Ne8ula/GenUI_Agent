@@ -1,0 +1,49 @@
+{
+  "sourceBackgroundSha256": "a98103a873cd0be911fd9e7b513ce97d8f416b38a346a94cda2de81da7709aa7",
+  "sourceForegroundSha256": "f3f72fd24c3832a8d87fa604389bce10cdebf5a7da1a21419df95c028d44f944",
+  "output": "week4\\app\\public\\assets\\seed33\\foreground-away.png",
+  "sha256": "1e65e8667bd2806f3d8d6e86d9ab37b2ebd8a4dd587b5179f06e4ce30d448711",
+  "chairOcclusionPolygonNorm": [
+    [
+      0,
+      0.503
+    ],
+    [
+      0.04,
+      0.492
+    ],
+    [
+      0.087,
+      0.5
+    ],
+    [
+      0.131,
+      0.535
+    ],
+    [
+      0.168,
+      0.596
+    ],
+    [
+      0.195,
+      0.682
+    ],
+    [
+      0.214,
+      0.785
+    ],
+    [
+      0.22,
+      0.87
+    ],
+    [
+      0.204,
+      0.945
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "limitation": "Authored opaque outer chair-back matte, not per-rattan-strand depth. Original table/cup alpha stays above chair."
+}

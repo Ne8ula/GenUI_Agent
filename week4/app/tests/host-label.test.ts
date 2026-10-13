@@ -8,13 +8,15 @@ test('the seed-33 label describes beaded light on a dark ground and mentions til
   assert.match(on, /beaded points of light on a dark ground/);
   assert.match(on, /colour tiles/);
   assert.doesNotMatch(off, /tile/);
-  assert.match(off, /toward you/);
+  assert.match(off, /away from you toward the left side of the chair/);
+  assert.match(on, /glitching around fixed anchors/);
+  assert.doesNotMatch(on, /floating|walking toward you/);
   assert.doesNotMatch(on, /warm paper|earlier arrival/);
 });
 
-test('the seed-33 woman walks toward the viewer whatever the arrival-look facing says', () => {
-  assert.match(canvasLabel({ look: 'seed33', facing: 'away', showTiles: true }), /walking toward you/);
-  assert.match(canvasLabel({ look: 'seed33', facing: 'toward', showTiles: true }), /walking toward you/);
+test('the seed-33 figure walks left and away regardless of the arrival-look facing', () => {
+  assert.match(canvasLabel({ look: 'seed33', facing: 'away', showTiles: true }), /walking away from you toward the left/);
+  assert.match(canvasLabel({ look: 'seed33', facing: 'toward', showTiles: true }), /walking away from you toward the left/);
 });
 
 test('the arrival label names the earlier look, has no tiles and follows the near walker facing', () => {

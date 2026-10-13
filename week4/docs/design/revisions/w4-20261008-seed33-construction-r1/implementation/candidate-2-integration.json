@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "path": "week4/app/src/scene/seed33Construction.ts",
+      "sha256": "14f432c8357ba4fbf31cfef0fbe4ac6ab5c466fb89b66baa7bd9823589f7064b",
+      "previousSha256": "6e3ef6e65cd9886f11dc805670099c24459f159432d05240c184fe5db6a43e5d",
+      "src": "C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\.claude\\worktrees\\agent-a11fc830c9d43071e\\week4\\app\\src\\scene\\seed33Construction.ts"
+    },
+    {
+      "path": "week4/app/tests/scene-construction.test.ts",
+      "sha256": "5961cd9313e12350434481b8a804e3b703c6e17ba9f9cb58d1afed64ad2e8c59",
+      "previousSha256": "c2a9f1e2827fa19f6b954cf54a95d6381812b0ee6b5726d20b8de69fcea3abd7",
+      "src": "C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\.claude\\worktrees\\agent-a11fc830c9d43071e\\week4\\app\\tests\\scene-construction.test.ts"
+    }
+  ],
+  "status": "integrated-awaiting-full-checks-and-capture"
+}

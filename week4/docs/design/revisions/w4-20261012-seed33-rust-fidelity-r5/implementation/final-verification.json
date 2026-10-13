@@ -1,0 +1,366 @@
+{
+  "ok": true,
+  "sourceFiles": 127,
+  "sourceMismatches": [],
+  "archivedSourceMismatches": [],
+  "links": [
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/after/comparison-reference-before-after.png",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/after/candidate-19-motion/rust-construction-and-living-24s.mp4",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/after/candidate-19-motion/realtime/a8514d7305f13cf829b0b024ad5cb953.webm",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/after/candidate-19-motion/gait-samples-100ms.png",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/after/candidate-19-motion/construction-overview-1s.png",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/candidate-19-checkpoint.json",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/candidate-19-source.json",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/source-changes.patch",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "references/contact-sheet.png",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "references/images/img-01-depth-cloth.png",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "references/videos/vid-01-support-cloth.mp4",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "references/videos/gait-samples-200ms.png",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/before/candidate-18-recheck/formed-12000.png",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/before/candidate-18-recheck/checks.json",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "implementation/before-source.json",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\revisions\\w4-20261012-seed33-rust-fidelity-r5\\REVIEW.md",
+      "target": "provenance.json",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\INDEX.md",
+      "target": "revisions/w4-20261012-seed33-rust-fidelity-r5/REVIEW.md",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\acceptance\\w4-visual-steps.md",
+      "target": "../revisions/w4-20261012-seed33-rust-fidelity-r5/REVIEW.md",
+      "exists": true
+    },
+    {
+      "file": "week4\\docs\\design\\acceptance\\w4-visual-steps.md",
+      "target": "../revisions/w4-20261012-seed33-rust-fidelity-r5/implementation/candidate-19-source.json",
+      "exists": true
+    }
+  ],
+  "media": [
+    {
+      "path": "implementation/after/candidate-19/base-5700.png",
+      "bytes": 719672,
+      "sha256": "f11494482423ffa2a27304a88d6b18c8326429719238477e093d34eac4caa27d"
+    },
+    {
+      "path": "implementation/after/candidate-19/detail-9000.png",
+      "bytes": 2516903,
+      "sha256": "2cf64a6e625c9246427d776123691c6ff6d390554ca70022591a54db05161501"
+    },
+    {
+      "path": "implementation/after/candidate-19/formed-12000.png",
+      "bytes": 2541217,
+      "sha256": "8644ce7009945928c0961a1cc9826b4ac9fd47a0b2fe12a8911544d4607688fd"
+    },
+    {
+      "path": "implementation/after/candidate-19/late-22000.png",
+      "bytes": 2527171,
+      "sha256": "5da4715f2c5d8ce46582236c471add3c45329117e16fd82e7b68815577a16f50"
+    },
+    {
+      "path": "implementation/after/candidate-19/narrow-controls.png",
+      "bytes": 154089,
+      "sha256": "a83fbd9add23cad7ecbcd3ce6f5c4e87fd89561d43b76047f917a2f8e4821079"
+    },
+    {
+      "path": "implementation/after/candidate-19/reduced-19000.png",
+      "bytes": 2107418,
+      "sha256": "ae701403c88f88e5328045d59f7ae744dfc5efdcd3ca34f7b1f674df9f25064b"
+    },
+    {
+      "path": "implementation/after/candidate-19/reduced-20000.png",
+      "bytes": 2107418,
+      "sha256": "ae701403c88f88e5328045d59f7ae744dfc5efdcd3ca34f7b1f674df9f25064b"
+    },
+    {
+      "path": "implementation/after/candidate-19/restored-reduced.png",
+      "bytes": 2107413,
+      "sha256": "1e5d602a09cf86164abbe706124729854ecb52cac1e959700bcce52dfd3a9f32"
+    },
+    {
+      "path": "implementation/after/candidate-19/structure-1800.png",
+      "bytes": 248005,
+      "sha256": "aecec83288f3cf74159cd167ceff0b61a462c82e1caea16fa561f05563721d6a"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/construction-overview-1s.png",
+      "bytes": 754171,
+      "sha256": "fc59a59e90a5c4133978e7c838b2ef2dd7e269c96e6cfc59f78ac784f491f861"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/gait-samples-100ms.png",
+      "bytes": 877178,
+      "sha256": "cc9c0da138341f98504fa886f39056d71b97254baeae380a4121fd3a86acf0bf"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/realtime/a8514d7305f13cf829b0b024ad5cb953.webm",
+      "bytes": 1283278,
+      "sha256": "3d1a99d33f256c1e9bdd139e2f01114454e635ad10ac1f905a1ab690be3fe563"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/rust-construction-and-living-24s.mp4",
+      "bytes": 8462278,
+      "sha256": "93608d9f467ae47a0a4f6a0277f94c365ff9e8989f827e5ed39974a6cd68749f"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-00.png",
+      "bytes": 8515,
+      "sha256": "6f2b45200757ff0d6bc9ab72d6701c91ec18c32a13fc525fd2a543499a69c457"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-01.png",
+      "bytes": 82401,
+      "sha256": "ffda7d2e0ccf8e063de60a4f73ec6563abe731a1260c768f934978ba807bdb7d"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-02.png",
+      "bytes": 291681,
+      "sha256": "71669794d2c23797d3a31077425bee398a44821d9722c1dc47b81b76a586ca3d"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-03.png",
+      "bytes": 485255,
+      "sha256": "93f39d426c567070c03dc8f3d525a4f7357470219295bfd21c70e46172d67207"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-04.png",
+      "bytes": 567060,
+      "sha256": "4dc206f50f277f885789e9fb398dc60fbc729a0c02c53bb9db7722a693cbeb2b"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-05.png",
+      "bytes": 532956,
+      "sha256": "b5b8cd3511ab8380122b2b2229df29b24dca4c7582f0adcfea1c2fcdb52e3351"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-06.png",
+      "bytes": 832094,
+      "sha256": "31cf861c0592d4cafa08056b8b5a2816f0c942ac4971e56c9a97b16a5590e42d"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-07.png",
+      "bytes": 1669181,
+      "sha256": "1ba537fae50035f641268ef4cdfd5cc4e318d64a11678160753b47c346b66bea"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-08.png",
+      "bytes": 2263200,
+      "sha256": "afc2747178f54561b6f8139460ed7b564dc83c330ff748068eb3534fa0ebbfc4"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-09.png",
+      "bytes": 2516908,
+      "sha256": "9cb3946230290a0d67bf724868171abf61e69b4e1eef5928dbef5596cc65a9f1"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-10.png",
+      "bytes": 2541348,
+      "sha256": "f063941123cd39f5b7f3f7d9817b06967263ac33240743036e4a50f56c169c42"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-11.png",
+      "bytes": 2541207,
+      "sha256": "306a61379082fb0d6184b99e64a7c1ca9e0b8535c564b706adf103fb0b3bf2c9"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-12.png",
+      "bytes": 2541200,
+      "sha256": "8f1694e8702d4c66562dd8e86d68388a855586ad0b24021d27640a199cc1b9e9"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-13.png",
+      "bytes": 2542633,
+      "sha256": "ec0e3d2ee720cc00523c6a3da97bac5946c606487b364ab84f27306217abde18"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-14.png",
+      "bytes": 2562142,
+      "sha256": "b9289c0786c60c19d12368c72efdda97d421fd53a98d31d57192fdc275ccbd15"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-15.png",
+      "bytes": 2554746,
+      "sha256": "4654b1c4332d6c7ed605e963ea00541482f1075992ff64fa5b56ec0fd450e792"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-16.png",
+      "bytes": 2567412,
+      "sha256": "da450f7d7464a754331284dbba87ae1cbc98fef79ae6128c88236a28fd09f46b"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-17.png",
+      "bytes": 2578124,
+      "sha256": "dc24b4ccb105a666cba1822f6120e5c46df32e45daf1c0e92a0675ec028b8556"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-18.png",
+      "bytes": 2561053,
+      "sha256": "eb74b7ee8ec0d12e82327ae8a2223141682c4f78a98baa08fbc68a3b945c8c73"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-19.png",
+      "bytes": 2576324,
+      "sha256": "3966bb0b0eb5af472d893a30057bef9949983dd455acf6f14c257d01c4afbd2a"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-20.png",
+      "bytes": 2552219,
+      "sha256": "4c8579bb5e1aabd8a1c70ba4bf3085667f2a87a4b5ac5cc5d8d1a70992158850"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-21.png",
+      "bytes": 2534634,
+      "sha256": "2af5c033c2820bb7236a41fa5aeac0768f776d7b77ccad5f6f266561444be6c2"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-22.png",
+      "bytes": 2527182,
+      "sha256": "85e4a1f490003ac9573c3c17cd66a42ee6dde727f4c7f94caac69f72b849f292"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-23.png",
+      "bytes": 2548516,
+      "sha256": "73aeeb57eedc5ce63ab9acbdc05bdcbe360233765957551264fceb38f156ff23"
+    },
+    {
+      "path": "implementation/after/candidate-19-motion/second-24.png",
+      "bytes": 2524232,
+      "sha256": "fa3ce57295d889869b0cfc6134065a76570f31afd7579b51ea288dcb77b33fb3"
+    },
+    {
+      "path": "implementation/after/comparison-reference-before-after.png",
+      "bytes": 1474509,
+      "sha256": "7e808038b481909ec1d676fe0358fe54a9e4d7d78f9230977006fb459eacb4c4"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/base-5700.png",
+      "bytes": 719520,
+      "sha256": "674182aa168791af3f73b15027b37b6b81930e1c3c99ef38e8a2baaffb15d721"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/detail-9000.png",
+      "bytes": 2809886,
+      "sha256": "73d963673564e1c37b40130903627c35b7074f2084cd3b0a5839409727ca10c1"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/formed-12000.png",
+      "bytes": 2831031,
+      "sha256": "470cf38c35246335950276cfff118d0eeaa8fcb05035a789f8aef1c645d347a0"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/late-22000.png",
+      "bytes": 2815919,
+      "sha256": "51f4923477639c7672b67516aedf32246615aefc54e5734f85584a9ed6ba9962"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/narrow-controls.png",
+      "bytes": 162541,
+      "sha256": "5ce4521667d643656aae2e6e03268c4ecd4565e11405737f7af2f38c868da26f"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/reduced-19000.png",
+      "bytes": 2333302,
+      "sha256": "f7df19ddd51dd6b6fe6e69a6321887c140868d3da22acfc6185fa6d4785b7004"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/reduced-20000.png",
+      "bytes": 2333302,
+      "sha256": "f7df19ddd51dd6b6fe6e69a6321887c140868d3da22acfc6185fa6d4785b7004"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/restored-reduced.png",
+      "bytes": 2333289,
+      "sha256": "34f4d52403e44e02cb63e5dbee3bb7b1cb05e71b2e969f03093afeb228cb4bf5"
+    },
+    {
+      "path": "implementation/before/candidate-18-recheck/structure-1800.png",
+      "bytes": 264763,
+      "sha256": "c776bbacfe16fb0249c3acae1ba28586fba5e9429b888aec0d7b8f72c24392e7"
+    },
+    {
+      "path": "references/contact-sheet.png",
+      "bytes": 1442416,
+      "sha256": "0453623ad5af19afd8aed559f95e88588fe56af611ae833279fe30b85080323e"
+    },
+    {
+      "path": "references/images/img-01-depth-cloth.png",
+      "bytes": 7873025,
+      "sha256": "20096a3517a455732f1d4639ca1f5fe7975abc85c82bd9e4d70d34a317626324"
+    },
+    {
+      "path": "references/videos/gait-samples-200ms.png",
+      "bytes": 1229081,
+      "sha256": "7968fff779f083c8925e24b5a19d9900ac649f74631501c59c7037e336c56efb"
+    },
+    {
+      "path": "references/videos/vid-01-support-cloth.mp4",
+      "bytes": 762774,
+      "sha256": "a0a942b2c24f8b29f264f2b0469c77f31a1d3cbd59c55f65f0aafa8d26733df7"
+    }
+  ],
+  "checks": "Source/media SHA256, changed Rust archive matches runtime, new revision links and JSON parsed. Formatting and whitespace checked separately."
+}

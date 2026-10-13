@@ -162,7 +162,7 @@ function mount() {
     if (canvas.width !== w) canvas.width = w;
     if (canvas.height !== h) canvas.height = h;
     // The rAF timestamp is this page's host clock (ms since navigation); the real host uses its own pausable clock.
-    const view: FrameView = { widthPx: w, heightPx: h, dpr, frame: fitFrame(w, h, scene.aspect), timeMs: t };
+    const view: FrameView = { widthPx: w, heightPx: h, dpr, frame: fitFrame(w, h, scene.aspect), timeMs: t, reducedMotion: false, showTiles: true };
     renderer.draw(active, view);
     lastView = view;
     frames++;

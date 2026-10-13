@@ -1,0 +1,179 @@
+{
+  "revision": "w4-20261008-seed33-construction-r1",
+  "sourceRevision": "e43c7aedb2690c8b9edc3e2446f1d1f584897a5d",
+  "sourceWorkingTreeSha256": "7e641072fd2b5fdac727d898191bd6b7635c686ab2e088fd70b1c8d53cb656ba",
+  "sourceManifest": "../w4-20261008-seed33-fidelity-r1/implementation/source-manifest.json",
+  "acceptedPhaseBaseline": null,
+  "ownerVisualAspect": "Finished visuals approved; loading changes requested; Step1 remains pending",
+  "status": "candidate-3-owner-loading-review-pending",
+  "retestSourceManifest": "implementation/retest-source-manifest.json",
+  "finalWorkingTreeSha256": "16c8d8c037a2e8a098a35fe0b3b97e9b661462d719ff2e76681b9f1174334cdb",
+  "testedSourceManifest": "implementation/source-manifest.json",
+  "testedWorkingTreeSha256": "78157b4866ebc4e2bc841c7ebdf4c2e69b30a1e3d749127c11403f87623be110",
+  "finalCandidate": {
+    "capture": "implementation/after/candidate-3/checks.json",
+    "pixelComparisons": "implementation/after/candidate-3/pixel-comparisons.json",
+    "workspaceCheck": { "command": "npm --prefix week4 run check", "result": "passed", "coreTests": 103, "appTests": 154, "typechecks": "passed", "build": "passed" },
+    "focusedBrowser": { "result": "passed", "captures": 25, "checks": 144, "pageErrors": 0, "backends": ["webgl2", "canvas2d"], "viewport": [1920,1080], "dpr": 1 },
+    "goldenFrames": "WebGL2 complete, WebGL2+5s and Canvas2D+5s pixel-identical to before captures",
+    "nearEndpointMeanAbsoluteChannelDifference": { "webgl2": 0.03288290895061728, "canvas2d": 0.3156151941872428, "scale": "0..255 channels; 99.9% vs100%; not a performance or perceived-motion metric" },
+    "review": "Opus read-only planner review found no further blocker. Main's pixel captures detected earlier contract painter-order mismatch and main fixed planner plus regression assertions; reviewer independently confirmed it.",
+    "inspection": "Main inspected both final backend stage sheets and both movies'4fps samples; no realtime human playback claim",
+    "recordings": {
+      "report": "implementation/after/candidate-3-motion/checks.json",
+      "reportResult": "failed-stale-shimmer-count-assertions; retained unchanged",
+      "stepped": "implementation/after/candidate-3-motion/after/webgl2-stepped-30fps-build-idle.mp4",
+      "realtime": "implementation/after/candidate-3-motion/after/webgl2-realtime-build-idle.mp4",
+      "steppedFramesWritten": 661,
+      "steppedFramesExpected": 661,
+      "ffmpegExit": 0,
+      "pageErrors": 0,
+      "driverRetest": "implementation/after/capture-harness-retest/checks.json",
+      "driverRetestResult": "passed-no-failures-no-page-errors",
+      "driverCorrection": "Require suppressed shimmer during component construction and visible shimmer afterward; direct Node spawn fixes owned Vite cleanup on Windows. No runtime changes or duplicate movie generation.",
+      "timing": { "scope": "WindowsChrome headless, first300 build intervals only; not full-build or native benchmark", "earlyBuildFrameMedianMs": 6.9, "earlyBuildFrameP95Ms": 7.0, "earlyBuildCpuDrawP95Ms": 2.2, "realtimeLifeWallRatio": 1.001 }
+    },
+    "limitations": ["Fixed-camera2D geometry plus source-textured triangular material assembly, not full3D/cloth simulation", "Owner must judge angular material assembly and pacing", "Canvas2D stroke antialiasing and triangle-edge seams differ from WebGL2", "Small completion delta from sampling/shimmer remains", "Browser-only; no native/headtracking/camera/voice", "Original source rights and2D approach limitations unchanged"]
+  },
+  "freshGeneration": true,
+  "totalSubmittedQuotedCredits": 228,
+  "netBilledCredits": null,
+  "billingNote": "Each image reported5 credits and each video submission reported109. First video failed validation with no output. Both video start responses reported remainingCredits3618.8; no explicit refund receipt was provided, so net billing is unverified.",
+  "runs": {
+    "motionRetry": {
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "model": "kling",
+      "label": "Kling First & Last Frame / O1 Pro",
+      "predictionId": "547e9e99-8ec3-4a4f-9833-31316b2c2cba",
+      "approvedCredits": 109,
+      "approval": "Explicit structured approval of109 additional credits after explaining previous failure and unverified refund; submitted once",
+      "status": "completed-inspected-selected-with-limitations",
+      "output": "references/videos/vid-02-component-construction.mp4",
+      "outputSha256": "5fb71eff6d62dce3abe79949f33d1abd3be8097a618b82b967565a665ef88ebd",
+      "width": 1928,
+      "height": 1072,
+      "frames": 242,
+      "fps": 24,
+      "inspection": "Main read full-scene and figure 2fps timestamped sheets,0-10s. Useful contour-before-surface and panel motion, but architecture too fast and figure lacks clearly separated volume stage; broad decorative arcs and late framing drift rejected. Combine with fresh image scaffold/body/garment cues; native implementation must exceed these observed shortcomings, not copy them. No realtime human playback claim.",
+      "promptCharacters": 2144,
+      "inputsAndSettings": {
+        "cfg_scale": 0.65,
+        "duration": 10,
+        "image": "references/images/img-01-early-anchors.png",
+        "model": "O1 Pro",
+        "negative_prompt": "global fade, dissolve, crossfade, bottom-to-top wipe, sweeping reveal mask, dim finished picture, blur-to-sharp, static panels, full-frame grid, particle explosion, strobe, camera motion, pan, zoom, walking during construction, extra people, changed architecture or palette, neon, text, UI, gore",
+        "prompt": "One continuous ten-second fixed-camera CONSTRUCTION of the warm Seed-33 Paris cafe. Start at the sparse anchor FIRST FRAME, end at the finished LAST FRAME with identical perspective, composition and materials. Locked camera; no cuts, pan or zoom. Build actual components from empty space, never fade in a pre-existing picture. Overlapping component stages with independent start times and growth directions. 0-2s: anchor beads connect via travelling bright tips leaving thin ivory strands; partial chair/table arcs and street perspective paths grow at different speeds. 1-6s: facades, rooflines and awnings weave STRAND BY STRAND from local anchors. Show many interrupted vertical and angled paths with bright advancing tips; thread crossings create local dotted surfaces. Keep irregular unfinished gaps, no synchronized wipe front. Chair wicker arcs curl individually. Table radial ribs extend around an elliptical rim. Cup base and rim loops form first, then rising ribs and beaded walls. Ashtray loops construct independently. 2-8s: coral/cream/sage overlay fragments visibly translate, pivot, subdivide and interlock into the final source groups; outline, scanline and dither regions resolve separately. 2.5-5s: at the woman's exact final distant position and scale, a visible luminous joint-node SKELETON rig and spine/limb lines form first. 4-7s: opaque stylized body volumes grow outward around the scaffold, NOT a translucent completed clothed silhouette. 6-9s: coat seams, collar paths and fabric ribbons weave around the body to form the final coat, hair and boots. Non-graphic abstract embodiment, no organs. The woman stays still during construction, no approach yet. 8-10s: local strands and garments finish; growth tips dim separately and tile fragments settle into the exact endpoint; hold the finished scene for the last half second. Preserve warm umber shadows, ivory beads, pale peach sky and original dither textures. Blackwall-like living-thread construction, not neon restyling. Clearly visible scaffold-to-volume-to-clothing and moving overlays. NO global fade, dissolve, sweeping mask, blur-to-sharp or whole-frame morph.",
+        "tail_image_url": "../w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png"
+      }
+    },
+    "early": {
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "inputsAndSettings": {
+        "aspect_ratio": "16:9",
+        "enable_web_search": false,
+        "images": [
+          "../w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png"
+        ],
+        "model": "Nano Banana 2.1",
+        "output_format": "png",
+        "prompt": "Create a single early-construction reference frame for an animated reconstruction of the supplied Seed-33 Paris cafe scene. The supplied image is the FINISHED target: preserve its exact fixed camera, perspective, object placement and warm blackwall-like bead/thread aesthetic. This new frame represents roughly 5 percent of construction, before the scene exists. 16:9 cinematic frame, no labels or panels. A near-black umber empty field with only sparse tiny warm-ivory joint/anchor beads and a few short thread segments: hint the table's lower elliptical rim, chair arcs on the left, cup rim on the right, street vanishing point, and early roofline anchors; almost all intervening surfaces are genuinely absent, not a dimmed photograph. At the reference woman's position, only a very sparse abstract luminous humanoid rig: disconnected warm beads indicating head, shoulders, hips and feet, no filled person yet. Keep proper scale and coordinates relative to the final source image. A few small coral/cream/sage overlay fragments float near their eventual source positions, visibly incomplete. Crucial: NOT a faint or transparent version of the finished picture, not a photographic fade, not horizontal bands, not a screen-wide reveal. Individual visible thread tips and discontinuous geometric paths growing between anchors. Retain source warm palette, never Cyberpunk red/neon green/blue. No new architecture, no extra people, no text, no UI, no gore or anatomical organs. This frame will be the starting keyframe for strand-by-strand component assembly that ends in the exact supplied image.",
+        "resolution": "2K",
+        "seed": 33,
+        "thinking_level": "High"
+      },
+      "approvedCredits": 5,
+      "approval": "Explicit structured Approve answer in main session, before the run; submitted once",
+      "inputReferenceNote": "Provider media URLs used at execution are replaced by their retained local assets; no credentials or expiring links retained",
+      "predictionId": "1df53b5c-f56b-42f6-8d21-0f3e5c6daa70",
+      "status": "completed-inspected",
+      "model": "fal-ai/nano-banana-2/edit",
+      "label": "Nano Banana 2.1"
+    },
+    "middle": {
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "inputsAndSettings": {
+        "aspect_ratio": "16:9",
+        "enable_web_search": false,
+        "images": [
+          "../w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png"
+        ],
+        "model": "Nano Banana 2.1",
+        "output_format": "png",
+        "prompt": "Create a single middle-construction reference frame for an animated reconstruction of the supplied Seed-33 Paris cafe scene. The source image is the FINISHED target, whose fixed camera, perspective, scale, object positions and warm bead/thread/dither aesthetic must be preserved exactly. This new frame is approximately 55 percent assembled, but not 55 percent transparent. Show genuinely different structural stages in different semantic components. Facades are being woven from individually visible vertical light strands and roofline/awning paths, each ending at a small bright bead head; some windows have open structural outlines, others acquire local beaded/dither surfaces. The cafe table shows an elliptical radial wire skeleton with partial strand-woven surface sectors; the chair has incomplete individual wicker arcs; the cup grows from concentric rim/base loops and rising wall ribs with some finished original beaded surface, never a whole-object alpha fade. At the original woman's small distant position, a graceful abstract reconstruction: luminous stick/joint scaffold visible in some sections, a soft opaque stylized human body volume forming around torso/limbs, and separate coat seam threads and fabric ribbons beginning to weave outward over it. This is non-graphic digital embodiment, no organs/gore, no photoreal nude person; eventual coat, hair and boots must match the supplied original. Keep that figure at its original position and scale; no zoom. Coral/cream/sage source tile fragments move and interlock near their original groups, some outline-only, some scanline/dither-pattern, some settled; do not spread a generic tiled grid across the frame. Leave truly empty dark gaps between unfinished components. Finished local regions must already have the exact source visual material, not a substitute simplified style. No global dissolve, no sweeping bottom-to-top wipe, no uniform brightness ramp, no generic particle explosion, no progress UI, labels, panels or text. Preserve the pale peach/umber/ivory palette; blackwall is the fine living-thread construction language, not red or neon cyberpunk restyling.",
+        "resolution": "2K",
+        "seed": 133,
+        "thinking_level": "High"
+      },
+      "approvedCredits": 5,
+      "approval": "Explicit structured Approve answer in main session, before the run; submitted once",
+      "inputReferenceNote": "Provider media URLs used at execution are replaced by their retained local assets; no credentials or expiring links retained",
+      "predictionId": "058fe631-533b-4c0c-8e3e-d6fadbb59b81",
+      "status": "completed-inspected",
+      "model": "fal-ai/nano-banana-2/edit",
+      "label": "Nano Banana 2.1"
+    },
+    "motion": {
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "inputsAndSettings": {
+        "cfg_scale": 0.65,
+        "duration": 10,
+        "image": "references/images/img-01-early-anchors.png",
+        "model": "O1 Pro",
+        "negative_prompt": "global fade, dissolve, crossfade, bottom-to-top wipe, sweeping reveal mask, dim finished photograph, blur-to-sharp transition, static overlays, flat snapshot morph, generic full-screen square grid, particle explosion, fast flashing, strobe, camera motion, pan, zoom, walking forward during construction, extra people, new buildings, changed perspective, changed palette, red neon, blue neon, text, captions, progress bar, UI, gore, anatomical organs",
+        "prompt": "One continuous ten-second fixed-camera component-by-component digital construction of the supplied warm Seed-33 Paris cafe scene. Begin from the FIRST FRAME sparse anchor constellation and end with the LAST FRAME finished composition exactly. Camera absolutely locked, no zoom/pan/dolly, no cuts. The scene is actually BUILT FROM GEOMETRIC PARTS, not revealed from a pre-existing picture. Components overlap in time but have independent growth directions and staggered starts. 0-2 seconds: luminous anchor points connect via small travelling bead heads leaving thin warm-ivory strands behind; partial table/chair ellipses and street perspective paths trace at different speeds. 1-6 seconds: facades and awnings weave into existence STRAND BY STRAND from their local anchors, numerous interrupted vertical and angled paths visibly extending with bright growing tips; thread intersections produce local dotted surfaces, irregular unbuilt gaps remain. Chair wicker arcs curl along their curves; table radial threads stretch out along its elliptical geometry; cup grows from base and rim rings, connecting ribs then beaded walls; ashtray loops form separately. 2-8 seconds: coral, cream and muted sage overlays are active moving geometry: fragments detach, translate short distances, align, subdivide and interlock into the exact original groups; dither/scanline areas resolve independently, not a full-screen tile grid. 2.5-5 seconds: at the woman's EXACT final distant position and scale, visible luminous joint-node SKELETON rig and connecting limb/spine guides construct first. 4-7 seconds: soft solid stylized body VOLUME grows radially around that scaffold, not a transparent version of the complete clothed figure. 6-9 seconds: separate coat seam strands, collar paths and directional fabric ribbons weave around the volume into the reference's coat, hair and boots. Non-graphic abstract digital body, no gore. During this loading study the woman stays at her original position; do not begin her approach. 8-10 seconds: remaining LOCAL component strands complete, bright growth tips dim individually, cloth/tile fragments settle into the exact endpoint image; finished surfaces retain source bead/dither material. Last half second holds the completed scene. Warm umber shadows, peach sky and ivory beads only, matched to endpoint; blackwall-like living-thread reconstruction not neon restyling. Genuine construction with clear skeleton-to-volume-to-garment transformation and active panels, NOT dissolve, fade, wipe, blur-to-sharp, whole-picture morph, or pre-existing final silhouette at low opacity.",
+        "tail_image_url": "../w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png"
+      },
+      "approvedCredits": 109,
+      "approval": "Explicit structured Approve answer in main session, before the run; submitted once",
+      "inputReferenceNote": "Provider media URLs used at execution are replaced by their retained local assets; no credentials or expiring links retained",
+      "predictionId": "eff15207-ed4f-4b1a-a35c-343fd503281b",
+      "status": "failed-no-output",
+      "error": "String should have at most 2500 characters (prompt)",
+      "model": "kling",
+      "label": "Kling First & Last Frame / O1 Pro"
+    }
+  },
+  "assets": [
+    {
+      "path": "references/images/img-01-early-anchors.png",
+      "sha256": "566c2585e6987d60548af4ffa5e1a1cb85c6b5f84bec4379f5b2fa34c509eaf5",
+      "inspected": true
+    },
+    {
+      "path": "references/images/img-02-component-assembly.png",
+      "sha256": "a46f9df52b1b000ee6e7e28db3d9d4021b1a0e0bf59fa6ecad71caa564d0ec8b",
+      "inspected": true
+    }
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "imageInspection": {
+    "early": "Sparse anchor beads and furniture/architecture hints; useful start, some overlays too complete",
+    "middle": "Figure scaffold beside partial volume/garment, cup and ashtray ribs; architecture already too complete, use selectively",
+    "motion": "Selected component-specific temporal cues; see runs.motionRetry.inspection. No claim of complete prompt fidelity."
+  },
+  "workflow": {
+    "run": "wf_4e210e64-57c",
+    "agents": 4,
+    "roles": [
+      "eva-ui-designer choreography",
+      "eva-implementer representation",
+      "eva-reviewer verification",
+      "eva-reviewer synthesis"
+    ],
+    "additionalResearch": "eva-researcher integration mapping",
+    "writerInspections": [{ "writer": "main", "scope": "constructionTypes.ts and shared contract", "inspected": ["references/images/img-01-early-anchors.png", "references/images/img-02-component-assembly.png", "references/videos/vid-02-sheet-2fps.png", "references/videos/vid-02-figure-sheet-2fps.png", "implementation/before/after/webgl2-seed33-build-050pct.png"], "method": "Actual image Read tool results before writing shared source type contract" }],
+    "applicationEdits": true,
+    "implementationRun": "wf_bba524d0-8ed",
+    "implementationStatus": "candidate3 integrated and retested; owner loading review pending",
+    "observedRoutes": { "codex": ["gpt-6-astra", "gpt-5.6-terra", "gpt-5.6-sol"], "anthropic": ["claude-sonnet-5", "claude-opus-4-8"], "evidence": "Current session-filtered Gateway route log, backend/model fields only" },
+    "writerInspectionReports": "All four native writers reported actual Read inspection of both fresh images and both2fps sheets before edits; reports retained in workflow result. No realtime playback claimed.",
+    "correction": { "agent": "eva-implementer", "configuredModel": "claude-gpt-5.6-sol[1m]", "reason": "Popping rectangular source cells, large uncovered frame areas, misregistered sparse outlines, missing garment seam geometry", "firstAttempt": "No edits: old assigned workflow root was denied by SDK isolation; resumed empty allocated root had already been cleaned. Fresh isolated launch succeeded without permission changes.", "successfulWorktree": ".claude/worktrees/agent-a11fc830c9d43071e", "writerInspection": "Worker reported Read inspection of current packet, both generated images, both temporal sheets, original source and rejected/current baseline captures before edits", "status": "two owned files integrated; main corrected final painter order and tests after actual captures" },
+    "ownershipContract": "IMPLEMENTATION_CONTRACT.md"
+  },
+  "checks": [{ "stage": "before", "command": "EVA_CAPTURE_PORT=1466 EVA_CAPTURE_REALTIME=0 EVA_CAPTURE_STEPPED=0 npm --prefix week4 run app:capture", "manifest": "implementation/before/checks.json", "result": "passed", "viewport": [1920,1080], "dpr": 1, "pageErrors": 0, "sourceSnapshot": "65 verified files from previous working-tree manifest; shared type contract is new and not in before capture" }],
+  "ownerAcceptance": "pending"
+}

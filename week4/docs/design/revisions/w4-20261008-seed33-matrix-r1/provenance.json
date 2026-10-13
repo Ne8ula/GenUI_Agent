@@ -1,0 +1,128 @@
+{
+  "revision": "w4-20261008-seed33-matrix-r1",
+  "sourceRevision": "e43c7aedb2690c8b9edc3e2446f1d1f584897a5d",
+  "sourceWorkingTreeSha256": "16c8d8c037a2e8a098a35fe0b3b97e9b661462d719ff2e76681b9f1174334cdb",
+  "baselineManifest": "../w4-20261008-seed33-construction-r1/implementation/retest-source-manifest.json",
+  "acceptedPhaseBaseline": null,
+  "ownerApproval": "Strands approved unchanged; color fill and box overlays changes requested",
+  "scope": "Loading-only matrix material and box refinement; preserve warm palette, strand commands, settled composition and post-build behavior",
+  "status": "matrix-candidate-2-recorded-ready-for-owner-retest",
+  "testedSourceManifest": "implementation/source-manifest.json",
+  "testedWorkingTreeSha256": "1c6dc382dbb79cd690e2414ab7f7aae8491fdfda9e4c86e397cc139de4268c65",
+  "implementation": {
+    "candidate": "implementation/after/candidate-2",
+    "workspaceCheck": { "command": "npm --prefix week4 run check", "result": "passed", "coreTests": 103, "appTests": 163, "typechecks": "passed", "build": "passed" },
+    "independentMatrixTests": { "result": "passed", "tests": 9, "strandFingerprintSamples": 22, "allStrandsIdentical": true },
+    "browserCheck": { "result": "passed", "captures": 25, "checks": 144, "pageErrors": 0, "manifest": "implementation/after/candidate-2/checks.json" },
+    "pixels": { "manifest": "implementation/after/candidate-2/pixel-comparisons.json", "approvedFrames": "WebGL2 complete,+5s and Canvas2D+5s identical to before", "cacheOnlyChange": "24 scene PNGs byte-identical; narrow HUD timing-text capture excluded", "integrationEvidence": "implementation/after/candidate-2/integration-checks.json" },
+    "reviewFixes": ["Reject degenerate source UV triangles", "Reject source crops outside atlas bounds"],
+    "testReconciliation": "Three obsolete tests for smooth material growth, rotating/scaling whole tiles and old2000-command count were replaced by sparse occupancy/local-offset checks and strict exported-cap protection; all endpoint/geometry/strand gates retained.",
+    "cache": { "before": 24, "after": 96, "reason": "Retain full59-triangle geometry set without repeated clipping-template eviction", "nodeBenchmark": { "scope": "Frozen67% pure planner, Node24,120 samples after10warmups; not browser/native benchmark", "beforeMedianMs": 4.3913, "beforeP95Ms": 7.7758, "afterMedianMs": 0.7945, "afterP95Ms": 1.5379 } },
+    "inspection": "Original main viewed candidate1 WebGL stage sheet; candidate2 scene images are byte-identical after cache change. Recovery inspected bounded-size derivatives of the retained4fps stepped sheet and40/52/67/80% comparison; temporal samples only, not full-speed playback. Local glitch cadence needs owner review.",
+    "motion": { "manifest": "implementation/after/candidate-2-motion/checks.json", "result": "passed", "finishedAt": "2026-10-09T03:42:10.028Z", "failures": 0, "pageErrors": 0, "steppedVideo": "implementation/after/candidate-2-motion/after/webgl2-stepped-30fps-build-idle.mp4", "steppedFrames": 661, "steppedDurationSeconds": 22.033333, "realtimeVideo": "implementation/after/candidate-2-motion/after/webgl2-realtime-build-idle.mp4", "realtimeDurationSeconds": 20.2, "realtimeLifeWallRatio": 1.001, "limitation": "Browser-only. Stepped recording demonstrates intended timing, not real-time performance; shorter screencast may drop/duplicate frames." },
+    "recovery": { "date": "2026-10-09", "sourceManifestFilesVerified": 79, "sourceDifferences": [], "freshCheck": "npm --prefix week4/app run check", "appTestsPassed": 163, "typecheck": "passed", "build": "passed", "coreTests": "not rerun in recovery", "runtimeEdits": false, "newGeneration": false },
+    "limitations": ["Loading-only effect; post-build drift unchanged", "Fixed-camera2D source-textured material, not3D", "Pattern strength/cadence needs owner judgement", "Canvas2D clipped triangle/antialiasing differences remain", "Active fill costs more than settled scene; no native performance claim"]
+  },
+  "selection": "Image pixel islands, box subcells and fragmented edges; video internal pattern substitutions and short scanline offsets. Do not adopt larger group drift, generated figure-pose variation or assume completed materials demonstrate loading.",
+  "inspection": "Main actual Read of full image,4fps full-scene and box sheets, and current52% before capture. Temporal samples, not real-time human playback.",
+  "strandBaseline": "implementation/baseline-strands.json",
+  "newCredits": 60,
+  "freshGeneration": true,
+  "runs": {
+    "image": {
+      "route": "direct-model",
+      "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "inputsAndSettings": {
+        "aspect_ratio": "16:9",
+        "enable_web_search": false,
+        "images": [
+          "../w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png"
+        ],
+        "model": "Nano Banana 2.1",
+        "output_format": "png",
+        "prompt": "Create one focused design reference for a GLITCH/MATRIX MATERIAL-ASSEMBLY refinement of this exact Seed-33 Paris cafe scene. Preserve its camera, composition, figure/object positions, and ALL fine architectural/furniture bead strands. The strands are approved: do not redraw, coarsen, recolor or restyle them. Keep the warm umber, ivory, peach, muted coral/honey/sage palette; no green Matrix rain or neon palette. Depict a mid-loading moment in which COLOR MATERIAL and RECTANGULAR OVERLAYS resolve as local digital bitfields, not smooth triangular wedges or alpha fades. In architectural and object surfaces, show fine ordered-dither cells, sparse scanline fragments, binary on/off pixel occupancy, broken local raster strips and small source-colored pixel islands connecting into material. Each material region has crisp irregular digital edges and empty gaps exposing intact underlying strands. Localized, controlled data corruption, not a full-frame square-grid wipe or static noise covering everything. Existing box groups at upper left, upper right and table gain glitchy matrix-like internal texture: subcells, dither toggles, tiny staggered slice offsets, short replicated edge ghosts, interrupted outlines, occasional solid-color blocks amid patterned ones. Box placements and visual hierarchy still match the source. Small bounded horizontal/vertical displacement, not big rotated panels, flying shards or broad decorative arcs. Preserve the person and object identity; no new architecture, text, labels, numbers or UI. This is a still design question about MATERIAL FILL and BOX INTERNALS only; the final fully settled source image remains the target. Clear beautiful technological disintegration-to-assembly with the approved strands continuously legible.",
+        "resolution": "2K",
+        "seed": 233,
+        "thinking_level": "High"
+      },
+      "approvedCredits": 5,
+      "approval": "Explicit structured Approve answer before submission, one run only",
+      "inputNote": "Provider media URL replaced by retained local source path",
+      "predictionId": "fa9d8a40-2296-4c39-8974-20efbee59225",
+      "status": "completed-inspected-selected-with-limitations",
+      "asset": "references/images/img-01-matrix-materials.png",
+      "sha256": "a0f7a95355f3ced79b4ce7bc14df2af75176740d0ffe000f24f24d46ae01ccaa"
+    },
+    "video": {
+      "route": "direct-model",
+      "weaveModelId": "85caf705-a459-48dd-96cd-953a04b4c08e",
+      "inputsAndSettings": {
+        "cfg_scale": 0.65,
+        "duration": 5,
+        "image": "../w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png",
+        "model": "O1 Pro",
+        "negative_prompt": "camera motion, zoom, walking, changed strand geometry, changed architecture, green code rain, neon palette, global flashes, strobe, smooth dissolve, large triangular wipes, rotating flying panels, giant shards, blur, legible text, UI",
+        "prompt": "Five-second fixed-camera motion study of GLITCHY MATRIX-LIKE COLOR FILL AND BOX OVERLAYS in this exact warm Seed-33 cafe. First and last frames are the same approved settled scene. Architectural and furniture bead strands must remain perfectly stable and visible throughout; do not change their paths, density, lighting or geometry. No figure walking or camera motion. Only material-color occupancy and box internals animate. From0.3s, small local color regions fracture into crisp ordered-dither bitcells and interrupted scanline fragments, leaving intact strands visible underneath. Digital color islands reconnect in short asynchronous stepped bursts, not a smooth alpha fade or broad triangular wipe. Rectangular source overlay groups at upper left, upper right and table have active matrix internals: subcell patterns invert briefly, local raster slices misalign by a few pixels and snap back, edge fragments duplicate briefly, small blocks appear/disappear in staggered clusters. Keep boxes near their existing bounds, no large translation or rotation. Digital signal reconstruction, restrained and legible rather than white-noise static. Different groups glitch at different times; hold each pattern long enough to read, no rapid high-contrast full-screen flashing. Warm coral, cream, honey and sage blocks on umber with ivory strands, never green Matrix rain. Across1-4s show distinct partial-dither, scanline-jitter and block-reassembly moments while preserving all objects and perspective. From4s, settle color bitcells and overlays back into the exact original source composition by5s. No text/numbers/UI. This study supplies temporal cues for replacing smooth coloring and box entry during loading; it does not authorize changing the approved strands or settled scene.",
+        "tail_image_url": "../w4-20261008-paris-c-hybrid/references/images/img-13-bwa3c-seed33.png"
+      },
+      "approvedCredits": 55,
+      "approval": "Explicit structured Approve answer before submission, one run only",
+      "inputNote": "Provider media URL replaced by retained local source path",
+      "predictionId": "a63af3d6-5bcd-4238-8d32-ec7f6ecd71c0",
+      "status": "completed-inspected-selected-with-limitations",
+      "asset": "references/videos/vid-01-matrix-materials.mp4",
+      "sha256": "ce3415a4271faca1294fbdd2e090e4f1c04b206f3241bf20a27aef84c6c096d6",
+      "fps": 24.0,
+      "frames": 122,
+      "durationSeconds": 5.083333333333333,
+      "keyframes": [
+        {
+          "timeSeconds": 0.0,
+          "path": "references/videos/vid-01-key-00.png"
+        },
+        {
+          "timeSeconds": 0.5,
+          "path": "references/videos/vid-01-key-02.png"
+        },
+        {
+          "timeSeconds": 1.25,
+          "path": "references/videos/vid-01-key-05.png"
+        },
+        {
+          "timeSeconds": 2.0,
+          "path": "references/videos/vid-01-key-08.png"
+        },
+        {
+          "timeSeconds": 2.75,
+          "path": "references/videos/vid-01-key-11.png"
+        },
+        {
+          "timeSeconds": 3.5,
+          "path": "references/videos/vid-01-key-14.png"
+        },
+        {
+          "timeSeconds": 4.25,
+          "path": "references/videos/vid-01-key-17.png"
+        },
+        {
+          "timeSeconds": 5.0,
+          "path": "references/videos/vid-01-key-20.png"
+        }
+      ],
+      "inspectionMethod": "Timestamped4fps full-scene and box-crop samples; no real-time human playback claim"
+    }
+  },
+  "writerInspections": [
+    { "writer": "eva-implementer material helper", "reportedBeforeEdits": true, "assets": "fresh image, both4fps video sheets and52%before capture", "execution": "native Workflow worktree1" },
+    { "writer": "eva-ui-designer box helper", "reportedBeforeEdits": true, "assets": "fresh image, both4fps video sheets and52%before capture", "execution": "native Workflow worktree2" },
+    { "writer": "eva-implementer independent tests", "reportedBeforeEdits": true, "assets": "fresh image, both4fps video sheets and52%before capture", "execution": "native Workflow worktree3" },
+    { "writer": "main integration", "method": "Actual Read image/sheet/before results in this session before edits", "scope": "existing planner integration, two invalid-input guards, cache adjustment and requirement-specific tests" }
+  ],
+  "checks": [{ "stage": "before", "manifest": "implementation/before/current/checks.json", "result": "passed", "sourceBaseline": "16c8d8c037a2e8a098a35fe0b3b97e9b661462d719ff2e76681b9f1174334cdb" }, { "stage": "strand-baseline", "manifest": "implementation/baseline-strands.json", "samples": 22, "note": "Actual ordered stroke/disc hashes before any UI edits; immutable expected values" }],
+  "workflow": { "run": "wf_37de78d1-aaf", "roles": ["eva-implementer material helper", "eva-ui-designer box helper", "eva-implementer independent tests", "eva-reviewer cross-module review"], "contract": "IMPLEMENTATION_CONTRACT.md", "status": "completed-integrated-as-recorded-in-REVIEW" },
+  "ownerAcceptance": "pending",
+  "handoffSnapshot": {
+    "files": 74,
+    "sha256": "a2d336fac7237a1fc96a93a0d7189382bd898c61854f17be9847540466abfd59"
+  }
+}

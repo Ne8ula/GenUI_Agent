@@ -293,7 +293,7 @@ export function useRenderLoop(
       const heightPx = Math.max(1, Math.round(cssHeight * dpr));
       if (canvas.width !== widthPx) canvas.width = widthPx;
       if (canvas.height !== heightPx) canvas.height = heightPx;
-      const view: FrameView = { widthPx, heightPx, dpr, frame: fitFrame(widthPx, heightPx, scene.frame.aspect), timeMs: clockMs };
+      const view: FrameView = { widthPx, heightPx, dpr, frame: fitFrame(widthPx, heightPx, scene.frame.aspect), timeMs: clockMs, reducedMotion: current.reducedMotion, showTiles: current.showTiles };
       // Tiles off: the renderer gets a tile-less copy; `scene.frame.tiles` stays as life left it.
       const drawFrame = frameForDraw(scene.frame, current.showTiles);
 
@@ -314,7 +314,10 @@ export function useRenderLoop(
       }
       frameCount += 1;
       if (wallStart === null) wallStart = now;
-      const tiles: TileCounts = { shown: drawFrame.tiles.length, authored: scene.frame.tiles.length };
+      // The seed-33 photo layer's real tile atlas is counted by the renderer (stats.photoTiles), not frame.tiles.
+      const tiles: TileCounts = stats.photoTiles
+        ? { shown: drawFrame.tiles.length + stats.photoTiles.shown, authored: scene.frame.tiles.length + stats.photoTiles.authored }
+        : { shown: drawFrame.tiles.length, authored: scene.frame.tiles.length };
 
       if (current.fixture) {
         const d = canvas.dataset;
@@ -351,7 +354,11 @@ export function useRenderLoop(
         d.timeMs = clockMs.toFixed(1);
         d.lifeMs = scene.life.clockMs.toFixed(1);
         d.wallMs = (now - wallStart).toFixed(0);
-        if (frameCount === 1) d.ready = '1'; // after the first successful draw
+        // `assetsReady` is absent (treated as ready) for every scene without async textures (the photo
+        // layer is the only one); `data-ready` is held back until a real draw has painted them, so
+        // evidence can never be taken against an unloaded or partially-drawn texture (no fake ready).
+        if (stats.assetsReady !== undefined) d.assetsReady = stats.assetsReady ? '1' : '0';
+        if (d.ready !== '1' && stats.assetsReady !== false) d.ready = '1';
       }
 
       if (current.publish && now - lastPublish >= PUBLISH_INTERVAL_MS) {

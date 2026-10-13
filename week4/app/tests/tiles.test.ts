@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { DEFAULT_SEED33, buildSeed33Scene } from '../src/scene/seed33.ts';
+import { DEFAULT_SEED33, buildSeed33Scene as buildSeed33PhotoSceneRaw } from '../src/scene/seed33.ts';
+import type { Seed33Options } from '../src/scene/seed33.ts';
 import {
   MAX_SWAPS_PER_SECOND,
   MAX_SWAPS_PER_SECOND_BUILD,
@@ -34,6 +35,20 @@ import type { SceneFrame, Tile } from '../src/scene/types.ts';
 
 /** The evidence seed (33) and the arrival default (7): every authoring and cadence rule is checked at both (§9 E). */
 const SEEDS = [33, 7];
+
+/**
+ * tiles.ts's own life mechanics (swap scheduling, nearness, intervals, the reduced-motion hold) are
+ * seed33-agnostic; this file has always used the seed-33 scene purely as a convenient tile-bearing
+ * frame source. Candidate-2 (2026-10-08) stopped authoring the old authorTiles-driven patterns onto the
+ * seed-33 photo scene itself (its real tile-chip pixels now come from a runtime-fetched manifest the
+ * renderer draws directly, not from authorTiles) so `buildSeed33Scene(...).tiles` is empty there now.
+ * This local wrapper restores exactly the previous frame shape — the same regions, seed and build length,
+ * with authorTiles run over them — so every test below is unchanged and still exercises tiles.ts itself.
+ */
+function buildSeed33Scene(opts: Seed33Options): SceneFrame {
+  const frame = buildSeed33PhotoSceneRaw(opts);
+  return { ...frame, tiles: authorTiles(opts.seed, frame.regions, frame.build.durationMs, frame.aspect) };
+}
 
 const snapshot = (tiles: Tile[]) => tiles.map((t) => `${t.pattern}|${t.colour.join(',')}|${t.x.toFixed(5)}|${t.y.toFixed(5)}|${t.cellPx}`);
 

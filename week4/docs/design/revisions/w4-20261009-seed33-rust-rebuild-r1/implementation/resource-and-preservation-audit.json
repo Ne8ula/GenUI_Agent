@@ -1,0 +1,1073 @@
+{
+  "capturedAt": "2026-10-10T02:48:14.625Z",
+  "preservation": {
+    "checked": 106,
+    "unexpectedChanges": [],
+    "files": [
+      {
+        "path": "app/package.json",
+        "unchanged": false,
+        "authorizedIntegrationFile": true
+      },
+      {
+        "path": "app/public/assets/seed33/background.png",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/figure-away.png",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/figure-matte-preview.png",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/figure-woman.png",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/foreground-away.png",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/foreground.png",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/manifest-walk-away-v2.json",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/manifest-walk-away.json",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/manifest.json",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/public/assets/seed33/tiles.png",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/browser-options.mjs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/capture-construction.mjs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/capture-s1.mjs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/capture-s33.mjs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/compare-s33.py",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/compare-sheet.py",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/extract-away-figure.py",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/extract-chair-occlusion.py",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/extract-seed33-assets.py",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/scripts/render-smoke.mjs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/App.tsx",
+        "unchanged": false,
+        "authorizedIntegrationFile": true
+      },
+      {
+        "path": "app/src/host/clock.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/host/FixtureControls.tsx",
+        "unchanged": false,
+        "authorizedIntegrationFile": true
+      },
+      {
+        "path": "app/src/host/frameStats.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/host/label.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/host/params.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/host/scenes.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/host/Stage.tsx",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/host/tilesFlag.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/host/useRenderLoop.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/main.tsx",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/canvas2d.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/constructionCanvas.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/constructionWebgl.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/create.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/dev.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/pack.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/paper.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/patterns.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/photoAssets.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/render/webgl2.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/arrival.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/author.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/constructionTypes.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/life.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/matrixMaterials.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/matrixTiles.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/palette.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/placeholder.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/postFormationOverlay.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/rng.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/seed33.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/seed33Construction.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/seed33Photo.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/store.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/tileBodies.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/tiles.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/types.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/scene/walkAwayFigure.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/src/style.css",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/canvas-construction.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/construction-contract.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/formed-glitch-mapping.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/formed-tile-glitch.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/host-clock.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/host-label.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/host-params.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/host-stats.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/host-tiles.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/life.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/matrix-materials.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/matrix-strands.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/matrix-tiles.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/postformation-overlay.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/render-pack.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/render-photo-assets.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/render-tiles.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/scene-arrival.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/scene-construction.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/scene-seed33.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/seed33-integration.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/store.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/tiles.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/walk-away.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/tests/webgl-construction.test.ts",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "app/vite.config.ts",
+        "unchanged": false,
+        "authorizedIntegrationFile": true
+      },
+      {
+        "path": "broker/src/adapter.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/broker.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/cancel.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/clock.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/consent.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/error.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/fake.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/ids.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/journal.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/ledger.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/lib.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/motion.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/recovery.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/renderer.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/restore.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "broker/src/unsupported.rs",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      },
+      {
+        "path": "Cargo.lock",
+        "unchanged": false,
+        "authorizedIntegrationFile": true
+      },
+      {
+        "path": "Cargo.toml",
+        "unchanged": false,
+        "authorizedIntegrationFile": true
+      },
+      {
+        "path": "package-lock.json",
+        "unchanged": true,
+        "authorizedIntegrationFile": false
+      }
+    ]
+  },
+  "compiledFiles": [
+    {
+      "path": "assets/eva_seed33_renderer_bg-DfLdRhx4.wasm",
+      "bytes": 214734,
+      "sha256": "ac335367cfcf522bfea3431ad171d0060a0040652c5250e77521092014ab0b73"
+    },
+    {
+      "path": "assets/ibm-plex-mono-cyrillic-400-normal-BSMlKf0J.woff2",
+      "bytes": 8356,
+      "sha256": "7635422bd10ddbbcb0e0caa1154b928298f5c8319b8c00b30978d4395f4783ce"
+    },
+    {
+      "path": "assets/ibm-plex-mono-cyrillic-400-normal-CEL4l2ZJ.woff",
+      "bytes": 7204,
+      "sha256": "42da81a28bbcddda6768a25a4b3105ee291e69d5fa6c74747bc51bbc6718c538"
+    },
+    {
+      "path": "assets/ibm-plex-mono-cyrillic-ext-400-normal-DMdlQ8Kv.woff",
+      "bytes": 5820,
+      "sha256": "0e4a2393e8ed3185ae300e4a202b6d9149d47d8a0e5bb8f1d1db33e76b86ecd1"
+    },
+    {
+      "path": "assets/ibm-plex-mono-cyrillic-ext-400-normal-xuaO2J-f.woff2",
+      "bytes": 6912,
+      "sha256": "f8c22ec1804bd6966b70f43ac7c327025645b4c09597117fca2a5a6c750106fe"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff",
+      "bytes": 13144,
+      "sha256": "328d50b6ece9ca25c46eea3e885ba497f6237f2fb84ef7b92f88e14a1a25e381"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2",
+      "bytes": 14708,
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-ext-400-normal-BmRBH3aV.woff2",
+      "bytes": 13348,
+      "sha256": "6bc0f226a5b7884a8170e3f62c63d7675609d4631bdc5931b5cdab81821f00eb"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-ext-400-normal-D3D2R8hC.woff",
+      "bytes": 11768,
+      "sha256": "f8ddaa0ab9d3c052c9fe035751c8214b7e0d59e6e7b69b045f8659c2fe4dced2"
+    },
+    {
+      "path": "assets/ibm-plex-mono-vietnamese-400-normal-BulugwFq.woff2",
+      "bytes": 5868,
+      "sha256": "62632b6375305e70ddcafdd895218e6ae41a184fcd280a69c739460604ca00a9"
+    },
+    {
+      "path": "assets/ibm-plex-mono-vietnamese-400-normal-DDuiU_S-.woff",
+      "bytes": 5620,
+      "sha256": "bced561d991e3f81c150c08e71f7fa849fcbff523560f6059245f2edce19b600"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-400-normal-BTotfTJu.woff",
+      "bytes": 13512,
+      "sha256": "89b819d4fef67eda2ce2c12f2f2b3978141fb73faebeb23ec895a3d7f8e66964"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-400-normal-DZqxrq2p.woff2",
+      "bytes": 14800,
+      "sha256": "69afad88a0740b6e5647f1104c9176a261f1ad9d60202f605456a983799752e9"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-500-normal-ByOcLdNv.woff",
+      "bytes": 13856,
+      "sha256": "b9d946b2b727115f06753e92054d272861a8265468bdb267bc279d1447fac20f"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-500-normal-CocWQlwt.woff2",
+      "bytes": 15000,
+      "sha256": "200be3a2a6b1789fb8824a4a74c7cccb7137e83fde6200ea78d8829f99d43546"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-ext-400-normal-Dsrv2Tcn.woff",
+      "bytes": 10288,
+      "sha256": "e60c70b37422d621549800db28c60764e16ccce7403a2d2957a8ac079818b28a"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-ext-400-normal-g30qAdWV.woff2",
+      "bytes": 12148,
+      "sha256": "e2580ad78906551e1f9ad621f608cd16ce4d5a992e53c651dd6b3504547576f2"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-ext-500-normal-Cs5J6C77.woff2",
+      "bytes": 12308,
+      "sha256": "08578d906af6d986d12d966d91bf9e76a00ebb74288d5c0eb6fe27dbebe1975a"
+    },
+    {
+      "path": "assets/ibm-plex-sans-cyrillic-ext-500-normal-DB5PtV2g.woff",
+      "bytes": 10592,
+      "sha256": "19928f2f784c679937745ed3949cd9ff4c3af792e2c6b26670e0741c68610400"
+    },
+    {
+      "path": "assets/ibm-plex-sans-greek-400-normal-D9ESIMu3.woff",
+      "bytes": 8760,
+      "sha256": "8d899d62a1e18740c6f9d8c1a760be8e511ef222e54ab68d3bc88c94d0d104b0"
+    },
+    {
+      "path": "assets/ibm-plex-sans-greek-400-normal-_efipK4i.woff2",
+      "bytes": 9940,
+      "sha256": "02296067bc904d2ad19b49445bdaf6586cc44704e668e16e248f708e5005a290"
+    },
+    {
+      "path": "assets/ibm-plex-sans-greek-500-normal-CuWXN6rf.woff",
+      "bytes": 9148,
+      "sha256": "38489276f6e67e4f00fbea894417af635dac8368ccdf14655dd71b5b3de269e0"
+    },
+    {
+      "path": "assets/ibm-plex-sans-greek-500-normal-JMMifIXV.woff2",
+      "bytes": 10376,
+      "sha256": "8cb6e20b4dbbaa5f7b479d4a68cc91d3d6b370eebcd888cae9ab01052e5483f2"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+      "bytes": 22588,
+      "sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff",
+      "bytes": 22104,
+      "sha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-500-normal-6ng42L7E.woff2",
+      "bytes": 24184,
+      "sha256": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-500-normal-BgVn5rGT.woff",
+      "bytes": 23916,
+      "sha256": "8d2c7b2eca91869d447851a9c8bd07edf629b26025eacb882291e03b384b4e35"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-ext-400-normal-C5H60-Va.woff2",
+      "bytes": 15980,
+      "sha256": "c93d2a12aaa280f68b9ab7b726ff8dfedda67c99ef9abed047c1847a1cc6d583"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-ext-400-normal-RBey6euL.woff",
+      "bytes": 14360,
+      "sha256": "85db75b89e3c0bee23ea75ede70c73024f62516ccdb6be55eb0c5c7a7866433a"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-ext-500-normal-D0aIdm-b.woff",
+      "bytes": 14736,
+      "sha256": "6aa470ebf8dd5592084d0452b5c3a355d93b04e7eb0f5ca030d9d3a54a48fb5c"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-ext-500-normal-DakdToA3.woff2",
+      "bytes": 16456,
+      "sha256": "2846035d85100f84c79393f80f1442d4ee720129ab8b3ffa8969aae281db8c6c"
+    },
+    {
+      "path": "assets/ibm-plex-sans-vietnamese-400-normal-DG4YqDda.woff2",
+      "bytes": 8204,
+      "sha256": "771538f7f26551bd13ab97d585de6ce7ebe3b432837999d5b743391b48f4946a"
+    },
+    {
+      "path": "assets/ibm-plex-sans-vietnamese-400-normal-fK1oJ5dG.woff",
+      "bytes": 6392,
+      "sha256": "aa3bd4c4c493c3110ca5f5ac3f0cd688482982b40e4cf9cb601f931df2a8ccf5"
+    },
+    {
+      "path": "assets/ibm-plex-sans-vietnamese-500-normal-BEb3_waV.woff",
+      "bytes": 6588,
+      "sha256": "156142eef15bc3ea0983949aa2ccc2c4fcb8c97e5507ca019c5b1a23046a3268"
+    },
+    {
+      "path": "assets/ibm-plex-sans-vietnamese-500-normal-e4dixQRQ.woff2",
+      "bytes": 8416,
+      "sha256": "85ba3d9c2488a813bbf1d60da3a848bce4a97ac8c8a539289d8524aef6c471f9"
+    },
+    {
+      "path": "assets/index-D-ipX1tF.css",
+      "bytes": 10203,
+      "sha256": "cc5026e60bdeb55d757c080148705d13dd2bc2e71fa756a8fb4557ebe4430bed"
+    },
+    {
+      "path": "assets/index-DN0cUZLW.js",
+      "bytes": 258136,
+      "sha256": "46246a0f0a118d1d42dff2f43dd65160f942ff033b3af8f741b13a314b0a5633"
+    },
+    {
+      "path": "assets/space-grotesk-latin-500-normal-CNSSEhBt.woff",
+      "bytes": 16988,
+      "sha256": "aa3f2941f6db6ca253c9f55bb173e1a1ade690dcc50e501119814a4414027df3"
+    },
+    {
+      "path": "assets/space-grotesk-latin-500-normal-lFbtlQH6.woff2",
+      "bytes": 13312,
+      "sha256": "1b1a8131d9edf975d9decee81e2f2bf504812f7a4f498e5500f28a613e22e64c"
+    },
+    {
+      "path": "assets/space-grotesk-latin-ext-500-normal-3dgZTiw9.woff",
+      "bytes": 16788,
+      "sha256": "b1faf7147e8b2fd11385c78412b2ba9d120645e68336ec9982d2e0f645accd7a"
+    },
+    {
+      "path": "assets/space-grotesk-latin-ext-500-normal-DUe3BAxM.woff2",
+      "bytes": 12272,
+      "sha256": "ed7e064eda944f88ce2f40101ec20e214004decdf5c0b9ad9219ae21be2dbf13"
+    },
+    {
+      "path": "assets/space-grotesk-vietnamese-500-normal-BmEvtly_.woff2",
+      "bytes": 4324,
+      "sha256": "d5eb999d825de1ad0c6f81ccca6958906f3288d1368106a71fa16f4b36b57933"
+    },
+    {
+      "path": "assets/space-grotesk-vietnamese-500-normal-BTqKIpxg.woff",
+      "bytes": 5716,
+      "sha256": "ff7d1c4604ba397e816ac21f0bb3ff9fa871f6ef71e023bd75e9fe9bb6aaaba3"
+    },
+    {
+      "path": "index.html",
+      "bytes": 483,
+      "sha256": "4ab2e019b07caf73583c055d7bcaf0fdb98789534725da8cfa216b26b5481dcc"
+    }
+  ],
+  "forbiddenCompiledFiles": [],
+  "forbiddenJsPaths": [
+    {
+      "file": "assets/index-DN0cUZLW.js",
+      "marker": "background.png"
+    },
+    {
+      "file": "assets/index-DN0cUZLW.js",
+      "marker": "figure-away.png"
+    }
+  ],
+  "wasmImports": [
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_call_269c5566fbede3eb",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_createVertexArray_9411e94d2ee6864e",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_deleteVertexArray_a810728c9f325e4c",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_attachShader_74ecf95efc73ee58",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_bindBuffer_f1f33e087b91687c",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_blendFunc_ad7d043180d4f86a",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_clear_55f5d5ab26fe80b4",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_clearColor_b7dd90543da7fe3c",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_clearDepth_a4e9a96e0b87fadb",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_compileShader_cabeb4aa8cb42914",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_createBuffer_77a9a8580e5123cc",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getParameter_7f269432cd46eb73",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getProgramInfoLog_0e335b65673afba8",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getProgramParameter_2a5860ab824690ec",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getShaderInfoLog_e66ab6619bcd208d",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getShaderParameter_d542b1412563ae42",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_isContextLost_c7170b245e4a7244",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_linkProgram_e408ee5f93686f1f",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_createProgram_89a2bb21dab7e222",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_createShader_70a84327b207bda4",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_deleteBuffer_54e287dbecb17d6e",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_deleteProgram_c990794adb74a326",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_deleteShader_9b34ccd212c66de7",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_depthFunc_fc1a3d2fde41ec92",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_depthMask_e85b064c1ee5147d",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_disable_6907c683adc38e04",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_drawArrays_983f352c9e94d800",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_enable_9fb8e4de75a17155",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_enableVertexAttribArray_ad4d8ff487ea8fe1",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getError_63cf75a01d4d8e13",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getExtension_112db5d69fdfc10f",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_shaderSource_108c27c8694ef4c0",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_vertexAttribPointer_b6db7a62b9bda090",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_viewport_704a6159fb0395cb",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_useProgram_fcab4319331e0094",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_bindVertexArray_4687bb1e8b327fc9",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_bufferData_c074912da5a8e8c2",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_instanceof_WebGl2RenderingContext_015d221b904a3c7b",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_getContext_2c75bba1a1c9739b",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_width_b5e609025d3f7451",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_set_width_4c3a2252e0dea033",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_height_c15ee46a1345e9af",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_set_height_698fb3b255bc1348",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_new_bebc3f4757acf305",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_get_989d0a1309644f2b",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_set_a377297433dfea63",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg___wbindgen_throw_5d9e815e6fdf150f",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg___wbindgen_string_get_92ab86bb19cbc12f",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg___wbindgen_boolean_get_7a12af2b3f899c5a",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg___wbindgen_is_function_fcda5e3902d732fe",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbindgen_init_externref_table",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbindgen_generic_0000000000000001",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbindgen_generic_0000000000000002",
+      "kind": "function"
+    }
+  ],
+  "rustGpuImportsObserved": [
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_compileShader_cabeb4aa8cb42914",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_createBuffer_77a9a8580e5123cc",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_linkProgram_e408ee5f93686f1f",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_drawArrays_983f352c9e94d800",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_shaderSource_108c27c8694ef4c0",
+      "kind": "function"
+    },
+    {
+      "module": "./eva_seed33_renderer_bg.js",
+      "name": "__wbg_bufferData_c074912da5a8e8c2",
+      "kind": "function"
+    }
+  ],
+  "note": "Static/compiled inspection supplements the actual production browser denial test; it does not replace it. Historical assets remain on disk, hashed above, and are not production resources.",
+  "ok": false
+}

@@ -1,0 +1,126 @@
+{
+  "candidate": 18,
+  "sourceManifest": "candidate-18-source.json",
+  "sourceDigest": "a5578da5f56f8bbb19daf3d5019bf649ba05e2db1c2f47ce4129ed62273aec83",
+  "sourceFilesUnchangedAfterCapture": 127,
+  "checks": {
+    "rust": {
+      "passed": 18,
+      "command": "cargo test --manifest-path week4/Cargo.toml -p eva-seed33-renderer --lib"
+    },
+    "app": {
+      "passed": 207,
+      "typecheck": "passed",
+      "wasmAndProductionBuild": "passed",
+      "command": "npm --prefix week4/app run check"
+    },
+    "browser": {
+      "passed": 47,
+      "report": "after/candidate-18/checks.json",
+      "command": "node week4/app/scripts/capture-rust.mjs <absolute-new-output-directory> 1472 --production"
+    },
+    "recording": {
+      "frames": 361,
+      "intendedFrames": 361,
+      "report": "after/candidate-18-motion/recording.json",
+      "command": "node week4/app/scripts/record-rust.mjs <absolute-new-output-directory> 1473 --production",
+      "unsteppedObservationMs": 12060,
+      "final": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace",
+        "widthPx": "1920",
+        "heightPx": "1080",
+        "effectiveDpr": "1",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "24000.00",
+        "lifeMs": "24000.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "49964",
+        "segments": "12744",
+        "objects": "327",
+        "vertices": "175380",
+        "gpuFrames": "361",
+        "particles": "0",
+        "frameCount": "13957",
+        "frameMs": "6.900",
+        "drawMs": "0.100",
+        "cpuBufferBytes": "14155776",
+        "uploadedBytes": "0",
+        "gpuAllocatedBytes": "19922944",
+        "renderTargetBytes": "74649600",
+        "wasmBytes": "33423360",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 \u2014 ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    }
+  },
+  "resources": {
+    "label": "Windows Chrome 6-second RAF/CPU wall-time samples, not GPU or native WebView2 measurements; baseline highly variable",
+    "candidate17FreshBefore": {
+      "frameMedianMs": 13.9,
+      "frameP95Ms": 48.6,
+      "submitMedianMs": 15.3,
+      "submitP95Ms": 47.6,
+      "samples": 303,
+      "meanUploadedBytes": 2486443.7227722774,
+      "maxWasmBytes": 32768000,
+      "maxRequestedVertexBufferBytes": 12058624,
+      "requestedRenderTargetBytes": 64488960
+    },
+    "candidate18": {
+      "frameMedianMs": 7,
+      "frameP95Ms": 7.1,
+      "submitMedianMs": 3.7,
+      "submitP95Ms": 6.7,
+      "samples": 853,
+      "meanUploadedBytes": 2486396.286049238,
+      "maxWasmBytes": 32571392,
+      "maxRequestedVertexBufferBytes": 12058624,
+      "requestedRenderTargetBytes": 64488960
+    },
+    "candidate18ThreeRepeats": [
+      {
+        "elapsedMs": 6004.4000000476835,
+        "frameMedianMs": 7,
+        "frameP95Ms": 7.1,
+        "submitMedianMs": 5.6,
+        "submitP95Ms": 6.8,
+        "maxWasmBytes": 32571392,
+        "samples": 854
+      },
+      {
+        "elapsedMs": 6005.0000000238415,
+        "frameMedianMs": 7,
+        "frameP95Ms": 7.1,
+        "submitMedianMs": 3.9,
+        "submitP95Ms": 6.8,
+        "maxWasmBytes": 32571392,
+        "samples": 854
+      },
+      {
+        "elapsedMs": 6004.699999976158,
+        "frameMedianMs": 6.9,
+        "frameP95Ms": 7,
+        "submitMedianMs": 3.6,
+        "submitP95Ms": 4.2,
+        "maxWasmBytes": 32571392,
+        "samples": 865
+      }
+    ],
+    "interpretation": "Settled uploads unchanged at about2.49MB/frame; requested GPU storage unchanged. WASM decreased196608bytes. Candidate18 repeat framep95 7.0-7.1ms and CPU-submitp95 4.2-6.8ms. Fresh baseline p9548.6ms differed greatly from historical13.8ms, so this is an observation not a controlled causal speedup. Historical R3 regression is not rewritten."
+  },
+  "ownerAcceptance": "pending",
+  "commits": 0,
+  "phaseAdvancement": false
+}

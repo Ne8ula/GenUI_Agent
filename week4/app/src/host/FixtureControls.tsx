@@ -10,6 +10,8 @@ import type { Density, Look } from './params.ts';
 
 export interface FixtureControlsProps {
   look: Look;
+  /** Historical rendering is intentionally excluded from the new production build. */
+  historicalAvailable?: boolean;
   onLook: (look: Look) => void;
   buildMs: number;
   onBuildMs: (buildMs: number) => void;
@@ -154,7 +156,7 @@ export function FixtureControls(props: FixtureControlsProps) {
             <label htmlFor={lookId}>Look</label>
             <select id={lookId} value={props.look} onChange={(event) => props.onLook(event.currentTarget.value as Look)}>
               <option value="seed33">Seed 33 (selected)</option>
-              <option value="arrival">Arrival (earlier frame)</option>
+              <option value="arrival" disabled={props.historicalAvailable === false}>{props.historicalAvailable === false ? 'Arrival (history unavailable in this build)' : 'Arrival (earlier frame)'}</option>
             </select>
           </span>
           <span className="field">

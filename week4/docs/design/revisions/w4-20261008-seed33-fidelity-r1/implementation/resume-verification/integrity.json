@@ -1,0 +1,21 @@
+{
+  "testedWorkingTreeSha256": "7e641072fd2b5fdac727d898191bd6b7635c686ab2e088fd70b1c8d53cb656ba",
+  "checks": [
+    "background hash and dimensions match",
+    "figure hash and dimensions match",
+    "foreground hash and dimensions match",
+    "tiles hash and dimensions match",
+    "selected source still hash unchanged",
+    "28 authored tile regions",
+    "20 recovery browser checks passed"
+  ],
+  "postIntegrationChanges": [
+    "week4/app/src/render/canvas2d.ts",
+    "week4/app/src/render/webgl2.ts",
+    "week4/app/tests/scene-seed33.test.ts",
+    "week4/app/src/scene/seed33Photo.ts"
+  ],
+  "postIntegrationChangesNote": "Integration manifest predates the prior main-session final reveal, GL-detail, exit-bounds and regression-test fixes. It is preserved, not redefined as the final candidate.",
+  "historicalCaptureSourceBinding": "Previous final captures have no contemporaneous full source manifest; this manifest binds the recovery test/browser run, not a retroactive hash of the old recording.",
+  "freshBrowserEvidence": "resume-verification/checks.json"
+}

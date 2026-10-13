@@ -1,0 +1,62 @@
+{
+  "revisionId":"w4-20261009-seed33-walk-away-r3",
+  "date":"2026-10-09",
+  "phase":"Week4 bounded tile-body corruption and away-walk correction",
+  "sourceRevision":"e43c7aedb2690c8b9edc3e2446f1d1f584897a5d plus dirty tree including tracking-r2",
+  "acceptedBaseline":null,
+  "ownerAcceptance":"pending",
+  "implementationOwner":"Astra main; owner explicitly said NOT Sonnet",
+  "status":"superseded by owner Rust reconstruction correction; raster-derived candidate3 preserved as historical evidence, not compliant with current requirement",
+  "referenceInspection":"Actual PNG and cropped figure detail; video500ms overview and100ms gait samples. Not full-speed playback.",
+  "route":"direct-model",
+  "tool":"official Figma MCP weave_run_model",
+  "costUnit":"Weave workspace credits, not Figma AI credits",
+  "spentCredits":95,
+  "uploads":[{"assetId":"78ccd46e-9ece-4024-b6e6-3f3913415ae7","source":"../w4-20261009-seed33-tracking-r2/implementation/after/candidate-2/webgl2-formed-12000.png","approval":"Explicit structured Approve covering synthetic screenshot upload and image run up to5 credits","credentialsRetained":false}],
+  "runs":[
+    {
+      "modelToolId":"bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId":"fal-ai/nano-banana-2/edit",
+      "predictionId":"b233ae7a-cca2-402b-b542-916f90b5437d",
+      "quotedCost":5,
+      "approval":"Explicit Approve; upload included; re-quoted with attached screenshot at5 before single submission",
+      "chargedCost":5,
+      "status":"COMPLETED",
+      "localAsset":"references/images/img-01-tile-corruption-away.png",
+      "dimensions":[2752,1536],
+      "inputs":{
+        "images":["Uploaded asset78ccd46e-9ece-4024-b6e6-3f3913415ae7; synthetic screenshot path above"],
+        "aspect_ratio":"16:9","enable_web_search":false,"model":"Nano Banana 2.1","output_format":"png","resolution":"2K","seed":33,"thinking_level":"High",
+        "prompt":"Edit the supplied EVA Seed-33 synthetic app capture as a bounded visual reference for TWO corrections only. Preserve the exact fixed camera, Paris street, light-beaded/halftone/strand rendering style, deep umber ground, pale bone sky, warm coral/ochre/bone tile colors, foreground chair on the LEFT and table/cup arrangement. Do NOT turn this into a photograph or change the scene architecture. First correction: the COLORED FILLED TILES themselves are corrupted matter, not intact rectangles with marks drawn around them. Show irregular horizontal slices breaking apart, stretched rows, offset color blocks, missing narrow bands and displaced reassembled fragments within and immediately around their existing anchored regions. Keep the same overall tile groups; no drifting whole rectangles and no new large scene-covering blocks. Existing delicate crossed tracking rectangles remain subordinate. Second correction: the adult woman in the coat is walking slowly AWAY from the camera toward the LEFT side of the foreground chair. Show a believable rear three-quarter view facing upper-left, not a face pointed at the viewer, not a mirrored front-facing sprite. Clearly readable articulated shoulders, elbows, hips, knees, ankles and two distinct feet: one foot planted with weight over it, the other leg swinging through with a bent knee and lifted heel, opposing natural arm swing, restrained torso lean. Feet contact the street plane. Keep their visual material as bone-light stipple/halftone strands, not solid photorealistic skin or a cartoon. Their trajectory must recede and become smaller toward scene-left, never approach/enlarge toward the user. Show one coherent full-scene frame, not a collage, not duplicated people, no arrows, labels, UI or text. This is a development reference for a live articulated code rig and live tile fragmentation, not runtime video playback."
+      },
+      "selection":"Rear-facing coat/hair silhouette, separated legs, warm tile-body shearing/missing rows. Preserve original background rather than adopting regenerated environment.",
+      "inspection":"Actual still and2x figure crop inspected. Rear figure offers distinct torso, upper/lower limbs and two feet; coat covers thighs. Arms in generated pose remain close to body, so articulated motion must be explicitly authored, not inferred."
+    },
+    {
+      "modelToolId":"8a789246-42cd-4314-b32a-f06994638c16",
+      "modelId":"kling-3-turbo",
+      "predictionId":"ee36e722-c68f-4cad-b7f3-2791b2b8a4e9",
+      "quotedCost":90,"chargedCost":90,
+      "approval":"Explicit Approve in structured motion-reference question; no reruns authorized",
+      "status":"COMPLETED",
+      "localAsset":"references/videos/vid-01-away-walk-tile-breakup.mp4",
+      "dimensions":[1284,716],
+      "inputs":{
+        "image":"Provider output of b233ae7a-cca2-402b-b542-916f90b5437d, retained as image01; remote URL omitted",
+        "duration":10,"model":"3.0 Turbo Standard","ratio":"16:9",
+        "prompt":"Animate this exact Seed-33 stippled light-strand Paris scene with a LOCKED camera. Preserve the street, foreground chair on the LEFT, table/cup, warm palette and halftone light material. Two live actions only. ONE: the rear-facing adult woman walks SLOWLY diagonally AWAY from the viewer toward the LEFT SIDE OF THE LEFT FOREGROUND CHAIR, following the street plane to screen-left and into depth. Their back remains toward the viewer; the figure gradually becomes smaller, never approaches the camera, never enlarges toward us, never glides rigidly sideways. Use a believable human gait: alternating feet plant and support body weight, stance foot holds its ground contact while the pelvis advances, opposite heel lifts and knee bends for swing then heel/toe contacts, subtle vertical weight transfer, opposing elbow/arm swing, coat panels lag softly. Several complete slow steps during the ten seconds. Keep two separate legs and feet readable; no skating, hovering, teleportation, leg duplication or melted limbs. Move from the current start near screen x0.36 toward screen x0.12 and further away beside the left chair; preserve foreground occlusion naturally. TWO: the COLORED FILLED TILE BODIES themselves repeatedly fragment and reconstruct around their existing FIXED anchor regions. Horizontal rows split, some bands go missing, others shear sideways, pixel blocks displace and recombine; fragments can briefly stretch but the entire tile group does NOT drift or bob. Continue visible irregular local corruption throughout all ten seconds, never settle to intact static rectangles. Existing thin tracking crosses/hairlines may reconfigure subtly, but are not a substitute for actually breaking up the filled colored tiles. No full-screen flash, strobe, camera move, new buildings, scene morph, fade, new people, text or logos. This is reference for an interruptible live articulated code rig and source-sampled tile geometry, NOT a movie for runtime playback."
+      },
+      "selection":"Alternating visible leg poses and later leftward recession; localized filled-tile horizontal corruption. Exclude initial rightward drift, delayed turn, static arms and any global scene change.",
+      "inspection":"500ms samples across0–9.5s;100ms close-ups1–2.9s. Leg poses alternate; movement bends left later rather than immediately. Tile bodies remain more intact than requested, so implementation must omit the old complete quad, not reproduce that weakness. Not a ground-contact measurement or owner acceptance."
+    }
+  ],
+  "implementationGuidance":{
+    "figure":"A live2D articulated mesh, not a movie/pose-frame sequence or whole-image translation. Separate limbs; solve alternating fixed stance contacts and lifted swing foot; knees/elbows/coat weight shift; shrink/recede from the start on a scene-left path.",
+    "tiles":"Replace settled complete atlas-quads with actual source-sampled row fragments, gaps, short displacements and recombinations about fixed rest anchors; retain identity and local visibility. No smooth tileDriftOffset in this route.",
+    "preserve":"Architecture/furniture strand construction, underlying environment assets, clocks, pause, reduced motion, visibility and both renderers. New rear-facing figure material may change figure-only build appearance; disclose it rather than claim pixel-identical figure preservation.",
+    "staticReduced":"Fixed representative tile arrangement and fixed rear figure pose; no time-dependent body or texture motion.",
+    "runtimeAssets":"If the inspected rear still is used, retain old figure asset, record new derivative crop/matte/hash and terms caveat in this pass and runtime manifest. No video decoding or generated frame animation at runtime."
+  },
+  "checks":[{"kind":"recovery","report":"implementation/recovery-verification.json","scope":"Technical verification of historical candidate3, not acceptance of the newly requested Rust reconstruction"}],
+  "nativeEvidence":false
+}

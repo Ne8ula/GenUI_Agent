@@ -1,0 +1,21 @@
+{
+  "candidate": 17,
+  "sourceManifest": "candidate-17-source.json",
+  "sourceDigest": "8a64c7726ba6155f56a3cb1229d5296ae446b038dfb892a9f442f2c431f162a0",
+  "checks": {
+    "rust": {"passed": 15, "command": "cargo test --manifest-path week4/Cargo.toml -p eva-seed33-renderer --lib"},
+    "app": {"passed": 207, "typecheck": "passed", "wasmAndProductionBuild": "passed", "command": "npm --prefix week4/app run check"},
+    "browser": {"passed": 47, "report": "after/candidate-17/checks.json", "command": "node week4/app/scripts/capture-rust.mjs <revision>/implementation/after/candidate-17 1469 --production"},
+    "recording": {"status": "passed", "frames": 361, "intendedFrames": 361, "report": "after/candidate-17-motion/recording.json", "unsteppedObservationMs": 12114, "fullConstructionHighWater": {"wasmBytes": 34406400, "requestedVertexBufferBytes": 19922944, "requestedTargetBytes": 74649600, "canvas": [1920, 1080]}}
+  },
+  "failureAndCorrection": "The first Rust run passed14/15; new facade relief test incorrectly assumed the authored bilinear facade was planar. Corrected the test to inspect exact local recess/sill geometry and cast a ray through the actual opening. Retest passed15/15. Renderer geometry was not weakened to satisfy it.",
+  "resources": {
+    "label": "Actual Windows Chrome browser samples, not GPU duration or native/WebView2 measurements. Two 6-second samples; variability not characterized.",
+    "beforeCandidate16": {"report": "before/live-recheck/checks.json", "samples": 865, "frameMedianMs": 6.9, "frameP95Ms": 7.0, "submitMedianMs": 5.7, "submitP95Ms": 6.3, "meanUploadedBytes": 3728826.339884393, "maxWasmBytes": 31195136, "maxRequestedVertexBufferBytes": 13631488, "requestedRenderTargetBytes": 64488960},
+    "candidate17": {"report": "after/candidate-17/checks.json", "samples": 815, "frameMedianMs": 7.0, "frameP95Ms": 13.8, "submitMedianMs": 6.2, "submitP95Ms": 12.1, "meanUploadedBytes": 2486295.4012269937, "maxWasmBytes": 32768000, "maxRequestedVertexBufferBytes": 12058624, "requestedRenderTargetBytes": 64488960},
+    "interpretation": "Distant tessellation reduces uploads and requested vertex storage. Memory increased and measured frame/submission p95 worsened. Not an overall performance improvement or guaranteed framerate."
+  },
+  "ownerAcceptance": "pending",
+  "commits": 0,
+  "phaseAdvancement": false
+}

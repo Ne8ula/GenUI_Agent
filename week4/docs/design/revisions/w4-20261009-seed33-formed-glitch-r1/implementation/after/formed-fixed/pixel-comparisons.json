@@ -1,0 +1,415 @@
+{
+  "mask": "Union of manifest tile rectangles expanded by24 screenshot pixels for existing drift and bounded glitches; not an exact per-frame silhouette",
+  "results": [
+    {
+      "file": "webgl2-12000-normal.png",
+      "backend": "webgl2",
+      "timeMs": 12000,
+      "mode": "normal",
+      "changedPixels": 10331,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-12300-normal.png",
+      "backend": "webgl2",
+      "timeMs": 12300,
+      "mode": "normal",
+      "changedPixels": 8865,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-12600-normal.png",
+      "backend": "webgl2",
+      "timeMs": 12600,
+      "mode": "normal",
+      "changedPixels": 12183,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-13000-normal.png",
+      "backend": "webgl2",
+      "timeMs": 13000,
+      "mode": "normal",
+      "changedPixels": 6023,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-13300-normal.png",
+      "backend": "webgl2",
+      "timeMs": 13300,
+      "mode": "normal",
+      "changedPixels": 20149,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-13600-normal.png",
+      "backend": "webgl2",
+      "timeMs": 13600,
+      "mode": "normal",
+      "changedPixels": 10325,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-14000-normal.png",
+      "backend": "webgl2",
+      "timeMs": 14000,
+      "mode": "normal",
+      "changedPixels": 10219,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-14300-normal.png",
+      "backend": "webgl2",
+      "timeMs": 14300,
+      "mode": "normal",
+      "changedPixels": 9423,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-14600-normal.png",
+      "backend": "webgl2",
+      "timeMs": 14600,
+      "mode": "normal",
+      "changedPixels": 7376,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-15000-normal.png",
+      "backend": "webgl2",
+      "timeMs": 15000,
+      "mode": "normal",
+      "changedPixels": 27608,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-15300-normal.png",
+      "backend": "webgl2",
+      "timeMs": 15300,
+      "mode": "normal",
+      "changedPixels": 5451,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-15600-normal.png",
+      "backend": "webgl2",
+      "timeMs": 15600,
+      "mode": "normal",
+      "changedPixels": 8443,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-16000-normal.png",
+      "backend": "webgl2",
+      "timeMs": 16000,
+      "mode": "normal",
+      "changedPixels": 6482,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-16300-normal.png",
+      "backend": "webgl2",
+      "timeMs": 16300,
+      "mode": "normal",
+      "changedPixels": 3869,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-16600-normal.png",
+      "backend": "webgl2",
+      "timeMs": 16600,
+      "mode": "normal",
+      "changedPixels": 22621,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-17000-normal.png",
+      "backend": "webgl2",
+      "timeMs": 17000,
+      "mode": "normal",
+      "changedPixels": 13171,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-17300-normal.png",
+      "backend": "webgl2",
+      "timeMs": 17300,
+      "mode": "normal",
+      "changedPixels": 15375,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-17600-normal.png",
+      "backend": "webgl2",
+      "timeMs": 17600,
+      "mode": "normal",
+      "changedPixels": 5622,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-18000-normal.png",
+      "backend": "webgl2",
+      "timeMs": 18000,
+      "mode": "normal",
+      "changedPixels": 10276,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "webgl2-17000-tiles-off.png",
+      "backend": "webgl2",
+      "timeMs": 17000,
+      "mode": "tiles-off",
+      "changedPixels": 0,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": true
+    },
+    {
+      "file": "webgl2-17000-reduced.png",
+      "backend": "webgl2",
+      "timeMs": 17000,
+      "mode": "reduced",
+      "changedPixels": 0,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": true
+    },
+    {
+      "file": "webgl2-18000-reduced.png",
+      "backend": "webgl2",
+      "timeMs": 18000,
+      "mode": "reduced",
+      "changedPixels": 0,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": true
+    },
+    {
+      "file": "canvas2d-12000-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 12000,
+      "mode": "normal",
+      "changedPixels": 10939,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-12300-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 12300,
+      "mode": "normal",
+      "changedPixels": 9843,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-12600-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 12600,
+      "mode": "normal",
+      "changedPixels": 13031,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-13000-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 13000,
+      "mode": "normal",
+      "changedPixels": 6508,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-13300-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 13300,
+      "mode": "normal",
+      "changedPixels": 21487,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-13600-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 13600,
+      "mode": "normal",
+      "changedPixels": 10879,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-14000-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 14000,
+      "mode": "normal",
+      "changedPixels": 10777,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-14300-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 14300,
+      "mode": "normal",
+      "changedPixels": 10021,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-14600-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 14600,
+      "mode": "normal",
+      "changedPixels": 7706,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-15000-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 15000,
+      "mode": "normal",
+      "changedPixels": 29185,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-15300-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 15300,
+      "mode": "normal",
+      "changedPixels": 5936,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-15600-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 15600,
+      "mode": "normal",
+      "changedPixels": 9328,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-16000-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 16000,
+      "mode": "normal",
+      "changedPixels": 7041,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-16300-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 16300,
+      "mode": "normal",
+      "changedPixels": 4359,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-16600-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 16600,
+      "mode": "normal",
+      "changedPixels": 24250,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-17000-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 17000,
+      "mode": "normal",
+      "changedPixels": 14013,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-17300-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 17300,
+      "mode": "normal",
+      "changedPixels": 16620,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-17600-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 17600,
+      "mode": "normal",
+      "changedPixels": 5962,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-18000-normal.png",
+      "backend": "canvas2d",
+      "timeMs": 18000,
+      "mode": "normal",
+      "changedPixels": 10960,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": false
+    },
+    {
+      "file": "canvas2d-17000-tiles-off.png",
+      "backend": "canvas2d",
+      "timeMs": 17000,
+      "mode": "tiles-off",
+      "changedPixels": 0,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": true
+    },
+    {
+      "file": "canvas2d-17000-reduced.png",
+      "backend": "canvas2d",
+      "timeMs": 17000,
+      "mode": "reduced",
+      "changedPixels": 0,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": true
+    },
+    {
+      "file": "canvas2d-18000-reduced.png",
+      "backend": "canvas2d",
+      "timeMs": 18000,
+      "mode": "reduced",
+      "changedPixels": 0,
+      "outsideOverlayBoundsChangedPixels": 0,
+      "identical": true
+    }
+  ],
+  "outsideTilesUnchanged": true,
+  "reducedAndHiddenUnchanged": true,
+  "normalChangedFrames": 38,
+  "normalFrames": 38,
+  "representative": {
+    "file": "webgl2-15000-normal.png",
+    "backend": "webgl2",
+    "timeMs": 15000,
+    "mode": "normal",
+    "changedPixels": 27608,
+    "outsideOverlayBoundsChangedPixels": 0,
+    "identical": false
+  },
+  "ok": true
+}

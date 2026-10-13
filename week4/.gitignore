@@ -3,6 +3,8 @@ target/
 # Vite build output and Playwright scratch.
 app/dist/
 app/.vite/
+# Reproducible Rust/WASM glue and module; built by app/scripts/build-rust.mjs.
+app/src/generated/seed33/
 # Private runtime/recovery data must never be stored in the repository.
 *.journal
 *.journal.jsonl

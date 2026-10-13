@@ -1,0 +1,398 @@
+--- candidate17/renderer/src/scene.rs
++++ candidate18/renderer/src/scene.rs
+@@ -5,6 +5,36 @@
+ 
+ pub const SCENE_ID: &str = "scene:paris-1980s-terrace";
+ pub const TILE_COUNT: usize = 22;
++const BAY_EDGES: [f32; 14] = [
++    0.0, 0.075, 0.157, 0.239, 0.322, 0.409, 0.492, 0.565, 0.642, 0.709, 0.789, 0.861, 0.937, 1.0,
++];
++const BUILDINGS: [usize; 5] = [0, 3, 7, 10, 13];
++pub(crate) fn facade_bay(col: usize) -> (f32, f32, usize) {
++    let building = BUILDINGS
++        .windows(2)
++        .position(|b| col >= b[0] && col < b[1])
++        .unwrap();
++    (BAY_EDGES[col], BAY_EDGES[col + 1], building)
++}
++pub(crate) fn facade_floors(building: usize, side: u32) -> [f32; 5] {
++    let shift = [0.0, 0.018, -0.012, 0.009][(building + side as usize) % 4];
++    [0.0, 0.205 + shift, 0.435 + shift, 0.69 + shift * 0.5, 1.0]
++}
++pub(crate) fn facade_opening(seed: u32, side: u32, col: u32, row: usize) -> [f32; 5] {
++    let (u, next, building) = facade_bay(col as usize);
++    let floors = facade_floors(building, side);
++    let bay = noise(seed + 17, col + side * 31);
++    let width = next - u;
++    let height = floors[row + 1] - floors[row];
++    let margin = if row == 3 { 0.10 } else { 0.18 + bay * 0.05 };
++    [
++        u + width * margin,
++        floors[row] + height * 0.17,
++        next - width * margin,
++        floors[row + 1] - height * if row == 3 { 0.075 } else { 0.19 },
++        0.075 + bay * 0.045,
++    ]
++}
+ const CUP_CENTER: V3 = V3(0.416, -0.482, 2.08);
+ const CUP_RIM_HEIGHT: f32 = 0.242 * 0.81;
+ pub(crate) fn steam_point(life: f32, strand: usize, progress: f32) -> V3 {
+@@ -117,33 +147,33 @@
+             // to inset windows; no dark coplanar plate pretends to be a recess.
+             // Cornices and pilasters are separate relief strips, not painted image bands.
+             for floor in 0..=4 {
+-                let v = floor as f32 / 4.0;
+                 let mut cornice = Object::new(
+                     &format!("obj:facade-{side}/cornice-{floor}"),
+                     0.0,
+-                    0.85,
++                    if floor == 3 { 0.68 } else { 0.50 },
+                     wall.start + 0.02,
+                 );
+-                for profile in [
+-                    (0.0, 0.0, 0.003, 0.045),
+-                    (0.003, 0.045, 0.008, 0.045),
+-                    (0.008, 0.045, 0.012, 0.015),
+-                ] {
+-                    cornice.quad(
+-                        point(0.0, v + profile.0) + normal * profile.1,
+-                        point(1.0, v + profile.0) + normal * profile.1,
+-                        point(1.0, v + profile.2) + normal * profile.3,
+-                        point(0.0, v + profile.2) + normal * profile.3,
+-                        [380.0, 3.0],
+-                        2,
+-                    );
++                for building in 0..4 {
++                    let u0 = BAY_EDGES[BUILDINGS[building]];
++                    let u1 = BAY_EDGES[BUILDINGS[building + 1]];
++                    let v = facade_floors(building, side)[floor];
++                    let relief = if floor == 0 || floor == 3 { 1.25 } else { 0.75 };
++                    for (top, front, bottom, back) in [
++                        (0.0, 0.0, 0.003, 0.045),
++                        (0.003, 0.045, 0.008, 0.045),
++                        (0.008, 0.045, 0.012, 0.015),
++                    ] {
++                        cornice.quad(
++                            point(u0, v + top) + normal * front * relief,
++                            point(u1, v + top) + normal * front * relief,
++                            point(u1, v + bottom) + normal * back * relief,
++                            point(u0, v + bottom) + normal * back * relief,
++                            [380.0 * (u1 - u0), 3.0],
++                            1,
++                        );
++                    }
+                 }
+                 cornice.strands.clear();
+-                cornice.line(
+-                    point(0.0, v + 0.003) + normal * 0.045,
+-                    point(1.0, v + 0.003) + normal * 0.045,
+-                    0.12,
+-                );
+                 self.objects.push(cornice);
+             }
+             for part in 0..10 {
+@@ -169,8 +199,9 @@
+             }
+             for col in 0..13 {
+                 let bay = noise(self.seed + 17, col + side * 31);
+-                let u = col as f32 / 13.0;
+-                if col % 3 == 0 {
++                let (u, next, building) = facade_bay(col as usize);
++                let floors = facade_floors(building, side);
++                if col % 3 == 0 || BUILDINGS.contains(&(col as usize)) {
+                     let mut pier = Object::new(
+                         &format!("obj:facade-{side}/pilaster-{col}"),
+                         0.0,
+@@ -196,17 +227,9 @@
+                     self.objects.push(pier);
+                 }
+                 for row in 0..4 {
+-                    let v = row as f32 * 0.245 + 0.036 + (bay - 0.5) * 0.009;
+-                    let u0 = u + 0.010 + bay * 0.008;
+-                    let u1 = u + 0.058 + bay * 0.009;
+-                    let v1 = v + 0.153 + bay * 0.017;
+-                    let next = (col + 1) as f32 / 13.0;
+-                    let top = row as f32 * 0.245;
+-                    let bottom = if row == 3 {
+-                        1.0
+-                    } else {
+-                        (row + 1) as f32 * 0.245
+-                    };
++                    let [u0, v, u1, v1, depth] = facade_opening(self.seed, side, col, row);
++                    let top = floors[row];
++                    let bottom = floors[row + 1];
+                     patch(&mut wall, u, top, next, v);
+                     patch(&mut wall, u, v1, next, bottom);
+                     patch(&mut wall, u, v, u0, v1);
+@@ -217,7 +240,6 @@
+                         0.06,
+                         wall.start + 0.025,
+                     );
+-                    let depth = 0.075 + bay * 0.045;
+                     let q = |u, v| point(u, v) - normal * depth;
+                     window.quad(q(u0, v), q(u1, v), q(u1, v1), q(u0, v1), [14.0, 36.0], 1);
+                     window.strands.clear();
+@@ -299,7 +321,7 @@
+                         }
+                     }
+                     // Balcony rails and projecting sill.
+-                    if row < 3 && (col + row) % 3 != 0 {
++                    if row < 3 && (col + row as u32) % 3 != 0 {
+                         let rail_at = |u, v| point(u, v) + normal * 0.13;
+                         window.line(
+                             rail_at(u0, v1 - 0.026),
+--- candidate17/renderer/src/materials.rs
++++ candidate18/renderer/src/materials.rs
+@@ -65,9 +65,11 @@
+   if(m<0.5){
+     float columns=step(0.78,hash(vec2(floor(vCell.x),0)));
+     pattern=max(dotPattern(vCell,0.23+rim*0.07)*occupancy*(0.38+0.50*soft),strand*columns*0.16);
+-    float key=exp(-pow((vPosition.z-7.2)/3.2,2.0));
+-    illumination=vPosition.x<0.0?0.24+3.8*key:0.10+0.42*key;
+-    illumination*=(0.68+0.55*soft)*(0.55+0.45*abs(dot(n,normalize(vec3(-0.4,0.8,-0.6)))));
++    float key=exp(-pow((vPosition.z-7.4)/2.6,2.0));
++    vec3 facing=dot(n,eye)<0.0?-n:n;
++    float sun=max(dot(facing,normalize(vec3(0.65,0.75,-0.35))),0.0);
++    illumination=(vPosition.x<0.0?0.20+4.2*key:0.09+0.50*key)*(0.24+0.76*sun);
++    illumination*=0.76+0.36*soft;
+     base=voidTone*(0.8+0.45*soft);
+   }else if(m<1.5){
+     pattern=dotPattern(vCell,0.28+rim*0.10)*occupancy;
+--- candidate17/renderer/src/gait.rs
++++ candidate18/renderer/src/gait.rs
+@@ -49,6 +49,16 @@
+ fn weight_shift(time: f32) -> V3 {
+     right() * (-0.013 * (time / PERIOD * TAU).sin())
+ }
++fn pelvis_yaw(time: f32) -> f32 {
++    -0.035 * (time / PERIOD * TAU).cos()
++}
++fn pelvis_right(time: f32) -> V3 {
++    let yaw = pelvis_yaw(time);
++    right() * yaw.cos() + forward() * yaw.sin()
++}
++fn swing_progress(t: f32) -> f32 {
++    t * t * t * (10.0 + t * (-15.0 + t * 6.0))
++}
+ 
+ pub fn leg(time: f32, side: usize) -> Leg {
+     let offset = side as f32 * 0.5;
+@@ -57,8 +67,8 @@
+     let stride = SPEED * PERIOD;
+     let planted = (cycle.floor() - offset) * stride;
+     let swing = ((phase - 0.62) / 0.38).clamp(0.0, 1.0);
+-    let travel = planted + stride * smooth(swing) + stride * 0.31;
+-    let lift = 0.035 * (swing * PI).sin().powi(2);
++    let travel = planted + stride * swing_progress(swing) + stride * 0.31;
++    let lift = 0.028 * (swing * PI).sin().powi(2);
+     let roll = foot_roll(phase);
+     let (support, along) = sole_support(roll);
+     let lateral = right() * if side == 0 { -0.075 } else { 0.075 };
+@@ -67,8 +77,10 @@
+     // that world-space contact stays planted even as the heel lifts for toe-off.
+     let ankle = contact - forward() * along + V3(0.0, support - FOOT_CENTER * roll.sin(), 0.0);
+     let bob = -0.004 * (time / PERIOD * TAU * 2.0).cos();
+-    let hip =
+-        forward() * (time * SPEED) + lateral + weight_shift(time) + V3(0.0, -0.135 + bob, 0.0);
++    let hip = forward() * (time * SPEED)
++        + pelvis_right(time) * if side == 0 { -0.075 } else { 0.075 }
++        + weight_shift(time)
++        + V3(0.0, -0.135 + bob, 0.0);
+     let delta = ankle - hip;
+     let distance = delta.length().min(UPPER + LOWER - 0.0001);
+     let axis = delta.unit();
+@@ -92,20 +104,21 @@
+     let sway = weight_shift(t);
+     let torso = pelvis + sway + V3(0.0, -0.005 - 0.004 * (t / PERIOD * TAU * 2.0).cos(), 0.0);
+     let phase = t / PERIOD * TAU;
+-    let yaw = 0.045 * phase.sin();
++    let yaw = 0.045 * phase.cos();
+     let shoulder_right = right() * yaw.cos() + forward() * yaw.sin();
+     let shoulder_forward = forward() * yaw.cos() - right() * yaw.sin();
++    let pelvis_forward = forward() * pelvis_yaw(t).cos() - right() * pelvis_yaw(t).sin();
+     let local = |x: f32, y: f32, z: f32| {
+         let turn = smooth((y + 0.20) / 0.45);
+-        let r = right().lerp(shoulder_right, turn);
+-        let f = forward().lerp(shoulder_forward, turn);
++        let r = pelvis_right(t).lerp(shoulder_right, turn);
++        let f = pelvis_forward.lerp(shoulder_forward, turn);
+         map(torso + r * x + V3(0.0, y, 0.0) + f * (z + 0.022 * (y + 0.13)))
+     };
+     let mut coat = Object::new(&format!("actor:{id}/coat"), 4.0, 0.93, start);
+     // Smooth cloth envelope rather than a stack of straight tapered rings.
+     let shape = |u: f32, v: f32| {
+         let y = -0.41 + v * 0.66;
+-        let shoulder = 0.047 * (-((v - 0.83) / 0.17).powi(2)).exp();
++        let shoulder = 0.028 * (-((v - 0.82) / 0.20).powi(2)).exp();
+         let width = (0.130 + 0.067 * (1.0 - v).powi(2) + shoulder)
+             * (1.0 - 0.48 * smooth((v - 0.89) / 0.11));
+         let angle = u * TAU;
+@@ -216,7 +229,7 @@
+             + V3(0.0, 0.155, 0.0)
+             + shoulder_forward * 0.0066;
+         let swing = -(phase + side as f32 * PI).cos();
+-        let angle = swing * 0.28;
++        let angle = swing * 0.22;
+         let elbow =
+             shoulder + V3(0.0, -angle.cos(), 0.0) * 0.205 + forward() * (angle.sin() * 0.205);
+         let wrist = elbow
+@@ -360,6 +373,29 @@
+         );
+     }
+     #[test]
++    fn support_transfer_keeps_uncrossed_paths_and_reachable_hips() {
++        for i in 0..1900 {
++            let t = i as f32 * PERIOD / 1900.0;
++            let left = leg(t, 0);
++            let right_leg = leg(t, 1);
++            assert!(((right_leg.contact - left.contact).dot(right()) - 0.15).abs() < 0.00001);
++            assert!(left.stance || right_leg.stance);
++            for l in [left, right_leg] {
++                assert!((l.hip - l.ankle).length() < UPPER + LOWER - 0.0001);
++            }
++            if left.stance && !right_leg.stance {
++                assert!(weight_shift(t).dot(right()) < 0.0);
++            }
++            if right_leg.stance && !left.stance {
++                assert!(weight_shift(t).dot(right()) > 0.0);
++            }
++        }
++        assert!(pelvis_yaw(0.0) < 0.0 && pelvis_yaw(PERIOD * 0.5) > 0.0);
++        let h = 0.0001;
++        assert!(swing_progress(h) / h < 0.00001);
++        assert!((1.0 - swing_progress(1.0 - h)).abs() / h < 0.005);
++    }
++    #[test]
+     fn walking_moves_left_and_into_depth() {
+         let d = forward() * 10.0 * SPEED;
+         assert!(d.0 < 0.0 && d.2 > 0.0);
+--- candidate17/renderer/src/geometry.rs
++++ candidate18/renderer/src/geometry.rs
+@@ -88,16 +88,23 @@
+                 uv: [u * uv[0], v * uv[1]],
+             }
+         };
++        if nu == 0 || nv == 0 {
++            return;
++        }
++        self.vertices.reserve(nu * nv * 6);
++        // Adjacent quads share samples and finite-difference normals. Keep only
++        // two rows, not a second full mesh, and preserve triangle order exactly.
++        let mut row: Vec<_> = (0..=nu).map(|x| at(x as f32 / nu as f32, 0.0)).collect();
++        let mut next = row.clone();
+         for y in 0..nv {
++            for (x, vertex) in next.iter_mut().enumerate() {
++                *vertex = at(x as f32 / nu as f32, (y + 1) as f32 / nv as f32);
++            }
+             for x in 0..nu {
+-                let u = x as f32 / nu as f32;
+-                let v = y as f32 / nv as f32;
+-                let a = at(u, v);
+-                let b = at((x + 1) as f32 / nu as f32, v);
+-                let c = at((x + 1) as f32 / nu as f32, (y + 1) as f32 / nv as f32);
+-                let d = at(u, (y + 1) as f32 / nv as f32);
++                let (a, b, c, d) = (row[x], row[x + 1], next[x + 1], next[x]);
+                 self.vertices.extend([a, b, c, a, c, d]);
+             }
++            std::mem::swap(&mut row, &mut next);
+         }
+     }
+     pub fn quad(&mut self, a: V3, b: V3, c: V3, d: V3, uv: [f32; 2], grid: usize) {
+--- candidate17/renderer/src/lib.rs
++++ candidate18/renderer/src/lib.rs
+@@ -64,14 +64,8 @@
+                 .iter()
+                 .find(|o| o.id == format!("obj:facade-{side}/window-6-2"))
+                 .unwrap();
+-            let bay = noise(50, 6 + side * 31);
+-            let u0 = 6.0 / 13.0 + 0.010 + bay * 0.008;
+-            let v0 = 2.0 * 0.245 + 0.036 + (bay - 0.5) * 0.009;
+-            let v1 = v0 + 0.153 + bay * 0.017;
+-            assert!(
+-                (window.vertices[0].p - (point(u0, v0) - normal * (0.075 + bay * 0.045))).length()
+-                    < 0.00001
+-            );
++            let [u0, v0, _, v1, depth] = facade_opening(33, side, 6, 2);
++            assert!((window.vertices[0].p - (point(u0, v0) - normal * depth)).length() < 0.00001);
+             let center = (window.vertices[0].p + window.vertices[2].p) * 0.5;
+             // A ray from the recessed center toward the street must pass through
+             // the opening even though the authored facade is slightly bilinear.
+@@ -108,6 +102,78 @@
+                 .vertices
+                 .iter()
+                 .any(|v| (v.p - sill).length() < 0.00001));
++        }
++    }
++    #[test]
++    fn surface_rows_preserve_samples_normals_and_triangle_order() {
++        use std::cell::Cell;
++        for (nu, nv) in [(1, 1), (7, 5), (36, 24)] {
++            let calls = Cell::new(0);
++            let shape = |u: f32, v: f32| V3((u * 5.0).sin(), v * v, 3.0 + u * v);
++            let mut object = Object::new("test:surface", 0.0, 1.0, 0.0);
++            object.surface(nu, nv, [12.0, 18.0], |u, v| {
++                calls.set(calls.get() + 1);
++                shape(u, v)
++            });
++            assert_eq!(calls.get(), 5 * (nu + 1) * (nv + 1));
++            let mut expected = Vec::new();
++            for y in 0..nv {
++                for x in 0..nu {
++                    for (xx, yy) in [
++                        (x, y),
++                        (x + 1, y),
++                        (x + 1, y + 1),
++                        (x, y),
++                        (x + 1, y + 1),
++                        (x, y + 1),
++                    ] {
++                        let u = xx as f32 / nu as f32;
++                        let v = yy as f32 / nv as f32;
++                        let du = shape((u + 0.0005).min(1.0), v) - shape((u - 0.0005).max(0.0), v);
++                        let dv = shape(u, (v + 0.0005).min(1.0)) - shape(u, (v - 0.0005).max(0.0));
++                        expected.push(Vertex {
++                            p: shape(u, v),
++                            n: du.cross(dv).unit(),
++                            uv: [u * 12.0, v * 18.0],
++                        });
++                    }
++                }
++            }
++            assert_eq!(object.vertices.len(), expected.len());
++            for (actual, previous) in object.vertices.iter().zip(expected) {
++                assert_eq!(actual.p, previous.p);
++                assert_eq!(actual.n, previous.n);
++                assert_eq!(actual.uv, previous.uv);
++            }
++        }
++    }
++    #[test]
++    fn building_rhythm_varies_but_openings_stay_inside_their_bays() {
++        let widths: Vec<_> = (0..13)
++            .map(|col| {
++                let (u, next, _) = facade_bay(col);
++                next - u
++            })
++            .collect();
++        assert!(
++            widths.iter().copied().fold(0.0, f32::max) - widths.iter().copied().fold(1.0, f32::min)
++                > 0.02
++        );
++        for side in 0..2 {
++            assert_ne!(facade_floors(0, side), facade_floors(1, side));
++            for seed in [0, 33, 9999] {
++                for col in 0..13 {
++                    let (u, next, building) = facade_bay(col);
++                    let floors = facade_floors(building, side);
++                    for row in 0..4 {
++                        let [left, top, right, bottom, depth] =
++                            facade_opening(seed, side, col as u32, row);
++                        assert!(u < left && left < right && right < next);
++                        assert!(floors[row] < top && top < bottom && bottom < floors[row + 1]);
++                        assert!((0.075..=0.12).contains(&depth));
++                    }
++                }
++            }
+         }
+     }
+     #[test]

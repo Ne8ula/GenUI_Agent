@@ -1,0 +1,10 @@
+[
+  {
+    "backend": "webgl2",
+    "recordedCandidateMatchesIntegrated": true
+  },
+  {
+    "backend": "canvas2d",
+    "recordedCandidateMatchesIntegrated": true
+  }
+]

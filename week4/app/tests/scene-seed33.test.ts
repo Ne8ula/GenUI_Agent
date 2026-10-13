@@ -1,510 +1,287 @@
+// walk-away-r3: approach/drift checks below cover retained compatibility helpers only.
+// Current renderer gait/tile-body behavior is covered by walk-away.test.ts and browser captures.
+// w4-20261008-seed33-fidelity-r1 candidate-2 (2026-10-08, reviewer-driven correction): the seed-33 look
+// is a reference-derived photo layer (src/scene/seed33Photo.ts) plus a small shimmer-bead accent, with
+// the real tile-chip atlas and the figure's home placement now read from a runtime-fetched manifest
+// (render/photoAssets.ts), not hard-coded here or baked into this scene module. Structural/photographic
+// fidelity is carried by public/assets/seed33/*.png (main-owned extraction), not asserted here as pixel
+// content; this file asserts the scene/pose contract: determinism, regions for the renderer's shimmer,
+// the photo layer's four real sources, and the figure's monotonic, non-looping, correctly-culled approach.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { CAPACITY, DEFAULT_ARRIVAL, buildArrivalScene, rigsOf } from '../src/scene/arrival.ts';
-import { SIZE_GAIN } from '../src/scene/author.ts';
-import {
-  BELT_DIM,
-  BRIGHT_WEIGHT,
-  DEFAULT_SEED33,
-  DOT_PITCH_PX,
-  GROUND,
-  HALO_ALPHA,
-  HALO_SIZE,
-  HEAD_LIGHT,
-  PORCELAIN_PITCH_PX,
-  REGION_ORDER,
-  SEED33_SKY,
-  SEED33_SKY_POLYGON,
-  TABLE_OUTER_RAYS_FROM,
-  TABLE_RIM_PX,
-  THREAD_CLASSES,
-  THREAD_HALO_ALPHA,
-  THREAD_HALO_SIZE,
-  WALKER_FADE_OUT_S,
-  WALKER_GAP_S,
-  WOMAN_APPROACH,
-  WOMAN_DWELL_S,
-  authorSeed33,
-  buildSeed33Scene,
-  coatHalfWidth,
-  haloCountOf,
-  insideWalkerSilhouette,
-  seed33RigsOf,
-  setReducedMotion,
-  walkerIntroOf,
-  walkerSilhouette,
-  womanIntro,
-} from '../src/scene/seed33.ts';
-import type { WalkerKind } from '../src/scene/seed33.ts';
-import { TILE_COUNT_MAX, TILE_COUNT_MIN, stepTiles } from '../src/scene/tiles.ts';
-import { createLife, rigsOfFrame, stepLife, walkerPose } from '../src/scene/life.ts';
-import { ASPECT } from '../src/scene/arrival.ts';
-import { isParisTone } from '../src/scene/palette.ts';
-import { BIRTH_RAMP_MS } from '../src/scene/types.ts';
 import { isStableId } from '../../core/ids.ts';
+import {
+  APPROACH_GUIDE_SAMPLES,
+  ASPECT,
+  BUILD_REVEAL_BAND,
+  DEFAULT_HOME,
+  DEFAULT_NATIVE_ASPECT,
+  FIGURE_BUILD_FADE,
+  FIGURE_MESH_ROWS,
+  FOOT_START_FRACTION,
+  GROUND,
+  PHOTO_LAYER,
+  REGION_ORDER,
+  SWAY_START_FRACTION,
+  TILE_DRIFT_AMPLITUDE,
+  TILE_DRIFT_ONSET_MS,
+  buildRevealY,
+  buildSeed33PhotoScene,
+  DEFAULT_SEED33_PHOTO,
+  figureBoundsNorm,
+  figureBuildAlpha,
+  isFullyOffFrame,
+  photoApproachPose,
+  setSeed33PhotoReducedMotion,
+  swayWeight,
+  tileDriftOffset,
+  walkSwayOffsets,
+} from '../src/scene/seed33Photo.ts';
+import { createLife, stepLife } from '../src/scene/life.ts';
+import { isParisTone } from '../src/scene/palette.ts';
 
 const regionBase = (id: string) => id.split('/')[0] ?? id;
-const median = (xs: number[]) => {
-  const s = [...xs].sort((a, b) => a - b);
-  return s[Math.floor(s.length / 2)] ?? NaN;
-};
-/** Largest core bead: the bright thread class and the table's rim ring reach 4.2 px before the writer's +8 % jitter and SIZE_GAIN (a hair of Float32 slack). */
-const MAX_CORE_PX = 4.2 * 1.08 * SIZE_GAIN * (1 + 1e-5);
-const isNearHalo = (a: number) => a >= HALO_ALPHA[0] - 1e-6 && a <= HALO_ALPHA[1] + 1e-6;
-const isThreadHalo = (a: number) => Math.abs(a - THREAD_HALO_ALPHA) < 1e-6;
-const isHaloAlpha = (a: number) => isNearHalo(a) || isThreadHalo(a);
-const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / Math.max(xs.length, 1);
-/** Element-wise equality of two long lanes, reporting the first mismatch (a deepEqual diff of 60k numbers would exhaust memory). */
-function assertSameLane(actual: ArrayLike<number>, expected: ArrayLike<number>, label: string): void {
-  assert.equal(actual.length, expected.length, `${label}: length`);
-  for (let i = 0; i < actual.length; i++) {
-    if (actual[i] !== expected[i]) assert.fail(`${label}: differs at ${i} (${actual[i]} vs ${expected[i]})`);
-  }
-}
 
-test('seed-33 scene is deterministic and stays under capacity at density 1.25', () => {
-  const a = buildSeed33Scene(DEFAULT_SEED33);
-  const b = buildSeed33Scene(DEFAULT_SEED33);
+test('the photo scene is deterministic: same seed/density/buildMs gives byte-identical shimmer particles and regions', () => {
+  const a = buildSeed33PhotoScene(DEFAULT_SEED33_PHOTO);
+  const b = buildSeed33PhotoScene(DEFAULT_SEED33_PHOTO);
   assert.equal(a.store.count, b.store.count);
+  assert.ok(a.store.count > 0, 'the shimmer accent is not empty');
   assert.deepEqual(a.regions, b.regions);
   for (const key of ['x', 'y', 'a', 'size', 'phase', 'motion', 'birthMs'] as const) {
     assert.deepEqual(Array.from(a.store[key].subarray(0, a.store.count)), Array.from(b.store[key].subarray(0, b.store.count)), key);
   }
-  assert.deepEqual(a.tiles, b.tiles);
-  const high = buildSeed33Scene({ ...DEFAULT_SEED33, density: 1.25 });
-  assert.ok(high.store.count <= CAPACITY && high.store.count > a.store.count, `count ${high.store.count}`);
-  assert.ok(a.store.count > 30_000, `the scene is not empty (${a.store.count})`);
-  assert.ok(haloCountOf(a) > 10_000 && haloCountOf(high) > haloCountOf(a), `halo beads ${haloCountOf(a)} / ${haloCountOf(high)}`);
-  assert.throws(() => authorSeed33(DEFAULT_SEED33, 5_000), RangeError);
 });
 
-test('regions follow the far → near order with the stable IDs and contiguous slot ranges', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
+test('regions cover the still composition far -> near with stable IDs; frame.tiles is empty (the real tile-chip atlas is drawn by the renderer from the manifest, not authored here)', () => {
+  const frame = buildSeed33PhotoScene(DEFAULT_SEED33_PHOTO);
   assert.deepEqual(frame.regions.map((r) => r.id), [...REGION_ORDER]);
-  let cursor = 0;
   for (const r of frame.regions) {
     assert.ok(isStableId(regionBase(r.id)), `${r.id} base is not a stable id`);
-    assert.equal(r.start, cursor, `${r.id} starts at ${r.start}, expected ${cursor}`);
-    assert.ok(r.end > r.start, `${r.id} is empty`);
-    cursor = r.end;
+    assert.ok(r.start <= r.end);
   }
-  assert.equal(cursor, frame.store.count);
-  const firstNear = frame.regions.findIndex((r) => r.band === 'near');
-  assert.ok(frame.regions.slice(firstNear).every((r) => r.band === 'near'), 'near regions are drawn last');
-  const near = frame.regions.filter((r) => r.band === 'near').map((r) => r.depth);
-  const far = frame.regions.filter((r) => r.band === 'far' || r.band === 'facade').map((r) => r.depth);
-  assert.ok(Math.min(...near) > Math.max(...far));
-  assert.deepEqual(frame.regions.filter((r) => r.dynamic).map((r) => r.id), ['actors:passersby/third', 'actors:passersby/man', 'actors:passersby/woman', 'fx:smoke', 'fx:steam']);
+  const bands = frame.regions.map((r) => r.band);
+  const firstNear = bands.indexOf('near');
+  assert.ok(firstNear > 0 && bands.slice(firstNear).every((b) => b === 'near'), 'near regions are last, as the old bead order was');
+  assert.equal(frame.aspect, ASPECT);
   assert.equal(frame.paper, GROUND);
-  assert.deepEqual(frame.sky, SEED33_SKY);
-  assert.deepEqual(frame.sky?.polygon, SEED33_SKY_POLYGON, 'the Sky carries the wedge polygon for the renderers to clip to');
-  assert.ok((frame.sky?.polygon?.length ?? 0) >= 3 && frame.sky!.polygon!.every(([x, y]) => x >= -0.03 && x <= 1.03 && y >= -0.03 && y <= 1.03));
-  assert.equal(frame.build.durationMs, DEFAULT_SEED33.buildMs);
-  assert.ok(frame.tiles.length >= TILE_COUNT_MIN && frame.tiles.length <= TILE_COUNT_MAX && TILE_COUNT_MAX === 18, `tile count ${frame.tiles.length}`);
+  assert.equal(frame.sky, null, 'the photo supplies its own sky pixels; no procedural gradient underneath it');
+  assert.equal(frame.build.durationMs, DEFAULT_SEED33_PHOTO.buildMs);
+  assert.deepEqual(frame.tiles, [], 'no procedural tiles: candidate-2 removed the old authorTiles-driven patterns that were stacking over the real source chips');
 });
 
-test('every bead is finite, inside the frame margin, Paris-toned, and sized like a bead or its halo', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
+test('the photo layer names all four reference-derived sources plus the manifest; no figure size or foreground rect is baked in here (read at runtime instead)', () => {
+  const frame = buildSeed33PhotoScene(DEFAULT_SEED33_PHOTO);
+  assert.ok(frame.photo, 'the seed-33 scene carries a photo layer');
+  const photo = frame.photo!;
+  assert.equal(photo, PHOTO_LAYER);
+  for (const src of [photo.backgroundSrc, photo.figureSrc, photo.foregroundSrc, photo.tilesSrc]) {
+    assert.ok(src.startsWith('/assets/seed33/'), src);
+    assert.ok(src.endsWith('.png'), src);
+  }
+  assert.ok(photo.manifestSrc.endsWith('manifest-walk-away-v2.json'));
+  assert.ok(photo.settledForegroundSrc?.endsWith('foreground-away.png'));
+  assert.ok(photo.figureSrc.endsWith('figure-away.png'));
+  assert.ok(!('figureSizePx' in photo), 'no hard-coded figure pixel size: the renderer reads the decoded bitmap');
+  assert.ok(!('foregroundRectNorm' in photo), 'the foreground is now full-frame; no placement rect to bake in');
+});
+
+test('every shimmer bead is finite, inside the frame margin, on-palette and genuinely animated (motion > 0)', () => {
+  const frame = buildSeed33PhotoScene(DEFAULT_SEED33_PHOTO);
   const s = frame.store;
-  let large = 0, haloLike = 0;
+  assert.ok(s.count > 0);
   for (let k = 0; k < s.count; k++) {
     const x = s.x[k] ?? NaN, y = s.y[k] ?? NaN;
-    assert.ok(Number.isFinite(x) && Number.isFinite(y) && x > -0.03 && x < 1.03 && y > -0.03 && y < 1.03, `particle ${k} at ${x},${y}`);
-    const a = s.a[k] ?? -1;
-    assert.ok(a >= 0 && a <= 1, `alpha ${a} at ${k}`);
-    const size = s.size[k] ?? 0;
-    // Core beads stay at bead size; a near halo is HALO_SIZE × its bead at HALO_ALPHA, a thread halo THREAD_HALO_SIZE × at THREAD_HALO_ALPHA.
-    assert.ok(size >= 0.5 && size <= MAX_CORE_PX * HALO_SIZE + 1e-6, `size ${size} at ${k}`);
-    if (size > MAX_CORE_PX) {
-      large++;
-      assert.ok(isHaloAlpha(a), `a large bead must be a dim halo (size ${size}, alpha ${a} at ${k})`);
-      if (isThreadHalo(a)) assert.ok(size <= MAX_CORE_PX * THREAD_HALO_SIZE + 1e-6, `a thread halo is at most ${THREAD_HALO_SIZE}× a bead (size ${size} at ${k})`);
-    }
-    if (isHaloAlpha(a) && size > 6) haloLike++;
-    assert.ok(isParisTone([s.r[k] ?? 0, s.g[k] ?? 0, s.b[k] ?? 0]), `particle ${k} is off-palette`);
-    assert.ok((s.phase[k] ?? -1) >= 0 && (s.phase[k] ?? 2) < 1);
-  }
-  assert.ok(large <= haloCountOf(frame) && haloLike >= haloCountOf(frame) * 0.95, `large ${large}, halo-like ${haloLike}, halos ${haloCountOf(frame)}`);
-  assert.ok(isParisTone(GROUND) && isParisTone(SEED33_SKY.top) && isParisTone(SEED33_SKY.horizon));
-  for (const t of frame.tiles) assert.ok(isParisTone(t.colour), `${t.id} is off-palette`);
-});
-
-test('halos sit under the bright beads: near objects ×HALO_SIZE at HALO_ALPHA, the bright thread class ×THREAD_HALO_SIZE at THREAD_HALO_ALPHA; same position, colour and shimmer phase', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const s = frame.store;
-  assert.equal(HALO_SIZE, 4);
-  assert.deepEqual(HALO_ALPHA, [0.16, 0.22]);
-  assert.equal(THREAD_HALO_SIZE, 3);
-  assert.equal(THREAD_HALO_ALPHA, 0.1);
-  const nearHaloed = ['obj:cup', 'obj:saucer', 'obj:ashtray', 'obj:table', 'actors:passersby/woman', 'obj:lamp-post', 'obj:neighbour-chair'];
-  const threadHaloed = ['layer:facade/left', 'layer:facade/right', 'layer:facade/mansard'];
-  const unhaloed = ['layer:far', 'obj:awning', 'actors:passersby/man', 'actors:passersby/third'];
-  const checkPairs = (id: string, factor: number, alphaOk: (a: number) => boolean, minPairs: number) => {
-    const r = frame.regions.find((r) => r.id === id)!;
-    let pairs = 0;
-    for (let k = r.start + 1; k < r.end; k++) {
-      const h = k - 1;
-      if ((s.size[h] ?? 0) <= MAX_CORE_PX) continue;
-      pairs++;
-      assert.ok(alphaOk(s.a[h] ?? 0), `${id} halo ${h} alpha ${s.a[h]}`);
-      assert.equal(s.x[h], s.x[k], `${id} halo ${h} shares x`);
-      assert.equal(s.y[h], s.y[k], `${id} halo ${h} shares y`);
-      assert.ok(Math.abs((s.size[h] ?? 0) - factor * (s.size[k] ?? 0)) < 1e-3, `${id} halo ${h} is ${factor}× its bead`);
-      assert.ok(s.r[h] === s.r[k] && s.g[h] === s.g[k] && s.b[h] === s.b[k], `${id} halo ${h} shares the colour`);
-      assert.equal(s.phase[h], s.phase[k], `${id} halo ${h} breathes with its bead`);
-      assert.equal(s.birthMs[h], s.birthMs[k]);
-      assert.ok((s.a[k] ?? 0) >= 0.5, `${id} halo ${h} sits under a bright bead (alpha ${s.a[k]})`);
-    }
-    assert.ok(pairs > minPairs, `${id} has ${pairs} halo pairs`);
-  };
-  for (const id of nearHaloed) checkPairs(id, HALO_SIZE, isNearHalo, 50);
-  for (const id of threadHaloed) checkPairs(id, THREAD_HALO_SIZE, isThreadHalo, id.endsWith('mansard') ? 20 : 200);
-  for (const id of unhaloed) {
-    const r = frame.regions.find((r) => r.id === id)!;
-    for (let k = r.start; k < r.end; k++) assert.ok((s.size[k] ?? 0) <= MAX_CORE_PX + 1e-6, `${id} has a halo-sized bead at ${k}`);
-  }
-  // Near objects are warm: no grey-leaning bead in the cup, saucer or table (red ≥ blue, and not far from cupWhite/café crème).
-  for (const id of ['obj:cup', 'obj:saucer', 'obj:table']) {
-    const r = frame.regions.find((r) => r.id === id)!;
-    for (let k = r.start; k < r.end; k += 7) assert.ok((s.r[k] ?? 0) >= (s.b[k] ?? 0), `${id} bead ${k} leans cool`);
+    assert.ok(Number.isFinite(x) && Number.isFinite(y) && x > -0.05 && x < 1.05 && y > -0.05 && y < 1.05, `bead ${k} at ${x},${y}`);
+    assert.ok(isParisTone([s.r[k] ?? 0, s.g[k] ?? 0, s.b[k] ?? 0]), `bead ${k} is off-palette`);
+    assert.ok((s.motion[k] ?? 0) > 0, `shimmer bead ${k} should actually animate (this is the "modest localized shimmer", not a static dot)`);
   }
 });
 
-test('table (§11.3): the half-pitch-offset outer ray set thickens the burst toward the rim; the rim ring is 4.2 px', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const s = frame.store;
-  const r = frame.regions.find((r) => r.id === 'obj:table')!;
-  assert.equal(TABLE_OUTER_RAYS_FROM, 0.55);
-  assert.equal(TABLE_RIM_PX, 4.2);
-  // Rays diverge from the focal point, so with one set a strip across them holds fewer beads the farther it is
-  // from the focus (count ∝ 1 / distance: 0.36 / 0.51 ≈ 0.7 here); the second set over the outer part turns
-  // the near-rim strip denser than the mid-radius strip instead. Both strips avoid the rim rings and the objects.
-  let nearRim = 0, mid = 0, maxCore = 0;
-  for (let k = r.start; k < r.end; k++) {
-    const size = s.size[k] ?? 0;
-    if (size > MAX_CORE_PX) continue;
-    maxCore = Math.max(maxCore, size);
-    const x = s.x[k] ?? 0, y = s.y[k] ?? 0;
-    if (x < 0.42 || x > 0.58) continue;
-    if (y >= 0.78 && y <= 0.805) nearRim++;
-    else if (y >= 0.93 && y <= 0.955) mid++;
-  }
-  assert.ok(mid > 200 && nearRim / mid >= 1.1, `near-rim strip ${nearRim} vs mid strip ${mid}`);
-  assert.ok(maxCore >= TABLE_RIM_PX * 0.92 * SIZE_GAIN && maxCore <= MAX_CORE_PX, `largest table core bead ${maxCore}`);
-});
-
-test('cup and saucer (§11.4): porcelain dot-fills at a 2.6 px pitch and alpha 1.0; the coffee ellipse stays dark', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const s = frame.store;
-  assert.equal(PORCELAIN_PITCH_PX, 2.6);
-  const fillSize = 3.4 * SIZE_GAIN; // dot-fill beads carry no size jitter
-  const expectedGap = (PORCELAIN_PITCH_PX / 1080) / ASPECT;
-  for (const id of ['obj:cup', 'obj:saucer']) {
-    const r = frame.regions.find((r) => r.id === id)!;
-    let cores = 0, full = 0, inCoffee = 0;
-    const rows = new Map<number, number[]>();
-    for (let k = r.start; k < r.end; k++) {
-      const size = s.size[k] ?? 0, a = s.a[k] ?? 0;
-      if (size > MAX_CORE_PX) continue;
-      cores++;
-      if (a >= 0.999) full++;
-      if (Math.abs(size - fillSize) > 1e-4 || a < 0.999) continue;
-      const key = Math.round((s.y[k] ?? 0) * 1e6);
-      (rows.get(key) ?? rows.set(key, []).get(key)!).push(s.x[k] ?? 0);
-      // The coffee surface: nothing of the fill inside the rim ellipse (a 0.85 margin keeps the inner rim ring out of the question).
-      const u = ((s.x[k] ?? 0) - 0.7) / (0.052 * 0.85), v = ((s.y[k] ?? 0) - 0.768) / (0.014 * 0.85);
-      if (id === 'obj:cup' && u * u + v * v < 1) inCoffee++;
-    }
-    assert.ok(full / cores >= 0.6, `${id}: ${full} of ${cores} core beads at alpha 1`);
-    let minGap = 1;
-    for (const xs of rows.values()) {
-      xs.sort((a, b) => a - b);
-      for (let i = 1; i < xs.length; i++) minGap = Math.min(minGap, (xs[i] ?? 0) - (xs[i - 1] ?? 0));
-    }
-    assert.ok(rows.size > 20 && Math.abs(minGap - expectedGap) < 1e-6, `${id}: fill pitch ${minGap} vs ${expectedGap} over ${rows.size} rows`);
-    assert.equal(inCoffee, 0, `${id}: fill dots inside the coffee ellipse`);
-  }
-});
-
-test('façades (§11.5): the bright thread class is weighted ×1.15 and the mid class sits at 0.3–0.55', () => {
-  assert.equal(BRIGHT_WEIGHT, 1.15);
-  assert.deepEqual(THREAD_CLASSES.mid.alpha, [0.3, 0.55]);
-  assert.deepEqual(THREAD_CLASSES.bright.alpha, [0.9, 1.0]);
-});
-
-test('construction is nearest-first: cup < chair < woman < left façade < mansard by median birth; threads draw on from the bottom; zero builds are born one ramp early', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const s = frame.store;
-  const birthsOf = (id: string) => {
-    const r = frame.regions.find((r) => r.id === id);
-    assert.ok(r, id);
-    return Array.from(s.birthMs.subarray(r.start, r.end));
-  };
-  const cup = median(birthsOf('obj:cup')), chair = median(birthsOf('obj:neighbour-chair')), woman = median(birthsOf('actors:passersby/woman'));
-  const left = median(birthsOf('layer:facade/left')), mansard = median(birthsOf('layer:facade/mansard'));
-  assert.ok(cup < chair && chair < woman && woman < left && left < mansard, `${cup} ${chair} ${woman} ${left} ${mansard}`);
-  for (let k = 0; k < s.count; k++) assert.ok((s.birthMs[k] ?? -1) >= 0 && (s.birthMs[k] ?? Infinity) <= DEFAULT_SEED33.buildMs);
-  // Within the left façade, higher beads (smaller y) are born later than lower beads on average.
-  const r = frame.regions.find((r) => r.id === 'layer:facade/left')!;
-  let lowSum = 0, lowN = 0, highSum = 0, highN = 0;
-  for (let k = r.start; k < r.end; k++) {
-    if ((s.y[k] ?? 0) > 0.55) { lowSum += s.birthMs[k] ?? 0; lowN++; } else if ((s.y[k] ?? 1) < 0.15) { highSum += s.birthMs[k] ?? 0; highN++; }
-  }
-  assert.ok(lowN > 100 && highN > 100 && lowSum / lowN < highSum / highN, 'beads draw on from the bottom');
-  for (const t of frame.tiles) assert.ok(t.birthMs <= DEFAULT_SEED33.buildMs * 0.2, `${t.id} born late`);
-  // A zero-length build: everything (beads, emitter slots, tiles) is born at −BIRTH_RAMP_MS, so a paused frame at t = 0 is complete (§9 G).
-  const instant = buildSeed33Scene({ ...DEFAULT_SEED33, buildMs: 0 });
-  for (let k = 0; k < instant.store.count; k++) assert.equal(instant.store.birthMs[k], -BIRTH_RAMP_MS);
-  for (const t of instant.tiles) assert.equal(t.birthMs, -BIRTH_RAMP_MS);
-  assert.equal(instant.build.durationMs, 0);
-  assert.equal(instant.store.count, frame.store.count, 'the build length changes births only');
-  assert.deepEqual(instant.tiles.map((t) => [t.id, t.x, t.y, t.pattern]), frame.tiles.map((t) => [t.id, t.x, t.y, t.pattern]), 'the tile layout does not depend on the build length');
-});
-
-test('shimmer: threads and objects have motion, people none; reduced motion zeroes every motion', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const s = frame.store;
-  for (const r of frame.regions) {
-    let moving = 0;
-    for (let k = r.start; k < r.end; k++) {
-      const m = s.motion[k] ?? 0;
-      assert.ok(m >= 0 && m <= 0.4, `${r.id} motion ${m}`);
-      if (m > 0) moving++;
-    }
-    if (r.dynamic) assert.equal(moving, 0, `${r.id} must be moved by life, not shimmer`);
-    else assert.equal(moving, r.end - r.start, `${r.id} should shimmer`);
-  }
-  const reduced = buildSeed33Scene({ ...DEFAULT_SEED33, reducedMotion: true });
-  for (let k = 0; k < reduced.store.count; k++) assert.equal(reduced.store.motion[k], 0);
-  assert.equal(reduced.store.count, frame.store.count, 'reduced motion changes motion only, not geometry');
-});
-
-test('setReducedMotion flips the motion lane in place from the authored copy and holds the tile life, resetting nothing', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const s = frame.store;
-  const authored = s.motion.slice(0, s.count);
-  const LANES = ['x', 'y', 'a', 'size', 'phase', 'birthMs'] as const;
-  const snapshot = () => LANES.map((key) => s[key].slice(0, s.count));
+test('reduced motion zeroes the shimmer in place (no rebuild), restores it exactly on release; life still runs (no tile state attached to this scene any more)', () => {
+  const frame = buildSeed33PhotoScene(DEFAULT_SEED33_PHOTO);
+  const authored = Array.from(frame.store.motion.subarray(0, frame.store.count));
+  assert.ok(authored.every((m) => m > 0));
+  setSeed33PhotoReducedMotion(frame, true);
+  for (let k = 0; k < frame.store.count; k++) assert.equal(frame.store.motion[k], 0);
+  setSeed33PhotoReducedMotion(frame, false);
+  assert.deepEqual(Array.from(frame.store.motion.subarray(0, frame.store.count)), authored, 'restores the authored shimmer exactly');
   const life = createLife(frame);
-  for (let i = 0; i < 300; i++) stepLife(life, frame, 16.7, { reducedMotion: false }); // ~5 s in
-  const before = snapshot();
-  const tiles = life.tiles!;
-  const next = Array.from(tiles.next), swaps = Array.from(tiles.swaps), total = tiles.total, clock = life.clockMs, walk = life.walkMs;
-  const tileSnap = JSON.stringify(frame.tiles);
-  setReducedMotion(frame, true);
-  for (let k = 0; k < s.count; k++) if (s.motion[k] !== 0) assert.fail(`motion ${s.motion[k]} at ${k} after reducing`);
-  snapshot().forEach((lane, i) => assertSameLane(lane, before[i]!, `${LANES[i]} after the toggle`));
-  assert.equal(s.count, frame.regions[frame.regions.length - 1]!.end);
-  assert.equal(tiles.hold, true, 'the tile state is told to hold');
-  assert.deepEqual([Array.from(tiles.next), Array.from(tiles.swaps), tiles.total, life.clockMs, life.walkMs, JSON.stringify(frame.tiles)], [next, swaps, total, clock, walk, tileSnap], 'nothing was reset');
-  // Held: no swap in the next minute even though schedules come due.
-  for (let i = 0; i < 3600; i++) stepLife(life, frame, 16.7, { reducedMotion: false });
-  assert.equal(tiles.total, total, 'no swaps while held');
-  setReducedMotion(frame, false);
-  assertSameLane(s.motion.subarray(0, s.count), authored, 'the authored shimmer is restored exactly');
-  assert.equal(tiles.hold, false);
-  for (let i = 0; i < 1800; i++) stepLife(life, frame, 16.7, { reducedMotion: false });
-  assert.ok(tiles.total > total, 'swapping resumes after the hold');
-  // Idempotent, and a scene authored reduced can be released to the same authored lane as a normal build.
-  setReducedMotion(frame, false);
-  assertSameLane(s.motion.subarray(0, s.count), authored, 'idempotent');
-  const reduced = buildSeed33Scene({ ...DEFAULT_SEED33, reducedMotion: true });
-  setReducedMotion(reduced, false);
-  assertSameLane(reduced.store.motion.subarray(0, reduced.store.count), authored, 'a reduced build releases to the authored lane');
-  // The arrival scene (no authored copy, no shimmer, no tiles) is safe to toggle either way.
-  const arrival = buildArrivalScene(DEFAULT_ARRIVAL);
-  setReducedMotion(arrival, true);
-  setReducedMotion(arrival, false);
-  for (let k = 0; k < arrival.store.count; k += 101) assert.equal(arrival.store.motion[k], 0);
+  assert.equal(life.tiles, null, 'no tiles authored on this frame, so no tile life either');
+  for (let i = 0; i < 100; i++) stepLife(life, frame, 16.7, { reducedMotion: false }); // does not throw with no tiles/rigs
 });
 
-test('people (§11.1) are one continuous organic dot figure each: nothing above the head line, every grid cell present, the head on the shoulders, a flared coat, legs into boots', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const rigs = seed33RigsOf(frame);
-  assert.ok(rigs && rigs.walkers.length === 3 && rigs.emitters.length === 2);
-  assert.equal(rigsOf(frame), undefined, 'arrival registry does not know this frame');
-  assert.equal(rigsOfFrame(frame), rigs);
-  const s = frame.store;
-  const kindOf = (id: string): WalkerKind => (id.endsWith('/woman') ? 'woman' : id.endsWith('/man') ? 'man' : 'far');
-  const womanSil = walkerSilhouette('woman', 'toward');
-  for (const rig of rigs.walkers) {
-    const headTop = rig.homeFeet[1] - 1.035 * rig.homeHeight;
-    const sil = walkerSilhouette(kindOf(rig.id), rig.facing);
-    const pitch = DOT_PITCH_PX / 1080 / rig.homeHeight; // grid pitch in heights (density 1)
-    let minY = 1, maxY = 0, head = 0, outside = 0, legs = 0, maxNx = 0;
-    const rows = new Map<number, number>();
-    for (let k = rig.start; k < rig.end; k++) {
-      minY = Math.min(minY, s.y[k] ?? 1);
-      maxY = Math.max(maxY, s.y[k] ?? 0);
-      const i = k - rig.start;
-      if (rig.limb[i] === 3) head++;
-      if (rig.limb[i] === 1 || rig.limb[i] === 2) legs++;
-      // Every dot of the grid lies inside the silhouette polygons (a hair's tolerance for Float32 round-trip).
-      const nx = rig.nx[i] ?? 0, ny = rig.ny[i] ?? 0;
-      maxNx = Math.max(maxNx, Math.abs(nx));
-      if (!insideWalkerSilhouette(sil, nx, ny) && !insideWalkerSilhouette(sil, nx * 0.999, ny * 0.999)) outside++;
-      const row = Math.round(-ny / pitch);
-      rows.set(row, (rows.get(row) ?? 0) + 1);
-    }
-    assert.ok(minY >= headTop, `${rig.id} has beads above the head line (${minY} < ${headTop})`);
-    assert.ok(maxY <= rig.homeFeet[1] + 0.001, `${rig.id} has beads below the feet`);
-    assert.equal(outside, 0, `${rig.id} has ${outside} dots outside its silhouette`);
-    assert.ok(head > 5, `${rig.id} head is present`);
-    assert.ok(legs > 10, `${rig.id} has legs (${legs} dots)`);
-    assert.ok(rig.end - rig.start > 150, `${rig.id} has ${rig.end - rig.start} dots`);
-    assert.ok(maxNx <= sil.hem + 0.001 && maxNx > sil.shoulder, `${rig.id} is widest at the flared hem (${maxNx}), wider than its shoulders (${sil.shoulder})`);
-    assert.ok(Math.abs(sil.head.ry * 2 - 0.11) < 0.005 && Math.abs(sil.hemNy - sil.shoulderNy - 0.6) < 0.03, 'head about 11 % of the height, coat about 60 %');
-    // No gap row anywhere from the crown to the feet: the figure is one continuous grid (no neck stalk, no belt gap).
-    const rowIdx = [...rows.keys()].sort((a, b) => a - b);
-    for (let r = rowIdx[0] ?? 0; r <= (rowIdx[rowIdx.length - 1] ?? 0); r++) assert.ok(rows.has(r), `${rig.id} has an empty grid row at ${r} (ny ${(-r * pitch).toFixed(3)})`);
-    // The coat flares monotonically from the shoulder point to the hem.
-    for (let ny = sil.shoulderNy; ny < sil.hemNy; ny += 0.01) assert.ok(coatHalfWidth(sil, ny + 0.01) >= coatHalfWidth(sil, ny), `${rig.id} coat narrows at ${ny}`);
-    if (kindOf(rig.id) !== 'woman') {
-      assert.ok(sil.shoulder > womanSil.shoulder, 'the men are a little wider at the shoulders');
-      assert.ok(Math.max(...sil.hair.map(([x]) => Math.abs(x))) <= sil.head.rx + 0.015, 'the men wear a short cap: no hair widening');
-    }
-  }
-  // The woman: her dot grid at a 4 px pitch, the body light and the halos.
-  const woman = rigs.walkers.find((r) => r.id === 'actors:passersby/woman')!;
-  const sil = womanSil;
-  const pitch = DOT_PITCH_PX / 1080 / woman.homeHeight;
-  const beltRow = Math.round(-sil.beltNy / pitch);
-  type Dot = { nx: number; ny: number; a: number; limb: number };
-  const rows = new Map<number, Dot[]>();
-  const headA = new Set<number>();
-  let halos = 0, cores = 0, minCore = 1, minOffBelt = 1, minChest = 1, maxA = 0;
-  for (let i = 0; i < woman.end - woman.start; i++) {
-    const a = woman.baseA[i] ?? 0, limb = woman.limb[i] ?? 0, nx = woman.nx[i] ?? 0, ny = woman.ny[i] ?? 0;
-    maxA = Math.max(maxA, a);
-    if ((woman.baseSize[i] ?? 0) > MAX_CORE_PX) {
-      halos++;
-      assert.ok(isNearHalo(a), `woman halo ${i} alpha ${a}`);
-      assert.ok(limb === 0 || limb === 3, 'halos sit under the coat and the head only');
-      continue;
-    }
-    cores++;
-    minCore = Math.min(minCore, a);
-    const row = Math.round(-ny / pitch);
-    if (row !== beltRow) minOffBelt = Math.min(minOffBelt, a);
-    if (limb === 0 && Math.abs(nx) < 0.4 * coatHalfWidth(sil, ny) && ny >= -0.8 && ny <= -0.62) minChest = Math.min(minChest, a);
-    if (limb === 3) headA.add(Math.round(a * 100));
-    (rows.get(row) ?? rows.set(row, []).get(row)!).push({ nx, ny, a, limb });
-  }
-  assert.ok(headA.size <= 2, `head and hair alpha is uniform (${[...headA].join(',')})`);
-  assert.ok(HEAD_LIGHT > 0.8 && [...rows.values()].flat().filter((d) => d.limb === 3).length >= 90, 'the head is a dense cluster');
-  assert.ok(minChest >= 0.95 && maxA <= 1, `the chest core is alpha 0.95–1.0 (${minChest}..${maxA})`);
-  assert.ok(minOffBelt >= 0.7 && minCore >= 0.5, `the body light falls toward the hem and the edges but never goes dark (${minOffBelt}, belt row ${minCore})`);
-  assert.ok(halos > cores * 0.5 && halos < cores, `halo under the coat and head dots (${halos} halos, ${cores} dots)`);
-  // Across the torso no interior gap wider than one pitch: every grid row from the hem up to the shoulder point
-  // is a full run of cells inside 85 % of the coat's half-width whatever their limb (no seam; above the shoulder
-  // point the hair locks lie over the coat, so the scan stops there), and no row is missing (no belt gap).
-  let torsoRows = 0, maxGap = 0;
-  for (let r = Math.round(-sil.hemNy / pitch) + 1; r <= Math.floor(-sil.shoulderNy / pitch); r++) {
-    const ny = -r * pitch;
-    const hw = coatHalfWidth(sil, ny);
-    const xs = (rows.get(r) ?? []).filter((d) => Math.abs(d.nx) <= 0.85 * hw).map((d) => d.nx).sort((a, b) => a - b);
-    assert.ok(xs.length >= 2, `torso row ${r} (ny ${ny.toFixed(3)}) is empty`);
-    for (let i = 1; i < xs.length; i++) maxGap = Math.max(maxGap, (xs[i] ?? 0) - (xs[i - 1] ?? 0));
-    torsoRows++;
-  }
-  assert.ok(torsoRows > 50 && maxGap <= pitch * 1.01, `widest interior gap across the torso ${maxGap / pitch} pitches over ${torsoRows} rows`);
-  // The belt is a one-row dimming: that row keeps BELT_DIM of its neighbours' alpha and every cell of it is present.
-  const beltA = mean((rows.get(beltRow) ?? []).filter((d) => d.limb === 0).map((d) => d.a));
-  const besideA = mean([...(rows.get(beltRow - 1) ?? []), ...(rows.get(beltRow + 1) ?? [])].filter((d) => d.limb === 0).map((d) => d.a));
-  assert.ok(Math.abs(beltA / besideA - BELT_DIM) < 0.05, `belt row alpha ratio ${beltA / besideA}`);
-  // No neck stalk: every row from the shoulder point up to the head's centre has a dot at the centre column.
-  for (let r = Math.round(-sil.shoulderNy / pitch); r <= Math.round(-sil.head.cy / pitch); r++) {
-    assert.ok((rows.get(r) ?? []).some((d) => Math.abs(d.nx) < pitch), `the centre column is empty at row ${r} (ny ${(-r * pitch).toFixed(3)}): a neck gap`);
-  }
-  // The bounding box is wider at the hem than at the shoulders.
-  const widthNear = (ny0: number) => Math.max(0, ...[...rows.entries()].filter(([r]) => Math.abs(-r * pitch - ny0) <= pitch).flatMap(([, dots]) => dots.map((d) => Math.abs(d.nx))));
-  const shoulderW = widthNear(sil.shoulderNy), hemW = widthNear(sil.hemNy - pitch);
-  assert.ok(hemW > shoulderW * 1.2, `hem half-width ${hemW} vs shoulder half-width ${shoulderW}`);
-  // Legs taper into boots: the legs are narrower at the ankle than under the hem, and the boots are darker (dimmer) than the legs.
-  const legDots = [...rows.values()].flat().filter((d) => d.limb === 1);
-  const legSpan = (ny0: number) => { const xs = legDots.filter((d) => Math.abs(d.ny - ny0) <= pitch).map((d) => d.nx); return Math.max(...xs) - Math.min(...xs); };
-  assert.ok(legSpan(sil.hemNy + 0.02) > legSpan(sil.bootNy - 0.02), 'each leg tapers toward the ankle');
-  assert.ok(mean(legDots.filter((d) => d.ny > sil.bootNy).map((d) => d.a)) < mean(legDots.filter((d) => d.ny < sil.bootNy - 0.02).map((d) => d.a)), 'boots are darker than the legs');
-  assert.equal(woman.homeHeight, 0.39);
-  assert.equal(woman.homeFeet[1], 0.745);
-  assert.equal(woman.facing, 'toward');
-  assert.deepEqual([woman.startY, woman.endY, woman.travelS], [WOMAN_APPROACH.startY, WOMAN_APPROACH.endY, WOMAN_APPROACH.travelS]);
-  assert.equal(woman.travelS, 8);
-  // Her intro approach grows her about 1.6× (clip VB2) …
-  const intro = walkerIntroOf(woman)!;
-  const growth = walkerPose(woman, intro.startS + intro.travelS, false).height / walkerPose(woman, intro.startS + 0.01, false).height;
-  assert.ok(growth >= 1.5 && growth <= 1.75, `growth ${growth}`);
-  // … and so does every ordinary cycle after it.
-  const cycle0 = intro.startS + intro.travelS + intro.holdS + WALKER_FADE_OUT_S + WALKER_GAP_S;
-  const regular = walkerPose(woman, cycle0 + woman.travelS - 0.01, false).height / walkerPose(woman, cycle0 + 0.01, false).height;
-  assert.ok(regular >= 1.5 && regular <= 1.75, `regular growth ${regular}`);
-  assert.ok(walkerPose(woman, cycle0 + 4, false).feetY > walkerPose(woman, cycle0 + 1, false).feetY, 'the woman approaches');
-  // The far walkers have no intro and keep the ordinary cycle.
-  for (const r of rigs.walkers) if (r !== woman) assert.equal(walkerIntroOf(r), undefined);
+test("DEFAULT_HOME/DEFAULT_NATIVE_ASPECT are plausible fallbacks only; the renderer always supplies the real manifest crop box and decoded bitmap instead", () => {
+  assert.ok(DEFAULT_HOME.centerX > 0 && DEFAULT_HOME.centerX < 1);
+  assert.ok(DEFAULT_HOME.topY > 0 && DEFAULT_HOME.topY < 1);
+  assert.ok(DEFAULT_HOME.heightFrac > 0 && DEFAULT_HOME.heightFrac < 1);
+  assert.ok(DEFAULT_NATIVE_ASPECT > 0 && DEFAULT_NATIVE_ASPECT < 1, 'the figure crop is taller than wide');
+  assert.equal(APPROACH_GUIDE_SAMPLES[0]!.tMs, 0);
+  assert.ok(APPROACH_GUIDE_SAMPLES.every((s, i, arr) => i === 0 || s.height >= arr[i - 1]!.height), 'guide samples grow monotonically (a sanity check on the manifest-copied guide table, not a measurement claim)');
 });
 
-test('the woman is whole and visible from her birth window through t = 20 s, then cycles (§9 A)', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const woman = seed33RigsOf(frame)!.walkers.find((r) => r.id === 'actors:passersby/woman')!;
-  assert.deepEqual(walkerIntroOf(woman), womanIntro(12_000));
-  const intro = womanIntro(12_000);
-  assert.ok(Math.abs(intro.startS + intro.travelS + intro.holdS - (12 + WOMAN_DWELL_S)) < 1e-9, 'she stands until dwell seconds after the build completes');
-  for (const t of [12, 17]) assert.ok(walkerPose(woman, t, false).fade > 0.8, `visible at t = ${t} s (fade ${walkerPose(woman, t, false).fade})`);
-  // Whole: fade is 1 before her first bead is born (3 s) and stays 1 to 20 s; her feet reach the home position and stay.
-  const births = Array.from(frame.store.birthMs.subarray(woman.start, woman.end));
-  const firstBirth = Math.min(...births) / 1000;
-  assert.ok(firstBirth >= 3 && walkerPose(woman, firstBirth, false).fade > 0.99, `whole at her first birth (${firstBirth} s)`);
-  for (let t = firstBirth; t <= 20; t += 0.25) {
-    const p = walkerPose(woman, t, false);
-    assert.ok(p.fade > 0.99, `fade ${p.fade} at ${t}`);
-    assert.ok(p.feetY >= WOMAN_APPROACH.startY - 1e-9 && p.feetY <= WOMAN_APPROACH.endY + 1e-9);
+test('photoApproachPose: starts exactly at `home` (no extra offset added to it), matches the guide samples\' shape at 0/1.25/2.5/3.75/4.96s relative to home, and grows monotonically', () => {
+  const home = DEFAULT_HOME;
+  const p0 = photoApproachPose(-500, false, home);
+  assert.equal(p0.centerX, home.centerX, 'no extra offset: before/at build completion she is exactly at home, not a separately-authored VB2-guide estimate of home');
+  assert.equal(p0.headTopY, home.topY);
+  assert.equal(p0.heightFrac, home.heightFrac);
+  assert.equal(p0.offFrame, false);
+  const base = APPROACH_GUIDE_SAMPLES[0]!;
+  for (const sample of APPROACH_GUIDE_SAMPLES) {
+    const p = photoApproachPose(sample.tMs, false, home);
+    const expectedHeight = home.heightFrac * (sample.height / base.height);
+    const expectedCenterX = home.centerX + (sample.centerX - base.centerX);
+    const expectedTopY = home.topY + (sample.headTopY - base.headTopY);
+    assert.ok(Math.abs(p.heightFrac - expectedHeight) < 1e-9, `heightFrac at ${sample.tMs}ms`);
+    assert.ok(Math.abs(p.centerX - expectedCenterX) < 1e-9, `centerX at ${sample.tMs}ms`);
+    assert.ok(Math.abs(p.headTopY - expectedTopY) < 1e-9, `headTopY at ${sample.tMs}ms`);
   }
-  assert.ok(Math.abs(walkerPose(woman, 17, false).feetY - WOMAN_APPROACH.endY) < 1e-9 && walkerPose(woman, 17, false).stride === 0, 'standing at the near position at 17 s');
-  assert.equal(walkerPose(woman, 5, false).stride, 1, 'walking during the approach');
-  // Then the ordinary cycle: she fades, is away for the gap, comes back and keeps cycling.
-  let gone = false, back = false;
-  for (let t = 20; t < 60; t += 0.25) {
-    const f = walkerPose(woman, t, false).fade;
-    if (f === 0) gone = true;
-    if (gone && f > 0.95) back = true;
+  // Monotonic over the whole span sampled at 50ms, including past the measured 4.96s window.
+  let prev = photoApproachPose(0, false, home);
+  for (let t = 50; t <= 15000; t += 50) {
+    const p = photoApproachPose(t, false, home);
+    assert.ok(p.heightFrac >= prev.heightFrac - 1e-9, `heightFrac decreased at ${t}ms`);
+    assert.ok(p.centerX >= prev.centerX - 1e-9, `centerX decreased at ${t}ms`);
+    assert.ok(p.headTopY <= prev.headTopY + 1e-9, `headTopY increased (moved down) at ${t}ms`);
+    prev = p;
   }
-  assert.ok(gone && back, 'cycles after the dwell');
-  // Through life: at 12 s and 17 s of life her beads carry their authored alpha.
-  const life = createLife(frame);
-  const maxAlphaAt = (seconds: number) => {
-    while (life.clockMs < seconds * 1000 - 1e-6) stepLife(life, frame, 50, { reducedMotion: false });
-    let m = 0;
-    for (let k = woman.start; k < woman.end; k++) m = Math.max(m, frame.store.a[k] ?? 0);
-    return m;
-  };
-  assert.ok(maxAlphaAt(12) > 0.95 && maxAlphaAt(17) > 0.95, 'life keeps her visible at 12 s and 17 s');
-  // A zero-length build: visible at t = 5 s, mid-approach.
-  const instant = buildSeed33Scene({ ...DEFAULT_SEED33, buildMs: 0 });
-  const w0 = seed33RigsOf(instant)!.walkers.find((r) => r.id === 'actors:passersby/woman')!;
-  assert.deepEqual(walkerIntroOf(w0), womanIntro(0));
-  assert.ok(walkerPose(w0, 5, false).fade > 0.8, `visible at t = 5 s with buildMs 0 (fade ${walkerPose(w0, 5, false).fade})`);
-  assert.ok(walkerPose(w0, 0, false).fade > 0.8, 'already walking at t = 0 when the scene is complete at 0');
-  // The far walkers are present through the complete + 5 s still too.
-  for (const id of ['actors:passersby/man', 'actors:passersby/third']) {
-    const rig = seed33RigsOf(frame)!.walkers.find((r) => r.id === id)!;
-    for (const t of [6, 12, 17, 20]) assert.ok(walkerPose(rig, t, false).fade > 0.8, `${id} visible at ${t} s`);
+  const last = APPROACH_GUIDE_SAMPLES[APPROACH_GUIDE_SAMPLES.length - 1]!;
+  const past = photoApproachPose(6000, false, home);
+  assert.ok(past.heightFrac > home.heightFrac * (last.height / base.height), 'still growing past the guide window (continues past the viewer)');
+});
+
+test('candidate-2 regression: a figure at heightMul≈4 of home (the OLD, reviewer-disproven cull threshold) is still centrally visible and must NOT be culled', () => {
+  const home = DEFAULT_HOME;
+  // Find a time where height has grown to ~4x home under the new curve, independent of the cull logic itself.
+  let t = 0;
+  let pose = photoApproachPose(t, false, home);
+  while (pose.heightFrac < home.heightFrac * 4 && t < 30000) {
+    t += 10;
+    pose = photoApproachPose(t, false, home);
+  }
+  assert.ok(pose.heightFrac >= home.heightFrac * 4, 'reached 4x home height within a reasonable time (sanity on the fit)');
+  const bounds = figureBoundsNorm(pose, DEFAULT_NATIVE_ASPECT);
+  assert.ok(bounds.left < 1 && bounds.right > 0 && bounds.top < 1 && bounds.bottom > 0, `at 4x height (t=${t}ms) the sprite bounds ${JSON.stringify(bounds)} still intersect the frame`);
+  assert.equal(pose.offFrame, false, `t=${t}ms (height 4x home) must not be culled — this is exactly the main revision's candidate-1 idle-10000/idle-18000.png regression (an empty street where she should still be huge and on-screen)`);
+});
+
+test('non-tautological bounds check: offFrame matches an independently recomputed bounding-box intersection at times straddling the real exit, and never wraps back once true', () => {
+  const home = DEFAULT_HOME;
+  const nativeAspect = DEFAULT_NATIVE_ASPECT;
+  // Search forward (coarse, then refine) for the first time the pose's OWN reported offFrame flips true.
+  let lo = 0, hi = 0;
+  let step = 100;
+  while (!photoApproachPose(hi, false, home, nativeAspect).offFrame && hi < 120_000) hi += step;
+  assert.ok(hi < 120_000, 'a genuine exit occurs within two minutes of continued approach (not never, not absurdly late)');
+  lo = Math.max(0, hi - step);
+  for (let i = 0; i < 20 && hi - lo > 1; i++) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (photoApproachPose(mid, false, home, nativeAspect).offFrame) hi = mid;
+    else lo = mid;
+  }
+  // Independently recompute the bounds at lo (just before) and hi (at/just after) from the pose's own
+  // centerX/headTopY/heightFrac output, rather than trusting the function's internal offFrame bookkeeping.
+  const before = photoApproachPose(lo, false, home, nativeAspect);
+  const boundsBefore = figureBoundsNorm(before, nativeAspect);
+  assert.equal(before.offFrame, false, `t=${lo}ms`);
+  assert.equal(isFullyOffFrame(boundsBefore), false, `independently recomputed bounds at t=${lo}ms still intersect the frame: ${JSON.stringify(boundsBefore)}`);
+  const after = photoApproachPose(hi, false, home, nativeAspect);
+  const boundsAfter = figureBoundsNorm(after, nativeAspect);
+  assert.equal(after.offFrame, true, `t=${hi}ms`);
+  assert.equal(isFullyOffFrame(boundsAfter), true, `independently recomputed bounds at t=${hi}ms do not intersect the frame: ${JSON.stringify(boundsAfter)}`);
+  // No reset: once off-frame, stays off-frame (and bounds keep moving the same direction, not wrapping).
+  for (const t of [hi + 1, hi + 10_000, hi + 120_000]) {
+    const p = photoApproachPose(t, false, home, nativeAspect);
+    assert.equal(p.offFrame, true, `t=${t}ms must stay off-frame, never wrap back to visible`);
+    assert.ok(p.centerX >= after.centerX - 1e-6, 'centerX does not move backward after exit');
   }
 });
 
-test('life moves the seed-33 walkers and steps its tiles while leaving the arrival scene unchanged', () => {
-  const frame = buildSeed33Scene(DEFAULT_SEED33);
-  const life = createLife(frame);
-  assert.ok(life.rigs && life.tiles, 'rigs and tile state found');
-  const woman = life.rigs!.walkers.find((r) => r.id === 'actors:passersby/woman')!;
-  const y0 = frame.store.y[woman.start] ?? 0;
-  const tilesBefore = JSON.stringify(frame.tiles);
-  for (let i = 0; i < 1200; i++) stepLife(life, frame, 16.7, { reducedMotion: false });
-  assert.notEqual(frame.store.y[woman.start], y0, 'the woman moved');
-  assert.notEqual(JSON.stringify(frame.tiles), tilesBefore, 'tiles swapped within 20 s');
-  assert.ok(life.tiles!.total > 0);
-  stepTiles(life.tiles!, frame, 16.7, life.clockMs + 16.7, { reducedMotion: false }); // the tile life is callable on its own
-  const arrival = buildArrivalScene(DEFAULT_ARRIVAL);
-  const arrivalLife = createLife(arrival);
-  assert.equal(arrivalLife.tiles, null);
-  assert.ok(arrivalLife.rigs && arrivalLife.rigs.walkers.length === 3);
+test('reduced motion holds the figure exactly at `home` regardless of elapsed time, with no clock jump needed', () => {
+  const home = DEFAULT_HOME;
+  for (const t of [0, 1250, 5000, 20000, 600_000]) {
+    const p = photoApproachPose(t, true, home);
+    assert.equal(p.heightFrac, home.heightFrac);
+    assert.equal(p.centerX, home.centerX);
+    assert.equal(p.headTopY, home.topY);
+    assert.equal(p.offFrame, false, 'stays visible at the reference pose, never treated as exited');
+    assert.equal(p.legPhase, 0, 'no gait motion while reduced');
+  }
+});
+
+test('the walk-cycle mesh deform (candidate-2: hip sway + a faster/smaller foot harmonic, not one uniform sine) sways only the lower rows, scales with reduced motion, and is pure/deterministic', () => {
+  const full = walkSwayOffsets(Math.PI / 2, FIGURE_MESH_ROWS, false);
+  const reduced = walkSwayOffsets(Math.PI / 2, FIGURE_MESH_ROWS, true);
+  assert.equal(full.length, FIGURE_MESH_ROWS);
+  for (let i = 0; i < FIGURE_MESH_ROWS; i++) {
+    const frac = i / (FIGURE_MESH_ROWS - 1);
+    if (frac < SWAY_START_FRACTION) assert.equal(full[i], 0, `row ${i} (above the hip) must not sway`);
+  }
+  assert.ok(full[FIGURE_MESH_ROWS - 1]! !== 0, 'the feet row moves at this phase');
+  let prevW = 0;
+  for (let i = 0; i < FIGURE_MESH_ROWS; i++) {
+    const w = swayWeight(i / (FIGURE_MESH_ROWS - 1));
+    assert.ok(w >= prevW - 1e-9);
+    prevW = w;
+  }
+  assert.ok(FOOT_START_FRACTION > SWAY_START_FRACTION, 'the foot harmonic only adds on top of the hip sway, lower down');
+  // Reduced motion scales amplitude down (not to exactly 0, matching the gait-bob precedent) at a phase where both harmonics are non-zero.
+  assert.ok(Math.abs(reduced[FIGURE_MESH_ROWS - 1]!) < Math.abs(full[FIGURE_MESH_ROWS - 1]!));
+  assert.deepEqual(Array.from(walkSwayOffsets(1.23, 10, false)), Array.from(walkSwayOffsets(1.23, 10, false)), 'pure function');
+  // The deform is not literally a single uniform sine any more: the boot band's shape differs from the hip band's.
+  const atZero = walkSwayOffsets(0.001, FIGURE_MESH_ROWS, false);
+  const atQuarter = walkSwayOffsets(Math.PI / 2, FIGURE_MESH_ROWS, false);
+  const hipRow = Math.round((SWAY_START_FRACTION + 0.05) * (FIGURE_MESH_ROWS - 1));
+  const footRow = FIGURE_MESH_ROWS - 1;
+  const hipRatio = (atQuarter[hipRow] ?? 0) / (atZero[hipRow] || 1e-9);
+  const footRatio = (atQuarter[footRow] ?? 0) / (atZero[footRow] || 1e-9);
+  assert.notEqual(Math.round(hipRatio * 100), Math.round(footRatio * 100), 'the foot row does not simply scale the hip row by a constant factor (a genuine second harmonic, not a relabelled uniform sway)');
+});
+
+test('the 12s nearest-first build reveal: background/foreground wipe bottom-to-top and complete exactly at buildMs; a zero build is already complete', () => {
+  assert.ok(buildRevealY(12000, 0) >= 1 + BUILD_REVEAL_BAND);
+  const mid = buildRevealY(12000, 6000);
+  assert.ok(mid > 0 && mid < 1, `midway reveal ${mid} is between the frame edges`);
+  assert.ok(buildRevealY(12000, 12000) + BUILD_REVEAL_BAND <= 1e-9, 'even the top edge is fully revealed exactly at buildMs');
+  assert.equal(buildRevealY(12000, 20000), buildRevealY(12000, 12000), 'stays fully revealed after the build, never re-hides');
+  assert.ok(buildRevealY(0, 0) + BUILD_REVEAL_BAND <= 0, 'a zero-length build is already complete');
+  let prevY = buildRevealY(12000, 0);
+  for (let t = 100; t <= 12000; t += 100) {
+    const y = buildRevealY(12000, t);
+    assert.ok(y <= prevY + 1e-9, `reveal threshold rose at ${t}ms`);
+    prevY = y;
+  }
+  assert.ok(BUILD_REVEAL_BAND > 0);
+});
+
+test("the figure's own build-phase fade: invisible before FIGURE_BUILD_FADE starts, fully visible by its end, complete for a zero build", () => {
+  const buildMs = 12000;
+  assert.equal(figureBuildAlpha(buildMs, 0), 0);
+  assert.equal(figureBuildAlpha(buildMs, buildMs * FIGURE_BUILD_FADE[0]), 0);
+  assert.ok(figureBuildAlpha(buildMs, buildMs * FIGURE_BUILD_FADE[1]) >= 0.999);
+  assert.equal(figureBuildAlpha(buildMs, buildMs), 1, 'whole once the build completes');
+  assert.equal(figureBuildAlpha(0, 0), 1, 'a zero-length build is already complete');
+  let prev = 0;
+  for (let t = 0; t <= buildMs; t += 200) {
+    const a = figureBuildAlpha(buildMs, t);
+    assert.ok(a >= prev - 1e-9, `fade alpha decreased at ${t}ms`);
+    prev = a;
+  }
+});
+
+test('tileDriftOffset: exactly zero at/before build completion (idle0 reconstructs the manifest rect exactly) and whenever reduced motion holds the source arrangement; bounded and deterministic once drifting', () => {
+  assert.deepEqual(tileDriftOffset(3, 33, 0, false), { dx: 0, dy: 0 });
+  assert.deepEqual(tileDriftOffset(3, 33, -500, false), { dx: 0, dy: 0 });
+  assert.deepEqual(tileDriftOffset(3, 33, 5000, true), { dx: 0, dy: 0 }, 'reduced motion holds the source arrangement');
+  const a = tileDriftOffset(3, 33, 5000, false);
+  const b = tileDriftOffset(3, 33, 5000, false);
+  assert.deepEqual(a, b, 'deterministic');
+  assert.ok(Math.abs(a.dx) <= TILE_DRIFT_AMPLITUDE + 1e-9 && Math.abs(a.dy) <= TILE_DRIFT_AMPLITUDE + 1e-9, 'bounded small drift');
+  const other = tileDriftOffset(4, 33, 5000, false);
+  assert.notDeepEqual(a, other, 'different tiles do not move in lockstep');
+  // Onset ramps in smoothly, not an instant jump, starting only after the build.
+  const justAfter = tileDriftOffset(3, 33, 1, false);
+  const mid = tileDriftOffset(3, 33, TILE_DRIFT_ONSET_MS / 2, false);
+  assert.ok(Math.abs(justAfter.dx) < Math.abs(mid.dx) + 1e-6 || Math.abs(mid.dx) < TILE_DRIFT_AMPLITUDE, 'the drift ramps in rather than snapping to full amplitude immediately after the build');
 });

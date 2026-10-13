@@ -6,6 +6,12 @@ Authored by Claude Opus 5.5; integrated/checked by Astra, with bounded technical
 
 Companion: [art direction and Weave prompt document](DESIGN_PROMPT.md). Governing rules: [AGENTS.md](../AGENTS.md), [Weave gate](../docs/design/FIGMA_WEAVE.md#mandatory-prerequisite-for-every-ui-change), [Week 3 design](../week3/DESIGN.md), [Week 3 plan](../week3/PLANNING.md), [Week 3 acceptance record](../week3/docs/design/acceptance/w3-conversational-eye.md), [voice policy](../week1/docs/design/VOICE_PROMPTING.md).
 
+## Current renderer requirement — owner clarification during recovery
+
+The owner requires the **entire Seed-33 scene to be rebuilt through Rust**, with actual wireframe creation → basic colors/materials → details → live motion. Do not use reference-image backgrounds, raster scene plates or a gradual reveal of their coloring as reconstruction. Images/videos guide native authoring only. See the [verbatim correction and superseded candidate](docs/design/acceptance/w4-visual-steps.md#rust-scene-reconstruction-correction).
+
+For this rebuild, this explicit instruction supersedes the older TypeScript/Three.js renderer recommendation and source-image/sprite reuse proposals below. The Rust rendering transport must be established from the actual available foundation; no particular GPU backend is claimed implemented by this document. Existing raster candidates stay preserved as history, not accepted baselines. A fresh scoped Weave image/video packet and explicit cost approvals remain prerequisites for visual implementation. No camera/desktop effects, voice work, further study phase or commit is authorized implicitly.
+
 ## 1. The experience
 
 You say aloud, "What does it feel like to be in 1980s Paris, drinking coffee." The Week 3 eye listens and leans in, then opens. For about a minute it draws a place around you. First come the edge of your table and the line of the street at your seated eye height. Then stone, rattan and zinc appear, then watercolour and afternoon light, then people walking past. The approved windows on your desktop step aside, and the Windows wallpaper itself becomes the far sky and rooftops.

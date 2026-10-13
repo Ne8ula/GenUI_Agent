@@ -1,0 +1,87 @@
+{
+  "revisionId": "w4-20261010-seed33-rust-fidelity-r2",
+  "date": "2026-10-10",
+  "sourceRevision": "e43c7aedb2690c8b9edc3e2446f1d1f584897a5d plus pre-existing dirty Week4 tree",
+  "beforeManifest": "../w4-20261009-seed33-rust-rebuild-r1/implementation/candidate-14-source.json",
+  "beforeDigest": "303bf95d2ef8c4a5825fc1c5810852f9513fec38b9a036742dd911403db16062",
+  "beforeFilesVerified": 127,
+  "scope": "Rust-only fixed-camera Seed33 fidelity refinement: selective architectural illumination, less uniform grid detail, coherent rounded coat and rear-facing articulated gait. Preserve construction, controls, local tile corruption and runtime source-image independence.",
+  "acceptedBaseline": null,
+  "ownerAcceptance": "pending",
+  "implementationOwner": {"configured": "claude-gpt-6-astra[1m]", "observedBackend": "codex", "observedModel": "gpt-6-astra"},
+  "route": "direct-model",
+  "tool": "official Figma MCP weave_run_model",
+  "runtimeVisualAssets": [],
+  "status": "candidate 16 implemented and technically verified; visual fidelity incomplete, owner acceptance pending",
+  "implementation": {
+    "candidate": 16,
+    "sourceManifest": "implementation/candidate-16-source.json",
+    "sourceDigest": "c346f676d4091826171d0fbf2b652749c3b2fecab14ebaffd9072e5a0e78e89c",
+    "sourceFiles": 127,
+    "sourceMismatchesAfterRecording": 0,
+    "changedAuthoredFiles": ["renderer/src/scene.rs", "renderer/src/gait.rs", "renderer/src/materials.rs", "app/scripts/capture-rust.mjs"],
+    "changedGeneratedFiles": ["app/src/generated/seed33/eva_seed33_renderer_bg.wasm"],
+    "rustTestsPassed": 12, "appTestsPassed": 207,
+    "typecheck": "passed", "productionBuild": "passed",
+    "browserChecksPassed": 47,
+    "browserReport": "implementation/after/candidate-16/checks.json",
+    "resourceAudit": "implementation/candidate-16-resource-audit.json",
+    "verificationReport": "implementation/candidate-16-verification.json",
+    "recordingReport": "implementation/after/candidate-16-motion/recording.json",
+    "recordedFrames": 361, "expectedFrames": 361, "fixedTimeFps": 15,
+    "realtimeObservationMs": 12095,
+    "performance": "implementation/after/candidate-16/summary.json",
+    "comparison": "implementation/after/candidate-16/comparison-original.png",
+    "inspection": "Main inspected actual formed frames, original comparison, construction overview, 100ms gait and 500ms tile samples. Temporal inspection only, not full-speed playback.",
+    "retainedFailure": "Initial candidate15 capture launched through Bash timed out before Vite readiness, zero checks. Direct PowerShell startup diagnostic and subsequent capture passed; precise timeout cause not established.",
+    "limitations": ["Architecture remains schematic and repetitive", "Coat torso darker than target; stylized gait not established as naturalistic", "Non-refractive glass and fixed-camera relief", "Higher CPU submission/upload/WASM memory than candidate14", "Browser only, no native WebView2 evidence"],
+    "ownerAcceptance": "pending"
+  },
+  "credits": {"unit": "Weave workspace credits", "authorizedAndReported": 59, "furtherAllowance": 0},
+  "permissionRecovery": "Two quote-only calls were denied by auto mode. Owner explicitly restored manual mode and requested retry; quote succeeded, then separate structured Approve responses authorized 5-credit still and 54-credit motion runs. Each generation submitted exactly once.",
+  "runs": [
+    {
+      "predictionId": "4cc33779-8550-4b74-9325-80714906da67",
+      "modelToolId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "quotedCost": 5, "reportedCost": 5, "submissions": 1,
+      "approval": "Structured Approve to one 5-credit Nano Banana 2.1 2K image; no automatic reruns",
+      "status": "COMPLETED",
+      "localAsset": "references/images/img-01-fidelity.png",
+      "dimensions": [2752,1536],
+      "inputs": {
+        "images": ["Hosted original Seed33 output from run 9472c515-4ab8-4dbd-bc65-3d52e970e167"],
+        "aspect_ratio": "16:9", "enable_web_search": false, "model": "Nano Banana 2.1", "output_format": "png", "resolution": "2K", "seed": 33, "thinking_level": "High",
+        "prompt": "Make ONE full-frame refined appearance reference for a Rust procedural reconstruction of this exact Seed-33 Paris cafe image. Preserve the supplied image's camera, perspective, composition, proportions and beaded warm-bone-on-deep-umber style. No redesign. Keep the huge cropped woven chair at left, broad curved ellipse table across bottom, glass ashtray lower-left, cup/saucer lower-right, ornate tall lamp near x0.575 and smaller lamp behind, roofline/chimneys and pale sky wedge. Preserve architectural asymmetry: broad dark near-left awning, selective strong luminous window jambs and cornices, right facade with sparse directional strands and alternating light/dark bays. Avoid turning every facade into an equally bright regular wireframe grid. Preserve luminous rounded cup rim, translucent fluted ashtray highlights, restrained tabletop bead density and actual wicker weave, NOT thin uniform mesh everywhere. The one near coat wearer must be BACK-facing, at the same mid-left anchor, in a natural left-and-away walking stance: rounded clothed shoulders, coherent torso and coat folds, connected tapered arms and legs, one planted foot and one modest swing. Not a mannequin, skeleton or front-facing person. Keep tiny distant walkers and restrained coral/ochre/cream anchored accent blocks. Use reference as appearance guidance only; implementation will independently author procedural geometry and materials, not sample these pixels. No new objects, camera motion, multiple panels, labels, realistic photograph, generic low-poly city, neon, solid wireframe-only surfaces or blown-out global glow."
+      },
+      "inspection": "Actual image inspected via Read. Select directional left-facade jamb brightness against large dark awning, dark recesses and sparse right-facade strands; rounded shoulder-to-sleeve/coat silhouette; luminous ceramic rim. Keep original composition anchors. Reject crossed/scissoring foot pose and floating impression as gait guidance; do not copy exact bead pixels or architectural source contours. Still alone does not establish natural motion.",
+      "selection": "selected material hierarchy and rounded rear-clothing silhouette, not foot pose"
+    },
+    {
+      "predictionId": "153d4f1a-0e1b-4479-8c6e-77e8efac237e",
+      "modelToolId": "8a789246-42cd-4314-b32a-f06994638c16",
+      "modelId": "kling-3-turbo",
+      "quotedCost": 54, "reportedCost": 54, "submissions": 1,
+      "approval": "Structured Approve to one 54-credit six-second Kling 3.0 Turbo Standard study; total new packet 59 credits, no automatic reruns",
+      "status": "COMPLETED",
+      "localAsset": "references/videos/vid-01-living.mp4",
+      "dimensions": [1284,716], "durationSeconds": 6.041667, "fps": 24, "frames": 145,
+      "inputs": {
+        "image": "Hosted output of image run 4cc33779-8550-4b74-9325-80714906da67",
+        "duration": 6, "model": "3.0 Turbo Standard", "ratio": "16:9",
+        "prompt": "LOCKED CAMERA, absolutely no camera motion or zoom. Animate this exact warm bone beaded Paris cafe scene for six seconds as a motion study. Preserve ALL architecture, foreground chair, table, ashtray, cup, lamps, sky, perspective, warm-umber shadows and selective bright beaded edges with no style change. ONE near coat wearer is BACK facing at mid-left. They walk slowly LEFT and AWAY, deeper into the street behind/beside the left chair. Natural small connected steps, alternating planted feet and heel-to-toe transfer, gently bent knees with no high stepping or crossing legs, opposite subtle arm swing, small support-side weight shift, smooth rounded shoulders, coherent coat folds with slight hem lag. Feet stay on ground, no floating/gliding. Head stays back-facing; figure gets slightly smaller, never approaches viewer. Keep all body parts connected and same person throughout. Tiny distant walkers continue into depth slowly. Restrained coral/ochre/cream accent blocks split locally into disjoint rows and missing fragments then reassemble at fixed anchors, without affecting the environment. No scene construction in this study: fully formed scene stays present. No global dissolve, realistic shading, skeleton, wireframe mannequin, body melting, frozen sprite slide, new objects, camera drift, text or full-screen flashes. Reference only for independent procedural Rust animation, never runtime movie or pose playback."
+      },
+      "inspection": "Actual 500ms full-scene and 200ms figure samples inspected across the six-second clip; not full-speed playback, audio unreviewed and excluded. Select restrained opposite arm motion, continuous rounded shoulder/coat envelope and hem lag over alternating steps. Reject rightward travel (owner requires left/away), floating/crossed-foot impression, scene drift and nearly unchanged accent blocks. Runtime keeps its own constrained left/away path and planted feet; no pose extraction or video playback.",
+      "selection": "selected restrained cloth/arm timing only; reject path and ground-contact defects"
+    }
+  ],
+  "independentReview": {
+    "sourceCandidate": 14,
+    "agent": "eva-reviewer",
+    "configuredModel": "opus",
+    "observedBackend": "anthropic",
+    "observedModel": "claude-opus-4-8",
+    "scope": "Read-only final candidate14 light.rs/gpu.rs lifecycle and related host/capture contracts; no implementation or aesthetics approval",
+    "result": "Confirmed offscreen MSAA fix and sound cleanup/resize/feedback/context behavior. Low-priority missing createRenderbuffer/createFramebuffer failure coverage; strict exact sample-count test noted. No runtime defect confirmed. Existing browser evidence inspected, not rerun by reviewer. Evidence is uncommitted, despite reviewer calling it committed."
+  }
+}

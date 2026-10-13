@@ -1,0 +1,45 @@
+{
+  "revision": "w4-20261011-seed33-rust-fidelity-r4",
+  "sourceRevision": "e43c7aedb2690c8b9edc3e2446f1d1f584897a5d plus existing dirty Week 4 work",
+  "priorCandidate": 17,
+  "acceptedBaseline": null,
+  "ownerAcceptance": "pending",
+  "status": "candidate18 implemented, tested and browser-captured; source-only independent review found no confirmed defects; fidelity incomplete and owner acceptance pending",
+  "scope": "Differentiate facade bay/story hierarchy and lighting, refine grounded rear-facing left/away gait and cloth; bounded equivalent surface-evaluation optimization; no camera/anchor/control/runtime-media changes",
+  "coordinator": "Main claude-gpt-6-astra[1m] owns all implementation. Gateway metadata tied to this session confirms Codex gpt-6-astra and the native Opus review as Anthropic claude-opus-4-8. Native eva-researcher configured Terra used Read/Glob/Grep for recovery; recent metadata included Codex gpt-5.6-terra. No implementation worker.",
+  "before": {"manifest": "implementation/before-source.json", "digest": "8a64c7726ba6155f56a3cb1229d5296ae446b038dfb892a9f442f2c431f162a0", "verifiedFiles": 127, "mismatches": 0, "captures": "implementation/before/candidate-17-recheck", "sourceBackup": "implementation/before/source", "viewport": [1920,1080], "dpr": 1},
+  "budget": {"currency": "Weave workspace credits", "approved": 59, "spent": 59, "furtherAllowance": 0},
+  "runs": [
+    {
+      "route": "direct-model", "tool": "mcp__plugin_figma_figma__weave_run_model", "toolId": "bebebed5-50c1-4701-98b3-86929db21585", "modelId": "fal-ai/nano-banana-2/edit",
+      "predictionId": "8b574315-5d6b-4440-81cd-0b941d7de456", "cost": 5, "approval": "Structured AskUserQuestion answered Approve for this 5-credit still before submission", "submissions": 1,
+      "inputReference": {"predictionId": "9472c515-4ab8-4dbd-bc65-3d52e970e167", "asset": "Existing hosted original Seed33 output; no local/private upload"},
+      "inputs": {"aspect_ratio":"16:9","enable_web_search":false,"model":"Nano Banana 2.1","output_format":"png","resolution":"2K","seed":33,"thinking_level":"High","prompt":"Create one full-scene architectural and gait reference for the next bounded Seed-33 Rust reconstruction pass. Preserve this exact seated fixed-camera Paris cafe composition, warm ivory/deep umber beaded-stippled appearance, large woven chair at left, curved foreground table, cup and saucer lower right, glass ashtray lower left, lamps, abstract coral/ochre/cream tiles and street vanishing point. Improve realism without changing the visual identity: differentiate adjacent buildings into plausible separate facades, varied bay widths and story heights, grounded shopfront bases, recessed window openings with shaded jambs, restrained shutters, balcony supports, layered cornices and visibly distinct lit front planes versus dark returns. Avoid a uniformly repeated glowing window lattice; establish a strong directional left-side illumination hierarchy. The near knee-length ivory coat figure faces AWAY throughout: back to viewer, luminous cloth volume with gentle folds rather than an edge-only black body, rounded human shoulders, natural elbows, relaxed hip and knee proportions. Show a credible left-and-away walking pose with the support foot flat and bearing weight, other foot in low-clearance swing, two separate uncrossed leg paths, subtle pelvis/shoulder counterrotation and trailing coat hem. Keep scale and anchors fixed. Do not make a photo, panel board, infographic, caption, UI, logo or text. This is native procedural authoring guidance only, never a runtime image plate."},
+      "status": "completed", "localAsset": "references/images/img-01-architecture-gait.png", "dimensions": [2752,1536],
+      "inspection": "Main inspected actual full image with Read. Selected unequal facade bay rhythm, grounded shopfronts, dark reveals versus illuminated stone, rounded cloth silhouette. Rejected crossed feet, any changed object anchors and uniform photographic recreation. Still cannot establish motion."
+    },
+    {
+      "route": "direct-model", "tool": "mcp__plugin_figma_figma__weave_run_model", "toolId": "8a789246-42cd-4314-b32a-f06994638c16", "modelId": "kling-3-turbo",
+      "predictionId": "e3b6eed3-cc60-4935-bf6b-7b99257e7062", "cost": 54, "approval": "Structured AskUserQuestion answered Approve for this 54-credit motion study before submission", "submissions": 1,
+      "inputReference": null,
+      "inputs": {"duration":6,"model":"3.0 Turbo Standard","ratio":"16:9","prompt":"Six-second full-body gait reference study for an authored procedural Paris cafe scene. One ordinary adult viewed from behind and slightly to their right, wearing a softly illuminated warm-ivory knee-length hooded coat with the hood resting on their back, dark straight trousers and plain flat shoes. Warm ivory and deep umber stippled/beaded rendering, anatomically credible body and movement. Static camera at seated eye level, medium-wide framing with the entire body and both shoes visible throughout on a clearly visible matte stone ground plane. The person takes three slow short steps diagonally left and away from the camera. Use two distinct parallel foot paths: no leg crossing, no catwalk walk. Each support foot stays firmly planted on the visible pavement while weight passes over it, then rolls gently from heel through toe; the swing foot clears the ground only slightly. Show brief double support between steps, relaxed knees, slight alternating pelvis rotation with opposing shoulders, small elbow flexion and opposite arm swing, soft delayed coat hem response. Keep rear view throughout. No dramatic bounce, running, kicking, sliding, floating, turning to camera, camera movement, zoom, cuts, tiles obscuring shoes, text, labels or UI. This is an isolated motion study, not a new scene composition; preserve physically readable ground contact rather than decorative floating legs."},
+      "status": "completed", "localAsset": "references/videos/vid-01-grounded-gait.mp4", "samples": "references/videos/gait-samples-200ms.png",
+      "metadata": {"width":1280,"height":720,"fps":24,"frames":145,"durationSeconds":6.041667},
+      "inspection": "Main inspected 30 actual temporal samples at 200ms with Read. Ground plane and shoes are visible; select delayed trailing heel lift, low swing, support-side weight transfer, subdued arms and soft hem. Reject initial lateral-to-rear turn, clipped head, photo material, background and direction as scene guidance. Samples show late rear-view support transitions, not validated biomechanics. Temporal sampling only, no full-speed playback claim."
+    }
+  ],
+  "ownedSourceFiles": ["week4/renderer/src/scene.rs","week4/renderer/src/materials.rs","week4/renderer/src/gait.rs","week4/renderer/src/geometry.rs","week4/renderer/src/lib.rs"],
+  "implementation": {
+    "candidate": 18,
+    "sourceManifest": "implementation/candidate-18-source.json",
+    "sourceDigest": "a5578da5f56f8bbb19daf3d5019bf649ba05e2db1c2f47ce4129ed62273aec83",
+    "verification": "implementation/candidate-18-checkpoint.json",
+    "captures": "implementation/after/candidate-18",
+    "recording": "implementation/after/candidate-18-motion/recording.json",
+    "repeatMeasurements": "implementation/after/candidate-18-performance-repeat.json",
+    "generatedFiles": ["week4/app/src/generated/seed33/eva_seed33_renderer_bg.wasm"],
+    "inspection": ["formed-12000.png", "structure-1800.png", "gait-samples-100ms.png", "construction-overview-1s.png"],
+    "review": "Native eva-reviewer, configured opus, observed Anthropic claude-opus-4-8 in session-linked Gateway metadata. Source-only review of surface reuse, facade holes/IDs and gait reach/continuity found no confirmed correctness defects; no tests executed or aesthetic acceptance by reviewer.",
+    "limitations": ["Facade massing remains schematic despite differentiated bays/floors", "Figure and gait remain stylized; temporal samples are not full-speed anatomical validation", "No ground shadow or physically based cloth simulation", "Glass remains an approximation", "Historical timing regression retained; new baseline varies too much for a causal speedup claim", "Browser only; native/WebView2 and owner acceptance pending"]
+  }
+}

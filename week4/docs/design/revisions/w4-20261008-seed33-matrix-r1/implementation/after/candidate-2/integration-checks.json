@@ -1,0 +1,133 @@
+{
+  "ok": true,
+  "captures": 25,
+  "checks": 144,
+  "cacheChangeImageComparison": [
+    {
+      "file": "webgl2-seed33-build-000pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-010pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-025pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-040pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-052pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-067pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-080pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-092pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-099p9pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-build-100pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-complete-plus-5s.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "webgl2-seed33-reduced-midbuild.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-000pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-010pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-025pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-040pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-052pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-067pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-080pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-092pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-099p9pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-build-100pct.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-complete-plus-5s.png",
+      "identicalAfterCacheChange": true
+    },
+    {
+      "file": "canvas2d-seed33-reduced-midbuild.png",
+      "identicalAfterCacheChange": true
+    }
+  ],
+  "drawSamples": [
+    {
+      "state": "webgl2/build-052pct",
+      "drawMs": "6.30"
+    },
+    {
+      "state": "webgl2/build-067pct",
+      "drawMs": "13.20"
+    },
+    {
+      "state": "webgl2/build-080pct",
+      "drawMs": "10.40"
+    },
+    {
+      "state": "canvas2d/build-052pct",
+      "drawMs": "2.60"
+    },
+    {
+      "state": "canvas2d/build-067pct",
+      "drawMs": "4.70"
+    },
+    {
+      "state": "canvas2d/build-080pct",
+      "drawMs": "8.10"
+    },
+    {
+      "state": "narrow-fixture",
+      "drawMs": "5.40"
+    }
+  ]
+}

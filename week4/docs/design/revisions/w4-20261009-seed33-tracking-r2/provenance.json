@@ -1,0 +1,80 @@
+{
+  "revisionId": "w4-20261009-seed33-tracking-r2",
+  "date": "2026-10-09",
+  "phase": "Week 4 Seed-33 post-formation overlays",
+  "sourceRevision": "e43c7aedb2690c8b9edc3e2446f1d1f584897a5d",
+  "sourceIncludesExistingDirtyTree": true,
+  "acceptedBaseline": null,
+  "previousCandidate": "w4-20261009-seed33-formed-glitch-r1",
+  "previousCandidateStatus": "owner-rejected",
+  "ownerAcceptance": "pending",
+  "status": "candidate 2 integrated and technically verified; owner visual retest pending",
+  "ownerChoices": {"palette": "localized saturated RGB over warm scene", "attachment": "accent groups plus scene features"},
+  "runtimeBoundary": "Reference-textured underlying scene preserved. New overlays must be live code, not reference movie playback.",
+  "route": "direct-model",
+  "tool": "official Figma MCP weave_run_model",
+  "spentCredits": 185,
+  "creditUnit": "Weave workspace credits, not Figma AI credits",
+  "runs": [
+    {
+      "modelToolId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "label": "Nano Banana 2.1",
+      "predictionId": "f7d955db-2642-4acb-9f39-a8183fc0154f",
+      "quotedCost": 5,
+      "approval": "Explicit Approve response to structured per-run cost question in this session",
+      "chargedCost": 5,
+      "status": "COMPLETED",
+      "inputs": {
+        "aspect_ratio": "16:9", "enable_web_search": false, "model": "Nano Banana 2.1", "output_format": "png", "resolution": "2K", "seed": 33, "thinking_level": "High",
+        "prompt": "Create one precise visual-development reference image for EVA Week 4 Seed-33 POST-FORMATION corruption overlays. This is a local-effect vocabulary study, NOT a new scene design or an entrance/loading effect. Show a fully formed warm ochre/umber architectural cafe scene with one seated/standing human figure, cup, chair/table edges, window mullions, and small warm textured accent swatches. Fixed composition, no UI text or logos. Across selected localized features combine two explicit grammars: (1) pronounced horizontal scanline tearing that stretches actual strips of feature image content sideways 0.5 to 2 feature-widths, varied thin raster ribbons and occasional thicker displaced image fragments, broken raster silhouettes, repeated offset contour traces, saturated cyan/magenta/red/green channel separation ONLY at damaged edges; (2) extremely thin outlined tracking rectangles with widely varying sizes and aspect ratios, a mixture of tiny feature boxes and large long shallow boxes, diagonal X crosses inside some boxes, sparse straight hairline connections BETWEEN selected box corners and feature centers. These are feature-bound processing marks, not a regular grid or floating UI cards. Cluster marks around the person silhouette/shoulder, cup rim, chair/table edges and architecture junctions as well as accent swatches. Keep most of the warm underlying scene readable and intact; local RGB corruption must be clearly visible. Provide one full-scene view in the left two thirds and two enlarged detail crops in the right third, separated with simple gutters, no labels. Coherent unstable image-processing aesthetic. No full-screen glitch filter, no solid neon boxes, no decorative dots, no 4x4 tiling, no dashboard. This reference will guide live code-rendered geometry and sampled-image distortion, not become a runtime image or movie."
+      },
+      "localAsset": "references/images/img-01-corruption-tracking.png",
+      "dimensions": [2752,1536],
+      "selection": "geometry/material aspects only; invented scene rejected",
+      "inspection": "Actual image read: horizontal fragments, RGB contour echoes, thin variable tracking boxes and Xs. Do not copy layout, person, wall panels or collage."
+    },
+    {
+      "modelToolId": "8a789246-42cd-4314-b32a-f06994638c16",
+      "modelId": "kling-3-turbo",
+      "label": "Kling 3.0 Turbo Standard",
+      "predictionId": "40a6b1fb-dba2-4ce3-b515-cf2db5b3da7e",
+      "quotedCost": 90,
+      "approval": "Explicit Approve response to structured per-run cost question in this session",
+      "chargedCost": 90,
+      "status": "COMPLETED",
+      "inputs": {
+        "duration": 10, "model": "3.0 Turbo Standard", "ratio": "16:9",
+        "prompt": "A ten-second locked-camera motion-design study for EVA Seed-33 POST-FORMATION overlays. From the very first frame the underlying scene is completely formed and stays stable: a readable warm ochre/umber architectural cafe composition with one human figure, cup, table, chair, window mullions and small warm accent swatches. NO loading, building, dissolving, entrance, camera motion, cuts, morphing subjects or scene reconstruction. Throughout all ten seconds, including the last seconds, show visibly active LOCALIZED unstable image-processing corruption around the person's silhouette and shoulder, cup rim, furniture edges, architectural joints and accent swatches. Combine two interacting layers. RASTER: long horizontal scanline tears using actual subject image rows stretched sideways, thin layered ribbons with occasional thicker displaced image fragments, broken edge silhouettes, repeated contour echoes, clearly visible saturated cyan/magenta/red/green channel separation confined to corrupted edges. TRACKING: very thin outlined rectangles of radically varying sizes/aspect ratios, diagonal Xs in some rectangles, sparse fine straight connectors between box corners and feature anchors. Small and larger crossed boxes form irregular feature-bound clusters which appear, split, resize, drop out and relocate, not merely float or jitter. Use irregular staggered local holds and re-acquisitions with overlapping activity so the scene never settles into static rectangles. Selected raster ribbons shift abruptly while tracking clusters hold briefly then reconfigure; other areas remain legible. Keep localized corruption evident without full-screen flashing, broad brightness oscillation, rapid alternating white/black fields or uncontrolled strobe. Warm scene remains unchanged underneath except bounded temporary sampled-image distortions. No regular cell grid, solid neon boxes, dashboard, text labels, logos or decorative particles. A visual motion reference for live deterministic code, NOT a movie to be played inside the app."
+      },
+      "localAsset": "references/videos/vid-01-text-only-rejected.mp4",
+      "dimensions": [1280,720], "fps": 24, "frames": 241, "durationSeconds": 10.041666666666666,
+      "selection": "rejected",
+      "inspection": "500ms overview plus 100ms sequence 4.0–5.1s. Faint nearly static outlines, insufficient image tearing. Not suitable motion guidance. Sampled frames, not full-speed playback."
+    }
+  ],
+  "correctiveVideoQuote": {"modelId":"kling-3-turbo", "modelToolId":"8a789246-42cd-4314-b32a-f06994638c16", "tier":"3.0 Turbo Standard", "durationSeconds":10, "cost":90, "approval":"Explicit Approve in structured corrective-run question", "predictionId":"a5f2eba0-9461-4a83-9928-bc750ad40d57", "status":"COMPLETED", "localAsset":"references/videos/vid-02-image-conditioned.mp4", "dimensions":[1284,716], "fps":24, "frames":241, "durationSeconds":10.041666666666666, "selection":"Persistent local raster and RGB-edge treatment only; reject stable tracking and source-image drift", "inspection":"500ms overview, 100ms detail 4.0–5.1s, native-size 6s. Original supplied references remain authority for cluster topology and timing; generated video is not a recreation of both. Sampled-frame inspection, not full-speed playback.", "inputs":{"duration":10,"model":"3.0 Turbo Standard","ratio":"16:9","image":"Provider output of f7d955db-2642-4acb-9f39-a8183fc0154f, retained as references/images/img-01-corruption-tracking.png; remote URL omitted from public record", "prompt":"Animate ONLY the digital corruption and tracking graphics already visible in this reference board. Preserve this exact three-panel layout, crops, subject, lighting, furniture and framing. LOCKED CAMERA, static photograph underneath; no head movement, no scene or subject animation, no pan or zoom. The distortion is the main action, obvious in every second from start to finish. Make the existing horizontal pixel-stretched ribbons repeatedly tear sideways to new lengths and heights around the head, shoulder, cup, chair and architecture. Actual horizontal slices of those features duplicate, shear and stretch 40-140 pixels sideways with separated cyan/red/green/magenta channels; repeated broken contour echoes trail and replace each other. Keep some tears held while others relocate, with multiple asynchronous local events so there is never a global quiet/rest state. Animate the thin rectangular tracking outlines already present: in irregular groups small boxes vanish as new larger/narrower boxes appear, diagonal X crosses redraw and sparse connecting hairlines rewire between boxes. Clear discontinuous reacquisition and local tearing, NOT gentle floating or a barely visible shimmer. Keep local events readable for several frames before reconfiguring; no full-screen flashing, exposure changes, white/black strobing, or solid neon rectangles. Preserve the warm photograph outside the small damaged areas. The right-hand closeups must prominently show changing raster fragments and crossed rectangle clusters for the entire ten seconds. No added text, numbers, logos, loading effect or transitions to a clean/static ending."}},
+  "primaryReferences": [
+    {"path":"week3/pivot_references/0268915e2cc8124b9d5b9c99545f8736.gif", "inspection":"All 19 frames; 60ms per frame, total 1140ms; native-size frame 9"},
+    {"path":"week3/pivot_references/From Klickpin.com- Minimal small business branding ideas that help you create a polished look with very simple and affordable details for women wh.mp4", "inspection":"45s/30fps; 2-second overview; 100ms sequences 3.0–4.1,15.0–16.1,29.0–30.1; native-size 3.3s"}
+  ],
+  "inspectionLimitation": "Sampled-frame inspection, not full-speed playback",
+  "ownedUiFiles": ["week4/app/src/scene/postFormationOverlay.ts", "week4/app/src/scene/constructionTypes.ts", "week4/app/src/render/constructionCanvas.ts", "week4/app/src/render/constructionWebgl.ts", "week4/app/src/render/canvas2d.ts", "week4/app/src/render/webgl2.ts", "week4/app/tests/postformation-overlay.test.ts"],
+  "implementationStarted": true,
+  "checks": [
+    {"name":"integrated app typecheck/tests/build", "result":"passed", "appTests":191, "failedTests":0, "command":"npm --prefix week4/app run check"},
+    {"name":"integrated construction/control retest", "result":"passed", "count":144, "captures":25, "report":"implementation/after/integrated-retest/checks.json", "note":"No page, console, request or resource errors. Resolves worktree-only font403 failure without configuration changes."},
+    {"name":"integrated source/pixel identity", "result":"passed", "sourceFiles":77, "report":"implementation/integration-checks.json", "pixels":"implementation/integrated-pixel-retest.json"},
+    {"name":"independent read-only review", "result":"no blocking correctness findings", "agent":"eva-reviewer", "configuredAlias":"opus", "hostResolvedModel":"claude-opus-4-8[1m]", "tools":["Read","Grep"], "limitations":"Canvas filter cost on other platforms unmeasured; theoretical cap truncation not reproduced by 78900-case sweep (max412 of600); neither proves all inputs."},
+    {"name":"main-run app typecheck/tests/build in candidate worktree", "result":"passed", "appTests":191, "failedTests":0},
+    {"name":"matching capture and pause/reduced/preservation checks", "result":"passed", "count":31, "captures":24, "report":"implementation/after/candidate-2/checks.json", "processNote":"Detached exit code reported unknown; completed report says ok=true and media were independently decoded in full. Not claimed as exit-code-zero."},
+    {"name":"construction/control retest in isolated worktree", "result":"failed resource checks; controls/captures completed", "report":"implementation/after/construction/checks.json", "failure":"Font URLs resolved through shared node_modules outside the worktree Vite filesystem allowlist returned403/ERR_ABORTED. Do not weaken Vite access controls; retest after integration in shared root."},
+    {"name":"pre-completion loading pixel preservation", "result":"passed", "identicalFixtures":18, "report":"implementation/after/candidate-2/pixel-analysis.json"},
+    {"name":"video decoding", "result":"passed", "frames":166, "fps":15, "durationSeconds":11.066666666666666, "hostClockStartMs":12000, "hostClockEndMs":23000, "note":"Fixed-time app screenshot recording; not performance evidence"},
+    {"name":"real-time post-formation recording", "result":"completed", "wallMs":12024, "hostClockStartMs":12308.5, "hostClockEndMs":24329.9}
+  ],
+  "implementationMedia": {"fullScene":"implementation/after/candidate-2/webgl2-post-formation-stepped-11s.mp4", "closeup":"implementation/after/candidate-2/webgl2-post-formation-closeup-11s.mp4", "comparison":"implementation/after/candidate-2/before-after-17000.jpg", "temporalSamples":"implementation/after/candidate-2/motion-closeup-samples.jpg", "sourceManifest":"implementation/after/candidate-2-source-manifest.json"},
+  "rejectedImplementation":"implementation/after/attempt-1-rejected",
+  "remainingVisualDifferences":["Localized bands/fragment echoes rather than the GIF's wholesale broken silhouette", "Authored anchors, not image-feature detection", "Sparser and less saturated than primary references", "Underlying source-textured scene unchanged"],
+  "nativeEvidence": false
+}

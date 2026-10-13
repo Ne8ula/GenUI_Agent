@@ -1,0 +1,13 @@
+{
+  "sourceDigest": "c346f676d4091826171d0fbf2b652749c3b2fecab14ebaffd9072e5a0e78e89c",
+  "filesVerified": 127,
+  "mismatches": [],
+  "browserChecks": 47,
+  "browserOk": true,
+  "recordingOk": true,
+  "frames": 361,
+  "realtimeDurationMs": 12095,
+  "recordingReport": "after/candidate-16-motion/recording.json",
+  "browserReport": "after/candidate-16/checks.json",
+  "note": "Source binding checked after captures and recording; immutable predecessor and failed startup evidence retained."
+}

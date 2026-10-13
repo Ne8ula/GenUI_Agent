@@ -56,7 +56,11 @@ test('toggling reduced motion leaves both clocks, walker time, tile state and ev
   for (let i = 0; i < 5; i++) stepClocks(session, s, 1000, false);
   const authored = laneOf(s);
   assert.ok(authored.some((v) => v > 0), 'the scene shimmers before the toggle, so the test can tell the lanes changed');
-  assert.ok(s.life.tiles, 'the seed-33 scene has tile life');
+  // Candidate-2 (2026-10-08): the seed-33 photo scene's real tile-chip atlas is now drawn directly from
+  // view.showTiles/view.reducedMotion and the clock each frame (render/photoAssets.ts + seed33Photo.ts
+  // tileDriftOffset, unit-tested there), not from a stored, mutable life.tiles object any more — so there
+  // is nothing here for a toggle to desync.
+  assert.equal(s.life.tiles, null, 'the seed-33 photo scene carries no stored tile-life state');
   const frame = s.frame;
   const store = s.frame.store;
   const tiles = s.frame.tiles;
@@ -96,30 +100,24 @@ test('a toggle does not replay or stall: the next step moves both clocks by exac
   near(session.clockMs - s.life.clockMs, 0);
 });
 
-test('reduced motion stops the tile swaps and lifting it resumes them, with nothing reset in between', () => {
+test('the seed-33 photo scene carries no stored tile life across a reduced-motion toggle or clock stepping (candidate-2: the real tile-chip atlas is computed per draw from view.showTiles/reducedMotion, not a mutable life object a toggle could desync)', () => {
   const s = scene({ buildMs: 0 });
   const session = createClockSession();
   adoptScene(session, s, keyOf(20_000, { buildMs: 0 }), 20_000, false);
-  const life = s.life.tiles;
-  assert.ok(life, 'the seed-33 scene has tile life');
+  assert.equal(s.life.tiles, null);
   const run = (seconds: number, reduced: boolean): void => {
     for (let i = 0; i < seconds; i++) stepClocks(session, s, 1000, reduced);
   };
 
   run(60, false);
+  assert.equal(s.life.tiles, null);
   syncReducedMotion(session, s, true);
-  const heldTotal = life.total;
-  const heldTiles = structuredClone(s.frame.tiles);
-  const heldSchedule = structuredClone(life.next);
   run(120, true);
-  assert.equal(life.total, heldTotal, 'no swap while reduced motion is on');
-  assert.deepEqual(s.frame.tiles, heldTiles, 'no tile changed pattern, colour or place');
-  assert.deepEqual(life.next, heldSchedule, 'the schedule was not rewritten');
+  assert.equal(s.life.tiles, null, 'reduced motion does not conjure a stray tile-life object');
 
   syncReducedMotion(session, s, false);
   run(240, false);
-  assert.ok(life.total > heldTotal, 'swapping resumed once reduced motion was lifted');
-  assert.equal(s.life.tiles, life, 'the same tile life carried on; it was not recreated');
+  assert.equal(s.life.tiles, null, 'still none after resuming and stepping further');
 });
 
 test('repeated toggling is stable, and a repeated state is a no-op', () => {

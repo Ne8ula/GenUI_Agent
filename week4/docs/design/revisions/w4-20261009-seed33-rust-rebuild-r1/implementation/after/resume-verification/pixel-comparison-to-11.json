@@ -1,0 +1,37 @@
+[
+  {
+    "name": "structure-1800",
+    "pixels": 2073600,
+    "changedPixels": 0,
+    "meanAbsoluteChannelDifference": 0.0,
+    "maximumChannelDifference": 0
+  },
+  {
+    "name": "base-5700",
+    "pixels": 2073600,
+    "changedPixels": 7,
+    "meanAbsoluteChannelDifference": 1.768261316872428e-06,
+    "maximumChannelDifference": 1
+  },
+  {
+    "name": "detail-9000",
+    "pixels": 2073600,
+    "changedPixels": 113,
+    "meanAbsoluteChannelDifference": 0.00010046939300411523,
+    "maximumChannelDifference": 19
+  },
+  {
+    "name": "formed-12000",
+    "pixels": 2073600,
+    "changedPixels": 14,
+    "meanAbsoluteChannelDifference": 4.034850823045268e-05,
+    "maximumChannelDifference": 41
+  },
+  {
+    "name": "late-22000",
+    "pixels": 2073600,
+    "changedPixels": 16,
+    "meanAbsoluteChannelDifference": 1.0609567901234568e-05,
+    "maximumChannelDifference": 15
+  }
+]

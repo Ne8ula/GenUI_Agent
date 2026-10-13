@@ -1,0 +1,59 @@
+{
+  "revision": "w4-20261010-seed33-rust-fidelity-r3",
+  "sourceRevision": "e43c7aedb2690c8b9edc3e2446f1d1f584897a5d plus existing dirty Week 4 work",
+  "acceptedBaseline": null,
+  "ownerAcceptance": "pending",
+  "status": "candidate17 implementation, tests, browser captures and recording complete; independent source review found no confirmed defects; owner acceptance pending",
+  "scope": "Architecture relief/readability, luminous rear-facing coat body and naturalistic left/away gait; retain Rust-owned reference-free runtime and existing phase gates",
+  "coordinator": "Main Astra session claude-gpt-6-astra[1m]; local Gateway route metadata for this session confirms backend codex, model gpt-6-astra. Main owns every source edit and integration.",
+  "helper": "Native eva-researcher, configured Terra; observed Codex gpt-5.6-terra route; read-only recovery via Read/Glob/Grep. Native eva-reviewer, configured opus; observed Anthropic claude-opus-4-8 route; source-only review found no confirmed correctness defects; no test execution or aesthetic acceptance by reviewer. Narrow IK headroom and measured timing regression retained as limitations. No Sonnet implementation worker.",
+  "before": {"manifest": "implementation/before-source.json", "digest": "c346f676d4091826171d0fbf2b652749c3b2fecab14ebaffd9072e5a0e78e89c", "verifiedFiles": 127, "mismatches": 0, "captures": ["implementation/before/formed-12000.png", "implementation/before/structure-1800.png"], "method": "Byte-identical copies of candidate16 captures after matching every source hash; viewport1920x1080 DPR1"},
+  "budget": {"currency": "Weave workspace credits", "approved": 59, "spent": 59, "furtherAllowance": 0},
+  "runs": [
+    {
+      "route": "direct-model",
+      "tool": "mcp__plugin_figma_figma__weave_run_model",
+      "toolId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "modelId": "fal-ai/nano-banana-2/edit",
+      "predictionId": "5211e4da-37e2-47da-9ced-e681fbc5dad7",
+      "cost": 5,
+      "approval": "Structured AskUserQuestion: Approve 5 Weave workspace credits; answer Approve before submission",
+      "submissions": 1,
+      "inputReference": {"predictionId": "9472c515-4ab8-4dbd-bc65-3d52e970e167", "asset": "original generated Seed33 image, existing hosted output; no local/private upload"},
+      "inputs": {"model": "Nano Banana 2.1", "resolution": "2K", "aspect_ratio": "16:9", "output_format": "png", "thinking_level": "High", "enable_web_search": false, "seed": 33, "prompt": "Create a single full-scene fidelity reference for an independently authored Rust procedural reconstruction of this fixed-camera Paris cafe scene. Preserve the supplied composition and warm bone/deep umber beaded/stippled rendering: massive foreground woven chair at left, curved cafe table across bottom, ceramic cup and saucer lower right, glass ashtray lower left, converging Paris facades, awnings, lamps, small distant walkers and restrained coral/ochre/cream abstract tiles. Three precise corrections: (1) architecturally plausible Paris facades with deep recessed windows, actual jambs, sills and lintels, layered cornices, varied balcony railings, ground-floor pilasters and strong directional left facade illumination; avoid a uniform glowing grid or flat repeated outlines; (2) the near hooded knee-length coat figure MUST face AWAY, their back toward camera, gently traveling left and away beside/behind the chair, with a clearly readable luminous warm-ivory coat body rather than only bright edges around a black torso; retain folds, rounded human shoulders, naturally joined sleeves, dark legs and plausible body proportions; (3) show a physically credible slow walking stance with one foot planted, relaxed knee, the other foot only slightly lifted, separated legs, restrained counter-swing arms, no crossed feet, floating body, mannequin shoulders or stiff tube limbs. Keep camera, composition, objects and visual identity fixed. This is appearance guidance only, not runtime footage or source geometry. No panels, captions, UI, labels or comparison layout."},
+      "status": "completed",
+      "localAsset": "references/images/img-01-fidelity.png",
+      "dimensions": [2752, 1536],
+      "inspection": "Full image inspected with Read. Select luminous ivory rear-facing coat body and differentiated recessed openings/left directional illumination. Reject crossed-foot pose as gait guidance; preserve current scene camera and anchors."
+    },
+    {
+      "route": "direct-model",
+      "tool": "mcp__plugin_figma_figma__weave_run_model",
+      "toolId": "8a789246-42cd-4314-b32a-f06994638c16",
+      "modelId": "kling-3-turbo",
+      "predictionId": "0dfb67c8-c2f5-4183-97aa-5fbd98818d7c",
+      "cost": 54,
+      "approval": "Structured AskUserQuestion: Approve 54 Weave workspace credits; answer Approve before submission",
+      "submissions": 1,
+      "inputReference": {"predictionId": "5211e4da-37e2-47da-9ced-e681fbc5dad7", "asset": "completed still output"},
+      "inputs": {"duration": 6, "model": "3.0 Turbo Standard", "ratio": "16:9", "prompt": "Locked camera, six-second slow walking study within exactly this warm bone/deep-umber beaded Paris cafe composition. Keep all architecture, table, chair, cup, ashtray, lamps and abstract tiles stationary. The near luminous ivory knee-length coat figure faces AWAY with back to camera throughout, walking slowly diagonally to the LEFT and deeper into the street beside/behind the left chair. Three short natural steps only. Show genuine heel-to-toe weight transfer and a planted support foot without sliding, low-clearance forward swing of the other foot, relaxed connected knees, narrow but uncrossed leg paths, restrained opposing arm swing, slight hip/shoulder counterrotation, soft hem lag. The torso remains a clearly illuminated warm-ivory cloth volume, not black with glowing outlines. No bobbing mannequin, running, kicking, crossed legs, floating foot stance, body rotation toward camera, camera drift, zoom or cuts. Maintain rear view and left/away travel. Appearance and motion reference only; no captions or UI."},
+      "status": "completed",
+      "localAsset": "references/videos/vid-01-gait.mp4",
+      "inspection": "Main Astra inspected 500ms overview and 200ms gait samples via Read. Select coat volume, restrained shoulder response and hem lag. Exclude rightward drift, crossed/floating feet and composition changes; use analytic planted contacts, not extracted poses. Temporal-sample inspection only, not full-speed playback; audio excluded.",
+      "metadata": {"width": 1284, "height": 716, "fps": 24, "frames": 145, "durationSeconds": 6.041667}
+    }
+  ],
+  "implementation": {
+    "candidate": 17,
+    "sourceManifest": "implementation/candidate-17-source.json",
+    "sourceDigest": "8a64c7726ba6155f56a3cb1229d5296ae446b038dfb892a9f442f2c431f162a0",
+    "authoredFiles": ["week4/renderer/src/scene.rs", "week4/renderer/src/materials.rs", "week4/renderer/src/gait.rs", "week4/renderer/src/lib.rs"],
+    "generatedFiles": ["week4/app/src/generated/seed33/eva_seed33_renderer_bg.wasm"],
+    "verification": "implementation/candidate-17-checkpoint.json",
+    "captures": "implementation/after/candidate-17",
+    "recording": "implementation/after/candidate-17-motion/recording.json",
+    "inspected": ["formed-12000.png", "comparison-reference.png", "construction-overview-1s.png", "gait-samples-100ms.png"],
+    "inspectionLimit": "Temporal samples, not full-speed playback or naturalistic-gait validation",
+    "limitations": ["Architecture remains repetitive and broadly lit", "Cloth and gait remain stylized", "Glass approximation", "Uploads reduced but timing and WASM memory worsened in measured samples", "Browser only, owner acceptance pending"]
+  }
+}

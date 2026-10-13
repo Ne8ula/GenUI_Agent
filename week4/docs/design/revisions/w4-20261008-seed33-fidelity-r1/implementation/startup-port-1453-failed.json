@@ -1,0 +1,22 @@
+{
+  "ok": false,
+  "startedAt": "2026-10-08T19:10:12.269Z",
+  "finishedAt": "2026-10-08T19:10:12.642Z",
+  "commands": [
+    "(cd C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\app && ..\\node_modules\\.bin\\vite.cmd --host 127.0.0.1 --port 1453 --strictPort)"
+  ],
+  "pageErrors": [],
+  "failures": [
+    "fatal: Vite exited early with code 1:\nerror when starting dev server:\nError: Port 1453 is already in use\n    at Server.onError$1 (file:///C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/node/chunks/config.js:15174:28)\n    at Server.emit (node:events:508:28)\n    at emitErrorNT (node:net:1984:8)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n"
+  ],
+  "files": [],
+  "labels": {
+    "browser": true,
+    "native": false,
+    "camera": "none",
+    "pose": "none",
+    "realtimeClip": "Playwright screencast of the page on this machine's clock; shows real pacing",
+    "steppedClip": "page screenshots at a fixed virtual frame time; shows the intended motion, not machine performance",
+    "stillsFrameNote": "stills are paused with the host clock and the life clock both at the stated t"
+  }
+}

@@ -1,0 +1,7077 @@
+{
+  "startedAt": "2026-10-10T02:15:37.231Z",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "dpr": 1,
+  "checks": [
+    {
+      "name": "structure: actual Rust module/frame",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "1800.00",
+        "lifeMs": "1800.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "0",
+        "tilesAuthored": "22",
+        "triangles": "0",
+        "segments": "2579",
+        "objects": "135",
+        "vertices": "5158",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "5",
+        "frameMs": "6.900",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "393216",
+        "wasmBytes": "6422528",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "structure: visible nonempty content with images blocked",
+      "ok": true,
+      "details": {
+        "light": 37606,
+        "varied": 56244,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "base: actual Rust module/frame",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "5700.00",
+        "lifeMs": "5700.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "23287",
+        "segments": "8162",
+        "objects": "186",
+        "vertices": "86725",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "4",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7077888",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "base: visible nonempty content with images blocked",
+      "ok": true,
+      "details": {
+        "light": 209304,
+        "varied": 806517,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "detail: actual Rust module/frame",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "9000.00",
+        "lifeMs": "9000.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35240",
+        "segments": "8894",
+        "objects": "187",
+        "vertices": "123508",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "4",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "detail: visible nonempty content with images blocked",
+      "ok": true,
+      "details": {
+        "light": 532881,
+        "varied": 1099803,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "formed: actual Rust module/frame",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "12000.00",
+        "lifeMs": "12000.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35240",
+        "segments": "8975",
+        "objects": "187",
+        "vertices": "123670",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "5",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "formed: visible nonempty content with images blocked",
+      "ok": true,
+      "details": {
+        "light": 529939,
+        "varied": 1102189,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "late: actual Rust module/frame",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "22000.00",
+        "lifeMs": "22000.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35242",
+        "segments": "8975",
+        "objects": "187",
+        "vertices": "123676",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "8",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "late: visible nonempty content with images blocked",
+      "ok": true,
+      "details": {
+        "light": 522138,
+        "varied": 1090733,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "tile visibility preserves clock",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "18000.00",
+        "lifeMs": "18000.00",
+        "paused": "1",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "0",
+        "tilesAuthored": "22",
+        "triangles": "34700",
+        "segments": "8963",
+        "objects": "159",
+        "vertices": "122026",
+        "gpuFrames": "3",
+        "particles": "0",
+        "frameCount": "11",
+        "frameMs": "6.900",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "manual stepping is exact",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "19000.00",
+        "lifeMs": "19000.00",
+        "paused": "1",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35216",
+        "segments": "8975",
+        "objects": "187",
+        "vertices": "123598",
+        "gpuFrames": "5",
+        "particles": "0",
+        "frameCount": "18",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "reduced pixels invariant across time",
+      "ok": true
+    },
+    {
+      "name": "unsupported backend fails closed",
+      "ok": true
+    },
+    {
+      "name": "backend remount preserves clock",
+      "ok": true,
+      "details": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "20000.00",
+        "lifeMs": "20000.00",
+        "paused": "1",
+        "reduced": "1",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35240",
+        "segments": "8975",
+        "objects": "187",
+        "vertices": "123670",
+        "gpuFrames": "2",
+        "particles": "0",
+        "frameCount": "5",
+        "frameMs": "7.000",
+        "drawMs": "0.100",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "context loss clears readiness",
+      "ok": true
+    },
+    {
+      "name": "context restored at same time",
+      "ok": true,
+      "details": {
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "20000.00",
+        "lifeMs": "20000.00",
+        "paused": "1",
+        "reduced": "1",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35240",
+        "segments": "8975",
+        "objects": "187",
+        "vertices": "123670",
+        "gpuFrames": "2",
+        "particles": "0",
+        "frameCount": "5",
+        "frameMs": "6.900",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "narrow page does not overflow",
+      "ok": true
+    },
+    {
+      "name": "wasm failure has no ready canvas or fallback",
+      "ok": true,
+      "details": "Rendering unavailable: Failed to fetch"
+    },
+    {
+      "name": "gpu failure has no ready canvas or fallback",
+      "ok": true,
+      "details": "Rendering unavailable: Rust WebGL2 unavailable; no image or TypeScript fallback"
+    },
+    {
+      "name": "real pause holds time",
+      "ok": true
+    },
+    {
+      "name": "real resume advances time",
+      "ok": true
+    },
+    {
+      "name": "WASM memory remains bounded",
+      "ok": true
+    },
+    {
+      "name": "pause stops again",
+      "ok": true
+    },
+    {
+      "name": "reseed/remount memory bounded",
+      "ok": true,
+      "details": [
+        18481152,
+        18481152,
+        18481152,
+        18481152,
+        18481152,
+        18481152,
+        18481152,
+        18481152
+      ]
+    },
+    {
+      "name": "no runtime scene-image requests",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "WASM was actually requested",
+      "ok": true
+    },
+    {
+      "name": "no page errors",
+      "ok": true,
+      "details": []
+    }
+  ],
+  "captures": [
+    {
+      "name": "structure",
+      "time": 1800,
+      "dataset": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "1800.00",
+        "lifeMs": "1800.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "0",
+        "tilesAuthored": "22",
+        "triangles": "0",
+        "segments": "2579",
+        "objects": "135",
+        "vertices": "5158",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "5",
+        "frameMs": "6.900",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "393216",
+        "wasmBytes": "6422528",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "pixels": {
+        "light": 37606,
+        "varied": 56244,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "base",
+      "time": 5700,
+      "dataset": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "5700.00",
+        "lifeMs": "5700.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "23287",
+        "segments": "8162",
+        "objects": "186",
+        "vertices": "86725",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "4",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7077888",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "pixels": {
+        "light": 209304,
+        "varied": 806517,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "detail",
+      "time": 9000,
+      "dataset": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "9000.00",
+        "lifeMs": "9000.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35240",
+        "segments": "8894",
+        "objects": "187",
+        "vertices": "123508",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "4",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "pixels": {
+        "light": 532881,
+        "varied": 1099803,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "formed",
+      "time": 12000,
+      "dataset": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "12000.00",
+        "lifeMs": "12000.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35240",
+        "segments": "8975",
+        "objects": "187",
+        "vertices": "123670",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "5",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "pixels": {
+        "light": 529939,
+        "varied": 1102189,
+        "total": 2073600
+      }
+    },
+    {
+      "name": "late",
+      "time": 22000,
+      "dataset": {
+        "ready": "1",
+        "assetsReady": "1",
+        "backend": "webgl2",
+        "renderer": "rust-wasm",
+        "sceneId": "scene:paris-1980s-terrace/seed33-rust",
+        "look": "seed33",
+        "seed": "33",
+        "density": "1",
+        "facing": "away",
+        "buildMs": "12000",
+        "timeMs": "22000.00",
+        "lifeMs": "22000.00",
+        "paused": "0",
+        "reduced": "0",
+        "manualClock": "1",
+        "tiles": "22",
+        "tilesAuthored": "22",
+        "triangles": "35242",
+        "segments": "8975",
+        "objects": "187",
+        "vertices": "123676",
+        "gpuFrames": "1",
+        "particles": "0",
+        "frameCount": "8",
+        "frameMs": "7.000",
+        "drawMs": "0.000",
+        "cpuBufferBytes": "7864320",
+        "wasmBytes": "18481152",
+        "degraded": "0",
+        "detail": "Rust/WASM procedural WebGL2 — ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "pixels": {
+        "light": 522138,
+        "varied": 1090733,
+        "total": 2073600
+      }
+    }
+  ],
+  "requests": [
+    "http://127.0.0.1:1459/?fixture=1&look=seed33&seed=33&build=12000&capture=1&clock=manual&t=1800",
+    "http://127.0.0.1:1459/@vite/client",
+    "http://127.0.0.1:1459/src/main.tsx",
+    "http://127.0.0.1:1459/@react-refresh",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/client/env.mjs",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react-dom_client.js?v=bab29dbf",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/500.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/500.css",
+    "http://127.0.0.1:1459/src/style.css",
+    "http://127.0.0.1:1459/src/App.tsx",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-ZIVGMMPY.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/host/FixtureControls.tsx",
+    "http://127.0.0.1:1459/src/host/frameStats.ts",
+    "http://127.0.0.1:1459/src/host/params.ts",
+    "http://127.0.0.1:1459/src/host/scenes.ts",
+    "http://127.0.0.1:1459/src/host/Stage.tsx",
+    "http://127.0.0.1:1459/src/RustApp.tsx",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-NVV7LJG7.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/host/RustStage.tsx",
+    "http://127.0.0.1:1459/src/scene/arrival.ts",
+    "http://127.0.0.1:1459/src/scene/life.ts",
+    "http://127.0.0.1:1459/src/scene/seed33.ts",
+    "http://127.0.0.1:1459/src/host/useRenderLoop.ts",
+    "http://127.0.0.1:1459/src/render/rustLoader.ts",
+    "http://127.0.0.1:1459/src/render/create.ts",
+    "http://127.0.0.1:1459/src/scene/store.ts",
+    "http://127.0.0.1:1459/src/host/clock.ts",
+    "http://127.0.0.1:1459/src/host/label.ts",
+    "http://127.0.0.1:1459/src/host/tilesFlag.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Photo.ts",
+    "http://127.0.0.1:1459/src/scene/rng.ts",
+    "http://127.0.0.1:1459/src/scene/author.ts",
+    "http://127.0.0.1:1459/src/scene/tiles.ts",
+    "http://127.0.0.1:1459/src/scene/palette.ts",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer.js",
+    "http://127.0.0.1:1459/src/render/canvas2d.ts",
+    "http://127.0.0.1:1459/src/render/webgl2.ts",
+    "http://127.0.0.1:1459/src/scene/types.ts",
+    "http://127.0.0.1:1459/src/render/pack.ts",
+    "http://127.0.0.1:1459/src/render/patterns.ts",
+    "http://127.0.0.1:1459/src/render/paper.ts",
+    "http://127.0.0.1:1459/src/render/photoAssets.ts",
+    "http://127.0.0.1:1459/src/render/constructionCanvas.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Construction.ts",
+    "http://127.0.0.1:1459/src/scene/postFormationOverlay.ts",
+    "http://127.0.0.1:1459/src/scene/walkAwayFigure.ts",
+    "http://127.0.0.1:1459/src/scene/tileBodies.ts",
+    "http://127.0.0.1:1459/src/render/constructionWebgl.ts",
+    "http://127.0.0.1:1459/src/scene/constructionTypes.ts",
+    "http://127.0.0.1:1459/src/scene/matrixMaterials.ts",
+    "http://127.0.0.1:1459/src/scene/matrixTiles.ts",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer_bg.wasm",
+    "http://127.0.0.1:1459/?fixture=1&look=seed33&seed=33&build=12000&capture=1&clock=manual&t=5700",
+    "http://127.0.0.1:1459/@vite/client",
+    "http://127.0.0.1:1459/src/main.tsx",
+    "http://127.0.0.1:1459/@react-refresh",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react-dom_client.js?v=bab29dbf",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/500.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/500.css",
+    "http://127.0.0.1:1459/src/style.css",
+    "http://127.0.0.1:1459/src/App.tsx",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/client/env.mjs",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-ZIVGMMPY.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/host/FixtureControls.tsx",
+    "http://127.0.0.1:1459/src/host/frameStats.ts",
+    "http://127.0.0.1:1459/src/host/params.ts",
+    "http://127.0.0.1:1459/src/host/scenes.ts",
+    "http://127.0.0.1:1459/src/host/Stage.tsx",
+    "http://127.0.0.1:1459/src/RustApp.tsx",
+    "http://127.0.0.1:1459/src/scene/arrival.ts",
+    "http://127.0.0.1:1459/src/scene/life.ts",
+    "http://127.0.0.1:1459/src/scene/seed33.ts",
+    "http://127.0.0.1:1459/src/host/useRenderLoop.ts",
+    "http://127.0.0.1:1459/src/host/RustStage.tsx",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-NVV7LJG7.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/scene/palette.ts",
+    "http://127.0.0.1:1459/src/scene/store.ts",
+    "http://127.0.0.1:1459/src/scene/author.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Photo.ts",
+    "http://127.0.0.1:1459/src/scene/rng.ts",
+    "http://127.0.0.1:1459/src/scene/tiles.ts",
+    "http://127.0.0.1:1459/src/render/create.ts",
+    "http://127.0.0.1:1459/src/host/clock.ts",
+    "http://127.0.0.1:1459/src/host/label.ts",
+    "http://127.0.0.1:1459/src/host/tilesFlag.ts",
+    "http://127.0.0.1:1459/src/render/rustLoader.ts",
+    "http://127.0.0.1:1459/src/render/canvas2d.ts",
+    "http://127.0.0.1:1459/src/render/webgl2.ts",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer.js",
+    "http://127.0.0.1:1459/src/scene/types.ts",
+    "http://127.0.0.1:1459/src/render/pack.ts",
+    "http://127.0.0.1:1459/src/render/patterns.ts",
+    "http://127.0.0.1:1459/src/render/paper.ts",
+    "http://127.0.0.1:1459/src/render/photoAssets.ts",
+    "http://127.0.0.1:1459/src/render/constructionCanvas.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Construction.ts",
+    "http://127.0.0.1:1459/src/scene/postFormationOverlay.ts",
+    "http://127.0.0.1:1459/src/scene/walkAwayFigure.ts",
+    "http://127.0.0.1:1459/src/scene/tileBodies.ts",
+    "http://127.0.0.1:1459/src/render/constructionWebgl.ts",
+    "http://127.0.0.1:1459/src/scene/constructionTypes.ts",
+    "http://127.0.0.1:1459/src/scene/matrixMaterials.ts",
+    "http://127.0.0.1:1459/src/scene/matrixTiles.ts",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer_bg.wasm",
+    "http://127.0.0.1:1459/?fixture=1&look=seed33&seed=33&build=12000&capture=1&clock=manual&t=9000",
+    "http://127.0.0.1:1459/@vite/client",
+    "http://127.0.0.1:1459/src/main.tsx",
+    "http://127.0.0.1:1459/@react-refresh",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react-dom_client.js?v=bab29dbf",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/500.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/500.css",
+    "http://127.0.0.1:1459/src/style.css",
+    "http://127.0.0.1:1459/src/App.tsx",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/client/env.mjs",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-ZIVGMMPY.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/host/FixtureControls.tsx",
+    "http://127.0.0.1:1459/src/host/frameStats.ts",
+    "http://127.0.0.1:1459/src/host/params.ts",
+    "http://127.0.0.1:1459/src/host/scenes.ts",
+    "http://127.0.0.1:1459/src/host/Stage.tsx",
+    "http://127.0.0.1:1459/src/RustApp.tsx",
+    "http://127.0.0.1:1459/src/scene/arrival.ts",
+    "http://127.0.0.1:1459/src/scene/life.ts",
+    "http://127.0.0.1:1459/src/scene/seed33.ts",
+    "http://127.0.0.1:1459/src/host/useRenderLoop.ts",
+    "http://127.0.0.1:1459/src/host/RustStage.tsx",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-NVV7LJG7.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/scene/rng.ts",
+    "http://127.0.0.1:1459/src/scene/author.ts",
+    "http://127.0.0.1:1459/src/scene/tiles.ts",
+    "http://127.0.0.1:1459/src/scene/store.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Photo.ts",
+    "http://127.0.0.1:1459/src/scene/palette.ts",
+    "http://127.0.0.1:1459/src/render/create.ts",
+    "http://127.0.0.1:1459/src/host/clock.ts",
+    "http://127.0.0.1:1459/src/host/label.ts",
+    "http://127.0.0.1:1459/src/host/tilesFlag.ts",
+    "http://127.0.0.1:1459/src/render/rustLoader.ts",
+    "http://127.0.0.1:1459/src/scene/types.ts",
+    "http://127.0.0.1:1459/src/render/canvas2d.ts",
+    "http://127.0.0.1:1459/src/render/webgl2.ts",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer.js",
+    "http://127.0.0.1:1459/src/render/pack.ts",
+    "http://127.0.0.1:1459/src/render/patterns.ts",
+    "http://127.0.0.1:1459/src/render/paper.ts",
+    "http://127.0.0.1:1459/src/render/photoAssets.ts",
+    "http://127.0.0.1:1459/src/render/constructionCanvas.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Construction.ts",
+    "http://127.0.0.1:1459/src/scene/postFormationOverlay.ts",
+    "http://127.0.0.1:1459/src/scene/walkAwayFigure.ts",
+    "http://127.0.0.1:1459/src/scene/tileBodies.ts",
+    "http://127.0.0.1:1459/src/render/constructionWebgl.ts",
+    "http://127.0.0.1:1459/src/scene/constructionTypes.ts",
+    "http://127.0.0.1:1459/src/scene/matrixMaterials.ts",
+    "http://127.0.0.1:1459/src/scene/matrixTiles.ts",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer_bg.wasm",
+    "http://127.0.0.1:1459/?fixture=1&look=seed33&seed=33&build=12000&capture=1&clock=manual&t=12000",
+    "http://127.0.0.1:1459/@vite/client",
+    "http://127.0.0.1:1459/src/main.tsx",
+    "http://127.0.0.1:1459/@react-refresh",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react-dom_client.js?v=bab29dbf",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/500.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/500.css",
+    "http://127.0.0.1:1459/src/style.css",
+    "http://127.0.0.1:1459/src/App.tsx",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/client/env.mjs",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-ZIVGMMPY.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/host/FixtureControls.tsx",
+    "http://127.0.0.1:1459/src/host/frameStats.ts",
+    "http://127.0.0.1:1459/src/host/params.ts",
+    "http://127.0.0.1:1459/src/host/scenes.ts",
+    "http://127.0.0.1:1459/src/host/Stage.tsx",
+    "http://127.0.0.1:1459/src/RustApp.tsx",
+    "http://127.0.0.1:1459/src/scene/arrival.ts",
+    "http://127.0.0.1:1459/src/scene/life.ts",
+    "http://127.0.0.1:1459/src/scene/seed33.ts",
+    "http://127.0.0.1:1459/src/host/useRenderLoop.ts",
+    "http://127.0.0.1:1459/src/host/RustStage.tsx",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-NVV7LJG7.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/scene/palette.ts",
+    "http://127.0.0.1:1459/src/scene/store.ts",
+    "http://127.0.0.1:1459/src/scene/author.ts",
+    "http://127.0.0.1:1459/src/scene/rng.ts",
+    "http://127.0.0.1:1459/src/scene/tiles.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Photo.ts",
+    "http://127.0.0.1:1459/src/render/create.ts",
+    "http://127.0.0.1:1459/src/host/clock.ts",
+    "http://127.0.0.1:1459/src/host/label.ts",
+    "http://127.0.0.1:1459/src/host/tilesFlag.ts",
+    "http://127.0.0.1:1459/src/render/rustLoader.ts",
+    "http://127.0.0.1:1459/src/scene/types.ts",
+    "http://127.0.0.1:1459/src/render/canvas2d.ts",
+    "http://127.0.0.1:1459/src/render/webgl2.ts",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer.js",
+    "http://127.0.0.1:1459/src/render/pack.ts",
+    "http://127.0.0.1:1459/src/render/patterns.ts",
+    "http://127.0.0.1:1459/src/render/paper.ts",
+    "http://127.0.0.1:1459/src/render/photoAssets.ts",
+    "http://127.0.0.1:1459/src/render/constructionCanvas.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Construction.ts",
+    "http://127.0.0.1:1459/src/scene/postFormationOverlay.ts",
+    "http://127.0.0.1:1459/src/scene/walkAwayFigure.ts",
+    "http://127.0.0.1:1459/src/scene/tileBodies.ts",
+    "http://127.0.0.1:1459/src/render/constructionWebgl.ts",
+    "http://127.0.0.1:1459/src/scene/constructionTypes.ts",
+    "http://127.0.0.1:1459/src/scene/matrixMaterials.ts",
+    "http://127.0.0.1:1459/src/scene/matrixTiles.ts",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer_bg.wasm",
+    "http://127.0.0.1:1459/?fixture=1&look=seed33&seed=33&build=12000&capture=1&clock=manual&t=22000",
+    "http://127.0.0.1:1459/@vite/client",
+    "http://127.0.0.1:1459/src/main.tsx",
+    "http://127.0.0.1:1459/@react-refresh",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react-dom_client.js?v=bab29dbf",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/500.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/500.css",
+    "http://127.0.0.1:1459/src/style.css",
+    "http://127.0.0.1:1459/src/App.tsx",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/client/env.mjs",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-ZIVGMMPY.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/host/FixtureControls.tsx",
+    "http://127.0.0.1:1459/src/host/frameStats.ts",
+    "http://127.0.0.1:1459/src/host/params.ts",
+    "http://127.0.0.1:1459/src/host/scenes.ts",
+    "http://127.0.0.1:1459/src/host/Stage.tsx",
+    "http://127.0.0.1:1459/src/RustApp.tsx",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-NVV7LJG7.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/scene/arrival.ts",
+    "http://127.0.0.1:1459/src/scene/life.ts",
+    "http://127.0.0.1:1459/src/scene/seed33.ts",
+    "http://127.0.0.1:1459/src/host/useRenderLoop.ts",
+    "http://127.0.0.1:1459/src/host/RustStage.tsx",
+    "http://127.0.0.1:1459/src/scene/rng.ts",
+    "http://127.0.0.1:1459/src/scene/author.ts",
+    "http://127.0.0.1:1459/src/scene/tiles.ts",
+    "http://127.0.0.1:1459/src/scene/store.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Photo.ts",
+    "http://127.0.0.1:1459/src/scene/palette.ts",
+    "http://127.0.0.1:1459/src/render/create.ts",
+    "http://127.0.0.1:1459/src/host/clock.ts",
+    "http://127.0.0.1:1459/src/host/label.ts",
+    "http://127.0.0.1:1459/src/host/tilesFlag.ts",
+    "http://127.0.0.1:1459/src/render/rustLoader.ts",
+    "http://127.0.0.1:1459/src/scene/types.ts",
+    "http://127.0.0.1:1459/src/render/canvas2d.ts",
+    "http://127.0.0.1:1459/src/render/webgl2.ts",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer.js",
+    "http://127.0.0.1:1459/src/render/pack.ts",
+    "http://127.0.0.1:1459/src/render/patterns.ts",
+    "http://127.0.0.1:1459/src/render/paper.ts",
+    "http://127.0.0.1:1459/src/render/photoAssets.ts",
+    "http://127.0.0.1:1459/src/render/constructionCanvas.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Construction.ts",
+    "http://127.0.0.1:1459/src/scene/postFormationOverlay.ts",
+    "http://127.0.0.1:1459/src/scene/walkAwayFigure.ts",
+    "http://127.0.0.1:1459/src/scene/tileBodies.ts",
+    "http://127.0.0.1:1459/src/render/constructionWebgl.ts",
+    "http://127.0.0.1:1459/src/scene/constructionTypes.ts",
+    "http://127.0.0.1:1459/src/scene/matrixMaterials.ts",
+    "http://127.0.0.1:1459/src/scene/matrixTiles.ts",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer_bg.wasm",
+    "http://127.0.0.1:1459/?fixture=1&look=seed33&seed=33&build=12000&clock=manual&paused=1&t=18000",
+    "http://127.0.0.1:1459/@vite/client",
+    "http://127.0.0.1:1459/src/main.tsx",
+    "http://127.0.0.1:1459/@react-refresh",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react.js?v=bab29dbf",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/react-dom_client.js?v=bab29dbf",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/500.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/400.css",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/500.css",
+    "http://127.0.0.1:1459/src/style.css",
+    "http://127.0.0.1:1459/src/App.tsx",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/client/env.mjs",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-ZIVGMMPY.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/host/FixtureControls.tsx",
+    "http://127.0.0.1:1459/src/host/frameStats.ts",
+    "http://127.0.0.1:1459/src/host/params.ts",
+    "http://127.0.0.1:1459/src/host/scenes.ts",
+    "http://127.0.0.1:1459/src/host/Stage.tsx",
+    "http://127.0.0.1:1459/src/RustApp.tsx",
+    "http://127.0.0.1:1459/src/scene/arrival.ts",
+    "http://127.0.0.1:1459/src/scene/life.ts",
+    "http://127.0.0.1:1459/src/scene/seed33.ts",
+    "http://127.0.0.1:1459/src/host/useRenderLoop.ts",
+    "http://127.0.0.1:1459/src/host/RustStage.tsx",
+    "http://127.0.0.1:1459/node_modules/.vite/deps/chunk-NVV7LJG7.js?v=bab29dbf",
+    "http://127.0.0.1:1459/src/scene/palette.ts",
+    "http://127.0.0.1:1459/src/scene/store.ts",
+    "http://127.0.0.1:1459/src/scene/author.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Photo.ts",
+    "http://127.0.0.1:1459/src/scene/rng.ts",
+    "http://127.0.0.1:1459/src/scene/tiles.ts",
+    "http://127.0.0.1:1459/src/render/create.ts",
+    "http://127.0.0.1:1459/src/host/clock.ts",
+    "http://127.0.0.1:1459/src/host/label.ts",
+    "http://127.0.0.1:1459/src/host/tilesFlag.ts",
+    "http://127.0.0.1:1459/src/render/rustLoader.ts",
+    "http://127.0.0.1:1459/src/scene/types.ts",
+    "http://127.0.0.1:1459/src/render/canvas2d.ts",
+    "http://127.0.0.1:1459/src/render/webgl2.ts",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer.js",
+    "http://127.0.0.1:1459/src/render/pack.ts",
+    "http://127.0.0.1:1459/src/render/patterns.ts",
+    "http://127.0.0.1:1459/src/render/paper.ts",
+    "http://127.0.0.1:1459/src/render/photoAssets.ts",
+    "http://127.0.0.1:1459/src/render/constructionCanvas.ts",
+    "http://127.0.0.1:1459/src/scene/seed33Construction.ts",
+    "http://127.0.0.1:1459/src/scene/postFormationOverlay.ts",
+    "http://127.0.0.1:1459/src/scene/walkAwayFigure.ts",
+    "http://127.0.0.1:1459/src/scene/tileBodies.ts",
+    "http://127.0.0.1:1459/src/render/constructionWebgl.ts",
+    "http://127.0.0.1:1459/src/scene/constructionTypes.ts",
+    "http://127.0.0.1:1459/src/scene/matrixMaterials.ts",
+    "http://127.0.0.1:1459/src/scene/matrixTiles.ts",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2",
+    "http://127.0.0.1:1459/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2",
+    "http://127.0.0.1:1459/src/generated/seed33/eva_seed33_renderer_bg.wasm"
+  ],
+  "blocked": [],
+  "errors": [],
+  "performance": {
+    "elapsedMs": 6004.500000011921,
+    "samples": [
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 12041.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 12048.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 12055.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.6,
+        "timeMs": 12062.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 12069.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 12076.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 12083.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 12090.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 12097.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 12104.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.7,
+        "timeMs": 12111.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 12118.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 12125,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 12132,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 12139,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 12145.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 12152.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 12159.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 12166.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 12173.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 12180.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 12187.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 12194.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6.5,
+        "timeMs": 12201.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 12208.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 12215.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 12222.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 12229.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4,
+        "timeMs": 12236.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4,
+        "timeMs": 12243.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.1,
+        "timeMs": 12250.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 12257.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 12264.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 12271,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 12277.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5.3,
+        "timeMs": 12285,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 12291.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 12298.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 12305.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 12312.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 12319.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 12326.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 12333.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.7,
+        "timeMs": 12340.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 12347.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.3,
+        "timeMs": 12354.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 12361.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 12368.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.8,
+        "timeMs": 12375.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 12382.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 12389.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 12396.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 12403,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 12410,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 12416.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6.7,
+        "timeMs": 12423.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 12430.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.6,
+        "timeMs": 12437.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 12444.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 12451.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 12458.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 12465.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 12472.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.1,
+        "timeMs": 12479.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 12486.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 12493.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 12500.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 12507.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 5.2,
+        "timeMs": 12514.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6.7,
+        "timeMs": 12521.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 12528.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 6.6,
+        "timeMs": 12535,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 12541.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 12548.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 12555.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 12562.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 12569.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.8,
+        "timeMs": 12576.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 12583.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 12590.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 6.8,
+        "timeMs": 12597.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 12604.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.8,
+        "timeMs": 12611.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 12618.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 6.4,
+        "timeMs": 12625.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 12632.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 12639.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 12646.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 12653.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.7,
+        "timeMs": 12660.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 12667.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 6.6,
+        "timeMs": 12674,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 12680.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 12687.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 12694.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.5,
+        "timeMs": 12701.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.1,
+        "timeMs": 12708.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 12715.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 12722.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6.9,
+        "timeMs": 12729.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 12736.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 12743.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 12750.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 12757.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 12764.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 12771.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 12778.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 12785.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 12792.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 5.3,
+        "timeMs": 12799,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 12806,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 12813,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 12819.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.8,
+        "timeMs": 12826.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.5,
+        "timeMs": 12833.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 12840.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 12847.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 12854.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 12861.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.7,
+        "timeMs": 12868.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 12875.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 12882.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 12889.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 12896.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 12903.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 12910.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 12917.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 12924.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 12931.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 12938.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.1,
+        "timeMs": 12945,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 12951.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 12958.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.7,
+        "timeMs": 12965.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 12972.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 12979.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 12986.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 12993.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 13000.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 13007.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 13014.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 13021.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.7,
+        "timeMs": 13028.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.7,
+        "timeMs": 13035.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 13042.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.5,
+        "timeMs": 13049.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 13056.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 13063,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5,
+        "timeMs": 13070.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13077,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13083.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 13090.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.5,
+        "timeMs": 13097.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 13104.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 13111.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13118.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 13125.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.6,
+        "timeMs": 13132.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 13139.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 13146.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 13153.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 13160.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13167.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13174.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 13181.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.6,
+        "timeMs": 13188.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13195.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 13202.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 13209,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 13216,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 13222.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 13229.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13236.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 13243.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 13250.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13257.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 13264.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 13271.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 13278.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 13285.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 13292.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 13299.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13306.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13313.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13320.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.5,
+        "timeMs": 13327.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 13334.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 13341,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.4,
+        "timeMs": 13347.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5.4,
+        "timeMs": 13355,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.5,
+        "timeMs": 13361.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 13368.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13375.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.8,
+        "timeMs": 13382.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 13389.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 13396.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13403.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 13410.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 13417.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 13424.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 13431.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13438.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 13445.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 13452.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6,
+        "timeMs": 13459.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.8,
+        "timeMs": 13466.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.9,
+        "timeMs": 13473,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6,
+        "timeMs": 13480,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.7,
+        "timeMs": 13487,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.4,
+        "timeMs": 13493.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 7.3,
+        "timeMs": 13500.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 13507.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.7,
+        "timeMs": 13514.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.8,
+        "timeMs": 13521.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.6,
+        "timeMs": 13528.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 13535.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13542.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13549.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 13556.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 13563.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 13570.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.6,
+        "timeMs": 13577.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.4,
+        "timeMs": 13584.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.5,
+        "timeMs": 13591.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 13598.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 13605.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13612.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.5,
+        "timeMs": 13619,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 13625.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 13632.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 13639.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 13646.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 13653.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 13660.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 13667.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13674.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 13681.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 13688.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 13695.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 13702.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 13709.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 13716.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13723.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13730.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 13737.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 13744,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 13751,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13757.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 13764.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 13771.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13778.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 13785.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 13792.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 13799.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 13806.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13813.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13820.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.8,
+        "timeMs": 13827.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 13834.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 13841.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 13848.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 13855.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 13862.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 13869.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13876.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13883.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13890,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 13896.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 13903.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 13910.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 13917.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 13924.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 13931.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 13938.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 13945.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 13952.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 13959.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.5,
+        "timeMs": 13966.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 13973.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 13980.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 13987.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.8,
+        "timeMs": 13994.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14001.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 14008.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14015.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 14021.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 14028.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 14035.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14042.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 14049.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14056.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14063.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 14070.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 14077.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 14084.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.8,
+        "timeMs": 14091.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5.5,
+        "timeMs": 14098.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 6.4,
+        "timeMs": 14105.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.5,
+        "timeMs": 14112.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14119.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 14126.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 14133.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14140.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14147.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 14154.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.9,
+        "timeMs": 14160.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14167.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14174.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14181.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.7,
+        "timeMs": 14188.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.1,
+        "timeMs": 14195.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 14202.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 14209.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 14216.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5.3,
+        "timeMs": 14223.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14230.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14237.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14244.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14251.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 14258.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14265.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 14272.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 14279.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14286.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14293.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 14299.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.5,
+        "timeMs": 14306.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 14313.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14320.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14327.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14334.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 14341.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 14348.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 14355.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14362.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14369.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14376.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 14383.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 14390.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14397.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14404.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 14411.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 14418,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5.2,
+        "timeMs": 14425.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14432,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14439,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.7,
+        "timeMs": 14445.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14452.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 14459.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 14466.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14473.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 14480.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14487.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14494.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 14501.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6.1,
+        "timeMs": 14508.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 14515.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.5,
+        "timeMs": 14522.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 14529.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 14536.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 14543.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14550.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14557.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14564,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14571,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14577.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14584.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14591.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.4,
+        "timeMs": 14598.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 14605.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14612.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14619.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 14626.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14633.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14640.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14647.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14654.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 14661.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14668.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 14675.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 14682.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14689.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14696,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14703,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14709.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14716.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14723.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14730.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 14737.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 14744.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14751.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 14758.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14765.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 14772.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 14779.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 14786.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14793.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 14800.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 14807.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 14814.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 6.3,
+        "timeMs": 14821.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 14828,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 14835,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14841.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.8,
+        "timeMs": 14848.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 14855.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 14862.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 14869.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 14876.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 14883.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 14890.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 14897.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 14904.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 14911.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 14918.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 14925.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 14932.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 14939.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 14946.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.9,
+        "timeMs": 14953.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.4,
+        "timeMs": 14960.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 14967,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 14974,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 14980.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 14987.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.6,
+        "timeMs": 14994.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15001.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15008.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15015.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15022.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15029.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 15036.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15043.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15050.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15057.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 15064.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 15071.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15078.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 15085.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15092.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 15099.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15106,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 15113,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 15120,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 15126.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15133.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15140.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 15147.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15154.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 15161.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15168.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15175.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 15182.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 15189.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 15196.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15203.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 15210.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 15217.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5,
+        "timeMs": 15224.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15231.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15238,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15245,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 15251.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15258.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6.5,
+        "timeMs": 15265.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 6.9,
+        "timeMs": 15272.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 15279.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 15286.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 15293.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 15300.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15307.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.7,
+        "timeMs": 15314.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15321.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 15328.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15335.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 15342.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15349.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15356.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15363.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15370.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15377,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 15384,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 15390.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15397.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 15404.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15411.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.2,
+        "timeMs": 15418.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15425.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15432.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15439.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 15446.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15453.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 15460.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 15467.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 15474.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 15481.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 15488.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 15495.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15502.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15509,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 15516,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15522.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15529.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5,
+        "timeMs": 15536.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15543.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15550.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 15557.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 15564.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15571.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15578.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 15585.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15592.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15599.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15606.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15613.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15620.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 15627.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15634.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 15641.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15648,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15654.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.5,
+        "timeMs": 15661.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 15668.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 15675.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 15682.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.7,
+        "timeMs": 15689.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15696.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 15703.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15710.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15717.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 15724.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15731.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15738.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15745.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15752.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 15759.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 15766.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 15773.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15780,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 15787,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 15793.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 15800.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.7,
+        "timeMs": 15807.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 15814.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15821.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 15828.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15835.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15842.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 15849.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 15856.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15863.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 15870.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 15877.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15884.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 15891.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 15898.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 15905.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 15912,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 15919,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15925.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15932.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 15939.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 15946.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15953.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 15960.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 15967.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 15974.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 15981.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 5.5,
+        "timeMs": 15988.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 15995.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 16002.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16009.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.5,
+        "timeMs": 16016.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16023.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16030.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16037.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16044,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16051,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 16057.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16064.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 16071.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16078.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 16085.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5,
+        "timeMs": 16092.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 5.1,
+        "timeMs": 16099.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 16106.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 16113.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16120.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16127.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16134.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 16141.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16148.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16155.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16162.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16169.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 16176.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 16183.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 16190,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16196.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16203.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16210.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 16217.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16224.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.5,
+        "timeMs": 16231.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16238.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16245.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 16252.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16259.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 16266.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 16273.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16280.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 16287.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16294.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.6,
+        "timeMs": 16301.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 16308.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 16315.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 16322,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16329,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16336,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16342.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16349.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 16356.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16363.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 16370.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16377.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 16384.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16391.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 16398.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16405.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 16412.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16419.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16426.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5,
+        "timeMs": 16433.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.8,
+        "timeMs": 16440.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 16447.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16454.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16461,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16468,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16474.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16481.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16488.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.9,
+        "timeMs": 16495.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 16502.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16509.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16516.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 16523.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16530.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 16537.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16544.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16551.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.4,
+        "timeMs": 16558.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 16565.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.6,
+        "timeMs": 16572.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 16579.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 16586.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16593,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 16600,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16606.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16613.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.7,
+        "timeMs": 16620.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.4,
+        "timeMs": 16627.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16634.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 16641.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16648.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16655.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16662.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16669.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16676.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 16683.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16690.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16697.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 16704.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16711.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16718.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 16725.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 16732,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16739,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.1,
+        "timeMs": 16745.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.1,
+        "timeMs": 16752.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16759.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16766.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 16773.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16780.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16787.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16794.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16801.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16808.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16815.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16822.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16829.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 16836.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16843.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 16850.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 16857.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16864,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 16871,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16877.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16884.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16891.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.3,
+        "timeMs": 16898.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16905.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16912.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 16919.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16926.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 16933.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 16940.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 16947.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 16954.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 16961.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 16968.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16975.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 16982.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 16989.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.6,
+        "timeMs": 16996,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 17003,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 17010,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 17016.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17023.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 17030.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17037.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 17044.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 17051.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 17058.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 17065.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 5,
+        "timeMs": 17072.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.5,
+        "timeMs": 17079.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.7,
+        "timeMs": 17086.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 17093.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 17100.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17107.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17114.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17121.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 17128,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17135,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 17141.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 17148.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 17155.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17162.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 17169.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.1,
+        "timeMs": 17176.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17183.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 17190.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17197.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 17204.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17211.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 17218.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 17225.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17232.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 17239.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.6,
+        "timeMs": 17246.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17253.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17260,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 17267,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 17274,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 17281,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 5.4,
+        "timeMs": 17287.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 17294.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17301.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17308.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17315.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 17322.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 17329.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17336.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.7,
+        "timeMs": 17343.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17350.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17357.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 17364.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 17371.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17378.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 17385.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17392.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 17399.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 17406,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17413,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 17419.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17426.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 17433.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 17440.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17447.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5,
+        "timeMs": 17454.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17461.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 17468.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17475.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17482.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17489.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17496.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17503.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.1,
+        "timeMs": 17510.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17517.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 17524.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 17531.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17538,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17545,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 17552,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.7,
+        "timeMs": 17558.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5.3,
+        "timeMs": 17565.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 5.1,
+        "timeMs": 17572.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 17579.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17586.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 17593.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17600.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17607.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 17614.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 17621.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.6,
+        "timeMs": 17628.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17635.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 17642.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 17649.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17656.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 17663.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 17670,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.5,
+        "timeMs": 17677.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.6,
+        "timeMs": 17683.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17690.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.6,
+        "timeMs": 17697.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17704.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.2,
+        "timeMs": 17711.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 17718.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.7,
+        "timeMs": 17725.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.6,
+        "timeMs": 17732.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.5,
+        "timeMs": 17739.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.4,
+        "timeMs": 17746.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 17753.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17760.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 5.5,
+        "timeMs": 17767.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17774.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 17781.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.3,
+        "timeMs": 17788.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17795.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 17802.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.4,
+        "timeMs": 17809,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.2,
+        "timeMs": 17816,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17822.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.3,
+        "timeMs": 17829.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17836.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17843.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17850.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17857.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5,
+        "timeMs": 17864.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17871.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17878.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17885.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.2,
+        "timeMs": 17892.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.4,
+        "timeMs": 17899.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 17906.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.5,
+        "timeMs": 17913.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 17920.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 9.8,
+        "submitMs": 5.1,
+        "timeMs": 17930,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 4.1,
+        "submitMs": 4.6,
+        "timeMs": 17934.1,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.9,
+        "timeMs": 17941,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.5,
+        "timeMs": 17948,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.2,
+        "timeMs": 17954.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.8,
+        "timeMs": 17961.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 5.6,
+        "timeMs": 17968.9,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 17975.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.9,
+        "timeMs": 17982.8,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17989.7,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.8,
+        "timeMs": 17996.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 18003.6,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.3,
+        "timeMs": 18010.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7,
+        "submitMs": 4.7,
+        "timeMs": 18017.5,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 4.7,
+        "timeMs": 18024.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.9,
+        "submitMs": 5.1,
+        "timeMs": 18031.3,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 7.1,
+        "submitMs": 4.4,
+        "timeMs": 18038.4,
+        "memory": 18481152,
+        "buffer": 7864320
+      },
+      {
+        "frameMs": 6.8,
+        "submitMs": 4.3,
+        "timeMs": 18045.2,
+        "memory": 18481152,
+        "buffer": 7864320
+      }
+    ],
+    "label": "Actual real-time browser RAF intervals and Rust generation/submission CPU wall time; not GPU duration",
+    "frameMedianMs": 6.9,
+    "frameP95Ms": 7,
+    "submitMedianMs": 4.8,
+    "submitP95Ms": 5.5
+  },
+  "finishedAt": "2026-10-10T02:15:50.613Z",
+  "ok": true
+}

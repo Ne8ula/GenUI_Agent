@@ -91,15 +91,6 @@ if (existsSync(checksPath)) fail(`${checksPath} already exists; evidence is neve
 
 // ---- Vite dev server ------------------------------------------------------------------------------
 
-function findViteBin(start) {
-  const name = process.platform === 'win32' ? 'vite.cmd' : 'vite';
-  for (let dir = start; ; dir = path.dirname(dir)) {
-    const candidate = path.join(dir, 'node_modules', '.bin', name);
-    if (existsSync(candidate)) return candidate;
-    if (path.dirname(dir) === dir) return null;
-  }
-}
-
 let server = null;
 async function stopServer() {
   const child = server;
@@ -122,15 +113,16 @@ for (const signal of ['SIGINT', 'SIGTERM']) {
 process.on('exit', () => server?.kill('SIGKILL'));
 
 function startServer() {
-  const vite = findViteBin(appDir);
-  if (!vite) throw new Error('could not find node_modules/.bin/vite; run npm ci in week4 first');
-  const args = ['--host', '127.0.0.1', '--port', String(port), '--strictPort'];
-  commands.push(`(cd ${appDir} && ${path.relative(appDir, vite) || vite} ${args.join(' ')})`);
-  server = spawn(vite, args, {
+  // Spawn Node directly so stopping our child also stops Vite on Windows, rather than only its cmd wrapper.
+  const require = createRequire(import.meta.url);
+  const vite = path.join(path.dirname(require.resolve('vite/package.json')), 'bin', 'vite.js');
+  const args = [vite, '--host', '127.0.0.1', '--port', String(port), '--strictPort'];
+  commands.push(`(cd ${appDir} && ${process.execPath} ${args.join(' ')})`);
+  server = spawn(process.execPath, args, {
     cwd: appDir,
     env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
     stdio: ['ignore', 'pipe', 'pipe'],
-    shell: process.platform === 'win32',
+    windowsHide: true,
   });
   return new Promise((resolve, reject) => {
     let output = '';
@@ -372,7 +364,12 @@ try {
       if (data.look !== look) failures.push(`${label}: the host reports look ${data.look}, not ${look}`);
       if (Number(data.seed) !== seed) failures.push(`${label}: the host reports seed ${data.seed}, expected ${seed}`);
       if (record.timeMs !== t || Math.abs(record.lifeMs - t) > 0.5) failures.push(`${label}: paused clocks read host ${record.timeMs} ms / life ${record.lifeMs} ms, expected ${t} ms`);
-      if (record.particles <= 0) failures.push(`${label}: no particles were drawn`);
+      const constructing = record.look === 'seed33' && record.timeMs < record.buildMs && !record.reduced;
+      record.particleExpectation = constructing ? 'shimmer suppressed during component construction' : 'settled shimmer visible';
+      // This counter measures the old shimmer beads, not construction lines/triangles. The latter
+      // are covered by capture-construction.mjs and inspection of the actual captured pixels.
+      if (constructing && record.particles !== 0) failures.push(`${label}: shimmer should be suppressed during component construction`);
+      if (!constructing && record.particles <= 0) failures.push(`${label}: no settled shimmer particles were drawn`);
     };
     for (const still of STILLS) if (still.backends.includes(backend)) await shoot(still.name, still.t, {});
     if (backend === 'webgl2') await shoot('reduced-complete-plus-5s', IDLE_STILL_MS, { reduced: '1' });

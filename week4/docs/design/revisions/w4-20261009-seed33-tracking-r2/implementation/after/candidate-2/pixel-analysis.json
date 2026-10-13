@@ -1,0 +1,130 @@
+{
+  "recording": {
+    "decodedFrames": 166,
+    "reportedFrames": 166,
+    "fps": 15.0,
+    "durationSeconds": 11.066666666666666,
+    "allFramesDecoded": true,
+    "meanAbsoluteLumaChange": {
+      "mean": 0.022971556812637683,
+      "max": 0.09751707315444946
+    },
+    "pixelFractionChangingByOverQuarterLuma": {
+      "mean": 0.0330581071127946,
+      "max": 0.16008101851851853
+    },
+    "limitation": "Decoded video frame differences, not a photosensitivity certification or performance benchmark."
+  },
+  "backendComparisons": [
+    {
+      "fixture": "formed-17000",
+      "identical": false,
+      "meanAbsoluteChannelDifference_0_255": 1.057985307355967,
+      "fractionPixelsDifferingOver16": 0.020958236882716048
+    },
+    {
+      "fixture": "formed-17200",
+      "identical": false,
+      "meanAbsoluteChannelDifference_0_255": 0.6947538901748971,
+      "fractionPixelsDifferingOver16": 0.014290123456790123
+    },
+    {
+      "fixture": "formed-17500",
+      "identical": false,
+      "meanAbsoluteChannelDifference_0_255": 0.879926054526749,
+      "fractionPixelsDifferingOver16": 0.018988233024691357
+    },
+    {
+      "fixture": "formed-17800",
+      "identical": false,
+      "meanAbsoluteChannelDifference_0_255": 1.0153731031378601,
+      "fractionPixelsDifferingOver16": 0.02009645061728395
+    },
+    {
+      "fixture": "reduced-17000",
+      "identical": false,
+      "meanAbsoluteChannelDifference_0_255": 0.40559429655349793,
+      "fractionPixelsDifferingOver16": 0.009320987654320987
+    },
+    {
+      "fixture": "hidden-17000",
+      "identical": false,
+      "meanAbsoluteChannelDifference_0_255": 0.8277441808127572,
+      "fractionPixelsDifferingOver16": 0.015608121141975309
+    }
+  ],
+  "preservation": [
+    {
+      "file": "canvas2d-seed33-build-000pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-010pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-025pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-040pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-052pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-067pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-080pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-092pct.png",
+      "identical": true
+    },
+    {
+      "file": "canvas2d-seed33-build-099p9pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-000pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-010pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-025pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-040pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-052pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-067pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-080pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-092pct.png",
+      "identical": true
+    },
+    {
+      "file": "webgl2-seed33-build-099p9pct.png",
+      "identical": true
+    }
+  ]
+}

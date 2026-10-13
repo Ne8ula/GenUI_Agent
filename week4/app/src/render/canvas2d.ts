@@ -6,13 +6,20 @@
 // clipped to the frame rect so a hairline dropping past the frame bottom never paints the margin (the WebGL2
 // backend scissors the same pass). Geometry, shape, grain, time and pattern math are shared with WebGL2 through
 // pack.ts and patterns.ts so both look alike at a glance.
-// The per-frame path allocates no strings or objects: the sky gradient, the polygon clip path, the grain pattern and
-// the offscreen pattern tiles are cached by value or identity and rebuilt only when their inputs change, and the
-// fill style is assigned only when the rounded 8-bit colour changes.
+// Long-lived raster allocations are cached: the sky gradient, polygon clip path, grain pattern and offscreen
+// pattern tiles rebuild only when their inputs change. The construction path reuses source ImageBitmaps and
+// affine-clips them directly; it does not allocate per-frame canvases.
 import type { FrameView, Renderer, RendererStats, Rgb, SceneFrame, Sky, Tile } from '../scene/types.ts';
 import { birthRamp, canvas2dRadius, canvas2dStride, deviceDiameter, grainTile, particleAlpha, particleShape, type ParticleShape } from './pack.ts';
 import { PATTERN_ID, cellDevicePx, hairlineDeviceRect, patternPixels, skyBottomY, skyStops, tileDeviceRect, type DeviceRect } from './patterns.ts';
 import { CANVAS2D_RECT_BELOW, GRAIN_SALT, GRAIN_TILE, HAIRLINE_ALPHA, MIN_ALPHA } from './paper.ts';
+import { getPhotoLayerState, getPhotoManifestState } from './photoAssets.ts';
+import { createConstructionCanvasRenderer } from './constructionCanvas.ts';
+import { buildSeed33Construction } from '../scene/seed33Construction.ts';
+import { buildPostFormationOverlay } from '../scene/postFormationOverlay.ts';
+import { DEFAULT_NATIVE_ASPECT, buildRevealY } from '../scene/seed33Photo.ts';
+import { buildWalkAwayFigure, walkAwayPose } from '../scene/walkAwayFigure.ts';
+import { buildTileBodies } from '../scene/tileBodies.ts';
 
 export interface Canvas2DOptions {
   /** Why Canvas2D was chosen when it was not the explicit preference; appended to stats.detail. */
@@ -49,6 +56,7 @@ export function createCanvas2DRenderer(canvas: HTMLCanvasElement, options: Canva
     );
   }
   const baseDetail = options.reason ? `Canvas2D · ${options.reason}` : 'Canvas2D';
+  const constructionRenderer = createConstructionCanvasRenderer(ctx);
   let stats: RendererStats = { backend: 'canvas2d', lastDrawMs: 0, particlesDrawn: 0, degraded: false, detail: baseDetail };
   // Grain pattern, keyed on the paper colour.
   let grain: CanvasPattern | null = null;
@@ -241,79 +249,199 @@ export function createCanvas2DRenderer(canvas: HTMLCanvasElement, options: Canva
         }
       }
 
+      // Seed-33 photo layer. While the common construction plan is active it is the only scene
+      // content drawn over the umber field: the old photo wipe, figure fade and shimmer accents
+      // are bypassed. Once construction completes, the unchanged source-composite path resumes.
+      let photoReady: boolean | undefined;
+      let photoError: string | null = null;
+      let photoTileStats: { shown: number; authored: number } | undefined;
+      let constructionActive = false;
+      if (frame.photo) {
+        const assets = getPhotoLayerState(frame.photo);
+        const manifest = getPhotoManifestState(frame.photo.manifestSrc);
+        photoReady = assets.ready && manifest.state === 'ready';
+        photoError = assets.error ?? manifest.error;
+        if (assets.ready && manifest.state === 'ready' && manifest.data) {
+          const regions = manifest.data.tileRegions;
+          photoTileStats = { shown: view.showTiles ? regions.length : 0, authored: regions.length };
+          const constructionPlan = buildSeed33Construction({
+            timeMs,
+            buildMs: frame.build.durationMs,
+            seed: frame.seed,
+            reducedMotion: view.reducedMotion,
+            showTiles: view.showTiles,
+            manifest: manifest.data,
+          });
+          constructionActive = constructionPlan.active;
+
+          const bg = assets.background.bitmap;
+          const fig = assets.figure.bitmap;
+          const fg = assets.foreground.bitmap;
+          const tilesBitmap = assets.tiles.bitmap;
+          if (constructionActive && bg && fig && fg && tilesBitmap) {
+            const constructionStats = constructionRenderer.draw(constructionPlan, view.frame, {
+              background: bg,
+              figure: fig,
+              foreground: fg,
+              tiles: tilesBitmap,
+            });
+            photoTileStats.shown = constructionStats.tilesShown;
+            fillR = -1;
+          } else {
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(fl, ft, fw, fh);
+            ctx.clip();
+            const home = manifest.data.figureHomeRectNorm;
+            const homeRect = { centerX: (home[0] + home[2]) / 2, topY: home[1], heightFrac: home[3] - home[1] };
+            const smoothedBefore = ctx.imageSmoothingEnabled;
+            ctx.imageSmoothingEnabled = true;
+            ctx.globalAlpha = 1;
+            const buildMs = frame.build.durationMs;
+            // Reduced motion holds the complete source scene during the build interval without
+            // changing view.timeMs or any host/life clock.
+            const photoBuildTimeMs = view.reducedMotion && timeMs < buildMs ? buildMs : timeMs;
+            const revealTopPx = ft + buildRevealY(buildMs, photoBuildTimeMs) * fh;
+            const clipBelow = (drawFn: () => void) => {
+              if (revealTopPx <= ft) {
+                drawFn();
+                return;
+              }
+              if (revealTopPx >= ft + fh) return;
+              ctx.save();
+              ctx.beginPath();
+              ctx.rect(fl, revealTopPx, fw, ft + fh - revealTopPx);
+              ctx.clip();
+              drawFn();
+              ctx.restore();
+            };
+            if (bg) clipBelow(() => ctx.drawImage(bg, 0, 0, bg.width, bg.height, fl, ft, fw, fh));
+            const nativeAspect = fig ? fig.width / fig.height : DEFAULT_NATIVE_ASPECT;
+            const pose = walkAwayPose(timeMs - buildMs, view.reducedMotion, homeRect);
+            if (fig && bg && fg && tilesBitmap && !pose.offFrame) {
+              const commands = buildWalkAwayFigure(timeMs - buildMs, view.reducedMotion, homeRect);
+              constructionRenderer.draw(
+                { active: true, progress: 1, figureStage: 'complete', commands, stats: { growingStrands: 0, completedStrands: 0, movingTiles: 0 } },
+                view.frame, { background: bg, figure: fig, foreground: fg, tiles: tilesBitmap },
+              );
+            }
+            const settledFg = assets.settledForeground?.bitmap ?? fg;
+            if (settledFg) clipBelow(() => ctx.drawImage(settledFg, 0, 0, settledFg.width, settledFg.height, fl, ft, fw, fh));
+            if (tilesBitmap && view.showTiles) {
+              const msAfterBuild = timeMs - buildMs;
+              // The fragments ARE the colored bodies: no intact or drifting backing quad.
+              const bodies = buildTileBodies({ regions, atlasSizePx: manifest.data.tilesAtlasSizePx,
+                msAfterBuild, seed: frame.seed, reducedMotion: view.reducedMotion });
+              const overlay = buildPostFormationOverlay({
+                timeMs,
+                seed: frame.seed,
+                reducedMotion: view.reducedMotion,
+                tileRegions: regions,
+                atlasSizePx: manifest.data.tilesAtlasSizePx,
+                msAfterBuild,
+                figure: fig && !pose.offFrame ? { pose, nativeAspect } : null,
+              });
+              if (bodies.length > 0 || overlay.length > 0) {
+                clipBelow(() => constructionRenderer.draw(
+                  { active: true, progress: 1, figureStage: 'complete', commands: [...bodies, ...overlay], stats: { growingStrands: 0, completedStrands: 0, movingTiles: 0 } },
+                  view.frame,
+                  { background: bg ?? tilesBitmap, figure: fig ?? tilesBitmap, foreground: fg ?? tilesBitmap, tiles: tilesBitmap },
+                ));
+              }
+            }
+            ctx.imageSmoothingEnabled = smoothedBefore;
+            ctx.restore();
+            fillR = -1;
+          }
+        }
+      }
+
       // Particles in slot order (far → near). Above the budget, a deterministic stride subset; stated in detail.
       const stride = canvas2dStride(store.count);
       const { x, y, r, g, b, a, size, phase, motion, birthMs } = store;
       let drawn = 0;
-      for (let i = 0; i < store.count; i += stride) {
-        const stored = a[i]!;
-        if (!(stored > ALPHA_THRESHOLD)) continue;
-        const alpha = particleAlpha(stored, motion[i]!, phase[i]!, birthMs[i]!, timeMs);
-        if (!(alpha > 0.0005)) continue; // not yet born
-        const d = deviceDiameter(size[i]!, fh);
-        const cx = fl + x[i]! * fw;
-        const cy = ft + y[i]! * fh;
-        setFill(to255(r[i]!), to255(g[i]!), to255(b[i]!));
-        ctx.globalAlpha = alpha;
-        if (d < CANVAS2D_RECT_BELOW) {
-          ctx.fillRect(cx - d * 0.5, cy - d * 0.5, d, d);
-        } else {
-          const rr = canvas2dRadius(d);
-          particleShape(i, shape);
-          ctx.beginPath();
-          ctx.ellipse(cx, cy, rr, rr * shape.squash, shape.angle, 0, TAU);
-          ctx.fill();
+      if (!constructionActive) {
+        for (let i = 0; i < store.count; i += stride) {
+          const stored = a[i]!;
+          if (!(stored > ALPHA_THRESHOLD)) continue;
+          const alpha = particleAlpha(stored, motion[i]!, phase[i]!, birthMs[i]!, timeMs);
+          if (!(alpha > 0.0005)) continue; // not yet born
+          const d = deviceDiameter(size[i]!, fh);
+          const cx = fl + x[i]! * fw;
+          const cy = ft + y[i]! * fh;
+          setFill(to255(r[i]!), to255(g[i]!), to255(b[i]!));
+          ctx.globalAlpha = alpha;
+          if (d < CANVAS2D_RECT_BELOW) {
+            ctx.fillRect(cx - d * 0.5, cy - d * 0.5, d, d);
+          } else {
+            const rr = canvas2dRadius(d);
+            particleShape(i, shape);
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, rr, rr * shape.squash, shape.angle, 0, TAU);
+            ctx.fill();
+          }
+          drawn++;
         }
-        drawn++;
       }
 
-      // Tiles and hairlines are clipped to the frame rect: a hairline from a tile near the bottom stops at the frame edge.
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(fl, ft, fw, fh);
-      ctx.clip();
+      // Tiles and hairlines are clipped to the frame rect. They are suppressed while the
+      // Seed-33 construction plan owns painter order, just like the old shimmer particles.
+      if (!constructionActive) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(fl, ft, fw, fh);
+        ctx.clip();
 
-      // Tiles in array order with the birth ramp; hard edges on whole device pixels.
-      for (let i = 0; i < tiles.length; i++) {
-        const t = tiles[i]!;
-        const alpha = (t.alpha > 1 ? 1 : t.alpha) * birthRamp(t.birthMs, timeMs);
-        if (!(alpha > 0.0005) || t.pattern === 'transparent') continue;
-        tileDeviceRect(t, view.frame, rect);
-        if (rect.width <= 0 || rect.height <= 0) continue;
-        ctx.globalAlpha = alpha;
-        if (t.pattern === 'flat') {
+        // Tiles in array order with the birth ramp; hard edges on whole device pixels.
+        for (let i = 0; i < tiles.length; i++) {
+          const t = tiles[i]!;
+          const alpha = (t.alpha > 1 ? 1 : t.alpha) * birthRamp(t.birthMs, timeMs);
+          if (!(alpha > 0.0005) || t.pattern === 'transparent') continue;
+          tileDeviceRect(t, view.frame, rect);
+          if (rect.width <= 0 || rect.height <= 0) continue;
+          ctx.globalAlpha = alpha;
+          if (t.pattern === 'flat') {
+            setFill(to255(t.colour[0]), to255(t.colour[1]), to255(t.colour[2]));
+            ctx.fillRect(rect.left, rect.top, rect.width, rect.height);
+          } else {
+            const off = patternCanvas(t, rect, cellDevicePx(t.cellPx, fh));
+            if (off) ctx.drawImage(off, rect.left, rect.top);
+          }
+        }
+
+        // Hairlines: 1 device px wide, dropping from each tile's bottom edge (transparent tiles included).
+        for (let i = 0; i < tiles.length; i++) {
+          const t = tiles[i]!;
+          if (!(t.hairline > 0)) continue;
+          const alpha = (t.alpha > 1 ? 1 : t.alpha) * birthRamp(t.birthMs, timeMs) * HAIRLINE_ALPHA;
+          if (!(alpha > 0.0005)) continue;
+          tileDeviceRect(t, view.frame, rect);
+          if (rect.width <= 0) continue;
+          hairlineDeviceRect(rect, t.hairline, i, view.frame, line);
+          if (line.height <= 0) continue;
+          ctx.globalAlpha = alpha;
           setFill(to255(t.colour[0]), to255(t.colour[1]), to255(t.colour[2]));
-          ctx.fillRect(rect.left, rect.top, rect.width, rect.height);
-        } else {
-          const off = patternCanvas(t, rect, cellDevicePx(t.cellPx, fh));
-          if (off) ctx.drawImage(off, rect.left, rect.top);
+          ctx.fillRect(line.left, line.top, 1, line.height);
         }
-      }
 
-      // Hairlines: 1 device px wide, dropping from each tile's bottom edge (transparent tiles included).
-      for (let i = 0; i < tiles.length; i++) {
-        const t = tiles[i]!;
-        if (!(t.hairline > 0)) continue;
-        const alpha = (t.alpha > 1 ? 1 : t.alpha) * birthRamp(t.birthMs, timeMs) * HAIRLINE_ALPHA;
-        if (!(alpha > 0.0005)) continue;
-        tileDeviceRect(t, view.frame, rect);
-        if (rect.width <= 0) continue;
-        hairlineDeviceRect(rect, t.hairline, i, view.frame, line);
-        if (line.height <= 0) continue;
-        ctx.globalAlpha = alpha;
-        setFill(to255(t.colour[0]), to255(t.colour[1]), to255(t.colour[2]));
-        ctx.fillRect(line.left, line.top, 1, line.height);
+        ctx.restore(); // drops the frame clip; fillStyle reverts to the saved one, so the memo is unknown again
+        fillR = -1;
       }
-
-      ctx.restore(); // drops the frame clip; fillStyle reverts to the saved one, so the memo is unknown again
-      fillR = -1;
       ctx.globalAlpha = 1;
       if (stride !== detailStride) {
         detailStride = stride;
         detail = stride > 1 ? `${baseDetail} · stride ${stride}` : baseDetail;
       }
       // performance.now() is used only for this measurement; every time-driven effect above read view.timeMs.
-      stats = { backend: 'canvas2d', lastDrawMs: performance.now() - t0, particlesDrawn: drawn, degraded: false, detail };
+      stats = {
+        backend: 'canvas2d',
+        lastDrawMs: performance.now() - t0,
+        particlesDrawn: drawn,
+        degraded: false,
+        detail: photoError ? `${detail} · ${photoError}` : detail,
+        ...(photoReady !== undefined ? { assetsReady: photoReady } : {}),
+        ...(photoTileStats !== undefined ? { photoTiles: photoTileStats } : {}),
+      };
     },
     stats: () => stats,
     dispose() {

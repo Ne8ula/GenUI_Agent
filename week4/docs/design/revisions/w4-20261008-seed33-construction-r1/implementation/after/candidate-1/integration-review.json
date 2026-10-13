@@ -1,0 +1,296 @@
+{
+  "browserChecks": true,
+  "captures": 23,
+  "checks": 124,
+  "endpointComparison": [
+    {
+      "file": "webgl2-seed33-build-100pct.png",
+      "identicalPixels": true,
+      "meanAbsoluteChannelDifference": 0.0,
+      "maxChannelDifference": 0
+    },
+    {
+      "file": "webgl2-seed33-complete-plus-5s.png",
+      "identicalPixels": true,
+      "meanAbsoluteChannelDifference": 0.0,
+      "maxChannelDifference": 0
+    },
+    {
+      "file": "canvas2d-seed33-complete-plus-5s.png",
+      "identicalPixels": true,
+      "meanAbsoluteChannelDifference": 0.0,
+      "maxChannelDifference": 0
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "week4/app/public/assets/seed33/background.png",
+      "sha256": "a98103a873cd0be911fd9e7b513ce97d8f416b38a346a94cda2de81da7709aa7"
+    },
+    {
+      "path": "week4/app/public/assets/seed33/figure-matte-preview.png",
+      "sha256": "0b98f31ddf375dafb48254a9182b28b4b63800745fe41c035b4a0f8a77f3e4a3"
+    },
+    {
+      "path": "week4/app/public/assets/seed33/figure-woman.png",
+      "sha256": "a309fb14e4b580d66655f9d9b86c1bcdaff914894dc16b5712da2881f64b8e4a"
+    },
+    {
+      "path": "week4/app/public/assets/seed33/foreground.png",
+      "sha256": "f3f72fd24c3832a8d87fa604389bce10cdebf5a7da1a21419df95c028d44f944"
+    },
+    {
+      "path": "week4/app/public/assets/seed33/manifest.json",
+      "sha256": "bb2e001d3ae635098c522366090c71b0c248a4d97e7ed6dc4b8d1ca9373af820"
+    },
+    {
+      "path": "week4/app/public/assets/seed33/tiles.png",
+      "sha256": "0236576b25e24ec39f199bd160df11e92c29e6303925fcee720c3eb5131ede1f"
+    },
+    {
+      "path": "week4/app/scripts/browser-options.mjs",
+      "sha256": "33032a8f3299637165790a355fc8eaf0259c941322845d9694ae5fd9774a4081"
+    },
+    {
+      "path": "week4/app/scripts/capture-construction.mjs",
+      "sha256": "6f7c15bf52e81d40215d05be9cd880cad180fa24df2944415615f0cba950dd5f"
+    },
+    {
+      "path": "week4/app/scripts/capture-s1.mjs",
+      "sha256": "b0011c3b93978daa6c86ab9d786683c5fea1e2bae7c77fa3275d9f24fbbc5167"
+    },
+    {
+      "path": "week4/app/scripts/capture-s33.mjs",
+      "sha256": "07626f92f2eb8594ee2de92a802da17a7b93d79e7c2f8325e907ec7c0f0aea38"
+    },
+    {
+      "path": "week4/app/scripts/compare-s33.py",
+      "sha256": "fe486bd8d49864af1acc8b0e4711a6cb7ea59c55843d79f7dca15a3b8dd737c7"
+    },
+    {
+      "path": "week4/app/scripts/compare-sheet.py",
+      "sha256": "033f346ed49fea3a4be4b22795628e0281a97add082a2317782fd47649333828"
+    },
+    {
+      "path": "week4/app/scripts/extract-seed33-assets.py",
+      "sha256": "3d61e3791500188236f64cea991a28d748f2ef19b8dc2c9d2cc26302460d65bb"
+    },
+    {
+      "path": "week4/app/scripts/render-smoke.mjs",
+      "sha256": "71ba5cce1a79a0f97580652934ee9ed20247213fcf4a7a83f007514e82a26a1d"
+    },
+    {
+      "path": "week4/app/src/App.tsx",
+      "sha256": "f7355c25e99c2c54a246f394575ab6a178efab628b6c1c5ce1fa28e9ff2e6e38"
+    },
+    {
+      "path": "week4/app/src/host/clock.ts",
+      "sha256": "ad4d2521acf4a9461e2cfa7aa34e0491f6d962bcac1ea2ad2d953fefb9bf523d"
+    },
+    {
+      "path": "week4/app/src/host/FixtureControls.tsx",
+      "sha256": "920aa0b59a0f41c86f722a4f7a896b10033066a630199fff28b84324d2d9fa7e"
+    },
+    {
+      "path": "week4/app/src/host/frameStats.ts",
+      "sha256": "f370c3663a0f0a84d895af3dea94c4b6af2c6a122bbeea2df9a992483afd49b5"
+    },
+    {
+      "path": "week4/app/src/host/label.ts",
+      "sha256": "be36ff90b32436352e4374657bd5a00748ac47fef29d3d410cb0fb6feb63aadd"
+    },
+    {
+      "path": "week4/app/src/host/params.ts",
+      "sha256": "1fd0ec1903db848fdfb4cf57369f24fd4c3da98134381dd9627227018df63bda"
+    },
+    {
+      "path": "week4/app/src/host/scenes.ts",
+      "sha256": "1c51b3a8dd9e9753b24351509effd17d505c1e85de0195b00cdb279a18a611bc"
+    },
+    {
+      "path": "week4/app/src/host/Stage.tsx",
+      "sha256": "69813455c7f1538a3c6e13d3754edb18cf906276961577463fc374357bdf2bbb"
+    },
+    {
+      "path": "week4/app/src/host/tilesFlag.ts",
+      "sha256": "5e3faad4662a2a5c9315437c88ceb144b1d9fb5fc893ff11dc242862977c2b5d"
+    },
+    {
+      "path": "week4/app/src/host/useRenderLoop.ts",
+      "sha256": "b022bba87a248a67740c5337ef2a13e33b59e3f3521f63ac9f8a6cddd2b27816"
+    },
+    {
+      "path": "week4/app/src/main.tsx",
+      "sha256": "46278924b8f5ae4e30d5b2cd7f7a7df6f1e3cf1e13bc872b0160c00d7dfb3ee0"
+    },
+    {
+      "path": "week4/app/src/render/canvas2d.ts",
+      "sha256": "baede0b0f24940d7fd1698cc1ac027417cc57d3aae7581f56ca6a0dfc6dc939c"
+    },
+    {
+      "path": "week4/app/src/render/constructionCanvas.ts",
+      "sha256": "07bb72303ae96073891d5fe10646da387ef61403877d420f66c9b59b844c0ba5"
+    },
+    {
+      "path": "week4/app/src/render/constructionWebgl.ts",
+      "sha256": "92e239207259554e68df539b12500be0eedde910ac7a3640b603cdd80111ac44"
+    },
+    {
+      "path": "week4/app/src/render/create.ts",
+      "sha256": "cf362b5b1ba3cbb0f998faa52119da5273aff78d0778536bb2719a4ecac133cb"
+    },
+    {
+      "path": "week4/app/src/render/dev.ts",
+      "sha256": "ebfeef160bff86b97f6156611aa6b5675047a37324ef7cd0c7a4438d64523f2b"
+    },
+    {
+      "path": "week4/app/src/render/pack.ts",
+      "sha256": "bb0c485d292ab75a3bf2ded5582a93dc8c1d91c20de104c8a550e3c9685b8e41"
+    },
+    {
+      "path": "week4/app/src/render/paper.ts",
+      "sha256": "bf0163b19475ac8d97c9009f99ddf7f3d4a20eb9a6f8c2221c9824bd1611339e"
+    },
+    {
+      "path": "week4/app/src/render/patterns.ts",
+      "sha256": "ecd0747e807599a9d9005b7b931b7e0a54bd34d95f99cb5f36179b21f2f24de9"
+    },
+    {
+      "path": "week4/app/src/render/photoAssets.ts",
+      "sha256": "479c1153101136396a811d337e5bf58121ab77f5378ecba89df406034acad13f"
+    },
+    {
+      "path": "week4/app/src/render/webgl2.ts",
+      "sha256": "11e36d21b3d94a8146a8bfe76e552bb1ea463c84ad2415d014502aa16f445b59"
+    },
+    {
+      "path": "week4/app/src/scene/arrival.ts",
+      "sha256": "bade740edc6d014a34e1cd2f52dd168d36417218dcd1b95e08955eb31bcbd6ae"
+    },
+    {
+      "path": "week4/app/src/scene/author.ts",
+      "sha256": "04448fa72c297efebfd2d2aea0778dfb2544fe00c309ff856e9352c87cd0874e"
+    },
+    {
+      "path": "week4/app/src/scene/constructionTypes.ts",
+      "sha256": "7ea5efa5066a270c8099ff0dc61adb9a97d4253136cd36d6201da68006dd2f75"
+    },
+    {
+      "path": "week4/app/src/scene/life.ts",
+      "sha256": "5c4a41ec9dc1f4811e9f2f9377f2c40236ef2a4e61b801369cb631961d47cf7d"
+    },
+    {
+      "path": "week4/app/src/scene/palette.ts",
+      "sha256": "bbc7cf515bfe732ff5a0d653ad66511102b3828d1c6e922795f66000951aa22d"
+    },
+    {
+      "path": "week4/app/src/scene/placeholder.ts",
+      "sha256": "d21f4c6b73ee3f1f0a06b3c43c83733a52b17ebcf119e2b0e944cbf044466dd0"
+    },
+    {
+      "path": "week4/app/src/scene/rng.ts",
+      "sha256": "74ea3d386f793bfb4ef02f56aed9b19729adb34e2ebfeac952bfaf01bfba847d"
+    },
+    {
+      "path": "week4/app/src/scene/seed33.ts",
+      "sha256": "3deaeac63fb1f651264f8d96afef66f31bf4d33e5d1433829e56b07cf7a2be35"
+    },
+    {
+      "path": "week4/app/src/scene/seed33Construction.ts",
+      "sha256": "6e3ef6e65cd9886f11dc805670099c24459f159432d05240c184fe5db6a43e5d"
+    },
+    {
+      "path": "week4/app/src/scene/seed33Photo.ts",
+      "sha256": "4aff0d44d07a12a75840d0d886833b11d47175bb14147d58bd37f89b0bcd84ac"
+    },
+    {
+      "path": "week4/app/src/scene/store.ts",
+      "sha256": "c2352965b8e396367dea546babc0b1710dcfa2950087fcb32094d528b482d017"
+    },
+    {
+      "path": "week4/app/src/scene/tiles.ts",
+      "sha256": "b3e3e25d2df80f04a0d1c6a54eaddef059651fab94d79ed3ba21d9a561820ef9"
+    },
+    {
+      "path": "week4/app/src/scene/types.ts",
+      "sha256": "6177b38e5e62413033de0c9e42c55da6d38e5bf9b8806bc38cb3edf241bf4b02"
+    },
+    {
+      "path": "week4/app/src/style.css",
+      "sha256": "0bf8a02215d1f0ea7ac7b598611182099043a2608143d63dfb75fd0559c70ed8"
+    },
+    {
+      "path": "week4/app/tests/canvas-construction.test.ts",
+      "sha256": "3ce216a4958a1376a8d2b4a4516aaaf987d3054c50825a9dc4e7d9cdad302508"
+    },
+    {
+      "path": "week4/app/tests/construction-contract.test.ts",
+      "sha256": "5eb4c669b2ac07564daff463724272ef22e514ec92a945ce8d647d0f6de2db5b"
+    },
+    {
+      "path": "week4/app/tests/host-clock.test.ts",
+      "sha256": "3bbd3da3e4cd7644639f9d24e061dd4af668b84e9139f98fc067157e0e634580"
+    },
+    {
+      "path": "week4/app/tests/host-label.test.ts",
+      "sha256": "94ad9f0096765a0464bf9f88a655b48cb5f9e90af71d5451bad8d29ceed8d73c"
+    },
+    {
+      "path": "week4/app/tests/host-params.test.ts",
+      "sha256": "cb345ecff7c16d1114302c45f181f9c49bc03d012bb61d31f072787c2227737c"
+    },
+    {
+      "path": "week4/app/tests/host-stats.test.ts",
+      "sha256": "200c980532f8d753a87afb1472406782c13075a0094d08d5646ab5701f9150ba"
+    },
+    {
+      "path": "week4/app/tests/host-tiles.test.ts",
+      "sha256": "e5e9f04cedb0e8cb62b370bf89128fc97bfcdc239963fbcaff93bde831d48bbe"
+    },
+    {
+      "path": "week4/app/tests/life.test.ts",
+      "sha256": "72c8511211533f10c7cfde8a07a909d3dee9898b5ca173e3499bff9e2fca4bb2"
+    },
+    {
+      "path": "week4/app/tests/render-pack.test.ts",
+      "sha256": "17b318258541895217afa08f63b4f4a7fe0ae4356fc56710f1810c227afa5cbf"
+    },
+    {
+      "path": "week4/app/tests/render-photo-assets.test.ts",
+      "sha256": "26eabcfff4c2c68ed1c06ca73526c458cc53f5e9afdf93defb471738ec9f7d61"
+    },
+    {
+      "path": "week4/app/tests/render-tiles.test.ts",
+      "sha256": "05ac322864c65e89cbd3928196c9af8897c111344e92132d9faf4353acbe8fa3"
+    },
+    {
+      "path": "week4/app/tests/scene-arrival.test.ts",
+      "sha256": "966fc4309a855fe33594d44425a46a92ca2eb66cce1f598dbffe210ea1dcb539"
+    },
+    {
+      "path": "week4/app/tests/scene-construction.test.ts",
+      "sha256": "c2a9f1e2827fa19f6b954cf54a95d6381812b0ee6b5726d20b8de69fcea3abd7"
+    },
+    {
+      "path": "week4/app/tests/scene-seed33.test.ts",
+      "sha256": "69a5c9b8a88ec475d75344b8d2ea5fe75400f9baa6793f22ef8b800de4ed8f1b"
+    },
+    {
+      "path": "week4/app/tests/seed33-integration.test.ts",
+      "sha256": "aac91b721b927f124b3675c758ce6bf116ad16b3461693cb2d449635ce69d5ca"
+    },
+    {
+      "path": "week4/app/tests/store.test.ts",
+      "sha256": "5d6c366f5dbfa8882e819e5af13311f0c791bab0ce0e075fc76617de43844b20"
+    },
+    {
+      "path": "week4/app/tests/tiles.test.ts",
+      "sha256": "1eec8320ba98453c9bd6ad10417be8bc03b9cca618e90254c0f08f4ad3a0e0a7"
+    },
+    {
+      "path": "week4/app/tests/webgl-construction.test.ts",
+      "sha256": "5c94dfe5f504551d11c025a4593a4fed162d23272a93676acf38791919fa444a"
+    }
+  ],
+  "sourceNote": "Current integrated candidate; no app source edits occurred during this capture. Typecheck passed; independent garment-stage test failed. Rejected by main for construction quality."
+}

@@ -10,6 +10,26 @@
 // polygon identity or the frame rect changes (patterns.ts caches the triangulation per polygon array).
 // Context loss stops drawing (stats.degraded); restore rebuilds every resource.
 import { BIRTH_RAMP_MS, type FrameView, type Renderer, type RendererStats, type SceneFrame, type Sky } from '../scene/types.ts';
+import { getPhotoLayerState, getPhotoManifestState } from './photoAssets.ts';
+import type { LoadedPhotoLayer, PhotoAssetEntry, PhotoManifestResult } from './photoAssets.ts';
+import { BUILD_REVEAL_BAND, DEFAULT_NATIVE_ASPECT, buildRevealY } from '../scene/seed33Photo.ts';
+import { buildWalkAwayFigure, walkAwayPose } from '../scene/walkAwayFigure.ts';
+import { buildTileBodies } from '../scene/tileBodies.ts';
+// Seed-33 construction overlay (w4-20261008-seed33-construction-r1): the shared planner
+// (scene/seed33Construction.ts, frozen contract in scene/constructionTypes.ts) is a separate writer's
+// module under this same revision's bounded pass; this file only consumes its public
+// buildSeed33Construction/ConstructionPlan contract, never edits it. See IMPLEMENTATION_CONTRACT.md.
+import { buildSeed33Construction } from '../scene/seed33Construction.ts';
+import type { ConstructionPlan } from '../scene/constructionTypes.ts';
+import { buildPostFormationOverlay } from '../scene/postFormationOverlay.ts';
+import {
+  constructionTileShownCount,
+  createConstructionResources,
+  createConstructionScratch,
+  disposeConstructionResources,
+  drawConstructionPlan,
+} from './constructionWebgl.ts';
+import type { ConstructionGLResources, ConstructionScratch } from './constructionWebgl.ts';
 import {
   BYTES_PER_PARTICLE,
   FLOATS_PER_PARTICLE,
@@ -288,6 +308,44 @@ void main() {
 }
 `;
 
+// Seed-33 photo layer (w4-20261008-seed33-fidelity-r1): a textured quad in device px with a straight
+// (non-premultiplied, as decoded from the source PNGs) alpha texture, premultiplied in the fragment
+// shader to match the same blend state the particle/tile passes already use. One small dynamic buffer
+// is reused for the background quad (4 verts), the foreground cutout quad (4 verts) and the figure's
+// deforming mesh strip (2 x FIGURE_MESH_ROWS verts), one draw call each, textures bound per draw.
+const PHOTO_VERT = `#version 300 es
+precision highp float;
+layout(location = 0) in vec2 a_pos; // device px
+layout(location = 1) in vec2 a_uv;
+uniform vec2 u_canvas;
+out vec2 v_uv;
+void main() {
+  gl_Position = vec4(a_pos.x / u_canvas.x * 2.0 - 1.0, 1.0 - a_pos.y / u_canvas.y * 2.0, 0.0, 1.0);
+  v_uv = a_uv;
+}
+`;
+
+// u_revealY/u_revealBand implement the "12 s nearest-first fixture build" for the photo layer: the
+// background photo already has the near café furniture baked into its lower rows (see background.png),
+// so a single bottom-to-top soft wipe keyed to v_uv.y (frame y) reveals near pixels before far ones,
+// exactly like the former bead construction's depth-ordered birth times, without per-object timing.
+// A revealY far below 0 (REVEAL_ALWAYS below) disables it for layers that should not be build-gated.
+const PHOTO_FRAG = `#version 300 es
+precision mediump float;
+in vec2 v_uv;
+uniform sampler2D u_tex;
+uniform float u_alpha;
+uniform float u_revealY;
+uniform float u_revealBand;
+out vec4 o_color;
+void main() {
+  vec4 c = texture(u_tex, v_uv);
+  float reveal = smoothstep(u_revealY - u_revealBand, u_revealY + u_revealBand, v_uv.y);
+  float a = c.a * u_alpha * reveal;
+  o_color = vec4(c.rgb * a, a);
+}
+`;
+
 interface GlResources {
   particleProgram: WebGLProgram;
   paperProgram: WebGLProgram;
@@ -323,7 +381,31 @@ interface GlResources {
     skyHorizonY: WebGLUniformLocation | null;
     tileCanvas: WebGLUniformLocation | null;
     tileTime: WebGLUniformLocation | null;
+    photoCanvas: WebGLUniformLocation | null;
+    photoTex: WebGLUniformLocation | null;
+    photoAlpha: WebGLUniformLocation | null;
+    photoRevealY: WebGLUniformLocation | null;
+    photoRevealBand: WebGLUniformLocation | null;
   };
+  photoProgram: WebGLProgram;
+  photoVao: WebGLVertexArrayObject;
+  photoVbo: WebGLBuffer;
+  photoVboCapacity: number;
+  /** Lazily created the first time each bitmap is ready; rebuilt whenever `res` itself is (context restore). */
+  bgTex: PhotoTexture | null;
+  figTex: PhotoTexture | null;
+  fgTex: PhotoTexture | null;
+  settledFgTex: PhotoTexture | null;
+  tilesTex: PhotoTexture | null;
+  /** Construction-overlay GL programs/buffers (constructionWebgl.ts); rebuilt whenever `res` itself is. */
+  construction: ConstructionGLResources;
+}
+
+/** GPU-side state for one of the three photo-layer textures (background/figure/foreground). */
+interface PhotoTexture {
+  texture: WebGLTexture;
+  /** The bitmap currently uploaded, so a texture is (re)uploaded only once per distinct decoded bitmap. */
+  uploaded: ImageBitmap | null;
 }
 
 /** Returns null when WebGL2 context creation fails so the caller can fall back to Canvas2D on the same canvas. */
@@ -335,6 +417,8 @@ export function createWebGL2Renderer(canvas: HTMLCanvasElement): Renderer | null
   let scratch = new Float32Array(0);
   let skyScratch = new Float32Array(0);
   let tileScratch = new Float32Array(0);
+  let photoScratch = new Float32Array(0);
+  const constructionScratch: ConstructionScratch = createConstructionScratch();
   let lost = gl.isContextLost();
   let disposed = false;
   let rendererName = describeRenderer(gl);
@@ -419,6 +503,58 @@ export function createWebGL2Renderer(canvas: HTMLCanvasElement): Renderer | null
     }
   }
 
+  function ensurePhotoScratch(vertexCount: number) {
+    const need = vertexCount * 4;
+    if (photoScratch.length < need) photoScratch = new Float32Array(need);
+  }
+
+  function ensurePhotoCapacity(vertexCount: number) {
+    if (!res) return;
+    if (res.photoVboCapacity < vertexCount) {
+      gl!.bindBuffer(gl!.ARRAY_BUFFER, res.photoVbo);
+      gl!.bufferData(gl!.ARRAY_BUFFER, vertexCount * 16, gl!.DYNAMIC_DRAW);
+      res.photoVboCapacity = vertexCount;
+    }
+  }
+
+  /** Uploads a texture once per distinct decoded bitmap (never re-uploads an already-current one). */
+  function ensurePhotoTexture(key: 'bgTex' | 'figTex' | 'fgTex' | 'settledFgTex' | 'tilesTex', entry: PhotoAssetEntry): WebGLTexture | null {
+    if (!res || entry.state !== 'ready' || !entry.bitmap) return null;
+    const slot = res[key];
+    if (slot && slot.uploaded === entry.bitmap) return slot.texture;
+    const texture = slot?.texture ?? gl!.createTexture();
+    if (!texture) return null;
+    gl!.bindTexture(gl!.TEXTURE_2D, texture);
+    gl!.texImage2D(gl!.TEXTURE_2D, 0, gl!.RGBA, gl!.RGBA, gl!.UNSIGNED_BYTE, entry.bitmap);
+    gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_MIN_FILTER, gl!.LINEAR);
+    gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_MAG_FILTER, gl!.LINEAR);
+    gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_WRAP_S, gl!.CLAMP_TO_EDGE);
+    gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_WRAP_T, gl!.CLAMP_TO_EDGE);
+    res[key] = { texture, uploaded: entry.bitmap };
+    return texture;
+  }
+
+  /** A revealY this far below the frame makes u_revealY/u_revealBand a no-op (always fully revealed). */
+  const REVEAL_ALWAYS = -10;
+
+  /** Draws `vertexCount` vertices of photoScratch (x, y device px; u, v) as a triangle strip with `tex` bound. */
+  function drawPhotoQuad(tex: WebGLTexture, vertexCount: number, canvasW: number, canvasH: number, alpha: number, revealY: number, revealBand: number) {
+    if (!res) return;
+    ensurePhotoCapacity(vertexCount);
+    gl!.useProgram(res.photoProgram);
+    gl!.bindVertexArray(res.photoVao);
+    gl!.bindBuffer(gl!.ARRAY_BUFFER, res.photoVbo);
+    gl!.bufferSubData(gl!.ARRAY_BUFFER, 0, photoScratch, 0, vertexCount * 4);
+    gl!.activeTexture(gl!.TEXTURE0);
+    gl!.bindTexture(gl!.TEXTURE_2D, tex);
+    gl!.uniform1i(res.u.photoTex, 0);
+    gl!.uniform2f(res.u.photoCanvas, canvasW, canvasH);
+    gl!.uniform1f(res.u.photoAlpha, alpha);
+    gl!.uniform1f(res.u.photoRevealY, revealY);
+    gl!.uniform1f(res.u.photoRevealBand, Math.max(revealBand, 1e-4));
+    gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, vertexCount);
+  }
+
   return {
     backend: 'webgl2',
     draw(frame: SceneFrame, view: FrameView) {
@@ -429,8 +565,39 @@ export function createWebGL2Renderer(canvas: HTMLCanvasElement): Renderer | null
       if (!(w > 0 && h > 0 && view.widthPx > 0 && view.heightPx > 0)) return;
       const { store, tiles, sky, paper } = frame;
       const timeS = view.timeMs / 1000;
-      ensureCapacity(store.capacity);
-      const n = packParticles(store, scratch);
+
+      // Seed-33 construction overlay (w4-20261008-seed33-construction-r1): computed early because it
+      // gates two separate sections below — the photo-layer draw (replacing the old reveal/figure-fade
+      // quads while active) and the shimmer particle pass further down ("skip old global reveal/figure
+      // fade/shimmer in the active branch"). Uses the SAME readiness gate as the pre-existing photo-layer
+      // check (assets.ready && manifest ready), computed once here and reused there so the two blocks
+      // can never disagree about asset state within one frame.
+      let constructionPlan: ConstructionPlan | null = null;
+      let photoAssetsForFrame: LoadedPhotoLayer | null = null;
+      let photoManifestForFrame: PhotoManifestResult | null = null;
+      if (frame.photo) {
+        photoAssetsForFrame = getPhotoLayerState(frame.photo);
+        photoManifestForFrame = getPhotoManifestState(frame.photo.manifestSrc);
+        if (photoAssetsForFrame.ready && photoManifestForFrame.state === 'ready' && photoManifestForFrame.data) {
+          constructionPlan = buildSeed33Construction({
+            timeMs: view.timeMs,
+            buildMs: frame.build.durationMs,
+            seed: frame.seed,
+            reducedMotion: view.reducedMotion,
+            showTiles: view.showTiles,
+            manifest: photoManifestForFrame.data,
+          });
+        }
+      }
+      const constructionActive = constructionPlan !== null && constructionPlan.active;
+
+      // Shimmer particles are part of the "old" look construction replaces while building; skipped (n=0,
+      // truthfully reported in stats.particlesDrawn) rather than packed-but-undrawn.
+      let n = 0;
+      if (!constructionActive) {
+        ensureCapacity(store.capacity);
+        n = packParticles(store, scratch);
+      }
       ensureTileCapacity(tiles.length * 2);
       const m = packTiles(tiles, view.frame, tileScratch);
 
@@ -504,6 +671,106 @@ export function createWebGL2Renderer(canvas: HTMLCanvasElement): Renderer | null
         gl.drawArrays(gl.TRIANGLES, 0, 3);
       }
 
+      // Seed-33 photo layer (candidate-2, 2026-10-08): reference-derived background -> the deforming
+      // figure mesh -> the real tile-chip atlas quads -> the foreground café-furniture cutout (opaque
+      // where it has pixels, so it occludes the tiles/figure under it exactly like the real objects
+      // sit in front of the street). Nothing is drawn, and stats.assetsReady stays false, until every
+      // texture has decoded; a load failure is reported in words, never thrown. Blending stays ENABLED
+      // (premultiplied over) through the background draw too — candidate-2 fix: disabling it there made
+      // an unrevealed (low-alpha, mid-build) pixel paint as flat black instead of blending over the
+      // umber ground clear colour, since the fragment shader always premultiplies by its own alpha.
+      let photoReady: boolean | undefined;
+      let photoError: string | null = null;
+      let photoTileStats: { shown: number; authored: number } | undefined;
+      if (frame.photo) {
+        const assets = photoAssetsForFrame!;
+        const manifest = photoManifestForFrame!;
+        photoReady = assets.ready && manifest.state === 'ready';
+        photoError = assets.error ?? manifest.error;
+        if (assets.ready && manifest.state === 'ready' && manifest.data && frameVisible) {
+          gl.enable(gl.SCISSOR_TEST);
+          gl.scissor(x0, h - y1, x1 - x0, y1 - y0);
+          const home = manifest.data.figureHomeRectNorm;
+          const homeRect = { centerX: (home[0] + home[2]) / 2, topY: home[1], heightFrac: home[3] - home[1] };
+          const bg = ensurePhotoTexture('bgTex', assets.background);
+          const fig = ensurePhotoTexture('figTex', assets.figure);
+          const fg = ensurePhotoTexture('fgTex', assets.foreground);
+          const tilesTexture = ensurePhotoTexture('tilesTex', assets.tiles);
+          const buildMs = frame.build.durationMs;
+          gl.enable(gl.BLEND);
+          gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+          if (constructionPlan && constructionPlan.active) {
+            // Active construction: genuine growing geometry only. Do NOT also render the old
+            // reveal/figure-fade/tile-atlas quads below — construction's own `texture:'tiles'`/
+            // `texture:'figure'` patches already draw from these same bitmaps.
+            drawConstructionPlan(gl, res.construction, constructionScratch, constructionPlan, f, w, h, { background: bg, foreground: fg, figure: fig, tiles: tilesTexture });
+            const regions = manifest.data.tileRegions;
+            photoTileStats = { shown: view.showTiles ? constructionTileShownCount(constructionPlan) : 0, authored: regions.length };
+          } else {
+            // Normal motion starts the articulated away-walk after formation. Reduced motion
+            // shows its fixed representative pose without changing host/life clocks.
+            const reducedDuringBuild = view.reducedMotion && buildMs > 0 && view.timeMs < buildMs;
+            const revealY = reducedDuringBuild ? REVEAL_ALWAYS : buildRevealY(buildMs, view.timeMs);
+            if (bg) {
+              ensurePhotoScratch(4);
+              const L = f.left, T = f.top, R = f.left + f.width, B = f.top + f.height;
+              photoScratch.set([L, T, 0, 0, R, T, 1, 0, L, B, 0, 1, R, B, 1, 1], 0);
+              drawPhotoQuad(bg, 4, w, h, 1, revealY, BUILD_REVEAL_BAND);
+            }
+            const nativeAspect = fig ? (assets.figure.bitmap?.width ?? 1) / (assets.figure.bitmap?.height ?? 1) : DEFAULT_NATIVE_ASPECT;
+            const pose = walkAwayPose(view.timeMs - buildMs, view.reducedMotion, homeRect);
+            if (fig && !pose.offFrame) {
+              const commands = buildWalkAwayFigure(view.timeMs - buildMs, view.reducedMotion, homeRect);
+              drawConstructionPlan(gl, res.construction, constructionScratch,
+                { active: true, progress: 1, figureStage: 'complete', commands, stats: { growingStrands: 0, completedStrands: 0, movingTiles: 0 } },
+                f, w, h, { background: bg, foreground: fg, figure: fig, tiles: tilesTexture });
+            }
+            const settledFg = assets.settledForeground ? ensurePhotoTexture('settledFgTex', assets.settledForeground) : fg;
+            if (settledFg) {
+              ensurePhotoScratch(4);
+              const L = f.left, T = f.top, R = f.left + f.width, B = f.top + f.height;
+              photoScratch.set([L, T, 0, 0, R, T, 1, 0, L, B, 0, 1, R, B, 1, 1], 0);
+              drawPhotoQuad(settledFg, 4, w, h, 1, revealY, BUILD_REVEAL_BAND);
+            }
+            // Real tile-chip atlas, drawn last (as the original composition and the former procedural tile
+            // system both did): independent textured quads, UV from each region's sourceBoxPx/atlas size,
+            // position from its rect plus a small bounded drift (zero at/just after build, idle0 exact).
+            const regions = manifest.data.tileRegions;
+            photoTileStats = { shown: view.showTiles ? regions.length : 0, authored: regions.length };
+            if (tilesTexture && view.showTiles) {
+              const atlasSizePx = manifest.data.tilesAtlasSizePx;
+              const msAfterBuild = view.timeMs - buildMs;
+              // Draw fragmented source bodies directly, with no intact drifting backing quads.
+              const bodies = buildTileBodies({ regions, atlasSizePx, msAfterBuild,
+                seed: frame.seed, reducedMotion: view.reducedMotion });
+              const overlay = buildPostFormationOverlay({
+                timeMs: view.timeMs,
+                seed: frame.seed,
+                reducedMotion: view.reducedMotion,
+                tileRegions: regions,
+                atlasSizePx,
+                msAfterBuild,
+                figure: fig && !pose.offFrame ? { pose, nativeAspect } : null,
+              });
+              if (bodies.length > 0 || overlay.length > 0) {
+                drawConstructionPlan(
+                  gl,
+                  res.construction,
+                  constructionScratch,
+                  { active: true, progress: 1, figureStage: 'complete', commands: [...bodies, ...overlay], stats: { growingStrands: 0, completedStrands: 0, movingTiles: 0 } },
+                  f,
+                  w,
+                  h,
+                  { background: bg, foreground: fg, figure: fig, tiles: tilesTexture },
+                );
+              }
+            }
+          }
+          gl.disable(gl.SCISSOR_TEST);
+        }
+      }
+
       // Particles: premultiplied "over" blending, slot order preserved by the packer; birth ramp + shimmer in the shader.
       gl.enable(gl.BLEND);
       gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
@@ -538,7 +805,16 @@ export function createWebGL2Renderer(canvas: HTMLCanvasElement): Renderer | null
 
       // lastDrawMs is CPU submit time (pack + upload + command issue); GPU execution is asynchronous and not measured here.
       // performance.now() is used only for this measurement: every time-driven effect reads view.timeMs (the host clock).
-      stats = { backend: 'webgl2', lastDrawMs: performance.now() - t0, particlesDrawn: n, degraded: false, detail: stats.detail === 'WebGL2 context lost' ? rendererName : stats.detail };
+      const baseDetail = rendererName;
+      stats = {
+        backend: 'webgl2',
+        lastDrawMs: performance.now() - t0,
+        particlesDrawn: n,
+        degraded: false,
+        detail: photoError ? `${baseDetail ?? rendererName} · ${photoError}` : baseDetail,
+        ...(photoReady !== undefined ? { assetsReady: photoReady } : {}),
+        ...(photoTileStats !== undefined ? { photoTiles: photoTileStats } : {}),
+      };
     },
     stats: () => stats,
     dispose() {
@@ -550,19 +826,31 @@ export function createWebGL2Renderer(canvas: HTMLCanvasElement): Renderer | null
         gl.deleteBuffer(res.vbo);
         gl.deleteBuffer(res.skyVbo);
         gl.deleteBuffer(res.tileVbo);
+        gl.deleteBuffer(res.photoVbo);
         gl.deleteVertexArray(res.vao);
         gl.deleteVertexArray(res.fullscreenVao);
         gl.deleteVertexArray(res.skyVao);
         gl.deleteVertexArray(res.tileVao);
+        gl.deleteVertexArray(res.photoVao);
         gl.deleteProgram(res.particleProgram);
         gl.deleteProgram(res.paperProgram);
         gl.deleteProgram(res.skyProgram);
         gl.deleteProgram(res.tileProgram);
+        gl.deleteProgram(res.photoProgram);
+        gl.deleteTexture(res.bgTex?.texture ?? null);
+        gl.deleteTexture(res.figTex?.texture ?? null);
+        gl.deleteTexture(res.fgTex?.texture ?? null);
+        gl.deleteTexture(res.settledFgTex?.texture ?? null);
+        gl.deleteTexture(res.tilesTex?.texture ?? null);
+        disposeConstructionResources(gl, res.construction);
       }
       res = null;
       scratch = new Float32Array(0);
       skyScratch = new Float32Array(0);
       tileScratch = new Float32Array(0);
+      photoScratch = new Float32Array(0);
+      constructionScratch.flat = new Float32Array(0);
+      constructionScratch.tex = new Float32Array(0);
       // Release the context itself so repeated backend switches do not pile up live contexts.
       if (!gl.isContextLost()) gl.getExtension('WEBGL_lose_context')?.loseContext();
     },
@@ -574,14 +862,18 @@ function initResources(gl: WebGL2RenderingContext): GlResources {
   const paperProgram = linkProgram(gl, FULLSCREEN_VERT, PAPER_FRAG, 'paper');
   const skyProgram = linkProgram(gl, SKY_VERT, SKY_FRAG, 'sky');
   const tileProgram = linkProgram(gl, TILE_VERT, TILE_FRAG, 'tiles');
+  const photoProgram = linkProgram(gl, PHOTO_VERT, PHOTO_FRAG, 'photo');
+  const construction = createConstructionResources(gl);
   const vbo = gl.createBuffer();
   const skyVbo = gl.createBuffer();
   const tileVbo = gl.createBuffer();
+  const photoVbo = gl.createBuffer();
   const vao = gl.createVertexArray();
   const fullscreenVao = gl.createVertexArray();
   const skyVao = gl.createVertexArray();
   const tileVao = gl.createVertexArray();
-  if (!vbo || !skyVbo || !tileVbo || !vao || !fullscreenVao || !skyVao || !tileVao) throw new Error('could not allocate GL objects');
+  const photoVao = gl.createVertexArray();
+  if (!vbo || !skyVbo || !tileVbo || !photoVbo || !vao || !fullscreenVao || !skyVao || !tileVao || !photoVao) throw new Error('could not allocate GL objects');
 
   gl.bindVertexArray(vao);
   gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
@@ -618,6 +910,12 @@ function initResources(gl: WebGL2RenderingContext): GlResources {
     gl.vertexAttribPointer(loc, size, gl.FLOAT, false, BYTES_PER_TILE_INSTANCE, offset);
     gl.vertexAttribDivisor(loc, 1);
   }
+  gl.bindVertexArray(photoVao);
+  gl.bindBuffer(gl.ARRAY_BUFFER, photoVbo);
+  gl.enableVertexAttribArray(0);
+  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 16, 0);
+  gl.enableVertexAttribArray(1);
+  gl.vertexAttribPointer(1, 2, gl.FLOAT, false, 16, 8);
   gl.bindVertexArray(null);
 
   const rangeParam = gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE) as Float32Array | null;
@@ -628,17 +926,27 @@ function initResources(gl: WebGL2RenderingContext): GlResources {
     paperProgram,
     skyProgram,
     tileProgram,
+    photoProgram,
     vao,
     fullscreenVao,
     skyVao,
     tileVao,
+    photoVao,
     vbo,
     skyVbo,
     tileVbo,
+    photoVbo,
     vboCapacity: 0,
     skyCapacity: 0,
     tileCapacity: 0,
+    photoVboCapacity: 0,
     pointRange,
+    bgTex: null,
+    figTex: null,
+    fgTex: null,
+    settledFgTex: null,
+    tilesTex: null,
+    construction,
     u: {
       frame: gl.getUniformLocation(particleProgram, 'u_frame'),
       canvas: gl.getUniformLocation(particleProgram, 'u_canvas'),
@@ -657,6 +965,11 @@ function initResources(gl: WebGL2RenderingContext): GlResources {
       skyHorizonY: gl.getUniformLocation(skyProgram, 'u_horizonY'),
       tileCanvas: gl.getUniformLocation(tileProgram, 'u_canvas'),
       tileTime: gl.getUniformLocation(tileProgram, 'u_time'),
+      photoCanvas: gl.getUniformLocation(photoProgram, 'u_canvas'),
+      photoTex: gl.getUniformLocation(photoProgram, 'u_tex'),
+      photoAlpha: gl.getUniformLocation(photoProgram, 'u_alpha'),
+      photoRevealY: gl.getUniformLocation(photoProgram, 'u_revealY'),
+      photoRevealBand: gl.getUniformLocation(photoProgram, 'u_revealBand'),
     },
   };
 }

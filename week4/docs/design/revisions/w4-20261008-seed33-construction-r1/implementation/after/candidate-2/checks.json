@@ -1,0 +1,4772 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-09T02:00:02.039Z",
+  "phase": "Week4 Step1",
+  "fixture": {
+    "look": "seed33",
+    "seed": 33,
+    "buildMs": 12000
+  },
+  "input": {
+    "appDir": "C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\app",
+    "outputDir": "C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261008-seed33-construction-r1\\implementation\\after\\candidate-2",
+    "port": 1468
+  },
+  "environment": {
+    "platform": "win32",
+    "osRelease": "10.0.26200",
+    "arch": "x64",
+    "node": "v24.14.0",
+    "playwright": "1.56.1",
+    "vite": "7.3.7",
+    "chromium": "154.0.8037.97"
+  },
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "deviceScaleFactor": 1,
+  "captures": [
+    {
+      "file": "webgl2-seed33-build-000pct.png",
+      "label": "webgl2/build-000pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0,
+        "timeMs": 0,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 10877,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "493",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-010pct.png",
+      "label": "webgl2/build-010pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.1,
+        "timeMs": 1200,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 16435,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.60",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-025pct.png",
+      "label": "webgl2/build-025pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.25,
+        "timeMs": 3000,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 50564,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "1.90",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-040pct.png",
+      "label": "webgl2/build-040pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.4,
+        "timeMs": 4800,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 149069,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "3.50",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "445",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-052pct.png",
+      "label": "webgl2/build-052pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.52,
+        "timeMs": 6240,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 602719,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "5.40",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "466",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-067pct.png",
+      "label": "webgl2/build-067pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.67,
+        "timeMs": 8040,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 1845322,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.40",
+        "frameMs": "13.80",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "584",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-080pct.png",
+      "label": "webgl2/build-080pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.8,
+        "timeMs": 9600,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3338845,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.80",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "570",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-092pct.png",
+      "label": "webgl2/build-092pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.92,
+        "timeMs": 11040,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3850282,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "53",
+        "drawMs": "9.60",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "549",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-099p9pct.png",
+      "label": "webgl2/build-099p9pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.999,
+        "timeMs": 11988,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3812777,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "0.30",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "452",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-build-100pct.png",
+      "label": "webgl2/build-100pct",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 1,
+        "timeMs": 12000,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3767150,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.10",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-complete-plus-5s.png",
+      "label": "webgl2/complete-plus-5s",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 1,
+        "timeMs": 17000,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3854729,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "17000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.20",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "17000.0",
+        "lifeMs": "17000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-reduced-midbuild.png",
+      "label": "webgl2/reduced-midbuild",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.52,
+        "timeMs": 6240,
+        "reduced": true
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3767233,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "1",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "55",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "50",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "507",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-000pct.png",
+      "label": "canvas2d/build-000pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0,
+        "timeMs": 0,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 15969,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "0.10",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-010pct.png",
+      "label": "canvas2d/build-010pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.1,
+        "timeMs": 1200,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 66781,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-025pct.png",
+      "label": "canvas2d/build-025pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.25,
+        "timeMs": 3000,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 432859,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.40",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-040pct.png",
+      "label": "canvas2d/build-040pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.4,
+        "timeMs": 4800,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 976896,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "50",
+        "drawMs": "0.50",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "340",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-052pct.png",
+      "label": "canvas2d/build-052pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.52,
+        "timeMs": 6240,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 1656227,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.90",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "417",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-067pct.png",
+      "label": "canvas2d/build-067pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.67,
+        "timeMs": 8040,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 2690716,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "1.00",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-080pct.png",
+      "label": "canvas2d/build-080pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.8,
+        "timeMs": 9600,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3603051,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "1.20",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-092pct.png",
+      "label": "canvas2d/build-092pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.92,
+        "timeMs": 11040,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3875563,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "63",
+        "drawMs": "1.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "438",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-099p9pct.png",
+      "label": "canvas2d/build-099p9pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.999,
+        "timeMs": 11988,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3831124,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.90",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-build-100pct.png",
+      "label": "canvas2d/build-100pct",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 1,
+        "timeMs": 12000,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3768892,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-complete-plus-5s.png",
+      "label": "canvas2d/complete-plus-5s",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 1,
+        "timeMs": 17000,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3854600,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "17000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "63",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "50",
+        "timeMs": "17000.0",
+        "lifeMs": "17000.0",
+        "wallMs": "431",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "canvas2d-seed33-reduced-midbuild.png",
+      "label": "canvas2d/reduced-midbuild",
+      "requested": {
+        "backend": "canvas2d",
+        "progress": 0.52,
+        "timeMs": 6240,
+        "reduced": true
+      },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 3769010,
+      "layout": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "canvasBacking": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "1",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "file": "webgl2-seed33-narrow-fixture-midbuild.png",
+      "label": "narrow-fixture",
+      "requested": {
+        "backend": "webgl2",
+        "progress": 0.52,
+        "timeMs": 6240,
+        "reduced": false
+      },
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 70264,
+      "layout": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "devicePixelRatio": 1,
+        "document": {
+          "width": 390,
+          "height": 844
+        },
+        "canvasCss": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 419
+        },
+        "canvasBacking": {
+          "width": 390,
+          "height": 419
+        }
+      },
+      "dataset": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "5.60",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "438",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "warmup: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "50",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "431",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-000pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "493",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-000pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-000pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "493",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-000pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "493",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-010pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.60",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-010pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-010pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.60",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-010pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.60",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-025pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "1.90",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-025pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-025pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "1.90",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-025pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "1.90",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-040pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "3.50",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "445",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-040pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-040pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "3.50",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "445",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-040pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "3.50",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "445",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-052pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "5.40",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "466",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-052pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-052pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "5.40",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "466",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-052pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "5.40",
+        "frameMs": "7.10",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "466",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-067pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.40",
+        "frameMs": "13.80",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "584",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-067pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-067pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.40",
+        "frameMs": "13.80",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "584",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-067pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.40",
+        "frameMs": "13.80",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "584",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-080pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.80",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "570",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-080pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-080pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.80",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "570",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-080pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "9.80",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "570",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-092pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "53",
+        "drawMs": "9.60",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "549",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-092pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-092pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "53",
+        "drawMs": "9.60",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "549",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-092pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "53",
+        "drawMs": "9.60",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "549",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-099p9pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "0.30",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "452",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-099p9pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-099p9pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "0.30",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "452",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-099p9pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "0.30",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "452",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-100pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.10",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-100pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/build-100pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.10",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/build-100pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.10",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/complete-plus-5s: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "17000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.20",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "17000.0",
+        "lifeMs": "17000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/complete-plus-5s: post-build clock is exact",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "17000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.20",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "17000.0",
+        "lifeMs": "17000.0",
+        "wallMs": "459",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/complete-plus-5s: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "webgl2/reduced-midbuild: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "1",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "55",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "50",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "507",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/reduced-midbuild: reduced state preserves requested time",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "1",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "55",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "50",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "507",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "webgl2/reduced-midbuild: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "webgl2",
+        "actual": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      }
+    },
+    {
+      "name": "canvas2d/build-000pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "0.10",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-000pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-000pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "0.10",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-000pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "0",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "0.10",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "0.0",
+        "lifeMs": "0.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-010pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-010pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-010pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-010pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "1200",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "1200.0",
+        "lifeMs": "1200.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-025pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.40",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-025pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-025pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.40",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-025pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "3000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.40",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "3000.0",
+        "lifeMs": "3000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-040pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "50",
+        "drawMs": "0.50",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "340",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-040pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-040pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "50",
+        "drawMs": "0.50",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "340",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-040pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "50",
+        "drawMs": "0.50",
+        "frameMs": "6.80",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "340",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-052pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.90",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "417",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-052pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-052pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.90",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "417",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-052pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "58",
+        "drawMs": "0.90",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "417",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-067pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "1.00",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-067pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-067pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "1.00",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-067pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "8040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "15",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "48",
+        "drawMs": "1.00",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "8040.0",
+        "lifeMs": "8040.0",
+        "wallMs": "334",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-080pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "1.20",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-080pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-080pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "1.20",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-080pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "59",
+        "drawMs": "1.20",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-092pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "63",
+        "drawMs": "1.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "438",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-092pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-092pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "63",
+        "drawMs": "1.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "438",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-092pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11040",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "63",
+        "drawMs": "1.20",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11040.0",
+        "lifeMs": "11040.0",
+        "wallMs": "438",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-099p9pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.90",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-099p9pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-099p9pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.90",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-099p9pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "11988",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.90",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "11988.0",
+        "lifeMs": "11988.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-100pct: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-100pct: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/build-100pct: paused host/life clocks match",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/build-100pct: fixed fixture identity",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "12000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "60",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "12000.0",
+        "lifeMs": "12000.0",
+        "wallMs": "410",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/complete-plus-5s: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "17000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "63",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "50",
+        "timeMs": "17000.0",
+        "lifeMs": "17000.0",
+        "wallMs": "431",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/complete-plus-5s: post-build clock is exact",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "17000",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "63",
+        "drawMs": "0.20",
+        "frameMs": "6.90",
+        "particles": "50",
+        "timeMs": "17000.0",
+        "lifeMs": "17000.0",
+        "wallMs": "431",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/complete-plus-5s: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "canvas2d/reduced-midbuild: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "1",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/reduced-midbuild: reduced state preserves requested time",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "1",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "62",
+        "drawMs": "0.30",
+        "frameMs": "7.00",
+        "particles": "50",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "canvas2d/reduced-midbuild: requested backend rendered",
+      "ok": true,
+      "details": {
+        "requested": "canvas2d",
+        "actual": "canvas2d",
+        "detail": "Canvas2D"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0",
+      "ok": true,
+      "details": {
+        "webgl2": "0",
+        "canvas2d": "0"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.1",
+      "ok": true,
+      "details": {
+        "webgl2": "0",
+        "canvas2d": "0"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.25",
+      "ok": true,
+      "details": {
+        "webgl2": "0",
+        "canvas2d": "0"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.4",
+      "ok": true,
+      "details": {
+        "webgl2": "0",
+        "canvas2d": "0"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.52",
+      "ok": true,
+      "details": {
+        "webgl2": "1",
+        "canvas2d": "1"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.67",
+      "ok": true,
+      "details": {
+        "webgl2": "15",
+        "canvas2d": "15"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.8",
+      "ok": true,
+      "details": {
+        "webgl2": "28",
+        "canvas2d": "28"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.92",
+      "ok": true,
+      "details": {
+        "webgl2": "28",
+        "canvas2d": "28"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 0.999",
+      "ok": true,
+      "details": {
+        "webgl2": "28",
+        "canvas2d": "28"
+      }
+    },
+    {
+      "name": "backend tile-count parity at 1",
+      "ok": true,
+      "details": {
+        "webgl2": "28",
+        "canvas2d": "28"
+      }
+    },
+    {
+      "name": "narrow-fixture: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "6240",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "1",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "5.60",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "6240.0",
+        "lifeMs": "6240.0",
+        "wallMs": "438",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "narrow fixture: screenshot has requested dimensions",
+      "ok": true,
+      "details": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "narrow fixture: no horizontal page overflow",
+      "ok": true,
+      "details": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "scrollHeight": 844,
+        "innerHeight": 844
+      }
+    },
+    {
+      "name": "controls/before: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "0",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "56",
+        "drawMs": "5.70",
+        "frameMs": "7.00",
+        "particles": "0",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "467",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "pause continuity: host and life clocks hold",
+      "ok": true,
+      "details": {
+        "before": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "0",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "webgl2",
+          "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "degraded": "0",
+          "frameCount": "56",
+          "drawMs": "5.70",
+          "frameMs": "7.00",
+          "particles": "0",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "467",
+          "assetsReady": "1",
+          "ready": "1"
+        },
+        "after": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "0",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "webgl2",
+          "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "degraded": "0",
+          "frameCount": "119",
+          "drawMs": "5.40",
+          "frameMs": "7.00",
+          "particles": "0",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "905",
+          "assetsReady": "1",
+          "ready": "1"
+        }
+      }
+    },
+    {
+      "name": "reduced continuity: toggling reduced motion preserves both clocks",
+      "ok": true,
+      "details": {
+        "before": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "0",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "webgl2",
+          "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "degraded": "0",
+          "frameCount": "56",
+          "drawMs": "5.70",
+          "frameMs": "7.00",
+          "particles": "0",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "467",
+          "assetsReady": "1",
+          "ready": "1"
+        },
+        "after": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "1",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "webgl2",
+          "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "degraded": "0",
+          "frameCount": "130",
+          "drawMs": "0.10",
+          "frameMs": "6.90",
+          "particles": "50",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "981",
+          "assetsReady": "1",
+          "ready": "1"
+        }
+      }
+    },
+    {
+      "name": "controls/backend-canvas2d: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "9600",
+        "reduced": "1",
+        "paused": "1",
+        "tiles": "28",
+        "tilesAuthored": "28",
+        "manualClock": "0",
+        "backend": "canvas2d",
+        "detail": "Canvas2D",
+        "degraded": "0",
+        "frameCount": "32",
+        "drawMs": "0.30",
+        "frameMs": "6.90",
+        "particles": "50",
+        "timeMs": "9600.0",
+        "lifeMs": "9600.0",
+        "wallMs": "250",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "backend continuity: switch preserves host/life clocks and reduced state",
+      "ok": true,
+      "details": {
+        "before": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "1",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "webgl2",
+          "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "degraded": "0",
+          "frameCount": "130",
+          "drawMs": "0.10",
+          "frameMs": "6.90",
+          "particles": "50",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "981",
+          "assetsReady": "1",
+          "ready": "1"
+        },
+        "after": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "1",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "canvas2d",
+          "detail": "Canvas2D",
+          "degraded": "0",
+          "frameCount": "33",
+          "drawMs": "0.20",
+          "frameMs": "7.00",
+          "particles": "50",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "257",
+          "assetsReady": "1",
+          "ready": "1"
+        }
+      }
+    },
+    {
+      "name": "tile continuity: hide/restore preserves clocks and authored count",
+      "ok": true,
+      "details": {
+        "before": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "1",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "canvas2d",
+          "detail": "Canvas2D",
+          "degraded": "0",
+          "frameCount": "34",
+          "drawMs": "0.20",
+          "frameMs": "7.00",
+          "particles": "50",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "264",
+          "assetsReady": "1",
+          "ready": "1"
+        },
+        "hidden": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "1",
+          "paused": "1",
+          "tiles": "0",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "canvas2d",
+          "detail": "Canvas2D",
+          "degraded": "0",
+          "frameCount": "37",
+          "drawMs": "0.20",
+          "frameMs": "7.00",
+          "particles": "50",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "285",
+          "assetsReady": "1",
+          "ready": "1"
+        },
+        "restored": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "9600",
+          "reduced": "1",
+          "paused": "1",
+          "tiles": "28",
+          "tilesAuthored": "28",
+          "manualClock": "0",
+          "backend": "canvas2d",
+          "detail": "Canvas2D",
+          "degraded": "0",
+          "frameCount": "41",
+          "drawMs": "0.20",
+          "frameMs": "7.00",
+          "particles": "50",
+          "timeMs": "9600.0",
+          "lifeMs": "9600.0",
+          "wallMs": "313",
+          "assetsReady": "1",
+          "ready": "1"
+        }
+      }
+    },
+    {
+      "name": "manual-clock/before: assets reported ready",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "0",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "1",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "55",
+        "drawMs": "3.80",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "manual clock: fixture hook is available",
+      "ok": true,
+      "details": {
+        "look": "seed33",
+        "facing": "away",
+        "seed": "33",
+        "density": "1",
+        "buildMs": "12000",
+        "startMs": "4800",
+        "reduced": "0",
+        "paused": "0",
+        "tiles": "0",
+        "tilesAuthored": "28",
+        "manualClock": "1",
+        "backend": "webgl2",
+        "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "degraded": "0",
+        "frameCount": "55",
+        "drawMs": "3.80",
+        "frameMs": "6.90",
+        "particles": "0",
+        "timeMs": "4800.0",
+        "lifeMs": "4800.0",
+        "wallMs": "424",
+        "assetsReady": "1",
+        "ready": "1"
+      }
+    },
+    {
+      "name": "manual clock: bounded steps advance host and life together",
+      "ok": true,
+      "details": {
+        "before": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "4800",
+          "reduced": "0",
+          "paused": "0",
+          "tiles": "0",
+          "tilesAuthored": "28",
+          "manualClock": "1",
+          "backend": "webgl2",
+          "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "degraded": "0",
+          "frameCount": "55",
+          "drawMs": "3.80",
+          "frameMs": "6.90",
+          "particles": "0",
+          "timeMs": "4800.0",
+          "lifeMs": "4800.0",
+          "wallMs": "424",
+          "assetsReady": "1",
+          "ready": "1"
+        },
+        "after": {
+          "look": "seed33",
+          "facing": "away",
+          "seed": "33",
+          "density": "1",
+          "buildMs": "12000",
+          "startMs": "4800",
+          "reduced": "0",
+          "paused": "0",
+          "tiles": "0",
+          "tilesAuthored": "28",
+          "manualClock": "1",
+          "backend": "webgl2",
+          "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "degraded": "0",
+          "frameCount": "62",
+          "drawMs": "5.00",
+          "frameMs": "7.00",
+          "particles": "0",
+          "timeMs": "6050.0",
+          "lifeMs": "6050.0",
+          "wallMs": "472",
+          "assetsReady": "1",
+          "ready": "1"
+        },
+        "expectedMs": 6050
+      }
+    },
+    {
+      "name": "browser: no page exceptions",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "browser: no console errors",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "browser: no failed requests",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "browser: no scene resource errors",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-000pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 10877,
+        "actualBytes": 10877
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-010pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 16435,
+        "actualBytes": 16435
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-025pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 50564,
+        "actualBytes": 50564
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-040pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 149069,
+        "actualBytes": 149069
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-052pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 602719,
+        "actualBytes": 602719
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-067pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 1845322,
+        "actualBytes": 1845322
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-080pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3338845,
+        "actualBytes": 3338845
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-092pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3850282,
+        "actualBytes": 3850282
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-099p9pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3812777,
+        "actualBytes": 3812777
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-build-100pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3767150,
+        "actualBytes": 3767150
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-complete-plus-5s.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3854729,
+        "actualBytes": 3854729
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-reduced-midbuild.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3767233,
+        "actualBytes": 3767233
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-000pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 15969,
+        "actualBytes": 15969
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-010pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 66781,
+        "actualBytes": 66781
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-025pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 432859,
+        "actualBytes": 432859
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-040pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 976896,
+        "actualBytes": 976896
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-052pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 1656227,
+        "actualBytes": 1656227
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-067pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 2690716,
+        "actualBytes": 2690716
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-080pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3603051,
+        "actualBytes": 3603051
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-092pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3875563,
+        "actualBytes": 3875563
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-099p9pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3831124,
+        "actualBytes": 3831124
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-build-100pct.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3768892,
+        "actualBytes": 3768892
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-complete-plus-5s.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3854600,
+        "actualBytes": 3854600
+      }
+    },
+    {
+      "name": "file exists: canvas2d-seed33-reduced-midbuild.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 3769010,
+        "actualBytes": 3769010
+      }
+    },
+    {
+      "name": "file exists: webgl2-seed33-narrow-fixture-midbuild.png",
+      "ok": true,
+      "details": {
+        "expectedBytes": 70264,
+        "actualBytes": 70264
+      }
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "requestFailures": [],
+  "resourceErrors": [],
+  "failures": [],
+  "server": {
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\node_modules\\vite\\bin\\vite.js",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "1468",
+      "--strictPort"
+    ],
+    "outputTail": "\n  VITE v7.3.7  ready in 246 ms\n\n  ➜  Local:   http://127.0.0.1:1468/\n"
+  },
+  "files": [
+    {
+      "name": "webgl2-seed33-build-000pct.png",
+      "bytes": 10877,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-010pct.png",
+      "bytes": 16435,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-025pct.png",
+      "bytes": 50564,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-040pct.png",
+      "bytes": 149069,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-052pct.png",
+      "bytes": 602719,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-067pct.png",
+      "bytes": 1845322,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-080pct.png",
+      "bytes": 3338845,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-092pct.png",
+      "bytes": 3850282,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-099p9pct.png",
+      "bytes": 3812777,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-build-100pct.png",
+      "bytes": 3767150,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-complete-plus-5s.png",
+      "bytes": 3854729,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-reduced-midbuild.png",
+      "bytes": 3767233,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-000pct.png",
+      "bytes": 15969,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-010pct.png",
+      "bytes": 66781,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-025pct.png",
+      "bytes": 432859,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-040pct.png",
+      "bytes": 976896,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-052pct.png",
+      "bytes": 1656227,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-067pct.png",
+      "bytes": 2690716,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-080pct.png",
+      "bytes": 3603051,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-092pct.png",
+      "bytes": 3875563,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-099p9pct.png",
+      "bytes": 3831124,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-build-100pct.png",
+      "bytes": 3768892,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-complete-plus-5s.png",
+      "bytes": 3854600,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "canvas2d-seed33-reduced-midbuild.png",
+      "bytes": 3769010,
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "webgl2-seed33-narrow-fixture-midbuild.png",
+      "bytes": 70264,
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "labels": {
+    "evidence": "Playwright browser fixture only",
+    "native": false,
+    "camera": "none",
+    "pose": "none",
+    "timing": "paused fixed host/life clock except the explicit manual-step check; no performance claim"
+  },
+  "ok": true,
+  "finishedAt": "2026-10-09T02:00:28.138Z"
+}

@@ -8,6 +8,10 @@
     "node": ">=22.18"
   },
   "scripts": {
+    "build:rust": "node scripts/build-rust.mjs",
+    "predev": "npm run build:rust",
+    "prebuild": "npm run build:rust",
+    "pretypecheck": "npm run build:rust",
     "dev": "vite --host 127.0.0.1 --port 1440 --strictPort",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 1441 --strictPort",

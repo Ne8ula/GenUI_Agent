@@ -1,0 +1,442 @@
+{
+  "ok": true,
+  "startedAt": "2026-10-09T15:45:04.850Z",
+  "versions": {
+    "node": "v24.14.0",
+    "playwright": "1.56.1",
+    "chromium": "154.0.8037.97"
+  },
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "deviceScaleFactor": 1,
+  "baseUrl": "http://127.0.0.1:1479",
+  "look": "seed33",
+  "seed": 33,
+  "seedNote": "seed 33: the seed33 look's default (host params defaultSeedFor)",
+  "buildMs": 12000,
+  "idleSeconds": 10,
+  "environment": "win32 10.0.26200 (x64, 24 CPU); browser-only evidence (Playwright headless Chromium). WebGL2 renderer reported: ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11). No WebView2, Windows shell, camera or pose input was involved.",
+  "stills": [
+    {
+      "file": "webgl2-seed33-build-000pct.png",
+      "name": "build-000pct",
+      "requestedMs": 0,
+      "backend": "webgl2",
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 0,
+      "timeMs": 0,
+      "lifeMs": 0,
+      "particles": 0,
+      "tiles": 0,
+      "tilesAuthored": 28,
+      "reduced": false,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "shimmer suppressed during component construction"
+    },
+    {
+      "file": "webgl2-seed33-build-025pct.png",
+      "name": "build-025pct",
+      "requestedMs": 3000,
+      "backend": "webgl2",
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 3000,
+      "timeMs": 3000,
+      "lifeMs": 3000,
+      "particles": 0,
+      "tiles": 0,
+      "tilesAuthored": 28,
+      "reduced": false,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "shimmer suppressed during component construction"
+    },
+    {
+      "file": "webgl2-seed33-build-050pct.png",
+      "name": "build-050pct",
+      "requestedMs": 6000,
+      "backend": "webgl2",
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 6000,
+      "timeMs": 6000,
+      "lifeMs": 6000,
+      "particles": 0,
+      "tiles": 0,
+      "tilesAuthored": 28,
+      "reduced": false,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "shimmer suppressed during component construction"
+    },
+    {
+      "file": "webgl2-seed33-build-100pct.png",
+      "name": "build-100pct",
+      "requestedMs": 12000,
+      "backend": "webgl2",
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 12000,
+      "timeMs": 12000,
+      "lifeMs": 12000,
+      "particles": 50,
+      "tiles": 28,
+      "tilesAuthored": 28,
+      "reduced": false,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "settled shimmer visible"
+    },
+    {
+      "file": "webgl2-seed33-complete-plus-5s.png",
+      "name": "complete-plus-5s",
+      "requestedMs": 17000,
+      "backend": "webgl2",
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 17000,
+      "timeMs": 17000,
+      "lifeMs": 17000,
+      "particles": 50,
+      "tiles": 28,
+      "tilesAuthored": 28,
+      "reduced": false,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "settled shimmer visible"
+    },
+    {
+      "file": "webgl2-seed33-reduced-complete-plus-5s.png",
+      "name": "reduced-complete-plus-5s",
+      "requestedMs": 17000,
+      "backend": "webgl2",
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 17000,
+      "timeMs": 17000,
+      "lifeMs": 17000,
+      "particles": 50,
+      "tiles": 28,
+      "tilesAuthored": 28,
+      "reduced": true,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "settled shimmer visible"
+    },
+    {
+      "file": "canvas2d-seed33-build-050pct.png",
+      "name": "build-050pct",
+      "requestedMs": 6000,
+      "backend": "canvas2d",
+      "detail": "Canvas2D",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 6000,
+      "timeMs": 6000,
+      "lifeMs": 6000,
+      "particles": 0,
+      "tiles": 0,
+      "tilesAuthored": 28,
+      "reduced": false,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "shimmer suppressed during component construction"
+    },
+    {
+      "file": "canvas2d-seed33-complete-plus-5s.png",
+      "name": "complete-plus-5s",
+      "requestedMs": 17000,
+      "backend": "canvas2d",
+      "detail": "Canvas2D",
+      "look": "seed33",
+      "buildMs": 12000,
+      "startMs": 17000,
+      "timeMs": 17000,
+      "lifeMs": 17000,
+      "particles": 50,
+      "tiles": 28,
+      "tilesAuthored": 28,
+      "reduced": false,
+      "degraded": false,
+      "paused": true,
+      "particleExpectation": "settled shimmer visible"
+    }
+  ],
+  "backends": {
+    "webgl2": {
+      "requested": "webgl2",
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "timing": {
+        "construction": {
+          "note": "first 300 frame intervals of the build, from t = 0",
+          "label": "headless Chromium on win32 10.0.26200 (x64, 24 CPU); WebGL2 renderer \"ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)\" — hardware-reported renderer, still browser evidence; not a WebView2 or Windows-shell measurement",
+          "backend": "webgl2",
+          "frameIntervalMs": {
+            "samples": 300,
+            "median": 6.9,
+            "p95": 7,
+            "max": 14.1
+          },
+          "drawMs": {
+            "samples": 301,
+            "median": 1,
+            "p95": 2.1,
+            "max": 2.8
+          }
+        },
+        "idle": {
+          "note": "300 frame intervals at idle, from t = 17000 ms (build complete)",
+          "label": "headless Chromium on win32 10.0.26200 (x64, 24 CPU); WebGL2 renderer \"ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)\" — hardware-reported renderer, still browser evidence; not a WebView2 or Windows-shell measurement",
+          "backend": "webgl2",
+          "frameIntervalMs": {
+            "samples": 300,
+            "median": 6.9,
+            "p95": 7.1,
+            "max": 7.1
+          },
+          "drawMs": {
+            "samples": 301,
+            "median": 0.2,
+            "p95": 0.3,
+            "max": 1
+          }
+        }
+      }
+    },
+    "canvas2d": {
+      "requested": "canvas2d",
+      "detail": "Canvas2D",
+      "timing": {
+        "idle": {
+          "note": "90 frame intervals at idle, from t = 17000 ms (build complete)",
+          "label": "headless Chromium on win32 10.0.26200 (x64, 24 CPU); Canvas2D on the CPU; browser evidence, not a WebView2 or Windows-shell measurement",
+          "backend": "canvas2d",
+          "frameIntervalMs": {
+            "samples": 90,
+            "median": 6.9,
+            "p95": 7,
+            "max": 7.1
+          },
+          "drawMs": {
+            "samples": 91,
+            "median": 0.5,
+            "p95": 0.8,
+            "max": 1.4
+          }
+        }
+      }
+    }
+  },
+  "realtime": {
+    "requestedMs": 22000,
+    "lifeMs": 22328.8,
+    "startMs": 0,
+    "wallMs": 22312,
+    "frames": 2799,
+    "meanFrameMs": 7.97,
+    "lifeToWallRatio": 1.001,
+    "note": "(life ms - start ms) / wall ms from the first drawn frame to the end of the recording; near 1 means life kept pace with the clock. Frames is the number of drawn frames over the same span, so wall/frames is this machine's real frame time.",
+    "video": {
+      "webm": "webgl2-realtime-build-idle.webm",
+      "ffmpeg": true,
+      "trimStartSeconds": 0,
+      "webmProbe": {
+        "codec": "vp8",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "reportedFps": 25,
+        "averageFps": 25,
+        "frames": 515,
+        "durationSeconds": 20.6
+      },
+      "mp4": "webgl2-realtime-build-idle.mp4",
+      "mp4Probe": {
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "reportedFps": 30,
+        "averageFps": 30,
+        "frames": 618,
+        "durationSeconds": 20.6
+      },
+      "frameSheet": "webgl2-realtime-build-idle-frames-4fps.png",
+      "frameSheetLayout": "10 columns x 9 rows at 4 fps, 480 px wide, no timestamps (drawtext unavailable)",
+      "trimMethod": "clip length 20.6 s - 22.31 s of wall time since the first drawn frame - 0.08 s context-close latency; approximate to a few tenths of a second",
+      "nominalFps": "Playwright screencast, nominally 25 fps, transcoded with -r 30; duplicated or dropped frames are possible and the real frame time is meanFrameMs above"
+    }
+  },
+  "stepped": {
+    "fps": 30,
+    "stepMs": 33.3333,
+    "framesRequested": 661,
+    "framesWritten": 661,
+    "wallSeconds": 267.1,
+    "meanSecondsPerFrame": 0.404,
+    "finalHostMs": 22000,
+    "finalLifeMs": 22000,
+    "expectedFinalMs": 22000,
+    "ffmpegExit": 0,
+    "label": "frames are page screenshots at 1920x1080 taken after each 33.33 ms virtual step on clock=manual; 154.0.8037.97 on win32 10.0.26200 (x64, 24 CPU). This shows the intended motion at 30 fps, not real-time performance of this machine.",
+    "mp4": "webgl2-stepped-30fps-build-idle.mp4",
+    "mp4Probe": {
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "reportedFps": 30,
+      "averageFps": 30,
+      "frames": 661,
+      "durationSeconds": 22.033333
+    },
+    "frameSheet": "webgl2-stepped-30fps-build-idle-frames-4fps.png",
+    "frameSheetLayout": "10 columns x 9 rows at 4 fps, 480 px wide, no timestamps (drawtext unavailable)"
+  },
+  "statusLines": {
+    "midBuild": "Backend: WebGL2 · ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11) · particles 0 · tiles hidden (28 authored) · Build: constructing 6.0 s of 12 s · clock 6.0 s (paused) · frame 6.9 ms median / 7.0 ms p95 (last 120) · draw 5.2 ms · Head tracking: off (not in this step)",
+    "complete": "Backend: WebGL2 · ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11) · particles 50 · tiles 28 · Build: complete · clock 17.0 s (paused) · frame 7.0 ms median / 7.0 ms p95 (last 120) · draw 0.1 ms · Head tracking: off (not in this step)"
+  },
+  "focus": {
+    "tag": "select",
+    "accessibleName": "Look",
+    "matchesFocusVisible": true,
+    "outline": "rgb(58, 47, 42) solid 2px",
+    "barHeightPx": 147,
+    "stageHeightPx": 933,
+    "barOverlapsStage": false,
+    "ariaSnapshot": "- combobox \"Look\":\n  - option \"Seed 33 (selected)\" [selected]\n  - option \"Arrival (earlier frame)\"",
+    "tabOrderFromFirst": [
+      "Look",
+      "Build length",
+      "Start time",
+      "Backend",
+      "Resume",
+      "Tiles: on",
+      "Reduced motion: off",
+      "Density",
+      "Seed",
+      "Reseed",
+      "EVA Week 4 — Paris frame (fixture)Fixture controls — Week 4 Paris frame, not the live demoLookSeed 33 (selected)Arrival (earlier frame)Build lengthComplete (no build)3 s6 s12 s24 sStart time6.0 sBackendAutoWebGL2Canvas2DResumeTiles: onReduced motion: offNear walker facing (arrival look only)AwayTowardDensity0.50.7511.25SeedReseedBackend: WebGL2 · ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11) · particles 0 · tiles hidden (28 authored) · Build: constructing 6.0 s of 12 s · clock 6.0 s (paused) · frame 6.9 ms median / 7.1 ms p95 (last 120) · draw 5.5 ms · Head tracking: off (not in this step)Backend: WebGL2 · Build: constructing",
+      "Look",
+      "Build length"
+    ]
+  },
+  "tilesToggle": {
+    "before": {
+      "shown": 28,
+      "authored": 28
+    },
+    "afterOff": {
+      "shown": 0,
+      "authored": 28
+    },
+    "afterOn": {
+      "shown": 28,
+      "authored": 28
+    },
+    "statusWhenHidden": "Backend: WebGL2 · ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11) · particles 50 · tiles hidden (28 authored) · Build: complete · clock 17.0 s (paused) · frame 7.0 ms median / 7.0 ms p95 (last 120) · draw 0.0 ms · Head tracking: off (not in this step)",
+    "ok": true
+  },
+  "lookSwitch": {
+    "lookAfter": "arrival",
+    "seedAfter": 7,
+    "expectedSeedAfter": 7,
+    "tiles": 0,
+    "buildSelectDisabled": true,
+    "tilesButtonDisabled": true,
+    "tilesButtonText": "Tiles: none in this look"
+  },
+  "finishedAt": "2026-10-09T15:50:39.986Z",
+  "commands": [
+    "(cd C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\app && C:\\Program Files\\nodejs\\node.exe C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\node_modules\\vite\\bin\\vite.js --host 127.0.0.1 --port 1479 --strictPort)",
+    "node scripts\\capture-s33.mjs (EVA_CAPTURE_BUILD_MS=12000, EVA_CAPTURE_IDLE_SECONDS=10, EVA_CAPTURE_SEED=33, EVA_CAPTURE_PORT=1479, EVA_CAPTURE_REALTIME=1, EVA_CAPTURE_STEPPED=1)",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-realtime-build-idle.webm",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-realtime-build-idle.webm",
+    "ffmpeg -y -v error -ss 0 -i C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-realtime-build-idle.webm -r 30 -c:v libx264 -pix_fmt yuv420p -crf 18 C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-realtime-build-idle.mp4",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-realtime-build-idle.mp4",
+    "ffmpeg -y -v error -i C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-realtime-build-idle.mp4 -vf fps=4,scale=480:-1,tile=10x9 -frames:v 1 -update 1 C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-realtime-build-idle-frames-4fps.png",
+    "ffmpeg -y -v error -f image2pipe -framerate 30 -vcodec png -i - -c:v libx264 -pix_fmt yuv420p -crf 18 C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-stepped-30fps-build-idle.mp4   # fed 661 page screenshots (png) on stdin",
+    "ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_frames,duration:format=duration -of json C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-stepped-30fps-build-idle.mp4",
+    "ffmpeg -y -v error -i C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-stepped-30fps-build-idle.mp4 -vf fps=4,scale=480:-1,tile=10x9 -frames:v 1 -update 1 C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\docs\\design\\revisions\\w4-20261009-seed33-formed-glitch-r1\\implementation\\after\\motion-resume-1\\after\\webgl2-stepped-30fps-build-idle-frames-4fps.png"
+  ],
+  "pageErrors": [],
+  "failures": [],
+  "files": [
+    {
+      "name": "after/canvas2d-seed33-build-050pct.png",
+      "bytes": 1753817
+    },
+    {
+      "name": "after/canvas2d-seed33-complete-plus-5s.png",
+      "bytes": 3854537
+    },
+    {
+      "name": "after/fixture-controls-focus.png",
+      "bytes": 609935
+    },
+    {
+      "name": "after/webgl2-realtime-build-idle-frames-4fps.png",
+      "bytes": 8485486
+    },
+    {
+      "name": "after/webgl2-realtime-build-idle.mp4",
+      "bytes": 14467792
+    },
+    {
+      "name": "after/webgl2-realtime-build-idle.webm",
+      "bytes": 4459252
+    },
+    {
+      "name": "after/webgl2-seed33-build-000pct.png",
+      "bytes": 10877
+    },
+    {
+      "name": "after/webgl2-seed33-build-025pct.png",
+      "bytes": 52322
+    },
+    {
+      "name": "after/webgl2-seed33-build-050pct.png",
+      "bytes": 741864
+    },
+    {
+      "name": "after/webgl2-seed33-build-100pct.png",
+      "bytes": 3768551
+    },
+    {
+      "name": "after/webgl2-seed33-complete-plus-5s.png",
+      "bytes": 3854503
+    },
+    {
+      "name": "after/webgl2-seed33-reduced-complete-plus-5s.png",
+      "bytes": 3767233
+    },
+    {
+      "name": "after/webgl2-stepped-30fps-build-idle-frames-4fps.png",
+      "bytes": 6864510
+    },
+    {
+      "name": "after/webgl2-stepped-30fps-build-idle.mp4",
+      "bytes": 12922703
+    }
+  ],
+  "labels": {
+    "browser": true,
+    "native": false,
+    "camera": "none",
+    "pose": "none",
+    "realtimeClip": "Playwright screencast of the page on this machine's clock; shows real pacing",
+    "steppedClip": "page screenshots at a fixed virtual frame time; shows the intended motion, not machine performance",
+    "stillsFrameNote": "stills are paused with the host clock and the life clock both at the stated t"
+  }
+}

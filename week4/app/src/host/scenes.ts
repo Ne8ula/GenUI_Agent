@@ -11,7 +11,7 @@ import { buildArrivalScene } from '../scene/arrival.ts';
 import type { WalkerFacing } from '../scene/arrival.ts';
 import { createLife } from '../scene/life.ts';
 import * as seed33Module from '../scene/seed33.ts';
-import { buildSeed33Scene, seed33RigsOf } from '../scene/seed33.ts';
+import { buildSeed33Scene } from '../scene/seed33.ts';
 import type { SceneFrame } from '../scene/types.ts';
 import type { Density, Look } from './params.ts';
 import type { Scene } from './useRenderLoop.ts';
@@ -76,11 +76,12 @@ function stashedSetReducedMotion(frame: SceneFrame, reduced: boolean): void {
 
 /**
  * Switches the shimmer of an authored scene off (reduced) or back on, in place. Touches only the `motion` lane (and
- * whatever the scene module keeps with it): no clock, no particle position, no tile and no life state moves, so it
- * cannot rebuild, replay or stall anything. Frames not authored by the seed-33 module (the arrival look has no shimmer
- * lanes) are left alone.
+ * whatever the scene module keeps with it, including the seed-33 photo rebuild's tile-hold): no clock, no particle
+ * position, no tile and no life state moves, so it cannot rebuild, replay or stall anything. Safe to call for every
+ * look: the arrival scene authors no shimmer (every particle's motion is already 0), so this is a harmless no-op
+ * there. The seed-33 photo rebuild's own figure approach is not toggled here: the renderer reads the live
+ * reducedMotion flag directly every draw (see seed33Photo.ts photoApproachPose), so it needs no stored state here.
  */
 export function applyReducedMotion(frame: SceneFrame, reduced: boolean): void {
-  if (seed33RigsOf(frame) === undefined) return;
   (sceneSetReducedMotion ?? stashedSetReducedMotion)(frame, reduced);
 }
