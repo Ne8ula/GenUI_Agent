@@ -1,0 +1,152 @@
+{
+  "revision": "w4-20261015-paris-chatgpt-r8",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "date": "2026-10-15",
+  "status": "owner-authorized-four-layer-pass-handoff-ready-not-launched",
+  "currentVideoRun": "video-run-03-seedance.json",
+  "videoRunRecords": ["video-run-01.json", "video-run-02-people.json", "video-run-03-seedance.json"],
+  "ownerIdleDirection": "Run-01 composition and overlays selected as idle-animation starting point; people movement required. Latest Seedance requested; 2.5 exposed in catalog. No construction or phase acceptance.",
+  "ownerSelectedVideoReference": {
+    "file": "references/images/owner-video-selection/img-06-owner-selected.png",
+    "sha256": "022707ac67503ea42f43558e1ec95851ba430fde14db71446d5190aa75388314",
+    "bytes": 3129524,
+    "width": 1672,
+    "height": 941,
+    "inspected": true,
+    "source": "Owner attachment Image #6 on 2026-10-15; exact generation model/run unverified",
+    "authority": "Supersedes main-selected attempt-02 for video conditioning, not phase acceptance",
+    "record": "OWNER_VIDEO_SELECTION.md",
+    "uploadedAssetId": "fdbde55b-02be-49cc-83f6-8cbd4a1ad4ab",
+    "prompt": "prompts/owner-video-construction.json"
+  },
+  "totalRetainedImagesIncludingOwnerAttachment": 9,
+  "route": "ChatGPT Create image via official Claude-in-Chrome extension",
+  "requestedModel": "GPT Image 2.5",
+  "actualImageModel": null,
+  "modelCaveat": "UI exposes Create image, not the underlying image model version. Prompt requests GPT Image 2.5 and no substitution if unavailable.",
+  "conversationId": "6ad0897f-fcd0-83ea-9d4e-0d7ba5101254",
+  "runIds": [],
+  "requestedDimensions": {"width": 3840, "height": 2160},
+  "retainedImageDimensions": {"width": 1672, "height": 941},
+  "inputFilesInOrder": [
+    "../w4-20261015-c-abstract-surfaces-r5/references/images/img-a-glyph-fields.png",
+    "../w4-20261015-c-mapping-surfaces-r6/references/images/img-c-color-scan.png",
+    "../w4-20261014-paris-hybrid-crossing-r4/references/images/img-c-layered-research.png"
+  ],
+  "officialPrompt": "../w4-20261015-layered-mapping-glyph-r7/prompts/layered-surfaces.txt",
+  "supportingPrompts": "prompts/supporting-stills.json",
+  "ownerAuthorization": "Direct ChatGPT generation and bounded hands-free sequence, including up to five corrective iterations, supporting images, videos and later Astra implementation; no phase acceptance.",
+  "correctionLimit": 5,
+  "correctionsSubmitted": 2,
+  "keyframeIterationStopped": true,
+  "chatgptSubmissions": 9,
+  "retainedOriginals": 8,
+  "cost": null,
+  "costCaveat": "No per-image charge quote or receipt exposed by ChatGPT UI; no purchase/subscription change performed.",
+  "attempts": [
+    {
+      "attempt": 0,
+      "status": "completed-rejected",
+      "promptProblem": "Multiline browser typing submitted only routing/reference preamble; official 4920-character brief remained unsent in composer.",
+      "file": "references/images/attempt-00/img-00-incomplete-prompt-rejected.png",
+      "sha256": "33a6583bb2b4a0f885e2dbf65440e6eb90c7cf8edd9547e60b2e9cd5b39ab68d",
+      "inspected": true,
+      "selected": false,
+      "violations": ["broad blue/magenta including detail panes", "continuous paving", "new vegetation/awning/shop objects", "altered architecture/sign/foreground", "extra legend/text", "wrong title/footer", "requested resolution unmet"]
+    },
+    {
+      "attempt": 1,
+      "status": "completed-superseded",
+      "prompt": "Complete official prompt verified in composer and sent using explicit Send button",
+      "file": "references/images/attempt-01/img-01-official-prompt.png",
+      "sha256": "5a3d9cc4af1a3a2c59431e6867bf7d7160c6291f0ebfd640a6c48ead63062923",
+      "inspected": true,
+      "selected": false,
+      "observations": "Foreground/palette, natural detail panes, title and glyph/material layers substantially closer. Missing no-entry sign and too many scattered magenta clusters."
+    },
+    {
+      "attempt": 2,
+      "status": "completed-selected-for-reference",
+      "prompt": "prompts/correction-02.txt",
+      "file": "references/images/attempt-02/img-02-layered-keyframe.png",
+      "sha256": "610019c92970882adf47a33bbcad2ae2e2d2fd25405b9314b0af8c0cc9ea8751",
+      "inspected": true,
+      "selected": true,
+      "observations": "Sign restored; broad blue/magenta removed; natural panes, glyphs and muted foreground palette preserved. Not exact R5A registration; point/glyph overlap is partial and small stone strips under figures must not become continuous runtime paving. Accent percentage not measured."
+    }
+  ],
+  "selectedKeyframe": "references/images/attempt-02/img-02-layered-keyframe.png",
+  "supportingImages": [
+    {
+      "id": "stage01",
+      "file": "references/images/stage-01/img-stage-01-detection.png",
+      "sha256": "1d572acdf9ec98e66bd62ccfb4f338382fcebbc16a508a72577b25a3e9337bb5",
+      "inspected": true,
+      "selection": "bracket and point vocabulary only",
+      "limits": "Too materially complete for an initial construction frame; TABLE bracket drifts toward chair. Not evidence of seven-second construction timing."
+    },
+    {
+      "id": "stage02",
+      "file": "references/images/stage-02/img-stage-02-density.png",
+      "sha256": "615df2a8f306531ee5a7649c57aa7c1190e2db478b006a2a9d40d1aaf8c1b0b1",
+      "inspected": true,
+      "selection": "density/glyph island vocabulary",
+      "limits": "Scene remains mostly formed; not a demonstrated density-separation transition. Ground stone strips require black channels."
+    },
+    {
+      "id": "stage03",
+      "file": "references/images/stage-03/img-stage-03-flow.png",
+      "sha256": "fe7bef93002f966f3b5f4571814547adad974469fad8e046fdcdfc3d6af426c2",
+      "inspected": true,
+      "selection": "authored trail placement concept only",
+      "limits": "Long curved traces exceed the requested short-dash vocabulary. Shorten, clip and exclude people in implementation; no timing evidence."
+    },
+    {
+      "id": "stage04",
+      "file": "references/images/stage-04/img-stage-04-completion.png",
+      "sha256": "ecc09e0ca464cfe8f62d57985b831477f796efedac589da02223705aeeb7040c",
+      "inspected": true,
+      "selection": "partial spatial/material completion and broken ground",
+      "limits": "Still only; small camera/registration drift versus master. Does not supersede selected keyframe or establish depth/interaction."
+    },
+    {
+      "id": "flow01",
+      "file": "references/images/flow-01/img-flow-01-source-transfer.png",
+      "sha256": "b07a6788bf6ebac657660238c98ac83199849ffb0ce63dbf3ac605efbc40cf2e",
+      "inspected": true,
+      "selection": "ask/source/transfer storyboard",
+      "limits": "Synthetic desktop and generated source placeholders, not archival evidence. Destination scene is largely formed; no motion or native window behavior demonstrated."
+    },
+    {
+      "id": "flow02",
+      "file": null,
+      "status": "generated-result-control-observed-inspection-blocked",
+      "inspected": false,
+      "selection": null,
+      "limits": "Latest generated image button was observed after submission. Opening/screenshot batch denied by auto mode classifier with Credential Materialization; no download or actual-output inspection. Do not resubmit blindly."
+    }
+  ],
+  "contactSheet": "references/contact-sheet.png",
+  "motionReferences": [{"record": "video-run-01.json", "file": "references/videos/run-01-adcf607f/vid-01-construction.mp4", "inspected": "temporal samples", "selection": "limited style reference; insufficient four-stage construction evidence"}],
+  "videoPreparation": "video-preparation.json",
+  "videoWeaveDiscoveryCalls": 7,
+  "weaveUploadTokenRequests": 3,
+  "weaveUploadsCompleted": 2,
+  "weaveQuoteCallsDeniedLocally": 1,
+  "weavePaidSubmissions": 3,
+  "videoCreditsSubmitted": 1500,
+  "applicationChanges": [],
+  "applicationTests": "Not run; no application source changed",
+  "implementationPrompt": "FOUR_LAYER_IMPLEMENTATION_PROMPT.md",
+  "previousImplementationPrompt": "IMPLEMENTATION_PROMPT.md",
+  "implementationSession": null,
+  "implementationLaunchStatus": "Not launched: owner requested a standalone prompt for a new chat. Four-layer-first implementation now authorized against this packet; broader flow deferred.",
+  "ownerFourLayerAuthorization": {"date": "2026-10-15", "reference": "video-run-03-seedance.json", "scope": "Four construction layers then reference-consistent settled idle; reference selection, not finished phase acceptance"},
+  "agentProvenance": {
+    "main": {"configured": "claude-gpt-6-astra[1m]", "observedBackend": "codex", "observedModel": "gpt-6-astra"},
+    "research": {"agent": "eva-researcher", "configured": "claude-gpt-5.6-terra[1m]", "observedSessionBackend": "codex", "observedSessionModel": "gpt-5.6-terra"},
+    "review": {"agent": "eva-reviewer", "configured": "opus", "observedSessionBackend": "anthropic", "observedSessionModel": "claude-opus-4-8"},
+    "evidence": "Metadata-only request-routes.jsonl entries associated with this session: Astra at 2026-10-15T07:38:00Z; Terra at 07:39:32Z onward; Opus at 08:25:12Z onward. No worker-specific agent ID correlation was exposed; this is session-level route evidence, not self-report or an image-model identity."
+  },
+  "acceptance": "pending"
+}

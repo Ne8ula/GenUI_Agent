@@ -1,0 +1,15 @@
+{
+  "week4/app/src/scan/data.ts": "2f8114c990567dc2f82b242edcf56a743f74002afb70894e62831c8bc5e931c7",
+  "week4/app/src/scan/renderer.ts": "e85c1589aad9ad6f81de53e0a32cf7afc051ebb64f6439ac73bbcfeb5c6d7e0f",
+  "week4/app/src/scan/scan.css": "8da97c8f463b19e866493605ae743de13a3969452becc3fc58c5952438edcc19",
+  "week4/app/src/scan/ScanApp.tsx": "51a3cc465ec9c5c8c4ee5cb05d410f010d753a7e9fc07a3701e76f2c487fc97b",
+  "week4/app/src/App.tsx": "07d4b70d0b963c9d4d7091e927d9351b0b612ff48f01c3c3b92d827d3aab5a76",
+  "week4/app/vite.config.ts": "f97d5acb547323f21f9abfc34e9de67be48092a9a0b0224b5d10bbfa1f6a6c4e",
+  "week4/app/package.json": "1af4fc0a6ddff38dad002869d13282cd67c68cc0fffaac59424095ad34b3e1bf",
+  "week4/package-lock.json": "efeb549e561234f4dd60b77ea45655ee16654d280da91050713ffef2d60500ae",
+  "week4/app/tests/scan-data.test.ts": "6cd4216d12cd02eb803ac484b28d3f5df6a736bc87103fb35b65529ddfb5bca2",
+  "week4/app/scripts/stage-scan-assets.py": "d5857b1f8d2dfa6b3e04abffcba2cab9f8e186041b8e8ebce84c07c9a2a4e8b2",
+  "week4/app/scripts/capture-scan.mjs": "549456b7c5d504eeb6d18aa340e22f9de6b03f3987da633d35e60e2839f1f758",
+  "week4/app/public/assets/paris-scan-r12/points.bin": "69943921e31a861e9580b6b6015eeafa79b4b84d7340360534abd99ec0a47a21",
+  "week4/app/public/assets/paris-scan-r12/scene.json": "10ebeb5e7ba97f34990dc6e4a863929bafa95594afb41b9382cd2b5ed3cc0d32"
+}

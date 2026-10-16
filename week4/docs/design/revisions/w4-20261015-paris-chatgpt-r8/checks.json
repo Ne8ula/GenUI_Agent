@@ -1,0 +1,29 @@
+{
+  "resumeCheck": {
+    "checkedAt": "2026-10-15T15:05:03.342Z",
+    "passed": true,
+    "jsonFilesParsed": 4,
+    "retainedImageHashesMatched": 9,
+    "allDimensions": {"width": 1672, "height": 941},
+    "localMarkdownLinksChecked": 32,
+    "missingLinks": [],
+    "diffWhitespaceExitCode": 0,
+    "runtimeAndArchiveStatus": "clean in scoped paths; exit 0",
+    "applicationTests": "Not run; application source unchanged",
+    "videoGenerated": false,
+    "limitations": ["Quote-only model call denied by local classifier", "No implementation session", "No full interaction-board inspection"]
+  },
+  "historicalCheckBelow": "Earlier eight-original overnight verification retained unchanged",
+  "checkedAt": "2026-10-15T09:04:30.327Z",
+  "scope": "Reference packet and documentation only",
+  "passed": true,
+  "jsonParsing": {"passed": true, "files": ["provenance.json", "video-preparation.json", "prompts/supporting-stills.json"]},
+  "retainedOriginals": {"count": 8, "sha256Matches": 8, "allActualDimensions": {"width": 1672, "height": 941}},
+  "localMarkdownLinks": {"checked": 26, "missing": []},
+  "diffWhitespace": {"passed": true, "scope": ["docs/design/FIGMA_WEAVE.md", "week4/docs/design/INDEX.md"], "note": "Git emitted an LF-to-CRLF normalization warning for the workflow guide, not a whitespace error."},
+  "runtimeAndArchiveWorkingTree": {"exitCode": 0, "statusOutput": "", "paths": ["week4/app", "week4/renderer", "week4/src", "week4/broker", "week1", "week2", "week3"]},
+  "applicationTests": "Not run; application source unchanged",
+  "referenceInspection": "Eight actual original PNGs and their derived contact sheet inspected; final interaction-board output remains uninspected due to permission denial",
+  "emptyDirectories": ["references/videos", "implementation/before", "implementation/after"],
+  "limitations": ["No video reference", "No new implementation session", "No runtime before/after captures", "No owner acceptance", "No 4K output", "Actual ChatGPT image model version unverified"]
+}

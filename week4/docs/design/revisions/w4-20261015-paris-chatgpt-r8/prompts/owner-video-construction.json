@@ -1,0 +1,20 @@
+{
+  "status": "quote-only-call-denied-by-local-classifier",
+  "modelToolId": "f3220409-436a-4585-b3d3-adca16f4db19",
+  "modelLabel": "Kling 3",
+  "catalogModelId": "kling",
+  "model": "3.0 Pro",
+  "duration": 15,
+  "cfg_scale": 0.5,
+  "aspect_ratio": "16:9",
+  "generate_audio": false,
+  "firstFrame": "references/images/owner-video-selection/img-06-owner-selected.png",
+  "lastFrame": "references/images/owner-video-selection/img-06-owner-selected.png",
+  "uploadedAssetId": "fdbde55b-02be-49cc-83f6-8cbd4a1ad4ab",
+  "prompt": "Create one continuous 15-second silent fixed-camera artistic construction study from the supplied PARIS / FRAGMENT image. The supplied image is authoritative for composition, exact four people and their poses, café furniture, lamps, bicycle-exception street sign, right doorway, partial paving, black surround, olive/brown/cream materials, warm lights and existing blue/magenta accent distribution. Start and finish matched to this image. No camera motion or cuts. This is an authored visual metaphor, not measured scanning or historical evidence. Keep all marginal typography and the two upper-right generated-study panes stationary, unchanged and legible; animate only the central scene. 0–1s: hold the supplied composition. 1–3s: central architecture and ground visibly disassemble along their own surfaces into discrete glyph fragments and off-white points, exposing generous black gaps; four people and furniture retain their positions and silhouettes, no bodily distortion. 3–5s DETECTION: four to six delicate open-corner boxes attach to the lamp, sign, table, people group and door; individual points converge to those distinct stable object anchors, not to a flat image plane. 5–8s DENSITY: disconnected monochrome point islands accumulate at different densities on the existing facade and ground planes, maintaining black channels and intact people. 8–10s FLOW: short bounded directional dashes guide traveling particles into the same surfaces, behind and away from faces, hands and clothing; no long curves or full rings. 10–14s RECONSTRUCTION: partial material fragments and readable glyph patches interleave with point rows on the same physical surfaces; foreground materials return to the supplied warm-muted palette, with the supplied blue/magenta accents, no added wash. Reveal layers through actual local fragment/particle travel and occlusion, never a crossfade of a complete image. 14–15s: settle exactly into the supplied composition with a calm hold. Keep geometry registered throughout and the outer black surround open. This is a compressed motion reference, not a demonstration of working software.",
+  "negative_prompt": "camera pan, zoom, orbit, cut, scene replacement, new objects, extra people, duplicated limbs, changing faces, walking or altered poses, melting bodies, morphing furniture, text mutation, new labels, new telemetry, pulsing title, moving detail panes, rainbow wash, global hue shift, neon bloom, flashing, full scan rings, long sweeping trails, filled black background, complete room, crossfade-only reveal, audio",
+  "acknowledgedCost": null,
+  "quotedCost": null,
+  "predictionId": null,
+  "note": "Exact creative text and settings from the denied quote-only call. Both media inputs used the same complete asset object returned by the official upload. No upload token or expiring credential is retained here. The 15-second reset/rebuild study does not establish source-window transfer, interactive controls or the proposed 30-second runtime timing."
+}

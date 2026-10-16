@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "paris-scan-r12",
+  "width": 3392,
+  "height": 1720,
+  "stride": 10,
+  "count": 109593,
+  "counts": {
+    "points": 23961,
+    "splats": 4424,
+    "dither": 4081,
+    "edges": 77127
+  },
+  "data": "/assets/paris-scan-r12/points.bin",
+  "sha256": "17da3a328feb2bc9bd41e2e674a6944686a505d5895d558467987986a41f313b",
+  "sourceSha256": "171c1bea1463906d9f0c91e0176b4157f669b87b0fb925011a759db625d37c1a",
+  "provenance": "Owner-approved Topaz upscale c074e96b-1962-4372-9899-6b0547eef72e; image-derived samples, authored shallow depth, not SLAM/LiDAR or trained 3D Gaussian splatting."
+}

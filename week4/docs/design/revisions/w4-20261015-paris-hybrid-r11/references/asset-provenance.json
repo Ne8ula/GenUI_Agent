@@ -1,0 +1,129 @@
+{
+  "origin": "Owner-supplied Paris_Fragment_ThreeJS_Prototype/public/assets",
+  "sourceType": "Source-derived generated artwork; not verified historical photography",
+  "rights": "Owner-supplied for local implementation; distribution rights not independently verified",
+  "transformation": "Byte-identical runtime PNG copies; contact sheet and comparison images composited for review only",
+  "assets": [
+    {
+      "file": "paris-clean.png",
+      "bytes": 512823,
+      "sha256": "c78caeac163db1d34102cca328920de45c1c8e4461e092a3319885696acfb6a4",
+      "alphaBounds": [
+        0,
+        0,
+        848,
+        430
+      ]
+    },
+    {
+      "file": "layers/backdrop.png",
+      "bytes": 589562,
+      "sha256": "0cad8274c11534b0cc4dd88817146985cf4c180ac71239f501334f56b553e67b",
+      "alphaBounds": [
+        5,
+        15,
+        574,
+        430
+      ]
+    },
+    {
+      "file": "layers/cafe.png",
+      "bytes": 591100,
+      "sha256": "62767bf5259c7b6c2d76f9f0bf9e310890421c6aacd531750e5f4e1fb8cc1dda",
+      "alphaBounds": [
+        81,
+        22,
+        447,
+        338
+      ]
+    },
+    {
+      "file": "layers/bookshop.png",
+      "bytes": 590950,
+      "sha256": "545ce57d4294bb8a7082d8ad5d0f32b09d8c0d6e605749545801757e9ab69e82",
+      "alphaBounds": [
+        515,
+        24,
+        730,
+        393
+      ]
+    },
+    {
+      "file": "layers/pavement.png",
+      "bytes": 586370,
+      "sha256": "53a497c382edb02bb81aa09d04c7d9f84b3b4d54f906bff7c6cb41e9ac9084c8",
+      "alphaBounds": [
+        67,
+        329,
+        730,
+        430
+      ]
+    },
+    {
+      "file": "layers/waiter_left.png",
+      "bytes": 582506,
+      "sha256": "f8153fd82190267a64be3319a728b6f255aa69d9820de5da883fb705e48f62b0",
+      "alphaBounds": [
+        194,
+        257,
+        235,
+        321
+      ]
+    },
+    {
+      "file": "layers/waiter_right.png",
+      "bytes": 582808,
+      "sha256": "671fd506e8771f0d8b9f3898448c802e1aaef7004a3aceb77f6e9faed65e0e5b",
+      "alphaBounds": [
+        275,
+        261,
+        321,
+        367
+      ]
+    },
+    {
+      "file": "layers/street_sign.png",
+      "bytes": 583435,
+      "sha256": "74940817fe4ea8bc9621aff0ec87d0bdb7e8d07bd050bdbbdd09db98641ded64",
+      "alphaBounds": [
+        474,
+        154,
+        528,
+        266
+      ]
+    },
+    {
+      "file": "layers/patio.png",
+      "bytes": 584603,
+      "sha256": "181764717abfb6ceec33bf501b5233f9f9d130fc6c2c615d85f4292f8afc27c3",
+      "alphaBounds": [
+        49,
+        237,
+        240,
+        414
+      ]
+    },
+    {
+      "file": "layers/figure_woman.png",
+      "bytes": 583383,
+      "sha256": "1379eecdf5cd3fb183ee0ed0e5d2dad1702912b7103bff4a2bd7e4cb6e2da4dc",
+      "alphaBounds": [
+        371,
+        272,
+        446,
+        424
+      ]
+    },
+    {
+      "file": "layers/figure_man.png",
+      "bytes": 584096,
+      "sha256": "fcf41b48152271c1b3efd15975707e1ae1e5f0fb59336c29d0d1eeec08b2c44c",
+      "alphaBounds": [
+        447,
+        241,
+        527,
+        430
+      ]
+    }
+  ]
+}

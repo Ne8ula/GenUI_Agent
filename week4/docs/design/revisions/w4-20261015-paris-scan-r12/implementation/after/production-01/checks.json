@@ -1,0 +1,27 @@
+{
+  "base": "http://127.0.0.1:1452",
+  "viewport": [
+    2560,
+    1440
+  ],
+  "dpr": 1,
+  "checks": [],
+  "errors": [],
+  "failedRequests": [],
+  "requests": [
+    "http://127.0.0.1:1452/?scene=paris-scan",
+    "http://127.0.0.1:1452/assets/index-CTiuEJ77.js",
+    "http://127.0.0.1:1452/assets/index-Cd0JboKb.css",
+    "http://127.0.0.1:1452/assets/ScanApp-CqTQ-1sL.js",
+    "http://127.0.0.1:1452/assets/three.module-CkLIv0q5.js",
+    "http://127.0.0.1:1452/assets/ScanApp-Bo4vvafW.css",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-500-normal-6ng42L7E.woff2",
+    "http://127.0.0.1:1452/assets/space-grotesk-latin-500-normal-lFbtlQH6.woff2",
+    "http://127.0.0.1:1452/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2"
+  ],
+  "stats": null,
+  "timing": null,
+  "failure": "page.waitForFunction: Timeout 30000ms exceeded.\n    at ready (C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\app\\scripts\\capture-scan.mjs:20:26)\n    at C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\app\\scripts\\capture-scan.mjs:29:55"
+}

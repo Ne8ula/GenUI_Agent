@@ -1,0 +1,52 @@
+{
+  "status": "COMPLETED",
+  "route": "official Figma Weave direct model",
+  "modelLabel": "Kling 3",
+  "toolId": "f3220409-436a-4585-b3d3-adca16f4db19",
+  "catalogModelId": "kling",
+  "modelTier": "3.0 Pro",
+  "predictionId": "adcf607f-1af2-4927-879b-fd4500214fcc",
+  "promptAndSettings": "prompts/owner-video-construction.json",
+  "inputFile": "references/images/owner-video-selection/img-06-owner-selected.png",
+  "uploadedAssetId": "fdbde55b-02be-49cc-83f6-8cbd4a1ad4ab",
+  "durationSeconds": 15,
+  "generateAudio": false,
+  "costApproval": {
+    "quotedCredits": 246,
+    "unit": "Weave workspace credits",
+    "method": "AskUserQuestion structured Approve/Cancel after exact quote",
+    "answer": "Approve",
+    "acknowledgedCost": 246,
+    "scope": "One 15-second silent construction-video run; no retry allowance"
+  },
+  "submission": {
+    "outcome": "started",
+    "cost": 246,
+    "remainingCredits": 2031.8,
+    "userRemainingCredits": 2031.8,
+    "paidSubmissions": 1
+  },
+  "lastObservedStatus": "COMPLETED",
+  "outputs": [{"url": null, "urlOmissionReason": "Account-scoped hosted delivery address omitted for repository publication; see localVideo and sha256.", "type": "video", "width": 1916, "height": 1080}],
+  "inspected": true,
+  "inspectionMethod": "Temporal samples only: sixteen frames at 0 through 15 seconds inclusive, plus full-resolution frames at 4 and 9 seconds. Not continuous real-time playback.",
+  "localVideo": "references/videos/run-01-adcf607f/vid-01-construction.mp4",
+  "sha256": "6110b5d3d9fabf20c1b5f58d7dab581c09c7312dea537705c9abc4e2449ece8f",
+  "bytes": 50414152,
+  "mediaProbe": {"width": 1916, "height": 1080, "codec": "h264", "fps": 24, "frames": 361, "durationSeconds": 15.041667, "audioStreams": 0},
+  "fullDecodeCheck": {"tool": "ffmpeg -v error -xerror -f null", "exitCode": 0},
+  "temporalSamples": "references/videos/run-01-adcf607f/temporal-samples-0-to-15s.png",
+  "detailFrames": ["references/videos/run-01-adcf607f/frame-04s.png", "references/videos/run-01-adcf607f/frame-09s.png"],
+  "selection": "Owner selected composition/overlays as a starting point for post-generation idle animation, with added people movement requested. Still not sufficient four-stage construction evidence.",
+  "ownerFeedbackDate": "2026-10-15",
+  "ownerFeedback": "I agree, the video seems like a good fit with composition and overlays, this is a good starting point for the scene idle animation (so when the scene is done generating, we can have this). However, on top of this video, ensure to animate the people walking or moving.",
+  "acceptanceBoundary": "Reference starting point only, not finished people animation, construction, implementation or phase acceptance.",
+  "observations": [
+    "Broad composition, four people, furniture, lamp/sign, warm materials and blue/magenta accents persist in inspected frames; black surround remains open.",
+    "Outer point/glyph coverage recedes around 3–6 seconds and returns in later samples; main material architecture and paving remain largely formed throughout.",
+    "No clear sparse reset or four distinct detection/density/flow/reconstruction stages in inspected samples. The existing sign bracket persists, but the requested new set of four to six object-attached boxes is not demonstrated.",
+    "No convincing source-to-object particle transfer or short directional-flow phase is established by the samples. Static poses and broadly fixed composition are useful limited references, not measured registration fidelity.",
+    "Typography and two detail panes remain broadly in place, but text quality and sub-second motion/flicker were not exhaustively verified. No source-transfer, pin, local revision or return interaction evidence."
+  ],
+  "notes": "Completed after one approved 246-credit submission. No retry or additional spend. Main session inspected decoded temporal samples using Read; no new independent reviewer. Motion prerequisite remains unmet for the full construction/interaction pass, and no UI implementation session was launched. Generation success is not owner acceptance."
+}

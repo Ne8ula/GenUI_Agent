@@ -1,0 +1,34 @@
+{
+  "revision": "w4-20261015-four-layer-demo-r9",
+  "date": "2026-10-15",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "acceptedBaseline": null,
+  "acceptance": "pending",
+  "scope": "Four authored construction layers and settled idle only; owner subsequently prioritized visual demo and deferred expanded functionality/testing",
+  "referencePacket": "../w4-20261015-paris-chatgpt-r8/FOUR_LAYER_IMPLEMENTATION_PROMPT.md",
+  "referenceProvenance": "../w4-20261015-paris-chatgpt-r8/provenance.json",
+  "referenceInspection": {
+    "images": "Owner-selected img-06 and all four stage stills read locally before edits",
+    "motion": "Run-01 0–15s temporal sheet and Seedance run-03 0–3.75s quarter-second people sheet read locally before edits",
+    "limitation": "Temporal samples, not continuous playback. Construction timing authored from brief, not measured from idle references."
+  },
+  "newGenerationOrSpend": false,
+  "runtime": "Rust/WASM-authored relief meshes, cells, glyphs, trails and articulated figures; WebGL2; no reference image/video loaded",
+  "agents": {
+    "main": "Harness identifies claude-gpt-6-astra[1m]; Rust author and integration",
+    "researcher": "Native eva-researcher; configured claude-gpt-5.6-terra[1m]; read-only host audit",
+    "ui": "Native eva-ui-designer; configured sonnet; isolated worktree host controls",
+    "routeEvidence": "Native tools executed; no independent metadata correlation of backend IDs in this implementation session. Ruflo hooks_route advisory only."
+  },
+  "viewport": {"width": 1672, "height": 941, "dpr": 1},
+  "platform": "Windows Chromium WebGL2; ANGLE NVIDIA GeForce RTX 5080 Direct3D11 reported in browser; not native WebView2 evidence",
+  "before": "implementation/before/seed33-1672x941.png",
+  "checks": {
+    "rendererTests": "21 passed after reducing leaf tessellation to fit unchanged 240000 vertex limit",
+    "wasmBuild": "Passed with existing wasm-bindgen tooling",
+    "browserShader": "Initial reserved-word compiler failure corrected; real shader draw passed",
+    "fullHostCaptures": "Passed: 14 checks, 11 frames, real-time 41-second construction/idle recording; implementation/after/runtime-01/checks.json",
+    "integratedApp": "TypeScript, 207 app tests and Vite production build passed"
+  },
+  "limitations": ["Stylized relief, not photoreal reference fidelity", "Simplified human anatomy/gait", "No desktop, voice, source windows, pinning or conversational flow", "No owner acceptance or publication"]
+}
