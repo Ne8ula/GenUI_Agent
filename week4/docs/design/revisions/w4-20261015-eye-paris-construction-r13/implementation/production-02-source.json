@@ -1,0 +1,16 @@
+{
+  "week4/app/src/arrival/arrival.css": "c1a86ee6ec38c4dee1ff7cdeae02704c4d73ff8e2b426ad825c800af5480d82d",
+  "week4/app/src/arrival/ArrivalApp.tsx": "60531237b9edd7e09367dded8eb1d04f41992eb04b1512123f5798ef58704b2d",
+  "week4/app/src/arrival/construction.ts": "529e45d875e0161529f116988da5ec651cb54be9bb6445c8dee8e28fead7eaf8",
+  "week4/app/src/arrival/eye-source.ts": "563049abccc99ae8d5e8b3acb0a2317f287670b069867ffd1cbf2ecfc4b547d0",
+  "week4/app/src/arrival/samples.ts": "2d39c6e6673ae4ddb7778cab55f8b5485a8b203b6f80a659e9485af3d5f78006",
+  "week4/app/src/arrival/timeline.ts": "330e908e65c9ca87af04cd43c26775dded01ab715fdcd710263929ad0b294b9a",
+  "week4/app/src/App.tsx": "6af6f4abf37125c93da6959aaa67b91d6e762b08acef638d69c20af4fdea85f2",
+  "week4/app/src/scan/renderer.ts": "12593bfaae7062fc37c7416a31b93606eae76d311017a689c6762b40daf08d03",
+  "week4/app/src/scan/data.ts": "2f8114c990567dc2f82b242edcf56a743f74002afb70894e62831c8bc5e931c7",
+  "week4/app/tests/arrival.test.ts": "85d97a9e7b8f795d569f43164a283ead74a5f980b42a92fd431e15ea63db7273",
+  "week4/app/scripts/capture-arrival.mjs": "94b85e3c92445aa45e71dabc3785d95f64d544e48e99415a6ba2f2dd6e41f9f0",
+  "week4/app/vite.config.ts": "f97d5acb547323f21f9abfc34e9de67be48092a9a0b0224b5d10bbfa1f6a6c4e",
+  "week4/app/public/assets/paris-scan-r12/scene.json": "10ebeb5e7ba97f34990dc6e4a863929bafa95594afb41b9382cd2b5ed3cc0d32",
+  "week4/app/public/assets/paris-scan-r12/points.bin": "69943921e31a861e9580b6b6015eeafa79b4b84d7340360534abd99ec0a47a21"
+}

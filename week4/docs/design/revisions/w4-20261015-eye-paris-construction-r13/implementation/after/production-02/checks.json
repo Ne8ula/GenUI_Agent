@@ -1,0 +1,306 @@
+{
+  "base": "http://127.0.0.1:1452",
+  "viewport": [
+    2560,
+    1440
+  ],
+  "dpr": 1,
+  "checks": [
+    {
+      "name": "only canonical eye at entry, no Paris samples",
+      "passed": true
+    },
+    {
+      "name": "bounded texture-free QHD geometry",
+      "passed": true
+    },
+    {
+      "name": "unsupported request leaves eye unchanged",
+      "passed": true
+    },
+    {
+      "name": "typed request starts and Escape pauses",
+      "passed": true
+    },
+    {
+      "name": "every sample is present at exact retained endpoint",
+      "passed": true
+    },
+    {
+      "name": "sample birth counts accumulate rather than global opacity",
+      "passed": true
+    },
+    {
+      "name": "backward seek has exact deterministic state",
+      "passed": true
+    },
+    {
+      "name": "resume advances the same clock",
+      "passed": true
+    },
+    {
+      "name": "skip is the identical settled scene",
+      "passed": true
+    },
+    {
+      "name": "return restores canonical eye exactly",
+      "passed": true
+    },
+    {
+      "name": "reduced motion directly settles without traveling particles",
+      "passed": true
+    },
+    {
+      "name": "reduced-motion seek cannot revive travel",
+      "passed": true
+    },
+    {
+      "name": "mobile input remains in viewport",
+      "passed": true
+    },
+    {
+      "name": "resize returns exact eye framing",
+      "passed": true
+    },
+    {
+      "name": "live OS reduced motion stops and settles",
+      "passed": true
+    },
+    {
+      "name": "context loss clears fixture and reports failure",
+      "passed": true
+    },
+    {
+      "name": "retry stays settled instead of replaying",
+      "passed": true
+    },
+    {
+      "name": "runtime has no reference-image, video or external fetch",
+      "passed": true
+    },
+    {
+      "name": "no uncaught page errors",
+      "passed": true
+    },
+    {
+      "name": "missing-data fails closed without allowing request",
+      "passed": true
+    },
+    {
+      "name": "no-webgl fails closed without allowing request",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:1452/?scene=paris-scan&capture=1",
+    "http://127.0.0.1:1452/assets/index-D4EDAwZr.js",
+    "http://127.0.0.1:1452/assets/index-Cd0JboKb.css",
+    "http://127.0.0.1:1452/assets/ScanApp-B2T6rehd.js",
+    "http://127.0.0.1:1452/assets/renderer-60XpDAAP.js",
+    "http://127.0.0.1:1452/assets/three.module-C1TlzMVj.js",
+    "http://127.0.0.1:1452/assets/ScanApp-Bo4vvafW.css",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/points.bin",
+    "http://127.0.0.1:1452/?scene=paris-arrival&fixture=1",
+    "http://127.0.0.1:1452/assets/index-D4EDAwZr.js",
+    "http://127.0.0.1:1452/assets/index-Cd0JboKb.css",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:1452/assets/ArrivalApp-GLXLIvtv.js",
+    "http://127.0.0.1:1452/assets/renderer-60XpDAAP.js",
+    "http://127.0.0.1:1452/assets/three.module-C1TlzMVj.js",
+    "http://127.0.0.1:1452/assets/timeline-SGvq0n5H.js",
+    "http://127.0.0.1:1452/assets/ArrivalApp-jAreRh3H.css",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1452/assets/space-grotesk-latin-500-normal-lFbtlQH6.woff2",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-500-normal-6ng42L7E.woff2",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/points.bin",
+    "http://127.0.0.1:1452/assets/construction-CsjhW_ZR.js",
+    "http://127.0.0.1:1452/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/points.bin"
+  ],
+  "frames": [
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 2,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 19232,
+      "bornSamples": 0,
+      "constructionTime": 1,
+      "seconds": 1,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 2,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 19232,
+      "bornSamples": 0,
+      "constructionTime": 2,
+      "seconds": 2,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 3,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 809,
+      "constructionTime": 3.5,
+      "seconds": 3.5,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 3,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 8741,
+      "constructionTime": 5,
+      "seconds": 5,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 2,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 19232,
+      "constructionTime": 7,
+      "seconds": 7,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 2,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 36041,
+      "constructionTime": 10,
+      "seconds": 10,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 45943,
+      "constructionTime": 14,
+      "seconds": 14,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 79266,
+      "constructionTime": 17,
+      "seconds": 17,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 89401,
+      "constructionTime": 21,
+      "seconds": 21,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 106297,
+      "constructionTime": 25,
+      "seconds": 25,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 6107440,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 3,
+      "eyePoints": 19232,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "playback": "settled",
+      "submitted": true
+    }
+  ],
+  "recordingEnd": {
+    "points": 109593,
+    "bytes": 6107440,
+    "width": 2560,
+    "height": 1440,
+    "calls": 1,
+    "textures": 0,
+    "geometries": 3,
+    "eyePoints": 19232,
+    "bornSamples": 109593,
+    "constructionTime": 30,
+    "seconds": 30,
+    "playback": "settled",
+    "submitted": true
+  }
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "submittedAt": "2026-10-15T21:36:32.599Z",
+    "hostedUrlPolicy": "Account-scoped delivery URLs in this file were set to null before repository publication; actual local references and lineage remain in REVIEW.md and provenance.json.",
+    "modelId": "2db90e64-51dd-45b2-870a-66d19a81118e",
+    "approvedCredits": 8,
+    "inputs": {
+      "background": "opaque",
+      "image_size": {
+        "height": 1440,
+        "width": 2560
+      },
+      "images": [
+        null
+      ],
+      "model": "Sunburst",
+      "output_format": "png",
+      "prompt": "Create a six-panel temporal design reference board for a live generative UI, landscape 2560x1440, 3 columns by 2 rows. This is a motion/construction study, not an app dashboard. All six panels share a locked camera on a nearly black background and consistent composition. Read left to right, top to bottom. The attached Paris image is ONLY the destination composition and per-object color reference. Reinterpret that destination entirely as fine GPU point samples, short broken structural edge marks, Gaussian-shaped splats and sparse ordered dithering: no solid photographic surfaces, no raster plane. Preserve the cafe facade on the left, separate bookshop fragment on the right, foreground handholding pair, two rear cafe figures, table and chairs, lamp and round bicycle-exception sign; preserve the large black gaps. Preserve warm stone, olive/brown, amber lamps, cream clothing and sparse source magenta/blue accents. Do not turn the whole scene cyan. Panel 1: one small centered red EVA eye, an abstract sculptural elliptical aperture made of fine red stipple/strands around a black square pupil, not a robot face, logo or human eyeball; Paris absent. Panel 2: pupil contracts and the actual eye strands begin unweaving into thin outgoing particles; a few destination anchors appear but the city is still almost all black. Panel 3: sparse detection-inspired points and partial contours arrive at their eventual object anchors, four subtle open-corner brackets bind to real objects, not empty space. Panel 4: disconnected monochrome surface/dither islands accumulate at the same anchors, recognizable incomplete silhouettes, black gaps. Panel 5: short local directional particle trails settle onto unchanged surface anchors, building recognizable edge fragments, while original material colors begin to resolve. Panel 6: the finished Paris point/edge scene, fully in original material colors but still sparse and permeable; no solid filled facade, no enclosing room, eye has become the scene rather than sitting on top. Each panel must look genuinely different in construction progress, not six finished images with different transparency. No new people, vehicles, clouds, beams, spirals, floor grid, statistics, charts, generated labels or fake scanning telemetry. Small plain panel numbers only if necessary; actual interface text will be host rendered.",
+      "quality": "high"
+    },
+    "predictionId": "ba5e04de-abe7-459a-aed5-cda2297131fa"
+  },
+  {
+    "submittedAt": "2026-10-15T21:36:52.808Z",
+    "modelId": "f3220409-436a-4585-b3d3-adca16f4db19",
+    "approvedCredits": 164,
+    "inputs": {
+      "aspect_ratio": "16:9",
+      "cfg_scale": 0.65,
+      "duration": 10,
+      "generate_audio": false,
+      "model": "3.0 Pro",
+      "negative_prompt": "camera movement, photographic fade-in, crossfade, dissolve of finished scene, solid photographic scene, pan, zoom, bloom, spiral, explosion, laser beams, dashboard, telemetry, extra people, vehicles, readable fake labels",
+      "prompt": "A single locked-camera silent ten-second temporal design study on a nearly black background. No cuts. At 0-1 second only a small centered abstract red eye: sculptural elliptical red strands and fine stipple around a black square pupil, not a human eye, robot face or logo. At 1-2 seconds its pupil contracts; its existing strands unweave into fine particles that travel outward and begin anchoring a scene. At 2-4 seconds the scene is sparse detection-inspired anchored points and short partial contours with a few thin open-corner object brackets: never a finished scene fading in. At 4-6 seconds disconnected monochrome dither and point islands accumulate on the same stable object surfaces. At 6-8 seconds short object-local directional trails guide particles onto structural edges, surfaces and recognizable figure silhouettes, retaining black holes and gaps. At 8-10 seconds the same anchors resolve into the complete sparse Paris scene made ENTIRELY of fine points, broken edge marks, soft small Gaussian-shaped splats and ordered dithering, with no solid photo surfaces. Warm olive/brown cafe, pale warm stone, amber lamps, cream garments, restrained source-like magenta and blue point accents. Maintain large black gaps around and between city fragments. The eye becomes the scene, it is not overlaid at the end. Geometry, camera and figure identities stay fixed once first detectable; particles arrive at those anchors instead of replacing entire scenes. During the final second the scene is held stable with only subtle point life. A compressed authored construction-reference study, not a claim of actual measured scanning or an interface demo. No spoken audio or music. Do not reveal a completed image with opacity. Destination: oblique Paris street fragment, two-story cafe facade left with awning, lamp, outdoor table and two chairs; separate blue bookshop doorway fragment right; round bicycle-exception sign near center-right; exactly four people, two near the cafe and one foreground handholding pair seen from behind."
+    },
+    "predictionId": "e94f8b9f-206a-4a2c-aac4-ca3b42792681"
+  },
+  {
+    "submittedAt": "2026-10-15T21:51:24.406Z",
+    "modelId": "f3220409-436a-4585-b3d3-adca16f4db19",
+    "approvedCredits": 164,
+    "inputs": {
+      "cfg_scale": 0.75,
+      "duration": 10,
+      "end_image_url": null,
+      "generate_audio": false,
+      "image": null,
+      "model": "3.0 Pro",
+      "negative_prompt": "solid surfaces, realistic filled buildings, solid white people, camera pan, camera zoom, crossfade, dissolve, finished image fading in, enlarged eye, spirals, beams, floor grid, road slab, new people, new street, text, labels, logos",
+      "prompt": "Locked camera, no cuts, no audio. FIRST FRAME is the actual red dithered EVA eye. LAST FRAME is the exact existing fine-point Paris scan; preserve those endpoints, scale, framing and palette. Everything visible throughout is discrete particles or short broken edge fragments on black, never solid buildings or photographic surfaces. Show MATERIAL TRANSFER: individual red eye dots detach from the eye and travel along separated curved routes toward persistent Paris object anchors, leaving holes in the eye rather than simply fading it out. 0-1s hold eye with slight pupil contraction. 1-3s eye points visibly leave and seed sparse destination anchors far apart; Paris mostly absent. 3-5s detached points make open contours and disconnected low-density islands on the same cafe, door, furniture and four-figure silhouettes as the last frame. 5-7s short local moving particles and short dash trails progressively fill those object-local point surfaces; architecture stays anchored and incomplete gaps stay black. 7-9s original warm stone, amber, cream, olive, blue and magenta sample colors replace construction red/white, fragments settle at exactly the last-frame positions. 9-10s hold the exact final scan image with gentle point life. Do not cover the eye with a scene plane. Do not move the entire composition. Do not add a photograph: the destination is already a sparse GPU point cloud. This is an authored eye-to-particles-to-scene construction study, not optical measurement or live ML progress."
+    },
+    "predictionId": "54556d2b-c886-409f-a1cf-903571f69733"
+  }
+]
