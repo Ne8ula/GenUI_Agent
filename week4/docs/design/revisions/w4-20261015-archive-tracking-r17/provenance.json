@@ -1,0 +1,36 @@
+{
+  "revision": "w4-20261015-archive-tracking-r17",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "beforeCandidate": "R16 production-03; all34 source hashes verified unchanged",
+  "acceptedBaseline": null,
+  "acceptance": "pending",
+  "route": "owner-approved-supplied-reference-exception",
+  "ownerApproval": "Use supplied references (Recommended), explicitly granted for this new photo-switching and tracking-overlay redesign",
+  "generationRuns": [],
+  "generationModel": null,
+  "generationCost": 0,
+  "styleReferences": ["references/images/owner/img-01.png", "references/images/owner/img-02.png", "references/images/owner/img-03.png"],
+  "styleInspection": "Actual owner attachments inspected: thin red labelled bounds, white title tabs/dashed connections, blue target-to-photographic-inset linkage. No runtime copying of supplied artwork, fake CCTV telemetry or gender/identity labels.",
+  "motionReferenceRepositoryRelative": "week4/references/From Klickpin.com- Winter Outfit Ideas for Everyday-pin-id-597641813098676282.mp4",
+  "motionInspection": "Actual0.2-second temporal samples at0–5s and10–15s inspected; no full-speed or audio claim. Faster focus/source switching is an authored target requested by owner, not measured from the clip.",
+  "motionSamples": ["references/videos/window-switching-0-to-5s.png", "references/videos/window-switching-10-to-15s.png"],
+  "before": {"viewport": [2560,1440], "dpr": 1, "browser": "Chrome via Playwright", "captures": ["implementation/before/discovery-5s.png", "implementation/before/settled-qhd.png"]},
+  "newArchiveInspection": [
+    {"id":"tgv53","record":"https://commons.wikimedia.org/wiki/File:02.08.85_Paris-Gare-de-Lyon_TGV_53.jpg","license":"CC BY-SA2.0","observed":"Orange TGV train amid Gare de Lyon tracks and overhead wires; existing original reused without duplicate download"},
+    {"id":"rue-christine","record":"https://commons.wikimedia.org/wiki/File:Rue_Christine,_Paris_November_1988.jpg","license":"CC BY2.0","observed":"Photograph of enamel street-name plaque on stone wall, not a generated poster; existing original reused"},
+    {"id":"beaubourg","record":"https://commons.wikimedia.org/wiki/File:Le_parvis_de_Beaubourg_et_ses_artistes_de_rues,_Paris_1982.jpg","license":"CC BY2.0","observed":"Crowd and street performance in stone-paved square; catalogue1982 versus EXIF1985 conflict disclosed, present as1980s"},
+    {"id":"clichy","record":"https://commons.wikimedia.org/wiki/File:Paris-_an_der_Place_de_Clichy,_Verkehr_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._119855b.jpeg","license":"CC BY4.0","observed":"Black-and-white traffic/street architecture from vehicle viewpoint;750px original, no invented upscale; prescribed archive/photographer credit retained"}
+  ],
+  "ownership": {"main":"Catalogue, assets/credits, discovery, host integration, build, verification and evidence", "uiWorker":"Only ItemOverlays.tsx, item-overlays.ts, item-overlays.css and focused overlay tests in isolated worktree"},
+  "checks": [
+    {"name":"app final tests","passed":260,"failed":0},
+    {"name":"typecheck and production build","status":"passed","warnings":"Three existing Rust unused-code warnings"},
+    {"name":"production discovery browser checks","passed":30,"report":"implementation/after/integration-02/checks.json"},
+    {"name":"responsive tracking browser checks","passed":39,"report":"implementation/after/responsive-01/checks.json"},
+    {"name":"runtime recording decode","status":"passed","durationsSeconds":[41.32,12.56]},
+    {"name":"first integration check","status":"failed, retained","reason":"Old R15 scan-canvas baseline excluded R16 ground; corrected to same-fixture replay plus source-hash preservation","report":"implementation/after/integration-01/checks.json"}
+  ],
+  "implementation": {"status":"ready for owner retest","summary":"IMPLEMENTATION.md","manifest":"implementation/source-manifest.json","preview":"http://127.0.0.1:1467/?scene=paris-arrival","inspection":"QHD/narrow stills and decoded runtime temporal sheets inspected; not continuous playback certification"},
+  "recoveryProvenance": {"main":"Codex gpt-6-astra confirmed in session route metadata","researcher":"Native eva-researcher, configured Terra; Codex gpt-5.6-terra in session metadata","recoveredUiWorker":"Native eva-ui-designer in isolated prior-session worktree, configured Sonnet; Anthropic claude-sonnet-5 in prior session metadata, no worker-ID correlation","tools":["Read","Glob","Grep","Edit","Write","Bash","PowerShell","Playwright Chrome","FFmpeg","FFprobe"],"ruflo":"hooks_route advisory only"},
+  "limitations": ["Curated local archive, not live search", "Reference insets are contextual, not exact identity/location matches to the illustrative scene", "No genuine detection, surveillance, geometric reconstruction or phase acceptance"]
+}

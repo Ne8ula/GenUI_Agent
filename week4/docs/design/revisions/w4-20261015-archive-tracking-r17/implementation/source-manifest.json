@@ -1,0 +1,173 @@
+{
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "files": [
+    {
+      "path": "week4/app/package.json",
+      "sha256": "1af4fc0a6ddff38dad002869d13282cd67c68cc0fffaac59424095ad34b3e1bf"
+    },
+    {
+      "path": "week4/app/public/assets/paris-scan-r12/points.bin",
+      "sha256": "69943921e31a861e9580b6b6015eeafa79b4b84d7340360534abd99ec0a47a21"
+    },
+    {
+      "path": "week4/app/public/assets/paris-scan-r12/scene.json",
+      "sha256": "10ebeb5e7ba97f34990dc6e4a863929bafa95594afb41b9382cd2b5ed3cc0d32"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r10/rue-christine-1988.jpg",
+      "sha256": "1a137ac9d7f9181f604f5109da6ef73d97737339b13f2a24e8738c85d10b5833"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r10/tgv53-1985.jpg",
+      "sha256": "dc9a5bac9a749bbf7bc151916dfd35ea24b77edf7c0c298fa2d35982f559a34b"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r15/conciergerie-1980.jpg",
+      "sha256": "3ab566c570298801a91a8cde968168459d73004cb0ad4dbfb851b732b2ee0580"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r15/credits.html",
+      "sha256": "e5977165f2e539856f754f0889dbd2746b3136312d7d38098c68644a38279f84"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r15/credits.json",
+      "sha256": "06fcddc0d56c2d0aa7a4e22c3e305e385009ec97403d58bb42c2f5d08e306758"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r15/montmartre-1980.jpg",
+      "sha256": "9ca9dc48705a05744fd99a9eecedd41871780059c96310ba6be4098d6bc48a1e"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r15/montparnasse-1980.jpg",
+      "sha256": "51cd4df87995fb54e72e801273a8a8d88eafc2ae32c79b1b26487fc0f465d2d6"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r17/beaubourg-1980s.jpg",
+      "sha256": "4f55e4176d49f0f0e681d92d4dc3609e247baba769f1b012062dc885d1bdbf50"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r17/clichy-1982.jpg",
+      "sha256": "ec2ec4ba081692d0f71285a585f57ef7e90c88b15a842827897a71c360466a79"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r17/credits.html",
+      "sha256": "e81933784c5258c9b161167b514dff04dab6664c61fc7b68c6917b538826dbe7"
+    },
+    {
+      "path": "week4/app/public/sources/paris-r17/credits.json",
+      "sha256": "d22451958780c78f497e4a4e782c96d177b71fc58cc2da67a3f879f7afc5f852"
+    },
+    {
+      "path": "week4/app/scripts/capture-discovery.mjs",
+      "sha256": "5e4df27576beb39ad5de0e18f17a8fe9a90cb25f830037d54ff504dbc28265fb"
+    },
+    {
+      "path": "week4/app/scripts/capture-frameless.mjs",
+      "sha256": "438e1565b1a056edb12ff3159dc78a727b12425115afa68f694a7db5786d71b0"
+    },
+    {
+      "path": "week4/app/scripts/capture-tracking.mjs",
+      "sha256": "23bfd953586a42a7d95c3461b2c77c3a1e584451463c31c91d1a08649ee19713"
+    },
+    {
+      "path": "week4/app/src/App.tsx",
+      "sha256": "6af6f4abf37125c93da6959aaa67b91d6e762b08acef638d69c20af4fdea85f2"
+    },
+    {
+      "path": "week4/app/src/arrival/ArrivalApp.tsx",
+      "sha256": "bc85c106095ceaad3e4220d220a735796344e143ee129a96cb95ada6c5ea1fc5"
+    },
+    {
+      "path": "week4/app/src/arrival/ItemOverlays.tsx",
+      "sha256": "5a3d54bac8334dc97a4cf76be8b245144666e85b2a294e75aad189890f35733a"
+    },
+    {
+      "path": "week4/app/src/arrival/PhotoDiscovery.tsx",
+      "sha256": "f2535d6327941a886c09d35db1208720a0c423eb910b227ffd1fc79c4435bc54"
+    },
+    {
+      "path": "week4/app/src/arrival/archive.ts",
+      "sha256": "d00dd291c9425688996aec8342bde9480f8c9b35d4bb13635e8a078da83e1b9c"
+    },
+    {
+      "path": "week4/app/src/arrival/arrival.css",
+      "sha256": "e48ecb4f4964d1e3551b27e6bfafd834e36a84cd4dd041412335fae3a6c6f545"
+    },
+    {
+      "path": "week4/app/src/arrival/construction.ts",
+      "sha256": "edae5d9714bd81483c369c74bc8063f443a125fcf43505061006e5890c33cfa6"
+    },
+    {
+      "path": "week4/app/src/arrival/discovery.ts",
+      "sha256": "664dae2393040ff54687571f35e2b4ac4dc175daa25b379bab5254b74ee61b36"
+    },
+    {
+      "path": "week4/app/src/arrival/eye-source.ts",
+      "sha256": "563049abccc99ae8d5e8b3acb0a2317f287670b069867ffd1cbf2ecfc4b547d0"
+    },
+    {
+      "path": "week4/app/src/arrival/ground.ts",
+      "sha256": "c0f0fcd8318626ba03cbf9021846ea8362a652d4fa574900287964921faa6133"
+    },
+    {
+      "path": "week4/app/src/arrival/item-overlays.css",
+      "sha256": "a93823e5f0cf1a3cc840443da20bfb383dec0098922758ca54f8cedab5245335"
+    },
+    {
+      "path": "week4/app/src/arrival/item-overlays.ts",
+      "sha256": "140a102362700b3c332b59b5e4b4437dee4e0ff5c2006ab113a543abbf05ab4d"
+    },
+    {
+      "path": "week4/app/src/arrival/samples.ts",
+      "sha256": "0651703ba5c60af3bc91558305b6be568a6880e453ead669d3cd7a0d9fce050b"
+    },
+    {
+      "path": "week4/app/src/arrival/timeline.ts",
+      "sha256": "8c5e33115da002e578f3abee2b3a2ae804f0426dfa54e1c5e8656a260860ad05"
+    },
+    {
+      "path": "week4/app/src/main.tsx",
+      "sha256": "46278924b8f5ae4e30d5b2cd7f7a7df6f1e3cf1e13bc872b0160c00d7dfb3ee0"
+    },
+    {
+      "path": "week4/app/src/scan/ScanApp.tsx",
+      "sha256": "51a3cc465ec9c5c8c4ee5cb05d410f010d753a7e9fc07a3701e76f2c487fc97b"
+    },
+    {
+      "path": "week4/app/src/scan/data.ts",
+      "sha256": "2f8114c990567dc2f82b242edcf56a743f74002afb70894e62831c8bc5e931c7"
+    },
+    {
+      "path": "week4/app/src/scan/renderer.ts",
+      "sha256": "d10ce1f5d6d94fb40d35c7c3b23c51e9e3f649b04ab39b6834919b6bbd1f5d3f"
+    },
+    {
+      "path": "week4/app/src/scan/scan.css",
+      "sha256": "8da97c8f463b19e866493605ae743de13a3969452becc3fc58c5952438edcc19"
+    },
+    {
+      "path": "week4/app/tests/discovery.test.ts",
+      "sha256": "9a59e52a5dbddd87a55af6d083e6725a4c6070779edc7b13a020a4f3716bfb17"
+    },
+    {
+      "path": "week4/app/tests/ground.test.ts",
+      "sha256": "11502b61da16cbbd608f8af3a3809d5b2fd81c852b47c4cba94e136d60efb470"
+    },
+    {
+      "path": "week4/app/tests/item-overlays.test.ts",
+      "sha256": "92c6168146a24d77036e04563352ecb80eefc8cf84528f5aca76cc21fb314728"
+    },
+    {
+      "path": "week4/app/vite.config.ts",
+      "sha256": "0c6e3b77bb6042408270c8384d9654d6057cdb456dbaab591d692e0962e90685"
+    },
+    {
+      "path": "week4/core/intents.ts",
+      "sha256": "c67b7a7459ded1fc788dba6c01fc04bb5dbc9b05b41f774a73a858ded2a2c8dc"
+    },
+    {
+      "path": "week4/package-lock.json",
+      "sha256": "efeb549e561234f4dd60b77ea45655ee16654d280da91050713ffef2d60500ae"
+    }
+  ]
+}

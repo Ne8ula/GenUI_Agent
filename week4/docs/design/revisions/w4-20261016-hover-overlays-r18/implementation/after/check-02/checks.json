@@ -1,0 +1,1052 @@
+{
+  "base": "http://127.0.0.1:1467",
+  "checks": [
+    {
+      "name": "eight quiet rectangles, no unsolicited information",
+      "passed": true
+    },
+    {
+      "name": "hover cafe-terrace reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover cafe-terrace keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover cafe-terrace leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving cafe-terrace hides its information",
+      "passed": true
+    },
+    {
+      "name": "hover street-lantern reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover street-lantern keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover street-lantern leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving street-lantern hides its information",
+      "passed": true
+    },
+    {
+      "name": "hover bistro-chairs reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover bistro-chairs keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover bistro-chairs leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving bistro-chairs hides its information",
+      "passed": true
+    },
+    {
+      "name": "hover stone-paving reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover stone-paving keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover stone-paving leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving stone-paving hides its information",
+      "passed": true
+    },
+    {
+      "name": "hover stop-sign reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover stop-sign keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover stop-sign leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving stop-sign hides its information",
+      "passed": true
+    },
+    {
+      "name": "hover upper-window reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover upper-window keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover upper-window leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving upper-window hides its information",
+      "passed": true
+    },
+    {
+      "name": "hover right-doorway reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover right-doorway keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover right-doorway leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving right-doorway hides its information",
+      "passed": true
+    },
+    {
+      "name": "hover shopfront-board reveals only its information",
+      "passed": true
+    },
+    {
+      "name": "hover shopfront-board keeps the object unobscured",
+      "passed": true
+    },
+    {
+      "name": "hover shopfront-board leaves the scene geometry unchanged",
+      "passed": true
+    },
+    {
+      "name": "leaving shopfront-board hides its information",
+      "passed": true
+    },
+    {
+      "name": "photo remains hoverable across the object-to-photo gap",
+      "passed": true
+    },
+    {
+      "name": "Escape dismisses hover information",
+      "passed": true
+    },
+    {
+      "name": "keyboard focus reveals information and visible focus ring",
+      "passed": true
+    },
+    {
+      "name": "Tab reaches the same object photo and pauses for source inspection",
+      "passed": true
+    },
+    {
+      "name": "Escape from the photo restores its object focus without reopening information",
+      "passed": true
+    },
+    {
+      "name": "keyboard activation reopens dismissed information",
+      "passed": true
+    },
+    {
+      "name": "context photo opens its local credit record",
+      "passed": true
+    },
+    {
+      "name": "Tab advances to the next object without retaining old information",
+      "passed": true
+    },
+    {
+      "name": "blur back to the prompt clears information",
+      "passed": true
+    },
+    {
+      "name": "readable cafe-terrace information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable street-lantern information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable bistro-chairs information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable stone-paving information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable stop-sign information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable upper-window information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable right-doorway information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable shopfront-board information fits 2560x1440",
+      "passed": true
+    },
+    {
+      "name": "readable cafe-terrace information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable street-lantern information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable bistro-chairs information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable stone-paving information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable stop-sign information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable upper-window information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable right-doorway information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable shopfront-board information fits 1024x700",
+      "passed": true
+    },
+    {
+      "name": "readable cafe-terrace information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "readable street-lantern information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "readable bistro-chairs information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "readable stone-paving information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "readable stop-sign information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "readable upper-window information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "readable right-doorway information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "readable shopfront-board information fits 390x844",
+      "passed": true
+    },
+    {
+      "name": "reduced motion does not auto-reveal information",
+      "passed": true
+    },
+    {
+      "name": "reduced motion preserves explicit selection and geometry",
+      "passed": true
+    },
+    {
+      "name": "return removes all object hit regions and photos",
+      "passed": true
+    },
+    {
+      "name": "re-entering the scene does not restore stale information",
+      "passed": true
+    },
+    {
+      "name": "discovery unmounts all object overlays",
+      "passed": true
+    },
+    {
+      "name": "touch tap reveals right-side sign information",
+      "passed": true
+    },
+    {
+      "name": "touch outside dismisses information and keeps prompt usable",
+      "passed": true
+    },
+    {
+      "name": "failed photo disappears while object information stays available",
+      "passed": true
+    },
+    {
+      "name": "no uncaught runtime errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "viewports": [
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "cafe-terrace",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 468.984375,
+          "right": 570.265625,
+          "top": 518.53125,
+          "bottom": 538.125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 468.984375,
+          "right": 708.984375,
+          "top": 863.078125,
+          "bottom": 899.453125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 232.984375,
+          "right": 452.984375,
+          "top": 611.296875,
+          "bottom": 791.296875,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "street-lantern",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 407.546875,
+          "right": 523.71875,
+          "top": 418.828125,
+          "bottom": 438.421875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 407.546875,
+          "right": 647.546875,
+          "top": 601.375,
+          "bottom": 621.5625,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 171.546875,
+          "right": 391.546875,
+          "top": 430.609375,
+          "bottom": 610.609375,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "bistro-chairs",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 346.109375,
+          "right": 499.484375,
+          "top": 942.234375,
+          "bottom": 961.828125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 346.109375,
+          "right": 586.109375,
+          "top": 1276,
+          "bottom": 1312.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 110.109375,
+          "right": 330.109375,
+          "top": 1041.234375,
+          "bottom": 1221.234375,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "stone-paving",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 788.46875,
+          "right": 889.75,
+          "top": 1116.703125,
+          "bottom": 1136.296875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 788.46875,
+          "right": 1028.46875,
+          "top": 1276,
+          "bottom": 1312.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 552.46875,
+          "right": 772.46875,
+          "top": 1122.234375,
+          "bottom": 1302.234375,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "stop-sign",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 1413.1875,
+          "right": 1507.03125,
+          "top": 526.375,
+          "bottom": 545.96875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 1413.1875,
+          "right": 1653.1875,
+          "top": 711.53125,
+          "bottom": 747.90625,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 1581.5625,
+          "right": 1801.5625,
+          "top": 539.453125,
+          "bottom": 719.453125,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "upper-window",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 1616.1875,
+          "right": 1717.46875,
+          "top": 229.28125,
+          "bottom": 248.875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 1616.1875,
+          "right": 1856.1875,
+          "top": 537.5625,
+          "bottom": 573.9375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 1838.625,
+          "right": 2058.625,
+          "top": 303.921875,
+          "bottom": 483.921875,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "right-doorway",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 1659.453125,
+          "right": 1790.5,
+          "top": 562.515625,
+          "bottom": 582.109375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 1659.453125,
+          "right": 1899.453125,
+          "top": 1109.9375,
+          "bottom": 1146.3125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 1849.4375,
+          "right": 2069.4375,
+          "top": 756.734375,
+          "bottom": 936.734375,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 2560,
+      "height": 1440,
+      "id": "shopfront-board",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 1855.3125,
+          "right": 1978.921875,
+          "top": 663.953125,
+          "bottom": 683.546875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 1855.3125,
+          "right": 2095.3125,
+          "top": 979.59375,
+          "bottom": 1015.96875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 1994.4375,
+          "right": 2214.4375,
+          "top": 742.28125,
+          "bottom": 922.28125,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "cafe-terrace",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 187.59375,
+          "right": 288.875,
+          "top": 253.203125,
+          "bottom": 272.796875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 187.59375,
+          "right": 427.59375,
+          "top": 410.828125,
+          "bottom": 447.203125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 0,
+          "right": 220,
+          "top": 252.515625,
+          "bottom": 432.515625,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "street-lantern",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 163.015625,
+          "right": 279.1875,
+          "top": 213.328125,
+          "bottom": 232.921875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 163.015625,
+          "right": 403.015625,
+          "top": 306.140625,
+          "bottom": 326.328125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 0,
+          "right": 220,
+          "top": 180.234375,
+          "bottom": 360.234375,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "bistro-chairs",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 138.4375,
+          "right": 291.8125,
+          "top": 422.6875,
+          "bottom": 442.28125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 138.4375,
+          "right": 378.4375,
+          "top": 536,
+          "bottom": 572.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 0,
+          "right": 220,
+          "top": 420,
+          "bottom": 600,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "stone-paving",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 315.390625,
+          "right": 416.671875,
+          "top": 492.46875,
+          "bottom": 512.0625,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 315.390625,
+          "right": 555.390625,
+          "top": 536,
+          "bottom": 572.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 79.390625,
+          "right": 299.390625,
+          "top": 420,
+          "bottom": 600,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "stop-sign",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 565.265625,
+          "right": 659.109375,
+          "top": 256.34375,
+          "bottom": 275.9375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 565.265625,
+          "right": 805.265625,
+          "top": 350.203125,
+          "bottom": 386.578125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 642.21875,
+          "right": 862.21875,
+          "top": 223.78125,
+          "bottom": 403.78125,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "upper-window",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 646.46875,
+          "right": 747.75,
+          "top": 137.515625,
+          "bottom": 157.109375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 646.46875,
+          "right": 886.46875,
+          "top": 280.625,
+          "bottom": 317,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 745.046875,
+          "right": 965.046875,
+          "top": 129.5625,
+          "bottom": 309.5625,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "right-doorway",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 663.78125,
+          "right": 794.828125,
+          "top": 270.796875,
+          "bottom": 290.390625,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 663.78125,
+          "right": 903.78125,
+          "top": 509.578125,
+          "bottom": 545.953125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 749.375,
+          "right": 969.375,
+          "top": 310.6875,
+          "bottom": 490.6875,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "id": "shopfront-board",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 742.125,
+          "right": 865.734375,
+          "top": 311.375,
+          "bottom": 330.96875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 742.125,
+          "right": 982.125,
+          "top": 457.4375,
+          "bottom": 493.8125,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 804,
+          "right": 1024,
+          "top": 304.90625,
+          "bottom": 484.90625,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "cafe-terrace",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 117.28125,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 80.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 16,
+          "right": 196,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "street-lantern",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 132.171875,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 64.1875,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 16,
+          "right": 196,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "bistro-chairs",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 169.375,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 80.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 16,
+          "right": 196,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "stone-paving",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 117.28125,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 80.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 16,
+          "right": 196,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "stop-sign",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 109.84375,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 80.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 194,
+          "right": 374,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "upper-window",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 117.28125,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 80.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 194,
+          "right": 374,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "right-doorway",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 147.046875,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 80.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 194,
+          "right": 374,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "shopfront-board",
+      "rects": [
+        {
+          "kind": "item-overlay-tab",
+          "left": 16,
+          "right": 139.609375,
+          "top": 16,
+          "bottom": 35.59375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-desc",
+          "left": 16,
+          "right": 256,
+          "top": 44,
+          "bottom": 80.375,
+          "font": 12
+        },
+        {
+          "kind": "item-overlay-inset",
+          "left": 194,
+          "right": 374,
+          "top": 108,
+          "bottom": 272,
+          "font": 14
+        }
+      ]
+    }
+  ]
+}

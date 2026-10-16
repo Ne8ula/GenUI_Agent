@@ -1,0 +1,27 @@
+{
+  "sourceRevision": "565b5ad + existing uncommitted R17/R18 work",
+  "files": {
+    "week4/app/src/arrival/ItemOverlays.tsx": "2acb2c1a085732d234336863ae78a838ef29505aa8b2237e3a9333dee98981a2",
+    "week4/app/src/arrival/item-overlays.ts": "8afca1fac10e138bea23a2d58eac536321f1c9e2fa6a99b6228f18be46a15302",
+    "week4/app/src/arrival/item-overlays.css": "83d2edcc50aae92362bf797b45a2be020ddb934adf515b783e6ccbf672f7e00f",
+    "week4/app/src/arrival/ArrivalApp.tsx": "dec13d282a2fcbddd181991ef8bd18fb0bb0e508697d493e2e6e1857b4289c76",
+    "week4/app/tests/item-overlays.test.ts": "1d126c1ffa72c27059fc43ffd1d49b0fa44f94a41d610b198fbb39fea0436ae4",
+    "week4/app/scripts/capture-tracking.mjs": "c0b80d89aedf0b111ebb206594427ac34dd509d6c74775bd30364c9b2f8a03f3",
+    "week4/app/scripts/capture-discovery.mjs": "257617c481621d5b1e113725184bd4ce61329ec9385951222b11657afd7727ef"
+  },
+  "builtAssets": {
+    "week4\\app\\dist\\assets\\ArrivalApp-BcxiVFKA.css": "4c216baabbaa7d6bf531580fa37f8a4baa33d69e470a3fe2e07f97072f8d2a59",
+    "week4\\app\\dist\\assets\\ArrivalApp-BKlf0kr5.js": "3a965d2d19375cda3cd93574f2f72ac5f76c2fd921174241d7e050130fcca918",
+    "week4\\app\\dist\\assets\\construction-Bfl67xuA.js": "51723330108d0e7a3c782afd43aad44002e28ba7aef5770bfc4bab4985032d0d",
+    "week4\\app\\dist\\assets\\ground-DVbEkc8d.js": "85c8ab9ba4d6ec2d2afc0890b5ac983cb49eac36773aab8a5b6b93ac7a821b82",
+    "week4\\app\\dist\\assets\\HybridApp-BRGQ_bbH.js": "2934e0814b54170093af84bc58bd2209c6dbc2af831b74b9c78910fa62e3c170",
+    "week4\\app\\dist\\assets\\HybridApp-DHAcOuwn.css": "f619d9e5ceac4a07aa203878810f5f75151af455cfc2db92a1ab39962c15e187",
+    "week4\\app\\dist\\assets\\index-Cd0JboKb.css": "672d5cb3c43164f961baf3bbbe4ab3f519f02a6375a10d1d73dfebb5c146305c",
+    "week4\\app\\dist\\assets\\index-RGL-CUtp.js": "70ae9815c5fdd85986bb9aa35cacf26e32b4fa14b4c58a645326f4801c9da7cd",
+    "week4\\app\\dist\\assets\\renderer-BiQ4fJ0o.js": "01e5b1ab4f34a8b556f2b5df3b191eb9c8e6c74963be6b226d4f63dbe51082b6",
+    "week4\\app\\dist\\assets\\ScanApp-B5ZSwPUA.js": "1075bec6978bc91ceafb26716e9f990fba9bf1532d2fbeefd87d3dfc5e5dcb6d",
+    "week4\\app\\dist\\assets\\ScanApp-Bo4vvafW.css": "e3a8ad7d51f350044e2acfa0c318be616d205340222f4f7fd6022fe467c61129",
+    "week4\\app\\dist\\assets\\three.module-Culde_ca.js": "9dda7006fae13c6b34125a08adfc08064e7b2eb64c070538f65a794a5894361f",
+    "week4\\app\\dist\\assets\\timeline-DleEs7HC.js": "e170aa431c15327970d729a1a724327bd56b58fb18b78a8296a091b450de0ee4"
+  }
+}

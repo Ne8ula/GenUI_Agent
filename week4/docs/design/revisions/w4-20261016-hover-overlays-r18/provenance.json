@@ -1,0 +1,21 @@
+{
+  "revision": "w4-20261016-hover-overlays-r18",
+  "date": "2026-10-16",
+  "sourceRevision": "565b5ad + uncommitted R17 working tree",
+  "acceptedBaseline": null,
+  "priorCandidate": "w4-20261015-archive-tracking-r17",
+  "route": "owner-approved-reference-reuse",
+  "ownerApproval": "Reuse existing references (Recommended) for the bounded hover-and-overlay adjustment without new generation",
+  "generationModel": null,
+  "runIds": [],
+  "generationCost": 0,
+  "references": ["../w4-20261015-archive-tracking-r17/references/contact-sheet.png", "implementation/before/settled-qhd.png"],
+  "inspection": "Main visually inspected the owner-reference contact sheet and fresh settled before capture. Preserve hairline bounds, compact tabs, contextual photos, current scene and renderer; remove idle information and add stationary right-hand targets.",
+  "viewport": {"width": 2560, "height": 1440, "deviceScaleFactor": 1},
+  "fixture": {"scene": "paris-arrival", "constructionSeconds": 30, "idleSeconds": 0},
+  "configuredMainModel": "claude-gpt-6-astra[1m]",
+  "tools": ["Read", "Write", "Edit", "PowerShell", "Playwright MCP", "native Agent", "Ruflo hooks_route (advisory only)"],
+  "providerRouteIndependentlyVerified": false,
+  "ownerAcceptance": {"decision": "accepted", "date": "2026-10-16", "scope": "bounded R18 hover information and right-side overlays", "feedback": "Perfect. Commit and push to Week 4 branch."},
+  "verification": {"appTestsPassed": 250, "typecheck": "passed", "build": "passed", "finalOverlayBrowserChecksPassed": 99, "discoveryChecksPassedOnPriorDescriptionPlacement": 30, "videoDurationSeconds": 9.68, "captureDirectory": "implementation/after/check-03", "sourceManifest": "implementation/source-manifest.json", "nativeDesktop": "not run"}
+}
