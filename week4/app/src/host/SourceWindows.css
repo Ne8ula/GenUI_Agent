@@ -1,0 +1,20 @@
+.source-windows { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:2; }
+.source-window { position:absolute; margin:0; width:clamp(190px,21vw,320px); background:#151615; border:1px solid #a5a69b; box-shadow:0 8px 24px #0009; padding:4px; }
+.source-window::before { content:'SOURCE DOCUMENT  /  PARIS'; display:block; padding:6px 7px 8px; color:#d8d8cf; font:11px 'IBM Plex Mono',monospace; letter-spacing:.08em; }
+.source-window img { display:block; width:100%; height:clamp(110px,12vw,190px); object-fit:cover; }
+.source-window figcaption { display:flex; flex-direction:column; gap:4px; padding:8px 7px; font-family:'IBM Plex Sans',sans-serif; color:#ecece1; line-height:1.3; }
+.source-window-label { font-size:12px; font-weight:500; }
+.source-window-credit { font-size:12px; color:#b0b4a9; }
+.source-window--tl { top:7%; left:4%; }
+.source-window--tr { top:8%; right:5%; }
+.source-window--bl { bottom:9%; left:7%; }
+.source-window--br { bottom:9%; right:7%; }
+.source-window--lm { top:31%; left:2%; }
+.source-window--rm { top:35%; right:3%; }
+.source-frame { position:absolute; pointer-events:none; }
+.source-frame-title { position:absolute; top:3%; left:2%; font:500 clamp(12px,1.1vw,16px) 'Space Grotesk',sans-serif; letter-spacing:.25em; text-transform:uppercase; color:#dfdfd3; }
+.source-frame-footer { position:absolute; bottom:2.5%; left:2%; right:2%; display:flex; justify-content:space-between; gap:12px; font:12px 'IBM Plex Mono',monospace; letter-spacing:.05em; text-transform:uppercase; color:#b2b4a7; }
+.source-frame-inset-label { position:absolute; top:4.2%; transform:translateX(-50%); font:12px 'IBM Plex Mono',monospace; text-transform:uppercase; white-space:nowrap; color:#292b26; }
+.source-frame-inset-label--pavement { left:81.5%; }
+.source-frame-inset-label--facade { left:92.3%; }
+@media(max-width:700px) { .source-window {width:190px;} .source-frame-inset-label {display:none;} .source-frame-footer {font-size:10px;} }

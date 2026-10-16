@@ -1,0 +1,35 @@
+{
+  "_comment": "R10 source-window bundle. Exactly the three retained, license-cleared originals from week4/docs/design/revisions/w4-20261014-paris-source-particles-r1/ARCHIVE.md. Unmodified copies; none is a generated reference image, and none documents the café scene or its people.",
+  "assets": [
+    {
+      "file": "tgv53-1985.jpg",
+      "title": "02.08.85 Paris-Gare-de-Lyon TGV 53",
+      "creator": "Phil Richards",
+      "date": "1985-08-02",
+      "source": "https://commons.wikimedia.org/wiki/File:02.08.85_Paris-Gare-de-Lyon_TGV_53.jpg",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "credit": "Phil Richards, \"02.08.85 Paris-Gare-de-Lyon TGV 53\", 2 August 1985, via Wikimedia Commons, CC BY-SA 2.0. Original image unchanged."
+    },
+    {
+      "file": "rue-christine-1988.jpg",
+      "title": "Rue Christine, Paris November 1988",
+      "creator": "Esther Westerveld",
+      "date": "1988-11",
+      "source": "https://commons.wikimedia.org/wiki/File:Rue_Christine,_Paris_November_1988.jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "credit": "Esther Westerveld, \"Parijs {november 1988}\" / Rue Christine, Paris, November 1988, via Wikimedia Commons, CC BY 2.0. Original image unchanged."
+    },
+    {
+      "file": "petit-palais-rembrandt-1986.jpg",
+      "title": "Rembrandt. Eaux-fortes (exhibition poster)",
+      "creator": "Gilles Huot",
+      "date": "1986",
+      "source": "https://www.parismuseescollections.paris.fr/fr/petit-palais/oeuvres/rembrandt-eaux-fortes-exposition-paris-musee-du-petit-palais-6-fevrier-20-avril",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "credit": "Gilles Huot, \"Rembrandt. Eaux-fortes\", 1986, Petit Palais, musee des Beaux-Arts de la Ville de Paris. CC0 Paris Musees / Petit Palais. Original image unchanged."
+    }
+  ]
+}

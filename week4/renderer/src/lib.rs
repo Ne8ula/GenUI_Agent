@@ -3,6 +3,7 @@ mod geometry;
 mod materials;
 mod math;
 mod scene;
+mod paris;
 
 #[cfg(target_arch = "wasm32")]
 mod gpu;

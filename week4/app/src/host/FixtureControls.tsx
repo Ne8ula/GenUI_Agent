@@ -6,10 +6,20 @@ import type { KeyboardEvent } from 'react';
 import type { WalkerFacing } from '../scene/arrival.ts';
 import type { BackendPreference } from '../scene/types.ts';
 import { buildChoices, clampSeed, DENSITIES, SEED_MAX, SEED_MIN } from './params.ts';
-import type { Density, Look } from './params.ts';
+import type { Density, Look, SceneId } from './params.ts';
 
 export interface FixtureControlsProps {
   look: Look;
+  /**
+   * Additive `scene` selector (default `seed33`, unchanged behaviour); `paris-r8` is the new native R8 scene.
+   * Optional so other existing callers (e.g. the DEV-only historical app) need no change; the control is
+   * omitted unless the host supplies it.
+   */
+  sceneId?: SceneId;
+  onSceneId?: (sceneId: SceneId) => void;
+  /** Checkpoint buttons reuse the existing start-time/remount convention: jump `t` and let the scene key change restart the clip. */
+  onReplay?: () => void;
+  onJumpToIdle?: () => void;
   /** Historical rendering is intentionally excluded from the new production build. */
   historicalAvailable?: boolean;
   onLook: (look: Look) => void;
@@ -139,16 +149,20 @@ const buildLabel = (ms: number): string => (ms === 0 ? 'Complete (no build)' : `
 
 export function FixtureControls(props: FixtureControlsProps) {
   const lookId = useId();
+  const sceneFieldId = useId();
   const buildId = useId();
   const backendId = useId();
   const facingId = useId();
   const densityId = useId();
   const seed33 = props.look === 'seed33';
+  const sceneId = props.sceneId ?? 'seed33';
+  const parisScene = sceneId === 'paris-r8';
+  const onSceneId = props.onSceneId;
   return (
     <section className="bar" aria-labelledby="fixture-heading">
       <div className="bar-row">
         <h2 id="fixture-heading" className="bar-heading">
-          Fixture controls — Week 4 Paris frame, not the live demo
+          {parisScene ? 'Paris — four-layer visual demo · Escape pauses' : 'Fixture controls — Week 4 Paris frame, not the live demo'}
         </h2>
         <div className="controls">
           {/* Tab order follows this reading order. Esc and S shortcuts are wired in step 5, not here. */}
@@ -159,9 +173,42 @@ export function FixtureControls(props: FixtureControlsProps) {
               <option value="arrival" disabled={props.historicalAvailable === false}>{props.historicalAvailable === false ? 'Arrival (history unavailable in this build)' : 'Arrival (earlier frame)'}</option>
             </select>
           </span>
+          {onSceneId ? (
+            <span className="field">
+              <label htmlFor={sceneFieldId}>Scene</label>
+              <select id={sceneFieldId} value={sceneId} onChange={(event) => onSceneId(event.currentTarget.value as SceneId)}>
+                <option value="seed33">Seed 33 (default)</option>
+                <option value="paris-r8">Paris R8 (new, native 30 s timeline)</option>
+              </select>
+            </span>
+          ) : null}
+          {onSceneId && parisScene ? (
+            <>
+              <label className="field">Layer
+                <select aria-label="Layer checkpoint" value="" onChange={event => { props.onStartMs(Number(event.currentTarget.value)); props.onPaused(true); }}>
+                  <option value="" disabled>Inspect a layer…</option>
+                  <option value="3500">1 · Detection</option>
+                  <option value="10500">2 · Density islands</option>
+                  <option value="17500">3 · Local flow</option>
+                  <option value="25500">4 · Reconstruction</option>
+                  <option value="30000">Settled</option>
+                </select>
+              </label>
+              {props.onReplay ? (
+                <button type="button" onClick={props.onReplay}>
+                  Replay
+                </button>
+              ) : null}
+              {props.onJumpToIdle ? (
+                <button type="button" onClick={props.onJumpToIdle}>
+                  Jump to idle
+                </button>
+              ) : null}
+            </>
+          ) : null}
           <span className="field">
             <label htmlFor={buildId}>Build length{seed33 ? '' : ' (seed-33 look only)'}</label>
-            <select id={buildId} value={String(props.buildMs)} disabled={!seed33} onChange={(event) => props.onBuildMs(Number(event.currentTarget.value))}>
+            <select id={buildId} value={String(props.buildMs)} disabled={!seed33 || parisScene} onChange={(event) => props.onBuildMs(Number(event.currentTarget.value))}>
               {buildChoices(props.buildMs).map((ms) => (
                 <option key={ms} value={String(ms)}>
                   {buildLabel(ms)}
@@ -202,7 +249,7 @@ export function FixtureControls(props: FixtureControlsProps) {
           </span>
           <span className="field">
             <label htmlFor={densityId}>Density</label>
-            <select id={densityId} value={String(props.density)} onChange={(event) => props.onDensity(Number(event.currentTarget.value) as Density)}>
+            <select id={densityId} disabled={parisScene} value={String(props.density)} onChange={(event) => props.onDensity(Number(event.currentTarget.value) as Density)}>
               {DENSITIES.map((value) => (
                 <option key={value} value={String(value)}>
                   {value}

@@ -115,6 +115,7 @@ pub struct RustRenderer {
     uploaded_bytes: usize,
     vao: WebGlVertexArrayObject,
     scene: Scene,
+    paris: Option<crate::paris::Paris>,
     frame: Frame,
     disposed: bool,
     draws: u32,
@@ -203,12 +204,18 @@ impl RustRenderer {
             uploaded_bytes: 0,
             vao,
             scene,
+            paris: None,
             frame: Frame::default(),
             disposed: false,
             draws: 0,
             context_extension,
             cached_inputs: None,
         })
+    }
+    pub fn set_paris(&mut self, enabled: bool) {
+        self.paris = enabled.then(|| crate::paris::Paris::new(self.scene.seed));
+        self.cached_inputs = None;
+        self.static_uploaded = false;
     }
     pub fn render(
         &mut self,
@@ -256,23 +263,37 @@ impl RustRenderer {
         if self.cached_inputs == Some(inputs) {
             return Ok(true);
         }
-        self.scene
-            .frame(&mut self.frame, time_ms, build_ms, reduced, tiles)
-            .map_err(error)?;
+        if let Some(paris) = &self.paris {
+            paris
+                .frame(&mut self.frame, time_ms, reduced, tiles)
+                .map_err(error)?;
+        } else {
+            self.scene
+                .frame(&mut self.frame, time_ms, build_ms, reduced, tiles)
+                .map_err(error)?;
+        }
         if self.canvas.width() != width {
             self.canvas.set_width(width);
         }
         if self.canvas.height() != height {
             self.canvas.set_height(height);
         }
-        self.light
-            .as_mut()
-            .ok_or_else(|| error("live light pass unavailable"))?
-            .begin(width, height)?;
+        if self.paris.is_none() {
+            self.light
+                .as_mut()
+                .ok_or_else(|| error("live light pass unavailable"))?
+                .begin(width, height)?;
+        } else {
+            self.gl.bind_framebuffer(Gl::FRAMEBUFFER, None);
+        }
         let gl = &self.gl;
         gl.disable(Gl::SCISSOR_TEST);
         gl.viewport(0, 0, width as i32, height as i32);
-        gl.clear_color(0.055, 0.025, 0.012, 1.0);
+        if self.paris.is_some() {
+            gl.clear_color(0.0, 0.0, 0.0, 1.0);
+        } else {
+            gl.clear_color(0.055, 0.025, 0.012, 1.0);
+        }
         gl.clear_depth(1.0);
         gl.depth_mask(true);
         gl.clear(Gl::COLOR_BUFFER_BIT | Gl::DEPTH_BUFFER_BIT);
@@ -286,7 +307,7 @@ impl RustRenderer {
         gl.blend_func(Gl::SRC_ALPHA, Gl::ONE_MINUS_SRC_ALPHA);
         gl.use_program(Some(&self.program));
         gl.bind_vertex_array(Some(&self.vao));
-        let formed = reduced || build_ms == 0.0 || time_ms >= build_ms;
+        let formed = self.paris.is_none() && (reduced || build_ms == 0.0 || time_ms >= build_ms);
         let [static_triangles, static_lines] = if formed { self.static_lengths } else { [0, 0] };
         if static_triangles > self.frame.triangles.len() || static_lines > self.frame.lines.len() {
             return Err(error("static geometry prefix is inconsistent"));
@@ -342,10 +363,12 @@ impl RustRenderer {
             Gl::LINES,
             self.frame.lines.len() - static_lines,
         );
-        self.light
-            .as_ref()
-            .ok_or_else(|| error("live light pass unavailable"))?
-            .finish();
+        if self.paris.is_none() {
+            self.light
+                .as_ref()
+                .ok_or_else(|| error("live light pass unavailable"))?
+                .finish();
+        }
         gl.bind_vertex_array(None);
         if gl.is_context_lost() {
             return Ok(false);
@@ -362,12 +385,14 @@ impl RustRenderer {
         Ok(true)
     }
     pub fn stats(&self) -> String {
-        format!("{{\"sceneId\":\"{}\",\"vertices\":{},\"triangles\":{},\"segments\":{},\"objects\":{},\"tiles\":{},\"draws\":{},\"cpuBufferBytes\":{},\"uploadedBytes\":{},\"gpuAllocatedBytes\":{},\"renderTargetBytes\":{}}}",SCENE_ID,(self.frame.triangles.len()+self.frame.lines.len())/STRIDE,self.frame.surfaces,self.frame.segments,self.frame.objects,self.frame.tiles,self.draws,(self.frame.triangles.capacity()+self.frame.lines.capacity())*4,self.uploaded_bytes,self.capacities.iter().sum::<usize>()*4,self.light.as_ref().map_or(0, LightPass::requested_bytes))
+        format!("{{\"sceneId\":\"{}\",\"vertices\":{},\"triangles\":{},\"segments\":{},\"objects\":{},\"tiles\":{},\"draws\":{},\"cpuBufferBytes\":{},\"uploadedBytes\":{},\"gpuAllocatedBytes\":{},\"renderTargetBytes\":{}}}",if self.paris.is_some() { crate::paris::ID } else { SCENE_ID },(self.frame.triangles.len()+self.frame.lines.len())/STRIDE,self.frame.surfaces,self.frame.segments,self.frame.objects,self.frame.tiles,self.draws,(self.frame.triangles.capacity()+self.frame.lines.capacity())*4,self.uploaded_bytes,self.capacities.iter().sum::<usize>()*4,self.light.as_ref().map_or(0, LightPass::requested_bytes))
     }
     pub fn inventory(&self) -> String {
-        let rows: Vec<_> = self
-            .scene
-            .objects
+        let objects = self
+            .paris
+            .as_ref()
+            .map_or(&self.scene.objects, |p| &p.objects);
+        let rows: Vec<_> = objects
             .iter()
             .map(|o| {
                 format!(

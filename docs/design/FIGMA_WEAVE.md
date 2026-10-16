@@ -4,6 +4,12 @@ Owner decision: 2026-09-28. Figma Weave replaces Higgsfield for future **develop
 
 Follow [AGENTS.md](../../AGENTS.md), [DESIGN.md](../../DESIGN.md) and the active phase. Week 3 uses its explicitly authorized [design direction](../../week3/DESIGN.md) and [plan](../../week3/PLANNING.md). Preserve Week 1/2 and historical Higgsfield/Weave outputs. ComfyUI's separate S3-after-explicit-S2-acceptance gate is unchanged.
 
+## Active temporary owner override — 2026-10-15
+
+Owner, verbatim: **“Generate directly through the GPT Image 2.5 model in ChatGPT/Codex. Ignore the Weave only requirement for now, until I say to turn it back on.”**
+
+The Weave-only generation route is suspended until the owner explicitly restores it. Use a verified direct ChatGPT/Codex image-generation capability for the current Paris refinement, with the owner's exact three-reference prompt. This supersedes conflicting Weave-only wording in project guidance and reminder hooks; it does not establish that a direct image model is actually available through the installed coding-model gateway. Do not silently substitute a different model or claim generation without an output. Fresh reference generation, actual inspection, provenance, preservation of prior candidates, applicable motion references, and owner acceptance boundaries remain in force. No configuration or permission bypass is authorized. If Weave is used again, its tool-level per-run cost confirmation still applies.
+
 ## Mandatory prerequisite for every UI change
 
 Owner refinement, 2026-09-28: **Weave generation is required, not optional, before every frontend/UI change, redesign, reimplementation or new visual iteration.** This applies to all development agents/models and environments: local Claude Code, Claude Cloud, Astra, native workers and any other contributor. It includes layout, styling, components, graphics, motion, interaction presentation and frontend reimplementation even when intended to preserve appearance. Documentation-only and unrelated non-UI/backend work do not trigger generation. No agent may invent a small-change, mechanical-change or deadline exception; only an explicit owner exception can waive the step.

@@ -4,10 +4,17 @@ import type { RustInstance } from '../render/rustLoader.ts';
 import { createRingBuffer, summarize } from './frameStats.ts';
 import type { StageProps } from './Stage.tsx';
 
-type Props = Omit<StageProps, 'scene'>;
+type Props = Omit<StageProps, 'scene'> & {
+  /** Additive `scene=paris-r8` selector; false preserves the existing Seed-33 behaviour untouched. */
+  paris?: boolean;
+  overlay?: import('react').ReactNode;
+};
 interface RustStats { sceneId: string; vertices: number; triangles: number; segments: number; objects: number; tiles: number; draws: number; cpuBufferBytes: number; uploadedBytes: number; gpuAllocatedBytes: number; renderTargetBytes: number }
 interface CaptureHook { step(ms: number): Promise<void>; loseContext(): void; restoreContext(): void; inventory(): unknown[] }
 const reason = (error: unknown) => error instanceof Error ? error.message : String(error);
+function applyParis(renderer: RustInstance, enabled: boolean): void {
+  renderer.set_paris(enabled);
+}
 
 export function RustStage(props: Props) {
   const host = useRef<HTMLDivElement>(null);
@@ -122,6 +129,7 @@ export function RustStage(props: Props) {
         renderer = null;
         previous?.dispose(); previous?.free();
         renderer = new module.Renderer(canvas, live.current.info.seed, live.current.info.density);
+        applyParis(renderer, live.current.paris ?? false);
         lost = false; count = 0; lastNow = null;
       } catch (error) { fail(error); }
     };
@@ -147,6 +155,7 @@ export function RustStage(props: Props) {
         if (stopped) return;
         module = loaded;
         renderer = new loaded.Renderer(canvas, props.info.seed, props.info.density);
+        applyParis(renderer, props.paris ?? false);
         if (props.fixture && props.manualClock) fixtureWindow.__evaFixture = hook;
         raf = requestAnimationFrame(tick);
       }).catch(fail);
@@ -164,6 +173,7 @@ export function RustStage(props: Props) {
   }, [props.preference, props.sceneKey]);
   return <div className="stage" style={{ backgroundColor: '#0e0603' }}>
     <div className="canvas-host" ref={host} />
+    {props.overlay}
     {props.unavailable ? <p className="stage-message" role="alert">Rendering unavailable: {props.unavailable}</p>
       : initializing ? <p className="stage-message" role="status">Initializing Rust/WASM renderer…</p> : null}
   </div>;

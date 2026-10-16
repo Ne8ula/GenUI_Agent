@@ -22,6 +22,7 @@ import { DEFAULT_SEED33 } from '../src/scene/seed33.ts';
 test('defaults apply when the URL is empty', () => {
   assert.deepEqual(parseParams(''), {
     backend: 'auto',
+    sceneId: 'seed33',
     seed: 33,
     density: 1,
     facing: 'away',
@@ -212,6 +213,7 @@ test('the first occurrence of a repeated parameter wins and unknown parameters a
     'manualClock',
     'paused',
     'reduced',
+    'sceneId',
     'seed',
     'showTiles',
     'startMs',
@@ -223,6 +225,7 @@ test('a full capture URL round-trips', () => {
     parseParams('?fixture&capture=1&backend=webgl2&seed=7&look=seed33&build=12000&t=3000&tiles=0&facing=toward&density=1.25&reduced=1&paused=1&clock=manual'),
     {
       backend: 'webgl2',
+      sceneId: 'seed33',
       seed: 7,
       density: 1.25,
       facing: 'toward',

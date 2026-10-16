@@ -1,0 +1,47 @@
+{
+  "kind": "curated-local-archival-photo-selection",
+  "revision": "r15",
+  "runtimeNetwork": "same-origin assets only; no live search",
+  "sources": [
+    {
+      "id": "montparnasse", "file": "montparnasse-1980.jpg",
+      "title": "Montparnasse, Paris 1980", "creator": "Pascal Dolémieux",
+      "date": "1980", "dateBasis": "Institutional catalogue title and visible postcard inscription; no separately verified capture date",
+      "medium": "Photographic postcard, Musée Carnavalet inventory CP1154",
+      "record": "https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/montparnasse-paris-1980",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Montparnasse%2C_Paris_1980._CP1154.jpg",
+      "license": "CC0 1.0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "credit": "Pascal Dolémieux / CC0 Paris Musées / Musée Carnavalet – Histoire de Paris",
+      "originalSha256": "062f8a43f61dd2b2182d0a9b59306746c4e9e9fb62766af47c2bb859aca1e3be",
+      "sha256": "51cd4df87995fb54e72e801273a8a8d88eafc2ae32c79b1b26487fc0f465d2d6",
+      "changes": "Crop [320,255,2680,1830] from 3000×2156 original; resized to 1440×961 JPEG. Additional responsive CSS detail crops. No retouching or colourization."
+    },
+    {
+      "id": "conciergerie", "file": "conciergerie-1980.jpg",
+      "title": "Conciergerie-Paris-1980.jpg", "creator": "Johnckarnes",
+      "date": "1980", "dateBasis": "Commons author-supplied date and inception metadata, not independent negative authentication",
+      "medium": "Photograph",
+      "record": "https://commons.wikimedia.org/wiki/File:Conciergerie-Paris-1980.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Conciergerie-Paris-1980.jpg",
+      "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "credit": "Johnckarnes, Conciergerie-Paris-1980.jpg (1980), CC BY-SA 4.0",
+      "originalSha256": "3ab566c570298801a91a8cde968168459d73004cb0ad4dbfb851b732b2ee0580",
+      "sha256": "3ab566c570298801a91a8cde968168459d73004cb0ad4dbfb851b732b2ee0580",
+      "changes": "Original 1400×933 JPEG retained unchanged. Responsive CSS display crops and perspective arrangement; photograph and its crops remain CC BY-SA 4.0. No endorsement implied."
+    },
+    {
+      "id": "montmartre", "file": "montmartre-1980.jpg",
+      "title": "Les escaliers de montmartre 1980 - panoramio.jpg", "creator": "bigup21",
+      "date": "1980", "dateBasis": "Commons description gives 1980; 2008 upload is not capture date",
+      "medium": "Photograph of Passage Cottin stairway, Montmartre",
+      "record": "https://commons.wikimedia.org/wiki/File:Les_escaliers_de_montmartre_1980_-_panoramio.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/1/10/Les_escaliers_de_montmartre_1980_-_panoramio.jpg",
+      "originalRecord": "https://web.archive.org/web/20161012175121/http://www.panoramio.com/photo/16522523",
+      "license": "CC BY 3.0", "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "credit": "bigup21, Les escaliers de montmartre 1980 - panoramio.jpg (1980), CC BY 3.0",
+      "originalSha256": "9ca9dc48705a05744fd99a9eecedd41871780059c96310ba6be4098d6bc48a1e",
+      "sha256": "9ca9dc48705a05744fd99a9eecedd41871780059c96310ba6be4098d6bc48a1e",
+      "changes": "Original 1499×2098 JPEG retained unchanged. Responsive CSS display crops and perspective arrangement. No retouching, colourization or endorsement."
+    }
+  ]
+}

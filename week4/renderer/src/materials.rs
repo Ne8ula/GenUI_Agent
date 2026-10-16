@@ -44,6 +44,93 @@ float field(vec2 p){
 void main(){
   float m=vMaterial.x,detail=vMaterial.y,light=vMaterial.z;
   vec3 bone=vec3(1.0,0.875,0.715),voidTone=vec3(0.055,0.025,0.012);
+  if(m>=20.0){
+    bool figure=m>=100.0;
+    if(figure) m-=100.0;
+    vec2 px=vec2((vPosition.x/vPosition.z+0.5)*1672.0,(0.5-vPosition.y/vPosition.z*1.791667)*941.0);
+    vec2 cell=floor(vCell), f=fract(vCell);
+    float random=hash(cell), island=field(vCell*0.055);
+    float density=clamp(detail-1.0,0.0,1.0), resolve=clamp(detail-3.0,0.0,1.0);
+    float stipple=dotPattern(vCell,0.18+0.12*density);
+    vec3 pigment=vec3(0.61,0.57,0.47);
+    if(m<20.5) pigment=vec3(0.69,0.65,0.55);
+    else if(m<21.5) pigment=vec3(0.18,0.205,0.14);
+    else if(m<22.5) pigment=vec3(0.76,0.67,0.50);
+    else if(m<23.5) pigment=vec3(0.95,0.66,0.32);
+    else if(m<24.5) pigment=vec3(0.39,0.32,0.22);
+    else if(m<25.5) pigment=vec3(0.045,0.048,0.039);
+    else if(m<26.5) pigment=vec3(0.84,0.84,0.77);
+    else if(m<27.5) pigment=vec3(0.59,0.48,0.36);
+    else if(m<28.5) pigment=vec3(0.105,0.15,0.17);
+    else if(m<29.5) pigment=vec3(0.20,0.30,0.68);
+    else if(m<30.5) pigment=vec3(0.61,0.17,0.53);
+    else pigment=vec3(0.80,0.81,0.77);
+    if(detail>4.5){colour=vec4(pigment*light,1);return;}
+    float keep=detail<1.0?detail*0.08:0.08+density*(0.27+0.62*island);
+    if(detail<3.0){
+      if(random>keep || island<0.25 || stipple<0.18) discard;
+      colour=vec4(vec3(0.68+0.30*random)*stipple,1);return;
+    }
+    // Ghost fields are clusters of tiny symbols, not evenly filled rectangles.
+    if(m>31.5&&m<32.5){
+      float cluster=field(vCell*0.13+vec2(0,light*0.45));
+      float glyph=max(step(abs(f.x-0.5),0.06)*step(abs(f.y-0.5),0.32),step(abs(f.y-0.5),0.05)*step(abs(f.x-0.5),0.28));
+      if(light<=0.0 || random>0.84 || cluster<0.38 || max(stipple,glyph)<0.2) discard;
+      vec3 fieldInk=cluster>0.72?vec3(0.18,0.31,0.72):cluster<0.41?vec3(0.61,0.18,0.54):vec3(0.80,0.82,0.77);
+      colour=vec4(fieldInk*max(stipple,glyph)*0.85,1);return;
+    }
+    // Multi-scale material detail is analytically authored, without scene textures.
+    float coarse=field(px*0.045), medium=field(px*0.19), fine=hash(floor(px*1.3));
+    float wear=coarse*0.45+medium*0.35+fine*0.2;
+    float surface=0.34+wear*0.88;
+    vec3 n=normalize(vNormal+vec3(0.00001));
+    vec3 facing=dot(n,normalize(-vPosition))<0.0?-n:n;
+    float diffuse=max(dot(facing,normalize(vec3(-0.5,0.65,-0.6))),0.0);
+    float shade=0.26+0.88*diffuse;
+    float crevice=pow(1.0-field(px*vec2(0.6,0.09)),5.0);
+    if(m<20.5){
+      pigment*=0.66+0.4*coarse;
+      surface=0.65+0.25*medium+0.1*fine;
+    }else if((m>20.5&&m<21.5)||(m>23.5&&m<25.5)||(m>27.5&&m<28.5)){
+      float grain=sin(vCell.x*5.4+field(vCell*vec2(0.35,0.08))*12.0);
+      surface*=0.72+0.28*grain*grain;
+      float scrape=step(0.91,fine)*step(0.52,medium)*step(0.58,coarse);
+      pigment=mix(pigment,vec3(0.53,0.48,0.36),scrape*0.7);
+      shade+=pow(max(dot(reflect(-normalize(vec3(-0.5,0.65,-0.6)),facing),normalize(-vPosition)),0.0),20.0)*0.35;
+    }else if(m>25.5&&m<26.5){
+      float fold=sin(vCell.x*0.8+field(vCell*0.07)*5.0+vCell.y*0.09);
+      surface=0.68+0.25*fold+0.12*medium;
+      surface*=0.91+0.09*fine;
+    }else if(m>26.5&&m<27.5){ surface=0.88+0.1*medium; }
+    if(m>22.5&&m<23.5){shade=0.65+0.5*medium;surface=0.55+0.45*coarse;}
+    if(m>32.5){
+      // Rounded, wet-sett stone fragments: edge relief, irregular grain and small highlights.
+      pigment=mix(vec3(0.09,0.10,0.10),vec3(0.36,0.34,0.29),hash(vec2(vMaterial.w,0)));
+      surface=0.62+0.30*medium+0.15*fine;
+      shade=0.76+0.65*diffuse+0.35*step(0.975,fine)*step(0.5,medium);
+    }
+    vec3 ink=pigment*surface*shade*(1.0-crevice*0.3);
+    float region=field(vCell*0.09+vec2(7,3));
+    bool materialPatch=region<resolve*1.05;
+    // All material islands persist; only a light overlay changes in idle.
+    float glyph=max(step(abs(f.x-0.5),0.065)*step(abs(f.y-0.5),0.29),step(abs(f.y-0.5),0.055)*step(abs(f.x-0.5),0.26));
+    float band=field(vCell*0.065+vec2(light*0.45,0));
+    float overlay=light>0.0?step(0.72,band)*max(stipple*0.6,glyph*step(0.83,random)):0.0;
+    vec3 accent=random>0.985?vec3(0.61,0.20,0.59):random>0.96?vec3(0.23,0.35,0.79):vec3(0.77,0.78,0.71);
+    if(!materialPatch && (random>0.78 || stipple<0.22)) discard;
+    if(figure){
+      float garment=field(vCell*0.27);
+      float cellInk=dotPattern(vCell*1.8,0.33);
+      float broken=step(0.48,garment)*step(0.23,random);
+      ink*=0.72+0.38*hash(floor(vCell*2.8));
+      if(broken>0.5){
+        if(cellInk<0.22) discard;
+        ink=mix(ink,vec3(0.85,0.86,0.81)*cellInk,m>25.5&&m<26.5?0.75:0.33);
+      }
+    }
+    if(m>30.5&&m<31.5) ink=vec3(0.87,0.88,0.83);
+    colour=vec4(materialPatch?mix(ink,accent,overlay*0.75):accent*stipple*0.8,1);return;
+  }
   if(m<0.0){colour=vec4(bone*light*1.25,0.92);return;}
   if(m>5.5&&m<6.5){colour=vec4(vec3(0.988,0.89,0.826),1);return;}
   if(m>6.5&&m<10.5){

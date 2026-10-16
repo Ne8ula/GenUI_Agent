@@ -213,6 +213,56 @@ Main Astra directly implemented **candidate19**, scoped to still-supported stati
 
 **Remaining:** schematic architectural massing/roof detail, dark right facade, dominant dot grids, stylized figure and unchanged gait realism; usable motion reference needed before gait-timing work. Browser-only evidence, no native/WebView2 result. Owner exercise is linked in the packet. **All decisions/steps remain pending; no commit, push or phase advancement.**
 
+## New source-to-particle direction — recorded 2026-10-14
+
+Owner instruction for the new pass: **“The procedural Rust scene-construction approach is correct, but the previous Seed-33 first-person café composition and visual style are not the desired direction. Do not continue polishing that composition.”** The question is now **“What does it feel like to be in 1980s Paris?”** This changes direction; it does not accept candidate19, any step or a phase.
+
+Source HEAD verified: `565b5ad6c4b62cf903cf903288941ce8f95850ff`, branch `week4`. [New preparation record](../revisions/w4-20261014-paris-source-particles-r1/REVIEW.md). Scope: inspect the owner's three local videos and original conversation, research genuine 1980–1989 Paris material with rights/provenance, discover the permitted Weave models, and quote one highest-tier composition still. Owner composition feedback is required before the full motion sequence. No application UI work, local-media upload, actual application minimization, new tooling, commit/push or publication is authorized now.
+
+Required direction: independent source windows, black/white dither plus subject-grounded accents, windows breaking into construction particles, four visualization-inspired stages in one continuous 30–45s sequence, separate recognizable objects plus partial city elements, and source-linked hover/click inspection. Final objects remain authored procedural Rust geometry/particles, not source photos or generated-video playback. Native windows, focus, interruption and restoration remain future implementation obligations, not proven by concept video. All prior evidence is preserved. **New composition approval, implementation decisions and phase acceptance: pending.**
+
+### First new-direction still checkpoint
+
+The owner selected structured **“Approve”** for **34 Weave workspace credits**, one text-only GPT Image 2.5 Sunburst/max still at3840×2160. Run `66b4b180-9cf6-49af-b618-879bd0c55026` was submitted once, completed, retrieved and inspected. [Actual still, source collection and defects](../revisions/w4-20261014-paris-source-particles-r1/REVIEW.md). Fine stippling and over-complete shapes diverge from the brief; the invented poster portrait is excluded as historical evidence. This approves cost only. **Composition feedback remains pending; no motion spend or implementation is authorized by the cost decision.**
+
+## Recovered QHD scan proof — 2026-10-15
+
+In the interrupted FOUR_LAYER_IMPLEMENTATION conversation, the owner changed the immediate task from the rejected Rust approximation to the [R11 source-derived Three.js baseline](../revisions/w4-20261015-paris-hybrid-r11/REVIEW.md), then requested QHD and scan-inspired graphics replacing drawn detail. They explicitly selected scan-inspired GPU first and reuse of the supplied references. A separately approved 19-credit Topaz 4× upscale completed once before interruption; recovery did not resubmit it.
+
+The additive [R12 scan proof](../revisions/w4-20261015-paris-scan-r12/REVIEW.md) uses image-derived GPU points, Gaussian-shaped sprites, ordered samples and edge fragments, not measured SLAM/LiDAR or actual 3D reconstruction. This pass extends the bounded R11 Three.js/image-derived exception; it does not claim completion of the old R8 four-phase Rust contract. R11 and the Rust fixtures remain preserved. The owner’s eventual AI-directed procedural 3D goal remains future scope.
+
+Actual QHD production captures, control/failure checks, sample-motion recording, limitations and model provenance are linked in R12. **Owner visual decision and every phase/step remain pending.** No additional spend, commit, publishing, native desktop work or phase advancement occurred during recovery.
+
+## Eye-to-Paris construction — 2026-10-15
+
+Owner: **“Now implement the construction of this scene from the EVA eye after user asks whats it like in 1980s Paris.”** Current R12 original-color scan composition is preserved. This authorizes the bounded request-driven browser construction, not speech, desktop control, genuine reconstruction or any new phase.
+
+[R13 evidence](../revisions/w4-20261015-eye-paris-construction-r13/REVIEW.md) includes fresh inspected Weave storyboard and corrected eye/scan-conditioned motion. The first text-only video was rejected; its 164-credit cost was disclosed before a separately approved 164-credit corrective run. Total separately approved reference spend: 336 credits, no retries remaining.
+
+Implemented typed local request → canonical eye sample departure → detection/surface/flow/material construction over 30 authored seconds, with pause, skip, return, deterministic fixture seeking and reduced motion. The settled QHD frame is pixel-identical to the retained colored R12 scene. 222 app tests/build, 21 arrival browser checks, 20 scan regressions and actual full-transition recording passed; final trail-thinning refinement received focused test/build/browser/recording retests. No microphone, provider runtime, native WebView2 claim, commit or phase advancement. **Owner visual retest and every step/phase acceptance remain pending.**
+
+## Living Paris and formless eye — 2026-10-15
+
+Owner: **“Can the scene be constantly moving after it is settled. Also can you make the eye a bit more formless rather than just a rectangle.”** The bounded [R14 refinement](../revisions/w4-20261015-living-paris-r14/REVIEW.md) keeps the camera/composition/colors, removes the eye's surrounding rectangular tissue through anatomy-aware point selection, and continues subtle surface-particle life after construction on a separate clock. People regions remain fixed; this is not a request for gait or genuine reconstruction.
+
+Fresh 8-credit still and 82-credit motion reference were separately approved, completed once and inspected before edits. 226 app tests/build, 23 living-scene checks and 22 arrival regression checks passed, with actual QHD eye comparison, full construction and 12-second idle recordings. Pause/resume, static reduced motion and continuity past60s are verified; original source frame is preserved exactly at idle zero. **Owner visual retest and all phase/step acceptance remain pending.** No commits or phase advancement.
+
+## Archival discovery and input-only interface — recovered 2026-10-15
+
+Latest recovered owner request: **“Remove all of the unnecessary buttons, so only do the user input prompt, and remove everything else. Remove all of the other texts as well. Furthermore, implement the phase of finding reference image by generating actual 1980s photographs by following this reference:”** followed by the local Winter Outfit MP4. Structured follow-ups explicitly chose **“Real archival photos (Recommended)”**, **“Use supplied references (Recommended)”** (one-pass fresh-generation exception), and **“Photo-linked credits (Recommended)”**. These decisions were recovered from the prior session's user/tool-answer records; they authorize this bounded R15 refinement, not visual acceptance or new spend.
+
+[R15 review, sources and actual runtime recording](../revisions/w4-20261015-reference-discovery-r15/REVIEW.md). Implemented input-only normal UI; Enter submits; Escape pauses; typed resume/skip/return/retry retain local control. Three licensed archival photographs form seven shallow-perspective fragments before the unchanged 30-second eye-to-Paris construction. Credits disclose authors, licences, date uncertainty and cropping. Curated local sources are not live web search or genuine reconstruction inputs. Existing scene colours and endpoint remain unchanged.
+
+Final **232 app tests/typecheck/WASM prebuild/build and 26 production browser checks passed**, with QHD/narrow captures and a 42.12-second encoded actual browser recording. Initial production failure from the omitted archival allowlist was fixed and retained as failed evidence. Source manifest: `4442e9bf429d5871af11e51208f744f8d2e28941e3574215244a9e693e3d63d7`. Main inspected stills and temporal samples, not full-speed playback; no native desktop result or performance benchmark. Owner retest: submit Paris, inspect/click photos, pause/resume, skip/return and watch the retained construction/idle. **Owner visual decision and every phase/step remain pending.** No new generation spend, commit, publication or phase advancement.
+
+## Frameless ground and item rectangles — 2026-10-15
+
+Owner: **“The ground is too hastily cutoff, like there is a frame at the bottom. Can you extend some of the ground tiles, to make it feel more frameless.”** Then: **“After that, can you add a few rectangle overlays that float around that shows a very brief description of each 1980s item and a title. The rectangle overlays should feel like the final week 3 visual demo rectangle overlays.”** They explicitly chose **“Reuse references (Recommended)”** for this bounded pass's new reference exception. This permits these descriptive overlays despite the previous input-only host instruction; it does not restore unrelated UI text or accept a phase.
+
+[R16 captures, reference comparison and actual runtime recording](../revisions/w4-20261015-frameless-ground-r16/REVIEW.md). Main inspected the actual Paris before-state and approved/final Week3 frame/motion evidence, then implemented five sparse continuation islands without changing original samples/camera. A bounded isolated native UI worker supplied the four descriptive rectangle modules; main integrated and refined their placement/stripe treatment. Frames have hairlines, small colour-stripe patches and X/corner marks, no opaque backing; slow float follows the existing idle clock and pauses with Escape. Titles/descriptions are a new readable adaptation, not claimed to have existed in Week3.
+
+**247 app tests/typecheck/WASM prebuild/build and 26 production browser checks passed.** Upper scene and full-height foreground-person band remain pixel-identical to the static comparison; 2,364 extra ground samples stay within the resource bound. QHD/narrow captures and a20.96s encoded runtime recording are retained; main inspected temporal samples, not full-speed playback. An intermediate mobile harness synchronization failure is preserved and corrected in the final retest. Source manifest `e5c76f19950e919b61628cf1ceeb79f3ef47b09fecfe1cbf4105d55995fc4ac3`. Owner retest: type `skip` to inspect ground/labels, Escape/resume, then compare the full construction. **Owner visual decision and all phase/step acceptance remain pending.** No new generation spend, commits, publication or native desktop work.
+
 ## How to record a decision
 
 Copy the owner's words exactly into the row, with the date and the commit or working-tree revision the owner actually looked at. On *Request changes*, keep the row pending, revise within the step, re-capture under a new revision folder and ask again. On *Reject direction*, stop; a new direction needs a fresh Weave packet.

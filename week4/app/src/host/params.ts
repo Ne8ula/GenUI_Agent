@@ -11,6 +11,16 @@ export type Density = (typeof DENSITIES)[number];
 export const LOOKS = ['seed33', 'arrival'] as const;
 export type Look = (typeof LOOKS)[number];
 
+/**
+ * `scene=paris-r8` selects the new additive R8 procedural Paris scene (native Rust `set_paris(true)`); the
+ * default stays the existing Seed-33 look/behaviour untouched. Not the same axis as `look`.
+ */
+export const SCENE_IDS = ['seed33', 'paris-r8'] as const;
+export type SceneId = (typeof SCENE_IDS)[number];
+export const DEFAULT_SCENE_ID: SceneId = 'seed33';
+/** R8's construction timeline is fixed in Rust regardless of the legacy `build` param; used for the Idle checkpoint. */
+export const PARIS_TIMELINE_MS = 30_000;
+
 export const SEED_MIN = 0;
 export const SEED_MAX = 9999;
 /** The arrival look's default seed (the step-1 frame the owner looked at). */
@@ -30,6 +40,8 @@ export const START_MAX_MS = 60_000;
 
 export interface HostParams {
   backend: BackendPreference;
+  /** `scene`: additive scene selector; default preserves the existing seed-33 behaviour. */
+  sceneId: SceneId;
   seed: number;
   density: Density;
   facing: WalkerFacing;
@@ -134,6 +146,7 @@ export function parseParams(search: string, env: ParamEnvironment = {}): HostPar
   const look = pick(query.get('look'), LOOKS, DEFAULT_LOOK);
   return {
     backend: pick(query.get('backend'), BACKENDS, 'auto'),
+    sceneId: pick(query.get('scene'), SCENE_IDS, DEFAULT_SCENE_ID),
     // The look decides the default seed: 33 for seed33, 7 for arrival (also what a junk `seed` falls back to).
     seed: parseSeed(query.get('seed'), defaultSeedFor(look)),
     density: parseDensity(query.get('density')),

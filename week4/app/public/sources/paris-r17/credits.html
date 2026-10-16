@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paris Archive Sources</title>
+<style>body{margin:0;background:#080c11;color:#e5e9ee;font:16px/1.65 'IBM Plex Sans',system-ui,sans-serif}main{max-width:780px;margin:auto;padding:48px 20px}h1,h2{line-height:1.2;font-family:'Space Grotesk',system-ui,sans-serif}h1{font-size:36px}h2{font-size:25px}a{color:#b8d7f4;text-underline-offset:4px}a:focus-visible{outline:2px solid white;outline-offset:4px}section{border-top:1px solid #3b454f;margin-top:42px;padding-top:24px;scroll-margin:24px}img{display:block;max-width:100%;max-height:480px;object-fit:contain;margin:20px 0}nav{display:flex;gap:24px;flex-wrap:wrap}.date-note{color:#b5c2cf}</style></head>
+<body><main><nav><a href="/?scene=paris-arrival">Open the demo</a><a href="credits.json">Full source manifest</a></nav><h1>Paris archive sources</h1>
+<p>Seven distinct historical photographs, curated locally. This is not live web search or AI-generated history. The loading windows never show multiple copies of the same source at once.</p>
+<p><strong>Reference, not an exact match.</strong> Settled-scene insets provide historical context. They do not identify the generated café, furniture, people or location, and the illustrative particle scene is not a reconstruction of these photographs. Object boxes and connector lines are authored presentation, not measured detection or evidence of identity.</p>
+<p>Photographs retain their original colour, grain and resolution. Window/inset presentation may crop, scale or change perspective. Credits below preserve creator, source, licence, date uncertainty and adaptations; no creator or institution endorses the demo. ShareAlike photographs and their display crops retain their own licences, independently of application-code licensing.</p>
+<div id="sources" aria-live="polite">Loading source records…</div>
+<p>Enter submits in the demo; Escape pauses. Type photos, pause, resume, skip or return. Source links open separately and pause the composition for inspection.</p></main>
+<script type="module">
+const root=document.querySelector('#sources');
+const text=(tag,value)=>{const node=document.createElement(tag);node.textContent=String(value);return node};
+const link=(label,url)=>{const node=text('a',label);const target=new URL(url,location.href);if(target.protocol!=='https:'&&target.origin!==location.origin)throw new Error('Invalid source link');node.href=target.href;return node};
+try{
+ const response=await fetch('./credits.json');if(!response.ok)throw new Error('Source manifest unavailable');const manifest=await response.json();
+ if(!Array.isArray(manifest.sources)||manifest.sources.length!==7)throw new Error('Invalid source manifest');
+ root.replaceChildren();
+ for(const source of manifest.sources){
+  if(!/^[a-z0-9-]+$/.test(source.id)||!/^\/sources\/paris-r(10|15|17)\/[a-z0-9-]+\.jpg$/.test(source.src))throw new Error('Invalid source asset');
+  const section=document.createElement('section');section.id=source.id;section.append(text('h2',source.title));
+  const image=document.createElement('img');image.src=source.src;image.alt=source.title;section.append(image);
+  section.append(text('p',source.credit),text('p',source.medium));
+  const date=text('p',`Date presented: ${source.date}. ${source.dateBasis}`);date.className='date-note';section.append(date);
+  const links=document.createElement('p');links.append(link('Source record',source.record),document.createTextNode(' · '),link(source.license,source.licenseUrl),document.createTextNode(' · '),link('Original image',source.original));
+  if(source.originalRecord)links.append(document.createTextNode(' · '),link('Original archive record',source.originalRecord));
+  section.append(links,text('p',source.changes));root.append(section);
+ }
+ document.getElementById(location.hash.slice(1))?.scrollIntoView();
+}catch(error){root.replaceChildren(text('p',`Source records could not load: ${error.message}`));root.setAttribute('role','alert')}
+</script></body></html>

@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "id": "scene:paris-hybrid-r11",
+  "title": "Paris / Fragment",
+  "width": 848,
+  "height": 430,
+  "reference": "paris-clean.png",
+  "layers": [
+    {
+      "id": "backdrop",
+      "label": "Residual background",
+      "image": "layers/backdrop.png",
+      "relativeDepth": -53
+    },
+    {
+      "id": "cafe",
+      "label": "Café",
+      "image": "layers/cafe.png",
+      "relativeDepth": -24
+    },
+    {
+      "id": "bookshop",
+      "label": "Bookshop",
+      "image": "layers/bookshop.png",
+      "relativeDepth": -21
+    },
+    {
+      "id": "pavement",
+      "label": "Pavement",
+      "image": "layers/pavement.png",
+      "relativeDepth": -13
+    },
+    {
+      "id": "waiter_left",
+      "label": "Rear figure — left",
+      "image": "layers/waiter_left.png",
+      "relativeDepth": -6
+    },
+    {
+      "id": "waiter_right",
+      "label": "Rear figure — right",
+      "image": "layers/waiter_right.png",
+      "relativeDepth": -5
+    },
+    {
+      "id": "street_sign",
+      "label": "Street sign",
+      "image": "layers/street_sign.png",
+      "relativeDepth": 1
+    },
+    {
+      "id": "patio",
+      "label": "Café furniture",
+      "image": "layers/patio.png",
+      "relativeDepth": 5
+    },
+    {
+      "id": "figure_woman",
+      "label": "Foreground figure — left",
+      "image": "layers/figure_woman.png",
+      "relativeDepth": 12
+    },
+    {
+      "id": "figure_man",
+      "label": "Foreground figure — right",
+      "image": "layers/figure_man.png",
+      "relativeDepth": 13
+    }
+  ]
+}

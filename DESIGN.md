@@ -44,6 +44,8 @@ Figma Weave reference generation is a **mandatory pre-implementation step for ev
 
 ### Palette and type
 
+**New owner direction, 2026-10-14:** future generated experiences default to **black/white dithering and stippling with restrained, subject-specific accent colors grounded in the selected source material**, rather than carrying the former brown/bone/red palette into every subject. Preserve historical renditions and the candidate tokens below as history, not a mandate to recolor them. Typography, crisp factual annotations and host-owned safety/authority semantics remain unchanged. The [original owner context](week4/docs/design/revisions/w4-20261014-paris-source-particles-r1/OWNER_CONTEXT.md) and [new Paris brief](week4/docs/design/revisions/w4-20261014-paris-source-particles-r1/BRIEF.md) record this direction; no composition, implementation or phase is accepted by it.
+
 The owner replaced amber-only activity with red in Week 1. Carrying red into this new candidate is a proposed continuity choice, not acceptance of a new baseline. Resolve safety with host-owned words, shape, placement, and control behavior rather than assuming that red always means danger.
 
 | Token | Candidate | Role |
