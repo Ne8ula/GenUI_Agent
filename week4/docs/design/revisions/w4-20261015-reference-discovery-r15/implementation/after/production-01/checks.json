@@ -1,0 +1,44 @@
+{
+  "base": "http://127.0.0.1:1441",
+  "viewport": [
+    2560,
+    1440
+  ],
+  "dpr": 1,
+  "checks": [
+    {
+      "name": "normal interface contains one input and no buttons or visible headings",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:1441/?scene=paris-scan&capture=1",
+    "http://127.0.0.1:1441/assets/index-BbO7U1Kn.js",
+    "http://127.0.0.1:1441/assets/index-Cd0JboKb.css",
+    "http://127.0.0.1:1441/assets/ScanApp-B1lDvH8f.js",
+    "http://127.0.0.1:1441/assets/renderer-D7iTl67p.js",
+    "http://127.0.0.1:1441/assets/three.module-C1TlzMVj.js",
+    "http://127.0.0.1:1441/assets/ScanApp-Bo4vvafW.css",
+    "http://127.0.0.1:1441/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:1441/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1441/assets/paris-scan-r12/points.bin",
+    "http://127.0.0.1:1441/?scene=paris-arrival",
+    "http://127.0.0.1:1441/assets/index-BbO7U1Kn.js",
+    "http://127.0.0.1:1441/assets/index-Cd0JboKb.css",
+    "http://127.0.0.1:1441/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:1441/assets/ArrivalApp-DMYN5J5Z.js",
+    "http://127.0.0.1:1441/assets/renderer-D7iTl67p.js",
+    "http://127.0.0.1:1441/assets/three.module-C1TlzMVj.js",
+    "http://127.0.0.1:1441/assets/timeline-DleEs7HC.js",
+    "http://127.0.0.1:1441/assets/ArrivalApp-CsrbGbat.css",
+    "http://127.0.0.1:1441/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1441/sources/paris-r15/montparnasse-1980.jpg",
+    "http://127.0.0.1:1441/sources/paris-r15/montmartre-1980.jpg",
+    "http://127.0.0.1:1441/sources/paris-r15/conciergerie-1980.jpg",
+    "http://127.0.0.1:1441/assets/paris-scan-r12/points.bin",
+    "http://127.0.0.1:1441/assets/construction-Bxa0gnCD.js"
+  ],
+  "states": [],
+  "failure": "page.waitForFunction: Timeout 30000ms exceeded.\n    at C:\\Users\\alexx\\Documents\\ClaudeAgent\\GenUI_Agent\\week4\\app\\scripts\\capture-discovery.mjs:26:61"
+}

@@ -1,0 +1,278 @@
+{
+  "base": "http://127.0.0.1:1452",
+  "viewport": [
+    2560,
+    1440
+  ],
+  "dpr": 1,
+  "checks": [
+    {
+      "name": "formless eye is bounded and has no scene samples",
+      "passed": true
+    },
+    {
+      "name": "natural completion automatically continues idle motion",
+      "passed": true
+    },
+    {
+      "name": "Escape freezes both clocks and pixels",
+      "passed": true
+    },
+    {
+      "name": "foreground figures remain pixel-stable",
+      "passed": true
+    },
+    {
+      "name": "rear figures remain pixel-stable",
+      "passed": true
+    },
+    {
+      "name": "idle zero retains exact original Paris frame",
+      "passed": true
+    },
+    {
+      "name": "local samples move without rebuilding",
+      "passed": true
+    },
+    {
+      "name": "motion continues beyond the old sixty-second clamp",
+      "passed": true
+    },
+    {
+      "name": "harmonic wrap keeps fixed geometry and deterministic phase",
+      "passed": true
+    },
+    {
+      "name": "resource counts stay bounded over long idle seeks",
+      "passed": true
+    },
+    {
+      "name": "post-settlement Resume does not restart construction",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes the independent idle clock",
+      "passed": true
+    },
+    {
+      "name": "less motion returns the exact static source frame",
+      "passed": true
+    },
+    {
+      "name": "less motion disables Resume",
+      "passed": true
+    },
+    {
+      "name": "reduced-motion seeking cannot enable drift",
+      "passed": true
+    },
+    {
+      "name": "OS reduced motion stops a living scene",
+      "passed": true
+    },
+    {
+      "name": "return clears both clocks and restores formless eye",
+      "passed": true
+    },
+    {
+      "name": "mobile layout remains within viewport",
+      "passed": true
+    },
+    {
+      "name": "resize restores eye exactly",
+      "passed": true
+    },
+    {
+      "name": "context loss removes live fixture handle",
+      "passed": true
+    },
+    {
+      "name": "Retry preserves paused idle state instead of restarting",
+      "passed": true
+    },
+    {
+      "name": "no runtime image/video or external requests",
+      "passed": true
+    },
+    {
+      "name": "no uncaught errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:1452/?scene=paris-scan&capture=1",
+    "http://127.0.0.1:1452/assets/index-DW-EIWot.js",
+    "http://127.0.0.1:1452/assets/index-Cd0JboKb.css",
+    "http://127.0.0.1:1452/assets/ScanApp-I_cHJyv5.js",
+    "http://127.0.0.1:1452/assets/renderer-f9JG1dE3.js",
+    "http://127.0.0.1:1452/assets/three.module-C1TlzMVj.js",
+    "http://127.0.0.1:1452/assets/ScanApp-Bo4vvafW.css",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/points.bin",
+    "http://127.0.0.1:1452/?scene=paris-arrival&fixture=1",
+    "http://127.0.0.1:1452/assets/index-DW-EIWot.js",
+    "http://127.0.0.1:1452/assets/index-Cd0JboKb.css",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:1452/assets/ArrivalApp-CGItwRCH.js",
+    "http://127.0.0.1:1452/assets/renderer-f9JG1dE3.js",
+    "http://127.0.0.1:1452/assets/three.module-C1TlzMVj.js",
+    "http://127.0.0.1:1452/assets/timeline-CC_NxxR5.js",
+    "http://127.0.0.1:1452/assets/ArrivalApp-jAreRh3H.css",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/points.bin",
+    "http://127.0.0.1:1452/assets/space-grotesk-latin-500-normal-lFbtlQH6.woff2",
+    "http://127.0.0.1:1452/assets/ibm-plex-sans-latin-500-normal-6ng42L7E.woff2",
+    "http://127.0.0.1:1452/assets/construction-Zy9ux5fT.js",
+    "http://127.0.0.1:1452/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/scene.json",
+    "http://127.0.0.1:1452/assets/paris-scan-r12/points.bin"
+  ],
+  "idleStates": [
+    {
+      "points": 109593,
+      "bytes": 5472872,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 4810,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "idleSeconds": 0,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 5472872,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 4810,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "idleSeconds": 1,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 5472872,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 4810,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "idleSeconds": 5,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 5472872,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 4810,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "idleSeconds": 15,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 5472872,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 4810,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "idleSeconds": 61,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 5472872,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 4810,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "idleSeconds": 120,
+      "playback": "paused",
+      "submitted": true
+    },
+    {
+      "points": 109593,
+      "bytes": 5472872,
+      "width": 2560,
+      "height": 1440,
+      "calls": 1,
+      "textures": 0,
+      "geometries": 2,
+      "eyePoints": 4810,
+      "bornSamples": 109593,
+      "constructionTime": 30,
+      "seconds": 30,
+      "idleSeconds": 121,
+      "playback": "paused",
+      "submitted": true
+    }
+  ],
+  "eye": {
+    "points": 109593,
+    "bytes": 5472872,
+    "width": 2560,
+    "height": 1440,
+    "calls": 2,
+    "textures": 0,
+    "geometries": 2,
+    "eyePoints": 4810,
+    "bornSamples": 0,
+    "constructionTime": 0,
+    "seconds": 0,
+    "idleSeconds": 0,
+    "playback": "idle",
+    "submitted": false
+  },
+  "recordingEnd": {
+    "points": 109593,
+    "bytes": 5472872,
+    "width": 2560,
+    "height": 1440,
+    "calls": 1,
+    "textures": 0,
+    "geometries": 2,
+    "eyePoints": 4810,
+    "bornSamples": 109593,
+    "constructionTime": 30,
+    "seconds": 30,
+    "idleSeconds": 12.0158999999881,
+    "playback": "paused",
+    "submitted": true
+  }
+}

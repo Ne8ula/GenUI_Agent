@@ -1,0 +1,31 @@
+{
+  "revision":"w4-20261015-living-paris-r14",
+  "sourceRevision":"565b5ad6c4b62cf903cf903288941ce8f95850ff + R13 dirty tree",
+  "route":"direct-model",
+  "scope":"Formless eye boundary and continuous post-settled local particle life; preserve R12 composition/colors and R13 construction duration",
+  "ownerAcceptance":"pending",
+  "approvedSubmittedCredits":90,
+  "furtherAllowance":0,
+  "exactInputs":"runs.json",
+  "runs":[
+    {"predictionId":"af011534-bafc-413c-9830-0d3a38c85601","modelId":"2db90e64-51dd-45b2-870a-66d19a81118e","providerModel":"gpt-image-2.5","variant":"Sunburst high","credits":8,"approval":"Separate structured Approve","status":"COMPLETED","asset":"references/images/af011534/eye-and-paris.png","inspection":"Actual image viewed; selected irregular red iris/lid cloud without rectangle. Exclude changes to Paris composition."},
+    {"predictionId":"66b5d15b-2661-44bf-a64c-00e29ac22489","modelId":"f3220409-436a-4585-b3d3-adca16f4db19","providerModel":"kling","variant":"3.0 Pro","credits":82,"approval":"Separate structured Approve","status":"COMPLETED","asset":"references/videos/66b5d15b/idle-motion.mp4","inspection":"Quarter-second samples and native-size surface crops inspected; very restrained surface variation with held composition. No full-speed playback, trajectory measurement or seamless-loop claim."}
+  ],
+  "implementation":"Reference gate satisfied before UI edits; main owns arrival sample selection, clocks, shader and focused tests",
+  "before":["implementation/before/eye-qhd.png","implementation/before/paris-qhd.png"],
+  "mainConfiguredModel":"claude-gpt-6-astra[1m]",
+  "providerRouteIndependentlyCorrelated":false,
+  "checks":[
+    {"name":"typecheck, 226 app tests, WASM prebuild and production build","status":"passed"},
+    {"name":"living-scene browser assertions","status":"passed","count":23,"report":"implementation/after/production-02/checks.json"},
+    {"name":"arrival regression browser assertions","status":"passed","count":22,"report":"implementation/arrival-regression/checks.json"},
+    {"name":"native WebView2, Rust/core suites, full-speed visual playback review","status":"not run"}
+  ],
+  "currentStatus":"browser candidate ready; owner visual acceptance pending",
+  "sourceManifest":"implementation/final-source-manifest.json",
+  "review":{"agent":"eva-reviewer","configured":"opus","runtimeReported":"claude-opus-4-8[1m]","independentlyCorrelated":false,"testsRunByReviewer":false,"finding":"Negative-base GLSL pow has undefined driver behavior","outcome":"Replaced with explicit square multiplication; 14 focused tests, build and23 final browser checks/recording passed; sampled frames unchanged"},
+  "captures":{"eyeComparison":"implementation/after/production-02/eye-comparison.png","idleRecording":"implementation/after/production-02/living-paris-realtime.webm","arrivalRecording":"implementation/arrival-regression/eye-to-paris-realtime.webm","inspection":"Actual eye comparison, idle frames and temporal samples inspected"},
+  "resources":{"eyePoints":4810,"scenePoints":109593,"typedVertexPayloadBytes":5472872,"maxObservedGeometries":3,"settledDraws":1,"textures":0},
+  "limits":["Subtle surface motion, no walking or moving architecture","Authored image-derived 2.5D, not genuine reconstruction or trained 3DGS","No measured GPU-FPS or native performance claim"],
+  "retainedFailures":["Initial pupil test caught four source highlight points; inner square explicitly excluded","Initial GLSL active reserved-word compilation failure corrected; candidate-01 report retained","Capture-driver parenthesis and scratch PowerShell quoting errors corrected before successful verification"]
+}

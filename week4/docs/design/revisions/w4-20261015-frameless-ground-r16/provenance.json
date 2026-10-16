@@ -1,0 +1,36 @@
+{
+  "revision": "w4-20261015-frameless-ground-r16",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "sourceBaseline": "R15 production-02, all 27 source hashes verified unchanged before pass",
+  "acceptedBaseline": null,
+  "acceptance": "pending",
+  "route": "owner-approved-one-pass-reference-reuse",
+  "ownerApproval": "Reuse references (Recommended), in response to the explicit new ground-and-overlay generation-exception question in this session",
+  "generationModel": null,
+  "generationRuns": [],
+  "generationCost": 0,
+  "selectedReferencesRepositoryRelative": [
+    "week4/docs/design/revisions/w4-20261015-frameless-ground-r16/implementation/before/settled-qhd.png",
+    "week4/docs/design/revisions/w4-20261015-frameless-ground-r16/implementation/before/ground-detail.png",
+    "week3/docs/design/revisions/w3-cloud-20260928-a-p3/implementation/p3-a2-glitch-detail.png",
+    "week3/docs/design/revisions/w3-cloud-20260928-a-p3/implementation/p3-a2-transitions.mp4",
+    "week3/docs/design/revisions/w3-cloud-20260929-b-p2/implementation/after/p2-a2-still-44.5.png",
+    "week3/docs/design/revisions/w3-cloud-20260929-b-p2/implementation/after/p2-a2-transitions.mp4"
+  ],
+  "inspection": "Main read actual ground/scene images, Week3 frame detail and final still, and newly extracted temporal contact sheets from both retained videos. Full-speed/audio review not claimed.",
+  "guidance": "Irregular source-colour ground extensions without moving original figures/buildings; hairline no-backing rectangles, X/corners, small vertical colour stripes and fine side trails. Title/description text is a new R16 adaptation with readable hold, not an existing Week3 title-card feature.",
+  "before": {"viewport": [2560,1440], "dpr": 1, "browser": "Chrome via Playwright", "directory": "implementation/before"},
+  "ownership": {"main": "Ground changes, ArrivalApp host integration, verification, evidence", "overlayWorker": "Only new ItemOverlays.tsx/item-overlays.css/item-overlays.ts and bounded test in isolated worktree; must inspect current packet before edits"},
+  "checks": [
+    {"name": "app tests/typecheck/WASM prebuild/production build", "status": "passed", "tests": 247},
+    {"name": "production browser", "status": "passed", "assertions": 26, "evidence": "implementation/after/production-03/checks.json"},
+    {"name": "prior mobile driver assertion", "status": "failed-and-corrected", "evidence": "implementation/after/production-02/checks.json", "reason": "Driver sampled before media/DOM update; explicit state waits added, same application build retested"},
+    {"name": "actual runtime motion", "status": "captured-and-sampled", "evidence": "implementation/after/production-03/ground-and-overlays-realtime.webm", "durationSeconds": 20.96, "encodedFps": 25},
+    {"name": "Rust unit and native desktop", "status": "not-run", "reason": "No Rust edits; browser-only visual pass"}
+  ],
+  "sourceManifest": "implementation/source-manifest.json",
+  "sourceManifestSha256": "e5c76f19950e919b61628cf1ceeb79f3ef47b09fecfe1cbf4105d55995fc4ac3",
+  "observedResources": {"sourcePoints": 109593, "groundPoints": 2364, "points": 111957, "reportedBytes": 5586344, "settledDrawCalls": 2, "performanceBenchmark": false},
+  "execution": {"main": "Harness-reported claude-gpt-6-astra[1m] with native tools", "referenceAudit": "Native eva-researcher, configured Terra", "overlayImplementation": "Native eva-ui-designer in isolated worktree, configured Sonnet; worker reports claude-sonnet-5[1m], transport not independently correlated", "integration": "Four new worker files reviewed and copied with no-overwrite guard; main refined placement, stripe patch, reduced-motion selection and strict index; no worker commit", "tools": ["Agent", "Read", "Edit", "Write", "PowerShell", "Bash", "Playwright", "ffmpeg", "Ruflo hooks_route advisory"]},
+  "limitations": ["No source-backed historical identification of generated scene items", "Not genuine geometric reconstruction", "No generation, new phase or owner acceptance implied"]
+}

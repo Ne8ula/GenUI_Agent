@@ -1,0 +1,62 @@
+[
+  {
+    "path": "week4/app/src/arrival/arrival.css",
+    "sha256": "e48ecb4f4964d1e3551b27e6bfafd834e36a84cd4dd041412335fae3a6c6f545",
+    "bytes": 2337
+  },
+  {
+    "path": "week4/app/src/arrival/ArrivalApp.tsx",
+    "sha256": "71ffe1f67ea454bdc57998ac0a00871687d421267017e210e2fc8a1d515a9bd1",
+    "bytes": 10952
+  },
+  {
+    "path": "week4/app/src/arrival/construction.ts",
+    "sha256": "edae5d9714bd81483c369c74bc8063f443a125fcf43505061006e5890c33cfa6",
+    "bytes": 8363
+  },
+  {
+    "path": "week4/app/src/arrival/discovery.ts",
+    "sha256": "1ea4623663e0ca144d0d60ba82514b2dfdae837b17c22f5f8daccc04c3691b90",
+    "bytes": 2848
+  },
+  {
+    "path": "week4/app/src/arrival/eye-source.ts",
+    "sha256": "563049abccc99ae8d5e8b3acb0a2317f287670b069867ffd1cbf2ecfc4b547d0",
+    "bytes": 17127
+  },
+  {
+    "path": "week4/app/src/arrival/PhotoDiscovery.tsx",
+    "sha256": "1fe881e30326c800deda6863f4c1d02bd8c6733c4d6648ae3b41047fcf5af22d",
+    "bytes": 3480
+  },
+  {
+    "path": "week4/app/src/arrival/samples.ts",
+    "sha256": "0651703ba5c60af3bc91558305b6be568a6880e453ead669d3cd7a0d9fce050b",
+    "bytes": 3893
+  },
+  {
+    "path": "week4/app/src/arrival/timeline.ts",
+    "sha256": "8c5e33115da002e578f3abee2b3a2ae804f0426dfa54e1c5e8656a260860ad05",
+    "bytes": 2207
+  },
+  {
+    "path": "week4/app/src/scan/data.ts",
+    "sha256": "2f8114c990567dc2f82b242edcf56a743f74002afb70894e62831c8bc5e931c7",
+    "bytes": 2369
+  },
+  {
+    "path": "week4/app/src/scan/renderer.ts",
+    "sha256": "88bb4db4d50e1000fe17268be78ca7abcf1f8250bd30dac4242d0d7b45dc6a53",
+    "bytes": 7674
+  },
+  {
+    "path": "week4/app/src/scan/scan.css",
+    "sha256": "8da97c8f463b19e866493605ae743de13a3969452becc3fc58c5952438edcc19",
+    "bytes": 2079
+  },
+  {
+    "path": "week4/app/src/scan/ScanApp.tsx",
+    "sha256": "51a3cc465ec9c5c8c4ee5cb05d410f010d753a7e9fc07a3701e76f2c487fc97b",
+    "bytes": 6338
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "revision": "w4-20261015-reference-discovery-r15",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "sourceTree": "Uncommitted R14 arrival candidate; unrelated shared changes preserved",
+  "acceptedBaseline": null,
+  "acceptance": "pending",
+  "route": "owner-supplied-reference-exception",
+  "generationModel": null,
+  "generationRunIds": [],
+  "generationCost": 0,
+  "ownerDecisions": [
+    {"time": "2026-10-15T23:10:16Z", "decision": "Input-only UI and reference discovery following supplied Winter Outfit clip"},
+    {"time": "2026-10-15T23:13:51Z", "decision": "Real archival photos, not generated period-style images"},
+    {"time": "2026-10-15T23:19:26Z", "decision": "Use supplied references; one-pass exception to fresh Weave generation"},
+    {"time": "2026-10-15T23:37:40Z", "decision": "Photo-linked credits; multiple authentic photos with separate source/license page"}
+  ],
+  "decisionEvidence": "Recovered user messages and AskUserQuestion results in prior session 9d485fdd-90e6-443c-a45d-170843db739d; no new approval inferred",
+  "references": {
+    "motion": "../../../../references/From Klickpin.com- Winter Outfit Ideas for Everyday-pin-id-597641813098676282.mp4",
+    "motionSamples": "references/owner-video/temporal-samples.png",
+    "initialImage": "references/images/montparnasse-1980/original.jpg",
+    "inspection": "Resuming main inspected the actual temporal contact sheet and Montparnasse postcard, plus R14 before-state screenshots. Motion is reviewed from one-second samples, not full-speed playback or audio. Reference clip remains local and is not runtime content.",
+    "rules": "Shallow depth cluster, variable photo-fragment sizes, restrained orbit, fine connections; black stage; no blue labels or scores. Preserve existing eye, construction and final scene. New archive selections must be verified and inspected before inclusion."
+  },
+  "before": {"viewport": [2560, 1440], "dpr": 1, "browser": "Chrome via Playwright", "captures": ["implementation/before/recovery/eye.png", "implementation/before/recovery/paris.png"]},
+  "ownedFiles": ["week4/app/src/arrival/ArrivalApp.tsx", "week4/app/src/arrival/arrival.css", "week4/app/src/arrival/discovery.ts", "week4/app/src/arrival/PhotoDiscovery.tsx", "week4/app/tests/discovery.test.ts", "week4/app/scripts/capture-discovery.mjs", "week4/app/public/sources/paris-r15/", "week4/docs/design/revisions/w4-20261015-reference-discovery-r15/"],
+  "coordination": "Recovery requests and intended takeover sent to prior sessions; no permission to alter unrelated files inferred.",
+  "execution": {"main": "claude-gpt-6-astra[1m] as reported by harness", "workers": "Native eva-researcher, configured Terra; independent transport correlation not established", "tools": ["Read", "Grep", "Glob", "PowerShell", "Bash", "Agent", "Ruflo hooks_route", "Playwright"]},
+  "checks": [
+    {"name": "app typecheck/tests/WASM prebuild/production build", "status": "passed", "appTests": 232},
+    {"name": "development browser", "status": "passed", "assertions": 23, "evidence": "implementation/after/check-01/checks.json"},
+    {"name": "initial production browser", "status": "failed", "reason": "New archival assets missing from explicit build allowlist", "evidence": "implementation/after/production-01/checks.json"},
+    {"name": "corrected production browser", "status": "passed", "assertions": 26, "evidence": "implementation/after/production-02/checks.json"},
+    {"name": "actual runtime recording", "status": "captured-and-sample-inspected", "evidence": "implementation/after/production-02/discovery-to-paris-realtime.webm", "encodedDurationSeconds": 42.12, "encodedFps": 25, "performanceBenchmark": false},
+    {"name": "focused whitespace and source hashes", "status": "passed"},
+    {"name": "Rust unit tests and native desktop", "status": "not-run", "reason": "No Rust changes; browser-only pass"}
+  ],
+  "archiveManifest": "../../../../app/public/sources/paris-r15/credits.json",
+  "additionalInspectedReferences": ["references/images/conciergerie-1980/original.jpg", "references/images/montmartre-1980/original.jpg"],
+  "sourceManifest": "implementation/source-manifest.json",
+  "sourceManifestSha256": "4442e9bf429d5871af11e51208f744f8d2e28941e3574215244a9e693e3d63d7",
+  "additionalChangedFiles": ["week4/app/vite.config.ts", "week4/docs/design/INDEX.md", "week4/docs/design/acceptance/w4-visual-steps.md"],
+  "limitations": ["Curated local photographic sequence, not live search", "Existing Paris visual remains an illustrative image-derived GPU scene, not reconstruction from the archival photos", "No native desktop or study acceptance"]
+}
