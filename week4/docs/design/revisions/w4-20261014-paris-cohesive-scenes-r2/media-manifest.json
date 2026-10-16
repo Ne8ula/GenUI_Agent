@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "file": "references/images/img-a-rail-arrival.png",
+      "bytes": 5162162,
+      "sha256": "b39a92630f0761864972328e11c8856fc53ed2b7b693dd61689852d4985eb7a5",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/images/img-b-street-bend.png",
+      "bytes": 5593173,
+      "sha256": "91ab1c51d774be0c5e468c16adc1113d643eab718748804fd7d3625e2a09cc16",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/images/img-c-exhibition-threshold.png",
+      "bytes": 7519869,
+      "sha256": "258566e042531ddb695759d1fe54f30d4eba182eec328af578ea1c6ae2c8a348",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/contact-sheet.png",
+      "bytes": 1175918,
+      "sha256": "66573b38e82629998592bd11df155b08853eb39b9956e7164c7e2a59107927df",
+      "width": 2400,
+      "height": 550
+    },
+    {
+      "file": "prompts/a-rail-arrival.txt",
+      "bytes": 3257,
+      "sha256": "64fa7900ffd84c1dd9201c59953120897c16c7b85bbf6afa37b868423877cb27"
+    },
+    {
+      "file": "prompts/b-street-bend.txt",
+      "bytes": 3367,
+      "sha256": "b22a22127134ec9576f58e579c35267399461850ef0999b3e5473849bf504cdb"
+    },
+    {
+      "file": "prompts/c-exhibition-threshold.txt",
+      "bytes": 3728,
+      "sha256": "08f94f92a1a8faa5540c317382bd553a7e0811469feb2093cef978e00d18cd45"
+    }
+  ]
+}

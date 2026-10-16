@@ -1,0 +1,118 @@
+{
+  "records": [
+    {
+      "id": "a-material-substitution",
+      "promptFile": "prompts/a-material-substitution.txt",
+      "promptSha256": "62b1a0484291226f927b0baaa0c5a948fa46ba2d35bec830e09e7a8d8781d18a",
+      "styleAttachments": [
+        7,
+        11
+      ],
+      "styleAssetIds": [
+        "153a40dc-b703-440e-89d9-dec37435bba4",
+        "21235cef-6998-4105-a877-318eb5310fc5"
+      ],
+      "paidSubmissions": 1,
+      "quotes": 1,
+      "quotePaidInputsIdentical": true
+    },
+    {
+      "id": "b-material-transition",
+      "promptFile": "prompts/b-material-transition.txt",
+      "promptSha256": "c24cfaa007f49868e12b2e16f9f90ce7eedf19a9e84cf715ddfd535bc1432100",
+      "styleAttachments": [
+        6,
+        9
+      ],
+      "styleAssetIds": [
+        "154ebb23-84bf-4a4d-af06-a819441dff4a",
+        "bbd74829-58bd-4f80-b7a0-6dde2c17dd75"
+      ],
+      "paidSubmissions": 1,
+      "quotes": 1,
+      "quotePaidInputsIdentical": true
+    },
+    {
+      "id": "c-layered-research",
+      "promptFile": "prompts/c-layered-research.txt",
+      "promptSha256": "54dc1e911c34c3efff26945e6946abddc8ba9703b54695027966cfa6ff1a4103",
+      "styleAttachments": [
+        8,
+        10
+      ],
+      "styleAssetIds": [
+        "cf53bd8e-0ffb-4cc1-9217-5cf1d820c7a6",
+        "ce8ba06d-f315-4da9-837f-2be0a650423c"
+      ],
+      "paidSubmissions": 1,
+      "quotes": 1,
+      "quotePaidInputsIdentical": true
+    }
+  ],
+  "styles": [
+    {
+      "attachment": "6",
+      "file": "inputs/style-6.png",
+      "weaveAssetId": "154ebb23-84bf-4a4d-af06-a819441dff4a",
+      "sha256": "f1c9e483124c805a78214859be9cd698b90b3101bdc444569c4a136868c9f312",
+      "bytes": 1273780,
+      "role": "style mechanism only, not scene content or historical evidence"
+    },
+    {
+      "attachment": "7",
+      "file": "inputs/style-7.png",
+      "weaveAssetId": "153a40dc-b703-440e-89d9-dec37435bba4",
+      "sha256": "285f714e86fcaad909b5f321add819e8f1887b61f0448cc0841382795ea1c84e",
+      "bytes": 3426702,
+      "role": "style mechanism only, not scene content or historical evidence"
+    },
+    {
+      "attachment": "8",
+      "file": "inputs/style-8.png",
+      "weaveAssetId": "cf53bd8e-0ffb-4cc1-9217-5cf1d820c7a6",
+      "sha256": "4c89f03c35b74c1ee73569fca7678b5fcd507ef710f58be825cdcd83d8fe5272",
+      "bytes": 141885,
+      "role": "style mechanism only, not scene content or historical evidence"
+    },
+    {
+      "attachment": "9",
+      "file": "inputs/style-9.png",
+      "weaveAssetId": "bbd74829-58bd-4f80-b7a0-6dde2c17dd75",
+      "sha256": "362e5eabb3d8c528e14218bf8cb2fd1e8f1e87913cd3ce2b1976e0dd6c7a8411",
+      "bytes": 472970,
+      "role": "style mechanism only, not scene content or historical evidence"
+    },
+    {
+      "attachment": "10",
+      "file": "inputs/style-10.png",
+      "weaveAssetId": "ce8ba06d-f315-4da9-837f-2be0a650423c",
+      "sha256": "a7c7dcd1313dec466322f00bcfa2917d41dbe2c552c5a136fe20e3afe78e69ad",
+      "bytes": 1033118,
+      "role": "style mechanism only, not scene content or historical evidence"
+    },
+    {
+      "attachment": "11",
+      "file": "inputs/style-11.png",
+      "weaveAssetId": "21235cef-6998-4105-a877-318eb5310fc5",
+      "sha256": "22ba7e40c5ee6d92ce689bd5174200c3a4a394a5f7ada284968aa999ea926a3d",
+      "bytes": 132544,
+      "role": "style mechanism only, not scene content or historical evidence"
+    }
+  ],
+  "reused": [
+    {
+      "file": "../w4-20261014-paris-sparse-photo-scenes-r3/references/images/img-b-street-crossing.png",
+      "role": "Owner-preferred composition, not final material",
+      "predictionId": "3edeea58-b5bc-4fc8-bfe4-c57e46f19908",
+      "sha256": "0efb71cd01a3bb0a9d1488705c92a41af7cd394998270f3e9d78fdec65ed12ef"
+    },
+    {
+      "file": "../w4-20261014-paris-sparse-photo-scenes-r3/inputs/b-street-crossing.png",
+      "role": "Owner photo4, composition and realistic material cues; date/source unverified",
+      "weaveAssetId": "d904a7ae-8e66-4cf5-a6de-769ca2f5999e",
+      "sha256": "58ad0177cb616732077f8ead05bc595f8b5f92a95eb652bf117f0798e62eccca"
+    }
+  ],
+  "permission": "AskUserQuestion: Approve image inputs. Six new images uploaded, existing hosted B/photo reused; video and all sampled frames remain local.",
+  "rights": "Owner-provided reference images; creator/date/reuse rights unverified. No public publication authorized."
+}

@@ -1,0 +1,68 @@
+{
+  "files": [
+    {
+      "file": "references/images/img-a-corner-cafe.png",
+      "bytes": 2094710,
+      "sha256": "a0fce78d4aaf0349bcaf097b298c1ab1fec7fe831aa495555d379af6069c3a40",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/images/img-b-street-crossing.png",
+      "bytes": 1980538,
+      "sha256": "0efb71cd01a3bb0a9d1488705c92a41af7cd394998270f3e9d78fdec65ed12ef",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/images/img-c-terrace-frontage.png",
+      "bytes": 2166398,
+      "sha256": "46aa446b56765be6b8443dd7d84a898fb5a6aee99ea89cd9413c9413629ebd2c",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/contact-sheet.png",
+      "bytes": 568716,
+      "sha256": "6e44c660f292c6d0fbe0500146ce7eb0f5a70be57bce50798754d5ad6b6fa381",
+      "width": 2400,
+      "height": 550
+    },
+    {
+      "file": "inputs/a-corner-cafe.png",
+      "bytes": 852462,
+      "sha256": "c4d251d9e6aa18e08232d9d776c875166a095c7d5edafdfe51a553d88108a99f",
+      "width": 517,
+      "height": 638
+    },
+    {
+      "file": "inputs/b-street-crossing.png",
+      "bytes": 520027,
+      "sha256": "58ad0177cb616732077f8ead05bc595f8b5f92a95eb652bf117f0798e62eccca",
+      "width": 403,
+      "height": 496
+    },
+    {
+      "file": "inputs/c-terrace-frontage.png",
+      "bytes": 457664,
+      "sha256": "96471fd44e01cc6c2c5c4737c56b8ecdcf38c87f3d4517d8e99cac15c393ca44",
+      "width": 403,
+      "height": 496
+    },
+    {
+      "file": "prompts/a-corner-cafe.txt",
+      "bytes": 3142,
+      "sha256": "daea3ddc52b56285766715c495fe84bf0a865304f3909614f3a8cfe07aed338f"
+    },
+    {
+      "file": "prompts/b-street-crossing.txt",
+      "bytes": 3205,
+      "sha256": "6ae548737fb02a19ec7b12629e2c956889012abdd08ec54b930a0d568f439b38"
+    },
+    {
+      "file": "prompts/c-terrace-frontage.txt",
+      "bytes": 3155,
+      "sha256": "ade69ad79d6369fcee74bc100809a6615f9f1834e2d199e5dd50b35db9f2c1e9"
+    }
+  ]
+}

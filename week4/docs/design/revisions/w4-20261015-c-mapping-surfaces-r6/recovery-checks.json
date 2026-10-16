@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-15",
+  "status": "passed",
+  "localChecks": {
+    "mediaPromptInputAndComparisonHashes": 8,
+    "inputManifestPromptHashes": 3,
+    "baseAndStyleHashes": 2,
+    "originalDownloadCopies": 3,
+    "outputDimensions": "3 of 3 PNGs are 3840x2160",
+    "contactSheet": "2400x450; proportionally scaled side-by-side A/B/C",
+    "jsonParsing": "passed",
+    "markdownLinkTargets": 41
+  },
+  "transcriptAudit": {
+    "performedBy": "Read-only Codex subagent verify_r6_recovery",
+    "status": "passed",
+    "quotePaidInputEquality": 3,
+    "canonicalPaidSubmissions": 3,
+    "priorStructuredApprovals": 3,
+    "completionIdsVerified": 3,
+    "downloadUrlBindingsVerified": 3,
+    "originalStyleAttachmentHash": "matched",
+    "postGenerationUserInstructions": "API-error retry/resume only; no candidate choice or acceptance"
+  },
+  "notRun": [
+    "Application tests (no app source changed)",
+    "Motion or native-window verification",
+    "API-error root-cause diagnosis",
+    "Full-resolution pixel audit or quantitative aesthetic measures"
+  ],
+  "privacy": "No raw transcript, hosted output URLs, upload tokens or credential material copied into packet"
+}

@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "file": "references/images/img-a-glyph-fields.png",
+      "bytes": 9238973,
+      "sha256": "251858a9fa7fe76bacdd0ff56e1a2b24f2544f90474d7f7cf21d4cb975aa5f86",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/images/img-b-broken-strata.png",
+      "bytes": 9008987,
+      "sha256": "1e5903fc8062ed4ee0901d8e961bf3ba950bd24b47a75d2b69aef8a6a116d01b",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/images/img-c-glyph-islands.png",
+      "bytes": 8890760,
+      "sha256": "d4e6726507f389a749e9f5a2f9a50d02f3ef1254cbd99cfca73891e932638fcc",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "file": "references/contact-sheet.png",
+      "bytes": 1568606,
+      "sha256": "f05c4c2a98a3fab7e41a548ec0465b6cea3b9151ad6f52eab06f68a62564fdb0",
+      "width": 2400,
+      "height": 550
+    },
+    {
+      "file": "prompts/a-glyph-fields.txt",
+      "bytes": 3445,
+      "sha256": "5000cf6c834315926edb5a1f83d416c3afacd3db7672b0edaca3f656ba0d20f3"
+    },
+    {
+      "file": "prompts/b-broken-strata.txt",
+      "bytes": 3472,
+      "sha256": "738fa9a616d140fbdae74e28f5c7210279bdbcae6e173ba2d84e05998f3fa473"
+    },
+    {
+      "file": "prompts/c-glyph-islands.txt",
+      "bytes": 3673,
+      "sha256": "29790654b876035ce7769bc00aea85e503aaa8582b11250622aba973bcea6dcc"
+    },
+    {
+      "file": "inputs/style-12.png",
+      "bytes": 3144082,
+      "sha256": "0338cc6096a3cf7765727c426686b16019cc8f4df531059e55387c578788f694",
+      "width": 1200,
+      "height": 1735
+    }
+  ]
+}

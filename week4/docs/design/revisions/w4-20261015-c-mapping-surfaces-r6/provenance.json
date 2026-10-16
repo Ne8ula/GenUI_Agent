@@ -1,0 +1,170 @@
+{
+  "revision": "w4-20261015-c-mapping-surfaces-r6",
+  "date": "2026-10-15",
+  "phase": "Week 4 reference-only surface exploration",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "branch": "week4",
+  "status": "owner-prefers-C-with-changes",
+  "ownerFeedback": {
+    "date": "2026-10-15",
+    "preferredCandidate": "C",
+    "changes": "Minimal mapping-reference colors; retain r5 A foreground and colors; overlap cloud mapping, glyph fields and layered research styles.",
+    "nextBrief": "../w4-20261015-layered-mapping-glyph-r7/BRIEF.md",
+    "finishedCandidateAccepted": false
+  },
+  "acceptedBaseline": null,
+  "directionBaseline": {
+    "revision": "w4-20261014-paris-hybrid-crossing-r4",
+    "candidate": "C"
+  },
+  "selectedReference": null,
+  "implementationAuthorized": false,
+  "route": "official-figma-weave-direct-model-image-conditioned",
+  "catalogModelId": "gpt-image-2.5",
+  "modelToolId": "2db90e64-51dd-45b2-870a-66d19a81118e",
+  "settings": {
+    "model": "Sunburst",
+    "quality": "max",
+    "image_size": {
+      "width": 3840,
+      "height": 2160
+    },
+    "background": "opaque",
+    "output_format": "png",
+    "inputImageCount": 2,
+    "seed": null,
+    "mask": null
+  },
+  "uploadApproval": {
+    "tool": "AskUserQuestion",
+    "answer": "Approve image input",
+    "timestamp": "2026-10-15T05:43:36.429Z",
+    "scope": "One image13 upload and hosted r4 C reuse",
+    "newUploads": 1,
+    "recoveryUploads": 0
+  },
+  "inputManifest": "inputs-manifest.json",
+  "costApproval": {
+    "tool": "AskUserQuestion",
+    "answers": [
+      "Approve",
+      "Approve",
+      "Approve"
+    ],
+    "timestamp": "2026-10-15T05:52:44.297Z"
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "prompt": "prompts/a-monochrome-bands.txt",
+      "quote": 34,
+      "acknowledgedCost": 34,
+      "reportedCost": 34,
+      "paidSubmissions": 1,
+      "predictionId": "a3a6e29c-e52a-4108-b7a0-6a6c826bcaeb",
+      "status": "COMPLETED",
+      "output": "references/images/img-a-monochrome-bands.png",
+      "inspection": "White scan rows and interrupted ground; dense architectural outlines and warm interior detail persist."
+    },
+    {
+      "id": "B",
+      "prompt": "prompts/b-spatial-points.txt",
+      "quote": 34,
+      "acknowledgedCost": 34,
+      "reportedCost": 34,
+      "paidSubmissions": 1,
+      "predictionId": "cfc236c2-8fe8-43de-a703-5447681657c0",
+      "status": "COMPLETED",
+      "output": "references/images/img-b-spatial-points.png",
+      "inspection": "Irregular surface patches and larger ground gaps; dense frames/shutters/door and some interior material persist."
+    },
+    {
+      "id": "C",
+      "prompt": "prompts/c-color-scan.txt",
+      "quote": 34,
+      "acknowledgedCost": 34,
+      "reportedCost": 34,
+      "paidSubmissions": 1,
+      "predictionId": "a551c59e-7bbc-4557-8fa6-81b18aa38758",
+      "status": "COMPLETED",
+      "output": "references/images/img-c-color-scan.png",
+      "inspection": "Blue/violet and magenta scan treatment; solid-looking paving remains, panes inherit colors and figures are more fragmented."
+    }
+  ],
+  "totalCost": 102,
+  "totalPaidSubmissions": 3,
+  "recoveryCost": 0,
+  "furtherAllowance": 0,
+  "contactSheet": "references/contact-sheet.png",
+  "contactSheetDimensions": {
+    "width": 2400,
+    "height": 450
+  },
+  "contactSheetInspected": true,
+  "mediaManifest": "media-manifest.json",
+  "checksFile": "recovery-checks.json",
+  "recovery": {
+    "transcriptSessionId": "fc92b156-6c68-4a36-a0cf-5c85d708f023",
+    "source": "Local Claude Code transcript and surviving local outputs; no new remote run or polling",
+    "generationModelMetadata": "claude-gpt-6-astra",
+    "generationTransportIndependentlyVerified": false,
+    "recoveryAgent": "Codex main session",
+    "recoveryModelId": null,
+    "readOnlyAuditor": "Codex subagent verify_r6_recovery",
+    "auditModelId": null,
+    "tools": [
+      "exec_command with PowerShell/Node/FFmpeg",
+      "view_image",
+      "apply_patch",
+      "collaboration.spawn_agent"
+    ],
+    "latestSubstantiveRequestLine": 2949,
+    "uploadApprovalLine": 2963,
+    "costApprovalLine": 3032,
+    "paidRequestLines": [
+      3034,
+      3043,
+      3046
+    ],
+    "completionLines": [
+      3072,
+      3098
+    ],
+    "lastResumeRequestLine": 3151,
+    "apiErrorRootCause": "Not diagnosed"
+  },
+  "inspection": {
+    "images": [
+      "inputs/style-13.png",
+      "../w4-20261014-paris-hybrid-crossing-r4/references/images/img-c-layered-research.png",
+      "references/images/img-a-monochrome-bands.png",
+      "references/images/img-b-spatial-points.png",
+      "references/images/img-c-color-scan.png",
+      "references/contact-sheet.png"
+    ],
+    "method": "view_image; output scenes displayed at 2048x1152, comparison at 2048x384",
+    "pixelLevelAudit": false,
+    "quantitativeCoverageOrFontCheck": false
+  },
+  "runtimeEvidence": {
+    "implementation": "none",
+    "beforeAfter": "not applicable; no app change",
+    "motion": "none",
+    "platformWebViewGpuDriver": null,
+    "displayScale": null,
+    "reducedMotionIntensity": null,
+    "inputAudio": null,
+    "scoreSchema": null,
+    "eventTrace": null,
+    "performanceMeasurements": []
+  },
+  "limitations": [
+    "C preferred with changes; no finished candidate or phase acceptance",
+    "C retains solid-looking pavement and colors detail panes",
+    "A/B retain dense architectural edges and some interior material",
+    "Generated detail panes are not authentic source crops or live magnifiers",
+    "Image13 provenance and rights unverified; no publication authorized",
+    "Continuous 30-45 second four-stage motion remains outstanding",
+    "No application tests or runtime evidence in this reference-only recovery"
+  ]
+}

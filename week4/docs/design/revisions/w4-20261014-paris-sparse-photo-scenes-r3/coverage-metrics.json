@@ -1,0 +1,34 @@
+{
+  "method": "Decode original full-frame PNG to RGB24 with existing FFmpeg. Foreground proxy: max(R,G,B)>32 on 0-255 scale. Includes caption. Exact black means R=G=B=0. No resizing or edits.",
+  "limitations": "Raster coverage only, not a particle count, local surface concentration, perceptual equivalence, 3D coverage, or proof of abstraction.",
+  "metrics": [
+    {
+      "label": "r2-B",
+      "totalPixels": 8294400,
+      "above32Pixels": 880633,
+      "above32Percent": 10.61719955632716,
+      "exactBlackPercent": 58.069082754629626
+    },
+    {
+      "label": "A - CORNER CAFE",
+      "totalPixels": 8294400,
+      "above32Pixels": 221227,
+      "above32Percent": 2.667185088734568,
+      "exactBlackPercent": 72.33241705246914
+    },
+    {
+      "label": "B - STREET CROSSING",
+      "totalPixels": 8294400,
+      "above32Pixels": 219426,
+      "above32Percent": 2.6454716435185186,
+      "exactBlackPercent": 74.15901089891975
+    },
+    {
+      "label": "C - TERRACE FRONTAGE",
+      "totalPixels": 8294400,
+      "above32Pixels": 263255,
+      "above32Percent": 3.1738884066358026,
+      "exactBlackPercent": 71.77429349922839
+    }
+  ]
+}

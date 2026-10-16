@@ -1,0 +1,55 @@
+{
+  "records": [
+    {
+      "id": "a-corner-cafe",
+      "attachment": "2",
+      "file": "inputs/a-corner-cafe.png",
+      "sha256": "c4d251d9e6aa18e08232d9d776c875166a095c7d5edafdfe51a553d88108a99f",
+      "bytes": 852462,
+      "weaveAssetId": "12273db1-0942-498f-9faa-5d18be0fd7c3",
+      "promptFile": "prompts/a-corner-cafe.txt",
+      "promptSha256": "daea3ddc52b56285766715c495fe84bf0a865304f3909614f3a8cfe07aed338f",
+      "paidSubmissions": 1,
+      "quoteCount": 1,
+      "quoteAndPaidInputsIdentical": true,
+      "uploadApproved": true,
+      "role": "composition only; not style or dated archival evidence"
+    },
+    {
+      "id": "b-street-crossing",
+      "attachment": "4",
+      "file": "inputs/b-street-crossing.png",
+      "sha256": "58ad0177cb616732077f8ead05bc595f8b5f92a95eb652bf117f0798e62eccca",
+      "bytes": 520027,
+      "weaveAssetId": "d904a7ae-8e66-4cf5-a6de-769ca2f5999e",
+      "promptFile": "prompts/b-street-crossing.txt",
+      "promptSha256": "6ae548737fb02a19ec7b12629e2c956889012abdd08ec54b930a0d568f439b38",
+      "paidSubmissions": 1,
+      "quoteCount": 1,
+      "quoteAndPaidInputsIdentical": true,
+      "uploadApproved": true,
+      "role": "composition only; not style or dated archival evidence"
+    },
+    {
+      "id": "c-terrace-frontage",
+      "attachment": "5",
+      "file": "inputs/c-terrace-frontage.png",
+      "sha256": "96471fd44e01cc6c2c5c4737c56b8ecdcf38c87f3d4517d8e99cac15c393ca44",
+      "bytes": 457664,
+      "weaveAssetId": "ae2424a4-3754-4977-b349-4d7587d93f6e",
+      "promptFile": "prompts/c-terrace-frontage.txt",
+      "promptSha256": "ade69ad79d6369fcee74bc100809a6615f9f1834e2d199e5dd50b35db9f2c1e9",
+      "paidSubmissions": 1,
+      "quoteCount": 1,
+      "quoteAndPaidInputsIdentical": true,
+      "uploadApproved": true,
+      "role": "composition only; not style or dated archival evidence"
+    }
+  ],
+  "duplicateAttachment3": {
+    "sameAs": "2",
+    "byteIdentical": true,
+    "uploaded": false
+  },
+  "rights": "Owner supplied and explicitly approved upload of three distinct photos to Weave. Creator, capture date and broader reuse rights unverified. No public publication authorized."
+}

@@ -1,0 +1,104 @@
+{
+  "revision": "w4-20261014-paris-cohesive-scenes-r2",
+  "date": "2026-10-14",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "branch": "week4",
+  "status": "owner-prefers-B-direction-detail-and-density-changes-required",
+  "ownerDirectionFeedback": "Likes B; requests greater abstraction, less concentrated particles, more Parisian objects, then three photo-composition studies. Not finished-reference or phase acceptance.",
+  "acceptedBaseline": null,
+  "selectedReference": null,
+  "discussionRecommendation": "B; author assessment only, not owner acceptance",
+  "ownerFeedback": "It feels like a collection of items rather than one cohesive experience/scene. Try a few different direction and scenes for generation.",
+  "route": "official-figma-weave-direct-model",
+  "modelToolId": "2db90e64-51dd-45b2-870a-66d19a81118e",
+  "catalogModelId": "gpt-image-2.5",
+  "settings": {
+    "model": "Sunburst",
+    "quality": "max",
+    "image_size": {"width": 3840, "height": 2160},
+    "background": "opaque",
+    "output_format": "png"
+  },
+  "inputs": "text-only; no images, masks or uploads",
+  "candidates": [
+    {
+      "id": "A",
+      "promptFile": "prompts/a-rail-arrival.txt",
+      "status": "COMPLETED",
+      "quotedCost": 34,
+      "approvedCost": 34,
+      "reportedCost": 34,
+      "approval": "AskUserQuestion: Approve",
+      "predictionId": "2fd438ae-91c8-4842-9c4c-0e7153d0e6da",
+      "paidSubmissions": 1,
+      "assets": ["references/images/img-a-rail-arrival.png"],
+      "inspection": "Read original PNG: shared receding rail/figure/train arrangement; overly complete train and broad orange livery, unverified train-model fidelity."
+    },
+    {
+      "id": "B",
+      "promptFile": "prompts/b-street-bend.txt",
+      "status": "COMPLETED",
+      "quotedCost": 34,
+      "approvedCost": 34,
+      "reportedCost": 34,
+      "approval": "AskUserQuestion: Approve",
+      "predictionId": "2f972b78-233e-468e-a990-623a14a368bd",
+      "paidSubmissions": 1,
+      "assets": ["references/images/img-b-street-bend.png"],
+      "inspection": "Read original PNG: cohesive corner with attached plaque and overlapping figures/bicycle; wall, door and bicycle too complete; oversized plaque."
+    },
+    {
+      "id": "C",
+      "promptFile": "prompts/c-exhibition-threshold.txt",
+      "status": "COMPLETED",
+      "quotedCost": 34,
+      "approvedCost": 34,
+      "reportedCost": 34,
+      "approval": "AskUserQuestion: Approve",
+      "predictionId": "918c999a-340b-4a75-b36d-43ecbe7cfae7",
+      "paidSubmissions": 1,
+      "assets": ["references/images/img-c-exhibition-threshold.png"],
+      "inspection": "Read original PNG: five figures relate to threshold/steps; abstract information marks, no visible portrait; architectural detail and bodies too complete, mostly stipple, faint nonuniform dark background."
+    }
+  ],
+  "quoteHistory": {
+    "initialCandidate": "A",
+    "initialAcknowledgedCostIncluded": false,
+    "initialResult": "Permission denied by Claude Code auto mode classifier: [Real-World Transactions]",
+    "ownerResolution": "I approve all quote requests.",
+    "resolution": "Same official route returned 34 credits each; separate structured Approve answers then authorized each of three paid runs. No permission settings changed."
+  },
+  "paidSubmissionCount": 3,
+  "additionalSpend": 102,
+  "furtherAllowance": 0,
+  "implementationAuthorized": false,
+  "contactSheet": "references/contact-sheet.png",
+  "contactSheetInspected": true,
+  "mediaManifest": "media-manifest.json",
+  "agents": {
+    "mainConfigured": "claude-gpt-6-astra[1m]",
+    "researcherType": "eva-researcher",
+    "researcherConfigured": "claude-gpt-5.6-terra[1m]",
+    "researcherTools": ["Read", "Glob"],
+    "researcherFilesChanged": [],
+    "researcherScope": "Existing source/archive/owner-context review, not generated-output review",
+    "transportReverifiedThisPass": false,
+    "ruflo": "hooks_route advisory only; actual worker launched with native Agent"
+  },
+  "checks": [
+    "Passed: 57 local Markdown link targets",
+    "Passed: 15 r1/r2 media and prompt hashes, plus three original-video hashes",
+    "Passed: all three saved prompts/settings exactly match their paid tool calls; one paid submission each",
+    "Passed: three packet originals byte-identical to downloads; each 3840x2160",
+    "Passed: provenance JSON and approval/selection state",
+    "Passed: git diff --check; existing DESIGN.md LF/CRLF warning only",
+    "Not run: application tests; no application source changed"
+  ],
+  "limitations": [
+    "All three compositions remain more complete than the intended abstract incomplete forms",
+    "Exact dither cell size, accent area, coverage, coordinates and font identity not measured",
+    "Scene additions are authored, not established by archival sources",
+    "No selected reference or owner acceptance",
+    "No application changes or app tests; no motion or native-window evidence"
+  ]
+}

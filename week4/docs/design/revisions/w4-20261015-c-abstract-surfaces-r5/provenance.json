@@ -1,0 +1,41 @@
+{
+  "revision": "w4-20261015-c-abstract-surfaces-r5",
+  "date": "2026-10-15",
+  "sourceHead": "565b5ad6c4b62cf903cf903288941ce8f95850ff",
+  "branch": "week4",
+  "status": "three-C-based-refinements-completed-inspected-owner-review-pending",
+  "acceptedBaseline": null,
+  "directionBaseline": {"revision": "w4-20261014-paris-hybrid-crossing-r4", "candidate": "C", "ownerDecision": "Loves C most; requests more abstract pavement/facade using image12 and separate detailed tile/facade overlays. Three versions, explicitly based on C."},
+  "selectedReference": null,
+  "implementationAuthorized": false,
+  "route": "official-figma-weave-direct-model-image-conditioned-edit-endpoint",
+  "catalogModelId": "gpt-image-2.5",
+  "modelToolId": "2db90e64-51dd-45b2-870a-66d19a81118e",
+  "settings": {"model": "Sunburst", "quality": "max", "image_size": {"width": 3840, "height": 2160}, "background": "opaque", "output_format": "png"},
+  "uploadApproval": {"tool": "AskUserQuestion", "answer": "Approve image input", "scope": "Upload image12 and reuse hosted C as base for three refinements; no other new uploads", "newUploads": 1},
+  "inputManifest": "inputs-manifest.json",
+  "inputRoles": {"first": "Hosted r4 C composition base", "second": "Image12 glyph/line surface mechanism only", "styleAssetId": "3e39c129-3714-4893-a191-205298a17757"},
+  "candidates": [
+    {"id": "A", "prompt": "prompts/a-glyph-fields.txt", "quote": 34, "costApproval": "AskUserQuestion: Approve", "acknowledgedCost": 34, "reportedCost": 34, "paidSubmissions": 1, "predictionId": "5a00a733-536d-4fbd-a154-90888250a236", "status": "COMPLETED", "output": "references/images/img-a-glyph-fields.png", "inspection": "Read original: glyph rows replace broad wall/ground; separate detailed pavement/facade panes. Storefront/door remain detailed; inherited sign bracket persists."},
+    {"id": "B", "prompt": "prompts/b-broken-strata.txt", "quote": 34, "costApproval": "AskUserQuestion: Approve", "acknowledgedCost": 34, "reportedCost": 34, "paidSubmissions": 1, "predictionId": "ed1a42bb-db2b-4ccb-89b6-6c4e3c6bac13", "status": "COMPLETED", "output": "references/images/img-b-broken-strata.png", "inspection": "Read original: interrupted horizontal bands and broken ground; detailed material panes. Defect: road-sign bracket incorrectly labeled PAVEMENT DETAIL."},
+    {"id": "C", "prompt": "prompts/c-glyph-islands.txt", "quote": 34, "costApproval": "AskUserQuestion: Approve", "acknowledgedCost": 34, "reportedCost": 34, "paidSubmissions": 1, "predictionId": "0c833ac3-90ac-494f-aa09-b6e0d28edb59", "status": "COMPLETED", "output": "references/images/img-c-glyph-islands.png", "inspection": "Read original: irregular symbol patches and black gaps; distinct material panes. Some realistic paving strips and complete storefront/door material remain."}
+  ],
+  "totalPaidSubmissions": 3,
+  "totalCost": 102,
+  "furtherAllowance": 0,
+  "contactSheet": "references/contact-sheet.png",
+  "contactSheetInspected": true,
+  "mediaManifest": "media-manifest.json",
+  "agents": {"mainConfigured": "claude-gpt-6-astra[1m]", "workers": [], "transportReverified": false, "ruflo": "hooks_route advisory only"},
+  "checks": [
+    "Passed: 117 local Markdown links across r1-r5 review entries and index",
+    "Passed: 50 media/prompt hashes across r1-r5 and four original-video hashes",
+    "Passed: input12 copy and r4 C base unchanged; three output copies byte-identical to downloads",
+    "Passed: exact saved prompts/settings/two inputs match each quoted and paid request; one paid submission per candidate",
+    "Passed: three3840x2160 PNGs; JSON parsing and pending acceptance/zero further allowance",
+    "Passed: git diff --check; existing DESIGN.md LF/CRLF warning only",
+    "Inspected: three original PNGs and labeled contact sheet",
+    "Not run: application tests or motion validation; no app source changed"
+  ],
+  "limitations": ["Panes are generated illustrative detail studies, not actual source crops or live magnifiers", "B has wrong pavement-label attachment", "Storefronts and doors still highly detailed", "No quantitative replacement-ratio, glyph-size, font or pixel-stability claims", "Owner image12 provenance/reuse rights unverified; no public publication authorized", "No motion, native interactions, app edits, implementation acceptance or phase advancement"]
+}
