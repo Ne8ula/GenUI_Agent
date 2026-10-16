@@ -1,0 +1,70 @@
+- main [ref=f4e3]:
+  - heading "EVA Week 4 — Rust procedural Seed-33 reconstruction" [level=1] [ref=f4e4]
+  - generic [ref=f4e5]:
+    - img "Seed-33 Paris café constructed from procedural Rust geometry; fixed camera; rear-facing walker moves left and away" [ref=f4e7]
+    - status [ref=f4e8]: Initializing Rust/WASM renderer…
+  - region [ref=f4e9]:
+    - generic [ref=f4e10]:
+      - heading "Paris — four-layer visual demo · Escape pauses" [level=2] [ref=f4e11]
+      - generic [ref=f4e12]:
+        - generic [ref=f4e13]:
+          - generic [ref=f4e14]: Look
+          - combobox "Look" [ref=f4e15]:
+            - option "Seed 33 (selected)" [selected]
+            - option "Arrival (earlier frame)"
+        - generic [ref=f4e16]:
+          - generic [ref=f4e17]: Scene
+          - combobox "Scene" [ref=f4e18]:
+            - option "Seed 33 (default)"
+            - option "Paris R8 (new, native 30 s timeline)" [selected]
+        - generic [ref=f4e19]:
+          - text: Layer
+          - combobox "Layer checkpoint" [ref=f4e20]:
+            - option "Inspect a layer…" [disabled] [selected]
+            - option "1 · Detection"
+            - option "2 · Density islands"
+            - option "3 · Local flow"
+            - option "4 · Reconstruction"
+            - option "Settled"
+        - button "Replay" [ref=f4e21] [cursor=pointer]
+        - button "Jump to idle" [ref=f4e22] [cursor=pointer]
+        - generic [ref=f4e23]:
+          - generic [ref=f4e24]: Build length
+          - combobox "Build length" [disabled] [ref=f4e25]:
+            - option "Complete (no build)"
+            - option "3 s"
+            - option "6 s"
+            - option "12 s"
+            - option "24 s"
+            - option "30 s" [selected]
+        - generic [ref=f4e26]:
+          - generic [ref=f4e27]: Start time
+          - slider "Start time" [ref=f4e28]: "30000"
+          - status [ref=f4e29]: 30.0 s
+        - generic [ref=f4e30]:
+          - generic [ref=f4e31]: Backend
+          - combobox "Backend" [ref=f4e32]:
+            - option "Auto" [selected]
+            - option "WebGL2"
+            - option "Canvas2D"
+        - button "Pause" [ref=f4e33] [cursor=pointer]
+        - 'button "Tiles: on" [pressed] [ref=f4e34] [cursor=pointer]'
+        - 'button "Reduced motion: off" [ref=f4e35] [cursor=pointer]'
+        - generic [ref=f4e36]:
+          - generic [ref=f4e37]: Near walker facing (arrival look only)
+          - combobox "Near walker facing (arrival look only)" [disabled] [ref=f4e38]:
+            - option "Away" [selected]
+            - option "Toward"
+        - generic [ref=f4e39]:
+          - generic [ref=f4e40]: Density
+          - combobox "Density" [disabled] [ref=f4e41]:
+            - option "0.5"
+            - option "0.75"
+            - option "1" [selected]
+            - option "1.25"
+        - generic [ref=f4e42]:
+          - generic [ref=f4e43]: Seed
+          - spinbutton "Seed" [ref=f4e44]: "33"
+        - button "Reseed" [ref=f4e45] [cursor=pointer]
+    - paragraph [ref=f4e46]: "Backend: starting · Head tracking: off (not in this step)"
+    - paragraph [ref=f4e47]: "Backend: starting"

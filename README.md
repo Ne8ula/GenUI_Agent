@@ -1,8 +1,10 @@
-# EVA
+# EVA for Dreamatorium
 
-EVA explores **expressive responses that users can revise**: ordinary information answered through readable facts, movement, spatial composition, timing, and explicit intervention. The current research asks when a composition's response to correction or redirection is experienced as attention and meaningful influence. See the [research entry point](docs/research/INDEX.md), [canonical plan](PLANNING.md), and [design grammar](DESIGN.md).
+**EVA is Dreamatorium's agent.** GenUI_Agent is aligned with **Track C: genuine 3D reconstruction plus expressive rendering and spatial experience**, combining Dreamatorium Systems B and C. Video-model creation remains upstream in Track A; revisions are supporting functionality, not the primary research contribution. See the [canonical plan](PLANNING.md), [research proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md), and [full implementation plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md).
 
-The proposed next experiment is [a revisable synthetic NYC weather response](week2/docs/design/experiments/E1_REVISABLE_WEATHER.md). Research/documentation are authorized; the next implementation and study phase remain pending. Personal relationship development and an exhibit are separate later tracks.
+**Repository and paper split:** Shado owns flowchart Steps 1–5 and the model/geometric-learning paper. GenUI_Agent owns Steps 6–7 and an HCI paper about spatial understanding, exploration behavior, and evidence interpretation. The [seven-step flowchart](docs/research/figures/dreamatorium-seven-step-flow.png) is embedded in both plans and the proposal. Benefits from Shado's outputs require a matched upstream-to-human study; better geometry alone does not establish better interaction.
+
+Weeks 1–4 provide implemented eye, particle, voice, control, and browser-rendering foundations with different validation and acceptance states. Source-derived Paris graphics are not yet evidence of a genuine reconstruction pipeline. The [capability audit](docs/research/EVA_IMPLEMENTATION_STATUS.md) separates implemented work, recorded checks, concurrent integration, and proposals. The next new technical milestone is reconstruction → scene import → navigation → an anchored expressive layer.
 
 Development is orchestrated by **Astra inside Claude Code**, as specified in [AGENTS.md](AGENTS.md) and the [development workflow](docs/development/AGENT_WORKFLOW.md). This harness choice is separate from EVA's application runtime and research conditions.
 

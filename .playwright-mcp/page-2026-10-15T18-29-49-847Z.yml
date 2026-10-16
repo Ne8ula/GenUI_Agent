@@ -1,0 +1,53 @@
+- main [ref=f3e3]:
+  - heading "EVA Week 4 — Rust procedural Seed-33 reconstruction" [level=1] [ref=f3e4]
+  - generic [ref=f3e5]:
+    - img "Seed-33 Paris café constructed from procedural Rust geometry; fixed camera; rear-facing walker moves left and away" [ref=f3e7]
+    - status [ref=f3e8]: Initializing Rust/WASM renderer…
+  - region [ref=f3e9]:
+    - generic [ref=f3e10]:
+      - heading "Fixture controls — Week 4 Paris frame, not the live demo" [level=2] [ref=f3e11]
+      - generic [ref=f3e12]:
+        - generic [ref=f3e13]:
+          - generic [ref=f3e14]: Look
+          - combobox "Look" [ref=f3e15]:
+            - option "Seed 33 (selected)" [selected]
+            - option "Arrival (earlier frame)"
+        - generic [ref=f3e16]:
+          - generic [ref=f3e17]: Build length
+          - combobox "Build length" [ref=f3e18]:
+            - option "Complete (no build)"
+            - option "3 s"
+            - option "6 s"
+            - option "12 s" [selected]
+            - option "24 s"
+        - generic [ref=f3e19]:
+          - generic [ref=f3e20]: Start time
+          - slider "Start time" [ref=f3e21]: "30000"
+          - status [ref=f3e22]: 30.0 s
+        - generic [ref=f3e23]:
+          - generic [ref=f3e24]: Backend
+          - combobox "Backend" [ref=f3e25]:
+            - option "Auto" [selected]
+            - option "WebGL2"
+            - option "Canvas2D"
+        - button "Pause" [ref=f3e26] [cursor=pointer]
+        - 'button "Tiles: on" [pressed] [ref=f3e27] [cursor=pointer]'
+        - 'button "Reduced motion: off" [ref=f3e28] [cursor=pointer]'
+        - generic [ref=f3e29]:
+          - generic [ref=f3e30]: Near walker facing (arrival look only)
+          - combobox "Near walker facing (arrival look only)" [disabled] [ref=f3e31]:
+            - option "Away" [selected]
+            - option "Toward"
+        - generic [ref=f3e32]:
+          - generic [ref=f3e33]: Density
+          - combobox "Density" [ref=f3e34]:
+            - option "0.5"
+            - option "0.75"
+            - option "1" [selected]
+            - option "1.25"
+        - generic [ref=f3e35]:
+          - generic [ref=f3e36]: Seed
+          - spinbutton "Seed" [ref=f3e37]: "33"
+        - button "Reseed" [ref=f3e38] [cursor=pointer]
+    - paragraph [ref=f3e39]: "Backend: starting · Head tracking: off (not in this step)"
+    - paragraph [ref=f3e40]: "Backend: starting"

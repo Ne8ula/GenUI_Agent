@@ -1,0 +1,22 @@
+- main [ref=e4]:
+  - region "Curated archival photographs of Paris; open a photograph for its source and licence" [ref=e10]:
+    - generic:
+      - generic:
+        - link "Montparnasse · 1980, Pascal Dolémieux. Display crop; open source and licence in a new tab." [ref=e11] [cursor=pointer]:
+          - /url: /sources/paris-r17/credits.html#montparnasse
+        - link [aria-hidden]:
+          - /url: /sources/paris-r17/credits.html#montmartre
+        - link [aria-hidden]:
+          - /url: /sources/paris-r17/credits.html#conciergerie
+        - link [aria-hidden]:
+          - /url: /sources/paris-r17/credits.html#tgv53
+        - link [aria-hidden]:
+          - /url: /sources/paris-r17/credits.html#rue-christine
+        - link [aria-hidden]:
+          - /url: /sources/paris-r17/credits.html#beaubourg
+        - link [aria-hidden]:
+          - /url: /sources/paris-r17/credits.html#clichy
+  - generic [ref=e6]:
+    - textbox "Request or scene command" [active] [ref=e7]: What's it like in 1980s Paris?
+    - paragraph [ref=e8]: "Local curated demo, not live search or historical reconstruction. Enter submits. Escape pauses. Commands: photos, pause, resume, skip, return, retry. Photographs open source and licence details in a new tab."
+    - status [ref=e9]: Curated local archival photographs, not a live search.

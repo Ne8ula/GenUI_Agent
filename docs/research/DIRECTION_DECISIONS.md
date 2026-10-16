@@ -1,10 +1,24 @@
 # Direction decisions — expressive-response reframe
 
+## Current alignment — Dreamatorium Track C, 2026-10-15
+
+The owner requested alignment of the full plan, PLANNING.md, and research proposal, then clarified: **“Yes combine System B and System C for EVA and the GenUI_Agent. By the way, EVA is the name of the agent for Dreamatorium.”**
+
+The current decision is that GenUI_Agent owns Track C: genuine 3D reconstruction plus expressive rendering/spatial experience. Track A video-model creation stays upstream; Track B revision research is supporting functionality. The supplied Dreamatorium document's System B means reconstruction, so System and Track labels are not interchangeable.
+
+The [full plan](EVA_RESEARCH_IMPLEMENTATION_PLAN.md), [proposal](GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md), and [canonical scope](../../PLANNING.md) now use C-H hypotheses, C-E experiments, and C-M milestones. Revision superiority and model-composition superiority are no longer the primary research hypotheses. The [capability audit](EVA_IMPLEMENTATION_STATUS.md) separates actual code, recorded validation, in-progress integration, and proposed reconstruction/studies.
+
+**Subsequent seven-step clarification, 2026-10-15:** The owner supplied the [pipeline flowchart](figures/dreamatorium-seven-step-flow.png) and assigned Steps 1–5 to Shado and a separate paper, and Steps 6–7 to GenUI_Agent with an HCI/human-behavior focus. The chart is embedded unchanged in the plans/proposal. C-H3/C-H4/C-H6 now center the HCI argument; C-H1/C-H2/C-H5 are enabling technical evidence. New C-E6 tests whether paired upstream baseline/treatment outputs change human outcomes through fixed downstream steps. It separates all-attempt yield from conditional participant findings and remains untested until the required handoff/evidence exists.
+
+Exact prior PLANNING.md, proposal, and v1.0 plan are [preserved](history/2026-10-15-before-track-c/README.md). Existing implementation, concurrent visual work, and historical acceptance remain intact. This is documentation alignment, not phase acceptance, new runtime validation, or a participant result.
+
+## Historical reframe — 2026-09-17
+
 Date: 2026-09-17. Source revision: EVA `9cb84746d97e0d5f1a441c196cfb05a3ed235d18` plus this uncommitted documentation diff. Owner instruction: research and directly restructure the relevant documents; preserve Week 1; do not begin broad implementation. Subsequent steering: prioritize academic references over community discussion.
 
 This log records authority and rationale. A recommendation is not owner acceptance. The readable diff, [research index](INDEX.md), and [documentation review record](../design/acceptance/expressive-response-reframe.md) form the review packet.
 
-## Current direction and recommended decisions
+## September direction and recommended decisions — historical
 
 | ID | Decision | Basis and status | Consequence |
 | --- | --- | --- | --- |
@@ -43,7 +57,7 @@ The previous PLANNING.md, DESIGN.md (including Week 1 refinements), and study pr
 
 Concurrent development-workflow changes appeared in AGENTS.md, `.gitignore`, `.claude/`, `.mcp.json`, CLAUDE.md, `docs/development/`, and `scripts/`. This task preserves them. Its AGENTS.md edits concern research scope/source policy, current archive facts and expressive design guidance; they do not remove or rewrite the new Astra routing block. Following the owner's explicit clarification, the plan replaces its obsolete role table with the current Astra/Claude Code assignments, and creative-tool guidance distinguishes historical Codex setup from the active harness. No separate specialist is claimed to have participated in this research pass. Existing workflow verification belongs to its own record and was not rerun here.
 
-## Open decisions and next owner review
+## September open decisions and next owner review — historical
 
 Review the proposed focused question, weather-first scope, simple expressive state, matched-motion comparison and E1 acceptance criteria. The next owner decision is whether to accept/revise this documentation direction and separately authorize a bounded implementation. New baseline appearance and timing require executable alternatives and actual captures; they are intentionally unresolved here.
 

@@ -1,118 +1,170 @@
-# Independent Study Proposal: Expressive Responses as Revisable Encounters
+# HCI Research Proposal: EVA for Dreamatorium Steps 6–7
 
 - **Student:** [Student name]
 - **Faculty supervisor:** Professor José Sánchez
 - **Research context:** Game Assemblies Lab
-- **Term:** Fall 2026. The earlier proposal named mid-December; the present reframe supplies no new deadline or approved schedule.
-- **Status:** Research and design proposal revised 2026-09-17; implementation, study protocol, and phase acceptance remain pending.
-- **Testbed:** EVA's existing Tauri/React/Rust desktop foundation; [Week 1](../../week1/README.md) remains an intact, successfully demonstrated archive.
+- **Term:** Fall 2026 context retained; the expanded program has no newly approved deadline.
+- **Updated:** 2026-10-15.
+- **Scope:** EVA is Dreamatorium's agent. GenUI_Agent combines genuine 3D reconstruction (Dreamatorium System B) with expressive rendering and spatial experience (System C).
+- **Status:** Owner-directed research alignment; new implementation phases, protocol, sampling, and research results remain proposed.
+- **Paper split:** Shado owns Steps 1–5 and a model/geometric-learning paper. GenUI_Agent owns Steps 6–7 and an HCI paper for research and industry audiences.
 
-## Thesis and continuity
+## Research goal
 
-EVA investigates the **response**, rather than the dashboard, as an object of generative interaction design. An ordinary request can be answered through readable information and a composition of movement, spatial relationships, imagery, typography, rhythm, language, sound, and silence. The composition should propose an interpretation, attend to a user's intervention, yield, and reconsider. Collaboration must be observable in behavior; announcing empathy or playing a fixed animation is insufficient.
+Determine how reconstructing and expressively rendering generated video affects spatial understanding, exploration behavior, and evidence interpretation, and whether independently established improvements from Shado's upstream pipeline translate into better human interaction with those environments.
 
-The Memory Archive situated generated speech within a character's gaze, voice, emotional state, body, and object encounters. EVA asks what changes when some of that expressive work moves from a character's body into the behavior of an interface. This is a research hypothesis, not an established equivalence. Social interpretation does not prove understanding, feeling, or a relationship. The [literature synthesis](EXPRESSIVE_RESPONSE_SYNTHESIS.md) and [code-grounded transfer study](MEMORY_ARCHIVE_TRANSFER.md) distinguish those claims.
+The primary contribution is HCI evidence and design knowledge about people using the resulting environments. Steps 6–7 provide the experimental system. A person should be able to explore the scene, compare its raw and artistic representations, inspect its sources and limitations, and dismiss or simplify it. Paris is the flagship scenario; it is not the sole evidence of generality.
 
-The owner's broader agenda is to challenge perspective, explore generative experience, and eventually develop a personal relationship through remembered context. The first study isolates an immediate encounter. A later personal-agent study would require repeated use and inspectable persistent memory; an exhibit could instead offer a short self-contained encounter without personal retention. Neither is required for the first contribution.
+## Seven-step pipeline and two papers
 
-## Candidate questions and recommendation
+![Dreamatorium flowchart: Shado owns Steps 1–5; EVA in GenUI_Agent owns Step 6 genuine 3D reconstruction and Step 7 aesthetic rendering.](figures/dreamatorium-seven-step-flow.png)
 
-| Candidate | Contribution | Main difficulty | Decision |
-| --- | --- | --- | --- |
-| How do visual and temporal responses to user intervention shape perceived responsiveness and influence in an ordinary information request? | An actionable grammar of attending, yielding, and revising, with evidence tied to specific events | Separate contingency from spectacle and functional differences | **Recommend first** |
-| How do subject-specific visual materials change emotional interpretation of weather and transit information? | Knowledge about congruence between information and expressive material | Domain, familiarity, aesthetics, and factual complexity vary together | Transit transfer critique first; study later |
-| How does remembered expressive history shape a personal relationship with an agent? | Longitudinal continuity and relationship design | Repeated use, memory governance, and a different study duration | Defer to personal-agent track |
-| How can a brief mediated encounter challenge a visitor's perspective on ordinary information? | An exhibit format and situated interpretation | Venue, audience, staging, and novelty dominate | Separate later exhibit adaptation |
+*Owner-supplied diagram, preserved unchanged. Its arrows express proposed dependencies, not established model or human benefits.*
 
-**Recommended research question:** How does a composition's contingent visual and temporal response to user intervention shape perceived responsiveness and user influence during an ordinary information request?
+**Shado / Paper 1:** reference image + prompt → AI video generation → marker-based geometric verification → synthetic-data selection + model post-training → marker-free generation. This paper tests upstream geometry and generalization.
 
-**Proposed contribution:** a bounded expressive-response grammar, an inspectable prototype, and a research-through-design account of which revision behaviors people interpret as attending to their intervention—and when they instead experience them as decorative, obstructive, or manipulative. This is narrower than demonstrating emotional intelligence or shared authorship of a whole interface.
+**GenUI_Agent / Paper 2:** genuine 3D reconstruction → Dreamatorium aesthetic rendering and creative interaction. This paper tests how people understand, explore, and assess the resulting environments, including whether upstream gains lead to downstream human benefits.
 
-## Research basis and resulting design choices
+Shado provides frozen baseline/treatment clips, pairing IDs, model/configuration provenance, all attempts/failures, and independent quality evidence. EVA holds reconstruction and rendering constant for the upstream comparison. Shared data and diagnostics are disclosed and cited across the two papers, not presented as separate new discoveries.
 
-The synthesis gives verified bibliographic records, reading-depth limits, and a concept → predecessor mechanism → EVA interpretation → question → evidence chain. Its consequential commitments are:
+## Track ownership
 
-- **Attribution is an outcome to examine.** Moving-shape studies and CASA motivate examining people's interpretations, not treating an interface as a person. [Heider and Simmel, 1944](https://doi.org/10.2307/1416950); [Nass and Moon, 2000](https://doi.org/10.1111/0022-4537.00153).
-- **Meaning arises in interaction.** Affective-loop work motivates a sequence in which the person can change the expression and reflect on it. It does not justify classifying emotion from a pause or gaze. [Höök, 2009](https://pmc.ncbi.nlm.nih.gov/articles/PMC2781899/).
-- **Time is design material.** Onset, duration, rhythm, interruption, and return matter independently of a screenshot. Record the episode and alternative timings. [Vallgårda et al., 2015](https://www.ijdesign.org/index.php/IJDesign/article/view/2212/710).
-- **Initiative must remain negotiable.** A proposal can be redirected or simplified without losing the answer or surrendering control. [Horvitz, 1999](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/chi99horvitz.pdf).
-- **An artifact is part of the inquiry.** Preserve alternatives, failures, and rationale so the work can be assessed for process, invention, relevance, and extensibility. [Zimmerman, Forlizzi, and Evenson, 2007](https://doi.org/10.1145/1240624.1240704).
-
-Artistic precedents inform compositional decisions; they are not empirical support for user outcomes. See [the precedent analysis](ARTISTIC_PRECEDENTS.md) for Kat Zhang / The Poet Engineer, selected ONX and DAT LAB connections, and the owner's unverified numerical recollection from *Sunshine*. Academic primary sources ground the research; creator documentation supports claims about the works.
-
-## Prototype and scope
-
-Use the [canonical grammar](../../DESIGN.md) and proposed [E1 revisable-weather experiment](../../week2/docs/design/experiments/E1_REVISABLE_WEATHER.md). A synthetic NYC weather answer appears as readable facts with a dithered field that can gather, part, and reorganize around selected information. The user can redirect the time window, compare periods, pin a fact, request less motion, reject an interpretation, or choose a plain answer. Follow-ups change the ongoing composition while preserving identity and direct edits.
-
-Weather is the first executable scenario. A clearly synthetic uptown-M transit response is a **design transfer example**, not a second required integration. It explores waiting and anticipated arrival without inventing service or implying live train positions. No production weather/transit account is needed.
-
-The model may compose bounded authored primitives and phase recipes. Data supplies facts; deterministic runtime code supplies provenance and authority; the user controls interventions and presentation limits. Hand-authored scores can establish the foundation first, but must be labeled as such. Claiming model composition later requires actual outputs, validation traces, and behavior beyond selecting a fixed movie. Memory, dialogue orchestration, and rendering remain separate.
-
-## Research-through-design process
-
-1. Translate selected literature and predecessor mechanisms into alternative response sketches. Record why each option was retained, changed, or rejected.
-2. Build only the accepted bounded experiment. Compare at least two ways the composition can attend to the same intervention, including an unadorned response. Save scores, seeds, timing, captures, and decision notes.
-3. Use owner/faculty critique to identify unreadable facts, ambiguous agency, coerced interaction, and novelty mistaken for responsiveness. This is design critique, not participant-study evidence.
-4. Prepare and pilot matched conditions, prompts, logging, and interview materials. Obtain required institutional guidance and approval before recruitment or research data collection.
-5. Conduct a small formative study if approved and feasible; revise the grammar using supportive and disconfirming episodes. Report situated findings rather than population-level effects from a small sample.
-
-An initial planning envelope is two formative rounds totaling approximately 6–8 participants, subject to faculty agreement and institutional requirements. This is a feasibility proposal, not a power calculation, recruitment decision, or approved sample. If participant work cannot proceed, deliver the prototype, critique record, and submission-ready protocol; do not substitute informal conversations for an approved study.
-
-## Unit of analysis and comparison
-
-The **response episode** begins with a request and ends when the user settles, simplifies, dismisses, or stops the revised answer. It includes the initial answer, at least one explicit intervention, the transition, and the user's interpretation of what changed. A screenshot alone is not the unit.
-
-| Condition | Shared behavior | Deliberately varied behavior |
+| Track or system | Scope | Relationship to EVA |
 | --- | --- | --- |
-| Contingent expression | Same facts, reading order, revision functions, controls, input methods, and response availability | Expressive material attends to the chosen entity, yields around a lock, and reorganizes in response to the intervention |
-| Matched authored motion | Same functional revision and factual updates; controls remain effective | A prescribed field sequence provides comparable motion and material without coordinated expressive accommodation |
-| Plain answer | Same facts and usable revision controls | Optional reference for comprehension, comfort, and accessibility; not a bundled social-personality manipulation |
+| Track A | Creating/improving the video-generation model, including marker-assisted learning | Upstream and outside this repo's research contribution |
+| Track B | Revision/editing research | Supporting mechanisms and interfaces; no primary revision-superiority hypothesis |
+| Track C | Reconstruction, rendering, and experience | EVA / GenUI_Agent's sole research alignment |
+| Dreamatorium System B | Genuine 3D reconstruction | Included |
+| Dreamatorium System C | Expressive computational rendering and spatial interaction | Included |
 
-The comparison is a proposed research instrument, not desired shipping behavior. Stop, reduced motion, and direct manipulation work in every condition. Do not fake a broken control. Match duration, density, palette, and broad motion energy as closely as feasible; exact trajectories cannot be identical when contingency is the manipulation. Document this residual difference.
+Track labels are not interchangeable with the supplied document's System labels: System B means reconstruction, not revision. Optimizing a per-scene 3D Gaussian representation belongs to Track C; training a video generator belongs to Track A.
 
-Start with voice and sound off, identical eye behavior, neutral equivalent wording, and no personal-history references. Avoid bundling personality, sarcasm, memory, voice acting, and timing into one unexplained effect. Later multimodal work can vary one coordinated channel at a time.
+This replaces the earlier proposal's primary focus on contingent revision. That work remains useful for interruption, selection, locks, undo, equivalent controls, and qualitative context. Its exact text is [preserved](history/2026-10-15-before-track-c/README.md).
 
-## Evidence and interpretation
+## Research questions and hypotheses
 
-| Role | Evidence | Interpretation limit |
+**Primary HCI question:** How do navigable reconstruction and expressive rendering affect people's spatial understanding, exploration, and ability to judge what an environment supports—and how do these outcomes change with matched baseline versus Shado-treated inputs?
+
+| ID | Proposed test | Main evidence |
 | --- | --- | --- |
-| Primary: perceived responsiveness | Brief episode-level ratings and accounts of the exact intervention and observed response | Researcher-authored items are not a validated scale; show items and distributions, not a diagnostic score |
-| Explanatory: user influence | Whether a requested change survives, where control is attributed, rejection/revision traces, interview explanations | Executing a built-in command alone is not proof of co-authorship |
-| Guardrail: comprehension | Correct reading of temperature/time/units/source; recognition of synthetic and missing data | An attractive response that obscures facts fails |
-| Exploratory: emotional interpretation and authorship | Participant language about invitation, anticipation, irritation, agency, ownership, or indifference | Do not require emotion, presume positive affect, or infer a relationship |
+| C-H1 | A fixed pipeline reconstructs a meaningful proportion of a declared input class into usable navigable scenes. | All-attempt yield, registration, held-out views, coverage, and geometry error where ground truth exists |
+| C-H2 | Geometry-anchored expression reduces viewpoint-dependent drift compared with a matched image-derived 2.5D baseline. | Fixed camera paths, independent anchors, occlusion/attachment error |
+| C-H3 | Structured contours, points, and selective materials support interpretation and exploration while offering expressive qualities beyond the raw reconstruction. | Matched raw/stylized tasks, spatial comprehension, open experiential accounts, tradeoffs |
+| C-H4 | Evidence, inferred geometry, artistic treatment, and unknown regions remain distinguishable in expressive presentation. | Source-location and classification tasks with identical provenance access |
+| C-H5 | The frozen reconstruction/export/rendering grammar transfers to held-out supported scenes without bespoke per-scene rescue. | Scene-family benchmark, stage-specific and full-pipeline success, manual intervention logs |
+| C-H6 | Independently established upstream geometry gains lead to better spatial understanding after the same Steps 6–7 pipeline. | Matched Shado baseline/treatment cohorts, frozen downstream system, participant comparison and failure accounting |
 
-Suggested prompts: “What changed because of your action?”, “What did you feel you could influence?”, and “Was anything expressive or distracting? Point to the moment.” Ask open accounts before supplying agentic labels. Record negative and non-social interpretations.
+These are hypotheses/propositions to evaluate, not promised positive findings. C-H3/C-H4/C-H6 are the HCI argument; C-H1/C-H2/C-H5 establish enabling feasibility/validity. C-H3 does not equate preference with comprehension. C-H4 needs a justified margin and sample for formal noninferiority. C-H6 may fail even when Shado improves geometric scores.
 
-Use equivalent weather variants rather than one memorized answer. A possible session has six short episodes, three per main condition, with task and condition order counterbalanced and a plain-answer reference. Finalize duration and fatigue after the pilot. Within-session repeated exposure can reveal novelty decay; it cannot establish a longitudinal relationship.
+Choose one primary human endpoint, initially spatial-relation or viewpoint-transfer accuracy against an independently adjudicated answer key. Secondary behavioral measures include task success/time, route efficiency, revisits, viewpoint choices, and source-inspection actions. More exploration time can indicate confusion rather than engagement. Assess confidence against correctness; do not treat greater trust as inherently beneficial. Presence, learning, emotion, and long-term behavior change require distinct justified measures and cannot be inferred from appearance or dwell time.
 
-- **Novelty and spectacle:** share visual vocabulary, repeat exposure, ask about novelty separately, and keep plain answer available.
-- **Latency:** expose facts at the same time; replay or precompute expressive proposals; log actual delays. A slower model must not be confounded with thoughtfulness.
-- **Information and function:** use identical evidence, uncertainty, wording, controls, and successful factual revisions. Only coordinated expressive behavior varies.
-- **Experimenter suggestion:** do not describe one condition as empathetic or collaborative; analyze concrete accounts before inferred constructs.
-- **Learning and taste:** counterbalance order and tasks; preserve participant preferences and within-person disagreements.
+## Current foundation and remaining gap
 
-Analyze event traces alongside recordings and interview excerpts using a documented coding process and discrepant cases. Report the actual number of coders and procedure; do not claim independent coding without it. Summarize descriptive ratings and comprehension failures. Later hypothesis tests need separately justified sampling and analysis.
+The [dated capability audit](EVA_IMPLEMENTATION_STATUS.md) is the detailed status source. It separates inspected code from recorded validation and acceptance.
 
-## Authority, privacy, and accessibility
+| Existing work | What it supplies | What it does not establish |
+| --- | --- | --- |
+| Week 1 desktop/weather/voice | Historical working foundation; owner-reported successful demo | Later phase acceptance, general generation, or participant findings |
+| Week 2 weather/particles | Browser expression and control experiments | Native recovery after the quarantined candidate or accepted E1 completion |
+| Week 3 conversational eye | Implemented expressive vocabulary, visual approval for a specific revision, bounded voice integration records | Full physical live-voice acceptance or emotional-understanding evidence |
+| Week 4 Rust/core/broker work | Authored geometry/rendering and control contracts | Multiview scene reconstruction or complete native staging |
+| Paris R11/R12 | Source-derived GPU visual baselines and recorded browser checks | Trained 3DGS, LiDAR, unknown-view geometry recovery, or final phase acceptance |
+| R13 arrival | Concurrent eye-to-Paris implementation | Verified integrated reconstruction-to-experience pipeline |
 
-Facts never depend on emotional rapport. Fictional witness/consent framing does not authorize disclosure, data collection, or real actions. No camera, facial emotion classifier, speaker identification, or incidental-screen inference is required. Silence means no new instruction.
+The crucial new technical gap is a genuine camera-recovery/reconstruction/export path feeding the expressive renderer. Source-image particles and shallow authored depth remain valuable labelled prototypes and comparison baselines. They cannot be renamed reconstruction evidence.
 
-Use synthetic fixtures and session-only context first. Approved research recordings and identifiers belong in institutionally approved private storage, not the public repository. Public evidence contains only synthetic data. Persistent personal memory is a later opt-in, inspectable mechanism with separate retention/deletion decisions.
+## Proposed artifact
 
-Keep model output declarative and bounded, safety/provenance host-owned, factual speech verified, and interruption propagated. Provide keyboard equivalents, stable reading surfaces, explicit units and missingness, reduced motion, intensity control, and plain answer. Social expression must never resist dismissal or pressure acceptance.
+EVA will consume a versioned scene package with input provenance, cameras, coordinate/scale conventions, representation type, raw scene attributes, coverage, and evaluation diagnostics.
 
-## Delivery phases and assessment
+The experience will expose:
 
-The proposed S0–S4 sequence in [PLANNING.md Section 17](../../PLANNING.md#17-milestones) is a dependency order, not a new deadline. Week 1 success does not accept these phases. Each needs explicit owner review of its actual revision; institutional approval is separate.
+- A bounded eye-to-scene construction and return.
+- Raw reconstruction and expressive points/contours/material modes.
+- Navigation within a declared supported viewpoint range.
+- Source, representation, and unknown-region inspection.
+- Pause, intensity, reduced motion, keyboard access, and stop.
+- A small supported set of parameter revisions where useful.
 
-The existing ComfyUI decision remains an **earliest-use gate**: no installation before explicit S2 acceptance, and only a separately authorized S3 experiment. Generated imagery is unnecessary for the first response study. Redefining scope does not authorize early installation.
+Reconstruction runs outside the interactive frame loop. Models may choose validated packages and bounded presentation parameters; runtime model output cannot execute code, invent verified claims, or authorize desktop actions. A prepared construction timeline is artistic content, not an invented live-processing percentage.
 
-Deliver the annotated synthesis and transfer study, this protocol proposal, **DESIGN.md** as the one canonical grammar, an inspectable response prototype/schema, design iterations and evidence, approved study materials/results if feasible, and a critical manuscript/demo. No duplicate `GENERATIVE_UI_DESIGN.md` will be created. Conference submission and acceptance remain separate decisions.
+## Research method
 
-Suggested assessment weights, for faculty discussion: research foundation 20%; grammar/rationale 25%; prototype/iteration evidence 25%; evaluation design/approved study and analysis 20%; critical reflection/presentation 10%. These replace the two-dashboard deliverable as a proposal, not an approved grading change.
+### Technical reconstruction and rendering work
 
-## Boundaries and open decisions
+Begin with controlled synthetic and captured static scenes, then frozen generated-video cohorts. Use existing reconstruction methods with fixed frame sampling, settings, optimization budgets, and failure rules. Freeze fitting/evaluation splits before tuning. Record every attempted sequence.
 
-The owner supplied the expressive-response direction. The focused question, grammar, comparison, sample envelope, and experiment are recommendations for review. Decisions remain about preferred attending behavior after executable alternatives exist, faculty agreement on constructs/protocol, and whether a later extension prioritizes personal continuity or an exhibit. These do not block documentation work.
+Evaluate raw reconstruction before stylization. Use independent geometry and camera references where available; otherwise report consistency and reconstructability. In unconstrained generated video there is no automatic physical ground truth. Keep known-camera or other assisted runs separate from the ordinary camera-recovery condition. If low yield motivates a narrower input class, preserve the original denominator and require a fresh held-out cohort for confirmatory claims about that refined class.
 
-Full backend completion, production accounts, consequential actions, Live2D/Unreal, camera input, and GPU/model installation are outside this phase. The [decision log](DIRECTION_DECISIONS.md) records the change from the dashboard proposal, whose exact text remains [archived](history/2026-09-17-before-reframe/README.md).
+Test geometry-anchored expressive layers across held-out viewpoints against a matched 2.5D/view-dependent baseline. Preserve source material, initial framing, style vocabulary, and camera envelope as far as possible; document residual capacity differences.
+
+### Representation and experience study
+
+Compare **raw reconstruction** and **structured stylization** of the same scene. If feasible, add an **unstructured stylization** with approximately matched density/visibility to test the structural-selection rule more directly.
+
+Keep the underlying geometry, sources, camera envelope, interaction functions, eye/voice behavior, information availability, and provenance access equal. The unit of observation is an exploration episode over a scene with defined tasks; repeated episodes within a participant are not independent participants.
+
+Choose one primary comprehension endpoint, such as correctly identifying predefined spatial relationships. Collect navigation performance and open accounts of scene/subject interpretation, coherence, ambiguity, distraction, and comfort. Ask open questions before presenting aesthetic or agentic labels. A preference score alone cannot establish the hypothesis.
+
+Include evidence-discrimination tasks: identify original source content, inferred geometry, artistic treatment, and unknown regions using answer keys derived from actual processing/provenance records. Permit overlapping labels or ask about specific attributes; an inferred surface can simultaneously have source-derived color and artistic masking. A generated Paris interpretation cannot borrow historical authority merely by appearing beside an archival photograph.
+
+### Transfer
+
+Hold out source assets and at least one supported scene category. Freeze reconstruction and renderer settings, grammar, retry limits, and scoring. Report reconstruction success, renderer success on valid supplied scenes, and full-pipeline success separately. Record manual geometry/shader authoring as an intervention, not autonomous transfer.
+
+### Upstream-to-human comparison
+
+C-E6 compares frozen Shado baseline and treatment marker-free outputs matched by source/prompt family, camera request, settings, and generation budget. Hold Steps 6–7 and the task protocol fixed. Randomize/counterbalance participant exposure and mask checkpoint identities where feasible. Evaluate the prespecified spatial-understanding endpoint and secondary exploration/evidence outcomes.
+
+Report all-attempt usable-experience yield separately from participant outcomes on the prespecified common reconstructable subset. Retain all exclusions/failures and acknowledge survivor selection; do not fabricate comprehension scores for unavailable experiences. A separate realistic failure-encounter study can assess whole-system usability.
+
+Matching prompts and seeds does not isolate geometry: appearance, semantic content, and motion may also change. The initial causal claim concerns the complete upstream treatment's downstream effect. Metric-to-behavior associations alone do not establish geometry as the mechanism. The existing same-reconstruction raw/stylized study isolates the presentation tradeoff more directly; a powered 2 × 2 upstream-condition × renderer-style study is optional.
+
+Until Shado's paired outputs and independent quality evidence exist, controlled/captured or existing-generator scenes can support downstream HCI research. They cannot establish that Shado's Steps 1–5 caused a human benefit. Report C-E6 as untested and extend its schedule if the handoff is delayed.
+
+## Sampling and analysis
+
+Use a formative round of approximately 6–8 participants, subject to faculty and institutional approval, to establish task clarity, tolerable duration, and credible condition matching. This is a planning envelope, not a power calculation.
+
+A confirmatory study requires a prespecified primary contrast, smallest worthwhile effect or acceptable-loss margin, participant-count justification, exclusions, and analysis. If that sample is infeasible, report formative research-through-design findings rather than a general causal or equivalence claim.
+
+Use appropriate paired/hierarchical analysis for participant and scene dependence. Show distributions, effect estimates, uncertainty, failures, and missingness. Link qualitative interpretations to actual viewpoints and interactions; report the real coding process and disconfirming accounts. Owner critique and developer tests remain separate evidence.
+
+## Implementation and milestone sequence
+
+The [full Track C plan](EVA_RESEARCH_IMPLEMENTATION_PLAN.md) owns detailed contracts, experiments C-E0–C-E6, and milestones C-M0–C-M7.
+
+| Milestone | Proposed outcome |
+| --- | --- |
+| C-M0 | Feasibility, genuine reconstruction/import/navigation, contracts and protocol |
+| C-M1 | Controlled/captured reconstruction baseline |
+| C-M2 | Frozen generated-input yield and failure analysis |
+| C-M3 | Spatial expressive renderer and attachment evaluation |
+| C-M4 | Integrated EVA encounter and matched study conditions |
+| C-M5 | Human representation/evidence evaluation and C-E6 when upstream cohorts are ready |
+| C-M6 | Held-out transfer and complete pipeline benchmark |
+| C-M7 | Reproducible artifact, research report, and demonstration |
+
+The full program estimates 18–20 working weeks after resources and scope are agreed. A 4–6-week MVP proves one reconstruction-to-renderer path, attempts a generated input, adds raw/stylized inspection, and records an EVA encounter. Neither schedule is an approved semester deadline.
+
+These new identifiers do not redefine historical E1 or S0–S4 acceptance. Existing archive, installation, budget, native-validation, and owner-review requirements remain. The ComfyUI S2/S3 gate is retained, but ComfyUI is not a dependency of this plan.
+
+## Definition of success
+
+**Technical success:** The declared input class has a measured usable-reconstruction yield; the renderer consumes actual spatial data; expressive layers remain attached over the supported camera range; controls and provenance work. Freeze numerical yield/error/performance criteria on development evidence before held-out testing.
+
+**HCI research success:** Controlled evaluations establish whether and when the environments help or hinder spatial understanding, exploration, and evidence interpretation, with actionable design implications. A positive claim that Steps 1–5 benefit HCI additionally requires the matched upstream-to-human study. Null or adverse results can constitute a completed research contribution.
+
+**Integrated creative success:** EVA presents multiple supported, held-out scenes as coherent inspectable experiences, with raw and artistic representations clearly distinguished. The flagship demo includes viewpoint change, source/unknown-region inspection, and dismissal.
+
+The final package includes code, scene contracts, public fixtures, splits/configs/manifests, analysis scripts, grammar/design history, approved study results where available, limitations, and a claim-to-evidence table. A beautiful Paris capture is insufficient by itself.
+
+The HCI manuscript should lead with a human task and problem, introduce Steps 6–7 as the research artifact, explain its dependency on the separate Shado paper, and present behavioral findings before design implications and limits. Candidate implications for spatial previews, creative exploration, and exhibits remain scoped to the contexts actually studied. The work is not complete as an HCI contribution merely because reconstruction runs or shaders look convincing.
+
+## Research basis, ethics, and limits
+
+Use the [existing synthesis](EXPRESSIVE_RESPONSE_SYNTHESIS.md) and [artistic precedents](ARTISTIC_PRECEDENTS.md) with their reading-depth limits. Add primary literature on reconstruction evaluation, non-photorealistic rendering, spatial perception, and provenance visualization. Existing temporal-form work motivates construction as a design variable; it does not establish EVA's effects. The [full plan's sources](EVA_RESEARCH_IMPLEMENTATION_PLAN.md#13-research-basis) identify candidate technical foundations.
+
+Public artifacts use synthetic or redistributable material. Restricted source assets, consent, recordings, and identifying data remain in approved private storage. Preserve camera/source uncertainty, generated-content labels, and known missing regions. Do not infer emotion, consent, or historical truth from visual expression.
+
+Video-model creation, revision-algorithm superiority, arbitrary world generation, persistent relationships, production accounts, and unverified native/voice behavior are outside the current research claim. The [canonical plan](../../PLANNING.md) preserves deferred product architecture without making it a Track C completion requirement.

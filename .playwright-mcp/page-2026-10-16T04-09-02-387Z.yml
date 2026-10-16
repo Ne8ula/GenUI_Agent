@@ -1,0 +1,6 @@
+- main [ref=e4]:
+  - generic "EVA eye constructing an illustrative Paris scene from particles" [ref=e5]
+  - generic [ref=e6]:
+    - textbox "Request or scene command" [active] [ref=e7]: What's it like in 1980s Paris?
+    - paragraph [ref=e8]: "Local curated demo, not live search or historical reconstruction. Enter submits. Escape pauses. Commands: photos, pause, resume, skip, return, retry. Photographs open source and licence details in a new tab."
+    - status [ref=e9]: Enter a Paris request. Escape pauses. Type resume, skip or return to control the scene.

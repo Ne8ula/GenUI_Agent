@@ -1,73 +1,105 @@
-# EVA: Expressive Desktop Responses
+# EVA for Dreamatorium: Track C
 
 ## Research direction and retained product architecture
 
 | Field | Value |
 | --- | --- |
-| Status | v0.4 research reframe; documentation authorized, next implementation pending |
-| Date | 2026-09-17 |
-| Immediate object of inquiry | A response episode: request, expressive proposal, intervention, revision, settlement |
-| Primary platform | Existing Windows desktop foundation; retain macOS/Windows architecture |
-| Repository | Public; synthetic public evidence only |
-| Historical baseline | Successfully demonstrated Week 1 archive; no implied S0–S4 acceptance |
-| Longer-term tracks | Personal relationship through remembered context; separate short exhibit encounter |
+| Status | v0.5 Track C alignment; owner-directed scope, new milestones/results proposed |
+| Date | 2026-10-15 |
+| Agent and project | EVA is Dreamatorium's agent; GenUI_Agent is its implementation repository |
+| Primary research | Genuine 3D reconstruction plus expressive rendering and spatial experience |
+| Repository/paper boundary | Shado: Steps 1–5 and model/geometric-learning paper; GenUI_Agent: Steps 6–7 and HCI paper |
+| Primary HCI outcomes | Spatial understanding, exploration behavior, and evidence interpretation; upstream-to-human benefit tested separately |
+| Included Dreamatorium systems | System B (reconstruction) and System C (rendering/interaction) |
+| Outside the primary contribution | Track A video-model creation; Track B revision-method research |
+| Current evidence | Reusable Week 1–4 prototypes; no verified combined reconstruction-to-experience pipeline |
+| Schedule | Proposed 18–20 working-week program; no new approved deadline |
 
-The owner requested a substantive move away from a consumer-oriented dashboard study toward expressive, emotionally meaningful generative responses. This revision changes current research priorities and study sequencing. It preserves the Week 1 archive and the deferred product's authority/security requirements. The focused question, grammar, and experiment below are recommendations for review, not accepted implementation results. No new deadline is supplied.
+The owner clarified that EVA belongs to Dreamatorium and that this repository combines the supplied Dreamatorium Systems B and C. Track C is the sole research alignment. Video-generation model development remains upstream. Revision controls remain useful infrastructure, not the primary experiment or contribution. Track labels and System labels must not be used interchangeably.
+
+This update aligns the [research proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md) and [full research/implementation plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md). It preserves existing implementation, visual history, acceptance decisions, and the deferred product architecture below. Exact previous documents are [archived](docs/research/history/2026-10-15-before-track-c/README.md). Documentation alignment does not accept an implementation phase or establish research results.
 
 ## 1. Purpose
 
 ### 1.1 Research thesis
 
-EVA explores how an ordinary information request can become a revisable encounter through movement, imagery, spatial composition, timing, sound, language, silence, and context. The response is the research object. A composition should propose, attend to explicit intervention, yield, reconsider, and transform with its user while keeping the answer understandable.
+EVA investigates how generated or captured visual material can become an inspectable 3D representation and then an expressive spatial encounter. Reconstructed points, Gaussian attributes, contours, materials, and coverage inform the visual language. People can explore, compare raw and artistic representations, inspect sources and unknown regions, simplify, and stop.
 
-The predecessor, The Memory Archive, situated a conversational response in a character's voice, gaze, face, body, and object interactions. EVA investigates what changes when some of that expressive work moves into interface behavior. This transfer is a hypothesis, not evidence that geometry possesses intention or understands emotion. The desired contribution is a bounded expressive-response grammar and evidence about when people experience its revisions as responsive and open to their influence.
+**Final research goal:** Determine how Steps 6–7 change people's spatial understanding, exploration behavior, and evidence interpretation, and whether independently established improvements from Shado's Steps 1–5 translate into better interaction with EVA's environments.
 
-The owner's agenda has three strands: challenge perspective; explore generative user experience; and, for the personal agent, develop a relationship through remembered context. An exhibit concentrates on the first two without requiring durable personal relationships. The immediate study does not attempt all three.
+The GenUI_Agent paper is aimed at HCI researchers and industry practitioners. Reconstruction and rendering provide the experimental system; human outcomes, failure cases, and transferable interaction-design knowledge are the main contribution. Shado's separate paper owns upstream learning. No improvement in human behavior follows automatically from better video or reconstruction metrics.
+
+### Seven-step flow and paper split
+
+![Dreamatorium seven-step pipeline: Steps 1–5 in Shado, followed by Step 6 genuine 3D reconstruction and Step 7 aesthetic rendering in GenUI_Agent.](docs/research/figures/dreamatorium-seven-step-flow.png)
+
+*Owner-supplied flowchart, preserved unchanged; a proposed sequence rather than proof of completed stages. See the [full plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md#seven-step-flow-and-repository-ownership) for the accessible step table and handoff contract.*
+
+**Shado / Paper 1:** (1) reference image + prompt → (2) AI video generation → (3) marker-based geometric verification → (4) synthetic-data selection + model post-training → (5) marker-free generation and transfer evaluation.
+
+**GenUI_Agent / Paper 2:** (6) genuine 3D reconstruction → (7) Dreamatorium aesthetic renderer and creative interaction → HCI evaluation of understanding, exploration, and evidence judgment. EVA is Dreamatorium's agent for this experience.
+
+The causal bridge is a proposed research test: upstream consistency may affect reconstruction availability/quality, which may affect the spatial experience and human outcomes. Keep the training result, downstream system result, and human result separate. The HCI paper cites Shado's versioned outputs and evidence; it does not duplicate the model paper's contribution.
 
 ### 1.2 Next bounded experiment
 
-Proposed [E1 — revisable NYC weather](week2/docs/design/experiments/E1_REVISABLE_WEATHER.md) uses explicit synthetic data. Facts appear immediately; dithered material gathers around a time anchor. Selecting afternoon, pinning a fact, and inviting comparison changes the active composition without erasing the user's edits. Interruption and plain answer are always available.
+The first new Track C milestone is a genuine reconstruction/import/navigation smoke test using a controlled or captured static multiview scene, followed by a generated-video attempt under the same recorded policy. Preserve raw cameras and representation before adding one anchored expressive layer and a raw/stylized toggle.
 
-E1 tests a local authored vocabulary and renderer options first. It does not by itself prove model generativity or perceived emotional understanding. A later bounded score-composition trial must record actual model outputs and validation. The synthetic uptown-M transit example in [DESIGN.md](DESIGN.md) tests conceptual transfer; it is not a required second connector.
+Existing Paris R11/R12 are labelled source-derived rendering baselines; R13 eye-to-Paris is concurrent construction work. They are reusable foundations and must not be overwritten or relabelled as recovered geometry. The historical [E1 weather experiment](week2/docs/design/experiments/E1_REVISABLE_WEATHER.md) supplies interaction/control lessons; it is no longer the primary research deliverable.
 
-Recommended question: **How does a composition's contingent visual and temporal response to user intervention shape perceived responsiveness and user influence during an ordinary information request?**
+**Primary question:** How do reconstructed, expressive environments affect spatial understanding, exploration, and evidence interpretation—and how do those outcomes change with matched baseline versus Shado-treated video inputs?
 
 ### 1.3 Current repository and source hierarchy
 
-The repository now contains a runnable archived Tauri 2/React/TypeScript/Rust demo under [week1/](week1/README.md), with synthetic weather and preference data, narrow Rust commands, microphone transcription, and direct ElevenLabs narration. Its authored choreography is not general model composition, live weather, a full policy broker, or a renderer benchmark. The owner reported Week 1 successful; older individual review records remain historical.
+The [capability audit](docs/research/EVA_IMPLEMENTATION_STATUS.md) distinguishes inspected code, dated recorded validation, current integration gaps, and owner decisions. No runtime tests were rerun for this documentation alignment.
 
-This plan governs scope, architecture, and phase gates. [DESIGN.md](DESIGN.md) is the one canonical grammar. The [study proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md) owns the research question and evaluation design; the [synthesis](docs/research/EXPRESSIVE_RESPONSE_SYNTHESIS.md), [predecessor audit](docs/research/MEMORY_ARCHIVE_TRANSFER.md), and [precedents](docs/research/ARTISTIC_PRECEDENTS.md) supply evidence. [AGENTS.md](AGENTS.md) governs development. See the [decision log](docs/research/DIRECTION_DECISIONS.md) for authority and changes, and [historical snapshots](docs/research/history/2026-09-17-before-reframe/README.md) for the exact previous documents.
-
-### 1.4 Three research scales and a deferred product
-
-| Track | Inquiry | Present scope |
+| Foundation | Implemented or recorded | Remaining boundary |
 | --- | --- | --- |
-| Immediate response | Situated expression and revision within a request episode | Primary study; synthetic weather, session continuity, plain-answer alternative |
-| Longitudinal personal agent | Remembered interaction and evolving expression over time | Later study requiring persistent-memory governance and repeated use |
-| Exhibit encounter | A short experience that invites a different perspective | Separate adaptation; no durable personal identity required |
-| Full desktop product | Screen awareness, tools, durable memory, specialists, scoped actions, future Live2D | Retained architecture/roadmap, not prerequisite to the response study |
+| Week 1 | Archived desktop/weather/voice demo; owner-reported success | Historical synthetic/authored foundation, not later acceptance |
+| Week 2 | Browser particle/weather experiment and controls | E1 pending; previous native candidate quarantined |
+| Week 3 | Expressive eye/overlay and bounded voice integration evidence | Specific visual approval; full physical live-voice acceptance remains separate |
+| Week 4 core/Rust | Authored geometry, renderer work, pure cores/mock-backed broker | No proof of genuine multiview reconstruction or complete native staging |
+| Paris R11/R12 | Source-derived GPU/browser candidates with recorded checks | Not trained 3DGS, LiDAR, unknown-view geometry recovery, or final phase acceptance |
+| Paris R13 | Eye-to-Paris implementation in progress at audit time | Integrated route/runtime/acceptance needs current evidence |
+| New Track C pipeline | Reconstruction, scene import, spatial evaluation, provenance inspection, and studies proposed | Must be implemented and evaluated; existing graphics do not establish these claims |
 
-The older relational/instrumental dashboard comparison is superseded for the immediate study. Calendar planning, broad memory-region visualization, sarcasm, and multi-provider orchestration are not current study requirements. Full-product Sections 5–13, 15's deployment/release machinery, and Milestones 0–12 remain deferred requirements when those capabilities are implemented. Their security invariants still constrain any subset that is built.
+This file owns scope, retained architecture, and phase gates. The [research proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md) states the HCI argument; the [full Track C plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md) owns detailed hypotheses C-H1–C-H6, experiments C-E0–C-E6, and milestones C-M0–C-M7. The [audit](docs/research/EVA_IMPLEMENTATION_STATUS.md) owns the dated implementation/evidence inventory.
+
+[DESIGN.md](DESIGN.md) remains the canonical visual grammar, with latest explicit owner refinements controlling particular candidates. Older weather/revision-centered scope passages in historical guides do not override the current Track C scope. [AGENTS.md](AGENTS.md) governs development. [Synthesis](docs/research/EXPRESSIVE_RESPONSE_SYNTHESIS.md), [predecessor audit](docs/research/MEMORY_ARCHIVE_TRANSFER.md), and [precedents](docs/research/ARTISTIC_PRECEDENTS.md) remain research context rather than new empirical results.
+
+### 1.4 Track boundaries and deferred product
+
+| Area | Role | Scope |
+| --- | --- | --- |
+| Track A: video-model creation | External input provider/research dependency | No generator training, marker-learning experiment, or upstream improvement claim |
+| Track B: revisions | Supporting interaction infrastructure | Preserve controls, edits, undo, interruption, and equivalent functions |
+| Track C: reconstruction and experience | Sole EVA research alignment | Dreamatorium System B + System C; raw geometry, spatial expression, inspection, evaluation |
+| Longitudinal relationship | Separate possible study | No relationship claim from a short encounter |
+| Exhibit delivery | Possible presentation of Track C results | Venue/installations need their own scope; no prerequisite |
+| Full desktop product | Retained deferred architecture | Tools, memory, screen access, specialists, actions, and Live2D are not Track C completion criteria |
+
+Per-scene Gaussian optimization is reconstruction work within Track C. Video-backbone training is Track A. A source-image relief is a valid labelled artistic representation but does not satisfy genuine reconstruction milestones. Supplied Dreamatorium System B means reconstruction; the owner's Track B label means revisions.
 
 ## 2. Goals and non-goals
 
 ### 2.1 Current goals
 
-- Define a coherent authored vocabulary that a model can compose through bounded data, with subject-specific visual and temporal behavior.
-- Make co-design observable through intervention, preserved constraints, and revision rather than collaborative claims in dialogue.
-- Keep facts, units, uncertainty, source, control, and plain answer readable throughout expression.
-- Ground decisions in academic primary sources and a code-aware predecessor audit; separate claims, inference, proposal, and measurement.
-- Study perceived responsiveness as the primary outcome; use comprehension as a guardrail and user influence as explanatory evidence.
-- Preserve local, reversible interaction and deterministic authority while reusing the existing foundation.
-- Record design alternatives, failures, actual tools/models, evidence, and owner decisions.
+- Recover and evaluate navigable spatial representations from declared controlled/captured/generated input classes using reproducible existing methods.
+- Derive contours, points, selective materials, dithering, and fragmentation from actual scene attributes.
+- Preserve raw reconstruction, camera/scale conventions, provenance, unknown regions, and all attempted inputs.
+- Evaluate spatial attachment over viewpoints and interpretation through controlled representation comparisons.
+- Test whether matched upstream baseline/treatment outputs lead to different human outcomes after fixed Steps 6–7; report reconstruction failures and conditional participant results separately.
+- Reuse EVA's eye, host, and bounded controls without making revision superiority the research question.
+- Demonstrate held-out scene-family transfer and record manual rescue or bespoke authoring.
+- Preserve architecture, archives, concurrent work, actual evidence, accessibility, and scoped owner decisions.
 
 ### 2.2 Outside the immediate study
 
-No broad implementation is authorized by this revision. No live weather/transit account, calendar integration, full backend, personal relationship claim, institutional-study bypass, camera/emotion classification, Unreal/MetaHuman port, Live2D, GPU/model installation, or exhibit deployment is implied.
+Video-generator training/post-training, general revision-model research, arbitrary world generation, historical ground truth inferred from generated scenes, persistent relationships, full backend completion, production accounts, and unverified native camera/window/wallpaper behavior are outside the current claim.
 
-The first experiment need not use voice or generated media. Expression must remain useful in silence, with reduced motion, and as a plain answer. Formal accessibility certification is not claimed; readable facts, keyboard control, visible focus, interruption, and reduced-motion behavior remain required.
+A browser study may establish browser behavior only. Voice and native integration remain separate scoped extensions. No new installations, provider spending, participant recruitment, or implementation phase are authorized merely by this document.
 
-Full-product ambitions remain available for later work under their own phase gates. Do not use their size to displace the focused response investigation.
+The new study may use genuine 3D reconstruction without importing the old deferred Blender/Live2D/full-product scope. Choose existing tools in feasibility; do not replace the app architecture or mandate a different renderer without evidence. Preserve local stop, keyboard access, readable facts, reduced motion, and plain/raw inspection.
 
 ## 3. Product principles
 
@@ -131,7 +163,7 @@ EVA may precompute local embeddings, likely retrieval keys, UI skeletons, layout
 
 ## 4. Retained technology baseline
 
-Tauri/React/TypeScript/Rust and the bounded EVA-owned protocol remain the implementation foundation. The table also preserves historical full-product integration choices; most are not implemented in the archive or required by E1. Model labels below are unverified configurable planning choices, not claims of current product availability or API access.
+Tauri/React/TypeScript/Rust and the bounded EVA-owned protocol remain the application foundation. Track C adds a proposed offline reconstruction/export pipeline and a tested scene import adapter; see the full plan for candidate tools. The table below preserves deferred full-product choices, not a current capability list or Track C dependency list. Model labels are historical configurable proposals, not verified availability or API access.
 
 | Layer | Retained baseline / deferred selection |
 | --- | --- |
@@ -170,19 +202,19 @@ All model names must be configuration values, not hard-coded assumptions. Capabi
 
 ### 4.1 Rendering and media responsibilities
 
-Inspect the existing implementation before replacing it. The archive includes local authored animation and WebGL eye source; this establishes a reusable foundation, not measured performance for a new composition. See the [foundation audit](docs/research/MEMORY_ARCHIVE_TRANSFER.md#eva-foundation-inspected).
+Inspect the actual Week 4 paths before selecting a renderer. Preserve the existing Rust and Three.js studies, including explicitly permitted source-derived assets. The reconstruction requirement concerns the new pipeline's evidence, not a retroactive prohibition on historical artistic prototypes.
 
-| Responsibility | Proposed implementation | Boundary |
+| Responsibility | Proposed implementation | Evidence boundary |
 | --- | --- | --- |
-| Response composition | Provider-neutral TypeScript adapter proposes an expressive score | Approved primitives, evidence refs, semantic anchors and bounded recipes; no renderer code |
-| Reading and interaction | React/TypeScript | Crisp facts, accessible order, local manipulation, focus, stop and plain answer |
-| Expressive rendering | Compare a small Canvas 2D and authored WebGL field in E1 | Same fixture/seed/load; actual Tauri-window measurements determine choice |
-| Privileged operations | Rust policy boundary | Expression and model affect never confer authority; full broker remains deferred |
-| Design exploration | Mandatory change-specific Figma Weave references via direct models or reusable workflows before every UI change/pass | Generate and inspect images plus video for motion; missing prerequisites block UI edits; runtime media remains optional |
-| Optional future media | Narrow ComfyUI or other approved adapter | No early installation; no critical-path dependence |
-| Alternative renderer | Native wgpu, WebGPU, or exhibit-oriented tooling only after a measured need | Separate proposal and compatibility/access review; no automatic replacement |
+| Input/reconstruction | Python orchestration, existing camera recovery and per-scene 3DGS or compatible representation | Fixed config, all attempts, held-out views; not video-model training |
+| Scene exchange | Versioned scene/camera/provenance package | Coordinates, scale, raw attributes, coverage, representation type |
+| Spatial expression | Existing renderer path with a measured scene-import adapter | Geometry-anchored contours/materials and raw/stylized comparison |
+| Reading/interaction | React/TypeScript and existing bounded controls | Accessible sources, navigation, pause, inspection, stop |
+| Privileged operations | Existing Rust boundary where scoped | Mock contracts do not establish native integrations |
+| Development references | Current reference-authoring workflow and latest owner override | Actual outputs, inspection, provenance, budget, preservation |
+| Optional input generation | Existing approved provider or supplied upstream output | Input provenance only; no Track A claim |
 
-Do not assume the RTX 5080 makes a renderer necessary or fast. Measure frame-time distributions, local input response, settled resource use, failure, DPI/resize and reduced-motion paths. Keep model calls out of frame-by-frame animation. No cloud benchmark proves native desktop responsiveness. TouchDesigner remains a separately scoped authoring/exhibit possibility, not a desktop dependency.
+Do not assume hardware makes a pipeline feasible. Measure reconstruction cost separately from runtime frame time, local input response, resource use, failure, DPI/resize, and reduced motion. Keep model and reconstruction calls out of the animation loop. Per-scene optimization and interactive rendering may have different hardware targets; verify the declared setup.
 
 ### 4.2 Workstation target and experimental infrastructure
 
@@ -662,7 +694,7 @@ Speech recognition must be provider-neutral. Local and cloud transcription candi
 
 Personal deployment, a response study, and an exhibit have distinct purposes. The voice/personality preferences above are product configuration, not empirical findings or required study manipulations.
 
-The immediate proposal compares **contingent expression** with **matched authored motion**: identical factual updates, controls, reading content, and response availability, with coordinated expressive accommodation to intervention as the varied behavior. Plain answer is a usability reference and available escape. Start silent, with the same eye behavior and neutral wording; do not bundle voice acting, sarcasm, memory references, and timing into the contrast.
+The earlier contingent-expression versus matched-authored-motion comparison is historical supporting research. Active Track C experiments C-E3/C-E4 compare spatial representations and evidence interpretation as specified in the [full plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md). Hold voice, eye behavior, wording, source access, and essential controls constant; do not bundle voice acting, sarcasm, personal memory, or different response timing into a visual-representation contrast.
 
 Keep momentary expressive state, authored persona, remembered interaction history, and the user's actual experience distinct. Begin with simple expressive intentions such as attend, invite-comparison, reconsider, and settle. PAD/Plutchik state remains an investigable option, not a scientifically established UI mapping.
 
@@ -1415,11 +1447,13 @@ No benchmark score proves immunity. Release decisions use attack success, utilit
 
 ## 14. Expressive responses and Generative UI
 
-[DESIGN.md](DESIGN.md) is the canonical grammar. The current research object is a response episode whose composition can change with the user. Cards, charts, and dashboards are available reading forms, not the default organizing principle.
+[DESIGN.md](DESIGN.md) is the canonical grammar. Track C studies the reconstruction-to-experience path: raw scene, spatially grounded expression, exploration, and evidence inspection. Revision is a supporting affordance. Use the active plan and proposal for scope when older design examples foreground weather or revision.
 
 ### 14.1 Visual direction
 
-Use a constrained bone/black/red candidate vocabulary with readable facts and spatially attached expressive material. The owner selected red ordinary expression for Week 1; the previous amber-only rule is historical for that rendition. Carrying red forward is a new continuity candidate, not an accepted new baseline. Host-owned errors, provenance and confirmations use explicit words, shape, placement, and fixed control behavior. No emotional color lookup table or color-only authority.
+Preserve the current explicitly retained candidate and its source record; do not apply a generic palette rule over newer owner refinements. Week 1 red/bone/black, Week 2 weather, Week 3 eye, and Week 4 Paris studies are distinct historical decisions. R12's original-source color refinement is provisionally retained, not general phase acceptance.
+
+The new Track C renderer will apply a coherent visual grammar to actual reconstructed attributes. Preserve raw comparison and distinguish deliberate fragmentation from missing geometry. Host-owned errors, provenance, and confirmations use explicit words, shape, placement, and stable controls; artistic color never confers authority.
 
 ### 14.2 Typeface system
 
@@ -1469,13 +1503,15 @@ Future Visual Capsules retain the Section 13.9 process boundary: no network, sec
 
 ### 14.13 Canonical guide and scenarios
 
-DESIGN.md fulfills the formerly named GENERATIVE_UI_DESIGN.md deliverable; no second guide is needed. It specifies ownership, visual/temporal primitives, multimodal coordination, controls, continuity, uncertainty and evidence. Its synthetic NYC weather example is the first build candidate; the fictional uptown-M example explores transfer without assuming valid live service.
+DESIGN.md remains the one visual grammar. Paris is the flagship reconstruction/rendering encounter; controlled/captured scenes provide technical references and a contrasting held-out category tests transfer. Historical synthetic weather/transit work supplies reusable controls and design lessons. A photographic-looking or scan-inspired result is not reconstruction evidence without the pipeline, cameras, and evaluation records.
 
 ### 14.14 Bounded media and authoring
 
-Before every frontend/UI change, redesign, reimplementation or new visual pass, all development agents/environments must generate and inspect fresh change-specific references through direct Weave model calls OR a reusable Weave workflow: images, plus video for motion/temporal changes. No manual graph-building is required for each task. Follow [the required reference-packet gate and categorized review folders](docs/design/FIGMA_WEAVE.md#mandatory-prerequisite-for-every-ui-change) before editing. Missing access, usable model/workflow, cost approval or inspectable output blocks UI work; unrelated non-UI work may continue. This is mandatory development preparation, not a runtime generation dependency. The owner's 2026-09-28 selection supersedes Higgsfield for development authoring only; preserve historical outputs and all phase/budget gates. The official Figma MCP supports direct Weave generation or existing tool runs after capability verification; graph editing remains in Weave only when a custom workflow is chosen. Do not reduce it to decorative backgrounds or silently substitute a provider. Exact factual labels are rebuilt from data. Optional assets use validated catalog entries and cancellation/expiry; late results cannot attach to dismissed revisions.
+Follow the current [reference-authoring workflow](docs/design/FIGMA_WEAVE.md), including its 2026-10-15 temporary owner override of the Weave-only route. Verify the active rule before each visual implementation pass. Preserve fresh references, actual inspection, provenance, budget limits, and before/after evidence. Documentation-only work does not require generation.
 
-ComfyUI is not necessary for E1 or the core study. Preserve the owner gate: earliest S3 after explicit S2 acceptance, with a separately scoped, measured experiment. No model downloads or GPU installation now.
+Reconstruction inputs, generated art-direction references, raw scene data, and runtime artistic layers have different roles. Use validated asset catalogs and reject late results after cancellation. Existing source-derived candidates remain labelled baselines.
+
+ComfyUI is optional and not required for this program. Preserve the existing earliest-use S3-after-explicit-S2-acceptance gate unless separately changed. The C-M milestones do not silently substitute for those historical gate IDs.
 
 ### 14.15 Development visual history
 
@@ -1485,7 +1521,7 @@ Use docs/design/revisions/<revision-id>/ and the DESIGN.md manifest contract. Re
 
 ## 15. Observability and evaluation
 
-The immediate research evaluation is the response-episode protocol in the [study proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md), with E1's bounded renderer and interaction checks. The infrastructure, benchmark suites and release gates below remain full-product obligations for the relevant capabilities; they are not all prerequisites to a synthetic response fixture.
+The active research evaluation is Track C: C-E0 runtime invariants, C-E1 reconstruction, C-E2 spatial attachment, C-E3 representation/experience, C-E4 evidence legibility, C-E5 transfer, and C-E6 the upstream-to-human comparison. C-E3/C-E4/C-E6 center the HCI paper; technical experiments establish validity and feasibility. Evaluate raw geometry independently of artistic output. See the [proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md) and [full plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md). The infrastructure and release machinery below remain deferred full-product obligations.
 
 ### 15.1 Evaluation stack
 
@@ -1799,23 +1835,38 @@ Every major phase, including each product milestone below and each study deliver
 
 Future acceptance records belong in `docs/design/acceptance/<phase-id>.md` and link the build/revision, test script, technical results, visual records, feedback, and decision/date. Status is pending until the owner provides a decision. Passing automated tests does not mark a milestone complete. Owner-only approval is sufficient for these development gates; the separate participant study retains its faculty and institutional requirements.
 
-The 2026-09-17 request explicitly authorizes direct research and documentation revisions to PLANNING.md, DESIGN.md, the study proposal, and affected guidance/indexes. The earlier document-creation gate is fulfilled/superseded for this work. The next implementation still requires its own scope decision; this reframe advances no study phase.
+The 2026-10-15 request authorizes aligning the plan and proposal with Dreamatorium Track C while preserving existing work and separating implementation from proposal. This documentation revision advances no implementation or participant-study phase. Earlier owner approvals remain tied to their actual scope/revision.
+
+### Active Track C milestones
+
+The [full plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md) specifies proposed dependencies and exit gates. All new C-M milestones remain proposed; existing foundations are credited in the capability audit rather than retroactively marked as their completion.
+
+| Milestone | Deliverable | Approximate working period |
+| --- | --- | --- |
+| C-M0 | Genuine reconstruction/import/navigation smoke test, contracts, protocol | Weeks 1–2 |
+| C-M1 | Controlled/captured reconstruction baseline | Weeks 3–4 |
+| C-M2 | Frozen generated-input yield and failure analysis | Weeks 5–7 |
+| C-M3 | Spatial expressive renderer and attachment evaluation | Weeks 8–10 |
+| C-M4 | EVA encounter, raw/source inspection, equivalent controls | Weeks 11–12 |
+| C-M5 | Representation/evidence findings; upstream-to-human study if Shado cohorts are ready, otherwise explicitly untested | Weeks 13–15 |
+| C-M6 | Held-out stage-specific and full-pipeline transfer | Weeks 16–18 |
+| C-M7 | Reproducible artifact, research report, demonstration | Weeks 19–20 |
+
+These are estimates after resources/scope are agreed, not a new deadline. A 4–6-week MVP tests one actual reconstruction-to-renderer path and a generated-input attempt. Reconstruction feasibility can fail while a labelled renderer study remains useful; report the boundary. C-E6 requires Shado's frozen paired Step 5 outputs and independent upstream evidence. If that handoff is delayed, continue downstream HCI studies on labelled fixtures; extend the schedule for C-E6 and make no Shado-caused human-benefit claim meanwhile.
 
 ### Near-term study delivery phases
 
-This revised dependency order follows the expressive-response direction. It does not reset history, mark a phase complete, supply a new deadline, or authorize implementation. Week 1 was successful and remains archived; it is not acceptance of these reframed phases.
+**Historical S0–S4 record:** The following identifiers retain their original meaning and acceptance history. They are not the active Track C roadmap. Do not rename old E1 records or infer completion from the new milestones.
 
-| Phase | Proposed deliverable and owner exercise | Boundary |
+| Historical phase | Original scope | Current treatment |
 | --- | --- | --- |
-| S0 — Research direction and grammar | Review synthesis, predecessor audit, candidate questions, canonical grammar, decision log and E1 specification | Current documentation work; decision pending |
-| S1 — Local expressive response | Exercise a bounded authored weather response, score validation, continuity, interruption, plain answer and measured renderer choice | E1 candidate; no claim of model generation or user-study result |
-| S2 — Composed and revisable response | Test actual bounded model scores, unseen intervention combinations, semantic validation, session continuity and late-result rejection | One scenario first; persistent personal memory and voice not required |
-| S3 — Optional media investigation or documented deferral | If separately authorized after explicit S2 acceptance, compare one bounded still-image workflow with no-media/cached-media; otherwise record why procedural expression is sufficient | Earliest ComfyUI installation gate unchanged; optional, not a core-study dependency |
-| S4 — Evaluation-ready response conditions | Exercise matched factual/function/timing conditions, repeatable episodes, logging, comprehension checks and interview materials | Owner test plus separate faculty/institutional study approval |
+| S0 | Expressive-response research direction/grammar | Retained history; Track C now governs active research |
+| S1 | Authored revisable weather response | Reusable controls and expressive evidence; E1 pending |
+| S2 | Bounded model-composed/revisable response | Supporting work; no automatic acceptance or new primary objective |
+| S3 | Optional media investigation after explicit S2 acceptance | Existing ComfyUI installation gate retained; not a Track C dependency |
+| S4 | Revision-centered matched study conditions | Historical protocol; new studies use C-E identifiers |
 
-The former two-dashboard relational/instrumental comparison is superseded by the proposal's contingent-expression comparison. Transit is a transfer example until separately scoped. Longitudinal memory and exhibits require their own questions, data policy, and acceptance.
-
-For an authorized S3 generation experiment, verify current free/peak VRAM, use one reviewed still-image workflow and one active job, measure cold/warm asset and UI latency separately, and test no-media, failure, cancellation and supersession. No assumed GPU speed benefit. A negative result or documented deferral can close that optional investigation only with owner acceptance; it must not force a media dependency into the study.
+Longitudinal memory, production actions, and exhibits remain separately scoped. If an optional S3 experiment is later authorized, preserve its original finite budget, hardware checks, one-job limit, latency/failure/cancellation measurements, and owner acceptance requirement. No new C-M result silently satisfies its prerequisite.
 
 ### Deferred full-product milestones
 
@@ -2161,7 +2212,7 @@ The [selective synthesis](docs/research/EXPRESSIVE_RESPONSE_SYNTHESIS.md) recove
 
 For every material claim record source, reading depth, evidence strength, scope, contrary evidence/limits, design consequence and a test. Keep the chain explicit: prior concept → predecessor mechanism → proposed EVA interpretation → question → required evidence.
 
-The near-term questions concern contingent expression, comprehension, user influence and interpretation within an episode. Longitudinal relationship and exhibit encounter are separate scales. Broader product security, memory, tools, orchestration and privacy research remains relevant to later capability releases, not a reason to expand the first experiment.
+The active HCI questions concern representation, evidence interpretation, and upstream-to-human outcomes (C-H3/C-H4/C-H6), supported by reconstructability, spatial attachment, and transfer (C-H1/C-H2/C-H5). Revision-centered literature remains supporting context. Extend the primary-source review to spatial cognition, exploration behavior, human-AI evaluation, non-photorealistic rendering, and uncertainty/provenance. Longitudinal relationships and full-product capabilities remain separate.
 
 Public synthesis and synthetic design traces belong here. Restricted texts and participant/private data must not be copied into the public repository. Prepared instructions, implementation code, observed behavior and participant evidence must be reported separately.
 
@@ -2169,13 +2220,14 @@ Public synthesis and synthetic design traces belong here. Restricted texts and p
 
 Immediate decisions for owner/faculty review:
 
-- acceptance or revision of the focused question and E1 scope before implementation;
-- which attending/reconsidering behavior survives executable critique; no new visual baseline is accepted yet;
-- field renderer choice from actual Tauri measurements, with driver/DPI/refresh and failure-path evidence;
-- exact token sizes, contrast, effect budgets and timing after testing the red/bone/black candidate;
-- actual provider/model access and closed score schema for S2, without assuming subscriptions confer API access;
-- matched-condition implementation, instrument wording, sampling feasibility and institutional approval;
-- whether a later extension pursues personal continuity, domain transfer or an exhibit.
+- choose the first controlled/captured input and supported generated-video scene class;
+- verify reconstruction tools, licenses, compute budget, scene format, and renderer-import feasibility;
+- fix camera/scale conventions, held-out splits, yield/error thresholds, and navigation envelope;
+- select the visual baseline using current owner evidence without overriding concurrent work;
+- choose C-H3's primary comprehension endpoint and experiential inquiry;
+- freeze the Shado Step 5 handoff and C-E6 matched conditions, independent upstream diagnostics, and failure/eligibility accounting;
+- finalize matching, sampling, evidence-discrimination margins, data rights, and institutional review;
+- decide which bounded native or voice integration, if any, is necessary beyond the browser research fixture.
 
 Deferred product decisions remain open when their milestones are scoped: production connector contracts; capture/redaction and OS accessibility; sandbox backend; lease/receipt authentication; artifact/history stores; memory indexes; voice/wake-word fallbacks; security monitors; runtime provider routing; adapter versions; private observability/backups; global hotkeys; Live2D events. Historical model names are not availability guarantees.
 
@@ -2183,7 +2235,7 @@ ComfyUI workflow/model/budget, optional cloud infrastructure, and alternative re
 
 ## 20. Definition of done for the full product vertical slice
 
-This retains the v0.2 full vertical-slice definition; it is not the completion criterion for the smaller semester prototype in Sections 1.4 and 17. The full slice is complete when the common owner acceptance gate has passed and a clean macOS or Windows installation can:
+This retains the v0.2 deferred full-product definition; it is not the completion criterion for Dreamatorium Track C. Track C success is defined in the full research/implementation plan as reconstruction/spatial integrity, evaluated expression, and reusable integrated demonstration. The full slice is complete when the common owner acceptance gate has passed and a clean macOS or Windows installation can:
 
 - launch EVA by “Hey EVA” and hotkey;
 - render the eye and floating overlay;

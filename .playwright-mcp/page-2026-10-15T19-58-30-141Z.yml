@@ -1,0 +1,5 @@
+- main [ref=f6e3]:
+  - heading "EVA Week 4 — Rust procedural Seed-33 reconstruction" [level=1] [ref=f6e4]
+  - generic [ref=f6e5]:
+    - img "Seed-33 Paris café constructed from procedural Rust geometry; fixed camera; rear-facing walker moves left and away" [ref=f6e7]
+    - status [ref=f6e8]: Initializing Rust/WASM renderer…
