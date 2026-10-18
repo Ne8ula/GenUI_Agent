@@ -1,0 +1,158 @@
+{
+  "status": "complete",
+  "fixture": {
+    "schema_version": 1,
+    "scene": "ai_001_004",
+    "camera": "cam_00",
+    "selection_date": "2026-10-18",
+    "selection_status": "owner-accepted",
+    "reconstruction_acceptance": "pending",
+    "source_kind": "synthetic-rendered-room",
+    "condition": "supplied-depth-and-camera-poses",
+    "license": "CC-BY-SA-3.0",
+    "attribution": "Apple Hypersim; underlying scene assets by Evermotion",
+    "train_frames": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95
+    ],
+    "evaluation_frames": [
+      12,
+      37,
+      62,
+      87
+    ],
+    "position_audit_frames": [
+      0,
+      50
+    ],
+    "voxel_size_m": 0.02,
+    "sdf_trunc_m": 0.08,
+    "max_depth_m": 12.0,
+    "integration_pixel_stride": 2,
+    "evaluation_pixel_stride": 4,
+    "max_download_bytes": 536870912,
+    "max_extracted_bytes": 1073741824,
+    "max_range_bytes": 33554432
+  },
+  "input_manifest_sha256": "fcde0978bf0ae815d6b8b41c47701211d898e6ec1ea2e6c8233e2e715578e733",
+  "source_revision": "6da266ede75b5ff1e0a1786580730949c0c5893b",
+  "script_sha256": "67129b02eb59f3d07aa63758ca29831919b64cbbf3b93377877d56ac07b36277",
+  "python": "3.12.12",
+  "numpy": "2.2.6",
+  "open3d": "0.19.0",
+  "condition": "supplied-depth-and-camera-poses",
+  "attribution": "Apple Hypersim; underlying scene assets by Evermotion",
+  "dataset_license": "CC-BY-SA-3.0",
+  "dataset_license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "dataset_license_source": "https://raw.githubusercontent.com/apple-aiml-research/ml-hypersim/3463c5c4a75f3cbfc65ed31cfd6e87204b3a2254/README.md",
+  "downloaded_LICENSE_txt_scope": "Apple toolkit software license, separate from dataset license",
+  "tone_mapping": "per-channel Reinhard x/(1+x), gamma 1/2.2, fixed for every frame",
+  "evaluation": [
+    {
+      "frame": 12,
+      "status": "evaluated",
+      "reference_valid_pixels": 49152,
+      "mesh_hit_pixels": 48950,
+      "hit_coverage": 0.9958902994791666,
+      "mae_m_on_hits": 0.005969054996967316,
+      "median_m_on_hits": 0.0009710788726806641,
+      "p95_m_on_hits": 0.009750628843903542,
+      "within_5cm_fraction_of_all_valid": 0.9859212239583334
+    },
+    {
+      "frame": 37,
+      "status": "evaluated",
+      "reference_valid_pixels": 46149,
+      "mesh_hit_pixels": 7256,
+      "hit_coverage": 0.15722984246679234,
+      "mae_m_on_hits": 0.513136088848114,
+      "median_m_on_hits": 0.3148527145385742,
+      "p95_m_on_hits": 1.169094204902649,
+      "within_5cm_fraction_of_all_valid": 0.006479013629764459
+    },
+    {
+      "frame": 62,
+      "status": "evaluated",
+      "reference_valid_pixels": 49152,
+      "mesh_hit_pixels": 48995,
+      "hit_coverage": 0.9968058268229166,
+      "mae_m_on_hits": 0.009234055876731873,
+      "median_m_on_hits": 0.0009236335754394531,
+      "p95_m_on_hits": 0.012118472717702389,
+      "within_5cm_fraction_of_all_valid": 0.9794514973958334
+    },
+    {
+      "frame": 87,
+      "status": "evaluated",
+      "reference_valid_pixels": 49152,
+      "mesh_hit_pixels": 49067,
+      "hit_coverage": 0.9982706705729166,
+      "mae_m_on_hits": 0.008010349236428738,
+      "median_m_on_hits": 0.0009388923645019531,
+      "p95_m_on_hits": 0.009625167585909367,
+      "within_5cm_fraction_of_all_valid": 0.98333740234375
+    }
+  ],
+  "position_audit": [
+    {
+      "frame": 0,
+      "samples": 12288,
+      "median_m": 0.0019722508314433153,
+      "p95_m": 0.003973078282448431,
+      "max_m": 0.006379071059574353
+    },
+    {
+      "frame": 50,
+      "samples": 12288,
+      "median_m": 0.002056581154764956,
+      "p95_m": 0.004155620531956583,
+      "max_m": 0.007693589920179013
+    }
+  ],
+  "vertices": 229126,
+  "triangles": 443923,
+  "point_count": 220002,
+  "bounds_m": [
+    [
+      0.01,
+      -3.5300000000000002,
+      -0.009771300481834819
+    ],
+    [
+      7.152175036192381,
+      4.503533400291701,
+      2.6095026559105223
+    ]
+  ],
+  "elapsed_seconds": 3.9367584999999963,
+  "limits": [
+    "One synthetic room and one camera trajectory",
+    "No RGB-only inference or independent physical ground truth",
+    "Evaluation error is conditional on mesh hits; coverage is reported separately",
+    "No UI integration, automatic objects, memory anchors or owner milestone acceptance"
+  ],
+  "output_sha256": {
+    "cameras.json": "a732c382b816a6bbe6f7c1936c03401fd56dad73386ce686943cc7488b781907",
+    "evaluation.png": "121c9b5d4596329e699a0a8bc0b0d180d59e360936b301af8b082fa35b383164",
+    "room-mesh.ply": "f3555f41ae4e7755a38d3db41b2981698f3a9c4b297ce989052f5bdc050373ec",
+    "room-points.ply": "b7c05e5c56cf0715165f419be43088752cb14631d5fc334e0003b9b224047a86"
+  }
+}

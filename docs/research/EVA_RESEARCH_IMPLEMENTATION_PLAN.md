@@ -82,6 +82,8 @@ No new deadline or speculative week-by-week schedule is assigned.
 
 New milestones need actual evidence and owner decisions. Paris fixtures/R18 acceptance do not complete C-M0. Historical E1/S0?S4 and full-product milestones remain distinct.
 
+Current enabling evidence: the owner-selected [Hypersim ai_001_004 baseline](hypersim/README.md) performs offline supplied-depth/supplied-pose fusion. Its [r02 review](../design/acceptance/hypersim-ai-001-004-r02.md) retains a low-coverage evaluation view. C-M0/C-M1 remain pending; this is not RGB-only reconstruction, an integrated navigation fixture or a completed research experiment.
+
 ## Applications
 
 The midterm narrows the encounter to one reconstructed room and inspectable memories. Crime-scene journaling is a separate future hypothesis. No forensic method, blood-pattern estimate, instrument compatibility conclusion or evidentiary validation is established here; it cannot inherit validity from memory-journal studies or attractive graphics.

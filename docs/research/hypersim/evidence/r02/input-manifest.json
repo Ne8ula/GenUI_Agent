@@ -1,0 +1,302 @@
+{
+  "status": "complete",
+  "fixture_sha256": "7e3f220fb6cb86b5ae2a1c769917ce5aeec0ed5e76ab8cd1cb080fa2aa79368e",
+  "archive": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip",
+  "files": {
+    "camera_parameters.csv": {
+      "sha256": "0b40e0884ba2458e7bdcdbb27de46a4ec6eacbfbbb4ef0d70188d78098cebdc9",
+      "bytes": 312522,
+      "source": "https://raw.githubusercontent.com/apple-aiml-research/ml-hypersim/3463c5c4a75f3cbfc65ed31cfd6e87204b3a2254/contrib/mikeroberts3000/metadata_camera_parameters.csv"
+    },
+    "metadata_images.csv": {
+      "sha256": "16733e64cd379d1ff7bf7ae62c33f5646c9842bf25960f402cdcb948fa4d2e4c",
+      "bytes": 2529152,
+      "source": "https://raw.githubusercontent.com/apple-aiml-research/ml-hypersim/3463c5c4a75f3cbfc65ed31cfd6e87204b3a2254/evermotion_dataset/analysis/metadata_images.csv"
+    },
+    "LICENSE.txt": {
+      "sha256": "8bfda405dc86c28a7b8d1a669d17c07976e4a6813ac643a07999d71bd8ee882b",
+      "bytes": 2662,
+      "source": "https://raw.githubusercontent.com/apple-aiml-research/ml-hypersim/3463c5c4a75f3cbfc65ed31cfd6e87204b3a2254/LICENSE.txt"
+    },
+    "ai_001_004/_detail/metadata_scene.csv": {
+      "sha256": "60171c3d50c98cfc6ee22f140daf1e2c56ed05604e105bf25368cbecf4cf843a",
+      "bytes": 73,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/_detail/metadata_scene.csv"
+    },
+    "ai_001_004/_detail/metadata_cameras.csv": {
+      "sha256": "68f87defc27bf1c5d1707ffd42906e20643c320d5e0c3af6195e6454c8f1cc7a",
+      "bytes": 19,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/_detail/metadata_cameras.csv"
+    },
+    "ai_001_004/_detail/cam_00/camera_keyframe_frame_indices.hdf5": {
+      "sha256": "c2a5907b2d4090e0581efda7e0074b5d81ec0749ea60c8f5b37c3e68e6d4909a",
+      "bytes": 2848,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/_detail/cam_00/camera_keyframe_frame_indices.hdf5"
+    },
+    "ai_001_004/_detail/cam_00/camera_keyframe_positions.hdf5": {
+      "sha256": "48e0da6a09463ac34038f6244e3d718eff6651281fa6bb785a7318d191b85a93",
+      "bytes": 4448,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/_detail/cam_00/camera_keyframe_positions.hdf5"
+    },
+    "ai_001_004/_detail/cam_00/camera_keyframe_orientations.hdf5": {
+      "sha256": "162b8de2ae87503745cada89627e8dd6c533988bf3ae26bb2220844e770657b9",
+      "bytes": 9248,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/_detail/cam_00/camera_keyframe_orientations.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0000.depth_meters.hdf5": {
+      "sha256": "4da823b0912750b82727e21301abd0ecd0904c4ffa7a87cd67d4887d2a38e22c",
+      "bytes": 197779,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0000.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0000.color.hdf5": {
+      "sha256": "12d53a85e4011cb4929c8f5b2bbd1e0ec1f0e5e311856761191f31c06c896604",
+      "bytes": 3466551,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0000.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0005.depth_meters.hdf5": {
+      "sha256": "1eddff5e54264d4f53c9e2a8afb9ba3a93135dd4bfa0debf8247a9066fca1b1c",
+      "bytes": 100130,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0005.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0005.color.hdf5": {
+      "sha256": "0790c5c6efd69eec37acb41321f50c7827a5b6356924c448680ac5b778428870",
+      "bytes": 2606608,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0005.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0010.depth_meters.hdf5": {
+      "sha256": "62112c1a95423ebc581863322febf5991deb2184808b503c208dea27b7c35210",
+      "bytes": 143043,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0010.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0010.color.hdf5": {
+      "sha256": "188dad54749aaaa4497d453ed49aab0f4959b5ae4db33c8498b8451e2ae6bafe",
+      "bytes": 3343724,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0010.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0015.depth_meters.hdf5": {
+      "sha256": "b5e99bb960d493312f6987ccf3bf7a7389f9e58c4404a3803f76f897f09ebce6",
+      "bytes": 203389,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0015.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0015.color.hdf5": {
+      "sha256": "e55451d044382ed078404385ff643d579f3a0425c11755e1097906f7e28a9658",
+      "bytes": 3537287,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0015.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0020.depth_meters.hdf5": {
+      "sha256": "6400e79c829f5fc9cc985057c90922b4a1cd65e6214ebe56f20d2316841ecac2",
+      "bytes": 224694,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0020.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0020.color.hdf5": {
+      "sha256": "41fecee77e17ca714b1d51dcbb6a1b7fd8ac7831a2833cc6fffe20c0ffa03bdb",
+      "bytes": 3555947,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0020.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0025.depth_meters.hdf5": {
+      "sha256": "17743cd96087425a44c2ec3c8653ed17fb64b2e926f51cab3a85ebd668389760",
+      "bytes": 159783,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0025.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0025.color.hdf5": {
+      "sha256": "de0752ba8e8637e9cc234fef5bb2139a9754dfc1053ff009a3cafff672f6f75e",
+      "bytes": 3252912,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0025.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0030.depth_meters.hdf5": {
+      "sha256": "ebce67a6621d2f1535b85d6c49945da92be055f5549eeea593efd8c776fe8a42",
+      "bytes": 207920,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0030.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0030.color.hdf5": {
+      "sha256": "18e9eb6c662a4a98c7ecc013d92148c3e3f936a0b2f7d8ff6929e7480f50760b",
+      "bytes": 3417879,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0030.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0035.depth_meters.hdf5": {
+      "sha256": "1a5d1383f02bfd1d1ba5b31e4dafc947b6102089e1413b3bfad7677e9f8f1d68",
+      "bytes": 167532,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0035.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0035.color.hdf5": {
+      "sha256": "de25e4e3e2dbf4b1b90459d75899e2a2fc90412058de4029f28b8b4d8a4116a1",
+      "bytes": 3476798,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0035.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0040.depth_meters.hdf5": {
+      "sha256": "3a37061c6ee50e07fc4a8ef73c275fda6256617be477dbe390e602abf70c4851",
+      "bytes": 206215,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0040.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0040.color.hdf5": {
+      "sha256": "0305ae9a698676c1c296ea0f4f380ac75436c909f486ef7831115b42f7fbe5c6",
+      "bytes": 3446364,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0040.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0045.depth_meters.hdf5": {
+      "sha256": "f2a26f213796275fa2dc73741dc7a783d009efbd92efdb3f24c27e90a2d67d99",
+      "bytes": 206024,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0045.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0045.color.hdf5": {
+      "sha256": "9df16e90ce35a6f13e2638e33f4e1835ee219c670b5ae7d00ae68d7c5967eada",
+      "bytes": 3575207,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0045.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0050.depth_meters.hdf5": {
+      "sha256": "8904bb075f74c7ccc77e95c5cf7f23486074598ef6a6c016c2f425290e6e7c90",
+      "bytes": 200316,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0050.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0050.color.hdf5": {
+      "sha256": "b173061ba2550953e7c0f72cdef9051cfee6b71892aa536caa55ef2a369b3758",
+      "bytes": 3575638,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0050.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0055.depth_meters.hdf5": {
+      "sha256": "d8d3e060abc2330710b6aee20dfe8df67b51a9a2a09425b629b6420049aa3be4",
+      "bytes": 145426,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0055.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0055.color.hdf5": {
+      "sha256": "4bbe2c49c91843ac178008c43865aece54a782222e9bbe4f652f5c3c37b100ca",
+      "bytes": 3303181,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0055.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0060.depth_meters.hdf5": {
+      "sha256": "25e21b6f3ad5739b582a86b02e4e1df4d14631287bf00871d1346b39e51590ac",
+      "bytes": 175739,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0060.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0060.color.hdf5": {
+      "sha256": "8bc1ce2a42407eddc2b3c513954f0f156f4e7a3403b291facde0538ef5cfc25b",
+      "bytes": 2899203,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0060.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0065.depth_meters.hdf5": {
+      "sha256": "9056a60570df7b82b98e16b0b12a47e34f3f7df4c312999b471fd3da9c4db943",
+      "bytes": 212959,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0065.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0065.color.hdf5": {
+      "sha256": "1d1a656179f4efb14dffd6bc0fa9ca56f87583f0eec392edbd6a54d937dbf776",
+      "bytes": 3562935,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0065.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0070.depth_meters.hdf5": {
+      "sha256": "9e47f3720729be47f7a1bff16536ac0ddf5fc64f8af0f1485e9c565a77bdc66b",
+      "bytes": 206289,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0070.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0070.color.hdf5": {
+      "sha256": "2ef09b5ce44890714ccab3c5d3fcebd28d2583650ca430998fea51cd04741528",
+      "bytes": 3519374,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0070.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0075.depth_meters.hdf5": {
+      "sha256": "b51c0c57cf0e878b845ebde96a2660ee7817b42a8ef4c69daaa40996d8a7d981",
+      "bytes": 135629,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0075.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0075.color.hdf5": {
+      "sha256": "0c56a1ccf9adf30521ae0277c0db0de35ce63d4cf5c9728d989a8f55716c7b03",
+      "bytes": 3217036,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0075.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0080.depth_meters.hdf5": {
+      "sha256": "3f9ddf24172520f46857a5f9b7ccb9acedc7baab74f12cb7baebdc5357fcdd64",
+      "bytes": 122298,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0080.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0080.color.hdf5": {
+      "sha256": "465db525dfadab4a83aa8d0f4ec158a06741398f44e4eebc757f1fa53f058e90",
+      "bytes": 3272961,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0080.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0085.depth_meters.hdf5": {
+      "sha256": "e6678b7aaed0fe5677b598ba5dd5d714c3157e435e0510b1f171e72137096e72",
+      "bytes": 209059,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0085.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0085.color.hdf5": {
+      "sha256": "3342d07c2108088c3643edfe80754c69c35fe35fe233a986ed0506772510f672",
+      "bytes": 3393789,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0085.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0090.depth_meters.hdf5": {
+      "sha256": "b0d8fd8584968e145f740e3d9518eac06ef0540749a9b14cc253610b3f4fdb2d",
+      "bytes": 185102,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0090.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0090.color.hdf5": {
+      "sha256": "6177dd9c06ef3becbadc659d4884225a857f09747f8bf0bd01959bc8fede4323",
+      "bytes": 3463440,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0090.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0095.depth_meters.hdf5": {
+      "sha256": "04e233e98bc8899d241f757cd0e7a274d1ff26bc0e2bdcea67c1dddcf0d93601",
+      "bytes": 198996,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0095.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0095.color.hdf5": {
+      "sha256": "611746c071cfef0d86e2f49113e2aac03850e2e1fcc66096a6d6b4f2b542aacf",
+      "bytes": 3486588,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0095.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0012.depth_meters.hdf5": {
+      "sha256": "b111e636ea10e0f1698d68ce9499670fc7ee19d9003484626355d12ae8326f95",
+      "bytes": 219927,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0012.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0012.color.hdf5": {
+      "sha256": "fa2ef64670bcd77e2c167bce0fd7885f1932b805656471f5a8ed1fc76ebe3221",
+      "bytes": 3518617,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0012.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0037.depth_meters.hdf5": {
+      "sha256": "adda16f7c90b7de1f10343dc15620e43b109511d7a2dd5c52475c2f186bfe69d",
+      "bytes": 159824,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0037.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0037.color.hdf5": {
+      "sha256": "aae629a9889d7dc405cf06d14ee18e346b572ddb0711abb59eaa24c020ccaec2",
+      "bytes": 3191487,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0037.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0062.depth_meters.hdf5": {
+      "sha256": "b732cf4c6d1efa388472421239bde3db0c42b9fd964542aaf02701c0699efdc1",
+      "bytes": 214873,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0062.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0062.color.hdf5": {
+      "sha256": "00bba3faf857ecb13165e73186e16d31f58163ece0ce87d05a2dd59665cd2b65",
+      "bytes": 3610267,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0062.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0087.depth_meters.hdf5": {
+      "sha256": "5de6c7f11ad3d30769083921d45bf1263c45992661cf640d79f85ad41c80b61f",
+      "bytes": 209894,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0087.depth_meters.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_final_hdf5/frame.0087.color.hdf5": {
+      "sha256": "8d953ec41210edeca7b420e98e47ff489135585bb4e009fb43379114cacdec3b",
+      "bytes": 3568057,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_final_hdf5/frame.0087.color.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0000.position.hdf5": {
+      "sha256": "62d09a3d365119c23ef0bc65c55c9597994ec95513f833d0eecc76c57eac519a",
+      "bytes": 591020,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0000.position.hdf5"
+    },
+    "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0050.position.hdf5": {
+      "sha256": "282ea758155d46e6d85365ab04bf98f1f6ae0ea0fbb1f7deb53776ef63fa9eba",
+      "bytes": 504069,
+      "source": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip#ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0050.position.hdf5"
+    }
+  },
+  "network_bytes": 90173383,
+  "license": "CC-BY-SA-3.0",
+  "attribution": "Apple Hypersim; underlying scene assets by Evermotion",
+  "upstream_commit": "3463c5c4a75f3cbfc65ed31cfd6e87204b3a2254",
+  "archive_bytes": 2105691469
+}

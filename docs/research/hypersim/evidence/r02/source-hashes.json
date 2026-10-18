@@ -1,0 +1,6 @@
+{
+  "scripts/reconstruction/hypersim.py": "67129b02eb59f3d07aa63758ca29831919b64cbbf3b93377877d56ac07b36277",
+  "scripts/reconstruction/test_hypersim.py": "1fd40154ab0e4112558f39185923526d70762f28d3d07427bb643a1e8a4d44f6",
+  "docs/research/hypersim/ai_001_004.json": "7e3f220fb6cb86b5ae2a1c769917ce5aeec0ed5e76ab8cd1cb080fa2aa79368e",
+  "scripts/reconstruction/requirements-lock-win-py312.txt": "3ad98b6dea344664d36f1518ea9a557cf50c502bbd1a2dfb8ec37c79cce271da"
+}

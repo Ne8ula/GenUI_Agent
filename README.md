@@ -1,6 +1,6 @@
 # EVA: memory palace
 
-The midterm focus is an artistic, explorable reconstruction of a remembered place. EVA's eye helps the user supply photographs, explore a room, inspect objects and add memories. This is the current direction, **not an implemented reconstruction capability**.
+The midterm focus is an artistic, explorable reconstruction of a remembered place. EVA's eye will help the user supply photographs, explore a room, inspect objects and add memories. That interactive experience remains proposed. An [offline Hypersim living-room baseline](docs/research/hypersim/README.md) now fuses supplied depth and camera poses; it does not establish photo-only reconstruction or complete room coverage.
 
 Start with [midterm scope](PLANNING.md), [visual direction](DESIGN.md), and the [condensed Dreamatorium/Shado research plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md). Development rules are in [AGENTS.md](AGENTS.md).
 
@@ -17,7 +17,7 @@ Open `http://127.0.0.1:1440/?scene=paris-arrival` for the eye, source photos, ar
 
 `npm.cmd run check` checks the TypeScript application; `npm.cmd run rust:test` checks the Rust workspace.
 
-The [R18 acceptance](week4/docs/design/acceptance/w4-hover-overlays-r18.md) covers only the 2026-10-16 hover/overlay refinement. Multiview reconstruction, live conversation and editable memory annotations are upcoming work.
+The [R18 acceptance](week4/docs/design/acceptance/w4-hover-overlays-r18.md) covers only the 2026-10-16 hover/overlay refinement. Photo-only reconstruction, reconstruction integration into the application, live conversation and editable memory annotations are upcoming work.
 
 ## Repository map
 

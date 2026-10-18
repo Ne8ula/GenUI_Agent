@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "scene": "ai_001_004",
+  "camera": "cam_00",
+  "selection_date": "2026-10-18",
+  "selection_status": "owner-accepted",
+  "reconstruction_acceptance": "pending",
+  "source_kind": "synthetic-rendered-room",
+  "condition": "supplied-depth-and-camera-poses",
+  "license": "CC-BY-SA-3.0",
+  "attribution": "Apple Hypersim; underlying scene assets by Evermotion",
+  "train_frames": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95],
+  "evaluation_frames": [12, 37, 62, 87],
+  "position_audit_frames": [0, 50],
+  "voxel_size_m": 0.02,
+  "sdf_trunc_m": 0.08,
+  "max_depth_m": 12.0,
+  "integration_pixel_stride": 2,
+  "evaluation_pixel_stride": 4,
+  "max_download_bytes": 536870912,
+  "max_extracted_bytes": 1073741824,
+  "max_range_bytes": 33554432
+}

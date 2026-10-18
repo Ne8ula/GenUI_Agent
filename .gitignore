@@ -17,3 +17,7 @@ node_modules/
 
 # macOS Finder metadata
 .DS_Store
+
+# Reproducible reconstruction inputs, environments and large derived outputs.
+.local/reconstruction/
+scripts/reconstruction/__pycache__/

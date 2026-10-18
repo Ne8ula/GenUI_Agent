@@ -14,7 +14,9 @@ Emphasize the remembered place and the user's relationship to it. Avoid a techni
 
 ## Proposed first demo
 
-Use one room and a small, explicitly cleared photo set. Begin with a controlled or well-covered captured room if childhood photographs are sparse or inconsistent; arbitrary historical photographs may not support a coherent room.
+Owner selected Apple Hypersim and the synthetic living room **`ai_001_004`** on 2026-10-18. The first bounded implementation is an offline supplied-depth/supplied-camera reconstruction baseline; see the [fixture and tooling decision](docs/research/hypersim/README.md). Scene selection is accepted; reconstruction quality and C-M0/C-M1 remain pending owner review.
+
+Use one room and a small, explicitly cleared image set. Hypersim images are rendered synthetic sources, not captured photographs of a real home. Later, begin with a controlled or well-covered captured room if childhood photographs are sparse or inconsistent; arbitrary historical photographs may not support a coherent room.
 
 1. EVA introduces the encounter and requests relevant photographs.
 2. Intake records source identity and permission for external processing. Diagnose missing coverage, incompatible room states and failure.
