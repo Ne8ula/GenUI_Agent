@@ -7,7 +7,8 @@ import { validateValue } from '../core/validate.ts';
 
 const read = (p: string) => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
 const inventory = JSON.parse(read('fixtures/assets/inventory.json'));
-const jobs = JSON.parse(read('docs/design/weave-jobs.json'));
+// Historical schema fixture, not a current generation plan or spending allowance.
+const jobs = JSON.parse(read('fixtures/assets/weave-jobs.json'));
 const scene = JSON.parse(read('fixtures/scenes/paris-1980s-terrace.json'));
 const lines = JSON.parse(read('fixtures/narration/week4-lines.json')).lines as { lineId: string }[];
 

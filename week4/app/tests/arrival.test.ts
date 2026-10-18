@@ -32,7 +32,7 @@ test('pause, reduced motion, reset and long-frame clamps do not restart a constr
 })
 
 test('Week4 eye equations produce exactly the archived canonical raster', async () => {
-  const { rasterizeWeek1Eye: originalEye } = await import(new URL('../../../week3/src/visual/week1-eye.ts', import.meta.url).href)
+  const { rasterizeWeek1Eye: originalEye } = await import(new URL('../../fixtures/regression/original-eye.ts', import.meta.url).href)
   const pose = { time: 0, energy: 0, gazeX: 0, gazeY: 0, tissueX: 0, tissueY: 0, closure: 0, quiet: true }
   assert.deepEqual(copiedEye(320,160,pose), originalEye(320,160,pose))
 })

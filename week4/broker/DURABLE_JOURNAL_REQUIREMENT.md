@@ -24,4 +24,4 @@ Status: **requirement, not implemented.** Recorded 2026-10-03 under the owner's 
 - Interior corruption and sequence gaps fail closed.
 - Power-loss style truncation after `append` but before the effect: the window is at the pre-step placement and is restored.
 - App and watchdog race: exactly one restores.
-- Every scenario in [WINDOWS_SMOKE.md](../WINDOWS_SMOKE.md) §7, run on the owner's Windows machine.
+- The historical Windows recovery scenarios (retrieve `week4/WINDOWS_SMOKE.md` section 7 through [Git recovery](../../docs/HISTORY.md)), run on the owner's Windows machine before any native staging claim.

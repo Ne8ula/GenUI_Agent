@@ -2,7 +2,7 @@
 
 This crate owns the fixed-camera scene, procedural materials, construction, articulated movement and WebGL2 submission. It has **no broker dependency, network API, image decoder, reference textures or runtime shader-input interface**. Its bounded light pass samples only the current Rust-rendered colour target; this is live post-processing, never an image-backed scene or reveal. The React host loads WASM and forwards bounded fixture inputs; generated wasm-bindgen glue only marshals browser API calls.
 
-Reference/evidence: [Rust reconstruction REVIEW](../docs/design/revisions/w4-20261009-seed33-rust-rebuild-r1/REVIEW.md). Owner acceptance is pending. A working Rust path and passing tests do not establish exact Seed-33 fidelity.
+Historical reference/evidence: retrieve `week4/docs/design/revisions/w4-20261009-seed33-rust-rebuild-r1/REVIEW.md` through [Git recovery](../../docs/HISTORY.md). Owner acceptance of this Rust fidelity target remains pending. This is authored geometry, not the new photo reconstruction pipeline.
 
 ## Run from the repository root
 

@@ -2,20 +2,16 @@
   "name": "eva-repository",
   "version": "0.1.0",
   "private": true,
-  "description": "Repository commands forward to the isolated Week 1 demo.",
+  "description": "EVA midterm repository; commands target the retained Week 4 foundation.",
   "scripts": {
-    "protocol:generate": "npm --prefix week1 run protocol:generate --",
-    "test": "npm --prefix week1 run test --",
-    "memory:check": "npm --prefix week1 run memory:check --",
-    "dev": "npm --prefix week1 run dev --",
-    "build": "npm --prefix week1 run build --",
-    "typecheck": "npm --prefix week1 run typecheck --",
-    "desktop:dev": "npm --prefix week1 run desktop:dev --",
-    "desktop:build": "npm --prefix week1 run desktop:build --",
-    "desktop:build:debug": "npm --prefix week1 run desktop:build:debug --",
-    "rust:check": "npm --prefix week1 run rust:check --",
-    "rust:test": "npm --prefix week1 run rust:test --",
-    "rust:fmt": "npm --prefix week1 run rust:fmt --",
-    "rust:clippy": "npm --prefix week1 run rust:clippy --"
+    "dev": "npm --prefix week4/app run dev --",
+    "build": "npm --prefix week4/app run build --",
+    "test": "npm --prefix week4 test && npm --prefix week4/app test",
+    "typecheck": "npm --prefix week4 run typecheck && npm --prefix week4/app run typecheck",
+    "check": "npm --prefix week4 run check",
+    "rust:test": "cargo test --locked --manifest-path week4/Cargo.toml",
+    "rust:check": "cargo check --locked --manifest-path week4/Cargo.toml",
+    "rust:fmt": "cargo fmt --manifest-path week4/Cargo.toml -- --check",
+    "rust:clippy": "cargo clippy --locked --manifest-path week4/Cargo.toml --all-targets -- -D warnings"
   }
 }

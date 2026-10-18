@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-18",
+  "branch": "midterm",
+  "recoveryCommit": "6f93daf0d531dac900256d64558cb7b35620b38b",
+  "scope": "Owner-authorized tracked checkout cleanup and planning consolidation; no new midterm implementation or acceptance.",
+  "deleted": {
+    "files": 4016,
+    "bytes": 6287880315,
+    "verifiedAgainstGitBlobs": true
+  },
+  "before": {
+    "files": 4325,
+    "bytes": 6378191807,
+    "markdownLines": 20257
+  },
+  "after": {
+    "files": 316,
+    "bytes": 90075843,
+    "markdownFiles": 28,
+    "markdownLines": 837
+  },
+  "checks": {
+    "typescript": {
+      "coreTests": 103,
+      "appTests": 250,
+      "failed": 0,
+      "coreAndAppTypecheck": "passed",
+      "command": "npm.cmd run check",
+      "note": "Tests and typechecks passed; Vite build in this composite command encountered sandbox parent-directory access denial. Build rerun separately with normal filesystem access passed.",
+      "log": {
+        "localPath": "C:\\Users\\alexx\\AppData\\Local\\Temp\\eva-midterm-app-check.log",
+        "sha256": "fe3eaf1d69867d457318eac9e2ade3ec70682c8c03da6ba50935691ed8b8bc39"
+      }
+    },
+    "rust": {
+      "passed": 90,
+      "failed": 0,
+      "command": "npm.cmd run rust:test",
+      "log": {
+        "localPath": "C:\\Users\\alexx\\AppData\\Local\\Temp\\eva-midterm-rust-check.log",
+        "sha256": "3ada73b4bab96609d9cf9b9a1476632b55266fcdb36318a1e0483e470df594c1"
+      }
+    },
+    "productionBuild": {
+      "status": "passed",
+      "command": "npm.cmd run build",
+      "access": "Normal filesystem access after sandbox Vite config resolution failed",
+      "log": {
+        "localPath": "C:\\Users\\alexx\\AppData\\Local\\Temp\\eva-midterm-build.log",
+        "sha256": "8703c26d5cbd02d0a03148b72f9d13d87a78f1b9f389fdc9a039ae95db2932b3"
+      }
+    },
+    "browser": {
+      "passed": 99,
+      "failed": 0,
+      "uncaughtErrors": [],
+      "command": "node week4/app/scripts/capture-tracking.mjs <new-output-dir> http://127.0.0.1:1478",
+      "route": "paris-arrival",
+      "viewports": [
+        {
+          "width": 2560,
+          "height": 1440
+        },
+        {
+          "width": 1024,
+          "height": 700
+        },
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "evidenceDirectory": "C:\\Users\\alexx\\AppData\\Local\\Temp\\eva-midterm-cleanup-browser-20261018",
+      "checksSha256": "38cae23860e41da54281dc8ae91e6e2131f62d603456bf4552ed561fd655839b",
+      "visualInspection": "Settled QHD screenshot inspected; no new visual pass or motion claim. Preview server stopped after checks."
+    },
+    "preservation": {
+      "protectedRuntimeAssetLicenseChartFilesUnchanged": 142,
+      "eyeOracleByteIdentical": true,
+      "relativeImportAudit": "165 retained executable files; no missing imports or executable deleted-path dependencies"
+    },
+    "reminderHookEventsPassed": 3,
+    "localMarkdownLinks": {
+      "status": "passed",
+      "checked": 76,
+      "missing": 0
+    },
+    "diffWhitespace": "passed"
+  },
+  "resolvedDuringCleanup": [
+    "Eye oracle initially moved under app tests picked up stricter TypeScript checks; relocated unchanged into regression fixtures outside include roots, preserving original validation scope.",
+    "Initial PowerShell deletion preflight decoded Unicode names incorrectly; aborted before deletion, retried with explicit UTF-8.",
+    "Shell/native stderr handling interrupted an initial check; rerun normally."
+  ],
+  "limits": [
+    "No UI implementation/source changes, ML reconstruction, paid generation, new owner acceptance, native desktop or participant evidence.",
+    "Pre-existing hybrid/SourceWindows production allowlist gaps remain documented in week4/README.md.",
+    "Ignored private/runtime/cache files and Git history untouched; numbers describe versioned content plus new cleanup files.",
+    "Temporary verification logs/captures are local and may expire; retained R18 evidence remains in the checkout."
+  ],
+  "agents": {
+    "main": "Codex main session; shell/functions and Playwright; exact provider/model routing not independently audited.",
+    "audits": [
+      "research_audit: native collaboration read-only research-scope audit",
+      "dependency_audit: native collaboration read-only dependency audit and post-cleanup review"
+    ],
+    "providerRouting": "Inherited session model; no Claude-native specialist or external provider route claimed."
+  }
+}

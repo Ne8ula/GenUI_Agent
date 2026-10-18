@@ -1,140 +1,65 @@
 # Working on EVA
 
-## Week 1 archive (2026-09-17)
+## Scope and reading order
 
-The owner reported the Week 1 demo successful. Its app, Rust backend, npm workspaces, scripts, fixtures, private local environment, setup notes and historical design evidence now live under `week1/`. Start with [week1/README.md](week1/README.md). Run direct scripts from `week1/`; root npm commands forward there. Keep future shared planning and study work at the repository level. Week 1 evidence belongs under `week1/docs/design/`; the general evidence paths below remain conventions for future phases. This organization does not authorize starting another phase.
+The owner selected an artistic **memory-palace reconstruction and interactive journal** on 2026-10-18. Start with [README.md](README.md), [PLANNING.md](PLANNING.md) and [DESIGN.md](DESIGN.md). For research, read the [condensed plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md). Then inspect only task-relevant implementation files.
 
-## Week 2 archive (2026-09-27)
+The owner explicitly authorized aggressive removal of superseded material across all weeks and condensation of long-term research. This supersedes former archive-preservation requirements for this cleanup only. [History](docs/HISTORY.md) identifies the recovery commit. Do not restore old documents as active instructions or infer current capability from them.
 
-Week 2's E1 revisable-weather work now lives under `week2/`. That includes the Vite/React app, the Rust/WASM particles, the quarantined Tauri shell, fixtures, schemas, the Weave exports, the E1 specification, the acceptance record and the revision evidence. Start with [week2/README.md](week2/README.md) and run its scripts with `npm --prefix week2 …`. E1 evidence belongs under `week2/docs/design/`. On the owner's 2026-09-27 instruction, redundant files were pruned: superseded iterations, raw recordings, dead code, quarantined frames and byte-identical duplicates, including duplicates in `week1/`. All of them are recoverable from commit `56f056d`. E1 owner acceptance remains pending, and this organization does not accept or start any phase.
+The retained application is in [week4/](week4/README.md); root commands target it. Week 4 is the implementation foundation, not a competing plan. Old Paris/Cloud/Rust assignment prompts are retired. The new demo remains proposed until evidenced. Cleanup does not authorize generation, model downloads, installation, studies or phase advancement.
 
-## Week 3 conversational-eye pivot (2026-09-27)
+## Research ownership
 
-The owner requested a separate [Week 3 design guide](week3/DESIGN.md) and [one-week demo plan](week3/PLANNING.md): a sculptural eye that transforms into abstract emotional responses during live, hands-free conversation with ElevenLabs speech and interruption. The target is a 1–2 minute full vertical slice, not another dashboard. For Week 3 only, this explicitly permits departure from DESIGN.md's visual vocabulary and weather-first presentation; retain architecture, privacy, cancellation, accessibility and acceptance boundaries. The guides are proposals, not implementation evidence or owner acceptance. Preserve Week 1 and Week 2. On the owner's 2026-10-02 instruction, `week-3` was merged into `main`, and superseded Week 3 attempt media, unlinked raw recordings, intermediate mockup frames and duplicates were pruned. Their text records remain, and all of them are recoverable from commit `7c44235`. This pivot does not accept E1 or S0–S4, and does not authorize ComfyUI installation or inherit an earlier paid-generation allowance.
+Track A is upstream video-model research; Track B supplies revision mechanisms; Track C is EVA's primary focus, combining System B reconstruction and System C expressive spatial experience. Track and System labels are distinct.
 
-## Dreamatorium Track C alignment (2026-10-15)
+Shado owns Steps 1?5 and its model/geometric-learning paper. EVA owns Steps 6?7 and an HCI paper about understanding, exploration and evidence interpretation. Captured-photo reconstruction is a direct input route; Shado is optional upstream input. Human benefit from Shado requires independent upstream evidence and matched C-E6 evaluation.
 
-EVA is the agent for Dreamatorium. GenUI_Agent's sole research alignment is Track C, combining the supplied Dreamatorium System B (genuine 3D reconstruction) and System C (expressive rendering/spatial experience). Track A video-model creation is upstream. Track B revision research supplies supporting mechanisms; it is not the primary research question. Track labels and System labels are distinct.
+Source-derived images, authored geometry/depth, scan-like points and Gaussian sprites are not multiview reconstruction or trained 3DGS. Distinguish source evidence, inference, generated completion, artistic treatment, user memory and unknowns.
 
-The owner's seven-step flowchart makes the repository boundary explicit: Shado owns Steps 1–5 and a separate model/geometric-learning paper; GenUI_Agent owns Steps 6–7 and an HCI paper. Prioritize measured human understanding, exploration behavior, and evidence interpretation. Reconstruction/rendering metrics are enabling evidence. Do not claim that Shado's upstream improvement benefits people without independent upstream evidence and the matched C-E6 comparison. Use step numbers when clarifying ownership, and preserve the supplied chart as source material rather than executed evidence.
+## Working loop and acceptance
 
-Use the updated [PLANNING.md](PLANNING.md), [research proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md), [full Track C plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md), and [dated capability audit](docs/research/EVA_IMPLEMENTATION_STATUS.md). Preserve existing implementation and acceptance records. Source-derived graphics, authored depth, and Gaussian-shaped sprites must not be claimed as multiview reconstruction or trained 3DGS. New reconstruction, source inspection, integrated experience, and research phases remain proposed until evidenced. This scope alignment supersedes older weather/revision-first research recommendations, not current visual refinements, archive boundaries, or existing security rules.
+1. Inspect git status/diff, instructions, actual source and relevant acceptance.
+2. State bounded scope and evidence criteria; continue routine authorized work without repeated permission requests.
+3. Preserve concurrent edits. Recheck exact files before editing. Do not reset, stash, clean, switch the shared branch, overwrite others' work, commit or publish without explicit instruction.
+4. Verify through actual tools; distinguish passed, failed, blocked and not-run checks.
+5. Deliver changed files, decisions, evidence, limitations and the next owner exercise.
 
-## Scope and source of truth
+Documentation uses diff, local-link and consistency checks, not fabricated application evidence. UI needs matching captures, keyboard/focus/touch, reduced effects, interruption and continuity checks. Protocol/policy needs rejection, resource, provenance, cancellation and authority tests. Native/performance claims require actual platform runs and measurements.
 
-This file governs development work in this repository. EVA's runtime specialists, permissions, and model routes are separate product mechanisms; do not confuse them with development agents.
+Every major phase needs explicit owner acceptance against a reproducible tested revision. Record scope/revision, scenario/commands, expected/actual results, evidence, limitations, feedback/blockers and decision/date under `docs/design/acceptance/`; pending is default. The [R18 acceptance](week4/docs/design/acceptance/w4-hover-overlays-r18.md) accepts only that refinement. Historical E1/S0?S4, research C-M0?C-M7 and full-product milestones remain separate. Owner acceptance is not institutional study approval.
 
-Read [PLANNING.md](PLANNING.md) for product scope, architecture, security, and milestones; [DESIGN.md](DESIGN.md) for the canonical visual/interaction rules; and the [independent-study proposal](docs/research/GENERATIVE_UI_INDEPENDENT_STUDY_PROPOSAL.md) when working on the semester prototype. Use [docs/design/FIGMA_WEAVE.md](docs/design/FIGMA_WEAVE.md) for creative-tool setup and authoring.
+## Development agents
 
-Latest explicit owner instructions take precedence over repository guidance. Preserve user edits. When documents conflict, identify the conflict and make the smallest authorized reconciliation; do not silently replace the architecture or expand scope. DESIGN.md fulfills the previously named GENERATIVE_UI_DESIGN.md deliverable; do not fork another guide.
+Retain the owner's Astra orchestration workflow and `.claude/agents/eva-*.md` definitions in Claude Code; see [workflow](docs/development/AGENT_WORKFLOW.md). These are development roles, not EVA runtime models.
 
-The runnable Week 1 application is archived under `week1/`; inspect its manifests and implementation before making capability claims. The owner's subsequent 2026-09-17 instruction accepts the revised expressive-response direction as the planning baseline and authorizes the bounded E1 visual exploration, implementation, testing, and documentation in a separate `week2/` workspace. This supersedes earlier implementation-pending notes, not the pending acceptance of a finished E1 candidate, S1/S2, or any later phase. Preserve `week1/` unchanged. See the [research synthesis](docs/research/EXPRESSIVE_RESPONSE_SYNTHESIS.md), [predecessor audit](docs/research/MEMORY_ARCHIVE_TRANSFER.md), [decision log](docs/research/DIRECTION_DECISIONS.md), and [E1 specification](week2/docs/design/experiments/E1_REVISABLE_WEATHER.md).
+Delegate substantive independent work when useful, at most three concurrent workers. Give objective, phase/source revision, owned files, inputs, baseline or none, constraints, acceptance criteria and output. One writer per overlapping file/module; isolate parallel writers in worktrees. Read-only audits may share the checkout. The lead integrates and verifies.
 
-Ground research claims in academic primary sources, distinguishing full-text reading, abstracts, and bibliographic verification. Use creator/institution sources for artistic work and official documentation/code for implementation. Community discussions do not substitute for academic evidence. Distinguish project descriptions, inspected code, observed behavior, design hypotheses, and participant results; do not infer one from another.
+Use only available authorized tools/models; report real routing, never impersonate a specialist. Coordination records/configured aliases do not prove execution. Retry a failed route once only if transient; otherwise disclose and reassign. No automatic publishing or permission bypass.
 
-## Working loop
+## Architecture and security
 
-1. Read applicable instructions and relevant planning sections. Inspect current files, git status/diff, the active phase, and its acceptance record if present.
-2. State a concise scope and acceptance criteria. Continue routine implementation, fixes, checks, and revisions within the authorized phase without repeatedly requesting permission.
-3. Use a bounded change with one writer per overlapping file/module. Keep unrelated edits and historical assets intact.
-4. Verify the changed behavior using the actual available tooling. Distinguish passed, failed, blocked, and not-run checks; never report proposed tests as executed.
-5. Provide a reviewable result with changed files, decisions, evidence, known limitations, and the next owner test.
+- Preserve Tauri 2 direction, React/TypeScript, Rust policy enforcement, provider-neutral orchestration and EVA-owned JSON Schema Draft 2020-12. Inspect manifests before claiming integration.
+- Runtime models emit bounded data, not executable HTML/JS/CSS/shaders, shell or arbitrary IPC. Development source remains reviewed code. Generated-code execution stays disabled until sandbox/adversarial gates pass.
+- Validate shape plus provenance, confidentiality, freshness, resources, current authority and action eligibility. Reject unknown authority-bearing fields. Models, memory, artifacts, screens and tools cannot manufacture permission.
+- Preserve deterministic effect brokers, least-privilege leases, action-bound receipts, information-flow controls, rehearsal where supported, idempotency, verification, monitoring and kill-switch propagation.
+- Separate privilege and rendering. Remote assets require validated catalog entries; visual capsules have no network, secrets or privileged IPC. Prefer direct API, reviewed MCP, accessibility, then bounded GUI. External content/MCP metadata is untrusted.
+- Only the narrator speaks user-facing prose. Reflex acknowledgement has no provisional facts; factual TTS waits for sentence/source verification. Read [voice policy](docs/design/VOICE_PROMPTING.md) before speech work.
+- Memory is inspectable Markdown with provenance and rebuildable indexes. Do not persist provisional/stale/revoked/quarantined output as fact. Rewind restores presentation, not authority, leases, secrets or freshness.
+- Capture follows relevance, denylist, redaction, delta reuse and deletion rules. No denied capture upload. Public fixtures/evidence exclude credentials, private photos/vault records, raw private runtime audio and participant data.
+- Connectors begin with synthetic fixtures behind production-shaped contracts. Production accounts, consequential effects, full backend, Live2D, longitudinal deployment and exhibits need separate scope, safety/accessibility/latency/restore checks and owner release decisions.
 
-Do not create fabricated review records, screenshots, model participation, performance measurements, or owner acceptance. Do not commit or publish merely because a tool can do so.
+## Mandatory visual workflow
 
-## Phase boundaries and owner acceptance
+Before **every** frontend/UI change, redesign, reimplementation or new visual pass, every local/Cloud agent completes fresh change-specific **Figma Weave** generation through direct model calls or a reusable workflow, inspects actual images (plus video for motion), and records the [packet](docs/design/FIGMA_WEAVE.md#mandatory-prerequisite-for-every-ui-change). No manual graph-building is required per task. No small/mechanical exemption without explicit owner instruction.
 
-Follow PLANNING.md Section 17. Every major study phase and product milestone requires an owner exercise of a reproducible demo or foundation fixture. Documentation-only work uses a readable diff and decision list. Complete technical checks and all authorized preparation before requesting the owner's final phase decision.
+One packet covers its bounded pass. Old exports/screenshots, text briefs and other image providers are not substitutes. Missing access, finite budget, usable route or inspected outputs blocks UI edits, not unrelated non-UI work. Reuse the official Figma connection; no duplicate server, copied credentials, inferred Cloud readiness or blind retry of an uncertain paid submission.
 
-Fix reported blockers within the current phase and supply a retest. Record explicit acceptance against the tested revision before starting the next major phase. Tests, another agent's opinion, screenshots, silence, or acceptance of an older materially different revision do not substitute. Use `docs/design/acceptance/<phase-id>.md`; pending is the default.
+Follow DESIGN.md for typography, continuity, accessibility and evidence. Capture matching before/after states and preserve reviewable candidates. Historical cleanup authorization does not waive future retention.
 
-An acceptance record includes phase/scope, revision/build, scenario and commands, expected results, actual checks, visual evidence if relevant, limitations, owner feedback, blockers/retest, and the owner's decision/date. Do not invent application evidence for documentation work.
+ComfyUI remains optional and separately scoped, gated until explicit S2 acceptance permits an S3 trial. No implicit local model/GPU setup. Reconstruction tooling requires a bounded decision, not installation inferred from a plan.
 
-Keep historical E1/S0–S4, new Track C milestones C-M0–C-M7, and full-product Milestones 0–12 distinct. Active research covers genuine reconstruction, spatially grounded expression, evidence legibility, and transfer; weather/revision work remains a reusable foundation. Controlled 3D scenes and reconstruction are now proposed Track C work, not implicit authorization to install tools or begin a phase. Production accounts, consequential actions, full backend completion, Live2D, longitudinal relationships, and exhibit deployment remain separate. No new deadline was supplied. Development acceptance does not replace institutional study approval.
+## Evidence and hygiene
 
-## Development roles and handoffs
+Ground new research claims in academic primary sources, distinguishing full text, abstract and bibliographic verification. Use creator/institution sources for art and official docs/code for implementation. Separate inspected code, observed behavior, hypotheses and participant results.
 
-### Owner-selected Astra workflow (2026-09-17)
-
-For development in Claude Code, the owner selected GPT-6 Astra as orchestrator through Model Gateway, retaining Ruflo where useful for coordination. See [the development-agent workflow](docs/development/AGENT_WORKFLOW.md); [CLAUDE.md](CLAUDE.md) imports this file for Claude Code. This is a refinement of the initial development assignments in PLANNING.md Section 16.1, not a change to EVA's runtime models or study phase authorization.
-
-Use the project `.claude/agents/eva-*.md` definitions for task-specific execution. Astra owns decomposition, integration, and final verification; Sol handles substantial implementation, Luna tightly specified mechanical work, Terra source-backed research, Sonnet UI implementation, and Opus independent architecture/security review. These are configurable starting choices, not measured universal rankings. Kimi remains an explicit external handoff until a working authorized adapter is verified.
-
-Within the owner's authorized task, delegate substantive independent work when it improves the result; keep trivial known edits inline. Use at most three concurrent workers, bounded contracts and one writer per overlapping file/module. Recheck status and the exact file immediately before applying edits. Treat unexplained changes as another session's work; do not reset, stash, clean, overwrite, commit, or absorb them. Isolate parallel writers in worktrees and coordinate integration; do not switch the shared checkout's branch. Existing sessions outside Ruflo are not covered by its coordination records.
-
-Native Claude Code agent model fields select workers. Ruflo routing suggestions are advisory and must not silently replace those models. Ruflo agent records are not proof of execution; invoke the native Agent tool and verify provider/model evidence. If a route fails, report it and retry once only for a transient failure; return to Astra for reassignment without claiming the requested specialist ran. Keep ordinary permissions, no automatic commits/pushes, and explicit owner phase acceptance regardless of plugin instructions.
-
-PLANNING.md's initial assignments were Codex implementation/integration, Claude/Fable interaction and architecture review, Kimi research/independent evaluation, and the owner product direction/acceptance. The owner-selected workflow above refines those development assignments. These are intended responsibilities, not guaranteed available integrations or a universal model ranking.
-
-Use only actually available, authorized models/tools. Record the real provider/model and tool used; never impersonate another reviewer. If a role cannot be invoked, identify that limitation and prepare a handoff. Do not infer API access or exact model IDs from a paid subscription. Do not put a serial multi-provider review chain on EVA's normal runtime path.
-
-When delegation is explicitly authorized, give each task a bounded objective, owned files, input references, accepted baseline ID or “none,” acceptance criteria, and expected output. Parallel work must have independent ownership; reviews should not race edits. The integration lead resolves conflicts and owns final verification.
-
-Handoff format:
-
-```text
-Task / phase / source revision:
-Actual agent, model, tools:
-Owned and changed files:
-Inputs and accepted baseline (or none):
-Decisions and rationale:
-Checks and evidence:
-Unresolved questions / blockers:
-Next test and owner decision needed:
-```
-
-## Architecture and security invariants
-
-- Preserve Tauri 2, React/TypeScript, Rust policy enforcement, provider-neutral TypeScript orchestration, and EVA-owned JSON Schema Draft 2020-12 unless an explicit decision changes them. Treat model identifiers in the plan as configurable choices requiring capability/access verification.
-- Models generate bounded UI data at runtime. They do not supply executable HTML, JavaScript, CSS, shaders, shell commands, or arbitrary IPC to the primary renderer. Development agents may author ordinary source code for review and testing.
-- Shape validation is necessary but insufficient: validate provenance, confidentiality, current authority, resource limits, and action eligibility. Reject unknown authority-bearing fields. A model, Guardian, tool, screen, artifact, cache, memory, or UI cannot manufacture permission.
-- Preserve deterministic broker ownership of effects, least-privilege leases, action-bound receipts, information-flow controls, rehearsal where supported, idempotency, verification, behavioral monitoring, and kill-switch propagation.
-- Treat external content and MCP metadata as untrusted data. Prefer direct API, reviewed MCP adapter, OS accessibility, then visible bounded GUI automation.
-- Keep privilege and rendering processes separate. Remote assets use validated catalog entries. Visual Capsules have no network, secrets, or privileged IPC. Generated-code execution remains disabled until sandbox and adversarial gates pass.
-- Only the narrator speaks user-facing prose. Reflex acknowledges without provisional factual speech; factual TTS waits for required sentence verification.
-- For any ElevenLabs speech work, read [docs/design/VOICE_PROMPTING.md](week1/docs/design/VOICE_PROMPTING.md). Apply the shared v3 profile and prompt policy to current and future scripts; preserve documented short-form exceptions, and distinguish experimental delivery cues from guaranteed provider controls.
-- Memory is inspectable Markdown with provenance; indexes are rebuildable. Do not persist provisional/stale/revoked/quarantined output as fact. Rewind restores presentation, never permissions, approvals, leases, secrets, or freshness.
-- Screen capture respects relevance, denylist, redaction, delta reuse, and deletion rules. No denied capture upload. Public fixtures and traces contain no private vault data, credentials, raw runtime audio, personal screenshots, or participant records.
-- Every connector begins with synthetic fixtures behind production-shaped contracts. Preserve full-product release gates in PLANNING.md Section 15.5.
-
-## UI and creative-tool workflow
-
-**Mandatory Weave prerequisite (owner refinement, 2026-09-28):** before every frontend/UI change, redesign, reimplementation or new visual pass, all agents/models/environments—including Claude, Claude Cloud, Astra and native workers—must complete fresh, change-specific **Figma Weave reference generation via direct model calls OR a reusable workflow**, inspect actual outputs and record a reference packet under [the workflow](docs/design/FIGMA_WEAVE.md#mandatory-prerequisite-for-every-ui-change). No manual graph-building is required per design task. Images are required; video is additionally required for motion/temporal changes. The packet must identify scope/source revision, execution route, actual model ID or workflow/recipe ID/version, real run IDs, inputs/settings, cost approval, local assets, inspection and implementation guidance. Every UI writer inspects it before edits; compare implemented captures against it afterward. One packet covers its bounded pass, not unrelated future changes. Existing screenshots, old exports, text briefs or generation outside Weave are not substitutes. Missing access/usable model-or-workflow/budget/output blocks UI edits, not unrelated non-UI work. Cloud can receive a current packet from the connected main session; never copy credentials or infer Cloud readiness from local OAuth. Follow the categorized revision layout: REVIEW.md, references/contact-sheet.png, references/images/, references/videos/, implementation/before/, implementation/after/, provenance.json; link actual candidates from the phase index. No small-change or mechanical exemption without explicit owner instruction. This adds no blanket credit allowance and accepts no phase.
-
-Apply DESIGN.md before visual changes. Use the selected Space Grotesk / IBM Plex Sans / IBM Plex Mono system. Preserve Week 1's explicit red refinement in its archive; the current red/bone/black response vocabulary is a proposed continuity candidate. Host-owned error/authority semantics use explicit words, shape and placement, never color alone. Generated styling cannot reach safety-owned confirmations.
-
-Use Figma Weave for whole-response compositions, primitive vocabulary, intervention/state boards, layout alternatives, and motion studies as supported by the actual workflow. The owner's 2026-09-28 selection replaces Higgsfield for future development authoring, not historical evidence. Do not reduce its role to decorative imagery or assume a card grid. Extract reusable tokens, primitives, constraints, and events; implement and test them as native components within an authorized phase. Generated source, if exportable, requires normal dependency, security, accessibility, and behavior review before adoption.
-
-Use the workflow in [docs/design/FIGMA_WEAVE.md](docs/design/FIGMA_WEAVE.md). Reuse the official Figma plugin/MCP connection and link the intended Figma account in Weave; do not add a separate Weave server. Verify authentication, active workspace and actual tool capabilities; plugin discovery or an endpoint string is not a working integration. MCP can generate through direct Weave models or run existing workflows; graph creation/editing stays in Weave and is needed only for a chosen custom workflow. Keep authentication outside version control and establish a finite budget before generation. Do not add duplicate routes or silently substitute another image provider if Weave is unavailable; pause UI edits, prepare briefs and continue only independent non-UI work.
-
-ComfyUI's earliest installation remains S3 after explicit owner S2 acceptance, as selected on 2026-09-16. It is optional in the reframed research and needs a separately scoped experiment; no local model downloads or GPU setup in E1 or S1/S2. For an authorized S3 trial, verify hardware/free VRAM, select one reviewed still-image workflow, limit active generation to one job, and measure asset latency and UI responsiveness idle/active. Record evidence before claiming a speed benefit. This gate is not acceptance or installation authorization.
-
-The week-one execution plan lives in week1/WEEK1_DEMO_PLANNING.md, with its visual brief in week1/docs/design/WEEK1_DEMO.md. It includes Tauri 2/Rust setup, a normal Windows desktop window, reusable React components, and a narrow read-only Rust command for synthetic memory. Keep native setup within the documented checkpoint and retain the same frontend's browser fallback. The plan does not authorize full product implementation, replace voice/personality research, or count as completion of S0–S2.
-
-Before a visual edit, inspect the accepted screenshot, intervening candidates, scenario, and owner feedback; capture the current before-state. Afterward capture the same fixture at matching viewport/DPI, including affected states. For motion changes save a short recording and representative stills. Preserve every reviewable rendition, including rejected candidates.
-
-Store evidence under `docs/design/revisions/<revision-id>/` and update `docs/design/INDEX.md` once actual candidates exist. Include the DESIGN.md manifest fields. Never overwrite old references or automatically promote the newest image. First implementation records no runnable before-state and links the historical concept. Missing capture blocks a visual-completion claim, not unrelated work.
-
-Preserve stable entity IDs, anchors, geometry, focus, user locks, direct edits, and pin state across patches. Keep manipulation, interruption, intensity, plain answer, dismissal and eye feedback local. Facts/charts use approved fixture/data references and explicit units/missingness. Qualitative motion cannot imply measured confidence or train location. Media remains optional and asynchronous; late results cannot attach to dismissed or superseded revisions.
-
-## Verification and tooling
-
-Use the archive's existing package scripts and setup notes for Week 1; inspect manifests before choosing commands. A future experiment workspace needs its own documented checks. Proposed schemas, tests and renderer benchmarks are not executed evidence. Documentation revisions use diff, local-link, source and consistency checks; do not rerun unrelated application tests merely to imply implementation progress.
-
-| Change | Appropriate evidence |
-| --- | --- |
-| Documentation | Read the diff, check local links and consistency with planning, distinguish proposals from accepted facts |
-| Schema/protocol | Positive and negative fixtures, unknown-field rejection, limits/version behavior, unauthorized-flow rejection |
-| Policy/connector | Risk/approval/lease/provenance tests, idempotency, rehearsal support, result verification, cancellation |
-| UI/interaction | Matching visual fixtures plus focus/keyboard, resize/drag, revision continuity, trust/error states, reduced effects |
-| Media adapter | No-media path, budget bounds, failure/timeout/cancel, supersession, late delivery, source/destination policy |
-| Desktop integration | Actual macOS/Windows smoke evidence, click-through/dormancy, hotkeys, capture rules, kill switch |
-| Performance | Measured cold/warm latency and frame/resource distributions with generation idle and active |
-
-Use focused tests proportional to the change; do not add tests that merely duplicate a low-impact documentation edit. Run required checks and stop broadening once relevant concerns are resolved. Missing platform/hardware access must be disclosed, never filled by a cloud benchmark. Numeric performance targets are not measurements.
-
-## Public repository hygiene
-
-Keep secrets in appropriate private credential storage/environment settings, never committed MCP URLs with embedded tokens or copied auth output. Review generated assets/source for external dependencies, private data, and license obligations. Bundle font licenses with assets when implementation starts.
-
-Preserve historical PNGs and exports; regenerate exports only when requested or within an explicitly scoped synchronization task. Do not modify the user's plan merely to conceal disagreement with it. Document a later explicit refinement and link it from the relevant guide, or make a minimal authorized reconciliation.
+Keep secrets private; never commit token-bearing URLs/auth output. Preserve asset licenses/source credits. Review generated dependencies, rights and private data. Report browser/synthetic limits. Never fabricate reviews, measurements, model participation, screenshots or owner acceptance.

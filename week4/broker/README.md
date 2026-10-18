@@ -12,7 +12,7 @@ cargo clippy --manifest-path week4/Cargo.toml --all-targets -- -D warnings
 ## Contract summary
 
 - **Renderer commands** (`renderer.rs`) mirror `../schemas/stage-request.schema.json` exactly. They take fixed enum values only. `../fixtures/ipc/stage-requests.json` is checked by both this crate and the TypeScript tests.
-- **Sequencing.** `enter` begins the session and moves windows (phase B). `set_far_field` applies the wallpaper (phase D, under the veil) and later follow-up variants. Planning §6.4 needs the original wallpaper to stay visible while windows clear.
+- **Sequencing.** The retained mock contract separates `enter` (window staging) from `set_far_field` (wallpaper). This belongs to the historical desktop experiment, not the current midterm scope.
 - **Wallpaper.** A per-monitor image reference is kept alongside the **global** position mode, background colour and enabled state, following the Microsoft Learn findings in `../docs/research/SOURCE_CHECKS.md`. The broker writes only the per-monitor image and never changes the global values. Slideshow, Spotlight, policy-locked, span, disabled, empty or unknown configurations select degraded mode.
 - **Window identity** is handle + PID + process start time (+ an optional class token). A recycled handle is reported gone and never acted on.
 - **The journal is the single source of truth.** Every effect step is journaled before it is applied; an append failure means no effect. Live restore and crash recovery fold the same journal into a ledger and apply the same rules. Restoration happens only if the current state equals a broker-authored state, so later user changes are left alone. Every restore is read back. The journal is cleared only when every effect is settled.
