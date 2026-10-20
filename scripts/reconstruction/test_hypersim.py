@@ -90,6 +90,28 @@ class InputTests(unittest.TestCase):
         self.assertFalse(set(c['train_frames']) & set(c['evaluation_frames']))
         self.assertEqual(len(h.required_entries(c)), 55)
 
+    def test_development_fixture_preserves_all_four_withheld_views(self):
+        fixture = h.FIXTURE.with_name('ai_001_004-r03.json')
+        c = h.config(fixture)
+        self.assertEqual(c['evaluation_frames'], [12, 37, 62, 87])
+        self.assertEqual(set(c['train_frames']), set(range(100)) - {12, 37, 62, 87})
+        with tempfile.TemporaryDirectory() as folder:
+            changed = dict(c, train_frames=c['train_frames'] + [37])
+            path = Path(folder)/'fixture.json'
+            h.save_json(path, changed)
+            with self.assertRaisesRegex(ValueError, 'disjoint'):
+                h.config(path)
+
+    def test_reuse_rejects_changed_source_before_copying(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source, target = root/'source', root/'target'
+            source.mkdir()
+            h.save_json(source/'manifest.json', {'status': 'complete', 'fixture_sha256': 'changed'})
+            with self.assertRaisesRegex(ValueError, 'fixture changed'):
+                h.reuse_inputs(target, h.FIXTURE, source)
+            self.assertFalse(target.exists())
+
     def test_unsafe_paths_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             for name in ('../outside', 'C:\\outside', 'sub\\outside'):

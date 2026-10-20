@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import shutil
 import subprocess
 import time
 import urllib.request
@@ -32,8 +33,8 @@ def save_json(path, value):
     os.replace(temporary, path)
 
 
-def config():
-    value = json.loads(FIXTURE.read_text(encoding="utf-8"))
+def config(fixture=FIXTURE):
+    value = json.loads(fixture.read_text(encoding="utf-8"))
     if value["scene"] != "ai_001_004" or value["camera"] != "cam_00":
         raise ValueError("This bounded adapter supports ai_001_004/cam_00 only")
     train, evaluation = value["train_frames"], value["evaluation_frames"]
@@ -137,9 +138,9 @@ def destination(root, name):
     return path
 
 
-def verify_manifest(data, c):
+def verify_manifest(data, c, fixture=FIXTURE):
     manifest = json.loads((data / "manifest.json").read_text(encoding="utf-8"))
-    if manifest["status"] != "complete" or manifest["fixture_sha256"] != digest(FIXTURE.read_bytes()):
+    if manifest["status"] != "complete" or manifest["fixture_sha256"] != digest(fixture.read_bytes()):
         raise ValueError("Incomplete fetch or fixture changed")
     expected = set(required_entries(c)) | {"camera_parameters.csv", "metadata_images.csv", "LICENSE.txt"}
     if set(manifest["files"]) != expected:
@@ -150,20 +151,47 @@ def verify_manifest(data, c):
     return manifest
 
 
-def fetch(data):
-    c = config()
+def reuse_inputs(data, fixture, source, source_fixture=FIXTURE):
+    """Seed a new selection from verified bytes without mutating the old evidence."""
+    c = config(fixture)
+    original = verify_manifest(source, config(source_fixture), source_fixture)
+    if data.exists():
+        raise ValueError("Reuse requires a fresh data directory")
+    wanted = set(required_entries(c)) | {"camera_parameters.csv", "metadata_images.csv", "LICENSE.txt"}
+    records = {name: record for name, record in original["files"].items() if name in wanted}
+    if sum(r["bytes"] for r in records.values()) > c["max_extracted_bytes"]:
+        raise ValueError("Reused inputs exceed extraction budget")
+    manifest = {"status": "fetching", "fixture_sha256": digest(fixture.read_bytes()),
+                "archive": ARCHIVE, "archive_bytes": original["archive_bytes"],
+                "upstream_commit": original["upstream_commit"], "files": {},
+                "network_bytes": 0, "license": c["license"], "attribution": c["attribution"],
+                "reused_manifest_sha256": digest((source/"manifest.json").read_bytes()),
+                "reused_source_network_bytes": original["network_bytes"]}
+    data.mkdir(parents=True)
+    for name, record in records.items():
+        target = destination(data, name)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(destination(source, name), target)
+        if digest(target.read_bytes()) != record["sha256"]:
+            raise ValueError("Reused input copy mismatch: " + name)
+        manifest["files"][name] = record
+    save_json(data/"manifest.json", manifest)
+
+
+def fetch(data, fixture=FIXTURE):
+    c = config(fixture)
     data.mkdir(parents=True, exist_ok=True)
     manifest_path = data / "manifest.json"
     if manifest_path.exists():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if manifest["fixture_sha256"] != digest(FIXTURE.read_bytes()):
+        if manifest["fixture_sha256"] != digest(fixture.read_bytes()):
             raise ValueError("Use a new data directory for a changed fixture")
         if manifest["status"] == "complete":
-            verify_manifest(data, c)
+            verify_manifest(data, c, fixture)
             print("Verified cached input manifest", flush=True)
             return
     else:
-        manifest = {"status": "fetching", "fixture_sha256": digest(FIXTURE.read_bytes()),
+        manifest = {"status": "fetching", "fixture_sha256": digest(fixture.read_bytes()),
                     "archive": ARCHIVE, "files": {}, "network_bytes": 0,
                     "license": c["license"], "attribution": c["attribution"]}
     budget = Budget(c["max_download_bytes"], manifest["network_bytes"])
@@ -214,6 +242,14 @@ def fetch(data):
             selected = required_entries(c)
             if sum(archive.getinfo(name).file_size for name in selected) > c["max_extracted_bytes"]:
                 raise ValueError("Selected extraction too large")
+            # ZIP member reads include local headers; preflight before payload requests.
+            missing = [archive.getinfo(name) for name in selected if not cached(name)]
+            remaining = sum(info.compress_size + 30 + len(info.filename.encode("utf-8")) +
+                            65535 for info in missing)
+            if budget.used + remaining > budget.limit:
+                raise ValueError("Selected compressed inputs exceed remaining download budget")
+            manifest["preflight_remaining_upper_bound_bytes"] = remaining
+            persist()
             for i, name in enumerate(selected):
                 if cached(name):
                     continue
@@ -308,13 +344,13 @@ def score_depth(frame, reference, predicted, valid):
     }
 
 
-def reconstruct(data, output):
+def reconstruct(data, output, fixture=FIXTURE):
     import numpy as np
     import open3d as o3d
     from PIL import Image, ImageDraw
 
-    c = config()
-    manifest = verify_manifest(data, c)
+    c = config(fixture)
+    manifest = verify_manifest(data, c, fixture)
     if output.exists():
         raise ValueError("Output already exists; choose a new run directory to preserve evidence")
     output.mkdir(parents=True)
@@ -468,14 +504,19 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["fetch", "reconstruct"])
     parser.add_argument("--data", type=Path, default=DEFAULT_DATA)
+    parser.add_argument("--fixture", type=Path, default=FIXTURE)
+    parser.add_argument("--reuse-data", type=Path, help="Seed a fresh fetch from a verified earlier selection")
+    parser.add_argument("--reuse-fixture", type=Path, default=FIXTURE)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     if args.command == "fetch":
-        fetch(args.data)
+        if args.reuse_data:
+            reuse_inputs(args.data, args.fixture, args.reuse_data, args.reuse_fixture)
+        fetch(args.data, args.fixture)
     else:
         if args.output is None:
             parser.error("reconstruct requires a fresh --output directory")
-        reconstruct(args.data, args.output)
+        reconstruct(args.data, args.output, args.fixture)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,44 @@
+{
+  "browser": "155.0.4283.62",
+  "url": "http://127.0.0.1:1440/",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "checks": [
+    "actual mesh loaded and rendered",
+    "points use mesh vertices without duplicate triangle indices",
+    "keyboard move/look and exact Home reset",
+    "mouse drag looks around",
+    "source open/close preserves camera and restores focus",
+    "doorway remains explicitly incomplete",
+    "context loss exposes error and reload recovers",
+    "reduced motion has no automatic movement",
+    "emulated touch drag and movement button",
+    "phone source dialog focus trap, Escape and inert background",
+    "phone has no horizontal overflow",
+    "cancelled loading cannot resurrect; explicit reload succeeds",
+    "truncated mesh rejected and retry succeeds",
+    "context loss during loading stays failed until explicit reload"
+  ],
+  "errors": [],
+  "limitation": "Headless Edge on Windows; touch emulation, not a physical phone or native Tauri run.",
+  "initialReadyMs": 967,
+  "initial": {
+    "position": [
+      5.345364135306772,
+      0.6744523529918787,
+      1.623707796709487
+    ],
+    "quaternion": [
+      0.6444525319513823,
+      0.20777983403657427,
+      0.21693467435731076,
+      0.703169838439245
+    ],
+    "calls": 1,
+    "triangles": 606025,
+    "points": 0
+  },
+  "status": "passed"
+}

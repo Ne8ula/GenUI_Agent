@@ -1,0 +1,24 @@
+-c genrc-cloud-constraints.txt
+torch==1.13.1+cu117
+torchvision==0.14.1+cu117
+numpy==1.24.2
+setuptools==69.5.1
+wheel==0.43.0
+fvcore==0.1.5.post20221221
+iopath==0.1.10
+ninja==1.11.1.1
+diffusers==0.20.0
+transformers==4.27.2
+huggingface-hub==0.13.3
+accelerate==0.17.1
+open3d==0.17.0
+opencv-python-headless==4.7.0.72
+Pillow==9.4.0
+scipy==1.10.1
+trimesh==3.20.2
+pymeshlab==2022.2.post3
+imageio==2.26.1
+PyYAML==6.0.1
+pyequilib==0.5.8
+tqdm==4.65.0
+safetensors==0.3.3

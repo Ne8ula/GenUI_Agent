@@ -1,0 +1,6 @@
+{
+  "candidate_sha256": "b1ba54d0640de0210dedfd298fe63c263931f6d8da284ac20dbd8f6e500f2552",
+  "identical_mesh_reproduced": true,
+  "current_builder_sha256": "ef1d5dcb82a564d6e2355894a8c8d0d029b8a052f16c3d42850d738d897d596e",
+  "tests_passed": 42
+}

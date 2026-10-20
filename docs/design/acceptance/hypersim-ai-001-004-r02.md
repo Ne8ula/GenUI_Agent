@@ -29,3 +29,13 @@ The [machine-readable run report](../../research/hypersim/evidence/r02/report.js
 Inspect all four rows of the comparison, particularly frame 0037. Assess whether the cabinet-focused geometry is useful for a bounded first encounter or whether another input-coverage pass is needed before navigation integration. Any additional frames/configuration become a new recorded revision; preserve this baseline and evaluation failure. The future UI pass requires fresh scoped Weave output.
 
 Owner feedback: pending. Owner decision/date on reconstruction: pending. Selecting this room does not accept these outputs or complete a major milestone.
+
+## Owner follow-up and audit, 2026-10-19
+
+Owner feedback: "Frame 0037 doesnt seem correct. Could you double check". Reconstruction acceptance remains pending.
+
+The [diagnostic report](../../research/hypersim/evidence/frame0037-audit/report.json) and [comparison](../../research/hypersim/evidence/frame0037-audit/comparison.png) independently check the original preview, supplied world-position map and source-to-source overlap. They confirm a valid frame/camera association and inadequate coverage from the selected integration views. Only 0.80% of its sampled valid surface points match a training depth within 5 cm; its supplied-position consistency p95 is 3.56 mm. Recasting the original mesh reproduces the poor r02 metrics.
+
+An explicitly labeled single-frame self-fit control gives 95.79% coverage and 1.71 mm mean error on hits. It is a diagnostic, not held-out evidence; no benchmark claim or baseline replacement follows. The original r02 mesh and inputs remain hash-identical. The immediate corrective work would be a new, coverage-aware selection of other input views, preserving 0037 as withheld and recording this development tuning.
+
+Execution: Codex lead ran and visually inspected the diagnostic. A Codex read-only worker separately reproduced baseline raycasts and source-support measurements; no Claude-native routing was claimed. Reviewed source revision: `70ad76c6888a9bbcc98bea8c2756ed73db0f5132` plus the audit script fingerprint in its report. No UI change or milestone advancement occurred.

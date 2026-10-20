@@ -1,0 +1,78 @@
+{
+  "status": "prepared-not-generated",
+  "target_frame": 37,
+  "candidate_reference_frames": [
+    5,
+    35,
+    39
+  ],
+  "withheld_rgb_depth_in_inputs": false,
+  "roi_xyxy": [
+    0,
+    416,
+    256,
+    512
+  ],
+  "editable_pixels": 9409,
+  "depth_units": "camera-Z meters; NaN unknown",
+  "depth_preview_range_m": [
+    1.3133609771728516,
+    3.2011315345764157
+  ],
+  "normals": "Camera-space finite differences from observed depth, incomplete at boundaries; not learned normals",
+  "edges": "RGB finite-difference gradient with invalid neighborhoods removed; not Canny or structural ground truth",
+  "mask": "Manually bounded floor-directed ROI intersected with missing coverage; opening is not semantically segmented",
+  "camera": {
+    "frame": 37,
+    "K": [
+      [
+        591.2066557566379,
+        0.0,
+        256.0
+      ],
+      [
+        0.0,
+        591.2066557566379,
+        256.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "world_from_cv_m": [
+      [
+        -0.617988053900558,
+        -0.27245127935225466,
+        0.7374693658827602,
+        3.9466700829929935
+      ],
+      [
+        -0.7861463260075208,
+        0.22374959922545407,
+        -0.5761163692790943,
+        0.8238171586089511
+      ],
+      [
+        -0.008044833191452124,
+        -0.9357918664028708,
+        -0.3524611516651919,
+        1.358218779809886
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "crop": [
+      128,
+      0,
+      768,
+      768,
+      512
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+﻿{
+    "status":  "completed-rejected-no-mesh-change",
+    "cost_credits":  8,
+    "model_id":  "2db90e64-51dd-45b2-870a-66d19a81118e",
+    "image_asset_id":  "11bc7c4a-fa75-4c8e-845b-b9babfcfd465",
+    "mask_asset_id":  "c9989e82-8a77-4785-87a4-708b5c907889",
+    "prompt":  "Edit this ONE image in place. It is a fixed-camera 512x512 render, not a request for a new room view. The transparent mask region at the lower left (x=0..256, y=416..512) is a missing section of the visible wood floor. Continue the adjacent wood floor into ONLY that region, matching its subdued brown color, grain scale, lighting and perspective. Preserve every pixel outside that region, including black unknown areas, the blue-gray vertical jamb, wallpaper, doorway and framing. Do not fill other black regions. Add no furniture, grilles, objects or new room. Do not pan, crop, reframe, zoom or alter architecture. Return one image of the same composition. This output supplies appearance only: floor depth and geometry are independently fixed and will not be inferred from the image.",
+    "model":  "Sunburst",
+    "quality":  "high",
+    "background":  "opaque",
+    "image_size":  "square_hd",
+    "output_format":  "png",
+    "use":  "Appearance only; plane geometry fixed; raw drift gate before exact protected-pixel composite",
+    "automatic_retry":  false,
+    "prediction_id":  "cd0edccc-6dcf-4ba3-b4fa-07ae1ed80586",
+    "output_sha256":  "45f57e9fb9bec08de13bffeddab809e81b4ef23a0513a6d1c5cc0acab5ae5bac"
+}

@@ -1,0 +1,24 @@
+{
+  "candidate_sha256": "57214b0555ca69e55b9ac8b3ba2408842776cceb9d7e3414879d8426f7031552",
+  "evaluation_only_frame": 37,
+  "added_pixels": 66698,
+  "valid_reference_pixels": 66479,
+  "no_valid_reference_pixels": 219,
+  "added_depth_mae_m": 0.22950148286139124,
+  "added_depth_p95_m": 1.5461274915062633,
+  "added_depth_max_m": 4.0900924772379845,
+  "fraction_within_5cm": 0.7506280178703049,
+  "failed_weave_raw_gate": {
+    "accepted": false,
+    "outside_changed_fraction": 0.9581617108829407,
+    "outside_mae": 91.49903258353612,
+    "threshold_rgb": 8,
+    "max_changed_fraction": 0.01,
+    "note": "Necessary pixel-registration gate; passing does not establish correct geometry"
+  },
+  "notes": [
+    "Held-out depth read after candidate hash was frozen; never used for fitting or appearance.",
+    "Reference uses nearest source pixel on the recorded center crop; sampling error remains.",
+    "This evaluates a bounded patch, not whole-room reconstruction quality."
+  ]
+}

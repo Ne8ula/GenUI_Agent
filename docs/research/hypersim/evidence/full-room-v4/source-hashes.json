@@ -1,0 +1,22 @@
+{
+  "base_git_revision": "70ad76c6888a9bbcc98bea8c2756ed73db0f5132",
+  "working_tree": "uncommitted; preserve concurrent work",
+  "date": "2026-10-20",
+  "sha256": {
+    "scripts/reconstruction/full_room.py": "03cd3a139243c01c4c0653ee5ed95c138a633b7ce57717f1376f6416063e6183",
+    "scripts/reconstruction/structural_completion.py": "e9f8830fce2b643a6a54316143f8b6673117cf1d00bab147cdc8ba1e3d87e647",
+    "scripts/reconstruction/export_full_room.py": "8377eb6284f5545c6b04df3534394d8bbb788c4a123733534807ba9979228de2",
+    "scripts/reconstruction/planar_completion.py": "0b7ad35af5813e9c6fbc5a9e0f81356ed459d640852acd28417562fb2893224a",
+    "scripts/reconstruction/test_full_room.py": "dcafca6e6032a733221d306eb365ccfe4354fa3a307cf1568781ebb640bfa829",
+    "week4/app/src/room/renderer.ts": "142eafb54a3f38766131c88857b7f6174c57a43fbc549dea0c8a1ddb464a532c",
+    "week4/app/src/room/RoomApp.tsx": "a3eaf89ce9a76f214691a89fe80bc23ff349ae378ecccf3938e4fc464d538e73",
+    "week4/app/src/room/room.css": "215b049bcc01a2de9497e54bd838b4fa4c0393139866ca970f6278e8240de2d3",
+    "week4/app/vite.config.ts": "a5f432317e9e79d93c7132367b45a588b92daf2f362e9baee444cdc0b3017e80",
+    "week4/app/scripts/verify-full-room.mjs": "3881b85d9c1193bc9c7fc614c32e970cbb22976913a027382d525994291c61b1",
+    "week4/app/scripts/capture-room-tour.mjs": "92190740a35ed7d96fada8cf77c7836d9ddae752e36ccc3ea97f430f9189de08",
+    ".local/reconstruction/data-r03/manifest.json": "24656291a6426ee01c2eca0a32b19d63c5f77fde3a12be1b7bce2c1655c12235",
+    ".local/reconstruction/runs/ai_001_004-r03/cameras.json": "c2496ddb931d2c534c82b5cd175386aad747871c8aec3bbb9f0ba0bc085ca0b2",
+    ".local/reconstruction/full-room-tsdf-v1/oriented-points.ply": "58fbaa564cd7210c48492efd79c39827ececa4f8cf983e826ce9cdfa9ce7f388",
+    "week4/app/public/assets/hypersim-r03/room.ply": "10ba765653d9a1fcd9fa587b136038e98d6c01a769d3b38dd3bfc63eca1c7e25"
+  }
+}

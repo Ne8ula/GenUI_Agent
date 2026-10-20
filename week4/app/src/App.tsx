@@ -12,8 +12,13 @@ const Hybrid = lazy(() => import('./hybrid/HybridApp.tsx').then(module => ({ def
 const Scan = lazy(() => import('./scan/ScanApp.tsx').then(module => ({ default: module.ScanApp })));
 
 const Arrival = lazy(() => import('./arrival/ArrivalApp.tsx').then(module => ({ default: module.ArrivalApp })));
+const Room = lazy(() => import('./room/RoomApp.tsx').then(module => ({ default: module.RoomApp })));
 
 export function App() {
+  const scene = new URLSearchParams(window.location.search).get('scene');
+  if ((scene === null && !new URLSearchParams(window.location.search).has('historical')) || scene === 'hypersim-room') {
+    return <Suspense fallback={<p>Opening the reconstructed room…</p>}><Room /></Suspense>;
+  }
   if (new URLSearchParams(window.location.search).get('scene') === 'paris-arrival') {
     return <Suspense fallback={<p>Preparing EVA and Paris…</p>}><Arrival /></Suspense>;
   }

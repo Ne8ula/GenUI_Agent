@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "kind": "floor-material",
+  "origin": "source-derived-training-tile",
+  "texture_sha256": "0ba71969546877613c807c0c41910427ea0a63b008f22880151ab5511db4bf46",
+  "meters_per_tile": 0.4,
+  "world_origin_xy_m": [
+    6.1970440495835195,
+    2.7887553260198272
+  ],
+  "conditioning_frames": [
+    5
+  ],
+  "source_rgb_sha256": "0790c5c6efd69eec37acb41321f50c7827a5b6356924c448680ac5b778428870",
+  "source_depth_sha256": "1eddff5e54264d4f53c9e2a8afb9ba3a93135dd4bfa0debf8247a9066fca1b1c",
+  "source_texels_sha256": "27272c71535df548c6267ab3f0041f2fc66e7c3dbc57f9c00446a587d3b665d6",
+  "fully_depth_supported": true,
+  "source_footprint_px": [
+    [
+      399.186851130192,
+      593.2217837630151
+    ],
+    [
+      592.3207784240313,
+      719.8571403273156
+    ]
+  ],
+  "median_source_pixels_per_texel": [
+    0.8807959905392573,
+    1.226906067173477
+  ],
+  "atlas_resolution": [
+    128,
+    128
+  ],
+  "depth_tolerance_m": 0.008,
+  "donor_distance_to_patch_m": 2.813593489070831,
+  "license": "CC-BY-SA-3.0",
+  "attribution": "Apple Hypersim; underlying scene assets by Evermotion",
+  "limitations": "Repeated/mirrored appearance in missing region is inferred, not observed there."
+}

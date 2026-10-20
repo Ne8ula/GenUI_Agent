@@ -1,0 +1,67 @@
+{
+  "status": "candidate-pending-visual-review",
+  "method": "Depth-verified source atlas, world XY UV, local-color detail transfer",
+  "material": {
+    "schema_version": 1,
+    "kind": "floor-material",
+    "origin": "source-derived-training-tile",
+    "texture_sha256": "0ba71969546877613c807c0c41910427ea0a63b008f22880151ab5511db4bf46",
+    "meters_per_tile": 0.4,
+    "world_origin_xy_m": [
+      6.1970440495835195,
+      2.7887553260198272
+    ],
+    "conditioning_frames": [
+      5
+    ],
+    "source_rgb_sha256": "0790c5c6efd69eec37acb41321f50c7827a5b6356924c448680ac5b778428870",
+    "source_depth_sha256": "1eddff5e54264d4f53c9e2a8afb9ba3a93135dd4bfa0debf8247a9066fca1b1c",
+    "source_texels_sha256": "27272c71535df548c6267ab3f0041f2fc66e7c3dbc57f9c00446a587d3b665d6",
+    "fully_depth_supported": true,
+    "source_footprint_px": [
+      [
+        399.186851130192,
+        593.2217837630151
+      ],
+      [
+        592.3207784240313,
+        719.8571403273156
+      ]
+    ],
+    "median_source_pixels_per_texel": [
+      0.8807959905392573,
+      1.226906067173477
+    ],
+    "atlas_resolution": [
+      128,
+      128
+    ],
+    "depth_tolerance_m": 0.008,
+    "donor_distance_to_patch_m": 2.813593489070831,
+    "license": "CC-BY-SA-3.0",
+    "attribution": "Apple Hypersim; underlying scene assets by Evermotion",
+    "limitations": "Repeated/mirrored appearance in missing region is inferred, not observed there."
+  },
+  "geometry_input_sha256": "b1ba54d0640de0210dedfd298fe63c263931f6d8da284ac20dbd8f6e500f2552",
+  "candidate_sha256": "fe0eeafff8f9def467bb7f2044fc8df0b3d9617c636c7a1f4cb561d01f562a49",
+  "script_sha256": "cf74e1f4cd0c99287c306ec7c0649903a55a4603956c6cfe87d1ba1a74311daa",
+  "source_mesh_sha256": "10ba765653d9a1fcd9fa587b136038e98d6c01a769d3b38dd3bfc63eca1c7e25",
+  "geometry_arrays_identical": true,
+  "original_vertex_colors_identical": true,
+  "target_protected_pixels_changed": 0,
+  "raycast_depth_identical_target_left_right": true,
+  "max_depth_change_m": 0.0,
+  "modified_supplement_vertices": 37256,
+  "detail_clamp_rgb": 0.12,
+  "seam_fade_distance_m": [
+    0.005,
+    0.065
+  ],
+  "uv_rule": "world XY mirrored repeat; camera-independent",
+  "limitations": [
+    "No new image model or learned depth ran.",
+    "Repeated source material is inferred at destination.",
+    "Only the existing repaired floor patch is affected; remaining room holes persist.",
+    "The mesh stores sampled vertex colors rather than a native GPU texture."
+  ]
+}

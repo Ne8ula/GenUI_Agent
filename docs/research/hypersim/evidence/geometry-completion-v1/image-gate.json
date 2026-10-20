@@ -1,0 +1,14 @@
+{
+  "accepted": false,
+  "outside_changed_fraction": 0.9581617108829407,
+  "outside_mae": 91.49903258353612,
+  "threshold_rgb": 8,
+  "max_changed_fraction": 0.01,
+  "note": "Necessary pixel-registration gate; passing does not establish correct geometry",
+  "input_sha256": {
+    "original": "d90a103581c9ffd7e74ac7ae04343c6242c840f396663a30e51dec25b08ec5db",
+    "raw": "e043c120a5971537b48428a08c1b6400cfdc54601f65d1a2950c76e39a04b420",
+    "mask": "60b38c160aeb0f0e576f27593869511a5a07d3b8463cada445939b0d269cb011"
+  },
+  "status": "rejected-no-composite"
+}

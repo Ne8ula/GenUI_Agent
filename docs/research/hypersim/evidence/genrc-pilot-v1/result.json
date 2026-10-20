@@ -1,0 +1,254 @@
+{
+  "status": "candidate-awaiting-review",
+  "condition": "GenRC perspective-only adaptation; no panorama/textual inversion",
+  "genrc_commit": "86d19cf15904522e01d9a09436f079c6d3fb6c2f",
+  "encoder_commit": "771ce082b2ce6d033f55b3d47c1f77389ad3c180",
+  "input": {
+    "version": 1,
+    "scene": "ai_001_004",
+    "condition": "genrc-perspective-pilot",
+    "source": {
+      "mesh_sha256": "10ba765653d9a1fcd9fa587b136038e98d6c01a769d3b38dd3bfc63eca1c7e25",
+      "report_sha256": "6b70b03a89835ed82e483cd5be473d206f57496e8dadd96366f25ec149a83b4f",
+      "input_manifest_sha256": "24656291a6426ee01c2eca0a32b19d63c5f77fde3a12be1b7bce2c1655c12235",
+      "license": "CC-BY-SA-3.0",
+      "attribution": "Apple Hypersim; underlying scene assets by Evermotion"
+    },
+    "files": {
+      "room.ply": {
+        "sha256": "10ba765653d9a1fcd9fa587b136038e98d6c01a769d3b38dd3bfc63eca1c7e25",
+        "bytes": 23791416
+      },
+      "observations.npz": {
+        "sha256": "347a3ed36f0dbdb29b93bad20c49829ea961f4e00dffefbb6a3d06769bbeee79",
+        "bytes": 1008609
+      }
+    },
+    "camera": {
+      "frame": 37,
+      "K": [
+        [
+          591.2066557566379,
+          0.0,
+          256.0
+        ],
+        [
+          0.0,
+          591.2066557566379,
+          256.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "world_from_cv_m": [
+        [
+          -0.617988053900558,
+          -0.27245127935225466,
+          0.7374693658827602,
+          3.9466700829929935
+        ],
+        [
+          -0.7861463260075208,
+          0.22374959922545407,
+          -0.5761163692790943,
+          0.8238171586089511
+        ],
+        [
+          -0.008044833191452124,
+          -0.9357918664028708,
+          -0.3524611516651919,
+          1.358218779809886
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "crop": [
+        128,
+        0,
+        768,
+        768,
+        512
+      ]
+    },
+    "bounds_m": [
+      [
+        0.01,
+        -3.99,
+        -0.01
+      ],
+      [
+        7.155553188973859,
+        4.503144627814279,
+        2.61
+      ]
+    ],
+    "seed": 0,
+    "steps": 30,
+    "roi": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "seam_m": 0.01,
+    "prompt": "A coherent furnished living room. Continue the existing walls, floor, materials and existing furniture. Preserve openings. No additional rooms or new furnishings.",
+    "evaluation_status": "development-candidate"
+  },
+  "models": {
+    "version": 1,
+    "sources": {
+      "irondepth": {
+        "url": "https://github.com/baegwangbin/IronDepth",
+        "revision": "Publisher Google Drive normal_scannet.pt:16cNJPZgxHI2wsa5dlG1HgMD_Vl5BPTSq; irondepth_scannet.pt:1mMvj0fBKPfXRjLypaDPrCidT67jutWdr; local SHA256 recorded in models.json",
+        "license": "Publisher repository MIT; no separate checkpoint-specific license or publisher checksum stated in inspected README/Drive listing"
+      },
+      "stable-diffusion-2-inpainting": {
+        "url": "https://huggingface.co/sd2-community/stable-diffusion-2-inpainting",
+        "revision": "5f74973cbb64c8568780732c17f43eb269d63a0d",
+        "license": "CreativeML Open RAIL++-M per mirror model card; explicitly unaffiliated community mirror, owner approved; file integrity verified against mirror metadata, original equivalence unverified"
+      }
+    },
+    "files": {
+      "irondepth_scannet.pt": {
+        "bytes": 291341998,
+        "sha256": "7b225677623ea2ad4b1331fceffa3446a060c391537018733e43525f2a97f9f1"
+      },
+      "normal_scannet.pt": {
+        "bytes": 290731303,
+        "sha256": "1edf0b1ecce9a8959e005aabbe13de5311793cbfb8164d1a0b36aab52ce01b42"
+      },
+      "stable-diffusion-2-inpainting/feature_extractor/preprocessor_config.json": {
+        "bytes": 342,
+        "sha256": "2a1da83b5e1032aaeef397552ddb408dca0d8cd1dc58f61bf6abf38d6f33a0a2"
+      },
+      "stable-diffusion-2-inpainting/model_index.json": {
+        "bytes": 544,
+        "sha256": "af482af150c3f493066861bdf1b5208a35ed15e530c1fb6eb144c85e42a1114c"
+      },
+      "stable-diffusion-2-inpainting/README.md": {
+        "bytes": 13272,
+        "sha256": "cf5f63a942451b9972c4c0437f5b58de7a6f1e83284a9b4591fc9aea155764ac"
+      },
+      "stable-diffusion-2-inpainting/scheduler/scheduler_config.json": {
+        "bytes": 308,
+        "sha256": "7a8564e9760e67ab1bea23709a1f24f4008c88535f149d0ef637e3d51556189d"
+      },
+      "stable-diffusion-2-inpainting/text_encoder/config.json": {
+        "bytes": 638,
+        "sha256": "defee35258ea6821568d9dffbc63edb3eb7c194d83f147b087f733897547f024"
+      },
+      "stable-diffusion-2-inpainting/text_encoder/model.safetensors": {
+        "bytes": 1361597018,
+        "sha256": "cce6febb0b6d876ee5eb24af35e27e764eb4f9b1d0b7c026c8c3333d4cfc916c"
+      },
+      "stable-diffusion-2-inpainting/tokenizer/merges.txt": {
+        "bytes": 524619,
+        "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+      },
+      "stable-diffusion-2-inpainting/tokenizer/special_tokens_map.json": {
+        "bytes": 460,
+        "sha256": "f118ab3a983206e4f32583448de6bd6aae4ee21869135cef1f5848a753cdaab6"
+      },
+      "stable-diffusion-2-inpainting/tokenizer/tokenizer_config.json": {
+        "bytes": 829,
+        "sha256": "5791be2e5ba26a0be4ac7d952f0daf382401394ab36886a8158fe52e39ea6226"
+      },
+      "stable-diffusion-2-inpainting/tokenizer/vocab.json": {
+        "bytes": 1059962,
+        "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349"
+      },
+      "stable-diffusion-2-inpainting/unet/config.json": {
+        "bytes": 914,
+        "sha256": "ec80d707d3b97c57457682dbc40f42e1fe5834c18e3f58bc207b76c5e2799560"
+      },
+      "stable-diffusion-2-inpainting/unet/diffusion_pytorch_model.safetensors": {
+        "bytes": 3463784116,
+        "sha256": "9bcbb17f54b039f58bf78677fab8cd8a35dd686f6c9dd553e3646a8b0aaff41a"
+      },
+      "stable-diffusion-2-inpainting/vae/config.json": {
+        "bytes": 616,
+        "sha256": "754a44e01ee811076bc6c0edfeb2afdd59fb5bcb64d3c8a6b0923e29d0fd304b"
+      },
+      "stable-diffusion-2-inpainting/vae/diffusion_pytorch_model.safetensors": {
+        "bytes": 334643276,
+        "sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815"
+      }
+    }
+  },
+  "seconds": 22.248758529000003,
+  "peak_vram_bytes": 3949120512,
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "torch": "1.13.1+cu117",
+  "cuda": "11.7",
+  "generated_triangles": 84967,
+  "original_vertices_changed": 0,
+  "original_faces_removed": 0,
+  "seam_adjusted_new_vertices": 413,
+  "depth_checks": {
+    "rejected_triangles": 60321,
+    "valid_depth_probes": 3067339
+  },
+  "limitations": [
+    "Plausible completion, not recovered hidden truth",
+    "Sparse depth probes can miss contradictions",
+    "Doorway preservation and semantic consistency require visual review",
+    "Single central crop; not complete room coverage"
+  ],
+  "files": {
+    "before-depth.npy": {
+      "sha256": "7b708faeccc73e0e2af200292472a377a44af9f71ef395ecaa5b3699b47d2f9c",
+      "bytes": 1048704
+    },
+    "before.png": {
+      "sha256": "d90a103581c9ffd7e74ac7ae04343c6242c840f396663a30e51dec25b08ec5db",
+      "bytes": 88546
+    },
+    "candidate-0036.png": {
+      "sha256": "67608e444505452c0e254a0910022ba73a8771dc7118ec4fb480c048f8d1e34c",
+      "bytes": 180095
+    },
+    "candidate-0037.png": {
+      "sha256": "044eac50e0811b1619a744f2556e0262bf958bb14904cf1aeea087082578ef8b",
+      "bytes": 163296
+    },
+    "candidate-0038.png": {
+      "sha256": "eced35c8ae84c42e552f308a1cc4aa653290a3f7a060217549f49ee1608d18c4",
+      "bytes": 185791
+    },
+    "candidate.ply": {
+      "sha256": "de85564b37fd245cd86857562dc37329e5ab4ff0d6e92eeda9abf71e798ade9a",
+      "bytes": 18612094
+    },
+    "completion.ply": {
+      "sha256": "fd8d6bdbabd8bf5b797b79031d8afe02c31bf3af8f5acc8bc46c4d2c04937c57",
+      "bytes": 2309362
+    },
+    "diffusion-raw.png": {
+      "sha256": "d9dee5f897ee762917d09a64daadb419360c1f6ecf04968c2322a4b8d3fe489d",
+      "bytes": 314202
+    },
+    "face-provenance.npz": {
+      "sha256": "bdfea8f65b4024f6b9831b186e8924b08c9af1784d5418a34d5e66f286d7c568",
+      "bytes": 1047598
+    },
+    "generated.png": {
+      "sha256": "f2e90f02942ed384429565d8ad2b6d6672f3a48860043cf6cfdfb830480a9a26",
+      "bytes": 272646
+    },
+    "generation-mask.png": {
+      "sha256": "7f1bf79078795e702d73397629f690f5cb29f6454e4b894e09d857d83449f1a7",
+      "bytes": 2818
+    },
+    "predicted-depth.npy": {
+      "sha256": "50a8813a2a73ba6c6903acc6d882f79df57b8393a79acd1e977895ed844cb357",
+      "bytes": 1048704
+    }
+  }
+}

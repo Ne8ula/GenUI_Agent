@@ -1,0 +1,18 @@
+{
+  "base_git_revision": "70ad76c6888a9bbcc98bea8c2756ed73db0f5132",
+  "date": "2026-10-20",
+  "sha256": {
+    "scripts/reconstruction/adjacent_space.py": "e5c9dd55a9c056e66aaa92565aaac33b983194be5a58957da5c12656992ea401",
+    "scripts/reconstruction/export_full_room.py": "599cd22bc8388779eecfb704659ad700ee064988859bcc524222ead677510ab6",
+    "scripts/reconstruction/test_full_room.py": "4b3b915c13fc3df8875f07b99584c3671b0930b78ae39a6773f6884549abea94",
+    "week4/app/src/room/renderer.ts": "2a273c882b68426cc2198c84d4ee06c9c56cc190092755a7493512d54b31abb8",
+    "week4/app/src/room/point-sampling.ts": "caf63e3bcc38045c86ca5f8d8203b08453b1569eb7bce24d36abf86f1b3977b5",
+    "week4/app/src/room/RoomApp.tsx": "7e92e92e46a345d2066c5a08ee5f05077ac77a8043fb4e57901327fbe52df85b",
+    "week4/app/src/room/room.css": "5d17f0692bb669f30b45f67920ef7b4642e1e7c54b1948bdc3c1769613b847ff",
+    "week4/app/tests/room-point-sampling.test.ts": "8797b5f0540230b152f7bd53d50296278b24a4649372de806d1c5c30850cac39",
+    "week4/app/scripts/verify-full-room.mjs": "4ef4b3af21d3ba98ec7752e278c863f00cc626b404b629ceac9f950d4585f349",
+    "week4/app/scripts/verify-room-production.mjs": "314bb5e1b5934eaeaab6f82087d89cfd3ca9e8ff12fd588270b232c61592786c",
+    "week4/app/scripts/capture-room-refinement.mjs": "d941511816ade66d128fac9d9bdda5b249fc07d0803bc96b0db596773d8e8c17",
+    "week4/app/vite.config.ts": "891cbd22da28f8f2dce7fc048b0df5839f8c27739106a189ead148186f48581a"
+  }
+}

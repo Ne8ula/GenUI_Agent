@@ -1,0 +1,26 @@
+{
+  "prediction_id": "14171e1c-6afc-4780-aef7-82de0b86a3df",
+  "provider_status": "COMPLETED",
+  "reported_cost_credits": 8,
+  "output_size": [
+    1024,
+    1024
+  ],
+  "review_status": "rejected-for-geometry-camera-and-mask-drift",
+  "comparison_method": "Raw output box-downsampled to original512x512 only for analysis; original output retained unchanged",
+  "edit_pixels": 9409,
+  "outside_edit_mean_absolute_rgb_error_0_255": 91.49903258353612,
+  "outside_edit_fraction_mean_rgb_error_over_8": 0.9581617108829407,
+  "observed_mean_absolute_rgb_error_0_255": 58.52460937584151,
+  "protected_unknown_pixels": 98004,
+  "protected_unknown_fraction_changed_over_8": 1.0,
+  "visual_findings": [
+    "Output adopts training-reference-like framing instead of target framing",
+    "Blue-gray target jamb is absent",
+    "Black unknown areas outside the mask were filled",
+    "Floor and wallpaper appearance improved, but output is not registered to target camera"
+  ],
+  "depth_or_mesh_generated": false,
+  "automatic_retry": false,
+  "output_sha256": "e043c120a5971537b48428a08c1b6400cfdc54601f65d1a2950c76e39a04b420"
+}

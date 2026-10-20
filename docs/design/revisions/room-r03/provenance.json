@@ -1,0 +1,82 @@
+{
+  "revision": "room-r03",
+  "date": "2026-10-19",
+  "base_commit": "70ad76c6888a9bbcc98bea8c2756ed73db0f5132",
+  "owner_acceptance": "pending",
+  "weave": {
+    "status": "explicit-owner-waiver-for-this-pass",
+    "owner_text": "Waive Weave for this first room-demo pass",
+    "model": null,
+    "run_id": null,
+    "cost": 0
+  },
+  "source_kind": "synthetic-supplied-depth-and-camera-poses",
+  "implementation": "native React/Three.js reviewed source; no runtime-generated code",
+  "before": "no runnable room route existed",
+  "final_evidence": "implementation/after-v5/checks.json",
+  "production_check": {
+    "url": "http://127.0.0.1:1441/",
+    "page_errors": [],
+    "source_image_loaded": true,
+    "points_selected": true,
+    "debug_hook_absent": true
+  },
+  "files": {
+    "week4/app/src/room/renderer.ts": {
+      "bytes": 9520,
+      "sha256": "baccd170100f18902372a96c3f44bd73ad0a6c023c76ee35a88af0c5ad5408ba"
+    },
+    "week4/app/src/room/room.css": {
+      "bytes": 9092,
+      "sha256": "5404ade542041f3425157a5aa32668f460bd8b5713bd9a04d8d2d21b0380e52f"
+    },
+    "week4/app/src/room/RoomApp.tsx": {
+      "bytes": 10850,
+      "sha256": "61d38d4d979f61ad9c8802c365e4a44a5f969ae1fedac4f5640740f8b8332bd7"
+    },
+    "week4/app/src/App.tsx": {
+      "bytes": 1921,
+      "sha256": "62067f456ef9d7f0d2e574a5ec48ef7f8e2c938e12a85f7c6c3c8553afeea4e7"
+    },
+    "week4/app/vite.config.ts": {
+      "bytes": 2379,
+      "sha256": "23311e0d50a8a2f4642c0372954ea5c5964488011c0641ab0a5d39487967da95"
+    },
+    "week4/app/scripts/verify-room.mjs": {
+      "bytes": 9253,
+      "sha256": "996d1748bf9958f90629599e470036764f19a8b0effb5162af6256c92dcc964c"
+    },
+    "scripts/reconstruction/export_browser.py": {
+      "bytes": 3594,
+      "sha256": "6062384a1ef35eadbcf6fbf8a2206ab2d6e2c3abfed8f113cd79f7b8fd18f274"
+    },
+    "week4/app/public/assets/hypersim-r03/credits.json": {
+      "bytes": 595,
+      "sha256": "909713fbcf1123c70c20b6aaeb1b3df21a97d539ddaac37a53661de590c13c06"
+    },
+    "week4/app/public/assets/hypersim-r03/room.ply": {
+      "bytes": 23791416,
+      "sha256": "10ba765653d9a1fcd9fa587b136038e98d6c01a769d3b38dd3bfc63eca1c7e25"
+    },
+    "week4/app/public/assets/hypersim-r03/scene.json": {
+      "bytes": 7527,
+      "sha256": "38978291951ecff859fb3577d32acc54bd63185d7b61dda32098c2682cb770c5"
+    },
+    "week4/app/public/assets/hypersim-r03/source-0012.jpg": {
+      "bytes": 125679,
+      "sha256": "6a7b798e8a714053aad99bf335d0ee1174093e2bbee2af70d7f226309be668da"
+    },
+    "week4/app/public/assets/hypersim-r03/source-0037.jpg": {
+      "bytes": 97745,
+      "sha256": "f5d7df36f4317ebbeaedb4ade5eb9052fb5b7a4cc5b66d6fc8007080815484a4"
+    },
+    "week4/app/public/assets/hypersim-r03/source-0062.jpg": {
+      "bytes": 134224,
+      "sha256": "85ee318aae59cd6e3ec876791d43cedb6c52f72086b0ada3c3588593af174c63"
+    },
+    "week4/app/public/assets/hypersim-r03/source-0087.jpg": {
+      "bytes": 124980,
+      "sha256": "ae33f03be959a6ea10a8a8c35f3e7d54fc9074c37dec1ef19c3c8e0d9240f6b2"
+    }
+  }
+}

@@ -1,0 +1,290 @@
+[
+  {
+    "axis": 0,
+    "position": 2.5000286662086104,
+    "support_area_m2": 9.540715749537704,
+    "support_min": [
+      2.4996921505731313,
+      -0.2725,
+      0.057499999999999996
+    ],
+    "support_max": [
+      2.516248331158087,
+      4.4725,
+      2.4274999999999998
+    ],
+    "accepted_faces": 5488,
+    "checks": {
+      "rejected_triangles": 0,
+      "valid_depth_probes": 1029305,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 0,
+    "position": 6.799768086705052,
+    "support_area_m2": 6.2658059781133915,
+    "support_min": [
+      6.798142017505867,
+      -0.2675,
+      0.017499999999999998
+    ],
+    "support_max": [
+      6.800819530085135,
+      4.4725,
+      2.5674999999999994
+    ],
+    "accepted_faces": 5296,
+    "checks": {
+      "rejected_triangles": 8065,
+      "valid_depth_probes": 89189,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 0,
+    "position": 7.10000014385081,
+    "support_area_m2": 4.821484512205879,
+    "support_min": [
+      7.0994662287441,
+      -0.2825,
+      0.0725
+    ],
+    "support_max": [
+      7.10080765800438,
+      3.4675,
+      2.4124999999999996
+    ],
+    "accepted_faces": 25199,
+    "checks": {
+      "rejected_triangles": 11292,
+      "valid_depth_probes": 432170,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 0,
+    "position": 0.29997692668363596,
+    "support_area_m2": 3.1055124030265278,
+    "support_min": [
+      0.2986874918026537,
+      -3.6774999999999998,
+      0.017499999999999998
+    ],
+    "support_max": [
+      0.301339575256042,
+      -2.0574999999999997,
+      2.5775
+    ],
+    "accepted_faces": 37779,
+    "checks": {
+      "rejected_triangles": 2485,
+      "valid_depth_probes": 5390137,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 0,
+    "position": 5.70014818562007,
+    "support_area_m2": 3.0271413319211615,
+    "support_min": [
+      5.691983464319038,
+      -3.6174999999999997,
+      0.017499999999999998
+    ],
+    "support_max": [
+      5.715575441687492,
+      4.4725,
+      2.2075
+    ],
+    "accepted_faces": 16207,
+    "checks": {
+      "rejected_triangles": 23867,
+      "valid_depth_probes": 259879,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 0,
+    "position": 5.999996736055472,
+    "support_area_m2": 2.1612799142332335,
+    "support_min": [
+      5.999266624689624,
+      -1.1674999999999998,
+      0.017499999999999998
+    ],
+    "support_max": [
+      6.000709710873051,
+      -0.31749999999999995,
+      2.5775
+    ],
+    "accepted_faces": 66,
+    "checks": {
+      "rejected_triangles": 0,
+      "valid_depth_probes": 137,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 1,
+    "position": 4.5000119431576735,
+    "support_area_m2": 5.016814781073328,
+    "support_min": [
+      2.5224999999999995,
+      4.490917584054299,
+      0.0325
+    ],
+    "support_max": [
+      6.7775,
+      4.500537873834876,
+      2.4175
+    ],
+    "accepted_faces": 26273,
+    "checks": {
+      "rejected_triangles": 0,
+      "valid_depth_probes": 5287314,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 1,
+    "position": -3.7000337491614834,
+    "support_area_m2": 4.476300455651247,
+    "support_min": [
+      0.3175,
+      -3.702395123329796,
+      0.017499999999999998
+    ],
+    "support_max": [
+      3.5574999999999997,
+      -3.696546186185867,
+      2.5775
+    ],
+    "accepted_faces": 20357,
+    "checks": {
+      "rejected_triangles": 2927,
+      "valid_depth_probes": 72484,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 1,
+    "position": -0.300012063372113,
+    "support_area_m2": 4.428830244687357,
+    "support_min": [
+      2.5224999999999995,
+      -0.3044205365585575,
+      0.017499999999999998
+    ],
+    "support_max": [
+      6.000074999999997,
+      -0.2978551795694259,
+      2.5775
+    ],
+    "accepted_faces": 1138,
+    "checks": {
+      "rejected_triangles": 8878,
+      "valid_depth_probes": 48178,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 1,
+    "position": 4.034438529831924,
+    "support_area_m2": 2.2314681148723055,
+    "support_min": [
+      3.5524999999999998,
+      4.029091131988613,
+      0.012499999999999999
+    ],
+    "support_max": [
+      5.6575,
+      4.041078304034586,
+      2.2224999999999997
+    ],
+    "accepted_faces": 284,
+    "checks": {
+      "rejected_triangles": 4026,
+      "valid_depth_probes": 64913,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 2,
+    "position": -3.7533141930916565e-05,
+    "support_area_m2": 27.72350222791352,
+    "support_min": [
+      0.42250000000000004,
+      -3.6474999999999995,
+      -0.0011526507977294377
+    ],
+    "support_max": [
+      7.0075,
+      4.3625,
+      0.0010259146040669678
+    ],
+    "accepted_faces": 55359,
+    "checks": {
+      "rejected_triangles": 0,
+      "valid_depth_probes": 5364227,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  },
+  {
+    "axis": 2,
+    "position": 2.5999616686904043,
+    "support_area_m2": 20.12271146627289,
+    "support_min": [
+      0.43249999999999994,
+      -3.6325000000000003,
+      2.5971194097937436
+    ],
+    "support_max": [
+      6.977499999999999,
+      4.3625,
+      2.6009771062987297
+    ],
+    "accepted_faces": 72637,
+    "checks": {
+      "rejected_triangles": 0,
+      "valid_depth_probes": 4588473,
+      "tolerance_m": 0.02,
+      "max_reference_depth_m": null,
+      "source_invalid_interiors_protected": true,
+      "reference": "minimum valid 3x3 full-resolution training depth"
+    }
+  }
+]

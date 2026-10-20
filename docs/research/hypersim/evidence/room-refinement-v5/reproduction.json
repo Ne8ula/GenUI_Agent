@@ -1,0 +1,7 @@
+{
+  "first_full_precision_mesh_sha256": "26d8042faa8f4aa05e923ba66aa8bff28c96e2510281927e1f60af418b67297f",
+  "iterative_veto_reproduction_sha256": "26d8042faa8f4aa05e923ba66aa8bff28c96e2510281927e1f60af418b67297f",
+  "identical_mesh": true,
+  "builder_sha256": "e5c9dd55a9c056e66aaa92565aaac33b983194be5a58957da5c12656992ea401",
+  "description": "Iterative full-resolution visibility filtering converged without changing the initial candidate mesh."
+}

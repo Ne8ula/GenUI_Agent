@@ -1,0 +1,411 @@
+{
+  "date": "2026-10-19",
+  "source_revision": "70ad76c6888a9bbcc98bea8c2756ed73db0f5132",
+  "audit_script_sha256": "7d866a0ba765346d18413886238032ae80aa2265943b20963c55b7ee56658ba2",
+  "baseline_mesh_sha256": "f3555f41ae4e7755a38d3db41b2981698f3a9c4b297ce989052f5bdc050373ec",
+  "baseline_input_manifest_sha256": "fcde0978bf0ae815d6b8b41c47701211d898e6ec1ea2e6c8233e2e715578e733",
+  "extra_inputs": {
+    "archive": "https://docs-assets.developer.apple.com/ml-research/datasets/hypersim/v1/scenes/ai_001_004.zip",
+    "files": [
+      {
+        "entry": "ai_001_004/images/scene_cam_00_geometry_hdf5/frame.0037.position.hdf5",
+        "sha256": "9ef322de773adc4de9d620ea3ac17755ca7df71953c0f2de34bb7b2641e4c593",
+        "bytes": 800910
+      },
+      {
+        "entry": "ai_001_004/images/scene_cam_00_final_preview/frame.0037.tonemap.jpg",
+        "sha256": "47e055d012df838907cecb40dcafc4f1e95c9f1dbaf9184c3d12c10e590932cf",
+        "bytes": 60363
+      }
+    ],
+    "network_bytes": 1388925,
+    "purpose": "frame0037 diagnostic only; never integrated into baseline"
+  },
+  "frame37_position_check": {
+    "samples": 738562,
+    "median_m": 0.0012413089656489007,
+    "p95_m": 0.0035625524710737612,
+    "max_m": 0.007296196567890629
+  },
+  "source_support_method": "stride4, nearest-pixel radial-depth agreement <=5cm; positive-z frustum and planar depth <=12m",
+  "source_support": [
+    {
+      "frame": 12,
+      "valid_pixels": 49152,
+      "supported_pixels": 49047,
+      "supported_fraction": 0.99786376953125,
+      "per_input": [
+        {
+          "frame": 0,
+          "matching_pixels": 45145
+        },
+        {
+          "frame": 5,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 10,
+          "matching_pixels": 13460
+        },
+        {
+          "frame": 15,
+          "matching_pixels": 16736
+        },
+        {
+          "frame": 20,
+          "matching_pixels": 31114
+        },
+        {
+          "frame": 25,
+          "matching_pixels": 17511
+        },
+        {
+          "frame": 30,
+          "matching_pixels": 24919
+        },
+        {
+          "frame": 35,
+          "matching_pixels": 6496
+        },
+        {
+          "frame": 40,
+          "matching_pixels": 33050
+        },
+        {
+          "frame": 45,
+          "matching_pixels": 36784
+        },
+        {
+          "frame": 50,
+          "matching_pixels": 19192
+        },
+        {
+          "frame": 55,
+          "matching_pixels": 14191
+        },
+        {
+          "frame": 60,
+          "matching_pixels": 9975
+        },
+        {
+          "frame": 65,
+          "matching_pixels": 8924
+        },
+        {
+          "frame": 70,
+          "matching_pixels": 14802
+        },
+        {
+          "frame": 75,
+          "matching_pixels": 15916
+        },
+        {
+          "frame": 80,
+          "matching_pixels": 22406
+        },
+        {
+          "frame": 85,
+          "matching_pixels": 41656
+        },
+        {
+          "frame": 90,
+          "matching_pixels": 37941
+        },
+        {
+          "frame": 95,
+          "matching_pixels": 20675
+        }
+      ]
+    },
+    {
+      "frame": 37,
+      "valid_pixels": 46149,
+      "supported_pixels": 370,
+      "supported_fraction": 0.008017508505059699,
+      "per_input": [
+        {
+          "frame": 0,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 5,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 10,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 15,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 20,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 25,
+          "matching_pixels": 370
+        },
+        {
+          "frame": 30,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 35,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 40,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 45,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 50,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 55,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 60,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 65,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 70,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 75,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 80,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 85,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 90,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 95,
+          "matching_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": 62,
+      "valid_pixels": 49152,
+      "supported_pixels": 49034,
+      "supported_fraction": 0.9975992838541666,
+      "per_input": [
+        {
+          "frame": 0,
+          "matching_pixels": 46734
+        },
+        {
+          "frame": 5,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 10,
+          "matching_pixels": 648
+        },
+        {
+          "frame": 15,
+          "matching_pixels": 28803
+        },
+        {
+          "frame": 20,
+          "matching_pixels": 44762
+        },
+        {
+          "frame": 25,
+          "matching_pixels": 2697
+        },
+        {
+          "frame": 30,
+          "matching_pixels": 20805
+        },
+        {
+          "frame": 35,
+          "matching_pixels": 12924
+        },
+        {
+          "frame": 40,
+          "matching_pixels": 43526
+        },
+        {
+          "frame": 45,
+          "matching_pixels": 46397
+        },
+        {
+          "frame": 50,
+          "matching_pixels": 30976
+        },
+        {
+          "frame": 55,
+          "matching_pixels": 4324
+        },
+        {
+          "frame": 60,
+          "matching_pixels": 18867
+        },
+        {
+          "frame": 65,
+          "matching_pixels": 13430
+        },
+        {
+          "frame": 70,
+          "matching_pixels": 21238
+        },
+        {
+          "frame": 75,
+          "matching_pixels": 1943
+        },
+        {
+          "frame": 80,
+          "matching_pixels": 15339
+        },
+        {
+          "frame": 85,
+          "matching_pixels": 36190
+        },
+        {
+          "frame": 90,
+          "matching_pixels": 30532
+        },
+        {
+          "frame": 95,
+          "matching_pixels": 17955
+        }
+      ]
+    },
+    {
+      "frame": 87,
+      "valid_pixels": 49152,
+      "supported_pixels": 49128,
+      "supported_fraction": 0.99951171875,
+      "per_input": [
+        {
+          "frame": 0,
+          "matching_pixels": 47480
+        },
+        {
+          "frame": 5,
+          "matching_pixels": 0
+        },
+        {
+          "frame": 10,
+          "matching_pixels": 2247
+        },
+        {
+          "frame": 15,
+          "matching_pixels": 27621
+        },
+        {
+          "frame": 20,
+          "matching_pixels": 39479
+        },
+        {
+          "frame": 25,
+          "matching_pixels": 6816
+        },
+        {
+          "frame": 30,
+          "matching_pixels": 25689
+        },
+        {
+          "frame": 35,
+          "matching_pixels": 15226
+        },
+        {
+          "frame": 40,
+          "matching_pixels": 40253
+        },
+        {
+          "frame": 45,
+          "matching_pixels": 47143
+        },
+        {
+          "frame": 50,
+          "matching_pixels": 27300
+        },
+        {
+          "frame": 55,
+          "matching_pixels": 6627
+        },
+        {
+          "frame": 60,
+          "matching_pixels": 19848
+        },
+        {
+          "frame": 65,
+          "matching_pixels": 8977
+        },
+        {
+          "frame": 70,
+          "matching_pixels": 15764
+        },
+        {
+          "frame": 75,
+          "matching_pixels": 5186
+        },
+        {
+          "frame": 80,
+          "matching_pixels": 19788
+        },
+        {
+          "frame": 85,
+          "matching_pixels": 39343
+        },
+        {
+          "frame": 90,
+          "matching_pixels": 34427
+        },
+        {
+          "frame": 95,
+          "matching_pixels": 20725
+        }
+      ]
+    }
+  ],
+  "baseline_frame37": {
+    "frame": 37,
+    "status": "evaluated",
+    "reference_valid_pixels": 46149,
+    "mesh_hit_pixels": 7256,
+    "hit_coverage": 0.15722984246679234,
+    "mae_m_on_hits": 0.513136088848114,
+    "median_m_on_hits": 0.3148527145385742,
+    "p95_m_on_hits": 1.169094204902649,
+    "within_5cm_fraction_of_all_valid": 0.006479013629764459
+  },
+  "baseline_hits_more_than_5cm_behind_reference_fraction": 0.9587927232635061,
+  "self_fit_control_NOT_held_out": {
+    "frame": 37,
+    "status": "evaluated",
+    "reference_valid_pixels": 46149,
+    "mesh_hit_pixels": 44207,
+    "hit_coverage": 0.9579189148193894,
+    "mae_m_on_hits": 0.0017135312082245946,
+    "median_m_on_hits": 0.0007574558258056641,
+    "p95_m_on_hits": 0.0031566619873046875,
+    "within_5cm_fraction_of_all_valid": 0.9572688465622223
+  },
+  "interpretation": "Camera/depth consistency and source-support diagnosis only. Self-fit control is not a benchmark improvement.",
+  "license": "CC-BY-SA-3.0; Apple Hypersim / Evermotion",
+  "comparison_sha256": "056cbe6e0e296d6d6d1db0f60dd7d37b39ad57ec5025abf41b2f76d2c8320859"
+}

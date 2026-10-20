@@ -1,0 +1,10 @@
+{
+  "attribution": "Apple Hypersim; underlying scene assets by Evermotion",
+  "license": "CC-BY-SA-3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "source_url": "https://github.com/apple-aiml-research/ml-hypersim",
+  "upstream_commit": "3463c5c4a75f3cbfc65ed31cfd6e87204b3a2254",
+  "changes": "All-view TSDF plus source-supported architectural plane completion and full-resolution source-triangle gap recovery plus explicitly assumed adjoining spaces",
+  "condition": "All source views used for conditioning; checks are source consistency, not held-out accuracy.",
+  "evaluation_status": "demonstration-candidate-owner-acceptance-pending"
+}

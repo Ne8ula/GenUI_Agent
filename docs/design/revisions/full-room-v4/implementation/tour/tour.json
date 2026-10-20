@@ -1,0 +1,91 @@
+{
+  "url": "http://127.0.0.1:1440/",
+  "browser": "155.0.4283.62",
+  "events": [
+    {
+      "quarter": 1,
+      "pose": {
+        "position": [
+          5.345364135306772,
+          0.6744523529918787,
+          1.623707796709487
+        ],
+        "quaternion": [
+          0.5980465323785248,
+          -0.3175403446506215,
+          -0.3532833234264447,
+          0.6455225542287054
+        ],
+        "calls": 1,
+        "triangles": 2542575,
+        "points": 0,
+        "mode": "surface",
+        "revision": "full-room-v4"
+      }
+    },
+    {
+      "quarter": 2,
+      "pose": {
+        "position": [
+          5.345364135306772,
+          0.6744523529918787,
+          1.623707796709487
+        ],
+        "quaternion": [
+          0.1888735312684678,
+          -0.6502448112495725,
+          -0.7092043978206475,
+          0.19630995069287208
+        ],
+        "calls": 1,
+        "triangles": 2542575,
+        "points": 0,
+        "mode": "surface",
+        "revision": "full-room-v4"
+      }
+    },
+    {
+      "quarter": 3,
+      "pose": {
+        "position": [
+          5.345364135306772,
+          0.6744523529918787,
+          1.623707796709487
+        ],
+        "quaternion": [
+          -0.3348676194728581,
+          -0.588519500780895,
+          -0.6349316010938778,
+          -0.3719816347100343
+        ],
+        "calls": 1,
+        "triangles": 2542575,
+        "points": 0,
+        "mode": "surface",
+        "revision": "full-room-v4"
+      }
+    },
+    {
+      "quarter": 4,
+      "pose": {
+        "position": [
+          5.345364135306772,
+          0.6744523529918787,
+          1.623707796709487
+        ],
+        "quaternion": [
+          -0.6554825657281745,
+          -0.16980615830181536,
+          -0.175517815096638,
+          -0.7146341520056861
+        ],
+        "calls": 1,
+        "triangles": 2542575,
+        "points": 0,
+        "mode": "surface",
+        "revision": "full-room-v4"
+      }
+    }
+  ],
+  "note": "Actual headless Edge browser recording with scripted keyboard input. Not native or physical-device performance evidence."
+}

@@ -1,6 +1,8 @@
 # EVA visual and interaction direction
 
-Current scope: the [memory palace](PLANNING.md). This supersedes weather-first and fixed Paris assignments. No new room aesthetic has yet been generated, implemented or accepted.
+Current scope: the [memory palace](PLANNING.md). This supersedes weather-first and fixed Paris assignments. The [first room viewer](docs/design/revisions/room-r03/REVIEW.md) implements a reconstruction-first presentation under the owner's explicit 2026-10-19 Weave waiver for that pass only. Artistic construction remains proposed; owner acceptance is pending.
+
+The [room-wide completion pass](docs/design/revisions/full-room-v4/REVIEW.md) adds an all-view candidate and surface provenance under the owner's separate 2026-10-20 instruction, “Waive Weave for this room-completion pass.” This waiver covers that pass only. Source inspection and the original r03 route remain available; acceptance of the new candidate is pending.
 
 ## Experience and continuity
 

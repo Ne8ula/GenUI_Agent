@@ -1,0 +1,41 @@
+{
+  "target": {
+    "local_sha256": "d90a103581c9ffd7e74ac7ae04343c6242c840f396663a30e51dec25b08ec5db",
+    "remote_sha256": "d90a103581c9ffd7e74ac7ae04343c6242c840f396663a30e51dec25b08ec5db",
+    "bytes_equal": true,
+    "pixels_equal": true,
+    "mode": "RGB",
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  "mask": {
+    "local_sha256": "5c2e870dd7f5668f455ed690e70309a58a7839d5d08465193b2e8a204eb0cb85",
+    "remote_sha256": "5c2e870dd7f5668f455ed690e70309a58a7839d5d08465193b2e8a204eb0cb85",
+    "bytes_equal": true,
+    "pixels_equal": true,
+    "mode": "RGBA",
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  "output": {
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "bytes": 339963,
+    "mostly_black_fraction": 0.9443206787109375,
+    "known_pixels_turned_black_fraction": 0.9514641539187364,
+    "editable_pixels_with_nonblack_output": 7086,
+    "editable_pixels": 9409
+  },
+  "checks": {
+    "gate_reproduction_exit_code": 2,
+    "no_composite_emitted": true,
+    "repaired_mesh_sha256_unchanged": true,
+    "documentation_local_links_valid": true
+  }
+}

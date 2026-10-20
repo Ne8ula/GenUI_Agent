@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:1441",
+  "revision": "full-room-v4",
+  "verifiedFiles": [
+    "consistency.json",
+    "credits.json",
+    "report.json",
+    "room.ply",
+    "source-0012.jpg",
+    "source-0037.jpg",
+    "source-0062.jpg",
+    "source-0087.jpg",
+    "view-0000.png",
+    "view-0005.png",
+    "view-0012.png",
+    "view-0037.png",
+    "view-0059.png",
+    "view-0062.png",
+    "view-0065.png",
+    "view-0068.png",
+    "view-0070.png",
+    "view-0087.png"
+  ],
+  "meshSha256": "b0db49e5a2198cd887ea6e4182200fe2495d45a8044078dfa9f143a886a46770",
+  "errors": []
+}

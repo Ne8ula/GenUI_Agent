@@ -11,6 +11,19 @@ export default defineConfig({
     name: 'scan-fixture-assets',
     apply: 'build',
     generateBundle() {
+      for (const name of ['room.ply', 'scene.json', 'credits.json', 'report.json', 'consistency.json', 'source-0012.jpg', 'source-0037.jpg', 'source-0062.jpg', 'source-0087.jpg']) {
+        this.emitFile({ type: 'asset', fileName: `assets/hypersim-full-room-v5/${name}`,
+          source: readFileSync(new URL(`./public/assets/hypersim-full-room-v5/${name}`, import.meta.url)) });
+      }
+      for (const frame of ['0000', '0005', '0012', '0037', '0059', '0062', '0065', '0068', '0070', '0087']) {
+        const name = `view-${frame}.png`;
+        this.emitFile({ type: 'asset', fileName: `assets/hypersim-full-room-v5/${name}`,
+          source: readFileSync(new URL(`./public/assets/hypersim-full-room-v5/${name}`, import.meta.url)) });
+      }
+      for (const name of ['room.ply', 'scene.json', 'credits.json', 'source-0012.jpg', 'source-0037.jpg', 'source-0062.jpg', 'source-0087.jpg']) {
+        this.emitFile({ type: 'asset', fileName: `assets/hypersim-r03/${name}`,
+          source: readFileSync(new URL(`./public/assets/hypersim-r03/${name}`, import.meta.url)) });
+      }
       // Explicit data-only allowlist; do not copy historical reference imagery.
       for (const name of ['scene.json', 'points.bin']) {
         this.emitFile({ type: 'asset', fileName: `assets/paris-scan-r12/${name}`,

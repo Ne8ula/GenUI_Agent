@@ -1,0 +1,17 @@
+{
+  "status": "technical-checks-passed-quality-not-accepted",
+  "original_vertices_unchanged": 312015,
+  "original_triangles_unchanged": 606025,
+  "original_vertex_colors_unchanged": true,
+  "generated_triangles": 84967,
+  "file_hashes_verified": 12,
+  "observed_rgb_unchanged": true,
+  "central_crop_512_cpu_raycast": {
+    "before_coverage": 0.5902519226074219,
+    "candidate_coverage": 0.7526702880859375,
+    "newly_covered_pixels": 42577,
+    "previously_covered_pixels_occluded_by_more_than_2cm": 0
+  },
+  "quality_decision": "Do not promote: hallucinated window grilles and chair-like form contradict source view; holes remain. Owner acceptance pending.",
+  "comparison_limit": "Single central crop; CPU raycasting coverage is not whole-room coverage or hidden-geometry correctness."
+}

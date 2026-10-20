@@ -1,0 +1,107 @@
+[
+  {
+    "position": [
+      5.345364135306772,
+      0.6744523529918787,
+      1.623707796709487
+    ],
+    "quaternion": [
+      0.6444525319513823,
+      0.20777983403657427,
+      0.21693467435731076,
+      0.703169838439245
+    ],
+    "calls": 1,
+    "triangles": 2614619,
+    "points": 0,
+    "mode": "provenance",
+    "revision": "full-room-v5",
+    "assumedSpace": true,
+    "sourcePointCount": 83575,
+    "totalPointCount": 108923
+  },
+  {
+    "position": [
+      5.345364135306772,
+      0.6744523529918787,
+      1.623707796709487
+    ],
+    "quaternion": [
+      0.5980465323785248,
+      -0.3175403446506215,
+      -0.3532833234264447,
+      0.6455225542287054
+    ],
+    "calls": 1,
+    "triangles": 2614619,
+    "points": 0,
+    "mode": "provenance",
+    "revision": "full-room-v5",
+    "assumedSpace": true,
+    "sourcePointCount": 83575,
+    "totalPointCount": 108923
+  },
+  {
+    "position": [
+      5.345364135306772,
+      0.6744523529918787,
+      1.623707796709487
+    ],
+    "quaternion": [
+      0.1888735312684678,
+      -0.6502448112495725,
+      -0.7092043978206475,
+      0.19630995069287208
+    ],
+    "calls": 1,
+    "triangles": 2614619,
+    "points": 0,
+    "mode": "provenance",
+    "revision": "full-room-v5",
+    "assumedSpace": true,
+    "sourcePointCount": 83575,
+    "totalPointCount": 108923
+  },
+  {
+    "position": [
+      5.345364135306772,
+      0.6744523529918787,
+      1.623707796709487
+    ],
+    "quaternion": [
+      -0.3348676194728581,
+      -0.588519500780895,
+      -0.6349316010938778,
+      -0.3719816347100343
+    ],
+    "calls": 1,
+    "triangles": 2614619,
+    "points": 0,
+    "mode": "provenance",
+    "revision": "full-room-v5",
+    "assumedSpace": true,
+    "sourcePointCount": 83575,
+    "totalPointCount": 108923
+  },
+  {
+    "position": [
+      8.675438702281804,
+      2.8654188877795206,
+      1.2916399996759953
+    ],
+    "quaternion": [
+      0.5980465323785248,
+      -0.3175403446506215,
+      -0.3532833234264447,
+      0.6455225542287054
+    ],
+    "calls": 1,
+    "triangles": 2614619,
+    "points": 0,
+    "mode": "surface",
+    "revision": "full-room-v5",
+    "assumedSpace": true,
+    "sourcePointCount": 83575,
+    "totalPointCount": 108923
+  }
+]

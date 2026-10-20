@@ -1,0 +1,29 @@
+{
+  "tests": {
+    "command": ".local/reconstruction/venv/Scripts/python.exe -m unittest discover -s scripts/reconstruction -p 'test_*.py' -v",
+    "passed": 47,
+    "failed": 0
+  },
+  "repeated_preparation_same_material_sha256": true,
+  "repeated_application_same_candidate_sha256": true,
+  "current_builder_matches_report": true,
+  "render_inspection": [
+    "target",
+    "left-10cm",
+    "right-10cm"
+  ],
+  "source_material_inspected": true,
+  "new_paid_runs": 0,
+  "browser_modified": false,
+  "evidence_sha256": {
+    "before-target.png": "1f39488e9dd3be1fff9ca1a234b699adca954f63d9e5d02367515756f186f10f",
+    "candidate-left.png": "eacb780cc71849fc643a064424dff0a8989a996d79fb9ac92179ca9f8c0ae089",
+    "candidate-right.png": "96e73affcfbeffa7621362593cb9fc069f4a6d0ea977a71de97c9d22329961fb",
+    "candidate-target.png": "7e9e78d8477e8332ef0f4ed58cfef3980c48f3f6616333bd52a2021cd87d3543",
+    "changed-mask.png": "b86d59094ef2a2070b2593466efcc63a52800ccae1af7be70a6564dbb07584c3",
+    "material.json": "c895df78a81e94e224966b7ec0f6828200c467ce19d755c302f04fe6eaf59538",
+    "material.png": "0ba71969546877613c807c0c41910427ea0a63b008f22880151ab5511db4bf46",
+    "report.json": "01af196c5318c7ee96e231f97408916ae9a81e3854a591406f1d86056f0165fe",
+    "training-source-0005.png": "5f1687fca8cc5954f0f579d6e5e6c32221c9affe06199f4c7b36aace23711dfd"
+  }
+}
