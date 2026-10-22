@@ -1,0 +1,278 @@
+{
+  "checks": [
+    "wrong size rejection",
+    "corrupt hash rejection",
+    "cancel synthetic delayed file read",
+    "reopen after cancel",
+    "real WebGL context loss",
+    "memory/history survive graphics reopen",
+    "no network uploads",
+    "no external requests"
+  ],
+  "before": {
+    "camera": {
+      "position": [
+        -0.15000000000000005,
+        2.7000000000000006,
+        0.15000000000000013
+      ],
+      "target": [
+        -0.34,
+        3.36,
+        0.8
+      ]
+    },
+    "mode": "matrix",
+    "ceilingEnabled": true,
+    "ceilingVertices": 5999,
+    "completionVertices": 52644,
+    "completionVisible": true,
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": true,
+    "teddyColor": "7caec8",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.6535833283188413
+    ],
+    "calls": 6,
+    "triangles": 1170787,
+    "points": 281201,
+    "geometries": 6
+  },
+  "after": {
+    "camera": {
+      "position": [
+        -0.15000000000000005,
+        2.7000000000000006,
+        0.15000000000000013
+      ],
+      "target": [
+        -0.34,
+        3.36,
+        0.8
+      ]
+    },
+    "mode": "matrix",
+    "ceilingEnabled": true,
+    "ceilingVertices": 5999,
+    "completionVertices": 52644,
+    "completionVisible": true,
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": true,
+    "teddyColor": "7caec8",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.6535833283188413
+    ],
+    "calls": 6,
+    "triangles": 1170787,
+    "points": 281201,
+    "geometries": 6
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@vite/client"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/main.tsx"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@react-refresh"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/react_jsx-dev-runtime.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/react.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/react-dom_client.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/400.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/500.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-mono/400.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/500.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/style.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/App.tsx"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/vite/dist/client/env.mjs"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/chunk-C4KDTWRC.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/chunk-Q4AC2O6Z.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/RustApp.tsx"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/chunk-742HFCFS.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/host/FixtureControls.tsx"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/host/frameStats.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/host/params.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/host/RustStage.tsx"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/host/SourceWindows.tsx"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/render/rustLoader.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/host/SourceWindows.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/generated/seed33/eva_seed33_renderer.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/bedroom/BedroomApp.tsx"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/bedroom/renderer.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/bedroom/memory.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/400.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/bedroom/bedroom.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/three.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/three_addons_loaders_PLYLoader__js.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/three_addons_controls_OrbitControls__js.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/room/verified-mesh.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/bedroom/ceiling.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/bedroom/light.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/bedroom/completion.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/src/room/surface-points.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/chunk-RGULHLDA.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/three_addons_utils_BufferGeometryUtils__js.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/node_modules/.vite/deps/three_addons_geometries_RoundedBoxGeometry__js.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/@fs/C:/Users/alexx/Documents/ClaudeAgent/GenUI_Agent/week4/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/assets/teal-bedroom/room.ply"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/assets/teal-bedroom/room.ply"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/assets/teal-bedroom/room.ply"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:1440/assets/teal-bedroom/room.ply"
+    }
+  ]
+}

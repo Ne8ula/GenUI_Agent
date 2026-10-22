@@ -1,0 +1,42 @@
+[
+    {
+        "path":  "week4/app/src/room/CandidateView.tsx",
+        "sha256":  "e316fa5269e0ab88c322863bdbccae42b9ee7902ec2303ef7f8631838db58d13"
+    },
+    {
+        "path":  "week4/app/src/room/matrix-style.ts",
+        "sha256":  "9052e96598c0f462f04f9534d95b7782d9c033e43d2e0dceeb32ddb5965be789"
+    },
+    {
+        "path":  "week4/app/src/room/surface-points.ts",
+        "sha256":  "62d57c7b9791abf03757a0f98be4b87ba227600c8d9751fe9c7a85cff89715ec"
+    },
+    {
+        "path":  "week4/app/src/room/UploadRoom.tsx",
+        "sha256":  "0fe7447b2feb8e45cedcbe23ed70f007ae7dd859f0ff05f28004536bdcfedbb6"
+    },
+    {
+        "path":  "week4/app/src/room/aesthetic-room.ts",
+        "sha256":  "cd9b7b8a9936d3e1aed1d1b95aefbf5fa630715eb2c7dba7b5fe7e7a8029c174"
+    },
+    {
+        "path":  "week4/app/src/room/BenchmarkRoom.tsx",
+        "sha256":  "baeee14f3428e3718acb073b3ce80e94bb63c43e5f7744b89392789ff62b8409"
+    },
+    {
+        "path":  "week4/app/tests/room-provenance-style.test.ts",
+        "sha256":  "650dc4f8f4445353d73ac68885589e5a5342177c1c5d29b9e6600e4c3240676c"
+    },
+    {
+        "path":  "week4/app/scripts/verify-room-review.mjs",
+        "sha256":  "b3b91f23bb6ccaa002f923c50a388a1fe6fa91c9e10500ee925e33a6f1510006"
+    },
+    {
+        "path":  "week4/app/scripts/verify-point-contrast.mjs",
+        "sha256":  "440b2885fee3d28627952e90286272b6942ac863a05d73c5a97ea33fb59ae33f"
+    },
+    {
+        "path":  "week4/app/scripts/verify-aesthetic-room.mjs",
+        "sha256":  "261ee016af5ce3f6e13f220773e2d1d176e77dd0e2843ebd9cdfee35ae9be1d9"
+    }
+]

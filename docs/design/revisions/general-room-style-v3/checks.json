@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checks": [
+    "keyboard outline change and door closure reach submission",
+    "only upload authorization is offered; no generation request is submitted",
+    "arbitrary upload defaults to matrix; uniform toggle differs, keyboard toggle restores home framebuffer",
+    "second unrelated layout, colors and mixed face provenance use same renderer without benchmark furniture",
+    "all representations, A/B and raw estimate toggles work with synthetic geometry"
+  ],
+  "errors": [],
+  "input": "Invented API and triangle fixtures only. Screenshots are NOT room reconstruction or model evidence.",
+  "limitation": "Headless Edge; reduced motion. No Shado popup, GPU inference or actual A/B comparison."
+}

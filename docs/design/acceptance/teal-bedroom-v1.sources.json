@@ -1,0 +1,20 @@
+{
+  "base": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "scope": "teal-bedroom offline checkpoint; hashes describe working files, not a committed revision",
+  "files": {
+    "scripts/room_workflow/idealized_sources.py": "6038e6c3d185b3bcda42d6a48a7527218bccb2d8d19452bdd6eb02996a69ee53",
+    "scripts/room_workflow/test_idealized_inventory.py": "48fad8f191519e2c42750282114bb96049bd3b6a5161e8b41713ef5e45a37755",
+    "scripts/room_workflow/arkit_fetch.py": "6f467b96ac64f85c995f5ffd17229711dfe6cb19fe534c77961cccb644533e8c",
+    "scripts/room_workflow/vga_rgb_range.py": "1948d69137abe30734577cfd92bbcfee8af7028b5d98b22f43ed49e52e83413a",
+    "scripts/room_workflow/test_vga_rgb_range.py": "5cbc48c1a3864fba6ed169f9f2130b8a12722845f857970d541eed0f6c26bead",
+    "scripts/room_workflow/scan-room.schema.json": "16c19941fa31df9bcb359a8792802c78624145220b6a3719ea2419089d77730c",
+    "scripts/room_workflow/scan_contract.py": "5ccdfb03fe119ec421e87839faf64cb8204dd6059241f97645b5661fd2e11874",
+    "scripts/room_workflow/scan_source.py": "cfba670d5f1a384044d0be2ebf14ff33db2397f4c1a0fa26d4d5607cf0284a8e",
+    "scripts/room_workflow/scan_fixture.py": "c026dfabed9ef0dab96627899d033b9a1071b7c0bbd7fd349275ea876b45ed38",
+    "scripts/room_workflow/scan_objects.py": "8b7b5e640e7f95527f6bbf3d7d2ff4f5550b5e6b19999fa1d11286b8c36ea561",
+    "scripts/room_workflow/test_scan_source.py": "941691d1c6081a3b928516c15864da58bfcc99068f6e43f0f65ac24aa987f7cf",
+    "scripts/room_workflow/test_scan_contract.py": "79f03aecf2d2f6dc217bcf965b2f8c57c6e5a383cafe3113fd6d1047523e6351",
+    "scripts/room_workflow/test_scan_calibration.py": "c3eac6663af8cdf3de3b627b1982b064354c0d812ef1ecc5b6901036542822cc",
+    "scripts/room_workflow/test_scan_objects.py": "59a75feeca76336c45589bce0d71728dfa3e69295d12f9c517b96609e1224616"
+  }
+}

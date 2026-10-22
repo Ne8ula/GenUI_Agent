@@ -1,0 +1,29 @@
+[
+  {
+    "view": "bed",
+    "gaps": 26678,
+    "filled": 26674,
+    "supported": 578521,
+    "changed": 164181,
+    "filledFraction": 0.9998500637229177,
+    "changedFraction": 0.28379436528665336
+  },
+  {
+    "view": "side",
+    "gaps": 3127,
+    "filled": 3121,
+    "supported": 605061,
+    "changed": 172847,
+    "filledFraction": 0.998081228014071,
+    "changedFraction": 0.2856687176995377
+  },
+  {
+    "view": "ceiling",
+    "gaps": 111879,
+    "filled": 111879,
+    "supported": 458815,
+    "changed": 63336,
+    "filledFraction": 1,
+    "changedFraction": 0.13804256617590968
+  }
+]

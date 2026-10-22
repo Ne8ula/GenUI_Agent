@@ -1,0 +1,51 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+const output=process.argv[2];if(!output)throw Error('Fresh output path required.');
+await mkdir(output,{recursive:false});
+const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
+const checks=[],errors=[];
+try {
+  const page=await browser.newPage({viewport:{width:1440,height:1100}});
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:1440/?scene=upload-room');
+  await page.getByRole('heading',{name:'Bring one room back.'}).waitFor();
+  await page.screenshot({path:join(output,'desktop-intake.png'),fullPage:true});
+  const assets=resolve('week4/app/public/assets/hypersim-full-room-v5');
+  const files=['source-0012.jpg','source-0037.jpg','source-0062.jpg','source-0087.jpg','view-0000.png'].map(n=>join(assets,n));
+  await page.locator('input[type=file]').setInputFiles(files.slice(0,2));
+  await page.getByRole('alert').filter({hasText:'5–7'}).waitFor();checks.push('reject insufficient photo count');
+  await page.locator('input[type=file]').setInputFiles(files);
+  await page.getByRole('button',{name:'Prepare this room'}).waitFor();
+  await page.getByPlaceholder('Probably around 300 sqft').fill('Probably around 300 sqft');
+  await page.getByRole('button',{name:'Prepare this room'}).click();
+  await page.getByRole('status').filter({hasText:'saved locally'}).waitFor();
+  checks.push('real broker stores five public fixture images without cloud execution');
+  await page.getByText('Approximate area: 27.9 m²',{exact:false}).waitFor();checks.push('remembered size labeled approximate');
+  await page.getByRole('button',{name:'Request cloud estimate'}).click();
+  await page.getByRole('status').filter({hasText:'allowance'}).waitFor();
+  await page.screenshot({path:join(output,'cloud-gate.png'),fullPage:true});
+  checks.push('unapproved cloud request stays explicitly unrun');
+  await page.getByRole('button',{name:'Cancel processing'}).click();
+  await page.getByRole('status').filter({hasText:'Cancelled'}).waitFor();checks.push('cancel prevents further work');
+  await page.getByRole('button',{name:'Delete working copy'}).click();
+  await page.getByRole('button',{name:'Prepare this room'}).waitFor();checks.push('private working copy deletion returns to intake');
+  await page.keyboard.press('Tab');
+  assert.ok(await page.evaluate(()=>document.activeElement!==document.body));checks.push('keyboard focus available');
+  const phone=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+  phone.on('pageerror',e=>errors.push(e.message));
+  await phone.goto('http://127.0.0.1:1440/?scene=upload-room');
+  await phone.getByRole('heading',{name:'Bring one room back.'}).waitFor();
+  assert.ok(await phone.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await phone.locator('input[type=file]').setInputFiles(files);
+  await phone.getByRole('button',{name:'Prepare this room'}).tap();
+  await phone.getByRole('status').filter({hasText:'saved locally'}).waitFor();
+  await phone.screenshot({path:join(output,'phone-intake.png'),fullPage:true});
+  await phone.getByRole('button',{name:'Delete working copy'}).tap();
+  checks.push('touch intake and delete; reduced motion; no phone overflow');
+  assert.deepEqual(errors,[]);
+  await writeFile(join(output,'checks.json'),JSON.stringify({status:'passed',checks,errors,
+    input:'Five public Hypersim images; real local broker. No model/cloud generation or reconstruction test.',
+    limitation:'Headless Edge on Windows. Touch emulation, not physical phone.'},null,2));
+} finally {await browser.close();}

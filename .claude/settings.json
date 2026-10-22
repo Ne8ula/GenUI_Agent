@@ -1,16 +1,5 @@
 {
-  "extraKnownMarketplaces": {
-    "eigenwise-toolshed": {
-      "source": {
-        "source": "github",
-        "repo": "Eigenwise/eigenwise-toolshed"
-      }
-    }
-  },
-  "enabledPlugins": {
-    "model-gateway@eigenwise-toolshed": true,
-    "ruflo-core@ruflo": true
-  },
+  "model": "claude-gpt-6-astra[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -47,6 +36,18 @@
       }
     ]
   },
-  "model": "claude-gpt-6-astra[1m]",
+  "enabledPlugins": {
+    "model-gateway@eigenwise-toolshed": true,
+    "ruflo-core@ruflo": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "eigenwise-toolshed": {
+      "source": {
+        "source": "github",
+        "repo": "Eigenwise/eigenwise-toolshed"
+      }
+    }
+  },
   "effortLevel": "high"
 }

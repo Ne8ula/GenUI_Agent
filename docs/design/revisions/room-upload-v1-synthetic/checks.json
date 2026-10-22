@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checks": [
+    "keyboard outline change and door closure reach submission",
+    "generation disabled without scoped authorization",
+    "surface-sampled points and keyboard camera render without errors",
+    "all representations, A/B and raw estimate toggles work with synthetic geometry"
+  ],
+  "errors": [],
+  "input": "Invented API and triangle fixtures only. Screenshots are NOT room reconstruction or model evidence.",
+  "limitation": "Headless Edge; reduced motion. No Shado popup, GPU inference or actual A/B comparison."
+}

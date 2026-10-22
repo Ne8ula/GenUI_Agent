@@ -1,0 +1,66 @@
+{
+  "kind": "eva-scan-acquisition-v1",
+  "capture_id": "45261631",
+  "split": "Validation",
+  "repository_revision": "474aaa83d7b1c9080619d8485de2d7c885c01fc5",
+  "transfer_limit": 134217728,
+  "attempts": 1,
+  "assets": [
+    {
+      "role": "license",
+      "path": "LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/apple-aiml-research/ARKitScenes/474aaa83d7b1c9080619d8485de2d7c885c01fc5/LICENSE",
+      "limit": 65536,
+      "bytes": 4796,
+      "etag": "\"eda7780076d8620a424fbb87dbcea9bd07cdcaf648a997b0a39c5fa30b3b257c\""
+    },
+    {
+      "role": "metadata",
+      "path": "metadata.csv",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/metadata.csv",
+      "limit": 2097152,
+      "bytes": 236057,
+      "etag": "\"8364b3cf7a00bc5b2dd03bde78d72974\""
+    },
+    {
+      "role": "mesh",
+      "path": "45261631_3dod_mesh.ply",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/45261631_3dod_mesh.ply",
+      "limit": 33554432,
+      "bytes": 24837257,
+      "etag": "\"b28dc0316c7c556bae040199c27ca412-1\""
+    },
+    {
+      "role": "annotation",
+      "path": "45261631_3dod_annotation.json",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/45261631_3dod_annotation.json",
+      "limit": 2097152,
+      "bytes": 5817,
+      "etag": "\"e7cc8a3e81fbf9f064703669e680a85e\""
+    },
+    {
+      "role": "trajectory",
+      "path": "lowres_wide.traj",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/lowres_wide.traj",
+      "limit": 2097152,
+      "bytes": 79693,
+      "etag": "\"6ba3c1c5bce142fc00b1b3dd840dc4c6\""
+    },
+    {
+      "role": "depth-intrinsics",
+      "path": "lowres_wide_intrinsics.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/lowres_wide_intrinsics.zip",
+      "limit": 2097152,
+      "bytes": 983285,
+      "etag": "\"69f5092d0c7bfdc7f09888b6947558f1\""
+    },
+    {
+      "role": "rgb-intrinsics",
+      "path": "vga_wide_intrinsics.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/vga_wide_intrinsics.zip",
+      "limit": 2097152,
+      "bytes": 477362,
+      "etag": "\"81f4edf4a65d60fcc3fbb430300b89d9\""
+    }
+  ]
+}

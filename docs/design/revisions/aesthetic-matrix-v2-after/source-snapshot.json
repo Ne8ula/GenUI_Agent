@@ -1,0 +1,47 @@
+{
+  "base_commit": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "status": "uncommitted; pending owner acceptance",
+  "geometry_module_unchanged": true,
+  "files": [
+    {
+      "path": "week4/app/src/room/CandidateView.tsx",
+      "sha256": "11a824cebcfc0d9748febb78af19e06fde368812ec8bed44f9465ae40bfdd631"
+    },
+    {
+      "path": "week4/app/src/room/matrix-style.ts",
+      "sha256": "fb6d6181647cfba5b4c1710da4bf1f06ae40634f36f3ebac6fbaddbec79e4f82"
+    },
+    {
+      "path": "week4/app/src/room/aesthetic-room.ts",
+      "sha256": "cd9b7b8a9936d3e1aed1d1b95aefbf5fa630715eb2c7dba7b5fe7e7a8029c174"
+    },
+    {
+      "path": "week4/app/scripts/verify-aesthetic-room.mjs",
+      "sha256": "261ee016af5ce3f6e13f220773e2d1d176e77dd0e2843ebd9cdfee35ae9be1d9"
+    },
+    {
+      "path": "DESIGN.md",
+      "sha256": "6cc10d9e685bb05816f969696670d5fe9800af9d1f84de3a977eaea364514461"
+    },
+    {
+      "path": "PLANNING.md",
+      "sha256": "90f5c4f34bcbcf1df9a3f245e95aa5a68b2a68950c770b64d9a5fb95ef788850"
+    },
+    {
+      "path": "README.md",
+      "sha256": "85fde32a656520b3d9f13173ab6060bfa200baa7af4c8a3cda6a60993ed9fe49"
+    },
+    {
+      "path": "docs/design/INDEX.md",
+      "sha256": "473de2b5a2dc4dd7533f705b86dc70c7deab01d4901b19596412044ef66e75d1"
+    },
+    {
+      "path": "docs/design/acceptance/aesthetic-matrix-v1.md",
+      "sha256": "be56535151540fee8c97baa1d58a7b2ad5a9f7c5a5e7306a9974e4f4d2fcb95b"
+    },
+    {
+      "path": "docs/design/revisions/aesthetic-matrix-v2-after/REVIEW.md",
+      "sha256": "9a078abb2331b292b04bf1e3315fdd21e0017a28ba41ccd240c8b054c5f84906"
+    }
+  ]
+}

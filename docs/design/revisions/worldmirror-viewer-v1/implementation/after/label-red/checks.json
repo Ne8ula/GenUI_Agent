@@ -1,0 +1,64 @@
+{
+  "status": "failed",
+  "checks": [
+    "original: actual source hashes/7images, surface/points/provenance/fused, pixel movement/reset, focus, WebGL recovery and reduced-motion touch layout",
+    "worldmirror-v1: actual source hashes/7images, surface/points/provenance/fused, pixel movement/reset, focus, WebGL recovery and reduced-motion touch layout"
+  ],
+  "errors": [],
+  "summaries": [
+    {
+      "profile": "original",
+      "raw": "b56f8a432368289ca9190aa7d3b47d4c37e751b4adc69a68635e3ad7aef53f9d",
+      "completed": "eb69dfe4972ec5839faab7f793f809afdaa0c6baf3fa9c69be69c0aa5d78daa9",
+      "material": null,
+      "materialInvariants": null,
+      "photoHashes": [
+        "2d1dc880fd7cbb67de394c7ae3bc9b0c8c6a317554df4c42c62d1d0ad5267e25",
+        "be2cdb241680595de8f993b4ee47e3b44a9f26ebfcb1a4f33cfb180e5cd76d49",
+        "12b288113edce379c595d096007f4bbd03b2a0614e35dc31b88c05d3d4fee27e",
+        "dfec9d8ba0e1d727ad48a24c35e50556dc66fa41d93209d44f258537cc4fb20c",
+        "a253f60b7d47bbc00c92b2c94d69cb3096a8e0e760d8f01571815b2f55e08466",
+        "f76936c63e42ba550d8ea0b360750c3bf115395c723865e7010e0034942df4a5",
+        "3605d31df125f43790cae2b93a08e5cf791781fcb65aa814a6be4c2e2e921209"
+      ],
+      "photoUrls": [
+        "/api/room-workflow/benchmark/arkitscenes/originals/0",
+        "/api/room-workflow/benchmark/arkitscenes/originals/1",
+        "/api/room-workflow/benchmark/arkitscenes/originals/2",
+        "/api/room-workflow/benchmark/arkitscenes/originals/3",
+        "/api/room-workflow/benchmark/arkitscenes/originals/4",
+        "/api/room-workflow/benchmark/arkitscenes/originals/5",
+        "/api/room-workflow/benchmark/arkitscenes/originals/6"
+      ],
+      "elapsed": 55.654579332
+    },
+    {
+      "profile": "worldmirror-v1",
+      "raw": "ec8b82bacac7e1760defc63dd79bd4e90d725c2ebdcfb74b38d5ecd88f33838b",
+      "completed": "dd3b438f9628b96d0dfbea243632da8d719a4908c2484b374254246d53de0627",
+      "material": null,
+      "materialInvariants": null,
+      "photoHashes": [
+        "2d1dc880fd7cbb67de394c7ae3bc9b0c8c6a317554df4c42c62d1d0ad5267e25",
+        "be2cdb241680595de8f993b4ee47e3b44a9f26ebfcb1a4f33cfb180e5cd76d49",
+        "12b288113edce379c595d096007f4bbd03b2a0614e35dc31b88c05d3d4fee27e",
+        "dfec9d8ba0e1d727ad48a24c35e50556dc66fa41d93209d44f258537cc4fb20c",
+        "a253f60b7d47bbc00c92b2c94d69cb3096a8e0e760d8f01571815b2f55e08466",
+        "f76936c63e42ba550d8ea0b360750c3bf115395c723865e7010e0034942df4a5",
+        "3605d31df125f43790cae2b93a08e5cf791781fcb65aa814a6be4c2e2e921209"
+      ],
+      "photoUrls": [
+        "/api/room-workflow/benchmark/arkitscenes/profiles/worldmirror-v1/originals/0",
+        "/api/room-workflow/benchmark/arkitscenes/profiles/worldmirror-v1/originals/1",
+        "/api/room-workflow/benchmark/arkitscenes/profiles/worldmirror-v1/originals/2",
+        "/api/room-workflow/benchmark/arkitscenes/profiles/worldmirror-v1/originals/3",
+        "/api/room-workflow/benchmark/arkitscenes/profiles/worldmirror-v1/originals/4",
+        "/api/room-workflow/benchmark/arkitscenes/profiles/worldmirror-v1/originals/5",
+        "/api/room-workflow/benchmark/arkitscenes/profiles/worldmirror-v1/originals/6"
+      ],
+      "elapsed": 1.2063143789999984
+    }
+  ],
+  "apiWrites": [],
+  "error": "AssertionError [ERR_ASSERTION]: Matched-input claim belongs only to the two matched profiles\n\n1 !== 0\n"
+}

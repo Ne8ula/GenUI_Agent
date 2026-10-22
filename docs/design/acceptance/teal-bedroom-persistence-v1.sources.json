@@ -1,0 +1,13 @@
+{
+  "base": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "prior_checkpoint": "teal-bedroom-inventory-v1.sources.json",
+  "scope": "Offline correction, recipe-backed persistence and isolated CLI continuation; overlay these hashes on the prior checkpoints, not a committed revision",
+  "files": {
+    "scripts/room_workflow/scan_room.py": "be1a1d9ee6b879349aad6b34bf43d3622f3307af1091d0a10137f73b89e63cc1",
+    "scripts/room_workflow/test_scan_persistence.py": "6dd4f7b8f4d7c792f728431dfe0200b18c585874651ee763595c66d239117629",
+    "scripts/room_workflow/scan_contract.py": "64be412827c2cce96a5995d91fec0e4a1bfd076c804fd6f6a1aa70168dffaeb0",
+    "scripts/room_workflow/scan_objects.py": "0aaa9a8d68f6a9a99e3fd33e1d63c1efe8f842de4b63bd0c0290883e67e8c7b2",
+    "scripts/room_workflow/scan_source.py": "cfba670d5f1a384044d0be2ebf14ff33db2397f4c1a0fa26d4d5607cf0284a8e",
+    "scripts/room_workflow/scan-room.schema.json": "796baea929b0445f3f2cbd1045e99e7419cd69335649fcf9af4c182262630268"
+  }
+}

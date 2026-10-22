@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "errors": ["Cannot read properties of null (reading 'getBoundingClientRect')"],
+  "source_job_id": "4f2d3dfb-59c5-4c66-9b13-0c21120ccb81",
+  "observation": "Actual saved result, boundary review and real CPU completion produced the retained captures. Final page-error assertion failed during renderer teardown.",
+  "limits": "Fresh isolated TEST owner/session and synthetic automation boundary confirmation. No original-session recovery claim, new GPU run or Shado call. Original main job unchanged."
+}

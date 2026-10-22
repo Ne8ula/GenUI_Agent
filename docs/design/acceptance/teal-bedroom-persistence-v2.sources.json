@@ -1,0 +1,9 @@
+{
+  "base": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "prior_checkpoint": "teal-bedroom-persistence-v1.sources.json",
+  "scope": "Independent-review fix: reject inactive-object placement and clear transforms on omit/unresolved; synthetic offline checkpoint only",
+  "files": {
+    "scripts/room_workflow/scan_room.py": "5ce47961c8007ad3d27575c53676a5052b5baeba51c4fbb86ad3228d75578d41",
+    "scripts/room_workflow/test_scan_persistence.py": "fcb23ae24f6c01a2857cbf77daa60ba85f83f160ecd61c4883f71cfb3626fdd2"
+  }
+}

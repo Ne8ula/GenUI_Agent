@@ -16,13 +16,24 @@ Shado owns Steps 1?5 and its model/geometric-learning paper. EVA owns Steps 6?7 
 
 Source-derived images, authored geometry/depth, scan-like points and Gaussian sprites are not multiview reconstruction or trained 3DGS. Distinguish source evidence, inference, generated completion, artistic treatment, user memory and unknowns.
 
+## Ponytail: smallest complete change
+
+Use Ponytail **full** as the default development approach unless the owner selects another level or asks for normal mode. This governs how work is solved, not EVA's runtime behavior or permission model. The rules below work even when the plugin is unavailable; never claim a skill ran unless it did.
+
+- Before editing, map the affected implementation, callers, tests, fixtures, config and exports. Identify compatibility, data-loss and exposure risks. For bug fixes, search every caller and fix the shared root cause.
+- Choose the first complete solution: omit unrequested work; reuse the project's existing helper/component/pattern; use the standard library or platform; use an installed dependency; then write the minimum readable new code needed. Prefer a house component over a new native replacement. Do not add a dependency for a few lines.
+- No speculative abstractions, wrappers, options, configuration or "for later" code. Preserve the surrounding layers, naming and idiom. Prefer deletion when safe, but never delete retained evidence or concurrent work to shorten a diff.
+- Finish all affected callers, tests and fixtures. Preserve error handling and validation when moving or merging code. For equally small solutions, choose the one correct on edge cases; a cryptic one-liner is not simpler.
+- New non-trivial logic needs a focused test or assert-based self-check. Trivial edits need no ceremonial test, but still require relevant verification. Comment only non-obvious reasons; label a bounded shortcut `shortcut: <the limit>, <when to upgrade>`.
+- Never trade away requested behavior, trust-boundary validation, data-loss protection, security, accessibility or required hardware calibration. Ponytail does not waive visual prerequisites, provenance, acceptance, authorization or finite spending limits.
+
 ## Working loop and acceptance
 
-1. Inspect git status/diff, instructions, actual source and relevant acceptance.
-2. State bounded scope and evidence criteria; continue routine authorized work without repeated permission requests.
+1. Inspect git status/diff, instructions, actual source and relevant acceptance; read only what the task needs after the required scope documents.
+2. State bounded scope, affected files and evidence criteria. Use the shortest plan that covers the work; continue routine authorized work without repeated permission requests.
 3. Preserve concurrent edits. Recheck exact files before editing. Do not reset, stash, clean, switch the shared branch, overwrite others' work, commit or publish without explicit instruction.
-4. Verify through actual tools; distinguish passed, failed, blocked and not-run checks.
-5. Deliver changed files, decisions, evidence, limitations and the next owner exercise.
+4. Make the smallest complete change and verify through actual tools. Start with focused checks and expand when affected contracts require it; distinguish passed, failed, blocked and not-run checks.
+5. Deliver a concise account of changed files, decisions, evidence and the next owner exercise. End with one or two lines naming skipped/not-checked work and any material risk.
 
 Documentation uses diff, local-link and consistency checks, not fabricated application evidence. UI needs matching captures, keyboard/focus/touch, reduced effects, interruption and continuity checks. Protocol/policy needs rejection, resource, provenance, cancellation and authority tests. Native/performance claims require actual platform runs and measurements.
 
@@ -32,7 +43,7 @@ Every major phase needs explicit owner acceptance against a reproducible tested 
 
 Retain the owner's Astra orchestration workflow and `.claude/agents/eva-*.md` definitions in Claude Code; see [workflow](docs/development/AGENT_WORKFLOW.md). These are development roles, not EVA runtime models.
 
-Delegate substantive independent work when useful, at most three concurrent workers. Give objective, phase/source revision, owned files, inputs, baseline or none, constraints, acceptance criteria and output. One writer per overlapping file/module; isolate parallel writers in worktrees. Read-only audits may share the checkout. The lead integrates and verifies.
+Delegate substantive independent work when useful, not as a ritual for small edits; at most three concurrent workers. Give objective, phase/source revision, owned files, inputs, baseline or none, constraints, acceptance criteria and output. Include the Ponytail rules above in worker context. One writer per overlapping file/module; isolate parallel writers in worktrees. Read-only audits may share the checkout. The lead integrates and verifies.
 
 Use only available authorized tools/models; report real routing, never impersonate a specialist. Coordination records/configured aliases do not prove execution. Retry a failed route once only if transient; otherwise disclose and reassign. No automatic publishing or permission bypass.
 

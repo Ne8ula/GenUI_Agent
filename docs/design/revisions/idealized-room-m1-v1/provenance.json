@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "date": "2026-10-21",
+  "scope": "Static retained-room comparison and private inventory authoring; no new motion",
+  "source_revision": "c83fd4c04ca170ed38311b94cdcdebec779051b7 plus retained dirty working tree",
+  "route": "Official Figma MCP / Weave direct model",
+  "model": "gpt-image-2.5",
+  "model_id": "2db90e64-51dd-45b2-870a-66d19a81118e",
+  "run_id": "54c04823-6883-47be-a9cb-e2e77abc4a87",
+  "status": "COMPLETED",
+  "settings": {"model":"Flare","quality":"medium","background":"opaque","image_size":"landscape_16_9","output_format":"png"},
+  "inputs": {"images": [], "mask": null, "prompt": "Create one static UI design reference image, with three clearly separated panels for a memory-palace room application: (1) wide desktop comparison, (2) private authoring/review and Add item state, (3) narrow mobile authoring state. This is a generic fictional room and interface study, NOT reconstruction evidence; no real photos or logos. Restrained art-gallery atmosphere, nearly black background, generous negative space. A recognizable complete room in sparse finely dithered matrix points, muted source-like wood and teal colors; inferred parts use hollow square marks. Keep comparison quiet: Evidence / Idealized switching buttons, shared room viewpoint, no dashboard or numerical metrics. In separate private authoring panel show selected object outline, source-linked draft list with Proposed / Needs review / Omitted words, explicit Accept / Edit / Omit choices and a deliberate Build candidate action disabled while unresolved drafts remain. Add item form has five categories table chair sofa cabinet bed, dimensions, position, color and a required memory/source note labelled user-authored, never detected. Use restrained Space Grotesk-style headings, IBM Plex Sans-style labels and monospace numbers. Clear focus rings, large touch controls, plain-language errors and a quiet cancellation control. Mobile stacks controls beneath the room without occlusion. No animation proposal, no shimmer, no fake success or accuracy claims. Make hierarchy and grouping legible rather than filling the screen with decorative cards."},
+  "approval": {"scope":"One prompt-only static reference, no retry or private upload","actual_quote_credits":2,"structured_confirmation":"Approve","reported_charged_credits":2,"attempts":1},
+  "output": {"file":"references/images/weave-reference.png","width":1088,"height":608,"sha256":"282c639c28cef9bc54b060feb5a9b7c909c905e5fc6edb857abf5a2134a49696"},
+  "inspection": {"actual_image_read":true,"adopt":["quiet dark room canvas","separate private authoring","compact draft list and explicit actions","stacked narrow layout"],"reject":["invented room geometry as source evidence","metre units for relative estimates","low-contrast small text","unreadable generated copy","implied fitted geometry before review"]},
+  "video": null,
+  "owner_acceptance": "pending"
+}

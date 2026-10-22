@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.invalid/scan-room.schema.json",
+  "oneOf": [{"$ref":"#/$defs/source"},{"$ref":"#/$defs/candidate"}],
+  "$defs": {
+    "id": {"type":"string","pattern":"^[A-Za-z0-9_-]{1,64}$"},
+    "hash": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "text": {"type":"string","minLength":1,"maxLength":1000},
+    "path": {"type":"string","minLength":1,"maxLength":240,"pattern":"^[A-Za-z0-9_./-]+$"},
+    "number": {"type":"number","minimum":-10000,"maximum":10000},
+    "matrix": {"type":"array","minItems":4,"maxItems":4,"items":{"type":"array","minItems":4,"maxItems":4,"items":{"$ref":"#/$defs/number"}}},
+    "ids": {"type":"array","maxItems":128,"uniqueItems":true,"items":{"$ref":"#/$defs/id"}},
+    "reasons": {"type":"array","maxItems":64,"uniqueItems":true,"items":{"$ref":"#/$defs/text"}},
+    "origin": {"enum":["dataset-reconstruction","rgbd-fused","generated-completion","authored-room-shell","authored-door-cap","authored-window-cap","owner-authored-addition"]},
+    "nullable_id": {"anyOf":[{"$ref":"#/$defs/id"},{"type":"null"}]},
+    "frame": {
+      "type":"object","additionalProperties":false,"required":["id","up","units","source_to_candidate","candidate_to_source"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"up":{"const":"Z"},"units":{"const":"m"},"source_to_candidate":{"$ref":"#/$defs/matrix"},"candidate_to_source":{"$ref":"#/$defs/matrix"}}
+    },
+    "asset": {
+      "type":"object","additionalProperties":false,"required":["id","role","path","bytes","sha256"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"role":{"enum":["mesh","annotation","rgb","depth","confidence","calibration","pose"]},"path":{"$ref":"#/$defs/path"},"bytes":{"type":"integer","minimum":1,"maximum":268435456},"sha256":{"$ref":"#/$defs/hash"}}
+    },
+    "view": {
+      "type":"object","additionalProperties":false,"required":["id","role","rgb","depth","confidence","calibration","pose"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"role":{"enum":["conditioning","evaluation"]},"rgb":{"$ref":"#/$defs/id"},"depth":{"$ref":"#/$defs/id"},"confidence":{"$ref":"#/$defs/id"},"calibration":{"$ref":"#/$defs/id"},"pose":{"$ref":"#/$defs/id"}}
+    },
+    "policy": {
+      "type":"object","additionalProperties":false,"required":["timestamp_max_ms","reprojection_max_px","visibility_absolute_m","visibility_relative","evaluation_independent"],
+      "properties":{"timestamp_max_ms":{"const":5},"reprojection_max_px":{"const":0.5},"visibility_absolute_m":{"const":0.02},"visibility_relative":{"const":0.01},"evaluation_independent":{"type":"boolean"}}
+    },
+    "source": {
+      "type":"object","additionalProperties":false,"required":["kind","version","capture_id","mode","assets","views","frame","registration_policy","revision"],
+      "properties":{"kind":{"const":"eva-scan-source-v1"},"version":{"const":1},"capture_id":{"const":"45261631"},"mode":{"const":"scan-assisted"},"assets":{"type":"array","minItems":1,"maxItems":128,"items":{"$ref":"#/$defs/asset"}},"views":{"type":"array","minItems":1,"maxItems":48,"items":{"$ref":"#/$defs/view"}},"frame":{"$ref":"#/$defs/frame"},"registration_policy":{"$ref":"#/$defs/policy"},"revision":{"$ref":"#/$defs/hash"}}
+    },
+    "geometry": {
+      "type":"object","additionalProperties":false,"required":["positions","colors","indices","provenance","uvs","face_object_ids","face_material_indices"],
+      "properties":{
+        "positions":{"type":"array","minItems":9,"maxItems":600000,"items":{"$ref":"#/$defs/number"}},
+        "colors":{"type":"array","minItems":9,"maxItems":600000,"items":{"type":"number","minimum":0,"maximum":1}},
+        "indices":{"type":"array","minItems":3,"maxItems":1200000,"items":{"type":"integer","minimum":0,"maximum":199999}},
+        "provenance":{"type":"array","minItems":1,"maxItems":400000,"items":{"$ref":"#/$defs/origin"}},
+        "uvs":{"type":"array","minItems":6,"maxItems":400000,"items":{"type":"number","minimum":0,"maximum":1}},
+        "face_object_ids":{"type":"array","minItems":1,"maxItems":400000,"items":{"$ref":"#/$defs/nullable_id"}},
+        "source_face_indices":{"type":"array","minItems":1,"maxItems":400000,"uniqueItems":true,"items":{"type":"integer","minimum":0,"maximum":399999}},
+        "face_material_indices":{"type":"array","minItems":1,"maxItems":400000,"items":{"type":"integer","minimum":-1,"maximum":7}}
+      }
+    },
+    "inventory_item": {
+      "type":"object","additionalProperties":false,"required":["id","parent_id","source_refs","evidence","face_indices"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"parent_id":{"$ref":"#/$defs/nullable_id"},"source_refs":{"$ref":"#/$defs/ids"},"evidence":{"enum":["mask-association","annotation-box"]},"face_indices":{"type":"array","maxItems":400000,"uniqueItems":true,"items":{"type":"integer","minimum":0,"maximum":399999}}}
+    },
+    "inventory_draft": {
+      "type":"object","additionalProperties":false,"required":["kind","source","items","revision"],
+      "properties":{"kind":{"const":"eva-scan-inventory-draft-v1"},"source":{"$ref":"#/$defs/source"},"items":{"type":"array","maxItems":64,"items":{"$ref":"#/$defs/inventory_item"}},"revision":{"$ref":"#/$defs/hash"}}
+    },
+    "inventory_decision": {
+      "type":"object","additionalProperties":false,"required":["object_id","action","reason"],
+      "properties":{"object_id":{"$ref":"#/$defs/id"},"action":{"enum":["retain","omit","unresolved"]},"reason":{"$ref":"#/$defs/text"}}
+    },
+    "inventory_review": {
+      "type":"object","additionalProperties":false,"required":["kind","draft","decisions","revision"],
+      "properties":{"kind":{"const":"eva-scan-inventory-review-v1"},"draft":{"$ref":"#/$defs/inventory_draft"},"decisions":{"type":"array","maxItems":64,"items":{"$ref":"#/$defs/inventory_decision"}},"revision":{"$ref":"#/$defs/hash"}}
+    },
+    "object": {
+      "type":"object","additionalProperties":false,"required":["id","source_refs","parent_id","transform","origin","unresolved_reasons"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"source_refs":{"$ref":"#/$defs/ids"},"parent_id":{"$ref":"#/$defs/nullable_id"},"transform":{"$ref":"#/$defs/matrix"},"origin":{"$ref":"#/$defs/origin"},"unresolved_reasons":{"$ref":"#/$defs/reasons"},"disposition":{"enum":["retain","omit","unresolved"]},"disposition_reason":{"$ref":"#/$defs/text"}},
+      "dependentRequired":{"disposition":["disposition_reason"],"disposition_reason":["disposition"]}
+    },
+    "texture": {
+      "type":"object","additionalProperties":false,"required":["id","path","bytes","sha256","width","height","format","origin","source_refs"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"path":{"$ref":"#/$defs/path"},"bytes":{"type":"integer","minimum":1,"maximum":67108864},"sha256":{"$ref":"#/$defs/hash"},"width":{"type":"integer","minimum":1,"maximum":2048},"height":{"type":"integer","minimum":1,"maximum":2048},"format":{"enum":["image/png","image/jpeg"]},"origin":{"enum":["source-projected","generated-completion","owner-authored-addition"]},"source_refs":{"$ref":"#/$defs/ids"}}
+    },
+    "material": {
+      "type":"object","additionalProperties":false,"required":["id","texture_id"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"texture_id":{"$ref":"#/$defs/id"}}
+    },
+    "component": {
+      "type":"object","additionalProperties":false,"required":["id","object_id","origin","first_face","face_count","source_refs"],
+      "properties":{"id":{"$ref":"#/$defs/id"},"object_id":{"$ref":"#/$defs/nullable_id"},"origin":{"$ref":"#/$defs/origin"},"first_face":{"type":"integer","minimum":0,"maximum":399999},"face_count":{"type":"integer","minimum":1,"maximum":400000},"source_refs":{"$ref":"#/$defs/ids"}}
+    },
+    "boundary": {
+      "type":"object","additionalProperties":false,"required":["polygon","floor","ceiling"],
+      "properties":{"polygon":{"type":"array","minItems":3,"maxItems":64,"items":{"type":"array","minItems":2,"maxItems":2,"items":{"$ref":"#/$defs/number"}}},"floor":{"$ref":"#/$defs/number"},"ceiling":{"$ref":"#/$defs/number"}}
+    },
+    "candidate": {
+      "type":"object","additionalProperties":false,
+      "required":["kind","version","capture_id","mode","units","source_sha256","frame_sha256","frame","parent_revision","inventory_sha256","review_sha256","geometry","objects","textures","materials","components","boundary","diagnostics","implementation_sha256","geometry_sha256","revision"],
+      "properties":{
+        "kind":{"const":"eva-scan-room-v1"},"version":{"const":1},"capture_id":{"const":"45261631"},"mode":{"const":"scan-assisted"},"units":{"const":"m"},
+        "source_sha256":{"$ref":"#/$defs/hash"},"frame_sha256":{"$ref":"#/$defs/hash"},"frame":{"$ref":"#/$defs/frame"},"parent_revision":{"anyOf":[{"$ref":"#/$defs/hash"},{"type":"null"}]},
+        "inventory_sha256":{"$ref":"#/$defs/hash"},"review_sha256":{"$ref":"#/$defs/hash"},"geometry":{"$ref":"#/$defs/geometry"},
+        "objects":{"type":"array","maxItems":64,"items":{"$ref":"#/$defs/object"}},"textures":{"type":"array","maxItems":8,"items":{"$ref":"#/$defs/texture"}},"materials":{"type":"array","maxItems":8,"items":{"$ref":"#/$defs/material"}},
+        "components":{"type":"array","minItems":1,"maxItems":4096,"items":{"$ref":"#/$defs/component"}},"boundary":{"$ref":"#/$defs/boundary"},
+        "diagnostics":{"$ref":"#/$defs/reasons"},"implementation_sha256":{"$ref":"#/$defs/hash"},"geometry_sha256":{"$ref":"#/$defs/hash"},"revision":{"$ref":"#/$defs/hash"}
+      }
+    }
+  }
+}

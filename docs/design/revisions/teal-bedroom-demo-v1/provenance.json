@@ -1,0 +1,31 @@
+{
+  "revision": "teal-bedroom-demo-v1",
+  "source_revision": "c83fd4c04ca170ed38311b94cdcdebec779051b7+dirty",
+  "route": "official Figma MCP weave_run_model",
+  "model": "fal-ai/nano-banana-2-lite/edit",
+  "model_id": "e3182874-8f56-4b8f-ae09-83677c914cf8",
+  "run_id": "e416cd67-6b5a-41f7-94c7-26185a614413",
+  "status": "COMPLETED",
+  "settings": {"seed":45261631,"resolution":"1K","aspect_ratio":"16:9"},
+  "inputs": "Text-only authored reference for teal bedroom dataset-scan presentation with a separate cream teddy and Add/Blue/Remove/Undo presets; no source photographs uploaded.",
+  "cost_weave_credits": 3,
+  "approval": "Structured Approve response to exact 3-credit run; within current 200-credit aggregate allowance.",
+  "outputs": ["references/images/bedroom-teddy-reference.jpg", "references/contact-sheet.png"],
+  "inspected": true,
+  "guidance": [
+    "Keep the scan central against dark negative space, with compact bottom controls and unobtrusive provenance.",
+    "Use warm teddy materials and a distinct authored-memory cue, stable anchor and identity.",
+    "Generated room contents, geometry and teddy placement are NOT evidence and must not replace the supplied scan.",
+    "Use real scanned vertex colors, disclose no photo-texture mapping; preserve gaps rather than hiding them.",
+    "No animated transitions for this pass; video reference not applicable. Camera navigation remains directly user-controlled.",
+    "Improve reference tap targets to at least 44px and retain visible keyboard focus."
+  ],
+  "before": "No runnable 45261631 frontend route existed before this pass.",
+  "implementation": "Local-file demo implemented; after-v4 captures inspected. Final review-fix browser verification blocked by harness memory-pressure shutdown; no public deployment.",
+  "browser_evidence": "implementation/after-v4/checks.json",
+  "latest_focused_tests": {"passed": 8, "failed": 0},
+  "earlier_full_check": {"core_passed": 103, "app_passed": 276, "typecheck_and_build": "passed before final review fixes", "warnings": "Three Rust unused/dead-code warnings"},
+  "remaining_checks": ["final keyboard/contrast/semantics captures", "touch orbit and pinch", "browser admission/cancellation/context-loss recovery", "repeated-reopen resources"],
+  "publication": "not deployed; source remains browser-local; redistribution clearance unresolved",
+  "acceptance": "pending"
+}

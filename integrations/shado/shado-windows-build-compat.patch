@@ -1,0 +1,18 @@
+diff --git a/scripts/build-codex-skills.mjs b/scripts/build-codex-skills.mjs
+index 895ef38..803ade6 100644
+--- a/scripts/build-codex-skills.mjs
++++ b/scripts/build-codex-skills.mjs
+@@ -1,12 +1,12 @@
+ import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
+ import { fileURLToPath } from 'node:url';
+ import { createHash } from 'node:crypto';
+ const names = ['shado-directing', 'shado-video-editing', 'shado-canvas'];
+-const manifests = names.map(name => ({ name, text: readFileSync(new URL(`../skills/${name}/SKILL.md`, import.meta.url), 'utf8') }));
++const manifests = names.map(name => ({ name, text: readFileSync(new URL(`../skills/${name}/SKILL.md`, import.meta.url), 'utf8').replace(/\r\n/g, '\n') }));
+ for (const { name, text } of manifests) {
+   if (!text.startsWith(`---\nname: ${name}\ndescription: `) || !text.includes('\n---\n')) throw new Error(`Invalid bundled Codex skill: ${name}`);
+ }
+ const version = createHash('sha256').update(JSON.stringify(manifests)).digest('hex');
+ const destination = new URL('../.generated/', import.meta.url);
+ mkdirSync(destination, { recursive: true });
+ writeFileSync(fileURLToPath(new URL('codex-skills.json', destination)), JSON.stringify({ version, manifests }));

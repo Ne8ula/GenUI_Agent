@@ -1,0 +1,73 @@
+{
+  "kind": "eva-rgbd-acquisition-proposal-v1",
+  "approval": "pending",
+  "executable_by_current_cli": false,
+  "capture_id": "45261631",
+  "split": "Validation",
+  "header_receipt": {
+    "path": "docs/design/acceptance/teal-bedroom-rgbd-v1.headers.json",
+    "file_sha256": "0086620481aa6be8aa2d51cebdf033a020dab96c39e419b698fddc539383d54a"
+  },
+  "output_root": ".local/reconstruction/arkitscenes/45261631/scan-rgbd-source-v1",
+  "assets": [
+    {
+      "role": "depth",
+      "path": "depth/lowres_depth.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/lowres_depth.zip",
+      "bytes": 139266078,
+      "limit": 139266078,
+      "etag": "\"40f73db1ee3f3b1e5ae26711946b2481-3\""
+    },
+    {
+      "role": "confidence",
+      "path": "confidence/confidence.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/confidence.zip",
+      "bytes": 5567746,
+      "limit": 5567746,
+      "etag": "\"daff6fe7db9b698132303a109500915c\""
+    }
+  ],
+  "limits": {
+    "attempts": 1,
+    "attempts_per_asset": 1,
+    "max_get_requests": 2,
+    "transfer_body_bytes": 144833824,
+    "output_disk_bytes": 167772160,
+    "workers": 1,
+    "numerical_threads": 1,
+    "work_timeout_seconds": 135,
+    "host_timeout_seconds": 150,
+    "process_tree_rss_bytes": 805306368,
+    "minimum_available_memory_bytes": 2147483648,
+    "stdout_bytes": 65536,
+    "stderr_bytes": 65536,
+    "redirects": 0,
+    "retries": 0,
+    "resume": false,
+    "range_requests": false,
+    "archive_extraction": false,
+    "paid_service_budget": 0
+  },
+  "retained_inputs_for_later_separate_admission": [
+    {
+      "path": ".local/reconstruction/arkitscenes/45261631/pilot-rgb-six-v1/manifest.json",
+      "file_sha256": "dc64fe061408e30bc81181471f4342d5fdf7d24521f6a36333e03a3e637e3426",
+      "use": "Six originals only; preserve two held-out views and the RGB-only benchmark unchanged. No alignment claim."
+    },
+    {
+      "path": ".local/reconstruction/arkitscenes/45261631/scan-source-v1/manifest.json",
+      "file_sha256": "fb7ff713a6e0c9310ae20f32c7397377c7ac62a123214179dc2262091bd37a2f",
+      "use": "Retained license, metadata, mesh, annotation, trajectory and intrinsics; no repeat acquisition."
+    }
+  ],
+  "excluded": [
+    "vga_wide.zip and every other RGB archive",
+    "highres_depth.zip and visit-level laser scans",
+    "other captures or replacement sources",
+    "ZIP listing, extraction or raster decoding",
+    "calibration, registration, fusion or texture projection",
+    "mesh simplification, candidate assembly or display-cap increases",
+    "model downloads, model execution, GPU setup or paid generation",
+    "UI edits, source uploads, public serving, publication or commits"
+  ]
+}

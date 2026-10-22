@@ -1,0 +1,20 @@
+{
+  "status": "metadata-reviewed-only-no-acquisition-or-execution",
+  "checked_at": "2026-10-20",
+  "purpose": "noncommercial research pilot candidate",
+  "vggt_source_revision": "a288dd0f14786c93483e45524328726ab7b1b4ce",
+  "vggt_checkpoint_revision": "860abec7937da0a4c03c41d3c269c366e82abdf9",
+  "vggt_model": "facebook/VGGT-1B",
+  "checkpoint_license": "cc-by-nc-4.0",
+  "gated": false,
+  "metadata_sources": [
+    "https://api.github.com/repos/facebookresearch/vggt/commits/main",
+    "https://huggingface.co/api/models/facebook/VGGT-1B"
+  ],
+  "limitations": [
+    "No model files downloaded or checked.",
+    "Commercial product activation needs eligible checkpoint terms and access.",
+    "SAM2 revisions remain unselected.",
+    "Do not load this metadata object as inference configuration without selecting its configuration keys."
+  ]
+}

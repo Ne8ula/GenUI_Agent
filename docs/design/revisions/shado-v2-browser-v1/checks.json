@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checks": [
+    "upload-only popup stays open; sealed-input quote reaches same bound window without submit",
+    "generation approval does not submit until explicit continue; one submit then same-task status",
+    "reload/reopen retains task without automatically generating",
+    "keyboard focus and reduced-motion phone layout remain usable"
+  ],
+  "errors": [],
+  "calls": [
+    "media",
+    "media",
+    "media",
+    "media",
+    "media",
+    "quote",
+    "submit",
+    "status"
+  ],
+  "limits": "Actual EVA UI and isolated local broker; synthetic photos/boundary and mocked Shado popup/provider transport. No live Shado authentication, provider quote, generation or deployment verified."
+}

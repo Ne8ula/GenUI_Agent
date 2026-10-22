@@ -1,0 +1,13 @@
+{
+  "base_revision": "c83fd4c",
+  "branch": "midterm",
+  "state": "shared uncommitted working tree; scoped SHA-256 snapshot, not a commit",
+  "sha256": {
+    "week4/app/src/room/BenchmarkRoom.tsx": "5c96f8e10d008adb5a23c315ba46dd2c1a41d2a5f11fcf15e0d97e7887054361",
+    "week4/app/src/room/CandidateView.tsx": "f8b7661cc3a6213eda2f81c7fd9b8bf17c5c7c6ed167dee718c9bdcce42f9542",
+    "scripts/room_workflow/benchmark.mjs": "493fb84814a34ae6ed21f1e519a601784c497f2ddc93ab074d42c9257d11c5eb",
+    "scripts/room_workflow/benchmark.test.mjs": "6a88044ed3d975fd5d4bce7443d47dc1ead0ab933513da5ba1e2a0a93deea652",
+    "week4/app/scripts/verify-arkit-profiles.mjs": "cb29ef6ef01f753247dcbc18726176ff13969cf1d8d31fcee580956ecddf314d",
+    "week4/app/scripts/verify-room-review.mjs": "8f3d59072533708846ee8fc72607f8c0db5017b1832debe229ee737378548306"
+  }
+}

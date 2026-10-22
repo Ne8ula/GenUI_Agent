@@ -1,0 +1,14 @@
+{
+  "base": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "prior_checkpoint": "teal-bedroom-persistence-v2.sources.json",
+  "scope": "Bounded private scan replay and operator source inspection; synthetic evidence, no real acquisition or ready route",
+  "files": {
+    "scripts/room_workflow/cpu_review_worker.py": "4f5aca3f7c10b2bb0b626cda5614d237acaf7d6145354ba16b82c5a6f5e4f8cb",
+    "scripts/room_workflow/cpu-review-worker.mjs": "8dd0e8984ebfb15ba437ec1d94ddd7fa39b13a3a070c2d13c4a89aabcf2bb7aa",
+    "scripts/room_workflow/scan-assisted.mjs": "61b1d49d7f2c37959c16c0c27b9b2ead13b621fa044e8076d2fd7cac0ca7f251",
+    "scripts/room_workflow/test_cpu_review_worker.py": "e3aad43a9397a1b6195b658a061f79928e7f7dd0d05fb2f635718ed83daaa75a",
+    "scripts/room_workflow/scan-assisted.test.mjs": "2b42c954a1567db1333f08e4dd29f9a638c3ae4d9521f6c513643b78714afd9f",
+    "scripts/room_workflow/idealized-adapter.mjs": "9be0286f746ac5e3d36833fbb2a0c103c8ed1a596fcac9820b5c8108d98b1955",
+    "scripts/room_workflow/scan_source.py": "330aab572b23773c494947d245430dc3a37a23b4c97577cbe7c56831152a4cc6"
+  }
+}

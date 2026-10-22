@@ -1,7 +1,8 @@
 ---
 name: eva-implementer
 description: Implement substantial TypeScript, React, Rust, schema, connector, and integration changes with focused tests. Default coding worker for Astra.
-model: claude-gpt-5.6-sol[1m]
+model: claude-gpt-6-astra[1m]
+effort: high
 permissionMode: default
 isolation: worktree
 tools: Read, Glob, Grep, Edit, Write, Bash, PowerShell

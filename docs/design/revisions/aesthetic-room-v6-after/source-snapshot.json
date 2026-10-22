@@ -1,0 +1,70 @@
+{
+  "base_commit": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "status": "uncommitted; owner acceptance pending",
+  "files": [
+    {
+      "path": "week4/app/src/room/aesthetic-room.ts",
+      "sha256": "cd9b7b8a9936d3e1aed1d1b95aefbf5fa630715eb2c7dba7b5fe7e7a8029c174"
+    },
+    {
+      "path": "week4/app/src/room/BenchmarkRoom.tsx",
+      "sha256": "baeee14f3428e3718acb073b3ce80e94bb63c43e5f7744b89392789ff62b8409"
+    },
+    {
+      "path": "week4/app/src/room/CandidateView.tsx",
+      "sha256": "1215e20b3d57eef6e7c400fb7eb3f920f2b463796b87255be0862478f34c7ef0"
+    },
+    {
+      "path": "week4/app/src/room/surface-points.ts",
+      "sha256": "8303001008bad7ae5ea8399236b387c0f550408ddd6281663cab6dea1dbe24dd"
+    },
+    {
+      "path": "week4/app/tests/aesthetic-room.test.ts",
+      "sha256": "8a3549e73cf675b2ff1ac54fbab1999e39c8c7ab6cf20a126f0ef2cc11fc484a"
+    },
+    {
+      "path": "week4/app/tests/room-surface-points.test.ts",
+      "sha256": "e6fc80022d4c86c93defd5a0a02e43bdca2078b086723b6bc94a51317639dc7d"
+    },
+    {
+      "path": "week4/app/scripts/verify-aesthetic-room.mjs",
+      "sha256": "d73354e6fa6d0f50d2e445a081a7c5a302bcc04060fa95ad8cd686788ef9bcba"
+    },
+    {
+      "path": "week4/app/scripts/verify-arkit-profiles.mjs",
+      "sha256": "a70443f5ca671c6877ab2ea780026beb069a4cb003b2e7e22ef863188a7c8a3b"
+    },
+    {
+      "path": "week4/app/scripts/verify-point-contrast.mjs",
+      "sha256": "57481c02571c3876be47b1b581ca922671dc197a67d6c0723f1523c7e3bee485"
+    },
+    {
+      "path": "DESIGN.md",
+      "sha256": "811b9e76c9e4cf40a399a19bb39e6f5bcb4d298d35210bd5568c9cc7923396b7"
+    },
+    {
+      "path": "PLANNING.md",
+      "sha256": "f013a30795dbc39c3c45bd1fc0c18667a4061c6c444a9b55ca79aa3ffb611149"
+    },
+    {
+      "path": "README.md",
+      "sha256": "e97830bcabb9c829f9c6aabb54932cfdc7ac91d7dd65f7195d38f002cf1dc2e7"
+    },
+    {
+      "path": "docs/design/INDEX.md",
+      "sha256": "288c231d869b4196d9c02d756f4584f7cc57e8804f030118ac180067953cf0ef"
+    },
+    {
+      "path": "docs/research/SHADO_ROOM_WORKFLOW_REQUIREMENTS.md",
+      "sha256": "d9555a33149af84622e7c1f1caa33297b3518b07fa3567f641a81bbc87872f78"
+    },
+    {
+      "path": "docs/design/acceptance/aesthetic-room-v1.md",
+      "sha256": "753c71606854cf239e0dc67912d42b8af4675dd14b25ed7035e17fbb35b459cd"
+    },
+    {
+      "path": "docs/design/revisions/aesthetic-room-v6-after/REVIEW.md",
+      "sha256": "a0fdb8f05296f863a124944b5afea25342bd569bab944131aaf798870fdd4e68"
+    }
+  ]
+}

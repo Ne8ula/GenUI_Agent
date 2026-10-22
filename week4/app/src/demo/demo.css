@@ -1,0 +1,56 @@
+/* Sized in vh so the 2:1 LED wall (2304 x 1152) and a laptop browser read the same. */
+.demo { --red: #ff3b30; --ink: #f2efe9; --muted: #9aa6a2; position: fixed; inset: 0; overflow: hidden; background: #050606; color: var(--ink); font: 400 2.1vh/1.4 'Space Grotesk', sans-serif; }
+.demo * { box-sizing: border-box; }
+.demo-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 1.2s; }
+.demo--building .demo-canvas, .demo--room .demo-canvas { opacity: 1; }
+
+.demo-eye { position: relative; display: inline-grid; place-items: center; width: 3.6vh; height: 2.2vh; border: .22vh solid var(--red); border-radius: 50% / 50%; flex: none; box-shadow: 0 0 1.2vh rgba(255, 59, 48, .45); }
+.demo-eye i { width: 1vh; height: 1vh; border-radius: 50%; background: var(--red); box-shadow: 0 0 1vh var(--red); animation: demo-look 6s ease-in-out infinite; }
+.demo-dither-eye { display: block; width: 72vh; height: 36vh; image-rendering: pixelated; mix-blend-mode: screen; }
+@keyframes demo-look { 0%, 40%, 100% { transform: translateX(0); } 50%, 60% { transform: translateX(-.5vh); } 70%, 80% { transform: translateX(.5vh); } }
+
+.demo-presence { position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); transition: top .9s cubic-bezier(.2, .8, .2, 1), transform .9s; }
+.demo--upload .demo-presence, .demo--processing .demo-presence { top: 20%; transform: translate(-50%, -50%) scale(.6); }
+/* EVA disperses into the points that become the room. */
+.demo--building .demo-presence { top: 50%; animation: demo-disperse 2.4s ease-in forwards; }
+@keyframes demo-disperse { 40% { transform: translate(-50%, -50%) scale(1.15); filter: blur(0); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(2.6); filter: blur(2.5vh); opacity: 0; } }
+
+.demo-chat { position: absolute; left: 50%; bottom: 9vh; transform: translateX(-50%); display: flex; align-items: center; gap: 1.6vh; width: 64vh; height: 7vh; padding: 0 2.4vh; border: 1px solid rgba(255, 255, 255, .16); border-radius: 99px; background: rgba(16, 20, 19, .72); backdrop-filter: blur(12px); transition: width .5s cubic-bezier(.2, .8, .2, 1), padding .5s, bottom .5s; animation: demo-rise .8s both; }
+.demo-chat input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; font-size: 2.4vh; transition: opacity .3s; }
+.demo-chat input::placeholder { color: var(--muted); }
+.demo-chat:focus-within { border-color: rgba(255, 59, 48, .55); }
+.demo-chat:not(.is-open) { width: 7vh; padding: 0 1.55vh; cursor: pointer; bottom: 5vh; }
+.demo-chat:not(.is-open) input { opacity: 0; pointer-events: none; }
+@keyframes demo-rise { from { opacity: 0; transform: translate(-50%, 2vh); } }
+
+.demo-sent { position: absolute; left: 50%; bottom: 18vh; margin: 0; padding: 1.2vh 2.4vh; border-radius: 99px; background: rgba(255, 255, 255, .08); font-size: 2.2vh; white-space: nowrap; transform: translateX(-50%); animation: demo-sent 3.6s ease forwards; pointer-events: none; }
+@keyframes demo-sent { 0% { opacity: 0; transform: translate(-50%, 2vh); } 12%, 70% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, -3vh); } }
+
+.demo-upload { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: 128vh; padding: 3vh; border: 1px dashed rgba(255, 255, 255, .22); border-radius: 2.4vh; cursor: pointer; animation: demo-rise-c .7s both; transition: opacity 1.4s, filter 1.4s, transform 1.4s; }
+.demo-upload:hover { border-color: rgba(255, 59, 48, .5); }
+.demo-upload-empty { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-size: 2.6vh; }
+@keyframes demo-rise-c { from { opacity: 0; transform: translate(-50%, -46%); } }
+.demo--processing .demo-upload, .demo--building .demo-upload { cursor: default; border-color: transparent; }
+.demo--building .demo-upload { opacity: 0; filter: blur(2vh); transform: translate(-50%, -50%) scale(.6); }
+.demo-photos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.6vh; }
+.demo-photos figure { position: relative; margin: 0; aspect-ratio: 4 / 3; border-radius: 1vh; overflow: hidden; background: rgba(255, 255, 255, .04); opacity: .25; }
+.demo-photos figure.is-in { opacity: 1; animation: demo-pop .5s cubic-bezier(.2, .9, .3, 1.3) both; }
+@keyframes demo-pop { from { transform: scale(.7); opacity: 0; } }
+.demo-photos img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.demo-dither-photo { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.demo-caption { margin: 2.6vh 0 0; font: 400 1.8vh 'IBM Plex Mono', monospace; color: var(--muted); letter-spacing: .04em; text-align: center; }
+.demo-bar { display: block; width: 30vh; height: 2px; margin: 1.4vh auto 0; background: linear-gradient(var(--red), var(--red)) 0 0 / 0 100% no-repeat, rgba(255, 255, 255, .1); animation: demo-fill 5s linear forwards; }
+@keyframes demo-fill { to { background-size: 100% 100%; } }
+.demo-caption--build { position: absolute; left: 4vh; bottom: 4vh; margin: 0; text-align: left; animation: demo-type 2.6s steps(30) both; overflow: hidden; white-space: nowrap; }
+@keyframes demo-type { from { max-width: 0; } to { max-width: 60vh; } }
+.demo-hint { position: absolute; left: 50%; top: 6vh; margin: 0; transform: translateX(-50%); font: 400 1.8vh 'IBM Plex Mono', monospace; letter-spacing: .5em; color: var(--muted); animation: demo-sent 5s ease forwards; }
+
+.demo-overlay { position: absolute; outline: none; }
+.demo-overlay svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.demo-overlay rect { fill: rgba(255, 255, 255, 0); stroke: #f2f5f8; stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: demo-draw 2.4s cubic-bezier(.6, 0, .2, 1) .3s forwards; transition: fill .3s; }
+@keyframes demo-draw { to { stroke-dashoffset: 0; } }
+.demo-overlay:hover rect, .demo-overlay:focus-visible rect { fill: rgba(255, 255, 255, .06); }
+.demo-note { position: absolute; left: calc(100% + 2vh); top: 0; width: 36vh; margin: 0; padding: 1.6vh 2vh; border-left: 2px solid #f2f5f8; background: rgba(10, 12, 12, .78); font-size: 2.1vh; line-height: 1.45; clip-path: inset(0 100% 0 0); transition: clip-path .7s cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
+.demo-overlay:hover .demo-note, .demo-overlay:focus-visible .demo-note { clip-path: inset(0); }
+
+@media (prefers-reduced-motion: reduce) { .demo *, .demo *::before { animation-duration: .01s !important; transition-duration: .01s !important; } }

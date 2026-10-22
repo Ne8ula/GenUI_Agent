@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "checks": [
+    "source-bound CPU fusion and provisional enclosure render from transformed source cameras",
+    "real validated VGGT geometry and seven source images loaded",
+    "keyboard focus, orbit, zoom and reset",
+    "four actual geometry representations switch",
+    "real WebGL context loss and explicit reopen recovery",
+    "touch representation control, reduced-motion view and phone layout without overflow"
+  ],
+  "errors": [],
+  "source": "Actual saved ARKitScenes 42445021 seven-photo VGGT analysis, validated against frozen request.",
+  "limits": "Headless Edge; touch emulation. This verifies rendering and interaction, not geometric accuracy or physical phone behavior."
+}

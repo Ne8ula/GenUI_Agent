@@ -1,0 +1,214 @@
+{
+  "status": "passed",
+  "checks": [
+    "completed: points visibly change; source colors recover exactly; surfaces and provenance framebuffer hashes unchanged",
+    "fused: points visibly change; source colors recover exactly; surfaces and provenance framebuffer hashes unchanged",
+    "material: points visibly change; source colors recover exactly; surfaces and provenance framebuffer hashes unchanged",
+    "Second view changes, actual W/orbit/Home pixels and keyboard focus, context interruption/reopen recover same enhanced view; source/candidate API bytes unchanged",
+    "390px reduced-motion touch layout, both toggle states, keyboard activation and movement/reset",
+    "Original saved profile retains its default candidate/viewpoint and exposes both point display options"
+  ],
+  "frames": [
+    {
+      "name": "completed-camera1-source",
+      "hash": "90d8ccb620fd2daceefe554a5c2020cd62802fe325964fee3421c4d9ed024dbb",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 5734,
+          "median": 1.2104450010188188,
+          "fractionBelow1_5": 0.7000348796651552
+        },
+        "wall": {
+          "nonBackgroundPixels": 2993,
+          "median": 1.9560206334066113,
+          "fractionBelow1_5": 0.29535583027063145
+        }
+      }
+    },
+    {
+      "name": "completed-camera1-enhanced",
+      "hash": "70aed46f33e710173a0c29a49301bcdebb9cbb22af1b97c810018137aac0d788",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 5734,
+          "median": 1.5221378219063777,
+          "fractionBelow1_5": 0.34652947331705614
+        },
+        "wall": {
+          "nonBackgroundPixels": 2993,
+          "median": 1.9560206334066113,
+          "fractionBelow1_5": 0.29535583027063145
+        }
+      }
+    },
+    {
+      "name": "fused-camera1-source",
+      "hash": "62e0937867a5c7d3801a9fddf35b4a8e5264df6cbc43ff5c54fb99ddfecf9337",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 14170,
+          "median": 1.176863168076643,
+          "fractionBelow1_5": 0.715243472124206
+        },
+        "wall": {
+          "nonBackgroundPixels": 2217,
+          "median": 2.671885163963978,
+          "fractionBelow1_5": 0.09697789806044203
+        }
+      }
+    },
+    {
+      "name": "fused-camera1-enhanced",
+      "hash": "1f283ca6af20d3c0dfd47a949b990db62be0d26094e2e72bfcece5b924d9a002",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 14170,
+          "median": 1.5237764075427345,
+          "fractionBelow1_5": 0.32145377558221594
+        },
+        "wall": {
+          "nonBackgroundPixels": 2217,
+          "median": 2.671885163963978,
+          "fractionBelow1_5": 0.09697789806044203
+        }
+      }
+    },
+    {
+      "name": "material-camera1-source",
+      "hash": "988ec8b6500a372f3f7b52ffdc320d9a35ab2ad73e22da0d16bce9adb1ecb84f",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 5734,
+          "median": 1.2104450010188188,
+          "fractionBelow1_5": 0.6848622253226369
+        },
+        "wall": {
+          "nonBackgroundPixels": 2993,
+          "median": 2.7432524524840116,
+          "fractionBelow1_5": 0.027063147343802205
+        }
+      }
+    },
+    {
+      "name": "material-camera1-enhanced",
+      "hash": "4144d0c410a054a50d67aa0cd28b9a3c5db9b13e58716c99bd6eff28a731ceda",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 5734,
+          "median": 1.5238787975685784,
+          "fractionBelow1_5": 0.3327520055807464
+        },
+        "wall": {
+          "nonBackgroundPixels": 2993,
+          "median": 2.7432524524840116,
+          "fractionBelow1_5": 0.027063147343802205
+        }
+      }
+    },
+    {
+      "name": "completed-camera6-source",
+      "hash": "5c580d81831f21532e8ca84fc3426db5213212782c69e479756f5b8b48731bac",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 3659,
+          "median": 1.441109151665359,
+          "fractionBelow1_5": 0.52965291063132
+        },
+        "wall": {
+          "nonBackgroundPixels": 1143,
+          "median": 1.9960772677477432,
+          "fractionBelow1_5": 0.3700787401574803
+        }
+      }
+    },
+    {
+      "name": "completed-camera6-enhanced",
+      "hash": "b8ee96bc1261fdee5bac5e0747382ead124ae6914b2034ade7ae78e74b0335e9",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 3672,
+          "median": 1.8833388682509624,
+          "fractionBelow1_5": 0.37173202614379086
+        },
+        "wall": {
+          "nonBackgroundPixels": 1143,
+          "median": 1.9960772677477432,
+          "fractionBelow1_5": 0.3700787401574803
+        }
+      }
+    },
+    {
+      "name": "recovered-camera6-enhanced",
+      "hash": "b8ee96bc1261fdee5bac5e0747382ead124ae6914b2034ade7ae78e74b0335e9",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 3672,
+          "median": 1.8833388682509624,
+          "fractionBelow1_5": 0.37173202614379086
+        },
+        "wall": {
+          "nonBackgroundPixels": 1143,
+          "median": 1.9960772677477432,
+          "fractionBelow1_5": 0.3700787401574803
+        }
+      }
+    },
+    {
+      "name": "original-camera0-enhanced",
+      "hash": "93937e49cd913c286a0c0dd467b656dd3f42f446fd698eafc3417d0f2011ba17",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 4571,
+          "median": 1.94554447123292,
+          "fractionBelow1_5": 0.36009625902428355
+        },
+        "wall": {
+          "nonBackgroundPixels": 2472,
+          "median": 1.9560206334066113,
+          "fractionBelow1_5": 0.27305825242718446
+        }
+      }
+    },
+    {
+      "name": "original-camera0-source",
+      "hash": "cbd69dba5e5396037a0e7fc43ed266cdb77242e3327d468ca86e3b721845ec77",
+      "width": 1066,
+      "height": 450,
+      "statistics": {
+        "sofa": {
+          "nonBackgroundPixels": 4571,
+          "median": 1.5096026963978946,
+          "fractionBelow1_5": 0.4987967621964559
+        },
+        "wall": {
+          "nonBackgroundPixels": 2472,
+          "median": 1.9560206334066113,
+          "fractionBelow1_5": 0.27305825242718446
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "apiSha256": "17592ed91eb537164d57f0fe2e6d0d8930816859ba604c7de80e321785b7faef",
+  "limits": "Saved real model results. No new model run. Headless Edge/touch emulation, not physical phone. Contrast statistics are frozen manual ROI diagnostics, not geometry accuracy or semantic segmentation."
+}

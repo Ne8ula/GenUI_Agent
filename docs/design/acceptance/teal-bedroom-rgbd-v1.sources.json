@@ -1,0 +1,47 @@
+{
+  "kind": "eva-rgbd-byte-verification-v1",
+  "verified_at_utc": "2026-10-22T05:23:59.686739+00:00",
+  "source_revision": "c83fd4c04ca170ed38311b94cdcdebec779051b7 plus shared dirty midterm work",
+  "plan_file_sha256": "ddc5df0ab9dd2b85049fe6d5050da1bd622cf0361cb3b17d36125ce91745f951",
+  "manifest_file_sha256": "891220c930e61fe553e90ad3ec75eabdedf48b2b97fb423b5b4525cbbde20f73",
+  "resources": {
+    "status": "settled",
+    "outcome": "passed",
+    "peak_rss_bytes": 76075008,
+    "min_available_bytes": 3001225216,
+    "elapsed_seconds": 5.60899999999674,
+    "report_sha256": "8387c2f76f96d8b9f0364d9e2011de0bf972540d4aae77dbac4a422757925b12"
+  },
+  "assets": [
+    {
+      "role": "depth",
+      "path": "depth/lowres_depth.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/lowres_depth.zip",
+      "bytes": 139266078,
+      "limit": 139266078,
+      "etag": "\"40f73db1ee3f3b1e5ae26711946b2481-3\"",
+      "sha256": "403a3edc94443e412e2f584e9fee53c695c91f827e8908c91d0669433675069f"
+    },
+    {
+      "role": "confidence",
+      "path": "confidence/confidence.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/confidence.zip",
+      "bytes": 5567746,
+      "limit": 5567746,
+      "etag": "\"daff6fe7db9b698132303a109500915c\"",
+      "sha256": "65350d498ccedd09d72b060239aa51b9dcc91c26f582ec33cd3d831d417be208"
+    }
+  ],
+  "checks": "Exact payload sizes and streaming SHA-256 rehash, plan/journal binding, resource settlement, disk ceiling, unchanged retained metadata",
+  "archive_inspection_extraction_calibration": "not-run",
+  "source_files": {
+    "scripts/room_workflow/arkit_fetch.py": "83f715bf3cb9abcc966c797c580832ebedc6d0e51a1dd71fef1fbeac15388a7f",
+    "scripts/room_workflow/scan_source.py": "2abf0bb92b53c15b64aab5e40cdf028d9029f7dadf23b14065468a4b08c31f9f",
+    "scripts/room_workflow/scan_rgbd_source.py": "dd989586d853b631c08d63ea224928eb0f9395aee065a289e372b9f88ca4a157",
+    "scripts/room_workflow/cpu_review_worker.py": "123f1f664be37e40760832ea074a77eac06c3de3eedad6fbb9564131ea302c04",
+    "scripts/room_workflow/test_arkit_fetch.py": "d34988cca6b76060e7b8634a362b4ffcec55a5f109393881a50019fe64ea10e8",
+    "scripts/room_workflow/test_scan_source.py": "6f7fcb2acfc51e6fe63881e15f5ced280977a86b15c9c4f8c428a375434d2133",
+    "scripts/room_workflow/test_scan_rgbd_source.py": "2a1e9696dde4d0282c968a32cae24a96f271f56e3d410062432ddbc517a837d8",
+    "scripts/room_workflow/test_cpu_review_worker.py": "abda09f81d50490aff453d349950893e45aadfeb6d66adf018bd6bef2c19a0d5"
+  }
+}

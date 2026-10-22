@@ -4,6 +4,8 @@
   "private": true,
   "description": "EVA midterm repository; commands target the retained Week 4 foundation.",
   "scripts": {
+    "room:service": "node scripts/room_workflow/broker.mjs",
+    "room:test": "node --test scripts/room_workflow/*.test.mjs",
     "dev": "npm --prefix week4/app run dev --",
     "build": "npm --prefix week4/app run build --",
     "test": "npm --prefix week4 test && npm --prefix week4/app test",

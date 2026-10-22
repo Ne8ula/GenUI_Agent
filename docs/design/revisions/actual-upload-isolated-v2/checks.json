@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checks": [
+    "Actual saved deployed result and original inputs preserved byte-for-byte at JSON-value level in isolated ownership copy",
+    "Boundary review plus actual raw surface and point representations render without another model run",
+    "Keyboard boundary adjustment and explicit test-only confirmation reach local completion eligibility",
+    "Real broker and Python CPU completion finish and admit the matching artifact; Shado remains pending with no fabricated B",
+    "Completed candidate keyboard navigation and reduced-motion phone layout remain usable"
+  ],
+  "errors": [],
+  "apiWrites": [
+    "/api/room-workflow/jobs/4f2d3dfb-59c5-4c66-9b13-0c21120ccb81/boundary",
+    "/api/room-workflow/jobs/4f2d3dfb-59c5-4c66-9b13-0c21120ccb81/complete-local"
+  ],
+  "source_job_id": "4f2d3dfb-59c5-4c66-9b13-0c21120ccb81",
+  "source_job_file_sha256": "cb73531f424024d87154fce1bfc8f85656d57cdfcf3bfdb584b6ffff7f7e1e7e",
+  "result_value_sha256": "b1ffe98decc07a263ac7ca7e4ae60871ccee9918355f2fa495dace5d316e27dd",
+  "actual_model_elapsed_seconds": 79.020754713,
+  "analysis_geometry_sha256": "b56f8a432368289ca9190aa7d3b47d4c37e751b4adc69a68635e3ad7aef53f9d",
+  "completion_geometry_sha256": "54d032f109c057c7bb731ecb55142622d04f97dafc13877ff2808c012a692250",
+  "completion_triangles": 130902,
+  "cpu_elapsed_seconds": 22.968999999997322,
+  "limits": "Fresh isolated TEST owner/session; this is not original-session recovery. Actual saved ML result reused unchanged. Boundary confirmation is a synthetic automation decision, not owner acceptance. CPU completion executed for real; no new GPU/model, Shado, or provider call. Main broker and original job unchanged."
+}

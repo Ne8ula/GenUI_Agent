@@ -1,0 +1,59 @@
+{
+  "kind": "eva-rgbd-header-proposal-v1",
+  "capture_id": "45261631",
+  "split": "Validation",
+  "approval": "pending",
+  "archive_get": "not-run",
+  "attempts_per_url": 1,
+  "redirects_followed": false,
+  "assets": [
+    {
+      "file": "lowres_depth.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/lowres_depth.zip",
+      "method": "HEAD",
+      "requested_at_utc": "2026-10-22T05:01:18.318385+00:00",
+      "client_exit_code": 0,
+      "status": 200,
+      "headers": {
+        "Content-Length": "139266078",
+        "ETag": "\"40f73db1ee3f3b1e5ae26711946b2481-3\"",
+        "Accept-Ranges": "bytes",
+        "Last-Modified": "Wed, 17 Nov 2021 11:00:41 GMT",
+        "Date": "Thu, 22 Oct 2026 05:01:19 GMT",
+        "Content-Type": "binary/octet-stream"
+      }
+    },
+    {
+      "file": "confidence.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/confidence.zip",
+      "method": "HEAD",
+      "requested_at_utc": "2026-10-22T05:01:18.681696+00:00",
+      "client_exit_code": 0,
+      "status": 200,
+      "headers": {
+        "Content-Length": "5567746",
+        "ETag": "\"daff6fe7db9b698132303a109500915c\"",
+        "Accept-Ranges": "bytes",
+        "Last-Modified": "Wed, 17 Nov 2021 11:01:26 GMT",
+        "Date": "Thu, 22 Oct 2026 05:01:19 GMT",
+        "Content-Type": "binary/octet-stream"
+      }
+    },
+    {
+      "file": "vga_wide.zip",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/raw/Validation/45261631/vga_wide.zip",
+      "method": "HEAD",
+      "requested_at_utc": "2026-10-22T05:01:19.024616+00:00",
+      "client_exit_code": 0,
+      "status": 200,
+      "headers": {
+        "Content-Length": "821105856",
+        "ETag": "\"801c5f612225e5d343acb4d39f09b4dc-13\"",
+        "Accept-Ranges": "bytes",
+        "Last-Modified": "Wed, 17 Nov 2021 11:00:42 GMT",
+        "Date": "Thu, 22 Oct 2026 05:01:20 GMT",
+        "Content-Type": "binary/octet-stream"
+      }
+    }
+  ]
+}

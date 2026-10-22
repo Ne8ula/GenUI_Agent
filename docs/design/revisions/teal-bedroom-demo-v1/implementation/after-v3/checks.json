@@ -1,0 +1,106 @@
+{
+  "url": "http://127.0.0.1:1440/?scene=teal-bedroom",
+  "viewport": [
+    1440,
+    900
+  ],
+  "reducedMotion": true,
+  "before": {
+    "camera": {
+      "position": [
+        -0.25000000000000006,
+        2.3500000000000005,
+        0.24999999999999944
+      ],
+      "target": [
+        0.42,
+        3.98,
+        -0.5500000000000002
+      ]
+    },
+    "mode": "surface",
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": false,
+    "teddyColor": "dcbf92",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.82
+    ],
+    "calls": 1,
+    "triangles": 1144903,
+    "points": 0,
+    "geometries": 1
+  },
+  "restored": {
+    "camera": {
+      "position": [
+        -0.25000000000000006,
+        2.3500000000000005,
+        0.24999999999999944
+      ],
+      "target": [
+        0.42,
+        3.98,
+        -0.5500000000000002
+      ]
+    },
+    "mode": "surface",
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": true,
+    "teddyColor": "7caec8",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.82
+    ],
+    "calls": 18,
+    "triangles": 1157143,
+    "points": 0,
+    "geometries": 18
+  },
+  "matrix": {
+    "camera": {
+      "position": [
+        -0.25000000000000006,
+        2.3500000000000005,
+        0.24999999999999944
+      ],
+      "target": [
+        0.42,
+        3.98,
+        -0.5500000000000002
+      ]
+    },
+    "mode": "matrix",
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": true,
+    "teddyColor": "7caec8",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.82
+    ],
+    "calls": 19,
+    "triangles": 1157143,
+    "points": 155520,
+    "geometries": 19
+  },
+  "errors": [],
+  "checks": [
+    "keyboard add",
+    "recolour",
+    "remove/undo",
+    "camera continuity",
+    "source counts",
+    "mode continuity",
+    "keyboard navigation",
+    "details Escape",
+    "touch presets",
+    "mobile overflow",
+    "44px buttons"
+  ]
+}

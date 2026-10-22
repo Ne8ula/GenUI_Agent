@@ -1,0 +1,65 @@
+{
+  "templateOnly": false,
+  "status": "reference-inspected-implementation-pending",
+  "changeId": "teal-bedroom-textures-v1",
+  "phase": "fresh-visual-reference",
+  "sourceRevision": "c83fd4c04ca170ed38311b94cdcdebec779051b7 plus shared dirty midterm work",
+  "acceptedBaseline": null,
+  "scope": "45261631 scan-assisted photo-textured surfaces, optional same-geometry matrix toggle, compact source/reset controls and accessible object inspection; no motion",
+  "ownedUiFiles": [],
+  "motionRequired": false,
+  "runs": [
+    {
+      "route": "direct-model via official Figma MCP Weave",
+      "modelLabel": "Nano Banana 2 Lite",
+      "modelId": "e3182874-8f56-4b8f-ae09-83677c914cf8",
+      "providerModelId": "fal-ai/nano-banana-2-lite/edit",
+      "modelRevision": null,
+      "predictionId": "6507593c-ecc3-4d76-b595-b79304375286",
+      "status": "COMPLETED",
+      "input": {
+        "prompt": "Create one static 16:9 visual design reference for a private research memory-palace room viewer, not a real reconstruction and not an official brand page. Two adjacent panels show the SAME compact teal bedroom composition and SAME viewpoint: left large primary view uses detailed photo-like textured surfaces; right smaller alternate view uses fine ordered square dithered matrix marks on the identical continuous furniture geometry. Teal walls, a bed with pillows and wooden headboard, distinct bedside storage and a lamp are illustrative placeholders only; do not represent them as detected facts. Keep furniture separate and grounded, no cross-object connecting triangles, no extra rooms, no dramatic invented geometry. Dark charcoal surrounding canvas, generous negative space, restrained square UI primitives. Minimal compact controls: Surfaces / Matrix, View reset, Sources & details. One quiet badge reads 'Scan-assisted · unreviewed'; a subtle evidence cue distinguishes inferred closure from supplied surfaces using hollow marks, not color alone. Stable selected-object outline and a discreet accessible object-list affordance. Typeface feel: Space Grotesk and IBM Plex Sans/Mono, readable high-contrast labels and visible keyboard focus, no tiny dashboard telemetry, no marketing copy. No animation, no glow, no photographic fabrication claims, no loading progress fiction. Include a small 'Design reference — not source evidence' label. This image guides materials, composition and control hierarchy only; implementation must use real source-bound geometry, never copy this invented room layout.",
+        "resolution": "1K",
+        "aspect_ratio": "16:9",
+        "seed": 42
+      },
+      "quotedCost": 3,
+      "reportedCost": 3,
+      "costUnit": "workspace Weave credits",
+      "costApprovalRef": "Owner selected Approve ≤3 credits, then Approve on exact 3-credit quote in structured session confirmations",
+      "sourceUploads": [],
+      "retryCount": 0,
+      "outputs": [
+        {
+          "path": "references/images/weave-reference.jpg",
+          "kind": "image",
+          "width": 1376,
+          "height": 768,
+          "sha256": "aafa61ea54841a1f438f8f4920bd298cb65b4c332e590f0a8f634912d11db193",
+          "source": "https://media.weavy.ai/image/upload/v1792644166/uploads/RjA4KfH9v0eVz56zC2LruMUpYXG2/frr8cby6gxapxth9srov.jpg",
+          "license": "Provider terms not verified; private development reference, not redistribution clearance",
+          "retrieval": "HTTPS curl download to new empty reference directory; no redirect/retry, 10 MiB and 30-second ceilings"
+        }
+      ]
+    }
+  ],
+  "selectedAssets": ["references/images/weave-reference.jpg"],
+  "contactSheet": "references/contact-sheet.png",
+  "contactSheetSha256": "ee63a05750c3db1f37fe1416f495b775a0216bf0fd2b8c39d01ce12f1ead648e",
+  "inspection": {
+    "status": "performed",
+    "inspector": "lead",
+    "method": "Read image tool; actual returned JPEG inspected before UI edits",
+    "observations": ["Charcoal frame and scene-first control hierarchy", "Surface and matrix panels with corresponding illustrative geometry", "Source/details control, selected-bed outline, scan-assisted/unreviewed state"],
+    "limitations": ["Generated room is not 45261631 source evidence", "Malformed text, ambiguous switch and dense halftone must not be copied", "Hollow inferred marks not demonstrated", "No measured contrast or browser continuity evidence"]
+  },
+  "implementationGuidance": ["Reuse house components and fonts", "Keep surfaces default; share admitted geometry/camera/selection with matrix", "Use actual source textures only", "Keep accessible selection and explicit provenance", "Do not copy invented furniture or room layout"],
+  "writerInspections": [{"writer": "lead", "asset": "references/images/weave-reference.jpg", "status": "inspected"}],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": ["No runnable 45261631 before-state; no UI source edited", "Acquired mesh exceeds display caps; calibrated source/texture and serving gates remain"]
+  },
+  "ownerDecision": {"status": "quality-acceptance-pending", "date": null, "feedback": null}
+}

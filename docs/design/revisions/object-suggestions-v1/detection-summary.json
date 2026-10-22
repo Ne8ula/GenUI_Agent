@@ -1,0 +1,185 @@
+[
+  {
+    "image_id": "arkit_42445021_vga_visual_00",
+    "detections": [
+      {
+        "id": "arkit_42445021_vga_visual_00-o0",
+        "label": "window",
+        "detection_score": 0.7052459716796875,
+        "mask_score": 0.96875,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      },
+      {
+        "id": "arkit_42445021_vga_visual_00-o1",
+        "label": "bathtub",
+        "detection_score": 0.4680207371711731,
+        "mask_score": 0.98046875,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      },
+      {
+        "id": "arkit_42445021_vga_visual_00-o2",
+        "label": "printer",
+        "detection_score": 0.4106229841709137,
+        "mask_score": 0.94921875,
+        "review_reasons": []
+      },
+      {
+        "id": "arkit_42445021_vga_visual_00-o3",
+        "label": "door",
+        "detection_score": 0.3546782433986664,
+        "mask_score": 0.953125,
+        "review_reasons": []
+      }
+    ]
+  },
+  {
+    "image_id": "arkit_42445021_vga_visual_01",
+    "detections": [
+      {
+        "id": "arkit_42445021_vga_visual_01-o0",
+        "label": "window",
+        "detection_score": 0.6645949482917786,
+        "mask_score": 0.7734375,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      },
+      {
+        "id": "arkit_42445021_vga_visual_01-o1",
+        "label": "bed",
+        "detection_score": 0.4962349236011505,
+        "mask_score": 0.96875,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      }
+    ]
+  },
+  {
+    "image_id": "arkit_42445021_vga_visual_02",
+    "detections": [
+      {
+        "id": "arkit_42445021_vga_visual_02-o0",
+        "label": "bed",
+        "detection_score": 0.5610266923904419,
+        "mask_score": 0.86328125,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      }
+    ]
+  },
+  {
+    "image_id": "arkit_42445021_vga_visual_03",
+    "detections": [
+      {
+        "id": "arkit_42445021_vga_visual_03-o0",
+        "label": "printer",
+        "detection_score": 0.6766582131385803,
+        "mask_score": 0.89453125,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      },
+      {
+        "id": "arkit_42445021_vga_visual_03-o1",
+        "label": "desk",
+        "detection_score": 0.3914458453655243,
+        "mask_score": 0.94140625,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      }
+    ]
+  },
+  {
+    "image_id": "arkit_42445021_vga_visual_04",
+    "detections": [
+      {
+        "id": "arkit_42445021_vga_visual_04-o0",
+        "label": "printer",
+        "detection_score": 0.7975214123725891,
+        "mask_score": 0.93359375,
+        "review_reasons": []
+      },
+      {
+        "id": "arkit_42445021_vga_visual_04-o1",
+        "label": "desk",
+        "detection_score": 0.6959600448608398,
+        "mask_score": 0.8984375,
+        "review_reasons": []
+      },
+      {
+        "id": "arkit_42445021_vga_visual_04-o2",
+        "label": "door",
+        "detection_score": 0.49750885367393494,
+        "mask_score": 0.98046875,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      }
+    ]
+  },
+  {
+    "image_id": "arkit_42445021_vga_visual_05",
+    "detections": [
+      {
+        "id": "arkit_42445021_vga_visual_05-o0",
+        "label": "desk",
+        "detection_score": 0.4461829364299774,
+        "mask_score": 0.79296875,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      },
+      {
+        "id": "arkit_42445021_vga_visual_05-o1",
+        "label": "door",
+        "detection_score": 0.4412226974964142,
+        "mask_score": 0.98828125,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      },
+      {
+        "id": "arkit_42445021_vga_visual_05-o2",
+        "label": "plant",
+        "detection_score": 0.38243669271469116,
+        "mask_score": 0.8984375,
+        "review_reasons": [
+          "cut-off-at-image-edge"
+        ]
+      }
+    ]
+  },
+  {
+    "image_id": "arkit_42445021_vga_visual_06",
+    "detections": [
+      {
+        "id": "arkit_42445021_vga_visual_06-o0",
+        "label": "lamp",
+        "detection_score": 0.83198082447052,
+        "mask_score": 0.98046875,
+        "review_reasons": []
+      },
+      {
+        "id": "arkit_42445021_vga_visual_06-o1",
+        "label": "door",
+        "detection_score": 0.39345496892929077,
+        "mask_score": 0.9765625,
+        "review_reasons": []
+      },
+      {
+        "id": "arkit_42445021_vga_visual_06-o2",
+        "label": "door",
+        "detection_score": 0.3903954327106476,
+        "mask_score": 0.97265625,
+        "review_reasons": []
+      }
+    ]
+  }
+]

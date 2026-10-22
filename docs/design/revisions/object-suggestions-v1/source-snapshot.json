@@ -1,0 +1,30 @@
+[
+    {
+        "path":  "scripts/room_workflow/object_suggestions.py",
+        "sha256":  "6a3ed6e90334538e70d0bc4ac01266381404a42cf02fb3865ce60c53593a87fd"
+    },
+    {
+        "path":  "scripts/room_workflow/object_proposals.py",
+        "sha256":  "e0c818eb65abeffcc48d345d587dcb2d11574806d733ce4021a5ec55c3a7af08"
+    },
+    {
+        "path":  "scripts/room_workflow/object_cloud.py",
+        "sha256":  "b3ca49b00a305a536189db26a474bba8a21511568e5a2b49d116fe582a132f86"
+    },
+    {
+        "path":  "scripts/room_workflow/object_worker.py",
+        "sha256":  "5515b6483fcb892a9e4c924fe1d83664fe2e67f8dbd9fc17e1fbfff8296776c7"
+    },
+    {
+        "path":  "scripts/room_workflow/object-models.json",
+        "sha256":  "3786c13b8a7f342da9c14d2f3be4a638fa847c0319c1f5dcc3bb9d95547573a4"
+    },
+    {
+        "path":  "scripts/room_workflow/requirements-objects.txt",
+        "sha256":  "0517850dbd12a346325c72cc63da05d02581c15de1b7c430d17d2f7ea1b50111"
+    },
+    {
+        "path":  "scripts/room_workflow/test_object_suggestions.py",
+        "sha256":  "b6c9b3f5294fef3511e71e064d8e009976cc2b5c34ac5392ae8a412b262d97c9"
+    }
+]

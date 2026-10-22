@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": [
+    "corner insertion/removal remaps untouched walls and preserves affected closure drafts for review",
+    "keyboard outline change and door closure reach submission",
+    "only upload authorization is offered; no generation request is submitted",
+    "arbitrary upload defaults to matrix; uniform toggle differs, keyboard toggle restores home framebuffer",
+    "second unrelated layout, colors and mixed face provenance use same renderer without benchmark furniture",
+    "all representations, A/B and raw estimate toggles work with synthetic geometry",
+    "raw/completed toggle preserves navigation, while Home resets explicitly",
+    "delete/reopen clears the previous room’s local view, raw toggle, arm and closures"
+  ],
+  "errors": [],
+  "input": "Invented API and triangle fixtures only. Screenshots are NOT room reconstruction or model evidence.",
+  "limitation": "Headless Edge; reduced motion. No Shado popup, GPU inference or actual A/B comparison."
+}

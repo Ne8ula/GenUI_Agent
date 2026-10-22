@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-22T18:52:38.298Z",
+  "initial": {
+    "camera": {
+      "position": [
+        -0.9000000000000001,
+        2.3500000000000005,
+        0.3500000000000001
+      ],
+      "target": [
+        -0.34,
+        3.36,
+        0.8
+      ]
+    },
+    "mode": "matrix",
+    "ceilingEnabled": true,
+    "ceilingVertices": 5999,
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": false,
+    "teddyColor": "dcbf92",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.6535833283188413
+    ],
+    "calls": 4,
+    "triangles": 1153338,
+    "points": 161221,
+    "geometries": 4
+  },
+  "recovered": {
+    "camera": {
+      "position": [
+        -0.9000000000000001,
+        2.3500000000000005,
+        0.3500000000000001
+      ],
+      "target": [
+        -0.34,
+        3.36,
+        0.8
+      ]
+    },
+    "mode": "matrix",
+    "ceilingEnabled": false,
+    "ceilingVertices": 5999,
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": true,
+    "teddyColor": "7caec8",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.6535833283188413
+    ],
+    "calls": 2,
+    "triangles": 1144903,
+    "points": 155520,
+    "geometries": 6
+  },
+  "errors": [],
+  "passed": [
+    "automatic verified scan load",
+    "no file inputs",
+    "authored light and Matrix default",
+    "immutable source capture",
+    "keyboard and touch toggle",
+    "camera continuity",
+    "stable toggle geometry count",
+    "teddy add/blue/remove/undo",
+    "mobile controls",
+    "simulated graphics recovery retains hidden light"
+  ]
+}

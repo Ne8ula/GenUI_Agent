@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": [
+    "reject insufficient photo count",
+    "real broker stores five public fixture images without cloud execution",
+    "remembered size labeled approximate",
+    "unapproved cloud request stays explicitly unrun",
+    "cancel prevents further work",
+    "private working copy deletion returns to intake",
+    "keyboard focus available",
+    "touch intake and delete; reduced motion; no phone overflow"
+  ],
+  "errors": [],
+  "input": "Five public Hypersim images; real local broker. No model/cloud generation or reconstruction test.",
+  "limitation": "Headless Edge on Windows. Touch emulation, not physical phone."
+}

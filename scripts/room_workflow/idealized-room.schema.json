@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eva:idealized-room:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version","kind","job_id","candidate_id","parent_revision","revision","bindings","frame","units","mode","boundary","openings","inventory","geometry","components","diagnostics","omissions","implementation_sha256","geometry_sha256","limitations"],
+  "properties": {
+    "version": {"const":1},
+    "kind": {"const":"eva-idealized-room-v1"},
+    "job_id": {"$ref":"#/$defs/id"},
+    "candidate_id": {"$ref":"#/$defs/id"},
+    "parent_revision": {"anyOf":[{"$ref":"#/$defs/hash"},{"type":"null"}]},
+    "revision": {"$ref":"#/$defs/hash"},
+    "bindings": {"$ref":"#/$defs/bindings"},
+    "frame": {"$ref":"#/$defs/frame"},
+    "units": {"const":"relative"},
+    "mode": {"const":"idealized"},
+    "boundary": {"$ref":"#/$defs/boundary"},
+    "openings": {"type":"array","maxItems":32,"items":{"$ref":"#/$defs/opening"}},
+    "inventory": {"type":"array","maxItems":64,"items":{"$ref":"#/$defs/object"}},
+    "geometry": {"$ref":"#/$defs/geometry"},
+    "components": {"type":"array","minItems":1,"maxItems":4096,"items":{"$ref":"#/$defs/component"}},
+    "diagnostics": {"type":"array","maxItems":4096,"items":{"$ref":"#/$defs/diagnostic"}},
+    "omissions": {"type":"array","maxItems":64,"items":{"type":"object","additionalProperties":false,"required":["object_id","reason"],"properties":{"object_id":{"$ref":"#/$defs/id"},"reason":{"$ref":"#/$defs/text"}}}},
+    "implementation_sha256": {"$ref":"#/$defs/hash"},
+    "geometry_sha256": {"$ref":"#/$defs/hash"},
+    "limitations": {"type":"array","minItems":1,"maxItems":64,"items":{"$ref":"#/$defs/text"}}
+  },
+  "$defs": {
+    "id": {"type":"string","pattern":"^[A-Za-z0-9_-]{1,64}$"},
+    "hash": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "text": {"type":"string","minLength":1,"maxLength":1000},
+    "number": {"type":"number","minimum":-10000,"maximum":10000},
+    "vec3": {"type":"array","minItems":3,"maxItems":3,"items":{"$ref":"#/$defs/number"}},
+    "rgb": {"type":"array","minItems":3,"maxItems":3,"items":{"type":"number","minimum":0,"maximum":1}},
+    "ids": {"type":"array","maxItems":512,"uniqueItems":true,"items":{"$ref":"#/$defs/id"}},
+    "matrix": {"type":"array","minItems":4,"maxItems":4,"items":{"type":"array","minItems":4,"maxItems":4,"items":{"type":"number","minimum":-1000000,"maximum":1000000}}},
+    "origin": {"enum":["authored-room-shell","authored-door-cap","authored-window-cap","idealized-procedural","owner-authored-addition"]},
+    "bindings": {
+      "type":"object","additionalProperties":false,
+      "required":["originals","estimator_id","analysis_binding","estimator_artifact_sha256","registration_sha256","frame_sha256","observations"],
+      "properties":{
+        "originals":{"type":"array","minItems":5,"maxItems":7,"items":{"type":"object","additionalProperties":false,"required":["id","sha256"],"properties":{"id":{"$ref":"#/$defs/id"},"sha256":{"$ref":"#/$defs/hash"}}}},
+        "estimator_id":{"enum":["WorldMirror-2.0","VGGT"]},
+        "analysis_binding":{"type":"object","additionalProperties":false,"required":["analysis_geometry_sha256","model_config_sha256","original_inputs_sha256"],"properties":{"analysis_geometry_sha256":{"$ref":"#/$defs/hash"},"model_config_sha256":{"$ref":"#/$defs/hash"},"original_inputs_sha256":{"$ref":"#/$defs/hash"}}},
+        "estimator_artifact_sha256":{"$ref":"#/$defs/hash"},
+        "registration_sha256":{"$ref":"#/$defs/hash"},
+        "frame_sha256":{"$ref":"#/$defs/hash"},
+        "observations":{"type":"array","maxItems":512,"items":{"type":"object","additionalProperties":false,"required":["id","image_id","mask_sha256"],"properties":{"id":{"$ref":"#/$defs/id"},"image_id":{"$ref":"#/$defs/id"},"mask_sha256":{"$ref":"#/$defs/hash"}}}}
+      }
+    },
+    "frame":{"type":"object","additionalProperties":false,"required":["id","up","source_to_candidate","candidate_to_source"],"properties":{"id":{"$ref":"#/$defs/id"},"up":{"const":"Z"},"source_to_candidate":{"$ref":"#/$defs/matrix"},"candidate_to_source":{"$ref":"#/$defs/matrix"}}},
+    "boundary":{"type":"object","additionalProperties":false,"required":["polygon","floor","ceiling"],"properties":{"polygon":{"type":"array","minItems":3,"maxItems":32,"items":{"type":"array","minItems":2,"maxItems":2,"items":{"$ref":"#/$defs/number"}}},"floor":{"$ref":"#/$defs/number"},"ceiling":{"$ref":"#/$defs/number"}}},
+    "opening":{"type":"object","additionalProperties":false,"required":["id","edge_index","t0","t1","bottom","top","kind"],"properties":{"id":{"$ref":"#/$defs/id"},"edge_index":{"type":"integer","minimum":0,"maximum":31},"t0":{"type":"number","minimum":0,"maximum":1},"t1":{"type":"number","minimum":0,"maximum":1},"bottom":{"$ref":"#/$defs/number"},"top":{"$ref":"#/$defs/number"},"kind":{"enum":["door","window"]}}},
+    "object":{
+      "type":"object","additionalProperties":false,
+      "required":["id","category","origin","observation_ids","predecessor_ids","dimensions","translation","yaw","color_srgb","design_priors","omitted","review_reasons","generator"],
+      "properties":{
+        "id":{"$ref":"#/$defs/id"},"category":{"enum":["table","chair","sofa","cabinet","bed"]},
+        "origin":{"enum":["idealized-procedural","owner-authored-addition"]},
+        "observation_ids":{"$ref":"#/$defs/ids"},"predecessor_ids":{"$ref":"#/$defs/ids"},
+        "dimensions":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number","exclusiveMinimum":0,"maximum":10000}},
+        "translation":{"$ref":"#/$defs/vec3"},"yaw":{"type":"number","minimum":-3.141592653589793,"maximum":3.141592653589793},
+        "color_srgb":{"$ref":"#/$defs/rgb"},
+        "design_priors":{"type":"object","additionalProperties":false,"required":["policy","dimension_origin","pose_origin","color_origin","source_note"],"properties":{"policy":{"const":"idealized-templates-v1"},"dimension_origin":{"enum":["visible-support-and-prior","owner"]},"pose_origin":{"enum":["fitted","owner"]},"color_origin":{"enum":["masked-source","owner"]},"source_note":{"$ref":"#/$defs/text"}}},
+        "omitted":{"type":"boolean"},"review_reasons":{"type":"array","maxItems":64,"uniqueItems":true,"items":{"$ref":"#/$defs/id"}},"generator":{"type":"null"}
+      }
+    },
+    "geometry":{"type":"object","additionalProperties":false,"required":["positions","colors","indices","provenance"],"properties":{"positions":{"type":"array","minItems":9,"maxItems":600000,"items":{"$ref":"#/$defs/number"}},"colors":{"type":"array","minItems":9,"maxItems":600000,"items":{"type":"number","minimum":0,"maximum":1}},"indices":{"type":"array","minItems":3,"maxItems":1200000,"items":{"type":"integer","minimum":0,"maximum":199999}},"provenance":{"type":"array","minItems":1,"maxItems":400000,"items":{"$ref":"#/$defs/origin"}}}},
+    "component":{"type":"object","additionalProperties":false,"required":["id","object_id","origin","first_face","face_count","source_reference_ids"],"properties":{"id":{"$ref":"#/$defs/id"},"object_id":{"anyOf":[{"$ref":"#/$defs/id"},{"type":"null"}]},"origin":{"$ref":"#/$defs/origin"},"first_face":{"type":"integer","minimum":0,"maximum":399999},"face_count":{"type":"integer","minimum":1,"maximum":400000},"source_reference_ids":{"$ref":"#/$defs/ids"}}},
+    "diagnostic":{"type":"object","additionalProperties":false,"required":["code","object_ids","view_ids","residual","reason"],"properties":{"code":{"$ref":"#/$defs/id"},"object_ids":{"$ref":"#/$defs/ids"},"view_ids":{"$ref":"#/$defs/ids"},"residual":{"anyOf":[{"type":"number","minimum":0,"maximum":1000000},{"type":"null"}]},"reason":{"$ref":"#/$defs/text"}}}
+  }
+}

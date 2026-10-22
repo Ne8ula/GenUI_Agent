@@ -3,6 +3,7 @@ import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 import sceneData from '../../public/assets/hypersim-r03/scene.json';
 import completionData from '../../public/assets/hypersim-full-room-v5/scene.json';
 import { spacedPointIndices } from './point-sampling.ts';
+import { verifiedMesh as downloadMesh } from './verified-mesh.ts';
 
 export const isCompletion = new URLSearchParams(window.location.search).get('room') !== 'r03';
 export const room = isCompletion ? completionData : sceneData;
@@ -15,25 +16,7 @@ const base = assetBase;
 async function verifiedMesh(signal: AbortSignal, progress: (value: number) => void) {
   const record = room.files['room.ply'];
   if (record.bytes > (isCompletion ? 64 : 32) * 1024 * 1024) throw new Error('Room exceeds the download limit.');
-  const response = await fetch(`${base}room.ply`, { signal });
-  if (!response.ok || !response.body) throw new Error('The room file could not be loaded.');
-  const reader = response.body.getReader();
-  const bytes = new Uint8Array(record.bytes);
-  let length = 0;
-  try {
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      if (length + value.length > bytes.length) throw new Error('Room file exceeded its expected size.');
-      bytes.set(value, length); length += value.length;
-      progress(length / bytes.length);
-    }
-  } finally { await reader.cancel(); }
-  if (length !== bytes.length) throw new Error('The room download was incomplete.');
-  const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), n => n.toString(16).padStart(2, '0')).join('');
-  if (hash !== record.sha256) throw new Error('The room file failed its integrity check.');
-  signal.throwIfAborted();
-  return bytes.buffer;
+  return downloadMesh(`${base}room.ply`, record, signal, progress);
 }
 
 export function createRoomRenderer(canvas: HTMLCanvasElement, onExplore: () => void, onError: (message: string) => void) {

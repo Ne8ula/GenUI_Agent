@@ -1,0 +1,35 @@
+{
+  "luminanceFloor": 0.14,
+  "pointSizeCssPixels": 1.8,
+  "viewport": {
+    "width": 1440,
+    "height": 1100
+  },
+  "background": [
+    23,
+    27,
+    24
+  ],
+  "profile": "vga-visual-v1",
+  "sourceCameraIndices": [
+    1,
+    6
+  ],
+  "regions": {
+    "sofa": [
+      500,
+      280,
+      950,
+      440
+    ],
+    "wall": [
+      600,
+      20,
+      1000,
+      160
+    ]
+  },
+  "regionScope": "Frozen manually selected rectangles from prior material-v2 camera1 screenshot; top-left framebuffer coordinates. Not semantic masks. AA included.",
+  "transformation": "Linear RGB mixed toward white only below luminance .14; sampling, geometry, surface and provenance colors unchanged.",
+  "selection": "Compare all three existing completed/fused/material candidates at camera1; completed camera6 as second view."
+}

@@ -5,9 +5,27 @@ import react from '@vitejs/plugin-react';
 
 // The app imports week4/core, week4/fixtures and week4/schemas directly; allow Vite to serve them.
 const week4Root = fileURLToPath(new URL('..', import.meta.url));
+const bedroomMesh = new URL('../../.local/reconstruction/arkitscenes/45261631/scan-source-v1/mesh/45261631_3dod_mesh.ply', import.meta.url);
 
 export default defineConfig({
   plugins: [react(), {
+    name: 'bedroom-demo-asset',
+    configureServer(server) {
+      server.middlewares.use((request, response, next) => {
+        if (request.url?.split('?')[0] !== '/assets/teal-bedroom/room.ply') return next();
+        if (request.method !== 'GET' && request.method !== 'HEAD') { response.statusCode = 405; response.end(); return; }
+        try {
+          const bytes = readFileSync(bedroomMesh);
+          response.setHeader('Content-Type', 'application/octet-stream');
+          response.setHeader('Content-Length', bytes.length);
+          response.end(request.method === 'HEAD' ? undefined : bytes);
+        } catch { response.statusCode = 404; response.end('The retained bedroom scan is unavailable.'); }
+      });
+    },
+    generateBundle() {
+      this.emitFile({ type: 'asset', fileName: 'assets/teal-bedroom/room.ply', source: readFileSync(bedroomMesh) });
+    },
+  }, {
     name: 'scan-fixture-assets',
     apply: 'build',
     generateBundle() {
@@ -41,8 +59,10 @@ export default defineConfig({
     },
   }],
   clearScreen: false,
-  server: { host: '127.0.0.1', port: 1440, strictPort: true, fs: { allow: [week4Root] } },
-  preview: { host: '127.0.0.1', port: 1441, strictPort: true },
+  server: { host: '127.0.0.1', port: 1440, strictPort: true, fs: { allow: [week4Root] },
+    proxy: { '/api/room-workflow': 'http://127.0.0.1:1442' } },
+  preview: { host: '127.0.0.1', port: 1441, strictPort: true,
+    proxy: { '/api/room-workflow': 'http://127.0.0.1:1442' } },
   // Broad historical-public copying stays disabled. Only the explicit scan-data and
   // archival-photo allowlists above enter production; no reference/video scene plates.
   build: { target: 'es2023', sourcemap: false, copyPublicDir: false },

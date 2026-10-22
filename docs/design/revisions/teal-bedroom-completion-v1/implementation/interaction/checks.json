@@ -1,0 +1,118 @@
+{
+  "url": "http://127.0.0.1:1440/?scene=teal-bedroom",
+  "viewport": [
+    1440,
+    900
+  ],
+  "reducedMotion": true,
+  "before": {
+    "camera": {
+      "position": [
+        -0.25000000000000006,
+        2.3500000000000005,
+        0.24999999999999944
+      ],
+      "target": [
+        0.42,
+        3.98,
+        -0.5500000000000002
+      ]
+    },
+    "mode": "matrix",
+    "ceilingEnabled": true,
+    "ceilingVertices": 5999,
+    "completionVertices": 52644,
+    "completionVisible": true,
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": false,
+    "teddyColor": "dcbf92",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.6535833283188413
+    ],
+    "calls": 4,
+    "triangles": 1160211,
+    "points": 275202,
+    "geometries": 6
+  },
+  "restored": {
+    "camera": {
+      "position": [
+        -0.25000000000000006,
+        2.3500000000000005,
+        0.24999999999999944
+      ],
+      "target": [
+        0.42,
+        3.98,
+        -0.5500000000000002
+      ]
+    },
+    "mode": "matrix",
+    "ceilingEnabled": true,
+    "ceilingVertices": 5999,
+    "completionVertices": 52644,
+    "completionVisible": true,
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": true,
+    "teddyColor": "7caec8",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.6535833283188413
+    ],
+    "calls": 21,
+    "triangles": 1172451,
+    "points": 275202,
+    "geometries": 23
+  },
+  "matrix": {
+    "camera": {
+      "position": [
+        -0.25000000000000006,
+        2.3500000000000005,
+        0.24999999999999944
+      ],
+      "target": [
+        0.42,
+        3.98,
+        -0.5500000000000002
+      ]
+    },
+    "mode": "matrix",
+    "ceilingEnabled": true,
+    "ceilingVertices": 5999,
+    "completionVertices": 52644,
+    "completionVisible": true,
+    "sourceVertices": 622077,
+    "sourceTriangles": 1144903,
+    "teddyVisible": true,
+    "teddyColor": "7caec8",
+    "teddyAnchor": [
+      0.2,
+      3.4,
+      -0.6535833283188413
+    ],
+    "calls": 21,
+    "triangles": 1172451,
+    "points": 275202,
+    "geometries": 23
+  },
+  "errors": [],
+  "checks": [
+    "keyboard add",
+    "recolour",
+    "remove/undo",
+    "camera continuity",
+    "source counts",
+    "mode continuity",
+    "keyboard navigation",
+    "details Escape",
+    "touch presets",
+    "mobile overflow",
+    "44px buttons"
+  ]
+}

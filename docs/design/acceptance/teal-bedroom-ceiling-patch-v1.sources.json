@@ -1,0 +1,15 @@
+{
+  "baseline": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "date": "2026-10-22",
+  "state": "uncommitted scoped source",
+  "sha256": {
+    "week4/app/src/bedroom/ceiling.ts": "7f084e501a67e22224ee05de6df4644732a98d2221308a1e1816d1271580fb7b",
+    "week4/app/src/bedroom/renderer.ts": "9f0eee3e6d5111c815b69cd4acf8c07f14772902025e2b588f4ced8a71598869",
+    "week4/app/src/bedroom/BedroomApp.tsx": "e7871b845ecda4a84d5377e6fce35ec1f5fe0bc6964ec0673728dd760600d095",
+    "week4/app/tests/bedroom-ceiling.test.ts": "3858479d0607660ac1f290b4f94ba8cecc79e06a4ec655832922bbb2445d46cf",
+    "week4/app/scripts/verify-bedroom-ceiling.mjs": "37e664ea49175e40144081e63cc5fd156717e614211a2e9870a17968ff5f9a31",
+    "scripts/reconstruction/bedroom_ceiling_depth.py": "576d66227038074400cba7ef70abc0a0eae22a892740beeb7f2fd3fa24b45937",
+    "scripts/reconstruction/bedroom_ceiling_modal.py": "a1d55db3b3ce400e0efa3704eba304743c6e987c197e4fdbdcdf2ba72ff0d70e",
+    "scripts/reconstruction/test_bedroom_ceiling_depth.py": "e2281058900350da282ee6c844282897995fba8d57c031c4fae66b6b6cd3f435"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "mode": "before",
+  "checks": [
+    "Before: unresolved cloud call has no recovery action.",
+    "Before: reloading four corners after selecting corner five reproduces a browser exception."
+  ],
+  "errors": [
+    "Cannot read properties of undefined (reading '0')"
+  ],
+  "requests": [
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    }
+  ],
+  "evidence": "Actual headless Edge interactions with synthetic API fixtures. No cloud, model or Shado execution. Emulated touch, not physical phone."
+}

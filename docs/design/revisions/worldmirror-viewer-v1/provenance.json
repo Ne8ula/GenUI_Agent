@@ -1,0 +1,54 @@
+{
+  "pass": "worldmirror-viewer-v1",
+  "date": "2026-10-20",
+  "source_revision": "c83fd4c plus shared uncommitted work on midterm",
+  "status": "implemented-browser-verified-owner-acceptance-pending",
+  "route": "official Figma MCP / Weave direct model",
+  "model": "GPT Image 2.5",
+  "model_id": "gpt-image-2.5",
+  "catalog_id": "2db90e64-51dd-45b2-870a-66d19a81118e",
+  "model_version": null,
+  "prediction_id": "5d8f9367-e02f-4941-986f-01740683bb4e",
+  "generation_status": "COMPLETED",
+  "approval": {
+    "scope": "one static viewer reference, maximum 8 credits, no retry",
+    "owner_instruction": "Approve the proposed integration and fix the two issues, and approve the Weave generation to continue the UI implementation.",
+    "quoted_cost": 8,
+    "structured_confirmation": "Approve",
+    "reported_cost": 8,
+    "units": "Weave workspace credits"
+  },
+  "settings": {
+    "model": "Flare",
+    "quality": "high",
+    "background": "opaque",
+    "image_size": "landscape_16_9",
+    "output_format": "png"
+  },
+  "prompt": "Create one static desktop UI reference image for an unbranded research room-reconstruction comparison viewer, landscape. Dark near-black background, muted warm gray text, restrained amber for inferred geometry. Central large 3D viewport shows a generic sparse RGB point-cloud room, incomplete furniture and clearly hollow-square authored boundary walls, not polished or invented complete furniture. Minimal control strip above viewport: model buttons 'VGGT' and 'WorldMirror 2.0', small subtitle 'Same 7 photos · Room 42445021 · Relative scale'. Below model controls, small existing-style buttons 'Raw estimate', 'CPU fused', 'Authored enclosure'. WorldMirror button is selected with clear outline and text. Small controls for 'Points / Surfaces', 'Paris matrix / Uniform dots', 'Source colors', and source-view selection. Bottom short note 'Unconfirmed boundary · No SAM 3D completion'. A quiet secondary 'Broader-view study' link separates an authored study from the matched model comparison. Sparse utilitarian controls with generous spacing, keyboard-visible focus on one button, legible labels, no dashboard cards, charts, animations, gradients, glowing effects, logos or new branding. Use Space Grotesk-like headings and IBM Plex Sans-like body. This is a control-layout and evidence-label reference only, not a source photograph or reconstruction result. Preserve attention on the room viewport and show no claim of measured geometry or quality acceptance.",
+  "uploaded_inputs": [],
+  "outputs": [{
+    "file": "references/images/matched-viewer.png",
+    "width": 1088,
+    "height": 608,
+    "sha256": "07b68f038de0b3f19ccfea854face1611b75f40afa4a4e47dab64493587adc45",
+    "selected": true,
+    "use": "control hierarchy and evidence labels only, not generated room geometry"
+  }],
+  "contact_sheet": "references/contact-sheet.png",
+  "inspection": {
+    "lead": "actual image inspected through Read before UI edits",
+    "worker": "eva-ui-designer, observed claude-fable-5-1[1m]; inspected fresh reference and baseline before isolated edits",
+    "rejected": ["invented room geometry/furniture", "generated text errors", "any reconstruction or quality implication"],
+    "guidance": ["reuse existing dark house UI and controls", "explicit active model and identical-input labels", "authored enclosure separate from estimates", "no new animation"]
+  },
+  "motion_reference": null,
+  "motion_reference_reason": "Static selector integration; no new animation or temporal visual treatment",
+  "implementation_before": "implementation/before/profiles/",
+  "implementation_after": "implementation/after/profiles-final2/",
+  "upload_regression": "implementation/after/upload-final/checks.json",
+  "source_snapshot": "source-snapshot.json",
+  "review": "eva-reviewer, reported claude-opus-5-5[1m]; sampling-history and broader-profile label findings reproduced and corrected",
+  "retained_failures": ["implementation/before/selector-red/checks.json", "implementation/after/sampling-red/checks.json", "implementation/after/label-red/checks.json"],
+  "owner_acceptance": "pending"
+}

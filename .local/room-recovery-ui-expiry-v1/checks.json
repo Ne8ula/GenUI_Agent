@@ -1,0 +1,185 @@
+{
+  "status": "passed",
+  "mode": "after",
+  "checks": [
+    "Keyboard recovery: pending and unavailable stay unresolved; cancellation survives reload; settled cancelled result exposes no geometry.",
+    "Uncancelled existing result resumes boundary review without model submission.",
+    "Local photo validation remains cancellable and exposes neither cloud recovery nor deletion while active.",
+    "Ready permission expiry is reflected while the page stays open; polling replaces generation with same-task renewal without a submit.",
+    "Expired ready grant and broker-normalized restart expose renewal; live account absence is explicit; no generation call.",
+    "Reload resets selected corner, coordinate frame and confirmation; add and keyboard adjustment still work.",
+    "390px touch recovery, reduced motion, 48px action target and no horizontal overflow."
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/recover-cloud",
+      "method": "POST"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/recover-cloud",
+      "method": "POST"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/cancel",
+      "method": "POST"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/recover-cloud",
+      "method": "POST"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/recover-cloud",
+      "method": "POST"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/cancel",
+      "method": "POST"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/authorize",
+      "method": "POST"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs",
+      "method": "GET"
+    },
+    {
+      "path": "/api/room-workflow/jobs/10000000-0000-4000-8000-000000000001/recover-cloud",
+      "method": "POST"
+    }
+  ],
+  "evidence": "Actual headless Edge interactions with synthetic API fixtures. No cloud, model or Shado execution. Emulated touch, not physical phone."
+}

@@ -1,0 +1,685 @@
+diff --git a/src/proxy.ts b/src/proxy.ts
+index c49b93e..f61d5db 100644
+--- a/src/proxy.ts
++++ b/src/proxy.ts
+@@ -13,6 +13,8 @@ import { privateMediaConnectSources } from '@/server/media-csp';
+ const privateConnectSources = () => [...new Set([...workspaceLiveConnectSources(), ...privateMediaConnectSources()])];
+ 
+ const PUBLIC_ROUTES = new Set([
++  "/eva-room-authorize", // Public sign-in surface; proposal and grant issuance authenticate in the API.
++  "/api/eva-room-bridge", // Scoped bearer on machine operations; issuing requires a same-origin Clerk session.
+   "/login",
+   "/join",
+   "/commitments",
+diff --git a/src/server/eva-room-grant.mjs b/src/server/eva-room-grant.mjs
+new file mode 100644
+index 0000000..a8e4d60
+--- /dev/null
++++ b/src/server/eva-room-grant.mjs
+@@ -0,0 +1,67 @@
++import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
++
++export class EvaBridgeError extends Error {
++  constructor(message = 'The EVA delegation is invalid or expired.') { super(message); this.code = 'eva_delegation_invalid'; }
++}
++export const EVA_GRANT_TTL_MS = 15 * 60_000;
++export function exact(value, keys) {
++  if (!value || typeof value !== 'object' || Array.isArray(value)
++    || Object.keys(value).sort().join(',') !== [...keys].sort().join(',')) throw new EvaBridgeError();
++  return value;
++}
++const id = value => typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$/.test(value);
++const hash = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
++export const sha256 = value => createHash('sha256').update(value).digest('hex');
++export function bridgeKey(value) {
++  if (typeof value !== 'string' || Buffer.byteLength(value) < 32 || Buffer.byteLength(value) > 512)
++    throw new EvaBridgeError('EVA bridge authentication is not configured.');
++  return value;
++}
++export function assetDescriptor(value) {
++  exact(value, ['sourceId', 'version', 'sha256', 'size', 'mimeType']);
++  if (!id(value.sourceId) || !id(value.version) || !hash(value.sha256)
++    || !Number.isSafeInteger(value.size) || value.size < 1 || value.size > 20 * 1024 * 1024
++    || !['image/jpeg', 'image/png', 'image/webp'].includes(value.mimeType)) throw new EvaBridgeError();
++  return value;
++}
++export function validateGrant(value, now = Date.now()) {
++  exact(value, ['v', 'aud', 'subject', 'ownerId', 'scopeKey', 'taskId', 'projectId', 'nodeId', 'projectHash', 'recipeHash', 'maximumMicros', 'assets', 'iat', 'exp']);
++  exact(value.subject, ['userId', 'sessionId', 'organizationId']);
++  if (value.v !== 1 || value.aud !== 'shado-eva-room-v1'
++    || !/^user_[A-Za-z0-9]{4,100}$/.test(value.subject.userId)
++    || !/^sess_[A-Za-z0-9]{4,100}$/.test(value.subject.sessionId)
++    || !/^org_[A-Za-z0-9]{4,100}$/.test(value.subject.organizationId)
++    || typeof value.ownerId !== 'string' || value.ownerId.length > 220
++    || value.scopeKey !== `clerk:${value.subject.organizationId}:${value.subject.userId}`
++    || !id(value.taskId) || !id(value.projectId) || !id(value.nodeId)
++    || !hash(value.projectHash) || !hash(value.recipeHash)
++    || !Number.isSafeInteger(value.maximumMicros) || value.maximumMicros < 1 || value.maximumMicros > 100_000_000
++    || !Number.isSafeInteger(value.iat) || !Number.isSafeInteger(value.exp)
++    || value.iat > now + 30_000 || value.exp <= now || value.exp <= value.iat || value.exp - value.iat > EVA_GRANT_TTL_MS
++    || !Array.isArray(value.assets) || value.assets.length < 1 || value.assets.length > 12) throw new EvaBridgeError();
++  value.assets.forEach(assetDescriptor);
++  if (new Set(value.assets.map(a => `${a.sourceId}:${a.version}`)).size !== value.assets.length) throw new EvaBridgeError();
++  return value;
++}
++export function signGrant(value, secret, now = Date.now()) {
++  const payload = Buffer.from(JSON.stringify(validateGrant(value, now))).toString('base64url');
++  return `${payload}.${createHmac('sha256', bridgeKey(secret)).update(payload).digest('base64url')}`;
++}
++export function verifyGrant(token, secret, now = Date.now()) {
++  bridgeKey(secret);
++  if (typeof token !== 'string' || token.length > 16384 || !/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]{43}$/.test(token)) throw new EvaBridgeError();
++  const [payload, signature] = token.split('.');
++  const expected = createHmac('sha256', secret).update(payload).digest();
++  const actual = Buffer.from(signature, 'base64url');
++  if (actual.length !== expected.length || !timingSafeEqual(actual, expected)) throw new EvaBridgeError();
++  let value;
++  try { value = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8')); } catch { throw new EvaBridgeError(); }
++  return validateGrant(value, now);
++}
++export function assertProjectBinding(grant, project, projectId, nodeId, recipeHash) {
++  if (typeof project !== 'string' || sha256(project) !== grant.projectHash || projectId !== grant.projectId
++    || nodeId !== grant.nodeId || recipeHash !== grant.recipeHash) throw new EvaBridgeError();
++}
++export function assertPrice(grant, micros) {
++  if (!Number.isSafeInteger(micros) || micros < 0 || micros > grant.maximumMicros) throw new EvaBridgeError('The quoted price exceeds this delegation.');
++}
+diff --git a/src/server/eva-room-grant.test.mjs b/src/server/eva-room-grant.test.mjs
+new file mode 100644
+index 0000000..2fede2f
+--- /dev/null
++++ b/src/server/eva-room-grant.test.mjs
+@@ -0,0 +1,41 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { EVA_GRANT_TTL_MS, signGrant, verifyGrant, assertProjectBinding, assertPrice, sha256 } from './eva-room-grant.mjs';
++const secret = 'synthetic-fixture-key-'.repeat(3), now = 1_800_000_000_000;
++const fixture = () => ({ v: 1, aud: 'shado-eva-room-v1', subject: { userId: 'user_test1', sessionId: 'sess_test1', organizationId: 'org_test1' },
++  ownerId: 'user_test1', scopeKey: 'clerk:org_test1:user_test1', taskId: 'eva-task-1', projectId: 'eva-project-1', nodeId: 'video-1',
++  projectHash: sha256('project'), recipeHash: 'a'.repeat(64), maximumMicros: 1_000_000,
++  assets: [{ sourceId: 'photo-1', version: 'v1', sha256: 'b'.repeat(64), size: 1024, mimeType: 'image/png' }], iat: now, exp: now + EVA_GRANT_TTL_MS });
++test('signed scope round-trips; bearer never carries a client-supplied role', () => {
++  assert.deepEqual(verifyGrant(signGrant(fixture(), secret, now), secret, now), fixture());
++  assert.throws(() => signGrant({ ...fixture(), role: 'manager' }, secret, now));
++});
++test('tampering, wrong key, missing configuration and malformed tokens fail closed', () => {
++  const token = signGrant(fixture(), secret, now);
++  const pieces = token.split('.');
++  const edited = JSON.parse(Buffer.from(pieces[0], 'base64url'));
++  edited.ownerId = 'user_someoneelse';
++  assert.throws(() => verifyGrant(`${Buffer.from(JSON.stringify(edited)).toString('base64url')}.${pieces[1]}`, secret, now));
++  assert.throws(() => verifyGrant(token, 'other-secret'.repeat(4), now));
++  assert.throws(() => verifyGrant(token, undefined, now));
++  for (const invalid of ['', 'not.a.signature', token.repeat(30)]) assert.throws(() => verifyGrant(invalid, secret, now));
++});
++test('expiry, future issue and enlarged lifetime are rejected', () => {
++  const token = signGrant(fixture(), secret, now);
++  assert.throws(() => verifyGrant(token, secret, now + EVA_GRANT_TTL_MS));
++  assert.throws(() => signGrant({ ...fixture(), iat: now + 31_000 }, secret, now));
++  assert.throws(() => signGrant({ ...fixture(), exp: now + EVA_GRANT_TTL_MS + 1 }, secret, now));
++});
++test('project, recipe, node, price and asset authority are bounded', () => {
++  const grant = fixture();
++  assert.doesNotThrow(() => assertProjectBinding(grant, 'project', grant.projectId, grant.nodeId, grant.recipeHash));
++  for (const args of [['edited', grant.projectId, grant.nodeId, grant.recipeHash], ['project', 'other', grant.nodeId, grant.recipeHash],
++    ['project', grant.projectId, 'other', grant.recipeHash], ['project', grant.projectId, grant.nodeId, 'c'.repeat(64)]])
++    assert.throws(() => assertProjectBinding(grant, ...args));
++  assertPrice(grant, grant.maximumMicros);
++  for (const amount of [-1, Infinity, 1.2, grant.maximumMicros + 1]) assert.throws(() => assertPrice(grant, amount));
++  for (const change of [{ mimeType: 'text/html' }, { size: 21 * 1024 * 1024 }, { url: 'https://invalid.test' }]) {
++    const candidate = fixture(); Object.assign(candidate.assets[0], change);
++    assert.throws(() => signGrant(candidate, secret, now));
++  }
++});
+diff --git a/src/app/api/eva-room-bridge/route.ts b/src/app/api/eva-room-bridge/route.ts
+new file mode 100644
+index 0000000..cc542b1
+--- /dev/null
++++ b/src/app/api/eva-room-bridge/route.ts
+@@ -0,0 +1,165 @@
++import { requireBillingIdentity } from '@/server/auth';
++import { clerkAccess, requireClerkIdentity } from '@/server/clerk';
++import { configuredClerk } from '@/server/clerk-config';
++import { clerkTermsAcceptance } from '@/server/terms-provider';
++import { organizationOwner } from '@/server/management-policy';
++import { errorResponse, identifier, objectValue, readBody, ServiceError } from '@/server/errors';
++import { EVA_GRANT_TTL_MS, EvaBridgeError, exact, bridgeKey, assetDescriptor, sha256, signGrant, verifyGrant, assertProjectBinding, assertPrice } from '@/server/eva-room-grant.mjs';
++import { parseProject } from '@/lib/project-store';
++import { prepareGeneration } from '@/lib/generation-client';
++import { getModelDefinition } from '@/lib/model-catalog';
++import { parseRecipe, recipeHash } from '@/server/generation';
++import { generationMediaRequest } from '@/server/media';
++import { assertWorkspaceMediaAvailable } from '@/server/workspace-media-deletion-store';
++import { reserveBalanceMicros } from '@/server/balance';
++import { readBillingState } from '@/server/billing-read';
++import { requireStore } from '@/server/runtime';
++import { createServerQuote } from '@/server/server-quotes';
++import { publicGenerationQuote } from '@/server/public-generation-quote';
++import { acceptGenerationTask, publicGenerationTask, stopGenerationTask } from '@/server/generation-tasks';
++import { requireGenerationTasks, wakeGenerationTask } from '@/server/generation-task-runtime';
++import { createEvaRoomProposal } from '@/server/eva-room-proposal';
++
++export const runtime = 'nodejs';
++export const maxDuration = 120;
++const headers = { 'Cache-Control': 'private, no-store' };
++const secret = () => bridgeKey(process.env.SHADO_EVA_BRIDGE_SECRET);
++const fail = () => { throw new ServiceError('eva_scope_mismatch', 'This request is outside the approved EVA task.', 403); };
++type Descriptor = { sourceId: string; version: string; sha256: string; size: number; mimeType: string };
++
++async function prepared(value: unknown, node: unknown) {
++  if (typeof value !== 'string' || Buffer.byteLength(value) > 3_000_000) fail();
++  const project = parseProject(value as string), nodeId = identifier(node);
++  const generation = await prepareGeneration(project, nodeId);
++  const recipe = parseRecipe(generation.recipe);
++  if (getModelDefinition(recipe.modelId)?.outputKind !== 'video' || !recipe.inputs.length
++    || recipe.inputs.some(input => input.kind !== 'image')) fail();
++  return { project, recipe, nodeId };
++}
++async function delegated(request: Request) {
++  const authorization = request.headers.get('authorization') ?? '';
++  if (!authorization.startsWith('Bearer ')) fail();
++  const grant = verifyGrant(authorization.slice(7), secret());
++  const clerk = await (await clerkAccess()).require(grant.subject);
++  const config = configuredClerk();
++  if (!config) fail();
++  const ownerId = organizationOwner(clerk.id, clerk.organizationId, config!.organizationId);
++  const scopeKey = `clerk:${clerk.organizationId}:${clerk.id}`;
++  if (ownerId !== grant.ownerId || scopeKey !== grant.scopeKey) fail();
++  await (await clerkTermsAcceptance()).require(clerk.id);
++  const identity = { ownerId, scopeKey, role: clerk.organizationId === config!.organizationId ? clerk.role : 'member' as const };
++  return { grant, identity };
++}
++export async function GET() {
++  let configured = false;
++  try { secret(); configured = !!configuredClerk(); } catch { /* fail closed */ }
++  return Response.json({ ok: true, version: 1, configured, grantTtlMs: EVA_GRANT_TTL_MS,
++    operations: ['proposal', 'grant', 'media', 'quote', 'submit', 'status', 'stop', 'output'] }, { headers });
++}
++export async function POST(request: Request) {
++  try {
++    secret();
++    const body = objectValue(await readBody(request, 3_200_000, 20_000));
++    if (body.operation === 'proposal') {
++      exact(body, ['operation', 'packet']);
++      const identity = await requireBillingIdentity(request, true);
++      const proposal = await createEvaRoomProposal(body.packet);
++      const quote = publicGenerationQuote(await createServerQuote(requireStore(), identity, proposal.recipe));
++      return Response.json({ ok: true, proposal, quote }, { headers });
++    }
++    if (body.operation === 'grant') {
++      exact(body, ['operation', 'taskId', 'project', 'nodeId', 'maximumMicros', 'assets', 'approved']);
++      if (body.approved !== true) fail();
++      // This is the only issuing path: a real same-origin Shado session.
++      const clerk = await requireClerkIdentity(request);
++      const identity = await requireBillingIdentity(request, true);
++      if (identity.scopeKey !== `clerk:${clerk.organizationId}:${clerk.id}`) fail();
++      const { project, recipe, nodeId } = await prepared(body.project, body.nodeId);
++      if (!Array.isArray(body.assets)) fail();
++      const assets: Descriptor[] = (body.assets as unknown[]).map(assetDescriptor);
++      if (assets.length !== new Set(recipe.inputs.map(i => `${i.sourceId}:${i.version}`)).size
++        || recipe.inputs.some(i => !assets.some(a => a.sourceId === i.sourceId && a.version === i.version))) fail();
++      const now = Date.now();
++      const grant = { v: 1, aud: 'shado-eva-room-v1',
++        subject: { userId: clerk.id, sessionId: clerk.sessionId, organizationId: clerk.organizationId },
++        ownerId: identity.ownerId, scopeKey: identity.scopeKey, taskId: identifier(body.taskId), projectId: project.id, nodeId,
++        projectHash: sha256(body.project), recipeHash: recipeHash(recipe), maximumMicros: body.maximumMicros,
++        assets, iat: now, exp: now + EVA_GRANT_TTL_MS };
++      return Response.json({ ok: true, token: signGrant(grant, secret()), expiresAt: grant.exp,
++        taskId: grant.taskId, recipeHash: grant.recipeHash, maximumMicros: grant.maximumMicros }, { headers });
++    }
++    const { grant, identity } = await delegated(request);
++    if (body.operation === 'media') {
++      exact(body, ['operation', 'assetIndex', 'request']);
++      if (!Number.isInteger(body.assetIndex) || Number(body.assetIndex) < 0 || Number(body.assetIndex) >= grant.assets.length) fail();
++      const descriptor: Descriptor = grant.assets[Number(body.assetIndex)];
++      const media = objectValue(body.request);
++      if (!['prepare', 'chunk', 'seal', 'describe'].includes(String(media.operation))) fail();
++      exact(media, media.operation === 'prepare' ? ['operation'] : media.operation === 'chunk'
++        ? ['operation', 'assetId', 'index', 'base64'] : ['operation', 'assetId']);
++      await assertWorkspaceMediaAvailable(identity.ownerId, [descriptor.sourceId, descriptor.version], request.signal);
++      reserveBalanceMicros(await readBillingState(requireStore(), identity.ownerId), identity, 'generation', 1);
++      // Resolve the exact immutable owner-bound upload each time. Never trust a supplied asset ID.
++      const preparedMedia = await generationMediaRequest(identity.ownerId, { operation: 'prepare', asset: descriptor });
++      if (media.operation === 'prepare') {
++        return Response.json(preparedMedia, { headers });
++      }
++      if (!('asset' in preparedMedia) || !preparedMedia.asset || media.assetId !== preparedMedia.asset.id) fail();
++      return Response.json(await generationMediaRequest(identity.ownerId, media), { headers });
++    }
++    if (body.operation === 'quote' || body.operation === 'submit') {
++      exact(body, body.operation === 'quote' ? ['operation', 'project', 'nodeId']
++        : ['operation', 'project', 'nodeId', 'quoteId', 'recipeHash', 'maximumMicros']);
++      const { project, recipe, nodeId } = await prepared(body.project, body.nodeId);
++      assertProjectBinding(grant, body.project, project.id, nodeId, recipeHash(recipe));
++      if (body.operation === 'quote') {
++        const quote = publicGenerationQuote(await createServerQuote(requireStore(), identity, recipe));
++        assertPrice(grant, quote.pricing.amountMicros);
++        return Response.json({ ok: true, quote }, { headers });
++      }
++      if (body.recipeHash !== grant.recipeHash) fail();
++      assertPrice(grant, body.maximumMicros);
++      // The project names immutable versions; the grant additionally pins their bytes.
++      // A caller cannot skip upload and spend against a different existing original.
++      for (const descriptor of grant.assets as Descriptor[]) {
++        await assertWorkspaceMediaAvailable(identity.ownerId, [descriptor.sourceId, descriptor.version], request.signal);
++        const media = await generationMediaRequest(identity.ownerId, { operation: 'prepare', asset: descriptor });
++        if (!('asset' in media) || !media.asset?.sealed || media.asset.sha256 !== descriptor.sha256
++          || media.asset.size !== descriptor.size || media.asset.mimeType !== descriptor.mimeType) fail();
++      }
++      const task = await acceptGenerationTask(requireGenerationTasks({ admission: true }), identity, {
++        id: grant.taskId, project: body.project, nodeIds: [nodeId], count: 1, approved: true,
++        quotes: [{ nodeId, quoteId: identifier(body.quoteId), recipeHash: body.recipeHash, maximumMicros: body.maximumMicros }],
++        admitBefore: Math.min(grant.exp, Date.now() + 120_000),
++      });
++      wakeGenerationTask(identity.ownerId, task.id);
++      return Response.json({ ok: true, task: publicGenerationTask(task) }, { status: 202, headers });
++    }
++    if (body.operation === 'status' || body.operation === 'stop' || body.operation === 'output') {
++      exact(body, body.operation === 'output' ? ['operation', 'assetId', 'index'] : ['operation']);
++      const deps = requireGenerationTasks();
++      const task = await deps.tasks.get(identity.ownerId, grant.taskId);
++      if (!task) return Response.json({ ok: true, task: null }, { headers });
++      if (task.projectId !== grant.projectId || task.manifest.scopeKey !== grant.scopeKey) fail();
++      const offers = task.manifest.quotes;
++      if (task.manifest.count !== 1 || !Array.isArray(offers) || offers.length !== 1
++        || offers[0]?.nodeId !== grant.nodeId || offers[0]?.recipeHash !== grant.recipeHash) fail();
++      if (body.operation === 'stop') return Response.json({ ok: true,
++        task: publicGenerationTask(await stopGenerationTask(deps, identity, task.id)) }, { headers });
++      const view = publicGenerationTask(task);
++      if (body.operation === 'status') return Response.json({ ok: true, task: view }, { headers });
++      // Receipt-bound original bytes only; never proxy an arbitrary URL or account asset.
++      const allowed = view.receipts.filter(receipt => receipt.recipeHash === grant.recipeHash && receipt.nodeId === grant.nodeId)
++        .flatMap(receipt => receipt.outputs.map(output => output.id));
++      if (!allowed.includes(String(body.assetId))) fail();
++      await assertWorkspaceMediaAvailable(identity.ownerId, [String(body.assetId)], request.signal);
++      return Response.json(await generationMediaRequest(identity.ownerId, body.index === null
++        ? { operation: 'describe', assetId: body.assetId }
++        : { operation: 'read', assetId: body.assetId, index: body.index }), { headers });
++    }
++    fail();
++  } catch (error) {
++    return errorResponse(error instanceof EvaBridgeError
++      ? new ServiceError(error.code, error.message, 403) : error);
++  }
++}
+diff --git a/docs/integrations/eva-room-bridge.md b/docs/integrations/eva-room-bridge.md
+new file mode 100644
+index 0000000..21a9431
+--- /dev/null
++++ b/docs/integrations/eva-room-bridge.md
+@@ -0,0 +1,79 @@
++# EVA room bridge (proposed, not deployed)
++
++Baseline: Shado `e9dca6c`. This additive API uses existing media storage, quote pricing and durable generation tasks. It does not create reconstruction geometry: its result is generated video with the existing generation receipt.
++
++Configure a dedicated random `SHADO_EVA_BRIDGE_SECRET` of at least 32 bytes on Shado. Keep it server-only; do not reuse Clerk, worker, cron or provider keys. Missing configuration fails closed. No provider keys are shared with EVA.
++
++Set `SHADO_EVA_ALLOWED_ORIGIN` to the exact EVA browser origin, for example `http://127.0.0.1:5173`. HTTPS origins and HTTP loopback origins are accepted; wildcards, credentials, paths and query strings are rejected.
++
++## Automatic authorization handoff
++
++EVA opens `/eva-room-authorize` in a popup while retaining its Window reference. This public sign-in surface embeds Clerk and returns to itself after sign-in. No private data is returned without authenticated API calls.
++
++The popup sends `{type:"eva-room-ready"}` to the configured EVA origin. The opener verifies the event's source is its popup and its origin is the configured Shado HTTPS origin, then responds with:
++
++```json
++{
++  "type": "eva-room-request",
++  "nonce": "<fresh 32-128 lowercase hex>",
++  "jobId": "<existing EVA UUID>",
++  "taskId": "<durably saved stable Shado UUID>",
++  "assets": [{"id":"photo-1","sha256":"<64 lowercase hex>","size":12345,"mimeType":"image/jpeg"}]
++}
++```
++
++The assets array must contain 5–7 distinct JPEG, PNG or WebP photos. Only descriptors cross this handshake; originals upload after the user starts the authorized attempt in EVA. The popup accepts exactly one valid request, only from its opener and the explicitly configured EVA origin.
++
++The same-origin `proposal` operation constructs a real Shado project through `createEmptyProject`, `applyCommand`, `createGenerationNode` and `prepareGeneration`. It binds each original's source ID and version to its supplied `id`. The fixed recipe is Seedance 2.5 reference-to-video, five seconds, 720p, 16:9 and no audio, with an explicit single-room prompt. It obtains a server quote without calling a provider. The user sees the recipe, current quote and account, chooses a finite cap, and checks explicit approval.
++
++The popup then issues the bounded grant and sends `{type:"eva-room-grant",nonce,jobId,grant}` to the exact opener origin. `grant` contains `token`, `expiresAt`, `taskId`, the frozen serialized `project`, `nodeId`, `recipeHash`, `maximumMicros` and upload `assets` descriptors. EVA must check source, origin, nonce, job ID, stable task ID and every original checksum/size/MIME before storing the bundle privately through its authenticated broker. Never place the token in a URL or browser persistence. The popup does not call submit; the user returns to EVA and chooses Continue.
++
++This handoff requires opener continuity. If a browser/provider security policy severs `window.opener`, it fails visibly rather than falling back to wildcard messaging. Actual popup sign-in/browser behavior and live grants require deployment validation. The page is not a claim of live operational readiness.
++
++`GET /api/eva-room-bridge` reports version, configuration and operations. `POST` accepts JSON, never arbitrary URLs. Grant issuance requires an authenticated **same-origin Shado Clerk session**. Every bearer request independently revalidates that grant's original session, account, organization membership and current terms through existing Shado code. Client owner, payer and role fields are rejected.
++
++## Exact contract
++
++1. Construct one valid serialized Shado Project with one intended image-to-video generation node and JPEG, PNG or WebP references. Use the same exact serialized string for all calls. The node must pass `prepareGeneration` and `parseRecipe`. Images are limited to 12 originals and 20 MiB each.
++2. From the authenticated Shado origin, submit:
++
++```json
++{
++  "operation": "grant",
++  "taskId": "eva-stable-task-id",
++  "project": "<serialized Project>",
++  "nodeId": "generation-node-id",
++  "maximumMicros": 1000000,
++  "assets": [{
++    "sourceId": "photo-source-id",
++    "version": "photo-version-id",
++    "sha256": "<64 lowercase hex>",
++    "size": 12345,
++    "mimeType": "image/jpeg"
++  }],
++  "approved": true
++}
++```
++
++This is explicit approval of **one immutable recipe, one task and an up-to spending cap**, not an unbounded API key. The server signs the verified identity, exact project/recipe hashes, checksummed originals and cap. It returns `{ok,token,expiresAt,taskId,recipeHash,maximumMicros}`. Maximum cap is 100,000,000 USD micros ($100); deployments may impose a lower product limit before issuing. The bearer expires after 15 minutes.
++
++All remaining calls send `Authorization: Bearer <token>`.
++
++- Upload: `{operation:"media",assetIndex:0,request:{operation:"prepare"}}` returns existing media preparation response. Subsequent requests use the same asset index and existing `{operation:"chunk",assetId,index,base64}` or `{operation:"seal",assetId}` shape. The server resolves the immutable descriptor before accepting an asset ID. Chunk size is 512 KiB. Descriptor hashes are verified when sealing.
++- Quote: `{operation:"quote",project,nodeId}` returns `{ok,quote}` with public frozen quote ID/hash/price/expiry. Quote creation uses existing server pricing. A cap violation is rejected.
++- Submit: `{operation:"submit",project,nodeId,quoteId,recipeHash,maximumMicros}` uses the **exact quote price**, not the delegation ceiling. It returns HTTP 202 `{ok,task}` after durable admission. Existing task validation binds price, account, recipe and input revisions. Count is always one. The grant's task ID is persisted before submission; retry/recovery must never invent a replacement ID.
++- Status: `{operation:"status"}` returns `{ok,task}` or `{ok,task:null}`. A null result means no durable task was found; it is not evidence that an arbitrary previous invocation was never charged.
++- Stop: `{operation:"stop"}` fences the existing task through Shado's cancellation path; an already admitted provider job can still settle.
++- Output descriptor: `{operation:"output",assetId,index:null}`. Output chunk: `{operation:"output",assetId,index:0}`. Only IDs in this exact task's bound completion receipt are allowed. Existing checksum/chunk metadata supports verifying downloaded bytes.
++
++Do not put tokens in URLs, logs, Pages, commits or browser local storage. A local EVA broker should retain one token in private job storage and never expose it in frontend bundles. The authorization page handles authenticated issuance and opener delivery; the EVA broker remains responsible for validating and privately storing the received bundle.
++
++## Recovery and limitations
++
++Task idempotency is durable in the existing Shado task store. Grant authentication is signed and stateless. There is no independent per-grant revocation database: revoke its Clerk session or rotate the dedicated signing key to invalidate grants immediately. Expired grants cannot submit, read or cancel. Reissuing from an authenticated session must preserve the same task and recipe for recovery; it does not create another run. Accepted task execution uses Shado's existing durable manifest and stop semantics after handoff.
++
++The grant is a compact signed payload, not encrypted; treat the complete bearer as confidential. It contains identifiers and checksums, not original media bytes. The API does not authorize a quoted run merely by returning a quote: submission is constrained by the explicit cap approval made at issuance. A product requiring approval after seeing the exact price must withhold submit until that approval and should implement a second signed quote-specific approval step.
++
++Tests: `node --test src/server/eva-room-grant.test.mjs`. These exercise cryptographic tampering, identity-field rejection, lifetime, recipe/project/node binding, media bounds and spending bounds. They are not live Clerk, database, media, provider or end-to-end tests. Run full Shado typecheck and route integration tests in an installed checkout before deployment. No paid call, upload or deployment is required to inspect this patch.
++
++Additional checks: `node --test src/lib/eva-room-handoff.test.mjs` tests exact origins and bounded request packets. `src/server/eva-room-proposal.test.ts` runs the real project constructors/parser/preparer to verify frozen reference order, settings, recipe hash and deterministic task recovery. Browser rendering, keyboard interaction and live Clerk popup redirects remain unverified until the Shado dependencies are available.
+diff --git a/src/lib/eva-room-handoff.mjs b/src/lib/eva-room-handoff.mjs
+new file mode 100644
+index 0000000..0eb9d0c
+--- /dev/null
++++ b/src/lib/eva-room-handoff.mjs
+@@ -0,0 +1,24 @@
++export function evaAllowedOrigin(value) {
++  let url;
++  try { url = new URL(value); } catch { throw new Error('The EVA authorization origin is not configured.'); }
++  if ((url.protocol !== 'https:' && !(url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)))
++    || url.username || url.password || url.pathname !== '/' || url.search || url.hash)
++    throw new Error('The EVA authorization origin must be an exact HTTPS or loopback origin.');
++  return url.origin;
++}
++export function parseEvaRoomPacket(value) {
++  const exact = (row, keys) => row && typeof row === 'object' && !Array.isArray(row)
++    && Object.keys(row).sort().join(',') === [...keys].sort().join(',');
++  const uuid = id => typeof id === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(id);
++  if (!exact(value, ['type', 'nonce', 'jobId', 'taskId', 'assets']) || value.type !== 'eva-room-request'
++    || typeof value.nonce !== 'string' || !/^[a-f0-9]{32,128}$/.test(value.nonce)
++    || !uuid(value.jobId) || !uuid(value.taskId) || !Array.isArray(value.assets)
++    || value.assets.length < 5 || value.assets.length > 7
++    || value.assets.some(asset => !exact(asset, ['id', 'sha256', 'size', 'mimeType'])
++      || typeof asset.id !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9_-]{0,99}$/.test(asset.id)
++      || !/^[a-f0-9]{64}$/.test(asset.sha256) || !Number.isSafeInteger(asset.size) || asset.size < 1 || asset.size > 20 * 1024 * 1024
++      || !['image/jpeg', 'image/png', 'image/webp'].includes(asset.mimeType))
++    || new Set(value.assets.map(asset => asset.id)).size !== value.assets.length)
++    throw new Error('The room request must contain 5–7 distinct, checksummed photos and a fresh task identity.');
++  return structuredClone(value);
++}
+diff --git a/src/lib/eva-room-handoff.test.mjs b/src/lib/eva-room-handoff.test.mjs
+new file mode 100644
+index 0000000..d945e05
+--- /dev/null
++++ b/src/lib/eva-room-handoff.test.mjs
+@@ -0,0 +1,22 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { evaAllowedOrigin, parseEvaRoomPacket } from './eva-room-handoff.mjs';
++const packet = () => ({ type: 'eva-room-request', nonce: 'a'.repeat(64), jobId: '12345678-1234-4234-8234-123456789abc',
++  taskId: 'abcdef12-1234-4234-8234-123456789abc',
++  assets: Array.from({ length: 5 }, (_, index) => ({ id: `photo-${index}`, sha256: 'b'.repeat(64), size: 100, mimeType: 'image/png' })) });
++test('handoff only accepts an exact configured origin', () => {
++  assert.equal(evaAllowedOrigin('http://127.0.0.1:5173'), 'http://127.0.0.1:5173');
++  assert.equal(evaAllowedOrigin('https://eva.example'), 'https://eva.example');
++  for (const origin of [undefined, '*', 'http://eva.example', 'https://eva.example/path', 'https://user@eva.example', 'https://eva.example?q=1'])
++    assert.throws(() => evaAllowedOrigin(origin));
++});
++test('handoff packet is bounded, closed and copied before approval', () => {
++  const original = packet(), parsed = parseEvaRoomPacket(original);
++  original.assets[0].sha256 = '0'.repeat(64);
++  assert.equal(parsed.assets[0].sha256, 'b'.repeat(64));
++  for (const mutate of [p => p.ownerId = 'victim', p => p.nonce = 'short', p => p.taskId = 'unbound',
++    p => p.assets.pop(), p => p.assets[0].url = 'https://evil.example', p => p.assets[0].mimeType = 'text/html',
++    p => p.assets[0].size = 99_000_000, p => p.assets[1].id = p.assets[0].id]) {
++    const bad = packet(); mutate(bad); assert.throws(() => parseEvaRoomPacket(bad));
++  }
++});
+diff --git a/src/server/eva-room-proposal.ts b/src/server/eva-room-proposal.ts
+new file mode 100644
+index 0000000..ef97f0a
+--- /dev/null
++++ b/src/server/eva-room-proposal.ts
+@@ -0,0 +1,33 @@
++import { createHash } from 'node:crypto';
++import { applyCommand, canonicalize, createEmptyProject, createGenerationNode } from '@/lib/project';
++import { serializeProject } from '@/lib/project-store';
++import { prepareGeneration } from '@/lib/generation-client';
++import { parseEvaRoomPacket } from '@/lib/eva-room-handoff.mjs';
++
++export const EVA_ROOM_PROMPT = 'Use all reference photographs as views of the same single room. Create one continuous, slow camera move within that room, preserving furniture, openings, wall layout, proportions, materials and object identity as consistently as possible. Show modest lateral movement and changes in viewing angle, without cuts, scene changes, added rooms or invented furniture. Stay inside the selected room. Do not travel through doors or windows or reveal a corridor, adjoining room or exterior. Keep doors and windows as boundaries. The result is a generated visual comparison, not calibrated geometry or evidence of unobserved surfaces.';
++
++/** Data-only proposal. No upload, quote, provider request or generation. */
++export async function createEvaRoomProposal(value: unknown) {
++  const packet = parseEvaRoomPacket(value);
++  let project = createEmptyProject('EVA · single-room comparison');
++  project.id = `eva-${packet.jobId}`;
++  const node = createGenerationNode('seedance-2.5-reference-to-video', { x: 420, y: 0 }, 'Room comparison');
++  node.id = 'eva-room-video';
++  node.data.settings = { ...node.data.settings, prompt: EVA_ROOM_PROMPT, duration: '5', resolution: '720p', aspect_ratio: '16:9', generate_audio: 'false' };
++  project = applyCommand(project, { type: 'add_node', node });
++  const assets: Array<{ sourceId: string; version: string; sha256: string; size: number; mimeType: string }> =
++    packet.assets.map((asset: { id: string; sha256: string; size: number; mimeType: string }, index: number) => {
++    const inputId = `eva-photo-${index}`, title = `Room photograph ${index + 1}`;
++    project = applyCommand(project, { type: 'add_asset', asset: { id: asset.id, assetId: asset.id, revision: 1,
++      kind: 'image', title, mimeType: asset.mimeType, url: `media:${asset.id}` } });
++    project = applyCommand(project, { type: 'add_node', node: { id: inputId, type: 'input', position: { x: 0, y: index * 180 },
++      data: { kind: 'input', title, assetVersionId: asset.id } } });
++    project = applyCommand(project, { type: 'connect', connection: { source: inputId, target: node.id,
++      targetHandle: 'reference-images', versionId: asset.id, edgeId: `eva-reference-${index}`, order: index } });
++    return { sourceId: asset.id, version: asset.id, sha256: asset.sha256, size: asset.size, mimeType: asset.mimeType };
++  });
++  const recipe = (await prepareGeneration(project, node.id)).recipe;
++  return { project: serializeProject(project), projectId: project.id, nodeId: node.id, taskId: packet.taskId,
++    jobId: packet.jobId, assets, recipe, recipeHash: createHash('sha256').update(canonicalize(recipe)).digest('hex'), prompt: EVA_ROOM_PROMPT,
++    modelId: recipe.modelId, settings: recipe.settings };
++}
+diff --git a/src/server/eva-room-proposal.test.ts b/src/server/eva-room-proposal.test.ts
+new file mode 100644
+index 0000000..f972ffb
+--- /dev/null
++++ b/src/server/eva-room-proposal.test.ts
+@@ -0,0 +1,33 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { createHash } from 'node:crypto';
++import { createEvaRoomProposal } from './eva-room-proposal';
++import { parseProject } from '../lib/project-store';
++import { canonicalize } from '../lib/project';
++import { prepareGeneration } from '../lib/generation-client';
++
++const fixture = () => ({ type: 'eva-room-request', nonce: 'a'.repeat(64),
++  jobId: '12345678-1234-4234-8234-123456789abc', taskId: 'abcdef12-1234-4234-8234-123456789abc',
++  assets: Array.from({ length: 5 }, (_, index) => ({ id: `photo-${index}`, sha256: String(index).repeat(64), size: 1024, mimeType: 'image/png' })) });
++test('real Shado project commands freeze five image references into one silent single-room recipe', async () => {
++  const input = fixture(), result = await createEvaRoomProposal(input), project = parseProject(result.project);
++  const prepared = await prepareGeneration(project, result.nodeId);
++  assert.equal(result.taskId, input.taskId);
++  assert.equal(project.nodes.filter(node => node.data.kind === 'generation').length, 1);
++  assert.equal(prepared.recipe.modelId, 'seedance-2.5-reference-to-video');
++  assert.equal(prepared.recipe.settings.generate_audio, 'false');
++  assert.equal(prepared.recipe.settings.duration, '5');
++  assert.equal(prepared.recipe.inputs.length, 5);
++  assert.deepEqual(prepared.recipe.inputs.map(item => [item.sourceId, item.version, item.order]),
++    input.assets.map((asset, index) => [asset.id, asset.id, index]));
++  assert.equal(result.recipeHash, createHash('sha256').update(canonicalize(prepared.recipe)).digest('hex'));
++  assert.match(prepared.recipe.prompt, /single room/);
++  assert.deepEqual(result.assets.map(item => item.sha256), input.assets.map(item => item.sha256));
++});
++test('reopened proposal keeps recipe and task identities, and rejects supplied authority', async () => {
++  const input = fixture();
++  const first = await createEvaRoomProposal(input), second = await createEvaRoomProposal(input);
++  assert.equal(first.recipeHash, second.recipeHash);
++  assert.equal(first.taskId, second.taskId);
++  await assert.rejects(createEvaRoomProposal({ ...input, ownerId: 'not-authorized' }));
++});
+diff --git a/src/app/eva-room-authorize/page.tsx b/src/app/eva-room-authorize/page.tsx
+new file mode 100644
+index 0000000..ad149f9
+--- /dev/null
++++ b/src/app/eva-room-authorize/page.tsx
+@@ -0,0 +1,16 @@
++import { configuredClerk } from '@/server/clerk-config';
++import { evaAllowedOrigin } from '@/lib/eva-room-handoff.mjs';
++import AuthorizeRoom from './authorize-room';
++
++export const dynamic = 'force-dynamic';
++export default function EvaRoomAuthorizationPage() {
++  let allowedOrigin: string;
++  try {
++    if (!configuredClerk() || !process.env.SHADO_EVA_BRIDGE_SECRET) throw new Error();
++    allowedOrigin = evaAllowedOrigin(process.env.SHADO_EVA_ALLOWED_ORIGIN);
++  } catch {
++    return <main style={{ padding: '3rem', maxWidth: '40rem', margin: 'auto' }}><h1>EVA authorization is not configured</h1>
++      <p>The Shado operator must configure the dedicated bridge key and exact EVA origin before this connection can be used.</p></main>;
++  }
++  return <AuthorizeRoom allowedOrigin={allowedOrigin}/>;
++}
+diff --git a/src/app/eva-room-authorize/authorize-room.tsx b/src/app/eva-room-authorize/authorize-room.tsx
+new file mode 100644
+index 0000000..049cc98
+--- /dev/null
++++ b/src/app/eva-room-authorize/authorize-room.tsx
+@@ -0,0 +1,115 @@
++'use client';
++
++import { useEffect, useRef, useState, type FormEvent } from 'react';
++import { SignIn, useAuth, useUser } from '@clerk/nextjs';
++import { AuthShell } from '@/components/clerk-auth';
++import { Button } from '@/components/ui/button';
++import { parseEvaRoomPacket } from '@/lib/eva-room-handoff.mjs';
++import styles from './authorize-room.module.css';
++
++type Packet = { type: string; nonce: string; jobId: string; taskId: string;
++  assets: Array<{ id: string; sha256: string; size: number; mimeType: string }> };
++type Proposal = { project: string; nodeId: string; taskId: string; jobId: string; recipeHash: string; prompt: string;
++  modelId: string; settings: Record<string, string>;
++  assets: Array<{ sourceId: string; version: string; sha256: string; size: number; mimeType: string }> };
++type Offer = { maximumCostUsd: number; pricing: { amountMicros: number }; expiresAt: string };
++
++async function bridge(body: unknown, signal: AbortSignal) {
++  const response = await fetch('/api/eva-room-bridge', { method: 'POST', redirect: 'error', credentials: 'same-origin',
++    headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
++    signal: AbortSignal.any([signal, AbortSignal.timeout(30_000)]) });
++  const text = await response.text();
++  if (text.length > 3_200_000) throw new Error('The authorization response is too large.');
++  let result;
++  try { result = JSON.parse(text); } catch { throw new Error('Shado could not confirm the authorization request.'); }
++  if (!response.ok || result.ok !== true) throw new Error(typeof result.error?.message === 'string'
++    ? result.error.message : 'Shado could not verify this room request.');
++  return result;
++}
++
++export default function AuthorizeRoom({ allowedOrigin }: { allowedOrigin: string }) {
++  const { isLoaded, userId, orgId, sessionId } = useAuth(), { user } = useUser();
++  const received = useRef<Packet | null>(null), inFlight = useRef<AbortController | null>(null);
++  const [packet, setPacket] = useState<Packet | null>(null), [proposal, setProposal] = useState<Proposal | null>(null);
++  const [offer, setOffer] = useState<Offer | null>(null), [cap, setCap] = useState(''), [approved, setApproved] = useState(false);
++  const [busy, setBusy] = useState(false), [delivered, setDelivered] = useState(false), [error, setError] = useState('');
++  const [reload, setReload] = useState(0);
++  useEffect(() => {
++    if (!window.opener) { setError('Open this authorization window from your EVA room.'); return; }
++    const receive = (event: MessageEvent) => {
++      if (event.origin !== allowedOrigin || event.source !== window.opener || received.current) return;
++      try {
++        const value = parseEvaRoomPacket(event.data) as Packet;
++        received.current = value; setPacket(value); setError('');
++      } catch { setError('The EVA room request could not be verified. Close this window and reconnect from EVA.'); }
++    };
++    window.addEventListener('message', receive);
++    window.opener.postMessage({ type: 'eva-room-ready' }, allowedOrigin);
++    return () => { window.removeEventListener('message', receive); inFlight.current?.abort(); };
++  }, [allowedOrigin]);
++  useEffect(() => {
++    inFlight.current?.abort();
++    setProposal(null); setOffer(null); setApproved(false); setDelivered(false);
++    if (!userId || !packet) return;
++    const controller = new AbortController(); inFlight.current = controller;
++    setBusy(true); setError('');
++    void bridge({ operation: 'proposal', packet }, controller.signal).then(result => {
++      if (controller.signal.aborted) return;
++      const value = result.proposal as Proposal, quote = result.quote as Offer;
++      if (value?.taskId !== packet.taskId || value.jobId !== packet.jobId || value.assets?.length !== packet.assets.length
++        || !Number.isSafeInteger(quote?.pricing?.amountMicros) || quote.pricing.amountMicros < 1
++        || quote.pricing.amountMicros > 100_000_000) throw new Error('The scoped proposal could not be verified.');
++      setProposal(value); setOffer(quote); setCap((quote.pricing.amountMicros / 1_000_000).toFixed(6));
++    }).catch(reason => { if (!controller.signal.aborted) setError(reason instanceof Error ? reason.message : 'Unable to prepare this room.'); })
++      .finally(() => { if (!controller.signal.aborted) setBusy(false); });
++    return () => controller.abort();
++  }, [userId, orgId, sessionId, packet, reload]);
++  async function authorize(event: FormEvent) {
++    event.preventDefault();
++    if (busy || !approved || !proposal || !packet || !offer || !window.opener) return;
++    const amount = Number(cap), maximumMicros = Math.round(amount * 1_000_000);
++    if (!/^\d{1,3}(?:\.\d{1,6})?$/.test(cap) || !Number.isSafeInteger(maximumMicros)
++      || maximumMicros < offer.pricing.amountMicros || maximumMicros > 100_000_000) {
++      setError('Enter a cap at least as large as this quote, up to $100.'); return;
++    }
++    if (Date.parse(offer.expiresAt) <= Date.now()) { setError('The quote expired. Refresh the proposal before approving.'); return; }
++    const controller = new AbortController(); inFlight.current = controller; setBusy(true); setError('');
++    try {
++      const result = await bridge({ operation: 'grant', taskId: proposal.taskId, project: proposal.project, nodeId: proposal.nodeId,
++        maximumMicros, assets: proposal.assets, approved: true }, controller.signal);
++      if (controller.signal.aborted || result.taskId !== packet.taskId || result.recipeHash !== proposal.recipeHash
++        || result.maximumMicros !== maximumMicros || typeof result.token !== 'string') throw new Error('The grant response did not match this room.');
++      const grant = { token: result.token, expiresAt: result.expiresAt, taskId: proposal.taskId, project: proposal.project,
++        nodeId: proposal.nodeId, recipeHash: proposal.recipeHash, maximumMicros, assets: proposal.assets };
++      window.opener.postMessage({ type: 'eva-room-grant', nonce: packet.nonce, jobId: packet.jobId, grant }, allowedOrigin);
++      setDelivered(true);
++    } catch (reason) { if (!controller.signal.aborted) setError(reason instanceof Error ? reason.message : 'Authorization could not be completed.'); }
++    finally { if (!controller.signal.aborted) setBusy(false); }
++  }
++  return <AuthShell title="Connect this room to Shado" description="Approve one bounded video attempt using the exact photos in your EVA room." section="EVA CONNECTION" compact>
++    {!isLoaded ? <p role="status">Checking your Shado account…</p> : !userId
++      ? <SignIn routing="hash" signUpUrl="/join" forceRedirectUrl="/eva-room-authorize"/>
++      : <div className={styles.content}>
++        <p>Account: <strong>{user?.primaryEmailAddress?.emailAddress ?? 'Signed-in Shado account'}</strong></p>
++        <p className={styles.detail}>Connection: {allowedOrigin}</p>
++        {error && <p role="alert" className={styles.error}>{error}</p>}
++        {!packet && !error && <p role="status">Waiting for the room request from EVA…</p>}
++        {busy && !proposal && <p role="status">Preparing the frozen recipe and current price…</p>}
++        {proposal && offer && !delivered && <form onSubmit={event => void authorize(event)} className={styles.form}>
++          <p><strong>{packet?.assets.length} original photos · one 5-second video</strong><br/>Seedance 2.5 · 720p · silent · 16:9</p>
++          <details><summary>Review the single-room direction</summary><p>{proposal.prompt}</p></details>
++          <p>Current quote: <strong>${(offer.pricing.amountMicros / 1_000_000).toFixed(6)}</strong>. The video may contain errors or incomplete room coverage.</p>
++          <label className={styles.label} htmlFor="eva-cap">Maximum Shado charge (USD)</label>
++          <input id="eva-cap" className={styles.input} inputMode="decimal" value={cap}
++            onChange={event => { setCap(event.target.value); setApproved(false); }} disabled={busy} required/>
++          <label className={styles.check}><input type="checkbox" checked={approved} onChange={event => setApproved(event.target.checked)} disabled={busy}/>
++            <span>Allow EVA to upload these originals and request one video under this cap. I will start the attempt with Continue in EVA.</span></label>
++          <Button type="submit" disabled={!approved || busy}>{busy ? 'Authorizing…' : 'Authorize this room'}</Button>
++          <p className={styles.detail}>This permission expires in 15 minutes. No video is submitted from this page. Reconstruction has a separate cloud allowance.</p>
++        </form>}
++        {delivered && <p role="status">Authorization sent to EVA. Return to your room and choose Continue when ready.</p>}
++        {packet && !busy && !delivered && <Button type="button" variant="outline" onClick={() => setReload(value => value + 1)}>Refresh proposal</Button>}
++        <p className={styles.detail}><a href="/terms" target="_blank" rel="noreferrer">Review Shado terms</a>. Originals and outputs remain subject to Shado’s storage and provider policies.</p>
++      </div>}
++  </AuthShell>;
++}
+diff --git a/src/app/eva-room-authorize/authorize-room.module.css b/src/app/eva-room-authorize/authorize-room.module.css
+new file mode 100644
+index 0000000..7d1cf28
+--- /dev/null
++++ b/src/app/eva-room-authorize/authorize-room.module.css
+@@ -0,0 +1,11 @@
++.content, .form { display: grid; gap: 1rem; }
++.content p, .form p { margin: 0; line-height: 1.6; }
++.detail { opacity: .72; font-size: .875rem; overflow-wrap: anywhere; }
++.error { color: #ffb4b4; border-left: 2px solid currentColor; padding-left: .75rem; }
++.label { font-weight: 600; }
++.input { width: 100%; padding: .75rem; border: 1px solid #737373; border-radius: .5rem; background: transparent; color: inherit; font: inherit; font-variant-numeric: tabular-nums; }
++.input:focus-visible, .check input:focus-visible, .content summary:focus-visible, .content a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
++.check { display: flex; gap: .75rem; align-items: flex-start; line-height: 1.5; }
++.check input { margin-top: .3rem; min-width: 1.125rem; min-height: 1.125rem; accent-color: #b6d2ff; }
++.content summary { cursor: pointer; padding-block: .5rem; }
++.content details p { padding-block: .5rem; font-size: .875rem; }

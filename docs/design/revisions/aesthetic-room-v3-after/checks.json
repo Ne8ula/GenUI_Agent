@@ -1,0 +1,27 @@
+{
+  "phase": "after",
+  "checks": [
+    "Complete-object study defaults to points with persistent inferred label",
+    "Desk and cabinet complete-object viewpoints inspected",
+    "Keyboard orbit, reset and all four representations exercised",
+    "Original fusion retained; aesthetic returns to points",
+    "Graphics interruption reports and viewer reopens",
+    "Actual WebGL frame contains 1998 distinct colors",
+    "Emulated phone touch orbit changes actual rendered scene",
+    "Phone width and reduced-motion state inspected"
+  ],
+  "errors": [],
+  "requests": [
+    "/api/room-workflow/session",
+    "/api/room-workflow/session",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1/originals/0",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1/originals/1",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1/originals/2",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1/originals/3",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1/originals/4",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1/originals/5",
+    "/api/room-workflow/benchmark/arkitscenes/profiles/vga-visual-v1/originals/6"
+  ],
+  "limits": "Actual saved public capture; authored aesthetic study, no ML completion or Shado generation."
+}

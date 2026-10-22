@@ -1,0 +1,12 @@
+{
+  "base": "c83fd4c04ca170ed38311b94cdcdebec779051b7",
+  "prior_checkpoint": "teal-bedroom-v1.sources.json",
+  "scope": "Inventory and pure assembly continuation; overlay these hashes on the prior checkpoint, not a committed revision",
+  "files": {
+    "scripts/room_workflow/scan-room.schema.json": "796baea929b0445f3f2cbd1045e99e7419cd69335649fcf9af4c182262630268",
+    "scripts/room_workflow/scan_contract.py": "64be412827c2cce96a5995d91fec0e4a1bfd076c804fd6f6a1aa70168dffaeb0",
+    "scripts/room_workflow/scan_objects.py": "0aaa9a8d68f6a9a99e3fd33e1d63c1efe8f842de4b63bd0c0290883e67e8c7b2",
+    "scripts/room_workflow/scan_room.py": "71676f9d7b293b2528e0752a5f72ef954632ca7b58b78ee7bcc3a91375193dac",
+    "scripts/room_workflow/test_scan_room.py": "2588c43a70291aaee14932fceb94f4380c37594dffadea4dd1f361f73d84a31b"
+  }
+}

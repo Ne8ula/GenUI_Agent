@@ -20,4 +20,7 @@ node_modules/
 
 # Reproducible reconstruction inputs, environments and large derived outputs.
 .local/reconstruction/
+.local/room-workflow/
+.local/worktrees/
+scripts/room_workflow/__pycache__/
 scripts/reconstruction/__pycache__/
