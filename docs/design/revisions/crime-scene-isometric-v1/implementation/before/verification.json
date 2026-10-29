@@ -1,0 +1,51 @@
+{
+  "base": "0380e13",
+  "branch": "crimescene",
+  "sha256": "8d2ae450b5368997103220334f052c2430ff3197302df14836cb8cb510ee3a17",
+  "fingerprintMethod": "SHA256 of UTF-8 JSON of files map sorted by lexical code-unit key order (not locale collation), compact separators; file hashes use raw bytes",
+  "status": "final post-review browser and non-browser checks passed; owner acceptance pending",
+  "verificationDate": "2026-10-24",
+  "session": "6183edb3-7b5f-4429-a6ca-b3dabd090d18",
+  "priorVerification": "earlier-before-reverification/verification.json",
+  "scope": "One owner-authorized local restart; expanded smoke key coverage only, no application code changes. Disposable key-disabled broker; no real notebook store or live provider calls.",
+  "memory": {
+    "beforeRestart": { "at": "2026-10-24T21:13:38-04:00", "freePhysicalGiB": 12.06, "freeVirtualGiB": 18.74 },
+    "afterSmoke": { "at": "2026-10-24T21:16:25-04:00", "freePhysicalKiB": 11085932, "freeVirtualKiB": 18165424, "totalPhysicalKiB": 33245948 },
+    "limits": "Point observations, not peak-memory profiling. No allocation failure recurred."
+  },
+  "checks": [
+    { "command": "node week4/app/scripts/crime-scene-smoke.mjs", "result": "passed", "coverage": "Home/all four arrows/W/S cancel dwell; inspect-pause-reopen-Return restores byte-identical overview; cancel and close reply refresh message/quota; mocked reply is text-only; stale reply labelled; existing scan, clues, keyboard/focus, photos, notes/save/reload/undo, loading cancellation, static reduced motion and emulated touch pass" },
+    { "command": "npm.cmd run check", "result": "103 core + 289 app passed, zero failed/skipped; typechecks and production build passed; existing Rust and chunk warnings" },
+    { "command": "npm.cmd run room:test", "result": "163 passed, 0 failed, 2 skipped" },
+    { "command": "node --test scripts/room_workflow/crime-scene.test.mjs", "result": "13 passed, fake provider only" },
+    { "command": "python -I -m unittest discover -s scripts/room_workflow -p 'test_ffs*.py'", "result": "6 passed" },
+    { "command": "node --check week4/app/scripts/crime-scene-smoke.mjs", "result": "passed" }
+  ],
+  "serverState": "Session-owned npm dev task stopped after smoke; disposable broker/browser closed and store cleanup completed; no listeners on 1440/1442 after stop.",
+  "captureContext": "Six final-run captures visually inspected; desktop 1440x960, touch 390x844 emulation, device scale factor 1. Earlier captures preserved separately; screenshots are not motion recordings or live-provider evidence.",
+  "captureSha256": {
+    "after/desktop.png": "231bc09d8159aeb21695768de7480749602b11afbcbe0bf040163fe843a3e335",
+    "after/photo.png": "f49d9602623b1f0281828b5633cb794fb87094d0683ee415e9854f2196046129",
+    "after/notes.png": "78d7ad5d2e9c986ad9a4afa1095527e0323019428bab327ef74bc4bcaaaf8030",
+    "after/reduced-motion.png": "5252c33a10a4d798f69562de1948b16814a61a087a2ed38ef98af8466e80bc4b",
+    "after/touch.png": "f37bbeb3e12e1705775679a15b4eb1799b4bf8a9137cade60e64a6c31af3d0cd",
+    "after/touch-notes.png": "609af5e6259affed64744cf7188ee5114f9baa5921288891a91c1905ae27d1f3"
+  },
+  "files": {
+    "scripts/room_workflow/broker.mjs": "9c48c08981f62adb5e3f6a15b463da179eb9e169b18319c867a200431dea8c20",
+    "scripts/room_workflow/crime-scene.mjs": "fedcd94271b37a71bd9e0c3cc2089955cc0635af744d8a4cb284779151c78f49",
+    "scripts/room_workflow/crime-scene.test.mjs": "11062e0cba0b74c278e76986944ffa64b4c27e40d360eec5bca01b714984b29c",
+    "scripts/room_workflow/ffs-resources.json": "90433d10385c6aa289cbac9695b19896f3c5c0c21ca0b89803dfee48c4159a0c",
+    "scripts/room_workflow/ffs_tags.py": "f299521cd16228f2c4244d94e92cb6b3fc38caf940d02c092e96f7a0e65f3bb5",
+    "scripts/room_workflow/test_ffs_tags.py": "9b55a77772d565314f910e6e18744df86c8a9cb461be6d181b2fdae623975266",
+    "week4/app/scripts/crime-scene-smoke.mjs": "c4460eae98dbc1159605a330d72732444f989aa1c9790f9625b3fb57e8e077f1",
+    "week4/app/src/App.tsx": "65432e6aab65c8326bfe22b84be32a796191858fd2c3874215c95836ac11a5a2",
+    "week4/app/src/crime-scene/CrimeSceneApp.tsx": "4e9936df2c5005cb9092c33c26acbddef8de813f77dd9197127f559f0195c24c",
+    "week4/app/src/crime-scene/Notebook.tsx": "a1c7c5ead973b75bcb150a0c1013ea258f47a279d3250a1783a21d4d5e94c12e",
+    "week4/app/src/crime-scene/api.ts": "619f60cc5ef21032c0084ce498cafa007b03ae9d21f2b582620732f4e83d31d1",
+    "week4/app/src/crime-scene/crime-scene.css": "7a8ecd63180cddecfa324034847fb9c25bde04b4ab1d1a4f7c2b3d1f2c08fbd7",
+    "week4/app/src/crime-scene/renderer.ts": "6ea980724640918c798a8dfb72ee09e2058d5876533970d873e2168fa0b19d0d",
+    "week4/app/src/crime-scene/state.ts": "c36851555204eae7127abc6e4c4d4f7338abbc79b1c732e23ee8a527f37421f1",
+    "week4/app/tests/crime-scene.test.ts": "4621732e34fa8ff39b2417264f27808e24219ff9011b0ebc189fb5f3d30117fd"
+  }
+}

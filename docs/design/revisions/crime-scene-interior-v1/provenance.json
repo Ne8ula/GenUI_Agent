@@ -1,0 +1,25 @@
+{
+  "revision": "crime-scene-interior-v1",
+  "date": "2026-10-29",
+  "source_head": "0380e13efbdfa8c1ee29fe2c621927852b7766b7",
+  "source_state": "dirty shared crimescene checkout; HEAD alone is not the implementation revision",
+  "scope": "Interior-first panorama camera/navigation on unchanged Realsee v2 GLB",
+  "route": "official Figma MCP direct Weave models",
+  "private_source_uploads": false,
+  "approval": {"method": "explicit structured Approve for each quoted run", "still_credits": 5, "video_credits": 112, "total_charged_credits": 117, "attempts_each": 1, "retries": 0, "still_wait_minutes": 15, "video_wait_minutes": 20, "provider_hard_timeout_available": false, "modal_authorized": false},
+  "runs": [
+    {"id": "c1a97d48-1fb6-4c1a-ae59-99d196067694", "model": "fal-ai/nano-banana-2/edit", "name": "Nano Banana 2.1", "status": "COMPLETED", "input": "Text-only fictional EVA interior-first room inspector, interior-filling viewpoint, dark detective styling, neutral textures, missing surfaces remain dark, separate evidence and explicit inference/unaligned/unverified labels; no people or forensic facts.", "settings": {"resolution": "2K", "aspect_ratio": "16:9", "output_format": "png", "thinking_level": "Minimal", "enable_web_search": false}, "output": "references/images/interior-reference.png", "sha256": "50c88fc392d43dcb2b06c1fad9866ad35ee3c0070103df353bbf6065f3df1af0", "bytes": 4796387, "dimensions": [2752,1536], "inspected": true},
+    {"id": "84e18729-a075-4da3-97cb-69eae2391629", "model": "bytedance/seedance-2.5/image-to-video", "name": "Seedance 2.5", "status": "COMPLETED", "input": "Text-only fictional interior-first user-driven stationary turn, short forward movement then immediate pause; fixed interface, unchanged geometry, no automatic orbit/bobbing/inertia/people/events; explicit inference/unaligned/unverified labels and separate evidence.", "settings": {"duration": "4", "resolution": "720p", "aspect_ratio": "16:9", "codec": "H264", "draft": false, "bitrate_mode": "standard", "generate_audio": false, "us_hosted": true}, "output": "references/videos/interior-reference.mp4", "sha256": "796a9e9c7dc7c3b620ddce030ad6f2e5a7698c008808d68604c751fcae14ce3d", "bytes": 596536, "dimensions": [1280,720], "fps": 24, "duration_seconds": 4.041666666666667, "cpu_decoded_frames": 97, "inspected": true, "inspection": "Nine sequential half-second samples including final frame; sampled motion inspection, not continuous playback verification; reject continuing final drift."}
+  ],
+  "contact_sheet": {"path": "references/contact-sheet.png", "sha256": "3ed6de80b500238f66429b4a484abdde7ab9073368a80c667092e54619c83c7b"},
+  "guidance": "Interior filling the viewport, fixed quiet controls, user-driven stationary look, immediate pause, unchanged textures/geometry/voids, retained labels and evidence. Reject invented room/coordinates/camera labels, tiny text, missing Inferred label and continuing video drift.",
+  "candidate_sha256": "138e407bcff0ca2c241860b80f48486bcafeb36038123099c0ca73a116fe5815",
+  "before": ".local/reconstruction/crime-scene-realsee-render-v2/returned",
+  "before_source": ".local/reconstruction/crime-scene-realsee-render-v2/snapshot",
+  "after": null,
+  "implementation": "implemented; offline checks passed; corrected Modal capture pending",
+  "implementation_manifest": "implementation-manifest.json",
+  "verification": {"focused_tests_passed": 17, "repository_tests_passed": 454, "cloud_packaging_tests_passed": 9, "cloud_packaging_tests_skipped": 1, "restore_mutations_rejected": ["position", "target", "orientation"], "browser_executed": false},
+  "modal_capture": {"plan_sha256": "44d07507af00f365ee536657b3eaf47926b001fbc769f915d8063010e3443c5b", "approval": "Owner selected Approve exact $2 attempt on 2026-10-29; separate from Weave approval", "operational_allowance_usd": 2, "provider_enforced_dollar_cap": false, "attempts": 1, "retries": 0, "output": ".local/reconstruction/crime-scene-interior-render-v1", "status": "failed-or-uncertain; client timeout during provider-reported L4 capacity wait", "app_id": "ap-P757gHoZNKNyu1Khbn8bRx", "function_id": "fu-ggYEkPaJb7iXXR7XjCuzsN", "returned_files": 0, "cleanup": {"state": "stopped", "tasks": 0}, "allowance_consumed": true, "billed_cost_usd": null},
+  "owner_acceptance": "pending"
+}

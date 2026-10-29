@@ -1,0 +1,24 @@
+{
+  "base": "0380e13",
+  "branch": "crimescene",
+  "sha256": "6e2fee1192068cdb1269c642c47daf5090578876579046e06992afc48c79f7c0",
+  "fingerprintMethod": "SHA256 of UTF-8 JSON of sorted files map, compact separators; file hashes use raw bytes",
+  "status": "non-browser checks passed; final browser regression run blocked after allocation failure",
+  "files": {
+    "scripts/room_workflow/broker.mjs": "9c48c08981f62adb5e3f6a15b463da179eb9e169b18319c867a200431dea8c20",
+    "scripts/room_workflow/crime-scene.mjs": "fedcd94271b37a71bd9e0c3cc2089955cc0635af744d8a4cb284779151c78f49",
+    "scripts/room_workflow/crime-scene.test.mjs": "11062e0cba0b74c278e76986944ffa64b4c27e40d360eec5bca01b714984b29c",
+    "scripts/room_workflow/ffs-resources.json": "90433d10385c6aa289cbac9695b19896f3c5c0c21ca0b89803dfee48c4159a0c",
+    "scripts/room_workflow/ffs_tags.py": "f299521cd16228f2c4244d94e92cb6b3fc38caf940d02c092e96f7a0e65f3bb5",
+    "scripts/room_workflow/test_ffs_tags.py": "9b55a77772d565314f910e6e18744df86c8a9cb461be6d181b2fdae623975266",
+    "week4/app/scripts/crime-scene-smoke.mjs": "329f0eeb30f89fee4c378be2d17b8bd6a7ceb7c95b4fb542ed0da4adfed07530",
+    "week4/app/src/App.tsx": "65432e6aab65c8326bfe22b84be32a796191858fd2c3874215c95836ac11a5a2",
+    "week4/app/src/crime-scene/CrimeSceneApp.tsx": "4e9936df2c5005cb9092c33c26acbddef8de813f77dd9197127f559f0195c24c",
+    "week4/app/src/crime-scene/Notebook.tsx": "a1c7c5ead973b75bcb150a0c1013ea258f47a279d3250a1783a21d4d5e94c12e",
+    "week4/app/src/crime-scene/api.ts": "619f60cc5ef21032c0084ce498cafa007b03ae9d21f2b582620732f4e83d31d1",
+    "week4/app/src/crime-scene/crime-scene.css": "7a8ecd63180cddecfa324034847fb9c25bde04b4ab1d1a4f7c2b3d1f2c08fbd7",
+    "week4/app/src/crime-scene/renderer.ts": "6ea980724640918c798a8dfb72ee09e2058d5876533970d873e2168fa0b19d0d",
+    "week4/app/src/crime-scene/state.ts": "c36851555204eae7127abc6e4c4d4f7338abbc79b1c732e23ee8a527f37421f1",
+    "week4/app/tests/crime-scene.test.ts": "4621732e34fa8ff39b2417264f27808e24219ff9011b0ebc189fb5f3d30117fd"
+  }
+}

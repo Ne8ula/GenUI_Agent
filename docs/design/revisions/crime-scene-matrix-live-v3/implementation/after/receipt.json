@@ -1,0 +1,45 @@
+{
+  "status": "ended",
+  "plan_sha256": "9ce5ea9d75df60e51bd5c7b599fbee2bf1be6b184b76622c5baa1c6807f3609a",
+  "app_id": "ap-Dg1cdPyEKNxfSRNqCB0eHg",
+  "approved_dollars": 2,
+  "worker_started_at": "2026-10-29T17:39:17.725612+00:00",
+  "checks": {
+    "status": "passed",
+    "checks": [
+      "matched default-view normal and Matrix captures; exact normal restoration",
+      "resume advances the paused replay",
+      "keyboard camera movement",
+      "replay retains explored viewpoint",
+      "pause holds time",
+      "radial sweep settles to Matrix",
+      "source photo decoded; Escape restores focus",
+      "normal mode restores exact central crop",
+      "390px touch controls and source dismissal; no overflow",
+      "reduced-motion activation settles without sweep",
+      "pointer drag changes camera in Matrix mode",
+      "complete 28-second demo: scan, Matrix, source, normal return"
+    ],
+    "errors": [],
+    "gpu": {
+      "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA NVIDIA A10 (0x00002236)), NVIDIA)",
+      "buffer": [
+        1600,
+        900
+      ]
+    }
+  },
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA NVIDIA A10 (0x00002236)), NVIDIA)",
+    "buffer": [
+      1600,
+      900
+    ]
+  },
+  "ready_at": "2026-10-29T17:40:00.642793+00:00",
+  "cleanup": {
+    "app_id": "ap-Dg1cdPyEKNxfSRNqCB0eHg",
+    "state": "stopped",
+    "tasks": 0
+  }
+}

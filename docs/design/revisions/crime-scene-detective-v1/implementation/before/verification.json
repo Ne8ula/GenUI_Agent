@@ -1,0 +1,57 @@
+{
+  "base": "0380e13",
+  "branch": "crimescene",
+  "verificationDate": "2026-10-24",
+  "session": "6183edb3-7b5f-4429-a6ca-b3dabd090d18",
+  "status": "local verification passed; owner acceptance pending",
+  "sha256": "702056d2eede779c174b0695269b2958a77f70e40000e6574c25da89b54a89e5",
+  "fingerprintMethod": "SHA256 of UTF-8 compact JSON of files map sorted by lexical code-unit key order, not locale collation; file hashes use raw bytes",
+  "baselineFingerprint": "8d2ae450b5368997103220334f052c2430ff3197302df14836cb8cb510ee3a17",
+  "scope": "Scene-first panels and orthographic reversible cutaway; source/crop/identities unchanged. One approved dev session, disposable key-disabled broker, no live provider or real notebook store.",
+  "checks": [
+    {"command":"node week4/app/scripts/crime-scene-smoke.mjs","result":"passed; all scene/panel/camera/cancellation/keyboard/focus/photo/notebook/reduced-motion/emulated-touch assertions; no page errors or provider calls"},
+    {"command":"npm.cmd run check","result":"103 core and 290 app tests passed; typechecks and production build passed; existing Rust unused-code and large-bundle warnings"},
+    {"command":"npm.cmd run room:test","result":"163 passed, 0 failed, 2 existing skips: actual owned-process termination and actual CPU adapter integration"},
+    {"command":"python -I -m unittest discover -s scripts/room_workflow -p 'test_ffs*.py'","result":"6 passed"},
+    {"command":"node --check week4/app/scripts/crime-scene-smoke.mjs","result":"passed"},
+    {"command":"git diff --check","result":"passed; line-ending notices only"}
+  ],
+  "captureContext": "Nine final captures inspected. Desktop 1440x960, touch 390x844 emulation, scale 1. Eight final captures byte-identical to inspected before-thumbnail-wait versions; final clues capture separately inspected after visible-image readiness wait.",
+  "thumbnailDiagnosis": "Immediately after opening, all 11 lazy images were incomplete with naturalWidth zero. Visible-image readiness wait passed and final capture contains source thumbnails. No product-code fix required.",
+  "preserved": ["before/", "first-cutaway/", "before-thumbnail-wait/"],
+  "memory": {
+    "beforeFinalSmoke": {"freePhysicalKiB":9690296,"freeVirtualKiB":16587888},
+    "afterShutdown": {"freePhysicalKiB":9505680,"freeVirtualKiB":17041264},
+    "limits":"Point observations, not peak profiling; no allocation failure recurred."
+  },
+  "serverState": "Session-owned dev task stopped; no listeners on 1440/1442. Smoke closed its browser and disposable broker and removed its temporary store.",
+  "limits": "Fixed aperture, not wall segmentation; can hide non-wall points; rotation may reintroduce occlusion. Incomplete single-position source. No physical-touch, screen-reader, native Tauri, peak-performance or live-provider validation. No final independent code review claimed.",
+  "files": {
+    "scripts/room_workflow/broker.mjs": "9c48c08981f62adb5e3f6a15b463da179eb9e169b18319c867a200431dea8c20",
+    "scripts/room_workflow/crime-scene.mjs": "fedcd94271b37a71bd9e0c3cc2089955cc0635af744d8a4cb284779151c78f49",
+    "scripts/room_workflow/crime-scene.test.mjs": "11062e0cba0b74c278e76986944ffa64b4c27e40d360eec5bca01b714984b29c",
+    "scripts/room_workflow/ffs-resources.json": "90433d10385c6aa289cbac9695b19896f3c5c0c21ca0b89803dfee48c4159a0c",
+    "scripts/room_workflow/ffs_tags.py": "f299521cd16228f2c4244d94e92cb6b3fc38caf940d02c092e96f7a0e65f3bb5",
+    "scripts/room_workflow/test_ffs_tags.py": "9b55a77772d565314f910e6e18744df86c8a9cb461be6d181b2fdae623975266",
+    "week4/app/scripts/crime-scene-smoke.mjs": "ce628f03b1aa721ae95fade099419371eabafe66e490f2d12eb6519b90ae3aa3",
+    "week4/app/src/App.tsx": "65432e6aab65c8326bfe22b84be32a796191858fd2c3874215c95836ac11a5a2",
+    "week4/app/src/crime-scene/CrimeSceneApp.tsx": "356671f0e8823f017730e817b3a29ce69d8e37492a1a8b9d07cdeaae73ad8e5a",
+    "week4/app/src/crime-scene/Notebook.tsx": "a1c7c5ead973b75bcb150a0c1013ea258f47a279d3250a1783a21d4d5e94c12e",
+    "week4/app/src/crime-scene/api.ts": "619f60cc5ef21032c0084ce498cafa007b03ae9d21f2b582620732f4e83d31d1",
+    "week4/app/src/crime-scene/crime-scene.css": "5c1cd425775481bcbed0d56500f655c52bc80534c21ad51d080ec1e6b579d7ad",
+    "week4/app/src/crime-scene/renderer.ts": "b44b6c9df5db5f51902589318cd10af7665fcd193ece1b5846fecb1c17789161",
+    "week4/app/src/crime-scene/state.ts": "32676f6b6405c1edbaf0f7fd0e2ea414f05e2109c6c20c65d5bdead95f42940f",
+    "week4/app/tests/crime-scene.test.ts": "6afa74ba90b6ef2498822830aa6095b47f43130b6b04e55c9fea9c77932d2ff8"
+  },
+  "captureSha256": {
+    "after/clues.png": "4f54bbfd4df1cad604e380759ce3f4a2bb0aafac37980063e1d6fdf8dff842d3",
+    "after/desktop.png": "269d6e5ce078f2fc300989000d5e31764650d6497ca0dcc713083c61c9784a54",
+    "after/full-scan.png": "12587192779fd878e2e5fe15f3f234d16e73c4ce700d490691c8ade5093ba79b",
+    "after/inspector.png": "d6269031b8372e6e9bb6ce6aabaaa13beae5f2010f4fb36b3da817f4d2daa5f0",
+    "after/notes.png": "23a7259ad9506df4cc3028463ce4376ec53a6507d172fb2e50cb81bd513469c8",
+    "after/photo.png": "77075ea2ba3536a638890b9fae8e5a3a36b2801973fede09980847d67c7fe0a1",
+    "after/reduced-motion.png": "9af428d3f2e7cab5e8f3a15ef07416e3464a7b978d6ec4808702c41574987d36",
+    "after/touch-notes.png": "201d3c5dc4d39f9125ba245453dd0dfe6ece23edb4653006e19b1ccc6de5addc",
+    "after/touch.png": "a7e63bdfdfcdf984c8a3c928eb4f3f0dea65a1272c3d6d66f06a4937a86f508c"
+  }
+}

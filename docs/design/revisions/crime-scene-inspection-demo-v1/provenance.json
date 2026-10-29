@@ -1,0 +1,78 @@
+{
+  "revision": "crime-scene-inspection-demo-v1",
+  "date": "2026-10-29",
+  "source_head": "0380e13efbdfa8c1ee29fe2c621927852b7766b7",
+  "dirty_checkout": true,
+  "scope": "Frontend-only 28-second single-room outward contour pulse and one original source photograph",
+  "latest_reference_waiver": "2026-10-29: owner selected Outward pulse and Waive for this pass; supplied Death Stranding-style contour reference. No further Weave generation.",
+  "latest_capture": {
+    "plan_sha256": "cfe04e3a1d039053ba9d07df6d97bf7b7811b4e239e1acad74bcc5a361c40f7b",
+    "status": "evidence-returned: worker and interaction checks passed; visual framing remains needs-review",
+    "app_id": "ap-K6hmsxV4FyibLd7dzHZTbj",
+    "observed_gpu": "NVIDIA Tesla T4",
+    "cleanup": {"state":"stopped","tasks":0},
+    "video": {"path":"implementation/after/walkthrough.webm","seconds":29.08,"width":2560,"height":1440,"encoded_fps":25,"measured_application_fps":null,"sha256":"8816295326bb949f1a8fd27c538c38e7d021f0595f2e2e419fbfcbf44315f4b1"},
+    "visual_review": "Native stills and 2fps CPU-decoded temporal samples inspected. Outward pulse, stable contours, source panel and normal return visible. Starting view faces wall/doorway, not a wide furniture composition; polished presentation not accepted.",
+    "gpu_preference": ["L4", "A10G", "T4"],
+    "approved_submissions": 1,
+    "operational_allowance_usd": 2,
+    "provider_enforced_dollar_cap": false,
+    "worker_start_wait_seconds": 300,
+    "retries": 0,
+    "source_files": 80,
+    "upload_bytes": 35766583,
+    "baseline": "Pre-edit baseline unavailable. Same-revision normal/detective/restored comparisons planned.",
+    "actual_billed_cost": null
+  },
+  "route": "Official Figma MCP direct Weave model calls",
+  "approval": "Explicit Approve answers to separate Weave and Modal questions in structured confirmation dialog",
+  "weave": {
+    "approved_credits": 173,
+    "charged_credits": 173,
+    "source_uploads": [],
+    "runs": [
+      {
+        "id": "3f587bd6-40bc-43b4-8ec9-13a77d59ad95",
+        "model_id": "fal-ai/nano-banana-2/edit",
+        "tool_model_id": "bebebed5-50c1-4701-98b3-86929db21585",
+        "cost": 5,
+        "status": "COMPLETED",
+        "settings": {"aspect_ratio":"16:9","enable_web_search":false,"model":"Nano Banana 2.1","output_format":"png","resolution":"2K","seed":72931,"thinking_level":"High"},
+        "input_summary": "Text-only fictional three-frame storyboard: same room normal, investigative, source panel; style guidance, never runtime room/evidence replacement. Exact prompt retained in session tool transcript.",
+        "output": "references/images/storyboard.png",
+        "output_dimensions": [2752,1536]
+      },
+      {
+        "id": "d20d055a-0033-4b70-b9b8-13cc2f290066",
+        "model_id": "bytedance/seedance-2.5/image-to-video",
+        "tool_model_id": "cbe8b347-8c85-4e1a-b379-f96f48932f43",
+        "cost": 168,
+        "status": "COMPLETED",
+        "settings": {"aspect_ratio":"16:9","bitrate_mode":"high","codec":"H264","draft":false,"duration":"6","generate_audio":false,"resolution":"720p","us_hosted":true},
+        "input_summary": "Text-only fictional stationary interior: normal, surface-local sweep, stable clue anchors, compact photo panel, return. No source image supplied. Exact prompt retained in session tool transcript.",
+        "output": "references/videos/motion.mp4",
+        "output_dimensions": [1280,720],
+        "actual_duration_seconds": 6.041667,
+        "actual_fps": 24
+      }
+    ],
+    "inspection": "Storyboard inspected at native image; motion CPU-decoded and inspected as 24 sequential 4fps samples. Guidance/rejections in REVIEW.md.",
+    "contact_sheet": "references/contact-sheet.png"
+  },
+  "modal": {
+    "approved_submissions": 2,
+    "baseline_submissions": 1,
+    "final_submissions": 0,
+    "operational_allowance_usd": 4,
+    "provider_enforced_dollar_cap": false,
+    "per_submission": {"gpu":"L4","cpu":4,"memory_mib":16384,"timeout":600,"startup_timeout":300,"client_timeout":1200,"max_containers":1,"retries":0,"upload_limit_bytes":67108864,"evidence_limit_bytes":536870912},
+    "baseline_plan_sha256": "e6ae3052c63cc764ce7ed73e9ee1d9d8a160f2f99bac7022307f057d35ef1fa8",
+    "baseline_status": "failed: client timeout; zero returned evidence",
+    "baseline_app_id": "ap-7ZZ0Mm7tmLrom4xG0nk6gZ",
+    "baseline_cleanup": "stopped; receipt records zero tasks",
+    "diagnosis": "Read-only Modal logs: 2026-10-29 10:14:27 EDT, verify waiting for GPU_L4 capacity; image builds succeeded. No renderer execution evidenced.",
+    "final_status": "not submitted",
+    "actual_billed_cost": null
+  },
+  "owner_acceptance": "pending"
+}

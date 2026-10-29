@@ -1,0 +1,42 @@
+{
+  "status": "ended",
+  "plan_sha256": "bb2d97f929c66acbaf182f345c4891091de7b16e0459dffcb2ed4d0ccf219b89",
+  "app_id": "ap-s43PAr6ajDk4445cCMNNfe",
+  "approved_dollars": 2,
+  "worker_started_at": "2026-10-29T16:46:07.475613+00:00",
+  "checks": {
+    "status": "passed",
+    "checks": [
+      "keyboard camera movement",
+      "replay retains explored viewpoint",
+      "pause holds time",
+      "radial sweep settles to Matrix",
+      "source photo decoded; Escape restores focus",
+      "normal mode restores exact central crop",
+      "390px touch controls and source dismissal; no overflow",
+      "reduced-motion activation settles without sweep",
+      "pointer drag changes camera in Matrix mode"
+    ],
+    "errors": [],
+    "gpu": {
+      "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA Tesla T4 (0x00001EB8)), NVIDIA)",
+      "buffer": [
+        1599,
+        899
+      ]
+    }
+  },
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA Tesla T4 (0x00001EB8)), NVIDIA)",
+    "buffer": [
+      1599,
+      899
+    ]
+  },
+  "ready_at": "2026-10-29T16:46:22.044066+00:00",
+  "cleanup": {
+    "app_id": "ap-s43PAr6ajDk4445cCMNNfe",
+    "state": "stopped",
+    "tasks": 0
+  }
+}

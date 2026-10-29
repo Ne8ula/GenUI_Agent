@@ -8,6 +8,9 @@ import { spawn } from 'node:child_process';
 import { createShadoBridgeClient } from '../../integrations/shado/client-v2.mjs';
 import { validateBoundary, validateOpenings } from './boundary.mjs';
 import { validateWorkerResult, canonical, geometryHash } from './result.mjs';
+import { ffsResource, createSceneNotebook } from './crime-scene.mjs';
+import { createSceneInvestigator } from './eva-investigator.mjs';
+import { createSceneReview } from './scene-review.mjs';
 import { benchmarkResource, loadIdealizationSource } from './benchmark.mjs';
 import { recoveryInputs, validateRecovery, runRecoveryClient, receiptCancelled } from './cloud-recovery.mjs';
 import { validateImagePreflight, runImagePreflight } from './image-preflight.mjs';
@@ -98,11 +101,15 @@ function publicJob(job) {
     hasLocalCompletion:!!localCompletion,canCompleteLocally:!!result?.prediction_fields&&!!job.boundary,
     hasResult: !!result, resultSummary: result ? { status: result.status, model_execution: result.model_execution } : null };
 }
-export async function createBroker({ directory = join(root,'.local/room-workflow'), runner, recoveryRunner, preflightRunner, completionRunner,
+export async function createBroker({ directory = join(root,'.local/room-workflow'), runner, recoveryRunner, preflightRunner, completionRunner, sceneNotebookOptions, sceneInvestigatorOptions, reviewEnabled=false, sceneReviewOptions,
   idealizationSourceLoader=loadIdealizationSource, idealizationInputLoader=prepareIdealizationInputs, idealizationRunner=runIdealization,
   idealizationReader=readIdealizedCandidate, idealizationPython=process.env.EVA_ROOM_COMPLETION_PYTHON, shadoFetch=fetch, now = () => Date.now(),
   allowedHosts = new Set(['127.0.0.1:1440','127.0.0.1:1441','127.0.0.1:1442','localhost:1440','localhost:1441','localhost:1442']) } = {}) {
   await mkdir(directory, { recursive: true });
+  const notebook=createSceneNotebook({directory,...sceneNotebookOptions});
+  // Without its own options EVA inherits the notebook's key/fetcher, so demos that disable the provider disable both.
+  const review=createSceneReview(sceneReviewOptions);
+  const investigator=createSceneInvestigator({directory,review:review.approved,...(sceneInvestigatorOptions??sceneNotebookOptions)});
   const sessions = new Map();
   const sessionFile = join(directory,'sessions.json');
   try {
@@ -786,7 +793,11 @@ export async function createBroker({ directory = join(root,'.local/room-workflow
         if(request.method!=='GET')return send(405,{error:'Benchmark inspection is read-only.'});
         if(origin&&!['http://127.0.0.1:1440','http://127.0.0.1:1441','http://localhost:1440'].includes(origin))
           return send(403,{error:'Same-origin inspection required.'});
-        const resource=await benchmarkResource(pathname,idealizationOptions);
+        let resource;
+        if(pathname.startsWith('/api/room-workflow/benchmark/ffs/')){
+          if(new URL(request.url,'http://127.0.0.1').search)return send(400,{error:'FFS resources accept no selectors.'});
+          try{resource=await ffsResource(pathname);}catch{return send(503,{error:'FFS resource unavailable or integrity check failed.'});}
+        }else resource=await benchmarkResource(pathname,idealizationOptions);
         if(!resource)return send(404,{error:'Benchmark resource not found.'});
         response.writeHead(200,{'Content-Type':resource.type,'Cache-Control':'no-store',
           'X-Content-Type-Options':'nosniff','Cross-Origin-Resource-Policy':'same-origin'});
@@ -801,9 +812,34 @@ export async function createBroker({ directory = join(root,'.local/room-workflow
       if (request.method === 'POST') {
         if (!(request.headers['content-type'] ?? '').startsWith('application/json')) return send(415,{error:'JSON required.'});
         const chunks = []; let length = 0;
-        const limit=pathname.endsWith('/import-idealization')||pathname.endsWith('/idealization')?65536:58*1024**2;
+        const limit=pathname.startsWith('/api/room-workflow/crime-scene/')||pathname.endsWith('/import-idealization')||pathname.endsWith('/idealization')?65536:58*1024**2;
         for await (const chunk of request) { length += chunk.length; if (length > limit) throw Error('Request is too large.'); chunks.push(chunk); }
         body = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+      }
+      if(pathname.startsWith('/api/room-workflow/crime-scene/')){
+        if(origin&&!['http://127.0.0.1:1440','http://127.0.0.1:1441','http://localhost:1440'].includes(origin))return send(403,{error:'Same-origin inspection required.'});
+        if(new URL(request.url,'http://127.0.0.1').search)return send(400,{error:'Notebook accepts no selectors.'});
+        const action=pathname.slice('/api/room-workflow/crime-scene/'.length);
+        if(!['notes','status','reply','investigation','ask',...(reviewEnabled?['review']:[])].includes(action))return send(404,{error:'Not found.'});
+        const abort=new AbortController();
+        const disconnected=()=>{if(!response.writableEnded)abort.abort();};
+        response.once('close',disconnected);
+        try{
+          if(action==='notes'&&request.method==='GET')return send(200,await notebook.read(session.owner));
+          if(action==='status'&&request.method==='GET')return send(200,await notebook.status(session.owner));
+          if(action==='notes'&&request.method==='POST')return send(200,await notebook.save(session.owner,body));
+          if(action==='reply'&&request.method==='POST')return send(200,await notebook.reply(session.owner,body,{signal:abort.signal}));
+          if(action==='investigation'&&request.method==='GET')return send(200,{...await investigator.status(session.owner),...await investigator.read(session.owner)});
+          if(action==='ask'&&request.method==='POST')return send(200,await investigator.ask(session.owner,body,{signal:abort.signal}));
+          if(action==='review'&&request.method==='GET')return send(200,await review.read());
+          if(action==='review'&&request.method==='POST')return send(200,await review.save(body));
+          return send(405,{error:'Method not allowed.'});
+        }catch(error){
+          // Every EVA error after the reservation carries a status, so an unstatused one means nothing was counted.
+          if(!response.destroyed)return send(error.status??503,{error:error.status?error.message:['ask','investigation'].includes(action)?
+            'EVA is unavailable. No request was counted.':'Private notebook is unavailable. Your draft has not been discarded.'});
+        }finally{response.removeListener('close',disconnected);}
+        return;
       }
       if (['/api/room-workflow/jobs','/api/room-workflow/jobs/import-idealization'].includes(pathname) && request.method === 'POST') {
         return await underJobLock('intake',async()=>{

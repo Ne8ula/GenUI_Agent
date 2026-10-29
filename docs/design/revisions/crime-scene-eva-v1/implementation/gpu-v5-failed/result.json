@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "scope": "isolated crime-scene entry; no provider calls",
+  "durations": {
+    "gpu-device": 0.32,
+    "vulkan": 1.34,
+    "unit": 2.36,
+    "vite": 0.46,
+    "smoke": 18.29
+  },
+  "gpu-device": 0,
+  "vulkan": 0,
+  "unit": 0,
+  "smoke": 1
+}

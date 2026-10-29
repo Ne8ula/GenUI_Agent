@@ -1,6 +1,8 @@
 # EVA visual and interaction direction
 
-Current scope: the [memory palace](PLANNING.md). This supersedes weather-first and fixed Paris assignments. The [first room viewer](docs/design/revisions/room-r03/REVIEW.md) implements a reconstruction-first presentation under the owner's explicit 2026-10-19 Weave waiver for that pass only. Artistic construction remains proposed; owner acceptance is pending.
+Current scope: [crime-scene reconstruction replacement](PLANNING.md), selected 2026-10-28. Use Argus for scene reconstruction, Kimodo for human motion and evaluated complete hypothesis objects. Retain the Arkham Knight-inspired detective/matrix aesthetic; apply cinematic hypothetical styling to hypothesis playback, preserving access to unchanged original evidence. Geometry completeness, actual scene-relative contact, full-body readability and measured smooth playback take priority over decorative GPU effects. Native 1440p/60 fps is a proposed verification target, not achieved performance or spending authorization.
+
+The scene-generation replacement is not yet implemented. Other-room directions below are historical/scoped to those demos, **not competing requirements for the crime-scene pass**; do not load their linked plans by default. The owner-approved retirement of superseded crime-scene generated candidates does not authorize deleting original sources, provenance or failed-run receipts. Fresh visual references and owner quality acceptance remain separate gates.
 
 The [room-wide completion pass](docs/design/revisions/full-room-v4/REVIEW.md) adds an all-view candidate and surface provenance under the owner's separate 2026-10-20 instruction, “Waive Weave for this room-completion pass.” This waiver covers that pass only. Source inspection and the original r03 route remain available; acceptance of the new candidate is pending.
 

@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "checks": [
+    "matched default-view normal and Matrix captures; exact normal restoration",
+    "resume advances the paused replay",
+    "keyboard camera movement",
+    "replay retains explored viewpoint",
+    "pause holds time",
+    "radial sweep settles to Matrix",
+    "source photo decoded; Escape restores focus",
+    "normal mode restores exact central crop",
+    "390px touch controls and source dismissal; no overflow",
+    "reduced-motion activation settles without sweep",
+    "pointer drag changes camera in Matrix mode",
+    "complete 28-second demo: scan, Matrix, source, normal return"
+  ],
+  "errors": [],
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA NVIDIA A10 (0x00002236)), NVIDIA)",
+    "buffer": [
+      1600,
+      900
+    ]
+  }
+}

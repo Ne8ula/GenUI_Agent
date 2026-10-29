@@ -1,0 +1,21 @@
+{
+  "changeId": "crime-scene-detective-v1",
+  "status": "implementation-candidate-final-checks-incomplete-browser-held-memory",
+  "sourceRevision": "0380e13+uncommitted (crimescene)",
+  "baselineFingerprint": "702056d2eede779c174b0695269b2958a77f70e40000e6574c25da89b54a89e5",
+  "approval": "Owner approved labelled photo-guided approximation and Arkham-inspired detective treatment; structured approval of one text-only still <=4 credits/no retries and one memory-checked local verification session; exact 3.5-credit quote separately approved.",
+  "route": "official Figma MCP weave_run_model",
+  "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+  "modelId": "fal-ai/nano-banana-2/edit",
+  "predictionId": "d3dc318e-5f69-4bf2-9e3f-c01ae949154e",
+  "settings": {"model":"Nano Banana 2.1","resolution":"1K","aspect_ratio":"16:9","output_format":"png","seed":28,"enable_web_search":false},
+  "inputs": "Text-only source-colour and detective side-by-side design study: open-corner small teaching room, grey sofa/cushion, wood floor/rug, overturned and upright chairs, drawer unit and round table; crisp cool edges and selected warm accent; labelled approximation. No private uploads.",
+  "reportedCost": 3.5,
+  "remainingCreditsReported": 96.8,
+  "output": "references/images/room-detective.png",
+  "contactSheet": "references/contact-sheet.png",
+  "motionRequired": false,
+  "motionScope": "Static geometry/material refinement; no animated scan or new motion choreography.",
+  "inspection": {"status":"performed","date":"2026-10-26","inspector":"Claude Code lead, configured GPT-6 Astra route","method":"Read actual 1376x768 PNG before source edits","guidance":"REVIEW.md; reject duplicate chairs/tables, generated layout and invented markings"},
+  "ownerDecision": {"status":"pending","date":null}
+}

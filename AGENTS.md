@@ -2,11 +2,13 @@
 
 ## Scope and reading order
 
-The owner selected an artistic **memory-palace reconstruction and interactive journal** on 2026-10-18. Start with [README.md](README.md), [PLANNING.md](PLANNING.md) and [DESIGN.md](DESIGN.md). For research, read the [condensed plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md). Then inspect only task-relevant implementation files.
+Default scope is the **crime-scene reconstruction replacement**, selected 2026-10-28: Argus scenes, Kimodo user-requested motion, evaluated complete hypothesis objects and the retained Arkham detective/matrix aesthetic. Start with the short [current plan](PLANNING.md), then only assigned implementation, callers and tests. Read [DESIGN.md](DESIGN.md) and the Weave policy for visual work; broader research only when assigned.
 
-The owner explicitly authorized aggressive removal of superseded material across all weeks and condensation of long-term research. This supersedes former archive-preservation requirements for this cleanup only. [History](docs/HISTORY.md) identifies the recovery commit. Do not restore old documents as active instructions or infer current capability from them.
+Do not load other weeks, bedroom/Hypersim/upload-room experiments, old reconstruction plans, archived ledgers, other worktrees or `.local` datasets by default. Scope searches to the task's directories. Follow an actual shared dependency when necessary and state why; the owner can explicitly request any other area. This is a context/navigation boundary, not a file-access restriction or permission to weaken repository-wide checks.
 
-The retained application is in [week4/](week4/README.md); root commands target it. Week 4 is the implementation foundation, not a competing plan. Old Paris/Cloud/Rust assignment prompts are retired. The new demo remains proposed until evidenced. Cleanup does not authorize generation, model downloads, installation, studies or phase advancement.
+The 2026-10-28 cleanup authorizes removal of **superseded crime-scene implementation and generated candidates only**, preserving original photos/scans, provenance and failed-run receipts. Inspect exact targets, preserve concurrent work, and migrate active callers/catalog entries/tests before deleting dependencies. Older all-weeks cleanup authorization was historical and does not apply to this replacement. [History](docs/HISTORY.md) and [prior planning](PLANNING_HISTORY.md) are reference-only, not active instructions.
+
+The retained React/TypeScript/Three.js application is in `week4/`; root commands target it. Preserve useful shared infrastructure without treating old workflows as alternatives to the selected replacement. No model integration or new demo is complete until evidenced. Cleanup does not authorize generation, model downloads, installation, paid execution, studies or phase advancement.
 
 ## Research ownership
 
@@ -43,7 +45,7 @@ Every major phase needs explicit owner acceptance against a reproducible tested 
 
 Retain the owner's Astra orchestration workflow and `.claude/agents/eva-*.md` definitions in Claude Code; see [workflow](docs/development/AGENT_WORKFLOW.md). These are development roles, not EVA runtime models.
 
-Delegate substantive independent work when useful, not as a ritual for small edits; at most three concurrent workers. Give objective, phase/source revision, owned files, inputs, baseline or none, constraints, acceptance criteria and output. Include the Ponytail rules above in worker context. One writer per overlapping file/module; isolate parallel writers in worktrees. Read-only audits may share the checkout. The lead integrates and verifies.
+Delegate substantive independent work when useful, not as a ritual for small edits; normally at most three concurrent workers. For the owner-approved 2026-10-28 crime-scene replacement only, use at most **five agents total including the coordinator**, with at most four concurrent workers; see [current scope](PLANNING.md). Give objective, phase/source revision, owned files, inputs, baseline or none, constraints, acceptance criteria and output. Include the Ponytail rules above in worker context. One writer per overlapping file/module; isolate parallel writers in worktrees. Read-only audits may share the checkout. The lead integrates and verifies.
 
 Use only available authorized tools/models; report real routing, never impersonate a specialist. Coordination records/configured aliases do not prove execution. Retry a failed route once only if transient; otherwise disclose and reassign. No automatic publishing or permission bypass.
 

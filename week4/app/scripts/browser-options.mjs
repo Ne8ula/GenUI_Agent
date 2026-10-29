@@ -5,5 +5,6 @@ export function browserOptions(env = process.env, platform = process.platform) {
   if (!['chromium', 'chrome', 'msedge'].includes(channel)) {
     throw new Error('EVA_BROWSER_CHANNEL must be chromium, chrome or msedge');
   }
-  return { headless: true, ...(channel === 'chromium' ? {} : { channel }) };
+  return { headless: true, ...(channel === 'chromium' ? {} : { channel }),
+    ...(env.EVA_REQUIRE_NVIDIA === '1' ? { channel: 'chromium', args: ['--enable-gpu', '--use-angle=vulkan', '--enable-features=Vulkan', '--disable-vulkan-surface'] } : {}) };
 }

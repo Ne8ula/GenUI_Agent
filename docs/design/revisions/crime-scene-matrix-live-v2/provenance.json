@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-29",
+  "status": "owner-acceptance-pending",
+  "visual_prerequisite": {"route": "explicit-owner-waiver", "scope": "Continuation of the bounded reused-code Matrix correction", "instruction": "Reuse code; waive Weave", "generated_references": []},
+  "source_glb_sha256": "138e407bcff0ca2c241860b80f48486bcafeb36038123099c0ca73a116fe5815",
+  "cloud_plan_sha256": "bb2d97f929c66acbaf182f345c4891091de7b16e0459dffcb2ed4d0ccf219b89",
+  "cloud_app_id": "ap-s43PAr6ajDk4445cCMNNfe",
+  "gpu": "NVIDIA Tesla T4",
+  "approval": {"sessions": 1, "worker_seconds": 900, "startup_seconds": 300, "client_seconds": 1200, "upload_limit_mib": 64, "operational_allowance_usd": 2, "hard_billing_cap": false, "actual_cost_usd": null, "retries": 0},
+  "result": "implementation/after/result.json",
+  "receipt": "implementation/after/receipt.json",
+  "selected_view": {"capture": "implementation/after/room-direction-3.png", "sha256": "de1011e40f82091ceb76af139a0c95a609b09681efdc1361756c5437d9ec4ea0", "reproduction_in_cloud_snapshot": "Home, then 47 ArrowRight steps", "inspection": "Normal view and corresponding live Matrix view inspected"},
+  "post_snapshot_change": "Initial default-angle correction used [cos(5.64), -.22, sin(5.64)], matching the navigated live angle. Subsequent owner-requested readability correction changes pitch to -.5, removes full-width footer shading, and applies luminance-weighted Matrix v3 coverage and shadow backing. CPU tests/typecheck passed; no GPU rendering or captures of these latest changes.",
+  "verification": {"focused_tests": 8, "repository_tests": 460, "typecheck": "passed", "owner_acceptance": "pending", "fps": null, "novnc_latency": null},
+  "cleanup": {"state": "stopped", "tasks": 0},
+  "limitations": ["Inferred unaligned room", "No physical-scale or registration claim", "No collision-aware navigation", "No new model inference"]
+}

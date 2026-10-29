@@ -1,5 +1,14 @@
 import * as THREE from 'three';
 
+export const MATRIX_BAYER_GLSL = `
+  float bayer4(vec2 cell){
+    vec2 p=mod(cell,4.0);
+    vec2 low=mod(p,2.0);
+    vec2 high=floor(p/2.0);
+    return (mod(low.x+low.y,2.0)*8.0+low.y*4.0
+      +mod(high.x+high.y,2.0)*2.0+high.y+0.5)/16.0;
+  }`;
+
 export function createRoomMatrixGeometry(buffer:THREE.BufferGeometry,provenance:string[]) {
   const result=buffer.toNonIndexed();
   const count=result.getAttribute('position').count;
@@ -47,13 +56,7 @@ export function createRoomMatrixMaterial(pixelRatio:number) {
       varying vec3 eyePosition;
       varying float shell;
       varying float inferred;
-      float bayer4(vec2 cell){
-        vec2 p=mod(cell,4.0);
-        vec2 low=mod(p,2.0);
-        vec2 high=floor(p/2.0);
-        return (mod(low.x+low.y,2.0)*8.0+low.y*4.0
-          +mod(high.x+high.y,2.0)*2.0+high.y+0.5)/16.0;
-      }
+      ${MATRIX_BAYER_GLSL}
       void main(){
         vec2 pixel=gl_FragCoord.xy/pixelRatio;
         vec2 cell=floor(pixel/3.0);

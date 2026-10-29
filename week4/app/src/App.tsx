@@ -18,8 +18,11 @@ const BenchmarkRoom = lazy(() => import('./room/BenchmarkRoom.tsx').then(module 
 const Demo = lazy(() => import('./demo/DemoApp.tsx').then(module => ({ default: module.DemoApp })));
 const Bedroom = lazy(() => import('./bedroom/BedroomApp.tsx').then(module => ({ default: module.BedroomApp })));
 
+const CrimeScene = lazy(() => import('./crime-scene/PanoramaApp.tsx').then(module => ({ default: module.CrimeSceneEntry })));
+
 export function App() {
   const scene = new URLSearchParams(window.location.search).get('scene');
+  if (scene === 'crime-scene') return <Suspense fallback={<p>Opening the investigation…</p>}><CrimeScene /></Suspense>;
   if (scene === 'demo') return <Suspense fallback={null}><Demo /></Suspense>;
   if (scene === 'teal-bedroom') return <Suspense fallback={<p>Opening the teal bedroom…</p>}><Bedroom /></Suspense>;
   if (scene === 'arkitscenes-room') return <Suspense fallback={<p>Opening the saved room estimate…</p>}><BenchmarkRoom /></Suspense>;

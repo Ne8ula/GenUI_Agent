@@ -1,0 +1,135 @@
+{
+  "templateOnly": false,
+  "status": "figure-playback-gpu-verified-framing-and-chair-pending",
+  "changeId": "crime-scene-matrix-v1",
+  "phase": "bounded-visual-revision",
+  "sourceRevision": "0380e13efbdfa8c1ee29fe2c621927852b7766b7 plus preserved uncommitted work",
+  "acceptedBaseline": null,
+  "scope": "Abstract matrix figures, smoother time-driven motion, complete generated tag-18 chair; retain measured evidence and generation labels",
+  "ownedUiFiles": ["week4/app/src/crime-scene/playback.ts", "week4/app/src/crime-scene/figures.ts", "week4/app/src/crime-scene/renderer.ts"],
+  "motionRequired": true,
+  "budget": {
+    "unit": "Weave workspace credits",
+    "ceiling": 400,
+    "reportedSpent": 288,
+    "remainingCeiling": 112,
+    "approval": "Owner: Yes approve, following bounded design and 400-credit proposal",
+    "attempts": "One each: artistic still, photo-guided chair still, Seedance 2.5 motion reference, Meshy V6 mesh",
+    "automaticRetries": false,
+    "modalAuthorized": false
+  },
+  "runs": [
+    {
+      "route": "direct-model",
+      "toolModelId": "2db90e64-51dd-45b2-870a-66d19a81118e",
+      "modelId": "gpt-image-2.5",
+      "predictionId": "a15bb902-ad7c-4c1c-b6ec-81f0f7d43ce5",
+      "purpose": "artistic-matrix-still",
+      "inputs": {
+        "background": "opaque",
+        "image_size": "landscape_16_9",
+        "model": "Flare",
+        "output_format": "png",
+        "prompt": "Visual development reference for an artistic 3D scene-investigation demo, not a real forensic record. Single wide cinematic view of a generic anonymous human-shaped reconstruction next to a complete tubular metal chair in a dark sparse scanned room. Full human silhouette visible from head to both feet with generous framing; human and chair plausibly scaled together. Abstract matrix material: tiny ordered cyan and teal square pixels, sparse luminous contour strands, hollow-square inferred surface marks, subtle horizontal quantization, generous dark negative space through the body. Readable gesture with one hand gently reaching toward the chair. Not a solid mannequin: no opaque white glowing body, no overexposure, no noisy particle explosion, no code rain, no text, no logos, no weapons, no blood, no victim. Both chair and figure have coherent 3D form; artistic pixel breakup is a surface treatment not missing geometry. Quiet museum-installation aesthetic. Static reference for implementing a native real-time shader; not a photorealistic reconstructed event.",
+        "quality": "high"
+      },
+      "quotedCost": 8,
+      "costApprovalRef": "Structured Weave charge question: Approve",
+      "reportedCost": 8,
+      "status": "completed-and-inspected",
+      "outputs": [{"path": "references/images/matrix-figure.png", "kind": "image", "width": 1088, "height": 608, "bytes": 843429, "sha256": "7a4ea856be022fe054b29b73b7bcc1d15da819c94e15b0bb9f2fb530e9a0cd75", "source": "Weave generated design reference", "license": null}],
+      "inspection": "Full image inspected: hollow-square cyan pixels, broken contours, restrained luminance and full-body framing. Select material/framing only; generic cantilever chair is not source geometry."
+    },
+    {
+      "route": "direct-model",
+      "toolModelId": "cbe8b347-8c85-4e1a-b379-f96f48932f43",
+      "modelId": "bytedance/seedance-2.5/image-to-video",
+      "predictionId": "4a1fb610-30f4-42c4-acfe-9f2f7bc0b3dd",
+      "purpose": "motion-reference",
+      "inputs": {
+        "image": "references/images/matrix-figure.png (first run output passed directly to model)",
+        "aspect_ratio": "16:9",
+        "bitrate_mode": "standard",
+        "codec": "H264",
+        "draft": false,
+        "duration": "10",
+        "generate_audio": false,
+        "resolution": "720p",
+        "us_hosted": false,
+        "prompt": "Animate this artistic reference as a quiet native 3D reconstruction demo. Locked wide camera, entire anonymous pixel human visible head to feet throughout, generous top and bottom margin. Over ten seconds: hold still briefly, smoothly lean a little toward the chair while the right arm gently reaches toward its back, ease to a brief rest, smoothly retract the arm and return to the initial standing pose, then hold. Smooth physically restrained transitions with stable feet and no sliding; no sudden pose snapping. Preserve sparse cyan/teal square-pixel contours and dark negative space; pixels are anchored to the moving body rather than random flashing or glitter. Chair remains still and complete throughout, no collision, no falling, no violent action, no inferred historical event. No camera orbit, zoom, jump cuts, white glowing solid surfaces, strobe, text, captions, interface, logo or audio. A non-evidentiary motion design reference; preserve generic identity and room composition."
+      },
+      "quotedCost": 280,
+      "costApprovalRef": "Structured Motion charge question: Approve",
+      "reportedCost": 280,
+      "status": "completed-and-inspected",
+      "outputs": [{"path": "references/videos/matrix-motion.mp4", "kind": "video", "width": 1284, "height": 718, "durationSeconds": 10.041667, "fps": 24, "bytes": 4853934, "sha256": "10f6757f25a75c14b4972f9100429e9a95df158305689edf3e679c27d9d5417a", "source": "Weave generated motion reference", "license": null}],
+      "inspection": "Full ffmpeg decode passed. Lead inspected 40 chronological samples at 4 fps: slow lean, extended pause, return; sparse contours, fixed chair, almost fixed feet and camera. Not real-time viewing or a performance measurement. Initial headroom is too tight; implementation must retain more margin."
+    }
+  ],
+  "selectedAssets": ["references/images/matrix-figure.png", "references/videos/matrix-motion.mp4"],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {"status": "figure-still-and-motion-inspected-chair-pending", "inspector": "lead", "method": "Read full still and 40 chronological motion samples at 4 fps; full ffmpeg decode", "observations": ["Restrained cyan hollow-square marks and fine contours", "Slow lean, held gesture and return with stationary chair", "Invented chair silhouette is not source-matched", "Motion reference headroom is too tight"], "limitations": ["Temporal sampling, not real-time viewing", "Reference sampling is not app performance evidence; see diagnosticFollowUp for v10 GPU verification"]},
+  "implementationGuidance": ["Body-anchored sparse cyan marks, dark negative space, no random temporal flashing", "Reuse rig clips with deterministic timeline sampling and eased transitions", "Keep reduced-motion states static and preserve pause, seek and Escape", "Preserve measured scan, original photos and rejected assets; no chair approval", "Full-body framing and chair-relative staging still need implementation and matching GPU captures"],
+  "writerInspections": [{"writer": "lead", "date": "2026-10-27", "assets": ["references/images/matrix-figure.png", "references/videos/matrix-motion-samples.png"], "guidance": "REVIEW.md#implementation-guidance-and-comparison", "scope": "figure material and animation; not chair admission"}],
+  "implementation": {
+    "testedSourceSha256": {
+      "week4/app/src/crime-scene/playback.ts": "58d79c16cb86d2a3c5054499b6183d15a130a3658a5b11c5e14cbe59a6f65d85",
+      "week4/app/src/crime-scene/figures.ts": "65f474c76da3698b9e3bc138082a6c868f3c0adcd77b57a3324ebd0a3931ee21",
+      "week4/app/src/crime-scene/renderer.ts": "b901489035d0189360ca662509380429db53c82810cac4aa002b03a077b747b8",
+      "week4/app/tests/crime-scene-playback.test.ts": "6b48e116c3901fbf464daa9ff5064c21f3433c3f4df1a138e1f75f7c942e7378",
+      "week4/app/tests/crime-scene-figures.test.ts": "0934cfd1c5af68c39d805a44c23d5222491183301a486e0ad64304803fd5f4e5"
+    },
+    "beforeCaptures": ["implementation/before/walkthrough-paused.png", "../../../../.local/reconstruction/crime-scene-browser-v8/returned/walkthrough.webm"],
+    "afterCaptures": ["implementation/after/walkthrough-paused.png", "implementation/after/walkthrough-evidence.png", "implementation/after/playback-samples.png"],
+    "checks": [
+      {"command": "node --test week4/app/tests/crime-scene-playback.test.ts week4/app/tests/crime-scene-figures.test.ts", "result": "Initial RED 15 pass / 2 expected failures, GREEN 17 pass; review regression reproduced both timing defects, final GREEN 18 pass"},
+      {"command": "npm test", "result": "103 core + 333 app passed after review fixes; zero failures/skips", "log": "implementation/offline/matrix-final-tests.log"},
+      {"command": "npm run typecheck", "result": "passed after review fixes; three existing Rust warnings", "log": "implementation/offline/matrix-final-typecheck.log"},
+      {"command": "npm run build", "result": "passed after review fixes; three Rust warnings and Vite chunk-size warning", "log": "implementation/offline/matrix-final-build.log"}
+    ],
+    "deviations": ["Subpass only: v9 timed out; v10 passed the same app with instrumented driver, so the intermittent stall cause remains unknown despite successful GPU playback", "Framing, chair-relative staging, floor offset and complete chair still outstanding", "No chair source asset received from official uploader; no chair reference or mesh run"]
+  },
+  "modalExecution": {
+    "plan": "../../../../.local/reconstruction/crime-scene-browser-v9/plan.json",
+    "planSha256": "7a3725d242a853ae50848186fceac6fda3677aea6469229119a8f6cde5ad752d",
+    "approval": "Owner selected Approve v9 after exact hash, one-attempt $2 operational allowance and resource/upload/retention disclosure",
+    "scope": "Current matrix figures: real canned walkthrough recording and fixture smoke; no chair generation or live reasoning",
+    "attempts": 1,
+    "operationalAllowanceUsd": 2,
+    "providerEnforcedDollarCap": false,
+    "uploadBytes": 45680654,
+    "status": "failed-walkthrough-timeout-cleanup-confirmed",
+    "receipt": "../../../../.local/reconstruction/crime-scene-browser-v9/receipt.json",
+    "appId": "ap-k1E5NPTWm4jz4zp42t5TDh",
+    "result": {"remoteUnitTestsPassed": 46, "walkthrough": "90-second timeout; exact blocking operation unknown", "smoke": "not run", "recordingReturned": false, "partialScreenshots": 6},
+    "cleanup": {"state": "stopped", "tasks": 0},
+    "authorizationConsumed": true,
+    "actualBilledCostUsd": null
+  },
+  "diagnosticFollowUp": {
+    "date": "2026-10-28",
+    "scope": "Persist driver progress and errors before browser awaits; no UI changes or timeout increases; v9 root cause unresolved",
+    "checks": [
+      {"command": "node --test week4/app/tests/crime-scene-walkthrough.test.ts", "result": "RED missing report on stalled screenshot; GREEN 3/3"},
+      {"command": "node --check week4/app/scripts/crime-scene-walkthrough.mjs", "result": "passed"},
+      {"command": "npm test", "result": "103 core + 334 app passed; zero failures/skips", "log": "implementation/offline/matrix-diagnostics-tests.log"},
+      {"command": "npm run typecheck", "result": "passed; same three Rust warnings", "log": "implementation/offline/matrix-diagnostics-typecheck.log"},
+      {"command": "python -I -m unittest discover -s scripts/room_workflow -p test_crime_scene_*cloud.py", "result": "11 passed in existing Modal client environment"}
+    ],
+    "nextPlan": "../../../../.local/reconstruction/crime-scene-browser-v10/plan.json",
+    "nextPlanSha256": "4ec4f7186fe9941b474b4971d7cbb11b4f262202567f5e40648145febe017cea",
+    "uploadBytes": 45683628,
+    "status": "passed-cleanup-confirmed-authorization-consumed",
+    "authorizationConsumed": true,
+    "receipt": "../../../../.local/reconstruction/crime-scene-browser-v10/receipt.json",
+    "appId": "ap-igm6W6OWHgRHE2mCZ8e2xI",
+    "result": {"remoteUnitTestsPassed": 47, "walkthrough": "passed in 36.03 seconds", "smoke": "passed in 74.09 seconds", "browserErrors": [], "gpu": "ANGLE NVIDIA L4 Vulkan", "v9StallCause": "unknown; not reproduced with unchanged app source"},
+    "cleanup": {"state": "stopped", "tasks": 0},
+    "actualBilledCostUsd": null,
+    "recording": {"path": "../../../../.local/reconstruction/crime-scene-browser-v10/returned/walkthrough.webm", "durationSeconds": 34.2, "width": 1440, "height": 960, "fps": 25, "bytes": 4136207, "sha256": "ff799520c70bb3209f74273e65ab771300c5e20bfa063b355c80565f89bc4d5f", "inspection": "Full decode passed; paused/evidence checkpoints and 24 samples at 4 fps from 25-31 seconds inspected. Matrix surface and changing gesture visible, then stable pause. Head and feet cropped; no full-rate smoothness or physical-contact claim."},
+    "approval": "2026-10-28: owner selected Approve v10 for the exact SHA-256 and one-attempt $2 scope after resource/upload/retention disclosure",
+    "operationalAllowanceUsd": 2,
+    "providerEnforcedDollarCap": false
+  },
+  "ownerDecision": {"status": "design-and-spending-approved-quality-pending", "date": "2026-10-27", "feedback": "More matrix-like, artistic and abstract; smoother motion; fully generated chair rather than partial scan"}
+}

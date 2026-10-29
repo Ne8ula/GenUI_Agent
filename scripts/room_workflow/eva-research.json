@@ -1,0 +1,251 @@
+[
+  {
+    "id": "nij-csi-guide-2000",
+    "citation": "Technical Working Group on Crime Scene Investigation. Crime Scene Investigation: A Guide for Law Enforcement. U.S. Department of Justice, Office of Justice Programs, National Institute of Justice, January 2000. NCJ 178280.",
+    "url_or_doi": "https://www.ojp.gov/pdffiles1/nij/178280.pdf",
+    "access": "public-domain",
+    "verification": "full-text",
+    "principles": [
+      "Approach the scene as the single chance to preserve physical clues, stay objective, and weigh witness or suspect statements cautiously rather than letting them steer the assessment.",
+      "Record conditions as found before anything changes: lights, shades, doors and windows, smells, liquids, positions of movable furniture, personal items, and every action taken by responders.",
+      "Photograph overall, mid-range and close-up views and sketch and measure item positions before evidence is moved, so the scene can be independently reviewed later.",
+      "Collect the most transient evidence first, move from least to most intrusive methods, and consider specialist techniques such as bloodstain documentation and projectile trajectory analysis."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "ffs-data-paper-2026",
+    "citation": "Daudigny, H., & Grussenmeyer, P. (2026). A 2D, 3D and text dataset of fictional forensic scenes (FFS). Data in Brief, 66, 112825.",
+    "url_or_doi": "https://doi.org/10.1016/j.dib.2026.112825",
+    "access": "open",
+    "verification": "full-text",
+    "principles": [
+      "FFS scenes are fictional set-ups built at the University of Lausanne School of Criminal Justice, partly for student practical teaching; they are not real casework.",
+      "Traces include mannequins, ballistic items, everyday objects and 'reddish traces', each flagged with a numbered polygonal marker; the paper does not say what material stands in for blood.",
+      "Each scene was laser-scanned once from a single position (point cloud plus panorama) and photographed from wide shots down to marker close-ups, with an exhibit inventory spreadsheet.",
+      "The dataset is licensed CC BY-NC-SA 4.0, and the authors state it is too small on its own to train AI models; some scenes lack markers or photos."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "attinger-2018-impact-spatter",
+    "citation": "Attinger, D., Liu, Y., Bybee, T., & De Brabanter, K. (2018). A data set of bloodstain patterns for teaching and research in bloodstain pattern analysis: Impact beating spatters. Data in Brief, 18, 648-654.",
+    "url_or_doi": "https://doi.org/10.1016/j.dib.2018.02.070",
+    "access": "open",
+    "verification": "abstract",
+    "principles": [
+      "The set holds 61 high-resolution scans of spatter patterns produced by controlled impacts that imitate beating events, using fresh swine blood.",
+      "Patterns were made with two lab rigs in which a solid object struck a small pool of blood and droplets flew a set distance onto poster board.",
+      "Impact velocity and source-to-target distance were the main controlled variables; other factors were explored less systematically.",
+      "The authors intend the data for teaching and research in bloodstain pattern analysis, i.e. as reference patterns with known generating conditions."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "asb-tr-033-2017",
+    "citation": "AAFS Standards Board. ASB Technical Report 033, Terms and Definitions in Bloodstain Pattern Analysis, First Edition 2017 (approved November 2017).",
+    "url_or_doi": "https://www.aafs.org/sites/default/files/media/documents/033_TR_e1_2017.pdf",
+    "access": "open",
+    "verification": "full-text",
+    "principles": [
+      "A transfer stain results from contact between a blood-bearing surface and another surface; a swipe is a transfer that also shows the two surfaces moved relative to each other.",
+      "A spatter stain comes from an airborne drop created when force acts on liquid blood; an impact pattern specifically results from an object striking liquid blood.",
+      "A saturation stain forms where liquid blood accumulates in an absorbent material such as fabric; a void is a blood-free gap within an otherwise continuous stain or pattern.",
+      "Spatter directionality can be traced back to a two-dimensional area of convergence, and trajectories to a three-dimensional area of origin of the spatter-producing event."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "swgstain-terminology-2009",
+    "citation": "Scientific Working Group on Bloodstain Pattern Analysis (SWGSTAIN). Scientific Working Group on Bloodstain Pattern Analysis: Recommended Terminology. Forensic Science Communications, 11(2), April 2009.",
+    "url_or_doi": "https://theiai.org/docs/SWGSTAIN_Terminology.pdf",
+    "access": "open",
+    "verification": "full-text",
+    "principles": [
+      "The list exists so practitioners use the same words when teaching, discussing, writing and testifying about bloodstain patterns.",
+      "An altered stain shows signs of a physical change after deposition; a wipe pattern is created when an object moves through blood that was already there and still wet.",
+      "A flow pattern results from blood moving across a surface under gravity or because the surface itself moved.",
+      "Terms classify observed stain features and mechanisms; ASB TR 033 later carried many of these definitions forward."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "chamberlin-multiple-working-hypotheses",
+    "citation": "Chamberlin, T. C. (1890). The Method of Multiple Working Hypotheses. Science, ns-15(366), 92-96. Reprinted in Science, 148(3671), 754-759 (1965).",
+    "url_or_doi": "https://doi.org/10.1126/science.ns-15.366.92",
+    "access": "public-domain",
+    "verification": "full-text",
+    "principles": [
+      "Once an investigator becomes attached to one early explanation, they tend to favor facts that fit it and overlook facts that do not.",
+      "Guard against this by developing every reasonable explanation at the same time, so that no single favored account controls observation.",
+      "Many phenomena arise from several causes acting together, so the task includes judging how much each candidate cause contributed.",
+      "Holding several hypotheses at once makes otherwise trivial facts significant because they help discriminate between explanations, which promotes thoroughness."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "enfsi-evaluative-reporting-2015",
+    "citation": "European Network of Forensic Science Institutes (2015). ENFSI Guideline for Evaluative Reporting in Forensic Science, approved version 3.0 (STEOFRAE project).",
+    "url_or_doi": "https://enfsi.eu/wp-content/uploads/2016/09/m1_guideline.pdf",
+    "access": "open",
+    "verification": "full-text",
+    "principles": [
+      "Assess findings against at least one pair of competing propositions, typically each party's version of events; with no alternative, the value of the findings cannot be assessed.",
+      "State how probable the findings are under each proposition, not how probable a proposition is given the findings; avoid the transposed conditional.",
+      "Questions about how something happened (activity level) require reasoning about transfer, persistence and background levels, especially for microtraces such as fibres and gunshot residue.",
+      "Decide expected findings before examining, keep propositions fixed unless case information changes, and when no propositions can be set, offer only clearly labelled investigative explanations."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "kassin-dror-kukucka-2013",
+    "citation": "Kassin, S. M., Dror, I. E., & Kukucka, J. (2013). The forensic confirmation bias: Problems, perspectives, and proposed solutions. Journal of Applied Research in Memory and Cognition, 2(1), 42-52.",
+    "url_or_doi": "https://doi.org/10.1016/j.jarmac.2013.01.001",
+    "access": "paywalled",
+    "verification": "full-text",
+    "principles": [
+      "Context such as confessions or an investigative theory can distort both lay witness perception and expert forensic judgments.",
+      "Work linearly: examine and document the scene evidence on its own before comparing it with any suspect or target explanation.",
+      "Shield examiners from task-irrelevant case information and use blind verification where possible.",
+      "Prefer comparisons against several plausible alternatives (an evidence lineup) over a single-suspect comparison."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "tbi-glass-fracture-sop",
+    "citation": "Tennessee Bureau of Investigation, Forensic Services Division. Microanalysis Standard Operating Procedures Manual: Direction of Force and Order of Breakage Determination, Version 7.0 (effective 31 March 2019).",
+    "url_or_doi": "https://downloads.tbi.tn.gov/forensic-services/microanalysis/sop-manual/M_SOP0036.pdf",
+    "access": "open",
+    "verification": "full-text",
+    "principles": [
+      "Radial cracks spread outward from the impact point and concentric cracks form rings around it; a broken pane should be documented as received and reassembled with each piece's find location marked.",
+      "Ridge (hackle) marks along a radial crack edge run at right angles to the side opposite the impact, which indicates the direction of force.",
+      "When a pane has several impacts, cracks from later impacts stop at cracks that already existed, which allows the order of impacts to be inferred.",
+      "Medium or low velocity impacts can give contradictory patterns, projectile size or shape cannot be inferred, and later heat or mechanical stress can add misleading cracks; inconclusive results should be reported with reasons."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "lewinski-2010-ejection-patterns",
+    "citation": "Lewinski, W. J., Hudson, W. B., Karwoski, D., & Redmann, C. J. (2010). Fired Cartridge Case Ejection Patterns From Semi-Automatic Firearms. Investigative Sciences Journal, 2(3), 1-32. NCJ 233730.",
+    "url_or_doi": "https://www.ojp.gov/ncjrs/virtual-library/abstracts/fired-cartridge-case-ejection-patterns-semi-automatic-firearms",
+    "access": "open",
+    "verification": "abstract",
+    "principles": [
+      "Eight semi-automatic weapons fired from eleven positions produced widely varying casing landing spots, even with firearm, position and ammunition controlled.",
+      "Of 7,670 rounds, more than a quarter of casings landed outside the commonly assumed right-rear zone.",
+      "Casing location alone supports only a tentative estimate of where a shooter stood."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "nij-firearms-training-long-guns",
+    "citation": "National Institute of Justice. Firearms Examiner Training, Module 08: Long or Shoulder Firearms (archived online training course).",
+    "url_or_doi": "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/module-08/long-or-shoulder-firearms",
+    "access": "public-domain",
+    "verification": "full-text",
+    "principles": [
+      "Smoothbore long guns are designated by gauge rather than calibre, with the .410 bore as the exception to gauge naming.",
+      "Double-barrel smoothbore long guns (side-by-side or over/under) generally use a break-open action, while single-barrel ones may be break-open, pump, bolt or semi-automatic.",
+      "Barrel choke controls how widely pellets spread.",
+      "The page is archived training material and does not itself describe how spent cases are ejected per action type."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "deedrick-koch-2004-animal-hair",
+    "citation": "Deedrick, D. W., & Koch, S. L. (2004). Microscopy of Hair Part II: A Practical Guide and Manual for Animal Hairs. Forensic Science Communications, 6(3). NCJ 218689.",
+    "url_or_doi": "https://www.ojp.gov/ncjrs/virtual-library/abstracts/microscopy-hair-part-ii-practical-guide-and-manual-animal-hairs",
+    "access": "public-domain",
+    "verification": "abstract",
+    "principles": [
+      "Hair transferred through contact can associate people, places and animals and can generate investigative leads.",
+      "Animal hairs can be examined to identify the kind of animal but lack the features needed to tell one animal from another similar animal.",
+      "Animal coats contain guard hairs, fur or wool hairs, and tactile hairs (whiskers).",
+      "A hair association should be confirmed by a second qualified examiner, and its weight depends on how distinctive the hairs are."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "douglas-munn-1992-staging",
+    "citation": "Douglas, J. E., & Munn, C. (1992). Violent crime scene analysis: Modus operandi, signature, and staging. FBI Law Enforcement Bulletin, 61(2), 1-10. NCJ 134597.",
+    "url_or_doi": "https://www.ojp.gov/ncjrs/virtual-library/abstracts/violent-crime-scene-analysis-modus-operandi-signature-and-staging",
+    "access": "public-domain",
+    "verification": "abstract",
+    "principles": [
+      "Staging means someone deliberately altered the scene before police arrived.",
+      "Staging may aim to steer suspicion away from the most likely suspect or to protect the victim or family.",
+      "Modus operandi is learned and changes over time, whereas an offender's signature is a more stable element of behaviour."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "nist-sp-800-101r1-mobile",
+    "citation": "Ayers, R., Brothers, S., & Jansen, W. (2014). Guidelines on Mobile Device Forensics. NIST Special Publication 800-101 Revision 1. National Institute of Standards and Technology.",
+    "url_or_doi": "https://doi.org/10.6028/NIST.SP.800-101r1",
+    "access": "public-domain",
+    "verification": "full-text",
+    "principles": [
+      "Photograph a mobile device as found, including cables, peripherals and any visible screen contents, without touching or contaminating it; fingerprint or DNA work may be needed to link the device to a user.",
+      "Isolate the device from cellular, Wi-Fi and Bluetooth networks so incoming data or a remote wipe cannot alter evidence; airplane mode, powering off and shielded containers each carry trade-offs.",
+      "Record the date and time shown on the handset and compare it with a reference clock, noting discrepancies.",
+      "Shielding containers do not always block all signals and should be validated before use."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "nij-dna-officer-course",
+    "citation": "National Institute of Justice. What Every Law Enforcement Officer Should Know About DNA Evidence: Possible Sources and Locations (archived online training course).",
+    "url_or_doi": "https://nij.ojp.gov/nij-hosted-online-training-courses/what-every-law-enforcement-officer-should-know-about-dna/sources-locations-and-limitations/possible-sources-and-locations",
+    "access": "public-domain",
+    "verification": "full-text",
+    "principles": [
+      "Drinking vessels may hold saliva, sweat and skin cells from the victim, the suspect, or both.",
+      "DNA can be present anywhere at a scene, so look beyond the most visible stains, e.g. the grip of an object as well as its striking end.",
+      "DNA can help identify victims, perpetrators, witnesses and possible accomplices."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "nij-bpa-black-box-2022",
+    "citation": "National Institute of Justice (2022, December 14). Study Assesses the Accuracy and Reproducibility of Bloodstain Pattern Analysis. Summarizing Hicklin, R. A., et al. (2021). Accuracy and reproducibility of conclusions by forensic bloodstain pattern analysts. Forensic Science International (August 2021), doi:10.1016/j.forsciint.2021.110856.",
+    "url_or_doi": "https://nij.ojp.gov/topics/articles/study-assesses-accuracy-and-reproducibility-bloodstain-pattern-analysis",
+    "access": "public-domain",
+    "verification": "full-text",
+    "principles": [
+      "In a black-box study of 75 analysts and 150 patterns, about 11% of conclusions contradicted the known cause and pairs of analysts contradicted each other about 8% of the time.",
+      "Many disagreements stemmed from inconsistent use of terminology, and many conclusions claimed more certainty than the data supported.",
+      "Analysts worked from photographs without case context, so the rates are not precise operational error rates.",
+      "The study supports clearer consensus standards for bloodstain terminology and conclusion categories."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "fingerprint-sourcebook-ch7",
+    "citation": "Yamashita, B., & French, M. (2011). Chapter 7: Latent Print Development. In The Fingerprint Sourcebook. National Institute of Justice. NCJ 225327.",
+    "url_or_doi": "https://www.ojp.gov/pdffiles1/nij/225327.pdf",
+    "access": "public-domain",
+    "verification": "full-text",
+    "principles": [
+      "On nonporous surfaces such as metal and plastics, print residue sits on the outer surface and is easily damaged; cyanoacrylate, dye stains, powders and vacuum metal deposition are typical choices.",
+      "Development techniques are meant to be applied in a recommended sequence, and departing from it can make later processes ineffective.",
+      "Gloves protect against contamination but do not guarantee print preservation; handle nonporous items in areas unlikely to bear prints.",
+      "Package nonporous items singly so they cannot rub together and wipe fragile prints."
+    ],
+    "paraphrased": true
+  },
+  {
+    "id": "shoecase-2023-footwear",
+    "citation": "Tibben, A., McGuire, M., Renfro, S., & Carriquiry, A. (2023). ShoeCase: A data set of mock crime scene footwear impressions. Data in Brief, 50, 109546.",
+    "url_or_doi": "https://doi.org/10.1016/j.dib.2023.109546",
+    "access": "open",
+    "verification": "full-text",
+    "principles": [
+      "Mock bloody footwear impressions were made by stepping on a blood-soaked pad and then taking a natural step, giving full or partial prints depending on which part of the sole landed.",
+      "A second set of dust impressions was made with graphite-coated soles on cleaned vinyl flooring and recovered with gel lifters.",
+      "The authors identify lack of public data as a major barrier to quantitative footwear comparison methods.",
+      "The set covers only two footwear models in mock scenes, so it is a research and training reference rather than a population sample."
+    ],
+    "paraphrased": true
+  }
+]

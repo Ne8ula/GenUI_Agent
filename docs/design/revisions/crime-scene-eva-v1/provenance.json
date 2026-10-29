@@ -1,0 +1,22 @@
+{
+  "changeId": "crime-scene-eva-v1",
+  "status": "references-inspected-implementation-in-progress",
+  "sourceRevision": "0380e13+uncommitted (crimescene)",
+  "approval": "Owner approved the EVA investigator spec v1.1 and plan on 2026-10-27. Each Weave quote was approved separately through a structured prompt. Owner noted Seedance 2.5 is approved for future clips (this clip had already started on V1.5 Pro).",
+  "route": "official Figma MCP weave_run_model",
+  "runs": [
+    {"weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585", "label": "Nano Banana 2.1", "modelId": "fal-ai/nano-banana-2/edit", "predictionId": "984ded07-a1ff-4890-a28a-96d4c9b3d276",
+     "settings": {"model": "Nano Banana 2.1", "resolution": "1K", "aspect_ratio": "16:9", "output_format": "png", "seed": 51, "enable_web_search": false},
+     "inputs": "Text only: first-person dim cool room; overturned chair as solid icy hologram model with rim, scanline, particles, floor spill; hologram figures A/B; Ask EVA panel with Answer/Inconsistencies/Look for/Sources; amber hypothesis badge; Hypothetical reconstruction scrub bar.",
+     "reportedCost": 3.5, "output": "references/images/eva-investigator.png", "size": [1376, 768]},
+    {"weaveModelId": "8c3b471a-78fa-43ce-b95b-61d74a475dd1", "label": "Seedance V1.5 Pro", "modelId": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video", "predictionId": "9ff68c78-5dfb-421b-a2d4-1f2254e322c0",
+     "settings": {"duration": "5", "resolution": "720p", "aspect_ratio": "16:9", "camera_fixed": false, "generate_audio": false, "seed": 51},
+     "inputs": "First frame = still above; prompt: playhead advances, B pushes, chair tips with particles and scanline, A stumbles.",
+     "reportedCost": 31, "output": "references/videos/playback.mp4", "size": [1280, 720]}
+  ],
+  "remainingCreditsReported": 2393.3,
+  "contactSheet": "references/contact-sheet.png",
+  "motionRequired": true,
+  "inspection": {"status": "performed", "date": "2026-10-27", "inspector": "Claude Code lead (Opus 5.5)", "method": "Read the still and a 2 fps contact sheet before UI edits", "guidance": "REVIEW.md"},
+  "ownerDecision": {"status": "pending", "date": null}
+}

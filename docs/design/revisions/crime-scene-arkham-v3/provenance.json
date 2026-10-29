@@ -1,0 +1,30 @@
+{
+  "changeId": "crime-scene-arkham-v3",
+  "status": "implementation-candidate-cloud-runs-pending",
+  "sourceRevision": "0380e13+uncommitted (crimescene)",
+  "approval": "Owner approved on 2026-10-27: capture-order timeline, interactive scan replacing the carousel, walking inside the room; Weave still and clip; one Modal L4 GPU check ($2); one L4 demo session, max 60 minutes ($3); no retries. Each Weave quote was approved separately through a structured prompt.",
+  "ownerReference": {"file": "batman_references/arkham_detectivemode.mp4", "duration_s": 370.6, "use": "Local inspection only (contact sheets at 1/3 fps plus four full frames in the session scratchpad); not uploaded or committed"},
+  "route": "official Figma MCP weave_run_model",
+  "runs": [
+    {"weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585", "label": "Nano Banana 2.1", "modelId": "fal-ai/nano-banana-2/edit", "predictionId": "5f5ecfde-f5e4-49ba-a00a-50ab3c7960f5",
+     "settings": {"model": "Nano Banana 2.1", "resolution": "1K", "aspect_ratio": "16:9", "output_format": "png", "seed": 41, "enable_web_search": false},
+     "inputs": "Text only: first-person eye-level staged room, real materials graded dark cool with vignette, upside-down chair reconstructed as icy hologram with particles and floor light spill, centre reticle SCANNING, capture timeline 13:34:42-13:36:35, tag 18 relief card, caption chip.",
+     "reportedCost": 3.5, "output": "references/images/first-person-scan.png", "size": [1376, 768]},
+    {"weaveModelId": "8c3b471a-78fa-43ce-b95b-61d74a475dd1", "label": "Seedance V1.5 Pro", "modelId": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video", "predictionId": "0dadbd5b-1430-4813-8220-b808b9310a38",
+     "settings": {"duration": "5", "resolution": "720p", "aspect_ratio": "16:9", "camera_fixed": false, "generate_audio": false, "seed": 41},
+     "inputs": "First frame = the still above; prompt: reticle ring fills, hologram condenses and settles on the real chair, timeline playhead steps, beacon rises over the shoes.",
+     "reportedCost": 31, "output": "references/videos/scan-interaction.mp4", "size": [1280, 720]}
+  ],
+  "remainingCreditsReported": 27.8,
+  "contactSheet": "references/contact-sheet.png",
+  "motionRequired": true,
+  "inspection": {"status": "performed", "date": "2026-10-27", "inspector": "Claude Code lead (Opus 5.5)", "method": "Read the still and a 2 fps contact sheet of the clip before source edits", "guidance": "REVIEW.md"},
+  "browserCheck": {"planSha256": "4ba0da9c10b1e0c90b12275bc04c926de99037b6b860dcc39ba20da7e2e2aae5", "modalApp": "ap-BzJRdUG0Ji1TbxpLYMMMCb",
+    "status": "failed (smoke exit 1 at first assertion; test defect: first beacon behind the start view; fixed offline, not re-run)",
+    "passed": ["gpu-device", "vulkan", "unit 10/10"], "webgl": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA NVIDIA L4 (0x000027B8)), NVIDIA)", "cleanup": "stopped, 0 tasks", "captures": "none"},
+  "browserCheck2": {"approval": "Owner approved one additional L4 check ($2) and the edge arrow on 2026-10-27", "planSha256": "700b5e5210186847ed95458c837992439a4fffa8802c7ac40dfbca5c98bd1736", "modalApp": "ap-D7GgFyGyGyWjgAjKmc0YoJ",
+    "status": "failed after core flow passed (ambiguous canvas locator in smoke; fixed offline, not re-run)",
+    "passed": ["gpu-device", "vulkan", "unit 10/10", "no shader/page errors after load", "edge arrow", "hold-to-scan detected tag 18", "depth card loaded", "hologram animates"], "cleanup": "stopped, 0 tasks",
+    "captures": ["implementation/after/desktop.png", "implementation/after/scan-progress.png", "implementation/after/hologram.png"]},
+  "ownerDecision": {"status": "pending", "date": null}
+}

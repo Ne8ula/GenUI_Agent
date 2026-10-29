@@ -1,0 +1,28 @@
+{
+  "changeId": "crime-scene-arkham-v2",
+  "status": "implementation-candidate-cloud-runs-pending",
+  "sourceRevision": "0380e13+uncommitted (crimescene)",
+  "approval": "Owner approved on 2026-10-27: Weave still and clip; one Modal L4 depth run ($1); one GPU browser check ($2); one interactive demo session, max 60 minutes ($3); removal of the authored approximation; no retries. Each Weave quote was approved separately through a structured prompt.",
+  "route": "official Figma MCP weave_run_model",
+  "runs": [
+    {"weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585", "label": "Nano Banana 2.1", "modelId": "fal-ai/nano-banana-2/edit", "predictionId": "a51cc90c-8d87-40d4-8589-64e4b6b4f5bb",
+     "settings": {"resolution": "1K", "aspect_ratio": "16:9", "output_format": "png", "seed": 31, "enable_web_search": false},
+     "inputs": "Text only: original detective-vision style isometric cutaway room, cyan wireframe and point texture, depth-graded brightness, scan band, data glints, two amber highlights, caption 'Measured scan · photo depth estimated'.",
+     "reportedCost": 3.5, "output": "references/images/detective-wireframe.png", "size": [1376, 768]},
+    {"weaveModelId": "8c3b471a-78fa-43ce-b95b-61d74a475dd1", "label": "Seedance V1.5 Pro", "modelId": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video", "predictionId": "50f8cc23-0a18-4119-a421-4cabee0125da",
+     "settings": {"duration": "5", "resolution": "720p", "aspect_ratio": "16:9", "camera_fixed": false, "generate_audio": false, "seed": 31},
+     "inputs": "Text prompt for the photo-scan / depth / relief / particle / floor-up assembly sequence; end frame = the generated still above. No photo uploads. An 8 s quote (50 credits) was declined in favour of 5 s.",
+     "reportedCost": 31, "output": "references/videos/loading-sequence.mp4", "size": [1280, 720]}
+  ],
+  "remainingCreditsReported": 62.3,
+  "contactSheet": "references/contact-sheet.png",
+  "motionRequired": true,
+  "inspection": {"status": "performed", "date": "2026-10-27", "inspector": "Claude Code lead (Opus 5.5)", "method": "Read the still and a 2 fps contact sheet of the clip before source edits", "guidance": "REVIEW.md"},
+  "depth": {"model": "depth-anything/Depth-Anything-V2-Small-hf", "license": "Apache-2.0", "status": "returned 2026-10-27 on first attempt (owner-run request); 13 photo + 13 depth PNG, 640 px long side, registered as depth/* in ffs-resources.json", "runner": "scripts/room_workflow/ffs_depth_cloud.py",
+    "planSha256": "329e0702a722dfe958092b41a4901a039d9615c1adc04f003eb10dbfefc9cb9c", "modalApp": "ap-UIC6Snjcb0lVPSxQgzDwgj", "revision": "5426e4f0f36572d16453bbda7a8389317b1bef99", "gpu": "L4", "cleanup": "stopped, 0 tasks",
+    "inspection": "Lead read three pairs: shoes, tipped stool and markers separate cleanly; relative depth only, not measured or pose-aligned"},
+  "browserCheck": {"planSha256": "6b3402621f1af1b96bd7157d14914c0b056da6e540778437db238a86b8d0e148", "modalApp": "ap-hBqHwnQeGJRJ5tvnjOeCEP", "status": "failed (smoke exit 1 at line 99; test defect fixed offline, not re-run)",
+    "passed": ["gpu-device", "vulkan", "unit 8/8", "smoke through clue images"], "webgl": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA NVIDIA L4 (0x000027B8)), NVIDIA)", "cleanup": "stopped, 0 tasks", "captures": "implementation/after/"},
+  "demoPlanSha256": "24cd5655509d6b0a5f87ca36015ccbcd3d745529233456bb92c22f608f5f36d2",
+  "ownerDecision": {"status": "pending", "date": null}
+}

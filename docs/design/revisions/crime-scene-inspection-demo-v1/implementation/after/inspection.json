@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "phase": "after",
+  "viewport": {
+    "width": 2560,
+    "height": 1440
+  },
+  "checks": [
+    "28-second normal/scan/detective/source/return/normal cycle",
+    "room pixels change in Detective Mode and restore exactly in the central comparison crop",
+    "unaltered source photograph decoded",
+    "pause freezes progression; resume works; canvas input takes over",
+    "keyboard opens source; Escape closes and returns focus",
+    "390px touch controls/source dismissal; no horizontal overflow",
+    "reduced-motion activation settles directly without sweep"
+  ],
+  "errors": [],
+  "measuredFps": null,
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA Tesla T4 (0x00001EB8)), NVIDIA)",
+    "buffer": [
+      2560,
+      1440
+    ]
+  },
+  "video": "walkthrough.webm"
+}

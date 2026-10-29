@@ -1,0 +1,16 @@
+{
+  "kind": "eva-interior-tested-source-v1",
+  "head": "0380e13efbdfa8c1ee29fe2c621927852b7766b7",
+  "files": {
+    "week4/app/src/crime-scene/panorama.ts": "2e99a1d6a0953ef8a43df39f3ea9fe64b44ac3db6ede36ce95a4e6d63d31cf7d",
+    "week4/app/src/crime-scene/PanoramaApp.tsx": "e8beea68809cb81c11b5993006cb2dc9130611a3e17196ef953026d55ad41b17",
+    "week4/app/tests/crime-scene-panorama.test.ts": "83392734bb1c52cd37515c34aea814d18d2693b05f1e5cb409fabbbc05d95b3c",
+    "week4/app/tests/crime-scene-panorama-controls.test.ts": "0b144f4172ceccc5b70a3d88a24598bfc5445c61cdeb4b796d384572c32e7731",
+    "week4/app/tests/crime-scene-panorama-quality.test.ts": "254cc0f0f1edfe73a59347e587ef194e2333ecb38ec8b307e99f8933a70718d8",
+    "week4/app/tests/crime-scene-panorama-initialization.test.ts": "5569c094ddb79fde25b9e1dffa04b116cb72d70c797b861a8769d568ee6cc1c6",
+    "week4/app/scripts/crime-scene-panorama-capture.mjs": "f6c80052e6905a66eabaaefa8018d09b001419af4edcf34624177639e6fa9193",
+    "week4/app/scripts/panorama-quality.mjs": "9c20e2cb84fa34414767bd17f23475a137525de36ab77abd01d8b9d867bda81d",
+    "scripts/room_workflow/crime_scene_browser_cloud.py": "3446653de18bbe56acb3c5eb24560c12eed979e0792830e41285371df17c62cd",
+    "scripts/room_workflow/test_crime_scene_browser_cloud.py": "cf5853ca219fecf27c360dcb6870a9235054f8f1a5d320c9fdbe6710ca257800"
+  }
+}

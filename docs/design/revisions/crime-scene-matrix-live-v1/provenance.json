@@ -1,0 +1,63 @@
+{
+  "revision": "crime-scene-matrix-live-v1",
+  "date": "2026-10-29",
+  "source_head": "0380e13efbdfa8c1ee29fe2c621927852b7766b7",
+  "dirty_checkout": true,
+  "scope": "Interactive inferred panorama room with reversible Matrix dither and outward reveal; unchanged source geometry and textures",
+  "visual_prerequisite": {
+    "owner_waiver": "Reuse code; waive Weave — explicit approval for this bounded dithered Matrix correction",
+    "new_weave_runs": [],
+    "new_weave_spend": 0,
+    "reused_code": "week4/app/src/room/matrix-style.ts",
+    "guidance": "Static 3px Bayer cells, hollow inferred marks, source hue, rim light and dark negative space; no broad contour stack"
+  },
+  "candidate_sha256": "138e407bcff0ca2c241860b80f48486bcafeb36038123099c0ca73a116fe5815",
+  "offline_checks": {
+    "npm_test": {"core_passed": 103, "app_passed": 357, "failed": 0},
+    "typecheck": "passed",
+    "python_adapter_tests": {"passed": 22, "failed": 0, "skipped": 0},
+    "kiosk_syntax": "passed",
+    "initial_failure": "Renderer VM fixture did not admit the newly shared matrix-style import; fixture now imports the real module and supplies GPU mock pixel ratio. Full rerun passed."
+  },
+  "modal": {
+    "plan_sha256": "9716a38c992a1d7ac5be09e711c1a61a52021f8a22cba0b5c4d3df2e4296c3a9",
+    "status": "ended; actual GPU interaction checks passed for the sealed revision; later density/framing correction is offline-only",
+    "approved_submissions": 1,
+    "retries": 0,
+    "gpu_preference": ["T4", "L4", "A10G"],
+    "cpu": 4,
+    "memory_mib": 16384,
+    "worker_timeout_seconds": 900,
+    "worker_start_wait_seconds": 300,
+    "client_timeout_seconds": 1200,
+    "operational_allowance_usd": 2,
+    "provider_enforced_dollar_cap": false,
+    "upload_bytes": 35768326,
+    "upload_limit_bytes": 67108864,
+    "app_id": "ap-rJHhvrfqK2PGUMGpQh2f9D",
+    "observed_gpu": "NVIDIA Tesla T4",
+    "worker_started_at": "2026-10-29T16:21:46.910028+00:00",
+    "ready_at": "2026-10-29T16:22:02.438799+00:00",
+    "opening_viewport": [1599, 812],
+    "live_viewport": [1600, 900],
+    "mobile_viewport": [390, 844],
+    "actual_billed_cost": null,
+    "cleanup": {"state": "stopped", "tasks": 0},
+    "viewer": "Temporary internet-accessible noVNC with an 8-character password; link and credentials excluded from repository evidence; no deployment or persistent volume"
+  },
+  "baseline": "Earlier contour revision retained separately; same-revision normal/Matrix/restored captures inspected at 1599x812",
+  "evidence_sha256": {
+    "result.json": "b243f6c594c14f0bc7a35287420c5404e9c5db9ae9596d01dcf7a8c77ad29790",
+    "room-normal.png": "c468fc3dd20cb0fd5f212cf5c34d624e8cfd1f7ccb06f9810296fe9e2b3b0f48",
+    "room-matrix.png": "24d4ce716c6cdb87c32e3d7a574e0679231b30726560b0b4e5224aff490846fd",
+    "room-source.png": "eb376a1a38553a243d404afadebfe659e6e88dff933da5f1d98336a7c2cb7572",
+    "room-restored.png": "3d1937b14a32723de00457b699e28a72fec1412a4054c4850a2acb27101ba462",
+    "room-mobile.png": "50d77a99e746ba396c5f587708b090b76d26d6253be5d912636119cb7e42a232",
+    "room-live.png": "ff0ec31ab22ccf065a3a5a24e0bf5d1c6f48ab17bdba546f00d44577e0a6b942"
+  },
+  "visual_review": "Six native screenshots inspected; Matrix visible and reversible, but wall/window-facing framing and dense marks on broad surfaces remain limitations",
+  "new_motion_recording": false,
+  "measured_application_fps": null,
+  "offline_continuation": {"changes": "70-degree FOV, downward opening pitch, reduced Matrix coverage and faint source-color backing", "in_live_snapshot": false, "tests_passed": 460, "typecheck": "passed", "gpu_verified": false},
+  "owner_acceptance": "pending"
+}

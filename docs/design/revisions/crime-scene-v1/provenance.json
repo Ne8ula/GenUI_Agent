@@ -1,0 +1,91 @@
+{
+  "status": "pass1-implemented-final-verification-passed-acceptance-pending",
+  "changeId": "crime-scene-v1",
+  "phase": "scene investigation v1 (FFS th_0028)",
+  "sourceRevision": "0380e13+uncommitted (crimescene)",
+  "acceptedBaseline": null,
+  "referenceScope": "Matrix laser-scan room, evidence tags and clue list in Sources & details, toggleable notepad cited by EVA, one reconstructed user hypothesis with timeline scrubber and consistency results, Attinger lab-bench stringing view.",
+  "scope": "Pass 1 only: retained scan, detected markers, 11 clues/photos, session-only examined state, private Markdown notebook and consent-gated text-only replies. No hypothesis, timeline, consistency or lab bench.",
+  "ownedUiFiles": ["week4/app/src/App.tsx", "week4/app/src/crime-scene/CrimeSceneApp.tsx", "week4/app/src/crime-scene/Notebook.tsx", "week4/app/src/crime-scene/renderer.ts", "week4/app/src/crime-scene/state.ts", "week4/app/src/crime-scene/api.ts", "week4/app/src/crime-scene/crime-scene.css"],
+  "motionRequired": true,
+  "allowance": "Owner approved 250 Weave credits on 2026-10-24; each run additionally approved by structured Approve prompt.",
+  "runs": [
+    {"route": "direct-model", "modelId": "fal-ai/nano-banana-2/edit", "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+     "predictionId": "6000b6bb-3957-4f90-bdfc-26f1fb58a859", "settings": {"model": "Nano Banana 2.1", "seed": 28, "resolution": "1K", "aspect_ratio": "16:9", "output_format": "png"},
+     "inputs": "text-only prompt: matrix scan room + clue list", "quotedCost": 3.5, "reportedCost": 3.5, "costApprovalRef": "structured Approve, 14-credit batch",
+     "output": "references/images/scene-clue-list.png", "status": "COMPLETED"},
+    {"route": "direct-model", "modelId": "fal-ai/nano-banana-2/edit", "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+     "predictionId": "f0d9c9e2-c064-44f1-aae4-ccc39148a2d7", "settings": {"model": "Nano Banana 2.1", "seed": 28, "resolution": "1K", "aspect_ratio": "16:9", "output_format": "png"},
+     "inputs": "text-only prompt: hypothesis A strikes B with bottle, results card, scrubber", "quotedCost": 3.5, "reportedCost": 3.5, "costApprovalRef": "structured Approve, 14-credit batch",
+     "output": "references/images/hypothesis-bottle.png", "status": "COMPLETED"},
+    {"route": "direct-model", "modelId": "fal-ai/nano-banana-2/edit", "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+     "predictionId": "9f9c6240-15ed-44a1-be28-c8cd01f9466e", "settings": {"model": "Nano Banana 2.1", "seed": 28, "resolution": "1K", "aspect_ratio": "16:9", "output_format": "png"},
+     "inputs": "text-only prompt: notepad drawer with EVA citation", "quotedCost": 3.5, "reportedCost": 3.5, "costApprovalRef": "structured Approve, 14-credit batch",
+     "output": "references/images/notepad-eva.png", "status": "COMPLETED"},
+    {"route": "direct-model", "modelId": "fal-ai/nano-banana-2/edit", "weaveModelId": "bebebed5-50c1-4701-98b3-86929db21585",
+     "predictionId": "d37291a7-3e24-4032-b3a6-3ec04a270b46", "settings": {"model": "Nano Banana 2.1", "seed": 28, "resolution": "1K", "aspect_ratio": "16:9", "output_format": "png"},
+     "inputs": "text-only prompt: Attinger lab bench with stringing lines", "quotedCost": 3.5, "reportedCost": 3.5, "costApprovalRef": "structured Approve, 14-credit batch",
+     "output": "references/images/lab-bench-stringing.png", "status": "COMPLETED"},
+    {"route": "direct-model", "modelId": "google-veo3-i2v", "weaveModelId": "fg6e8647-d90a-4bad-a845-69fdc102a14j",
+     "predictionId": "fbeb275d-31c4-485b-937d-1d7ca59f54ab", "settings": {"version": "3.1", "model": "Fast", "duration": "8s", "resolution": "720p", "aspect_ratio": "16:9", "generate_audio": false, "enhance_prompt": true, "auto_fix": false, "seed": 28},
+     "inputs": "first frame = hypothesis-bottle.png output URL; motion prompt and negative prompt recorded in session", "quotedCost": 90, "reportedCost": 90, "costApprovalRef": "structured Approve, 90 credits",
+     "output": "references/videos/hypothesis-motion.mp4", "status": "COMPLETED"}
+  ],
+  "totalCredits": 104,
+  "workspaceRemainingAfter": 103.8,
+  "selectedAssets": ["references/images/hypothesis-bottle.png", "references/images/notepad-eva.png", "references/images/lab-bench-stringing.png", "references/images/scene-clue-list.png", "references/videos/hypothesis-motion.mp4"],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "performed",
+    "inspector": "Claude Opus 5.5 (lead session)",
+    "method": "Viewed all four stills at full size and a 1 fps tiled frame sheet of the video.",
+    "observations": "See REVIEW.md keep/exclude table and motion notes.",
+    "limitations": ["Generated rooms are invented, not th_0028.", "Generated text and metrics contain nonsense; only layout and motion are guidance.", "Video shows artefact beams/platform and a frozen clock."]
+  },
+  "implementationGuidance": [
+    "Geometry only from the reduced th_0028 scan; generated rooms are layout guidance.",
+    "Filled marks for scan, hollow marks for hypothesis/inference; statuses use words, not colour alone.",
+    "No red tint for coverage or attention states.",
+    "Each consistency row names tag, computed quantity and reason; 'not testable' is a first-class result.",
+    "Reduced motion jumps between keyframes without figure assembly."
+  ],
+  "writerInspections": [{
+    "inspector": "Claude Code lead (configured GPT-6 Astra route)",
+    "session": "aca1a020-d2a5-41c4-9dab-79293814815c",
+    "date": "2026-10-24",
+    "method": "Read existing still contact sheet and video frame sheet before implementation; inspected source photo/panorama views and resulting desktop, photo, notes, reduced-motion and touch captures.",
+    "guidance": "REVIEW.md keep/exclude table; scene geometry only from the retained scan; pass-2 references excluded from implementation. Static rendering; no new generation.",
+    "additionalWeaveCredits": 0,
+    "runIdCheck": "Veo opaque model ID matches original weave_run_model calls in session 5d6d8ab7-d692-4530-a4fe-b87c166a0f6a; not required to be a hexadecimal UUID."
+  }],
+  "finalVerificationInspection": {
+    "inspector": "Claude Code lead (configured GPT-6 Astra route); no delegated worker",
+    "session": "6183edb3-7b5f-4429-a6ca-b3dabd090d18",
+    "date": "2026-10-24",
+    "method": "Ran expanded Playwright smoke against the actual app with a disposable key-disabled broker; visually read all six resulting desktop/photo/notes/reduced-motion/touch/touch-notes PNGs.",
+    "observations": "Scan remains dominant; clue labels and photo attribution are legible; unknown marker stays unidentified. Missing-key notes and focused touch textarea are visible; mobile layout stacks without horizontal page overflow. Markers/crop unchanged and still provisional.",
+    "scope": "Same owner-authorized pass-1 packet; no UI edits or new generation. Added all four arrows and S to smoke key coverage. Earlier captures and verification record preserved before replacement.",
+    "additionalWeaveCredits": 0,
+    "limitations": "Synthetic reply fixtures, emulated touch and still captures only; no live provider, physical device, peak-memory profile or forensic validation."
+  },
+  "implementation": {
+    "sourceFingerprint": "implementation/verification.json",
+    "beforeCaptures": ["implementation/before/desktop.png"],
+    "afterCaptures": ["implementation/after/desktop.png", "implementation/after/photo.png", "implementation/after/notes.png", "implementation/after/reduced-motion.png", "implementation/after/touch.png", "implementation/after/touch-notes.png"],
+    "retainedCandidates": ["implementation/after/desktop-first-candidate.png", "implementation/after/desktop-exterior-candidate.png"],
+    "earlierEvidence": "implementation/earlier-before-reverification/",
+    "captureLimits": "Before is the former fixture fallback at the same URL/1440x960 viewport. Six after captures come from the final successful smoke and were inspected; touch uses 390x844 emulation, all at scale factor 1. Earlier captures are archived separately. Stills do not record camera/reply transitions; those are covered by browser assertions.",
+    "checks": [
+      {"command": "npm.cmd run check", "result": "passed: 103 core and 289 app tests, typechecks and production build; existing Rust/chunk warnings"},
+      {"command": "npm.cmd run room:test", "result": "163 passed, 0 failed, 2 skipped"},
+      {"command": "node --test scripts/room_workflow/crime-scene.test.mjs", "result": "13 passed; fake provider only; error sanitation and malformed-text regressions red then green"},
+      {"command": "python -I -m unittest discover -s scripts/room_workflow -p test_ffs*.py", "result": "6 passed"},
+      {"command": "node week4/app/scripts/crime-scene-smoke.mjs", "result": "final expanded run passed after one owner-authorized restart: Home/all arrows/W/S dwell, overview return through pause/reopen, cancel/close reply message and quota, text-only/stale mocked replies and existing interaction checks. No recurrent allocation error or live provider calls; session-owned servers stopped"},
+      {"command": "node --check week4/app/scripts/crime-scene-smoke.mjs", "result": "passed"},
+      {"command": "git diff --check", "result": "passed; LF/CRLF warnings"}
+    ],
+    "deviations": ["Per owner, this packet covers pass 1 without additional Weave calls.", "Raw HTTP selected by owner; no new SDK/dependency.", "No paid request tests. Five-request limit is per private session, not aggregate spend control.", "Historical allocation failure retained in acceptance record; one explicitly authorized restart completed final verification. No automatic retry, peak-memory diagnosis or new paid work."],
+    "acceptanceRecord": "../../acceptance/crime-scene-v1.md"
+  },
+  "ownerDecision": {"status": "pending", "date": null, "feedback": null}
+}

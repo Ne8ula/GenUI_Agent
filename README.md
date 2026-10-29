@@ -1,8 +1,14 @@
-# EVA: memory palace
+# EVA: scene investigation
 
-The midterm focus is an artistic, explorable reconstruction of a remembered place. The browser demo contains a [room-wide reconstruction/completion candidate](docs/design/revisions/room-refinement-v5/REVIEW.md) of Hypersim `ai_001_004`: all 100 supplied RGBD views, inferred architecture, recovered source detail and explicitly assumed adjoining spaces. Navigate full surfaces or simplified dots, inspect provenance, and toggle assumed space in Sources & details. This uses supplied depth/poses; hidden structure remains inferred and visible seams remain. EVA conversation and editable memory annotations remain proposed.
+The active work is the **crime-scene reconstruction replacement**: Argus scene generation, Kimodo user-requested human motion, complete hypothesis objects selected through evaluation, and the Arkham Knight-inspired detective/matrix aesthetic. This is the selected architecture, **not a claim that the replacement is implemented**.
 
-Start with [midterm scope](PLANNING.md), [visual direction](DESIGN.md), and the [condensed Dreamatorium/Shado research plan](docs/research/EVA_RESEARCH_IMPLEMENTATION_PLAN.md). Development rules are in [AGENTS.md](AGENTS.md).
+Start with the short [current scope](PLANNING.md) and [agent rules](AGENTS.md). Preserve original photographs/scans, provenance and failed-run receipts while retiring superseded crime-scene code/candidates. Other weeks and reconstruction experiments are outside this change and should not enter agents' default context. [Visual prerequisites](docs/design/FIGMA_WEAVE.md), finite execution approvals and owner acceptance remain required.
+
+## Historical demo reference — not the active workflow
+
+The remaining route descriptions document retained earlier demos only. Do not follow them as a competing crime-scene pipeline. The prior memory-palace direction and execution ledger are preserved in [planning history](PLANNING_HISTORY.md); read those only for an explicitly relevant historical question.
+
+The earlier room demo contains a [room-wide reconstruction/completion candidate](docs/design/revisions/room-refinement-v5/REVIEW.md) of Hypersim `ai_001_004`: all 100 supplied RGBD views, inferred architecture, recovered source detail and explicitly assumed adjoining spaces. It is not the Argus/Kimodo replacement.
 
 ## Run the retained foundation
 

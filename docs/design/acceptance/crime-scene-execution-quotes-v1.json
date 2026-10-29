@@ -1,0 +1,46 @@
+{
+  "kind": "eva-development-weave-quote-v1",
+  "date": "2026-10-28",
+  "status": "quoted-not-approved-not-run",
+  "currency": "workspace Weave credits, not Figma AI credits",
+  "total_credits": 229,
+  "attempts_per_model": 1,
+  "uploads": [],
+  "automatic_retry": false,
+  "runs": [
+    {
+      "id": "bebebed5-50c1-4701-98b3-86929db21585",
+      "model": "fal-ai/nano-banana-2/edit",
+      "quoted_credits": 5,
+      "input": {
+        "aspect_ratio": "16:9",
+        "enable_web_search": false,
+        "model": "Nano Banana 2.1",
+        "output_format": "png",
+        "prompt": "Create one original 16:9 visual reference sheet for a fictional detective reconstruction interface, not a real case or forensic result. Three clearly separated panels show: full-body human and one complete upright black tubular-frame chair at rest; deliberate palm contact held on the chair back with planted feet; stable reduced-effects presentation with source evidence accessible. Large readable human/chair silhouettes, all chair legs and rails intact, subtle teal ordered square-point surface treatment over coherent geometry, near-black negative space, restrained thin amber contact markers. The human reaches, touches, holds, releases; the chair stays static. No tipping, no violent scene, no blood, no people identifiable from photographs. Include compact pause/seek/evidence controls and explicit Hypothesis / Generated completion / Unknown surface labels; keep source evidence visually separate. Original typography direction: Space Grotesk headings and IBM Plex Sans/Mono labels. No logo, game characters, brand marks or copied screenshot. Wide camera framing, no heavy bloom, noise or glitches hiding contact. This is aesthetic/interaction guidance only, not geometry or physical-contact verification.",
+        "resolution": "2K",
+        "seed": 28,
+        "thinking_level": "High"
+      }
+    },
+    {
+      "id": "cbe8b347-8c85-4e1a-b379-f96f48932f43",
+      "model": "bytedance/seedance-2.5/image-to-video",
+      "quoted_credits": 224,
+      "input": {
+        "aspect_ratio": "16:9",
+        "bitrate_mode": "high",
+        "codec": "H264",
+        "draft": false,
+        "duration": "8",
+        "generate_audio": false,
+        "prompt": "Original fictional detective-reconstruction motion reference. Single continuous locked wide three-quarter camera, full adult human silhouette and one complete upright black tubular-frame chair always in frame. Over eight seconds: start still, deliberately reach one hand to the chair back, make palm contact, hold for two seconds with both feet planted, then release and return to rest. The chair stays completely static; no tipping or sliding. Clear separation of palm and chair before contact, no visible penetration while held, all chair legs/rails remain coherent. Restrained teal ordered square-dot surface material over complete human/chair geometry against near-black background; subtle amber contact marker only during hold, no flashing, bloom or geometry-disguising glitches. Small unobtrusive label Hypothesis, calm pause/seek controls and Source evidence access at bottom. No violence, blood, real case data, logos, existing game characters or copied cinematics. This is only visual timing and framing guidance, not a claim of verified contact, reconstructed evidence or native 60 fps performance.",
+        "resolution": "720p",
+        "us_hosted": true
+      }
+    }
+  ],
+  "superseded_quote": {"video_resolution": "1080p", "credits": 544, "approved": false, "reason": "720p is adequate for reference timing/framing; final Modal native-1440p/60 target unchanged"},
+  "run_ids": [],
+  "provider_limits": "Managed Weave service exposes neither GPU/CPU/RAM allocation nor worker timeout/container count in these model contracts. Do not claim caller-controlled hardware caps. Missing/uncertain result is not permission to resubmit."
+}

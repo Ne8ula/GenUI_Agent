@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checks": [
+    "keyboard camera movement",
+    "replay retains explored viewpoint",
+    "pause holds time",
+    "radial sweep settles to Matrix",
+    "source photo decoded; Escape restores focus",
+    "normal mode restores exact central crop",
+    "390px touch controls and source dismissal; no overflow",
+    "reduced-motion activation settles without sweep",
+    "pointer drag changes camera in Matrix mode"
+  ],
+  "errors": [],
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, Vulkan 1.4.341 (NVIDIA Tesla T4 (0x00001EB8)), NVIDIA)",
+    "buffer": [
+      1599,
+      812
+    ]
+  }
+}

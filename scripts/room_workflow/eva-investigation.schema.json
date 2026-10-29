@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eva.local/schemas/eva-investigation.schema.json",
+  "title": "EVA investigation reply",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "inconsistencies", "look_for", "reconstruction", "citations"],
+  "properties": {
+    "answer": {"type": "string", "minLength": 1, "maxLength": 1200},
+    "inconsistencies": {
+      "type": "array", "maxItems": 5,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["claim", "basis", "source_ids"],
+        "properties": {
+          "claim": {"type": "string", "minLength": 1, "maxLength": 300},
+          "basis": {"enum": ["scanned", "documented-absence", "research"]},
+          "source_ids": {"type": "array", "maxItems": 8, "uniqueItems": true, "items": {"type": "string", "maxLength": 60}}
+        }
+      }
+    },
+    "look_for": {
+      "type": "array", "maxItems": 5,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["kind", "where", "why"],
+        "properties": {
+          "kind": {"type": "string", "minLength": 1, "maxLength": 60},
+          "where": {"type": "string", "minLength": 1, "maxLength": 140},
+          "why": {"type": "string", "minLength": 1, "maxLength": 300}
+        }
+      }
+    },
+    "reconstruction": {
+      "type": "object", "additionalProperties": false,
+      "required": ["title", "hypothetical", "actors", "steps"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1, "maxLength": 120},
+        "hypothetical": {"const": true},
+        "actors": {
+          "type": "array", "maxItems": 3,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["id", "label"],
+            "properties": {
+              "id": {"enum": ["A", "B", "C"]},
+              "label": {"type": "string", "minLength": 1, "maxLength": 40}
+            }
+          }
+        },
+        "steps": {
+          "type": "array", "minItems": 1, "maxItems": 8,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["t", "actor", "pose", "position", "facing", "object_moves", "caption"],
+            "properties": {
+              "t": {"type": "number", "minimum": 0, "maximum": 60},
+              "actor": {"enum": ["A", "B", "C", null]},
+              "pose": {"enum": ["stand", "walk", "reach", "push", "strike", "fall", "crouch", "lie"]},
+              "position": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
+              "facing": {"type": "number", "minimum": -7, "maximum": 7},
+              "object_moves": {
+                "type": "array", "maxItems": 11,
+                "items": {
+                  "type": "object", "additionalProperties": false,
+                  "required": ["tag", "state", "position"],
+                  "properties": {
+                    "tag": {"type": "integer"},
+                    "state": {"enum": ["upright", "current", "displaced"]},
+                    "position": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}
+                  }
+                }
+              },
+              "caption": {"type": "string", "minLength": 1, "maxLength": 140}
+            }
+          }
+        }
+      }
+    },
+    "citations": {"type": "array", "maxItems": 12, "uniqueItems": true, "items": {"type": "string", "maxLength": 60}}
+  }
+}

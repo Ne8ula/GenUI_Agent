@@ -1,0 +1,105 @@
+{
+  "templateOnly": false,
+  "status": "references-inspected-implementation-pending",
+  "changeId": "crime-scene-argus-kimodo-v1",
+  "phase": "replacement-chair-contact-reference",
+  "sourceRevision": "0380e13efbdfa8c1ee29fe2c621927852b7766b7 plus dirty/untracked source; no accepted replacement baseline",
+  "acceptedBaseline": null,
+  "scope": "One complete static-chair deliberate reach, touch, hold and release; full-body framing, restrained matrix materials, evidence access and pause/seek/reduced-effects states. References are not reconstruction input.",
+  "ownedUiFiles": [],
+  "motionRequired": true,
+  "approval": {
+    "date": "2026-10-28",
+    "source": "Owner selected Approve 229 credits in the structured Weave budget prompt",
+    "totalCredits": 229,
+    "attemptsPerModel": 1,
+    "automaticRetries": false,
+    "sourceUploads": [],
+    "modalAuthorizedDollars": 0
+  },
+  "inputRecord": "../../acceptance/crime-scene-execution-quotes-v1.json",
+  "inputRecordSha256": "6053000990566b96154b65a41ba91714d3bf46d87f84685cfcacba86ba8f7c2d",
+  "runs": [
+    {
+      "route": "official Figma Weave direct-model",
+      "modelId": "bebebed5-50c1-4701-98b3-86929db21585",
+      "providerModel": "fal-ai/nano-banana-2/edit",
+      "modelVersion": null,
+      "predictionId": "9aef425e-834e-4303-a3fb-1797f7f4bd7c",
+      "inputRecordIndex": 0,
+      "quotedCost": 5,
+      "reportedCost": 5,
+      "costApprovalRef": "approval",
+      "status": "COMPLETED",
+      "outputs": [{
+        "path": "references/images/img-01-chair-contact.png",
+        "kind": "image/png",
+        "bytes": 5515666,
+        "sha256": "ee0a8dbda0dcd9f644d666462637ecfd784ef43c385948cf81a49be746667676",
+        "width": 2752,
+        "height": 1536,
+        "source": "Generated from the approved text-only request; provider blob 150821e6-5c92-49f7-8e79-f69796b3d806",
+        "license": null,
+        "retrieved": true,
+        "inspected": true
+      }]
+    },
+    {
+      "route": "official Figma Weave direct-model",
+      "modelId": "cbe8b347-8c85-4e1a-b379-f96f48932f43",
+      "providerModel": "bytedance/seedance-2.5/image-to-video",
+      "modelVersion": null,
+      "predictionId": "664d89e1-6f29-4656-9f9d-2c3d153ae23b",
+      "inputRecordIndex": 1,
+      "quotedCost": 224,
+      "reportedCost": 224,
+      "costApprovalRef": "approval",
+      "status": "COMPLETED",
+      "outputs": [{
+        "path": "references/videos/vid-01-chair-contact.mp4",
+        "kind": "video/mp4",
+        "bytes": 1389366,
+        "sha256": "87e412ef2de28daa22d16e00e61b07a781018c8675fb90f9c1a0fc195dda4a79",
+        "width": 1280,
+        "height": 720,
+        "durationSeconds": 8.041667,
+        "frameRate": "24/1",
+        "frames": 193,
+        "source": "Generated from the approved text-only request; provider blob 3c176924-3587-4c27-9cf3-193372a781f9",
+        "license": null,
+        "retrieved": true,
+        "inspected": true
+      }]
+    }
+  ],
+  "selectedAssets": ["references/images/img-01-chair-contact.png", "references/videos/vid-01-chair-contact.mp4"],
+  "contactSheet": "references/contact-sheet.png",
+  "inspection": {
+    "status": "still-and-motion-inspected-for-bounded-guidance",
+    "inspector": "coordinator",
+    "method": "Direct still inspection; CPU ffmpeg decode at 2 fps into 16 temporal samples plus native 3.5-second frame; not continuous real-time viewing",
+    "observations": [
+      "Video preserves full silhouettes and a static-chair reach, hold and release sequence; useful timing only.",
+      "Video hand stops short; amber marker obscures the gap. Reject this contact depiction, generic slatted-chair identity, dark chair visibility and tiny illegible controls.",
+      "Three panels preserve full human and chair silhouettes; teal points and restrained amber contact annotation are legible.",
+      "Reject generated graphs, fake readings, excessive chrome and arbitrary timeline labels.",
+      "Do not copy the release panel's stepping pose into a planted-feet hold.",
+      "The hand appearance is not contact verification, and the generic chair is not source-matched geometry."
+    ],
+    "limitations": ["No app captures or native cadence/contact evidence", "Provider asset rights not separately established; no publication authorized"]
+  },
+  "implementationGuidance": [
+    "Prioritize full-body/chair framing with uncluttered negative space over generated dashboard panels.",
+    "Use existing bundled typography and native controls; do not copy generated text or fictitious evidence charts.",
+    "Use amber contact cues only for an actually verified interval, with text/shape status as well as colour.",
+    "Keep source evidence separate and reachable; reduced effects preserve the same geometry and camera."
+  ],
+  "writerInspections": [{"writer": "coordinator", "assets": ["references/images/img-01-chair-contact.png", "references/videos/vid-01-chair-contact.mp4"], "motionInspected": true}],
+  "implementation": {
+    "beforeCaptures": [],
+    "afterCaptures": [],
+    "checks": [],
+    "deviations": ["No frontend/motion edits; separately approved Modal before-state capture and source/model prerequisites remain open"]
+  },
+  "ownerDecision": {"status": "not-accepted-work-paused", "date": "2026-10-28", "feedback": "The static-chair contact video does not explain the photographed final chair position. Focus on panorama 3D scene recreation only for now; pause chair/motion work."}
+}

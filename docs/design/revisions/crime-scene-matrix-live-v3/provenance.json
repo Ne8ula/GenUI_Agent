@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-29",
+  "status": "owner-acceptance-pending",
+  "visual_prerequisite": {
+    "route": "explicit-owner-waiver",
+    "scope": "Continuation of the bounded reused-code Matrix correction; no new application UI edits",
+    "instruction": "Reuse code; waive Weave",
+    "session": "776f0643-db66-4e6f-ad74-41f2ff84491e",
+    "timestamp": "2026-10-29T16:03:25.684Z",
+    "generated_references": []
+  },
+  "source_revision": "Dirty crimescene based on 0380e13efbdfa8c1ee29fe2c621927852b7766b7",
+  "source_glb_sha256": "138e407bcff0ca2c241860b80f48486bcafeb36038123099c0ca73a116fe5815",
+  "source_files": {
+    "week4/app/src/crime-scene/panorama.ts": "2e6a6463d4ad58c1b2ca930437f099a6084e721da7c22a189d84e6b8ad1c9fba",
+    "week4/app/src/crime-scene/panorama.css": "ce6c998f1c5921184a6d0d915c6f80129c55e4a6cb011cdcc1132f64b187a85d",
+    "week4/app/src/crime-scene/PanoramaApp.tsx": "5b18affc37ba04b81f83741d1b5197b4f3cc83eac3f826e82a6b854e51c4c736",
+    "week4/app/scripts/crime-scene-kiosk.mjs": "84b29225c24d1a971b3aef9474c012fc4324f0dbd413ce9e4941b341ded2211e"
+  },
+  "cloud_plan_sha256": "9ce5ea9d75df60e51bd5c7b599fbee2bf1be6b184b76622c5baa1c6807f3609a",
+  "cloud_app_id": "ap-Dg1cdPyEKNxfSRNqCB0eHg",
+  "gpu": "ANGLE NVIDIA A10 Vulkan 1.4.341",
+  "upload_bytes": 35771692,
+  "approval": {
+    "sessions": 1, "gpu_choices": ["T4", "L4", "A10G"], "cpu": 4, "memory_mib": 16384,
+    "worker_seconds": 900, "startup_seconds": 300, "client_seconds": 1200,
+    "upload_limit_mib": 64, "evidence_limit_mib": 64, "operational_allowance_usd": 2,
+    "hard_billing_cap": false, "actual_cost_usd": null, "retries": 0
+  },
+  "result": "implementation/after/result.json",
+  "inspected_matching_captures": [
+    {"path": "implementation/after/opening-normal.png", "sha256": "ac46720651c5dad9f51d4e2da1d8d4eaba512e738ef1b8eb1d339dfd5b778874", "width": 1600, "height": 900, "dpr": 1},
+    {"path": "implementation/after/opening-matrix.png", "sha256": "aa6eec6b4d9b720dd4b5139f8bc09edcf1c819373213270c353a1699d769a391", "width": 1600, "height": 900, "dpr": 1},
+    {"path": "implementation/after/mobile-normal.png", "sha256": "8744074af0f342febe9812c82a13fa1e590f8f2752f9010160bd72feee7ff9b1", "width": 390, "height": 844, "dpr": 1},
+    {"path": "implementation/after/mobile-matrix.png", "sha256": "2101dadaf1a73165c53553cf98cc1737318b6e63c5e354ee97c3b5f769fb720e", "width": 390, "height": 844, "dpr": 1}
+  ],
+  "verification": {"repository_tests": 460, "cloud_adapter_tests": 22, "typecheck": "passed", "gpu_interaction_checks": 12, "reported_page_shader_errors": 0, "owner_acceptance": "pending", "fps": null, "novnc_latency": null},
+  "visual_judgment": {"desktop": "Sofa/chair/cabinet together; chair legs clear of controls; Matrix still dark", "portrait": "Chair clipped at right; cabinet outside view; complete-chair framing target not met"},
+  "receipt": "implementation/after/receipt.json",
+  "cleanup": {"state": "stopped", "tasks": 0},
+  "limitations": ["Inferred unaligned incomplete room", "No physical scale or registration", "No collision-aware navigation", "No new inference", "No physical-phone or full-shell check", "No post-capture application change", "No persisted video captured by this check; owner recording not verified"]
+}

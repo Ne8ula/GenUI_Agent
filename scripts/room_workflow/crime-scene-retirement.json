@@ -1,0 +1,1063 @@
+[
+  {
+    "path": ".local/reconstruction/crime-scene-browser-v10/executed-adapter.py",
+    "classification": "preserve",
+    "sha256": "f3ee0f2bca587b711eae871417ebaecf08020087fb36cfa3d825e4280114dc63",
+    "bytes": 16813,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/crime-scene-browser-v10/plan.json",
+    "classification": "preserve",
+    "sha256": "4ec4f7186fe9941b474b4971d7cbb11b4f262202567f5e40648145febe017cea",
+    "bytes": 33217,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/crime-scene-browser-v10/receipt.json",
+    "classification": "preserve",
+    "sha256": "f5595e65d2b2f859370c1f26c0efdceab567e8723df36eee520649950dc52ab8",
+    "bytes": 673,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/crime-scene-browser-v9/executed-adapter.py",
+    "classification": "preserve",
+    "sha256": "79adf6ab0a401c87027fad8216592835f7204c546c517f6d4a7e16cf11a6ce03",
+    "bytes": 16812,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/crime-scene-browser-v9/plan.json",
+    "classification": "preserve",
+    "sha256": "7a3725d242a853ae50848186fceac6fda3677aea6469229119a8f6cde5ad752d",
+    "bytes": 33217,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/crime-scene-browser-v9/receipt.json",
+    "classification": "preserve",
+    "sha256": "ca032acf7bd2d16a335fccd539750bcd5f3b3c709bb238de25957257febd4c18",
+    "bytes": 703,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-argus-preflight-v1/plan.json",
+    "classification": "preserve",
+    "sha256": "cb6069815daae1d37ad48041a6e64bb3b68ce7d4f8d4f445c556b2893e00e287",
+    "bytes": 1920,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-argus-preflight-v1/preview.jpg",
+    "classification": "preserve",
+    "sha256": "ffe28e4537d5ed7877a1821ca9134f315b390b2eb42646cc3b0b85977a6572a6",
+    "bytes": 166363,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-argus-preflight-v1/receipt.json",
+    "classification": "preserve",
+    "sha256": "f7731e2e1363226062814c0b842ecaae7eb88569879efb923cc76fdd10e802b3",
+    "bytes": 998,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-argus-preflight-v1/report.json",
+    "classification": "preserve",
+    "sha256": "b2c3d0a338f9716fc5fa02029ab8c4cdd12c7c9e328d0a3a7a27ffe06c3c1a85",
+    "bytes": 730,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133442.png",
+    "classification": "preserve",
+    "sha256": "a6bae7fa674eed4e9f5732a680164e263937a3644f7681f11d5f02cca9440b95",
+    "bytes": 46537,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133442.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133454.png",
+    "classification": "preserve",
+    "sha256": "069fa883265c2a18772c91b0c76fb2feefb9f86166f8e9b038d0159a6684afaf",
+    "bytes": 30251,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133454.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133505.png",
+    "classification": "preserve",
+    "sha256": "403d25e3b5c454d1241d25a6dcc184328c2ca4daeb5ee9ef98bf03fa4bad3e53",
+    "bytes": 28539,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133505.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133515.png",
+    "classification": "preserve",
+    "sha256": "42008ddeb1a3720bf7cb9939bb5e989eaff09e3b8a8b3d5bfa128147f9af9dbd",
+    "bytes": 26884,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133515.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133524.png",
+    "classification": "preserve",
+    "sha256": "7b8cdac0b2a59bd1aaf618d4af27b3240eb5a43b415a160e539ea6c3c3eb4031",
+    "bytes": 38145,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133524.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133534.png",
+    "classification": "preserve",
+    "sha256": "b0f8ed581d8863269c6d27ea753b603612def9df0253a4126554935e13503211",
+    "bytes": 33426,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133534.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133544.png",
+    "classification": "preserve",
+    "sha256": "a24076dfae94641e88198983d77c069497089bce2b453a25ad247f4135afbf48",
+    "bytes": 27241,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133544.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133552.png",
+    "classification": "preserve",
+    "sha256": "d0edad7147ffcb2608c6f7a37a3af9974cfb6df4ce17026691ba5036230b9025",
+    "bytes": 44218,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133552.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133601.png",
+    "classification": "preserve",
+    "sha256": "840416ef2bfea4fe3873cd28e7ec6beba06ce163af3f9ad524051509740633b5",
+    "bytes": 28141,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133601.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133611.png",
+    "classification": "preserve",
+    "sha256": "546d199aecbf34bf1b2f9fc1fd37c0f65dbbf3f049c74806534557e580f20938",
+    "bytes": 26484,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133611.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133620.png",
+    "classification": "preserve",
+    "sha256": "974200fa4d9b4fd7129715acfbc99f31cd6e2e7f024d0e0e5dc76fa15d689206",
+    "bytes": 27752,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133620.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133627.png",
+    "classification": "preserve",
+    "sha256": "c2fdfebadde099ae7570ca4a261ef61b1e1fd6da15d12d13a7879702b9b64c5d",
+    "bytes": 26358,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133627.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/depth-IMG_20240306_133635.png",
+    "classification": "preserve",
+    "sha256": "8ffa3b4b29d2b6f90e6af39c9e750682a79783f98083a3f8796c824cb39fcb31",
+    "bytes": 37033,
+    "catalog_keys": [
+      "depth/depth-IMG_20240306_133635.png"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133442.jpg",
+    "classification": "preserve",
+    "sha256": "1fbfec7fc69a051f4d7d3f7e37eca8899100e33364bc0b39578e2222d2eaaaa1",
+    "bytes": 36574,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133442.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133454.jpg",
+    "classification": "preserve",
+    "sha256": "7b56477f67485baba1cf3bd0e4e43f24a2a15bfe7308be92601cc819e2b1bdbb",
+    "bytes": 32702,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133454.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133505.jpg",
+    "classification": "preserve",
+    "sha256": "bd0c4b6dfa05b5f254ac8f934895e2a9c1655639f2db31069b39cea5a67f324e",
+    "bytes": 16323,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133505.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133515.jpg",
+    "classification": "preserve",
+    "sha256": "1518415936fb883b9468909209f550b691274cc543c08a8c71409a4aefe78d62",
+    "bytes": 17896,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133515.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133524.jpg",
+    "classification": "preserve",
+    "sha256": "93e9729c0975f9b445eee1b5163c9abf062b05e5b3a81706b7e53b46ff64c904",
+    "bytes": 39779,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133524.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133534.jpg",
+    "classification": "preserve",
+    "sha256": "0d86e1960de8f80733fb60aaf9d1b8aff9dbc7b4a69b8bdb617d8209ca7744c6",
+    "bytes": 22544,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133534.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133544.jpg",
+    "classification": "preserve",
+    "sha256": "6c98c5e0fb683a55dfb131f69eeedab09abc5a2bf28c6c0075738493ad72b66a",
+    "bytes": 17593,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133544.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133552.jpg",
+    "classification": "preserve",
+    "sha256": "fa1d36e0cde65aa1bb5780e4008758de9d722f448a94984f362e18002191b311",
+    "bytes": 22743,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133552.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133601.jpg",
+    "classification": "preserve",
+    "sha256": "6c7d2b2be2de1c92ed2e980dbf89e52ca6e8cdda9865ee2f828ff5638b1e9c5a",
+    "bytes": 17853,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133601.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133611.jpg",
+    "classification": "preserve",
+    "sha256": "a9ada66dc38a576185d90e2f4701d40632e6d3d702ec5cf14d18154aad643085",
+    "bytes": 21714,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133611.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133620.jpg",
+    "classification": "preserve",
+    "sha256": "9213eb52bf55b84569f7c11d39c8178ab98c700670edc0718824e130a95eddc6",
+    "bytes": 28230,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133620.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133627.jpg",
+    "classification": "preserve",
+    "sha256": "d964de2537844f021bf9749d477aae43fe3df45166dc78cb432383df98f7832e",
+    "bytes": 17036,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133627.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-depth-v1/returned/photo-IMG_20240306_133635.jpg",
+    "classification": "preserve",
+    "sha256": "a47f1c028c882b4e85ded95526cd4bff8b4874c20300f6e52a63bfb54a7126f2",
+    "bytes": 32766,
+    "catalog_keys": [
+      "depth/photo-IMG_20240306_133635.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/17164106-listing.json",
+    "classification": "preserve",
+    "sha256": "72da632222a771c4467c640b505c78d7d076a93e4ed11506293bcd4c24f559f6",
+    "bytes": 43255,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/acquisition.json",
+    "classification": "preserve",
+    "sha256": "467c541b92ad79212a334ff4561f0319c01e713b3907154c14de00d87b9233b0",
+    "bytes": 2732,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/IPC/IPC_ENG/IPC_Th_0028.xlsx",
+    "classification": "preserve",
+    "sha256": "fb62527aea2b86d9924c2f1d3e51d4cebe06c9a09c5e527942acfbe97b35e9e4",
+    "bytes": 9763,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133442.jpg",
+    "classification": "preserve",
+    "sha256": "7e233d7dc13b2664c0a20924fb8611e0f652820621fa0e2dfd401d7bf64213d5",
+    "bytes": 2273829,
+    "catalog_keys": [
+      "photos/IMG_20240306_133442.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133454.jpg",
+    "classification": "preserve",
+    "sha256": "f9a058e0ac77bbe2ae2a7bf1570e722737a8e26c0b032fb857fbd061faadae6d",
+    "bytes": 2026990,
+    "catalog_keys": [
+      "photos/IMG_20240306_133454.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133505.jpg",
+    "classification": "preserve",
+    "sha256": "b8ee47332212fee1e9fa8adb182876a1b3c325342766af688676d9b5d4f3ac5f",
+    "bytes": 1208557,
+    "catalog_keys": [
+      "photos/IMG_20240306_133505.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133515.jpg",
+    "classification": "preserve",
+    "sha256": "1fd3ab725177fb9c5c9b215fca2528b5ef5e9dbf63b4a688cfd2cc246b092dba",
+    "bytes": 1715953,
+    "catalog_keys": [
+      "photos/IMG_20240306_133515.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133524.jpg",
+    "classification": "preserve",
+    "sha256": "3e2db40bc8218575220b5889b4983b4dc4427d4001b920d92fcd61acf029aea1",
+    "bytes": 2310111,
+    "catalog_keys": [
+      "photos/IMG_20240306_133524.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133534.jpg",
+    "classification": "preserve",
+    "sha256": "07de835d10904d079c377eaecf079e296b7e53410b8adfc8e96de7a7e95f7284",
+    "bytes": 2071959,
+    "catalog_keys": [
+      "photos/IMG_20240306_133534.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133544.jpg",
+    "classification": "preserve",
+    "sha256": "07baa002e3bfb452e276fbeee805015c261ac293887eb5d0e1403c87eb062d8a",
+    "bytes": 1252682,
+    "catalog_keys": [
+      "photos/IMG_20240306_133544.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133552.jpg",
+    "classification": "preserve",
+    "sha256": "a4ca75ea2d5936ce2e8eeace460f51f16e1ffab8ec1c37aab8c5026384c34095",
+    "bytes": 1385352,
+    "catalog_keys": [
+      "photos/IMG_20240306_133552.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133601.jpg",
+    "classification": "preserve",
+    "sha256": "fba0dee7727d05ca1d6fe6d6c35b12618f0ddb49fc10f60cfba18ceff3e12de6",
+    "bytes": 1525860,
+    "catalog_keys": [
+      "photos/IMG_20240306_133601.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133611.jpg",
+    "classification": "preserve",
+    "sha256": "d725f412238f9429953065f428e521471d1956910692cf1461f765a151e8f493",
+    "bytes": 1721275,
+    "catalog_keys": [
+      "photos/IMG_20240306_133611.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133620.jpg",
+    "classification": "preserve",
+    "sha256": "c2f504191b65ff1695e0d4f312226ddf9e2b0b86bdecd9b710e6ab48d617885f",
+    "bytes": 1792061,
+    "catalog_keys": [
+      "photos/IMG_20240306_133620.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133627.jpg",
+    "classification": "preserve",
+    "sha256": "8b5d3df245b0f651ef415e7e98f5ec1a6cac31418f2e29533aa83136d84b3abb",
+    "bytes": 1737247,
+    "catalog_keys": [
+      "photos/IMG_20240306_133627.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/img/th_0028/IMG_20240306_133635.jpg",
+    "classification": "preserve",
+    "sha256": "ab5f0525aa2e46f55c07315b510e7c50eb8a6ebe5f4757e67f727e5cc88326c2",
+    "bytes": 2287032,
+    "catalog_keys": [
+      "photos/IMG_20240306_133635.jpg"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-media-v1/th_0021-0040/scan/th_0028/pano_th_0028_coul.jpg",
+    "classification": "preserve",
+    "sha256": "58b4f8259f308c999966ffa6dd2278c036c999af9581e8dc71a9ff501bd4551b",
+    "bytes": 1621037,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/inputs/job.json",
+    "classification": "preserve",
+    "sha256": "a07c30e9a98bc133c7376820a8d097dd759f1fdcb0b2aaf62b6c0d55d27c47a2",
+    "bytes": 1861,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/inputs/tag-13.npy",
+    "classification": "preserve",
+    "sha256": "85922e69b850612782fd3c3269186cc1a35c07205533d59c8a320ed9a444ad8d",
+    "bytes": 95024,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/inputs/tag-13.png",
+    "classification": "preserve",
+    "sha256": "2dd42aeb0c21f1d641548ccaa0dcfb98fb24f88d04a9ab4a5c09eab0c0182b2a",
+    "bytes": 2606472,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/inputs/tag-18.npy",
+    "classification": "preserve",
+    "sha256": "e0612f65eacff27e371fa1152a552533b86ab247b91cedb34337a41e7a109529",
+    "bytes": 100400,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/inputs/tag-18.png",
+    "classification": "preserve",
+    "sha256": "3927828196aa326de1bdc3c76fa129bad7a4a0eb591e577a9e5c0438cc6db943",
+    "bytes": 2883154,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/inputs/tag-69.npy",
+    "classification": "preserve",
+    "sha256": "f8b97d00ce990978f39533130874b575175dbe3a02b9f4ae6aa869995f5dcf13",
+    "bytes": 14432,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/inputs/tag-69.png",
+    "classification": "preserve",
+    "sha256": "93c063eb32f5cc451d39989dd290d2b64c4285ee87353c1cb4fad549d7be9996",
+    "bytes": 1531900,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/plan.json",
+    "classification": "preserve",
+    "sha256": "72b1e3f4d727e48b9c4d3ebb646f2707caeed81eea67efaa3225ac4acc5a504b",
+    "bytes": 5502,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/preflight-receipt.json",
+    "classification": "preserve",
+    "sha256": "2ca171187b5aa3da23b9f4c8f5f889feeffb50db17cd2d33662af761956f657c",
+    "bytes": 281,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/producer-source-v1/ffs_fit.py",
+    "classification": "preserve",
+    "sha256": "e558d8876bd36f8733d28448d7903382b3a44ec7d088164ab74ba77107882cb0",
+    "bytes": 7675,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/producer-source-v1/ffs_objects_cloud.py",
+    "classification": "preserve",
+    "sha256": "4bad4035a226634a52527a0201286a1338bdf4c891905ac7e49541b6a2df9527",
+    "bytes": 40285,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/producer-source-v1/test_ffs_objects_cloud.py",
+    "classification": "preserve",
+    "sha256": "f099af2ddfb639685f3209beeedfb747e4e004c3abcd34abaaaadce60e09a2af",
+    "bytes": 32604,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/receipt.json",
+    "classification": "preserve",
+    "sha256": "1646706e1683afbaeb20098b204192bbb381d5f5f1588d8b9b49ba436533eb40",
+    "bytes": 6320,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/returned/models/fits.json",
+    "classification": "preserve",
+    "sha256": "f90c17351042a3820c3070a5e1ba114781d7a4bc4069ff8ff21c99a788811f64",
+    "bytes": 2159,
+    "catalog_keys": [
+      "models/fits.json"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/returned/models/tag-13.glb",
+    "classification": "delete-payload",
+    "sha256": "9dac4e39e2f5bd737796951033da1d7e2bc409e0b974d5ad89206472e1ce02ae",
+    "bytes": 1220132,
+    "catalog_keys": [
+      "models/tag-13.glb"
+    ],
+    "cutover_task": 5,
+    "reason": "Superseded generated candidate; delete only with catalog/playback cutover"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/returned/models/tag-18.glb",
+    "classification": "delete-payload",
+    "sha256": "a542ab20f0773a4450e572cabcd625c45e4e4a0fab1f9765721b4c92fadf5126",
+    "bytes": 1450984,
+    "catalog_keys": [
+      "models/tag-18.glb"
+    ],
+    "cutover_task": 5,
+    "reason": "Superseded generated candidate; delete only with catalog/playback cutover"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/returned/models/tag-69.glb",
+    "classification": "delete-payload",
+    "sha256": "1868922c75797603f58b929c170895af86311b430d964fa6fb785d62683de721",
+    "bytes": 602892,
+    "catalog_keys": [
+      "models/tag-69.glb"
+    ],
+    "cutover_task": 5,
+    "reason": "Superseded generated candidate; delete only with catalog/playback cutover"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-objects-v2/returned/report.json",
+    "classification": "preserve",
+    "sha256": "53505d1db3d24cb80a2f10af828b18e24c50e41dec65298a64918f95d1282dde",
+    "bytes": 5577,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-review-v1/review.md",
+    "classification": "preserve",
+    "sha256": "1e3d377765302552a38d35a169b90dadd01bbbb54b5ffae598794dd03577020a",
+    "bytes": 766,
+    "catalog_keys": [
+      "review.md"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-scene-v2/plan.json",
+    "classification": "preserve",
+    "sha256": "0900a230e262358d056b758137349bf555777da065236dabc8bd097320a3f726",
+    "bytes": 2045,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-scene-v2/receipt.json",
+    "classification": "preserve",
+    "sha256": "d301111f3467008c919e3bea35419c6a06e0e8e1638bf604b68f7943d29ce3e8",
+    "bytes": 941,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-scene-v2/returned-report.json",
+    "classification": "preserve",
+    "sha256": "e685edbe36d06c6652dff0fc7bdbb3b18f2b6466b2ce10c3b9be95f74e1d68af",
+    "bytes": 630,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-scene-v2/scene.ply",
+    "classification": "preserve",
+    "sha256": "f72bf4ff75ee242e4327d442e02ae9bb11ee779ba2b0c8684efe0ab571e984c0",
+    "bytes": 10684860,
+    "catalog_keys": [
+      "scene.ply"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-scene-v2/tags.json",
+    "classification": "preserve",
+    "sha256": "d39f6ec2a7175d19b8f8cc08bc43839809ccc30ce433925bee38e0fe2fb7027f",
+    "bytes": 7992,
+    "catalog_keys": [
+      "tags.json"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-01.u32",
+    "classification": "preserve",
+    "sha256": "be15315b348e27c53271790789964d36f525a7c69ce9cfac4a0a924b443e6a42",
+    "bytes": 56804,
+    "catalog_keys": [
+      "segments-v1/marker-01.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-02.u32",
+    "classification": "preserve",
+    "sha256": "c4127314f86b196efbcfe539c93fb5cca7f36602e72a6ae2c5711f68ad7a77e1",
+    "bytes": 3944,
+    "catalog_keys": [
+      "segments-v1/marker-02.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-03.u32",
+    "classification": "preserve",
+    "sha256": "eabf5c58ff68b7929091b361cd800e8918bb4f96c275b3bebf035756e101aff0",
+    "bytes": 140,
+    "catalog_keys": [
+      "segments-v1/marker-03.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-04.u32",
+    "classification": "preserve",
+    "sha256": "f30ea7573995bd10edd0ebeaeede23d94e60f32ff40dbc81848c46bf08c37852",
+    "bytes": 84884,
+    "catalog_keys": [
+      "segments-v1/marker-04.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-05.u32",
+    "classification": "preserve",
+    "sha256": "7eead2841880ea0cc79fd5996976589881460aca69e227001e50ef4fda2a8611",
+    "bytes": 24716,
+    "catalog_keys": [
+      "segments-v1/marker-05.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-06.u32",
+    "classification": "preserve",
+    "sha256": "422949f46a7d0717f909f932ad115d8d7ff3e9b1e7d5e941f11bb4c016e73917",
+    "bytes": 60032,
+    "catalog_keys": [
+      "segments-v1/marker-06.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-07.u32",
+    "classification": "preserve",
+    "sha256": "5987cedd68873259e24b754bc49008b1bc3ab79726878205e29ba016f3001ca6",
+    "bytes": 114456,
+    "catalog_keys": [
+      "segments-v1/marker-07.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-08.u32",
+    "classification": "preserve",
+    "sha256": "17048f1987bca10a4b6e881c59a16b1e1428f20609c57b2ea9f09f1ee60d0c27",
+    "bytes": 468,
+    "catalog_keys": [
+      "segments-v1/marker-08.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/marker-09.u32",
+    "classification": "preserve",
+    "sha256": "c9f6508410b85f1aead44f1a5ef27c66212a627143af61041b5206f8e1d5cf98",
+    "bytes": 66952,
+    "catalog_keys": [
+      "segments-v1/marker-09.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v1/returned/summary.json",
+    "classification": "preserve",
+    "sha256": "e993e11b7823ee0550698a491d7fa0ab91c14d01d871b74ce72d62c0159bb2f8",
+    "bytes": 5995,
+    "catalog_keys": [
+      "segments-v1/summary.json"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-01.u32",
+    "classification": "preserve",
+    "sha256": "cb5052f6dc66df615dbd0c3813d5dd2f351b8701331414b3dd56c66fbc75e263",
+    "bytes": 308,
+    "catalog_keys": [
+      "segments/marker-01.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-02.u32",
+    "classification": "preserve",
+    "sha256": "febc1f59e347bd3852f7a3ee05a060f04bf9ac199d303ba1c8fa02d36bec91ba",
+    "bytes": 2384,
+    "catalog_keys": [
+      "segments/marker-02.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-03.u32",
+    "classification": "preserve",
+    "sha256": "768b41d7a7a351bb6556c732b6bfb474bd0b3a4a21aa615a5259c3c4fa3b22a1",
+    "bytes": 6472,
+    "catalog_keys": [
+      "segments/marker-03.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-04.u32",
+    "classification": "preserve",
+    "sha256": "464ef4d300b377a4410bfe8a88015bf16de87d9b04217e4825456d12f5645f23",
+    "bytes": 11048,
+    "catalog_keys": [
+      "segments/marker-04.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-05.u32",
+    "classification": "preserve",
+    "sha256": "d83ab2f028ddb765df248ea97c2757686e304374665e20692d2d279dec4c9237",
+    "bytes": 15816,
+    "catalog_keys": [
+      "segments/marker-05.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-06.u32",
+    "classification": "preserve",
+    "sha256": "c3f90ff3ea9d8d7f57504883eb1286c10f06dc3ef220c1fd54d23043f1b7b8c5",
+    "bytes": 3932,
+    "catalog_keys": [
+      "segments/marker-06.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-07.u32",
+    "classification": "preserve",
+    "sha256": "1e17ff56eb4ec6dac62e7a96dfdf0c1f13dee80ee64967ce14e05d2e49c8792b",
+    "bytes": 16712,
+    "catalog_keys": [
+      "segments/marker-07.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-08.u32",
+    "classification": "preserve",
+    "sha256": "b71e5b9d0d1bb3e166d945afa54945f0e9216d624ff84e54d96f12c1b6361783",
+    "bytes": 80,
+    "catalog_keys": [
+      "segments/marker-08.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/marker-09.u32",
+    "classification": "preserve",
+    "sha256": "d65930923d789d2aa4934cefcdd49a80576c50e8699a39fa4961eafedb96eb82",
+    "bytes": 38796,
+    "catalog_keys": [
+      "segments/marker-09.u32"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/ffs-th0028-segments-v2/returned/summary.json",
+    "classification": "preserve",
+    "sha256": "6d20591330c748799f979865c7c8ad3d6ea90b5e3ae937f2d662a66c95f81e94",
+    "bytes": 5920,
+    "catalog_keys": [
+      "segments/summary.json"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/figure-ual-v1/download/ual-standard.zip",
+    "classification": "preserve",
+    "sha256": "18ff1a7215f4852b320203e8aaf02a1578b5c8eef9027fbaedfcedc7b85a3ac2",
+    "bytes": 14541205,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/figure-ual-v1/extracted/License.txt",
+    "classification": "preserve",
+    "sha256": "11eac7504a28077e9d8dbac8ddfca2566510efba7eef46e11f21cdd2bc96d4d5",
+    "bytes": 446,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/figure-ual-v1/extracted/Preview.png",
+    "classification": "preserve",
+    "sha256": "4491742a3ffe68c571a04fdf8fdf9bf761a3cba690b60d96e87c858df92159ab",
+    "bytes": 2424027,
+    "catalog_keys": [],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": ".local/reconstruction/figure-ual-v1/extracted/ual-standard.glb",
+    "classification": "preserve",
+    "sha256": "1b7bf67866360665426bb99e4c71bd619f19b408453c24e30f0c3071601eee5c",
+    "bytes": 6671104,
+    "catalog_keys": [
+      "figures/human.glb"
+    ],
+    "cutover_task": null,
+    "reason": "Retained source, provenance, review, licence or attempt evidence"
+  },
+  {
+    "path": "scripts/room_workflow/ffs_objects_cloud.py",
+    "classification": "retire-code",
+    "sha256": "da25ef89f063128c565a1cebc7846de5924a11b1f53df7390029908a4ecd60fa",
+    "bytes": 33487,
+    "catalog_keys": [],
+    "cutover_task": 3,
+    "reason": "Retire after shared validation and caller migration; pre-extraction source archived"
+  },
+  {
+    "path": "scripts/room_workflow/test_ffs_objects_cloud.py",
+    "classification": "retire-code",
+    "sha256": "faf5e52555276c8a319fa9669f311dd778396a186fe62546234a0b872046aa0d",
+    "bytes": 35264,
+    "catalog_keys": [],
+    "cutover_task": 3,
+    "reason": "Retire after shared validation and caller migration; pre-extraction source archived"
+  }
+]

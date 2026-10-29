@@ -1,0 +1,107 @@
+.crime-scene-app { --scene-bg: #03070c; --scene-panel: #0b1620; --scene-ink: #e6f4f8; --scene-muted: #9fb8c2; --scene-accent: #6fd3ee; --scene-line: #1f3a48; min-height: 100svh; height: auto; display: block; color-scheme: dark; background: var(--scene-bg); color: var(--scene-ink); font: 15px/1.5 'IBM Plex Sans', sans-serif; }
+.crime-scene-app * { box-sizing: border-box; }
+.crime-scene-app [hidden] { display: none !important; }
+.crime-scene-app button, .crime-scene-app summary { min-height: 44px; cursor: pointer; font: inherit; color: inherit; }
+.crime-scene-app button { height: auto; background: var(--scene-panel); border: 1px solid var(--scene-line); border-radius: 7px; padding: 9px 13px; }
+.crime-scene-app button:hover:not(:disabled) { background: #13303f; }
+.crime-scene-app button:disabled { opacity: .55; cursor: default; }
+.crime-scene-app :focus-visible { outline: 2px solid #d8eee5; outline-offset: 3px; }
+.crime-scene-app h1, .crime-scene-app h2, .crime-scene-app h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 400; }
+.crime-scene-app h1 { font-size: 25px; margin: 0; letter-spacing: -.7px; }
+.crime-scene-app h2 { font-size: 22px; margin: 0 0 12px; }
+.crime-scene-app h3 { font-size: 17px; margin: 0 0 10px; }
+.crime-scene-app p { max-width: 70ch; }
+.scene-header { display: flex; gap: 28px; align-items: center; padding: 18px 28px; border-bottom: 1px solid var(--scene-line); }
+.scene-header > div { flex: 1; }
+.scene-header p { margin: 3px 0 0; font-size: 12px; color: var(--scene-muted); }
+.scene-brand { color: var(--scene-ink); text-decoration: none; font: 500 24px 'Space Grotesk', sans-serif; }
+.scene-workspace { position: relative; }
+.scene-stage { overflow: hidden; }
+.scene-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+.scene-caption { position: absolute; top: 18px; left: 28px; display: flex; flex-direction: column; gap: 2px; pointer-events: none; background: #050b12d9; padding: 6px 10px; font-size: 12px; color: var(--scene-muted); }
+.scene-caption span:first-child { color: var(--scene-ink); }
+.scene-view-controls { position: absolute; bottom: 24px; left: 28px; right: 28px; display: flex; flex-wrap: wrap; gap: 6px; }
+.scene-view-controls button { min-width: 44px; }
+.scene-markers { position: absolute; inset: 0; pointer-events: none; }
+.crime-scene-app .scene-marker { position: absolute; width: 44px; height: 44px; padding: 0; transform: translate(-50%, -50%); pointer-events: auto; background: transparent; border-color: transparent; }
+.scene-marker span { position: relative; z-index: 1; display: inline-block; min-width: 25px; padding: 1px 4px; background: #ffb347; color: #1b211c; border: 1px solid #eee7b3; border-radius: 3px; font: 500 13px/22px 'IBM Plex Mono', monospace; }
+.scene-marker::after { content: ''; position: absolute; width: 1px; height: var(--leader, 36px); top: 50%; left: 50%; background: #ffb347; pointer-events: none; }
+.scene-marker[aria-pressed='true'] span { background: #d8eee5; border: 2px solid #fff; }
+.scene-loading { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: min(420px, calc(100% - 32px)); padding: 24px; border: 1px solid var(--scene-line); border-radius: 10px; background: var(--scene-panel); }
+/* While loading, the photo analysis plays behind a compact status strip instead of a centred card. */
+.scene-loading[data-phase='loading'] { top: auto; bottom: 24px; transform: translateX(-50%); padding: 14px 18px; background: #050b12e6; border-color: #1d4a5c; }
+.scene-loading[data-phase='loading'] h2 { font-size: 14px; margin: 0; }
+.scene-loading[data-phase='loading'] p { font-size: 12px; margin: 4px 0 0; color: var(--scene-muted); }
+.scene-loading[data-phase='loading'] progress { margin: 10px 0; }
+.scene-loading progress { width: 100%; accent-color: var(--scene-accent); display: block; margin: 16px 0; }
+.scene-small { font-size: 12px; color: var(--scene-muted); }
+.scene-clues { list-style: none; margin: 18px 0; padding: 0; display: grid; gap: 6px; }
+.crime-scene-app .scene-clue { width: 100%; display: grid; grid-template-columns: 25px minmax(0, 1fr) 52px; align-items: center; gap: 10px; text-align: left; padding: 10px; background: transparent; }
+.scene-clue strong { display: block; font-size: 13px; line-height: 1.3; font-weight: 400; }
+.scene-clue small { display: block; font-size: 10px; color: var(--scene-muted); margin-top: 5px; }
+.scene-tag-number { font: 13px 'IBM Plex Mono', monospace; color: #ffb347; }
+.scene-clue img { width: 52px; height: 48px; object-fit: cover; border-radius: 3px; border: 1px solid var(--scene-line); }
+.crime-scene-app .scene-clue[aria-pressed='true'] { border-color: var(--scene-accent); background: #102b38; }
+.scene-selected p, .scene-source p { font-size: 12px; color: var(--scene-muted); }
+.scene-coordinates { font-family: 'IBM Plex Mono', monospace; overflow-wrap: anywhere; }
+.scene-source { padding-top: 18px; border-top: 1px solid var(--scene-line); }
+.scene-panel-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.scene-panel-title h2 { margin: 0; }
+.scene-eva { margin: 20px 0; padding: 0 0 20px; border-bottom: 1px solid var(--scene-line); }
+.scene-eva > p { font-size: 13px; }
+.scene-reply { white-space: pre-wrap; overflow-wrap: anywhere; }
+.scene-consent { font-size: 12px; display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; }
+.scene-consent input, .scene-tag-picker input { accent-color: var(--scene-accent); min-width: 18px; min-height: 18px; }
+.scene-note-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.scene-note { padding: 12px 0 18px; border-bottom: 1px solid var(--scene-line); margin-bottom: 12px; }
+.scene-note > label { display: block; margin-bottom: 6px; }
+.scene-note textarea { display: block; width: 100%; resize: vertical; padding: 10px; border-radius: 5px; background: var(--scene-bg); border: 1px solid var(--scene-line); color: var(--scene-ink); font: inherit; }
+.scene-note summary { display: flex; align-items: center; font-size: 12px; }
+.scene-tag-picker { display: grid; }
+.scene-tag-picker label { min-height: 44px; display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.scene-chips, .scene-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.scene-chip { display: inline-block; border: 1px solid var(--scene-line); padding: 2px 6px; border-radius: 4px; font-size: 11px; color: var(--scene-accent); }
+.scene-sr { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+.scene-photo { color: var(--scene-ink); background: var(--scene-panel); border: 1px solid var(--scene-line); border-radius: 10px; padding: 20px; width: min(850px, calc(100vw - 32px)); max-height: 92svh; }
+.scene-photo::backdrop { background: #000b; }
+.scene-photo header { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+.scene-photo img { display: block; width: 100%; max-height: 68svh; object-fit: contain; margin: 12px 0; }
+.scene-photo p { font-size: 12px; }
+  .scene-workspace { display: block; height: calc(100svh - 92px); min-height: 500px; }
+  .scene-stage { position: relative; top: auto; height: 100%; min-height: 500px; }
+  .scene-header nav { display: flex; gap: 8px; }
+  .scene-header nav button[aria-expanded='true'] { background: #13303f; border-color: var(--scene-accent); }
+  .scene-caption { margin: 0; background: transparent; }
+  .scene-caption span { font-size: 11px; color: var(--scene-muted); }
+  .scene-view-controls { right: auto; align-items: end; z-index: 4; }
+  .scene-view-controls > details > summary { display: flex; align-items: center; padding: 9px 13px; border-radius: 7px; background: var(--scene-panel); }
+  .scene-view-menu { position: absolute; bottom: calc(100% + 10px); left: 0; width: min(330px, calc(100vw - 32px)); max-height: 65svh; overflow: auto; padding: 18px; border: 1px solid var(--scene-line); border-radius: 10px; background: var(--scene-panel); box-shadow: 0 12px 36px #0005; }
+  .scene-view-menu > label { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+  .scene-view-menu input { width: 18px; height: 18px; accent-color: var(--scene-accent); }
+  .scene-view-menu summary { display: flex; align-items: center; }
+  .scene-panel, .scene-notebook { position: absolute; right: 24px; top: 24px; width: 340px; max-width: calc(100% - 32px); max-height: calc(100% - 48px); overflow: auto; z-index: 3; padding: 20px; border: 1px solid var(--scene-line); border-radius: 12px; background: var(--scene-panel); box-shadow: 0 12px 36px #0004; overscroll-behavior: contain; }
+  .scene-notebook { width: 400px; z-index: 5; }
+  .scene-selected { width: 290px; }
+  .scene-selected h2 { margin: 5px 0 10px; }
+  .scene-selected details { margin-top: 18px; border-top: 1px solid var(--scene-line); }
+  .scene-selected summary { display: flex; align-items: center; font-size: 12px; color: var(--scene-muted); }
+  .scene-eyebrow { font: 12px 'IBM Plex Mono', monospace; color: var(--scene-accent); }
+  .scene-selected .scene-examined { color: var(--scene-ink); }
+  .scene-selected-photo { width: 100%; height: 120px; object-fit: cover; border-radius: 6px; outline: 1px solid #ffffff18; }
+  .scene-source { margin-top: 12px; padding-top: 6px; }
+  .crime-scene-app h1, .crime-scene-app h2 { text-wrap: balance; }
+  .scene-panel p { text-wrap: pretty; }
+  .scene-coordinates, .scene-examined { font-variant-numeric: tabular-nums; }
+@media (max-width: 650px) {
+  .scene-header { height: 128px; padding: 12px 16px; flex-wrap: wrap; gap: 4px 12px; }
+  .scene-header h1 { font-size: 20px; }
+  .scene-brand { font-size: 20px; }
+  .scene-header nav { width: 100%; justify-content: end; }
+  .scene-workspace { height: calc(100svh - 128px); min-height: 500px; }
+  .scene-caption { top: 12px; left: 16px; padding: 0; font-size: 11px; }
+  .scene-view-controls { bottom: 16px; left: 16px; }
+  .scene-panel { right: 16px; top: auto; bottom: 76px; width: calc(100% - 32px); max-height: 55%; padding: 16px; }
+  .scene-notebook { top: 12px; bottom: 12px; max-height: calc(100% - 24px); }
+  .scene-selected-photo { height: 90px; }
+}
+@media (prefers-reduced-motion: reduce) { .crime-scene-app *, .crime-scene-app *::before, .crime-scene-app *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

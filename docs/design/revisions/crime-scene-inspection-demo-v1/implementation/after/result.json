@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "scope": "isolated crime-scene entry; no provider calls",
+  "durations": {
+    "gpu-device": 0.27,
+    "vulkan": 1.03,
+    "unit": 3.78,
+    "vite": 0.44,
+    "walkthrough": 41.19
+  },
+  "gpu-device": 0,
+  "vulkan": 0,
+  "unit": 0,
+  "walkthrough": 0
+}
