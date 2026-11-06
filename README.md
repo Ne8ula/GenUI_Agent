@@ -1,49 +1,27 @@
-# EVA: scene investigation
+# EVA future demos
 
-The active work is the **crime-scene reconstruction replacement**: Argus scene generation, Kimodo user-requested human motion, complete hypothesis objects selected through evaluation, and the Arkham Knight-inspired detective/matrix aesthetic. This is the selected architecture, **not a claim that the replacement is implemented**.
+A lean workspace for EVA's complete fictional text-to-world installation, built through incremental demos.
 
-Start with the short [current scope](PLANNING.md) and [agent rules](AGENTS.md). Preserve original photographs/scans, provenance and failed-run receipts while retiring superseded crime-scene code/candidates. Other weeks and reconstruction experiments are outside this change and should not enter agents' default context. [Visual prerequisites](docs/design/FIGMA_WEAVE.md), finite execution approvals and owner acceptance remain required.
+Start with [the current brief](PLANNING.md). [AGENTS.md](AGENTS.md) defines the owner-approved task-only workflow. Historical work remains available through [the archive](docs/archive/README.md), but agents should not load it by default.
 
-## Historical demo reference — not the active workflow
+## Contents
 
-The remaining route descriptions document retained earlier demos only. Do not follow them as a competing crime-scene pipeline. The prior memory-palace direction and execution ledger are preserved in [planning history](PLANNING_HISTORY.md); read those only for an explicitly relevant historical question.
+- `src/room/verified-mesh.ts` — unchanged bounded, hash-checked asset loader from the previous app.
+- `tests/verified-mesh.test.ts` — its unchanged focused tests.
+- `package.json` / `package-lock.json` — existing React/Three.js web toolchain, with obsolete routes, launchers and mandatory Rust-build hooks removed. No new dependency versions selected.
+- `.claude/agents/` — retained development roles/model aliases, with the new lightweight workflow. Aliases are configuration, not evidence of model access.
+- `docs/archive/` — preserved written documentation, provenance manifest and recovery notes.
 
-The earlier room demo contains a [room-wide reconstruction/completion candidate](docs/design/revisions/room-refinement-v5/REVIEW.md) of Hypersim `ai_001_004`: all 100 supplied RGBD views, inferred architecture, recovered source detail and explicitly assumed adjoining spaces. It is not the Argus/Kimodo replacement.
+There is no demo UI yet. Workspace creation did not implement any roadmap increment. No `dev` or `build` script points at a removed historical app.
 
-## Run the retained foundation
+## Checks
 
-The application remains in [week4/](week4/README.md), alongside the retained Paris/eye fixtures.
+Node.js >=22.18 is required. `npm test` runs the self-contained loader tests without installing dependencies. After an approved dependency installation, `npm run typecheck` checks the retained source and `npm run check` runs both checks. No install, browser download or model setup is implied by this README.
 
-```powershell
-npm.cmd ci --prefix week4
-npm.cmd run dev
-```
+## Git and storage status
 
-Open **http://127.0.0.1:1440/** for the reconstructed room (also `?scene=hypersim-room`). Drag to look, scroll to move, or focus the room and use W A S D / arrow keys. Home resets the selected view. Touch supports dragging, pinching and movement buttons. Choose **Sources & details** to inspect source images and coverage limits.
+This separate local clone is on `future-demos`, based on `334482aecfba8c23d9428dd59d61c6bfa60c203d`. Changes are prepared locally, not committed or pushed. The original `GenUI_Agent` checkout and its unsaved work are untouched.
 
-The new **[single-room upload candidate](scripts/room_workflow/README.md)** is at <http://127.0.0.1:1440/?scene=upload-room>. Also run `npm.cmd run room:service` for private local intake and reopening. The deployed cloud worker has processed an actual seven-photo upload. Boundary review and CPU completion are implemented; authenticated Shado deployment and actual A/B reconstruction remain pending. The page does not silently run paid work.
+**Do not delete or move the original checkout yet.** This clone uses Git alternates to share its object database and avoid duplicating approximately 6.5 GiB of history. It is not an independent backup. No old disk usage has been reclaimed and remote completeness has not been verified. Do not prune shared history as a cleanup shortcut.
 
-An **actual seven-photo VGGT room** is now available at <http://127.0.0.1:1440/?scene=arkitscenes-room>, also requiring the local room service. A separate [broader-view candidate](http://127.0.0.1:1440/?scene=arkitscenes-room&profile=vga-visual-v1) adds an optional inferred wall-color treatment. Compare raw ML, dense fused surfaces and provisional completion; inspect source views, uniform dots and provenance. Enhanced point contrast makes dark furniture clearer, with exact source colors still available. The hallway is excluded, missing architecture is explicitly assumed, scale is relative, and Shado comparison remains pending. [Run evidence and limitations](docs/research/ARKITSCENES_PILOT.md).
-
-Retained routes: `?scene=paris-arrival` for the eye fixture and `?scene=rust` for the procedural Rust scene. Rust/WASM tooling is required by the app build; see [setup and checks](week4/README.md).
-
-The broader-view route now opens a [complete-object aesthetic study](docs/design/revisions/aesthetic-room-v6-after/REVIEW.md): continuous furniture, sampled photo colors, uniform hollow dots for inferred shapes, optional surfaces, and four interior viewpoints. This is an authored interpretation of the public capture, **not automatic object completion for uploaded photos**. The raw and fused candidates remain available.
-
-Its default point style now uses the [Paris-inspired dithered matrix treatment](docs/design/revisions/aesthetic-matrix-v2-after/REVIEW.md). **Uniform dots** preserves the preceding look; hollow marks distinguish inferred geometry in both.
-
-The [shared room renderer](docs/design/revisions/general-room-style-v3/REVIEW.md) now applies that matrix treatment to uploaded candidates too, using each job's own geometry, palette and face provenance. It does not reuse benchmark furniture. [Automatic furniture completion remains unimplemented](docs/research/GENERAL_ROOM_COMPLETION.md); boundary closure and a reusable renderer do not resolve that gap.
-
-`npm.cmd run check` checks the TypeScript application; `npm.cmd run rust:test` checks the Rust workspace.
-
-The [current room review and before/after captures](docs/design/revisions/room-refinement-v5/REVIEW.md) document the room-completion refinement under its existing Weave waiver. [Acceptance](docs/design/acceptance/room-refinement-v5.md) is pending. The original 96-view reconstruction remains at `?scene=hypersim-room&room=r03`, with its [original review](docs/design/revisions/room-r03/REVIEW.md). The [R18 acceptance](week4/docs/design/acceptance/w4-hover-overlays-r18.md) covers only the earlier hover/overlay refinement. The separate photo-only ARKitScenes pilot has now run; general casual-photo quality, live conversation and editable memory annotations remain upcoming work.
-
-## Repository map
-
-- `week4/app`: React host, eye, renderers, source inspection and tests.
-- `week4/core`, `schemas`, `fixtures`, `tests`: bounded data/behavior contracts.
-- `week4/renderer`: authored Rust/WASM graphics; `week4/broker`: mock desktop policy.
-- `docs/design`: Weave workflow and evidence index.
-- `docs/research`: one long-term plan and the supplied seven-step chart.
-- [History and recovery](docs/HISTORY.md): superseded material and recovery commit.
-
-Weeks 1?3, superseded Week 4 handoffs and most historical media were removed from this checkout on the owner's 2026-10-18 instruction. Git history remains intact. Retrieve old material only for a specific recovery task.
+Next storage step, only when separately authorized: verify/preserve all unique branches, worktrees and non-Git originals; commit and push the reviewed future branch; test recovery; then create an independent shallow, single-branch clone from the remote. Only afterward remove individually approved old local copies. Never blanket-delete ignored sources or assume a branch preserves untracked files.

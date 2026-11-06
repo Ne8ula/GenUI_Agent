@@ -1,19 +1,38 @@
 {
-  "name": "eva-repository",
+  "name": "eva-future-demos",
   "version": "0.1.0",
   "private": true,
-  "description": "EVA midterm repository; commands target the retained Week 4 foundation.",
+  "type": "module",
+  "description": "EVA fictional text-to-world installation, built through incremental demos.",
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
-    "room:service": "node scripts/room_workflow/broker.mjs",
-    "room:test": "node --test scripts/room_workflow/*.test.mjs",
-    "dev": "npm --prefix week4/app run dev --",
-    "build": "npm --prefix week4/app run build --",
-    "test": "npm --prefix week4 test && npm --prefix week4/app test",
-    "typecheck": "npm --prefix week4 run typecheck && npm --prefix week4/app run typecheck",
-    "check": "npm --prefix week4 run check",
-    "rust:test": "cargo test --locked --manifest-path week4/Cargo.toml",
-    "rust:check": "cargo check --locked --manifest-path week4/Cargo.toml",
-    "rust:fmt": "cargo fmt --manifest-path week4/Cargo.toml -- --check",
-    "rust:clippy": "cargo clippy --locked --manifest-path week4/Cargo.toml --all-targets -- -D warnings"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "@mediapipe/tasks-vision": "0.10.32",
+    "ajv": "^8.20.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.9",
+    "@types/three": "0.180.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "playwright": "~1.56.1",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.3"
   }
 }
