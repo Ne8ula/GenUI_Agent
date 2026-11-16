@@ -15,7 +15,7 @@ const failures = {
   missing_key: [503, 'The dedicated server-side speech key is not configured.'],
   missing_voice: [503, 'A valid speech voice must be configured explicitly.'],
   busy: [409, 'Another speech request is in progress.'],
-  budget_exhausted: [429, 'The three-attempt speech allowance is exhausted.'],
+  budget_exhausted: [429, 'The configured speech allowance is exhausted.'],
   provider_rejected: [502, 'The speech provider rejected the request. No retry or logging-enabled fallback was made.'],
   provider_unavailable: [502, 'The speech provider is unavailable. No retry was made.'],
   invalid_provider_response: [502, 'The speech provider returned an invalid or oversized response.'],
@@ -120,9 +120,11 @@ async function providerBytes(response: Response, signal: AbortSignal, speak: boo
 }
 
 export function createSpeechHandler(options: {
-  origin: string; enabled?: boolean; privacyConfirmed?: boolean; apiKey?: string; voiceId?: string; fetch?: typeof globalThis.fetch;
+  origin: string; enabled?: boolean; privacyConfirmed?: boolean; apiKey?: string; voiceId?: string; maxAttempts?: number; fetch?: typeof globalThis.fetch;
 }) {
   if (options.origin !== 'http://127.0.0.1:5173' && options.origin !== 'http://127.0.0.1:4173') throw new Error('Speech origin must be an approved loopback origin.');
+  const maxAttempts = options.maxAttempts ?? 3;
+  if (!Number.isInteger(maxAttempts) || maxAttempts < 1 || maxAttempts > 100) throw new Error('Speech allowance must be an integer from 1 to 100.');
   const origin = options.origin;
   const host = new URL(origin).host;
   const enabled = options.enabled === true;
@@ -134,7 +136,7 @@ export function createSpeechHandler(options: {
   let attempts = 0;
   let active: AbortController | null = null;
   const unavailable = () => !enabled ? 'disabled' : !privacyConfirmed ? 'privacy_unconfirmed' : !apiKey ? 'missing_key'
-    : !voiceId || !/^[a-zA-Z0-9_-]{1,64}$/.test(voiceId) ? 'missing_voice' : active ? 'busy' : attempts >= 3 ? 'budget_exhausted' : null;
+    : !voiceId || !/^[a-zA-Z0-9_-]{1,64}$/.test(voiceId) ? 'missing_voice' : active ? 'busy' : attempts >= maxAttempts ? 'budget_exhausted' : null;
   return async (req: IncomingMessage, res: ServerResponse, next: (error?: unknown) => void): Promise<void> => {
     if (!req.url?.startsWith(endpoint)) { next(); return; }
     const reply = (status: number, body: unknown, audio = false) => {
@@ -167,7 +169,7 @@ export function createSpeechHandler(options: {
       const status = req.url === endpoint;
       if (req.method !== (status ? 'GET' : 'POST')) { res.setHeader('allow', status ? 'GET' : 'POST'); throw new RequestFailure('method'); }
       const reason = unavailable();
-      if (status) { reply(reason ? failures[reason][0] : 200, { available: reason === null, reason, remainingRequests: 3 - attempts, models }); return; }
+      if (status) { reply(reason ? failures[reason][0] : 200, { available: reason === null, reason, remainingRequests: maxAttempts - attempts, models }); return; }
       if (reason) throw new RequestFailure(reason);
       if (!jsonType(req.headers['content-type']) || (req.headers['content-encoding'] !== undefined && req.headers['content-encoding'] !== 'identity')) throw new RequestFailure('content_type');
       const length = req.headers['content-length'];
@@ -217,7 +219,7 @@ export function createSpeechHandler(options: {
       }
     } catch (error) {
       const failure: RequestFailure = controller?.signal.aborted ? controller.signal.reason : error instanceof RequestFailure ? error : new RequestFailure('provider_unavailable');
-      reply(failure.status, { error: failure.code, message: failure.message, remainingRequests: 3 - attempts });
+      reply(failure.status, { error: failure.code, message: failure.message, remainingRequests: maxAttempts - attempts });
     } finally {
       if (timer !== undefined) clearTimeout(timer);
       req.off('aborted', disconnect);

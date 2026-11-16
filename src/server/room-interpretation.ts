@@ -45,7 +45,7 @@ const failures = {
   disabled: [503, 'Room interpretation is not enabled.'],
   missing_key: [503, 'The dedicated server-side interpretation key is not configured.'],
   busy: [409, 'A room interpretation is already in progress.'],
-  budget_exhausted: [429, 'The approved three-request allowance is exhausted.'],
+  budget_exhausted: [429, 'The configured room interpretation allowance is exhausted.'],
   input_token_limit: [422, 'The interpretation exceeds the approved input-token limit.'],
   provider_auth: [503, 'The provider did not accept the configured credentials.'],
   provider_rate_limited: [429, 'The provider rate-limited the request; no retry was made.'],
@@ -211,11 +211,14 @@ export function createRoomInterpretationHandler(options: {
   origin: string;
   apiKey?: string;
   enabled: boolean;
+  maxRequests?: number;
   fetch?: typeof globalThis.fetch;
 }) {
   if (options.origin !== 'http://127.0.0.1:5173' && options.origin !== 'http://127.0.0.1:4173') {
     throw new Error('Room interpretation origin must be an approved loopback origin.');
   }
+  const maxRequests = options.maxRequests ?? 3;
+  if (!Number.isInteger(maxRequests) || maxRequests < 1 || maxRequests > 100) throw new Error('Room interpretation allowance must be an integer from 1 to 100.');
   const origin = options.origin;
   const host = new URL(origin).host;
   const enabled = options.enabled === true;
@@ -223,7 +226,7 @@ export function createRoomInterpretationHandler(options: {
   const fetch = options.fetch ?? globalThis.fetch;
   let attempts = 0;
   let active: AbortController | null = null;
-  const unavailable = () => !enabled ? 'disabled' : !apiKey ? 'missing_key' : active ? 'busy' : attempts >= 3 ? 'budget_exhausted' : null;
+  const unavailable = () => !enabled ? 'disabled' : !apiKey ? 'missing_key' : active ? 'busy' : attempts >= maxRequests ? 'budget_exhausted' : null;
 
   return async (req: IncomingMessage, res: ServerResponse, next: (error?: unknown) => void): Promise<void> => {
     if (!req.url?.startsWith(endpoint)) { next(); return; }
@@ -263,7 +266,7 @@ export function createRoomInterpretationHandler(options: {
       }
       const reason = unavailable();
       if (req.method === 'GET') {
-        reply(reason ? failures[reason][0] : 200, { available: reason === null, reason, model, remainingRequests: 3 - attempts });
+        reply(reason ? failures[reason][0] : 200, { available: reason === null, reason, model, remainingRequests: maxRequests - attempts });
         return;
       }
       if (reason) throw new RequestFailure(reason);
@@ -327,7 +330,7 @@ export function createRoomInterpretationHandler(options: {
     } catch (error) {
       const failure = controller?.signal.aborted ? controller.signal.reason
         : error instanceof RequestFailure ? error : new RequestFailure('provider_unavailable');
-      reply(failure.status, { error: failure.code, message: failure.message, remainingRequests: 3 - attempts,
+      reply(failure.status, { error: failure.code, message: failure.message, remainingRequests: maxRequests - attempts,
         rejectionReason: failure.rejectionReason });
     } finally {
       if (timer !== undefined) clearTimeout(timer);

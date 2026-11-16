@@ -1,0 +1,537 @@
+{
+  "id": "library",
+  "label": "Recorded room built from one picture by World Labs Atlas (images2PosedRGBD; atlasGenerate twice for fourteen views around the room; posedImages2Splats for room.spz from all fifteen frames; 2026-11-12). Not live generation.",
+  "splats": "room.spz",
+  "points": "points.bin",
+  "water": {
+    "center": [
+      1.2,
+      0,
+      -5.5
+    ],
+    "radius": [
+      1.34,
+      1.25
+    ],
+    "depth": 1.4
+  },
+  "heroes": [
+    {
+      "name": "melted clock",
+      "min": [
+        -2.858,
+        1.032,
+        -3.905
+      ],
+      "max": [
+        -2.502,
+        2.246,
+        -3.318
+      ]
+    },
+    {
+      "name": "statue head",
+      "min": [
+        -3.678,
+        0.019,
+        -10.37
+      ],
+      "max": [
+        -1.941,
+        1.082,
+        -9.09
+      ]
+    },
+    {
+      "name": "pool",
+      "min": [
+        -0.2,
+        -1.4,
+        -6.81
+      ],
+      "max": [
+        2.6,
+        0.18,
+        -4.19
+      ]
+    },
+    {
+      "name": "sky cube",
+      "min": [
+        1.364,
+        2.07,
+        -6.045
+      ],
+      "max": [
+        2.222,
+        2.841,
+        -5.175
+      ]
+    },
+    {
+      "name": "spiral of books",
+      "min": [
+        3.036,
+        0,
+        -7.287
+      ],
+      "max": [
+        4.525,
+        2.465,
+        -5.837
+      ]
+    }
+  ],
+  "frames": [
+    {
+      "image": "frame-00.jpg",
+      "depth": "frame-00-depth.exr",
+      "confidence": "frame-00-confidence.png",
+      "source": "picture",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0,
+            1.589361548423767,
+            0
+          ],
+          "quaternion": [
+            0.007342691272290787,
+            0.000004674190803444448,
+            -0.0006365600338557933,
+            0.99997283945833
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-01.jpg",
+      "depth": "frame-01-depth.exr",
+      "confidence": "frame-01-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0,
+            1.589361548423767,
+            -3.8
+          ],
+          "quaternion": [
+            -0.05952190755210709,
+            0,
+            0,
+            0.9982269994952844
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-02.jpg",
+      "depth": "frame-02-depth.exr",
+      "confidence": "frame-02-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            1.414213562373095,
+            1.589361548423767,
+            -4.385786437626905
+          ],
+          "quaternion": [
+            -0.05499107212342073,
+            0.3820049344463602,
+            0.022778047882957897,
+            0.9222414936338478
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-03.jpg",
+      "depth": "frame-03-depth.exr",
+      "confidence": "frame-03-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            2,
+            1.589361548423767,
+            -5.8
+          ],
+          "quaternion": [
+            -0.0420883444592537,
+            0.7058530805066159,
+            0.0420883444592537,
+            0.7058530805066159
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-04.jpg",
+      "depth": "frame-04-depth.exr",
+      "confidence": "frame-04-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            1.4142135623730951,
+            1.589361548423767,
+            -7.214213562373095
+          ],
+          "quaternion": [
+            -0.0227780478829579,
+            0.9222414936338478,
+            0.05499107212342073,
+            0.38200493444636013
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-05.jpg",
+      "depth": "frame-05-depth.exr",
+      "confidence": "frame-05-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            2.4492935982947064e-16,
+            1.589361548423767,
+            -7.8
+          ],
+          "quaternion": [
+            -3.64466567814163e-18,
+            0.9982269994952844,
+            0.05952190755210709,
+            6.112377498771832e-17
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-06.jpg",
+      "depth": "frame-06-depth.exr",
+      "confidence": "frame-06-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -1.414213562373095,
+            1.589361548423767,
+            -7.214213562373095
+          ],
+          "quaternion": [
+            0.022778047882957897,
+            0.9222414936338478,
+            0.05499107212342073,
+            -0.38200493444636013
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-07.jpg",
+      "depth": "frame-07-depth.exr",
+      "confidence": "frame-07-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -2,
+            1.589361548423767,
+            -5.8
+          ],
+          "quaternion": [
+            -0.0420883444592537,
+            -0.7058530805066159,
+            -0.0420883444592537,
+            0.7058530805066159
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-08.jpg",
+      "depth": "frame-08-depth.exr",
+      "confidence": "frame-08-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -1.4142135623730954,
+            1.589361548423767,
+            -4.385786437626905
+          ],
+          "quaternion": [
+            -0.05499107212342073,
+            -0.3820049344463603,
+            -0.022778047882957904,
+            0.9222414936338478
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-09.jpg",
+      "depth": "frame-09-depth.exr",
+      "confidence": "frame-09-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -2,
+            1.589361548423767,
+            -10.6
+          ],
+          "quaternion": [
+            -0.03945488627126244,
+            -0.4413243548476936,
+            -0.019427645081709483,
+            0.8962693191079163
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-10.jpg",
+      "depth": "frame-10-depth.exr",
+      "confidence": "frame-10-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -2,
+            1.589361548423767,
+            -12.8
+          ],
+          "quaternion": [
+            0.016358624507837427,
+            0.9152836000318386,
+            0.0373628542711897,
+            -0.4007397460168865
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-11.jpg",
+      "depth": "frame-11-depth.exr",
+      "confidence": "frame-11-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            2.7,
+            1.589361548423767,
+            -10
+          ],
+          "quaternion": [
+            -0.038874849794439684,
+            0.353955978098585,
+            0.014726993008886026,
+            0.9343377479790965
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-12.jpg",
+      "depth": "frame-12-depth.exr",
+      "confidence": "frame-12-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            2.7,
+            1.589361548423767,
+            -12
+          ],
+          "quaternion": [
+            -0.02381926320996292,
+            0.8851294715220845,
+            0.04558577346426275,
+            0.4624936741198032
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-13.jpg",
+      "depth": "frame-13-depth.exr",
+      "confidence": "frame-13-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -1.2,
+            1.589361548423767,
+            -3.7
+          ],
+          "quaternion": [
+            -0.01687615455932577,
+            0.9260462529149374,
+            0.04170621471075059,
+            0.37471872721281807
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-14.jpg",
+      "depth": "frame-14-depth.exr",
+      "confidence": "frame-14-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            1.2,
+            1.589361548423767,
+            -3.7
+          ],
+          "quaternion": [
+            0.017043463949554045,
+            0.9139948956132847,
+            0.03860388109636328,
+            -0.4035252055247093
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 752.3389892578125,
+          "fy": 752.3389892578125,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    }
+  ]
+}

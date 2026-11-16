@@ -30,7 +30,7 @@ function abortable<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
   });
 }
 function cancelBody(response: Response) { void response.body?.cancel().catch(() => {}); }
-async function fetchResponse(fetch: typeof globalThis.fetch, url: string, init: RequestInit, signal: AbortSignal) {
+export async function fetchResponse(fetch: typeof globalThis.fetch, url: string, init: RequestInit, signal: AbortSignal) {
   signal.throwIfAborted();
   // Retain ownership until abortable actually delivers the fulfilled response.
   let received: Response | undefined;
@@ -80,7 +80,7 @@ async function responseBytes(response: Response, signal: AbortSignal, limit: num
     reader.releaseLock();
   }
 }
-async function responseJson(response: Response, signal: AbortSignal) {
+export async function responseJson(response: Response, signal: AbortSignal) {
   return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(await responseBytes(response, signal, 4096))) as unknown;
 }
 export type SpeechAvailability = {
@@ -92,7 +92,7 @@ export async function readSpeechAvailability(signal: AbortSignal): Promise<Speec
   const data = await responseJson(response, signal);
   if (!record(data) || Object.keys(data).length !== 4 || !record(data.models) || Object.keys(data.models).length !== 2
     || data.models.transcription !== 'scribe_v2_realtime' || data.models.speech !== 'eleven_v3'
-    || typeof data.remainingRequests !== 'number' || !Number.isInteger(data.remainingRequests) || data.remainingRequests < 0 || data.remainingRequests > 3) throw new Error('Invalid speech status.');
+    || typeof data.remainingRequests !== 'number' || !Number.isInteger(data.remainingRequests) || data.remainingRequests < 0 || data.remainingRequests > 100) throw new Error('Invalid speech status.');
   const remaining = data.remainingRequests;
   if (data.available === true && data.reason === null && response.status === 200 && remaining > 0) return { phase: 'ready', remaining };
   if (data.available === false) {
@@ -243,6 +243,9 @@ export function createSpeechController(options: {
                 retire(operation);
                 options.onTranscript?.(text);
               }
+            } else if (value.message_type === 'warning') {
+              // Owner's decision 2026-11-12: provider logging is accepted for testing. ElevenLabs warns that zero retention was refused.
+              console.warn('Speech provider warning (session continues):', typeof value.warning === 'string' ? value.warning.slice(0, 300) : 'unspecified');
             } else if (value.message_type !== 'committed_transcript_with_timestamps') throw new Error('message');
           } catch { if (current(operation)) retire(operation, 'Speech returned an invalid response. Your draft is unchanged.'); }
         };

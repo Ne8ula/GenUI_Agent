@@ -473,6 +473,34 @@ test('the three-attempt budget cannot be reset by GET and caps both endpoints', 
   assert.equal(calls.filter(call => call.url.endsWith('/messages')).length, 3);
 });
 
+test('configured interpretation allowance supports more than three requests and rejects invalid bounds', async () => {
+  const { fetch, calls } = provider();
+  for (const maxRequests of [0, -1, 1.5, NaN, Infinity, 101]) {
+    assert.throws(() => createRoomInterpretationHandler({ origin, enabled: false, maxRequests }), /allowance/);
+  }
+  for (const maxRequests of [1, 100]) {
+    const handler = createRoomInterpretationHandler({ origin, enabled: true, apiKey: key, fetch, maxRequests });
+    assert.equal((await request(handler, { method: 'GET' })).res.data.remainingRequests, maxRequests);
+  }
+  const handler = createRoomInterpretationHandler({ origin, enabled: true, apiKey: key, fetch, maxRequests: 4 });
+  assert.equal((await request(handler, { method: 'GET' })).res.data.remainingRequests, 4);
+  for (let remaining = 3; remaining >= 0; remaining -= 1) {
+    assert.equal((await request(handler)).res.statusCode, 200);
+    const status = (await request(handler, { method: 'GET' })).res;
+    assert.equal(status.data.remainingRequests, remaining);
+    assert.equal(status.statusCode, remaining ? 200 : 429);
+  }
+  const exhausted = (await request(handler)).res;
+  assert.equal(exhausted.statusCode, 429);
+  assert.equal(exhausted.data.error, 'budget_exhausted');
+  assert.equal(exhausted.data.remainingRequests, 0);
+  assert.doesNotMatch(exhausted.data.message, /three/);
+  assert.equal(calls.length, 8);
+  const failed = createRoomInterpretationHandler({ origin, enabled: true, apiKey: key, maxRequests: 100,
+    fetch: provider(() => json({}, 500)).fetch });
+  assert.equal((await request(failed)).res.data.remainingRequests, 99);
+});
+
 test('provider status and transport errors are sanitized and never retried', async () => {
   for (const [status, expected, code] of [[401, 503, 'provider_auth'], [403, 503, 'provider_auth'],
     [429, 429, 'provider_rate_limited'], [500, 502, 'provider_unavailable'], [400, 502, 'provider_rejected'], [302, 502, 'provider_rejected']] as const) {

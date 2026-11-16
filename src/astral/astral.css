@@ -1,0 +1,32 @@
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.astral {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+  cursor: none;
+}
+
+.astral-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* prototype look 'data': marks drawn at native resolution above the WebGL canvas */
+.astral-data {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

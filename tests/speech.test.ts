@@ -73,6 +73,21 @@ async function listen(app: Awaited<ReturnType<typeof setup>>) {
   return socket;
 }
 
+test('speech status accepts configured allowances through 100 and rejects invalid bounds', async t => {
+  const { readSpeechAvailability } = await import('../src/speech/speech.ts');
+  let remainingRequests = 40;
+  t.mock.method(globalThis, 'fetch', async () => json({ available: true, reason: null, remainingRequests,
+    models: { transcription: 'scribe_v2_realtime', speech: 'eleven_v3' } }));
+  for (const remaining of [1, 3, 40, 100]) {
+    remainingRequests = remaining;
+    assert.deepEqual(await readSpeechAvailability(new AbortController().signal), { phase: 'ready', remaining });
+  }
+  for (const remaining of [-1, 0, 1.5, 101, Infinity]) {
+    remainingRequests = remaining;
+    await assert.rejects(readSpeechAvailability(new AbortController().signal), /Invalid speech status/);
+  }
+});
+
 test('speech is inert until explicit listen and uses only the fixed documented manual-commit Scribe transport', async t => {
   const app = await setup(t);
   assert.equal(app.controller.getState().phase, 'idle');
@@ -90,6 +105,17 @@ test('speech is inert until explicit listen and uses only the fixed documented m
   assert.deepEqual(Object.fromEntries(url.searchParams), { model_id: 'scribe_v2_realtime', audio_format: 'pcm_16000',
     token: 'synthetic-single-use-token', commit_strategy: 'manual', include_timestamps: 'false', enable_logging: 'false' });
   assert.doesNotMatch(JSON.stringify(app.controller.getState()), /synthetic-single-use-token|synthetic-session/);
+});
+
+test('a provider warning (zero retention refused) is logged and the session keeps listening', async t => {
+  const app = await setup(t);
+  const socket = await listen(app);
+  const warn = t.mock.method(console, 'warn', () => {});
+  socket.message({ message_type: 'warning', warning: 'Zero retention mode was requested but was not applied. This session is still being logged.' });
+  assert.equal(app.controller.getState().phase, 'listening');
+  assert.match(String(warn.mock.calls[0]?.arguments[1]), /still being logged/);
+  socket.message({ message_type: 'partial_transcript', text: 'a room' });
+  assert.equal(app.controller.getState().interim, 'a room');
 });
 
 test('one real tail chunk is committed and partials replace interim while one final replaces the draft', async t => {

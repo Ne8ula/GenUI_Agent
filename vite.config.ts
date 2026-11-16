@@ -2,6 +2,8 @@ import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import process from 'node:process'
 import { createRoomInterpretationHandler } from './src/server/room-interpretation.ts'
+import { createAstralReplyHandler } from './src/server/astral-reply.ts'
+import { createAstralDecisionHandler } from './src/server/astral-decision.ts'
 import { createSpeechHandler } from './src/server/speech.ts'
 import { createInvestigationNarrationHandler } from './src/server/investigation-narration.ts'
 import { createOpenAiPropReferenceImageHandler } from './src/server/prop-reference-image-openai.ts'
@@ -14,6 +16,7 @@ function roomInterpretation(): Plugin {
     return createRoomInterpretationHandler({
       origin: `http://127.0.0.1:${port}`,
       enabled,
+      maxRequests: process.env.EVA_ROOM_INTERPRETATION_MAX_REQUESTS === undefined ? undefined : Number(process.env.EVA_ROOM_INTERPRETATION_MAX_REQUESTS),
       apiKey: enabled ? process.env.EVA_ANTHROPIC_API_KEY : undefined,
     })
   }
@@ -33,12 +36,47 @@ function speech(): Plugin {
       origin: `http://127.0.0.1:${port}`,
       enabled,
       privacyConfirmed,
+      maxAttempts: process.env.EVA_SPEECH_MAX_ATTEMPTS === undefined ? undefined : Number(process.env.EVA_SPEECH_MAX_ATTEMPTS),
       apiKey: permitted ? process.env.EVA_ELEVENLABS_API_KEY : undefined,
       voiceId: permitted ? process.env.EVA_ELEVENLABS_VOICE_ID : undefined,
     })
   }
   return {
     name: 'local-speech',
+    configureServer(server) { server.middlewares.use(handler(5173)) },
+    configurePreviewServer(server) { server.middlewares.use(handler(4173)) },
+  }
+}
+
+function astralReply(): Plugin {
+  const handler = (port: number) => {
+    const enabled = process.env.EVA_ENABLE_ASTRAL_REPLY === '1'
+    return createAstralReplyHandler({
+      origin: `http://127.0.0.1:${port}`,
+      enabled,
+      apiKey: enabled ? process.env.EVA_ANTHROPIC_API_KEY : undefined,
+      maxRequests: process.env.EVA_ASTRAL_REPLY_MAX_REQUESTS === undefined ? undefined : Number(process.env.EVA_ASTRAL_REPLY_MAX_REQUESTS),
+    })
+  }
+  return {
+    name: 'local-astral-reply',
+    configureServer(server) { server.middlewares.use(handler(5173)) },
+    configurePreviewServer(server) { server.middlewares.use(handler(4173)) },
+  }
+}
+
+function astralDecision(): Plugin {
+  const handler = (port: number) => {
+    const enabled = process.env.EVA_ENABLE_ASTRAL_DECISION === '1'
+    return createAstralDecisionHandler({
+      origin: `http://127.0.0.1:${port}`,
+      enabled,
+      apiKey: enabled ? process.env.EVA_JEV_API_KEY : undefined,
+      maxRequests: process.env.EVA_ASTRAL_DECISION_MAX_REQUESTS === undefined ? undefined : Number(process.env.EVA_ASTRAL_DECISION_MAX_REQUESTS),
+    })
+  }
+  return {
+    name: 'local-astral-decision',
     configureServer(server) { server.middlewares.use(handler(5173)) },
     configurePreviewServer(server) { server.middlewares.use(handler(4173)) },
   }
@@ -91,6 +129,7 @@ function roomPaint(): Plugin {
     origin: `http://127.0.0.1:${port}`,
     enabled: process.env.EVA_ENABLE_ROOM_PAINT === '1',
     spendingConfirmed: process.env.EVA_ROOM_PAINT_SPENDING_CONFIRMED === '1',
+    maxRequests: process.env.EVA_ROOM_PAINT_MAX_REQUESTS === undefined ? undefined : Number(process.env.EVA_ROOM_PAINT_MAX_REQUESTS),
     getApiKey: () => process.env.EVA_WORLDLABS_API_KEY,
   })
   return {
@@ -101,7 +140,7 @@ function roomPaint(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), roomInterpretation(), speech(), investigationNarration(), propReferenceImage(), roomPaint()],
+  plugins: [react(), roomInterpretation(), speech(), astralReply(), astralDecision(), investigationNarration(), propReferenceImage(), roomPaint()],
   server: { host: '127.0.0.1', port: 5173, strictPort: true },
   preview: { host: '127.0.0.1', port: 4173, strictPort: true },
 })

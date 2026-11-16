@@ -76,7 +76,7 @@ export async function readRoute(path: string, provider: 'openai' | 'meshy' | 'wo
     if (!record(value) || Object.keys(value).length !== statusKeys.length || !statusKeys.every(key => Object.hasOwn(value, key))
       || value.provider !== provider || typeof value.model !== 'string' || value.credentialStatus !== 'unchecked'
       || typeof value.pendingTransport !== 'boolean' || typeof value.remainingRequests !== 'number'
-      || !Number.isInteger(value.remainingRequests) || value.remainingRequests < 0 || value.remainingRequests > 3) throw new Error('Invalid status.');
+      || !Number.isInteger(value.remainingRequests) || value.remainingRequests < 0 || value.remainingRequests > (provider === 'worldlabs' ? 100 : 3)) throw new Error('Invalid status.');
     const remaining = value.remainingRequests;
     if (value.available === true && value.reason === null && response.status === 200 && remaining > 0) {
       return { phase: value.pendingTransport ? 'busy' : 'ready', remaining };

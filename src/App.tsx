@@ -30,7 +30,7 @@ const speechAvailabilityText: Record<SpeechAvailability['phase'], string> = {
   missing_key: 'Dedicated server-side speech key is not configured.',
   missing_voice: 'No valid voice is configured; there is no default voice.',
   busy: 'Speech server is busy. Check again after it finishes.',
-  budget_exhausted: 'Shared three-attempt speech allowance exhausted.',
+  budget_exhausted: 'Shared configured speech allowance exhausted.',
   unreachable: 'Speech status could not be reached or validated.',
 };
 
@@ -121,7 +121,7 @@ async function readAvailability(signal: AbortSignal): Promise<Availability> {
     const value = data as Record<string, unknown>;
     if (Object.keys(value).length !== 4 || !['available', 'reason', 'model', 'remainingRequests'].every(key => Object.hasOwn(value, key))
       || value.model !== 'claude-opus-5-5' || typeof value.remainingRequests !== 'number'
-      || !Number.isInteger(value.remainingRequests) || value.remainingRequests < 0 || value.remainingRequests > 3) throw new Error('Invalid status.');
+      || !Number.isInteger(value.remainingRequests) || value.remainingRequests < 0 || value.remainingRequests > 100) throw new Error('Invalid status.');
     const remaining = value.remainingRequests;
     if (value.available === true && value.reason === null && response.status === 200 && remaining > 0) return { phase: 'ready', remaining };
     if (value.available === false) {
@@ -1109,7 +1109,7 @@ export default function App() {
                 </details>
                 {speechState.interim && <p id="speech-interim"><strong>Provisional, not submitted:</strong> {speechState.interim}</p>}
                 <div className="composition-availability">
-                  <p>Last speech status check: {speechAvailabilityText[speechAvailability.phase]}{speechAvailability.remaining !== null ? ` Shared server attempts remaining: ${speechAvailability.remaining} / 3.` : ''}</p>
+                  <p>Last speech status check: {speechAvailabilityText[speechAvailability.phase]}{speechAvailability.remaining !== null ? ` Shared server attempts remaining: ${speechAvailability.remaining}.` : ''}</p>
                   <button type="button" disabled={speechAvailability.phase === 'checking'} onClick={refreshSpeechAvailability}>Check speech status</button>
                 </div>
                 <div className="speech-controls">
@@ -1195,11 +1195,11 @@ export default function App() {
               {inspection && investigation && reconstruction && <section className="room-reconstruction" aria-labelledby="paint-title" aria-describedby="paint-availability">
                 <h3 id="paint-title">Room look</h3>
                 <details className="fine-print"><summary>How paid painting works</summary>
-                  <p id="paint-policy">Paint room sends this room’s current layout as a depth map, never visitor words, to World Labs Atlas (atlasChisel). It returns one photographic view from the centre viewpoint, which is laid over the room. Each Paint uses one of three allowances on this server run. The API shows no price before spending; each task may be charged. No automatic retries; stopping does not cancel a submitted remote task. Appearance only: objects, clues and history are unchanged. Away from the centre view, surfaces hidden in the painting show stretched paint, and generated props keep their own look.</p>
+                  <p id="paint-policy">Paint room sends this room’s current layout as a depth map, never visitor words, to World Labs Atlas (atlasChisel). It returns one photographic view from the centre viewpoint, which is laid over the room. Each Paint uses one request from the configured allowance on this server run. The API shows no price before spending; each task may be charged. No automatic retries; stopping does not cancel a submitted remote task. Appearance only: objects, clues and history are unchanged. Away from the centre view, surfaces hidden in the painting show stretched paint, and generated props keep their own look.</p>
                 </details>
                 <p id="paint-availability">
                   {paintStatus === 'unchecked' ? 'Paint status not checked yet.' : paintStatus === 'checking' ? 'Checking paint status…' : `World Labs: ${propRouteText[paintStatus.phase]}.`}
-                  {' '}Paint allowance {paintChecked?.remaining ?? '?'}/3 (this server run)
+                  {' '}Paint requests remaining: {paintChecked?.remaining ?? '?'} (this server run)
                 </p>
                 <div className="composition-actions">
                   <button type="button" disabled={!canPaint} aria-describedby="paint-policy paint-availability" onClick={paintRoom}>Paint room (paid)</button>
@@ -1380,7 +1380,7 @@ export default function App() {
               {selectedSuggestion.length > 2000 && <p>Suggestion too long. Shorten it before composing; no request will be sent.</p>}
               {composition.cleanupError && <p role="status">{composition.cleanupError}</p>}
               <div className="composition-availability">
-                <p>Last status check: {availabilityText[availability.phase]}{availability.remaining !== null ? ` Server attempts remaining: ${availability.remaining} / 3.` : ''}</p>
+                <p>Last status check: {availabilityText[availability.phase]}{availability.remaining !== null ? ` Server attempts remaining: ${availability.remaining}.` : ''}</p>
                 <button type="button" disabled={availability.phase === 'checking' || composing} onClick={refreshAvailability}>Check status</button>
               </div>
               {submittedSuggestion && <p title={submittedSuggestion.text}>Last attempt: {submittedSuggestion.source.toLowerCase()}, {submittedSuggestion.text.length} characters, seed {submittedSuggestion.seed}. Input was snapshotted at Compose.</p>}

@@ -226,6 +226,19 @@ test('one shared three-attempt allowance covers token and speech requests and is
   assert.equal(calls.length, 3);
 });
 
+test('configured shared speech allowance supports conversation and rejects invalid bounds', async () => {
+  const { createSpeechHandler, fetch, calls } = await setup();
+  for (const maxAttempts of [0, -1, 1.5, NaN, Infinity, 101]) {
+    assert.throws(() => createSpeechHandler({ origin, maxAttempts }), /allowance/);
+  }
+  const handler = createSpeechHandler({ origin, enabled: true, privacyConfirmed: true, apiKey: key, voiceId, fetch, maxAttempts: 4 });
+  assert.equal((await request(handler, { method: 'GET', url: '/api/speech' })).res.data.remainingRequests, 4);
+  for (const url of [tokenPath, speakPath, tokenPath, speakPath]) assert.equal((await request(handler, { url })).res.statusCode, 200);
+  assert.equal((await request(handler)).res.statusCode, 429);
+  assert.equal((await request(handler, { method: 'GET', url: '/api/speech' })).res.data.remainingRequests, 0);
+  assert.equal(calls.length, 4);
+});
+
 test('provider rejections are sanitized consume one attempt and never retry with logging enabled', async () => {
   for (const url of [tokenPath, speakPath]) {
     for (const code of [401, 403, 429, 500, 302]) {

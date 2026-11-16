@@ -13,7 +13,6 @@ const api = 'https://api.atlas-beta.worldlabs.ai/api/v2';
 const task = 'atlasChisel';
 const requestByteLimit = 16 * 1024;
 const jsonByteLimit = 64 * 1024;
-const allowance = 3;
 const failures = {
   not_found: [404, 'Unknown room paint endpoint or local painting.'],
   forbidden: [403, 'Room painting requires the configured local origin and a loopback connection.'],
@@ -26,7 +25,7 @@ const failures = {
   missing_key: [503, 'The dedicated server-side World Labs key is not configured.'],
   busy: [409, 'A local paint operation or unsettled transport is still reserved.'],
   duplicate_request: [409, 'This request already consumed a submission. It cannot be retried.'],
-  budget_exhausted: [429, 'The three-submission server-lifetime paint allowance is exhausted.'],
+  budget_exhausted: [429, 'The configured server-lifetime paint allowance is exhausted.'],
   invalid_room: [422, 'The room layout could not be rebuilt for painting. Nothing was submitted.'],
   upload_failed: [502, 'World Labs did not accept the depth upload. No paint task was submitted.'],
   invalid_request_upstream: [502, 'World Labs rejected the paint task as invalid. No task was created; no retry was made.'],
@@ -49,17 +48,19 @@ class RequestFailure extends Error {
 }
 // Poses stay unvalidated here; createProceduralRoom validates the whole layout.
 type Room = { description: unknown; seed: number; poses: FurnishingPose[] };
-type Input = { requestId: string; room: Room };
+type Input = { requestId: string; room: Room; style?: 'liminal' };
 type Painting = Readonly<{ id: string; requestId: string; source: 'provider' | 'synthetic'; provider: 'worldlabs'; task: typeof task;
   width: number; height: number; bytes: number; sha256: string }>;
 const record = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
 const jsonType = (value: unknown) => typeof value === 'string' && /^application\/json(?:\s*;\s*charset=utf-8)?$/i.test(value.trim());
 
 function validateInput(value: unknown): Input {
-  if (!record(value) || Object.keys(value).length !== 2 || typeof value.requestId !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(value.requestId)
+  if (!record(value) || Object.keys(value).length !== (Object.hasOwn(value, 'style') ? 3 : 2)
+    || (Object.hasOwn(value, 'style') && value.style !== 'liminal')
+    || typeof value.requestId !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(value.requestId)
     || !record(value.room) || Object.keys(value.room).length !== 3 || !Number.isInteger(value.room.seed) || !Array.isArray(value.room.poses)
     || value.room.poses.length > 16) throw new RequestFailure('invalid_request');
-  return { requestId: value.requestId, room: value.room as Room };
+  return { requestId: value.requestId, room: value.room as Room, ...(value.style === 'liminal' ? { style: 'liminal' as const } : {}) };
 }
 
 // 16-bit grey log-depth PNG (Atlas `logDepthAsset`): white is zMin, darker is farther, 0 is no surface.
@@ -86,11 +87,14 @@ export function encodeLogDepthPng(depth: Float32Array, width: number, height: nu
 }
 
 // Only validated structural facts reach the provider, never visitor words.
-export function paintPrompt(description: RoomDescription) {
+export function paintPrompt(description: RoomDescription, style?: 'liminal') {
   const shade = (color: string) => color.replace('-', ' ');
   const items = description.furnishings.map(item => `${/^[aeiou]/.test(item.color) ? 'an' : 'a'} ${shade(item.color)} ${item.kind}`);
   return `A quiet interior room at eye level: ${shade(description.colors.wall)} plaster walls and ceiling, ${shade(description.colors.floor)} wooden floor`
-    + `${items.length ? `, ${items.join(', ')}` : ''}, an open doorway in the back wall leading into darkness, soft warm light from the front left.`;
+    + `${items.length ? `, ${items.join(', ')}` : ''}, an open doorway in the back wall leading into darkness`
+    + (style === 'liminal'
+      ? '. Empty liminal interior, unpeopled, even flat artificial light, worn institutional surfaces, long sightlines, nothing staged, no text or signage.'
+      : ', soft warm light from the front left.');
 }
 
 function outputUrl(value: unknown): string {
@@ -143,9 +147,11 @@ function readInput(req: IncomingMessage, signal: AbortSignal): Promise<Input> {
 
 export function createRoomPaintHandler(options: {
   origin: string; enabled?: boolean; spendingConfirmed?: boolean; getApiKey?: () => string | undefined;
-  fetch?: typeof globalThis.fetch; pollMs?: number;
+  fetch?: typeof globalThis.fetch; pollMs?: number; maxRequests?: number;
 }) {
   if (options.origin !== 'http://127.0.0.1:5173' && options.origin !== 'http://127.0.0.1:4173') throw new Error('Paint origin must be an approved loopback origin.');
+  const allowance = options.maxRequests ?? 3;
+  if (!Number.isInteger(allowance) || allowance < 1 || allowance > 100) throw new Error('Paint allowance must be an integer from 1 to 100.');
   const origin = options.origin;
   const host = new URL(origin).host;
   const enabled = options.enabled === true;
@@ -266,7 +272,7 @@ export function createRoomPaintHandler(options: {
           const room = createProceduralRoom(input.room.description, input.room.seed, input.room.poses);
           try {
             depth = encodeLogDepthPng(renderPaintDepth(room.scene), PAINT_WIDTH, PAINT_HEIGHT);
-            prompt = paintPrompt(room.layout.description);
+            prompt = paintPrompt(room.layout.description, input.style);
           } finally { room.dispose(); }
         } catch { throw new RequestFailure('invalid_room'); }
         signal.throwIfAborted();

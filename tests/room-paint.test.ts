@@ -11,6 +11,7 @@ import { createSpatialFixture } from '../src/room/spatial-fixture.ts';
 import { PAINT_HEIGHT, PAINT_WIDTH, createPaintMaterial, paintCamera, paintPinholeCamera, renderPaintDepth } from '../src/room/room-paint.ts';
 import { createRoomPaintHandler, encodeLogDepthPng, paintPrompt } from '../src/server/room-paint.ts';
 import { layoutProceduralRoom } from '../src/room/procedural-room.ts';
+import { readRoomPaintStatus } from '../src/room/room-paint-client.ts';
 
 // All transport is injected; authored responses are not evidence of live World Labs behaviour.
 const origin = 'http://127.0.0.1:5173';
@@ -38,10 +39,10 @@ function normal(call: Call): Response {
   if (call.url === imageUrl) return new Response(Uint8Array.from(paintedPng()), { headers: { 'content-type': 'image/png' } });
   assert.fail(`Unexpected synthetic destination: ${call.url}`);
 }
-function setup(respond: (call: Call) => Response = normal, options: { enabled?: boolean; spendingConfirmed?: boolean; key?: string } = {}) {
+function setup(respond: (call: Call) => Response = normal, options: { enabled?: boolean; spendingConfirmed?: boolean; key?: string; maxRequests?: number } = {}) {
   const calls: Call[] = [];
   const handler = createRoomPaintHandler({ origin, enabled: options.enabled ?? true, spendingConfirmed: options.spendingConfirmed ?? true,
-    getApiKey: () => 'key' in options ? options.key : key, pollMs: 0,
+    getApiKey: () => 'key' in options ? options.key : key, pollMs: 0, maxRequests: options.maxRequests,
     fetch: async (url, init = {}) => { const call = { url: String(url), init }; calls.push(call); return respond(call); } });
   return { handler, calls, tasks: () => calls.filter(call => call.url.endsWith('tasks:atlasChisel')).length };
 }
@@ -139,6 +140,25 @@ test('a paint request sends only depth and structure, polls once more, admits th
     remainingRequests: 2, pendingTransport: false });
 });
 
+test('astral requests add only the fixed liminal style; ordinary paint keeps its original lighting', async () => {
+  const { handler, calls } = setup();
+  const res = await request(handler, { body: { requestId: 'astral-1', room, style: 'liminal' } });
+  assert.equal(res.statusCode, 200);
+  const body = JSON.parse(String(calls.find(call => call.url.endsWith('tasks:atlasChisel'))!.init.body));
+  assert.equal(body.prompt, paintPrompt(layout.description, 'liminal'));
+  assert.equal(body.prompt, 'A quiet interior room at eye level: warm gray plaster walls and ceiling, walnut wooden floor, an ochre table, a teal chair, an open doorway in the back wall leading into darkness. Empty liminal interior, unpeopled, even flat artificial light, worn institutional surfaces, long sightlines, nothing staged, no text or signage.');
+  assert.equal(paintPrompt(layout.description), 'A quiet interior room at eye level: warm gray plaster walls and ceiling, walnut wooden floor, an ochre table, a teal chair, an open doorway in the back wall leading into darkness, soft warm light from the front left.');
+});
+
+test('paint style is a fixed enum, never an arbitrary visitor prompt or extra payload', async () => {
+  for (const extra of [{ style: 'visitor words' }, { style: null }, { style: false }, { style: 'liminal', prompt: 'visitor words' }]) {
+    const { handler, calls } = setup();
+    const res = await request(handler, { body: { requestId: 'invalid-style', room, ...extra } });
+    assert.equal(res.data.error, 'invalid_request');
+    assert.equal(calls.length, 0);
+  }
+});
+
 test('disabled, unconfirmed, keyless and unbuildable requests never reach World Labs', async () => {
   for (const [options, body, code] of [[{ enabled: false }, undefined, 'disabled'], [{ spendingConfirmed: false }, undefined, 'spending_unconfirmed'],
     [{ key: undefined }, undefined, 'missing_key'], [{}, { requestId: 'request-1', room: { ...room, poses: [] } }, 'invalid_room'],
@@ -152,11 +172,57 @@ test('disabled, unconfirmed, keyless and unbuildable requests never reach World 
 
 test('a refused task consumes one allowance, is not retried, and the allowance ends at three', async () => {
   const { handler, tasks } = setup(call => call.url.endsWith('tasks:atlasChisel') ? json({ detail: [] }, 422) : normal(call));
+  assert.equal((await request(handler, { method: 'GET' })).data.remainingRequests, 3);
   for (const [index, expected] of ['invalid_request_upstream', 'invalid_request_upstream', 'invalid_request_upstream', 'budget_exhausted'].entries()) {
     const res = await request(handler, { body: { requestId: `request-${index}`, room } });
     assert.equal(res.data.error, expected);
   }
   assert.equal(tasks(), 3);
+});
+
+test('configured paint allowance supports more than three submissions and rejects invalid bounds', async () => {
+  for (const maxRequests of [0, -1, 1.5, NaN, Infinity, 101]) {
+    assert.throws(() => createRoomPaintHandler({ origin, maxRequests }), /allowance/);
+  }
+  for (const maxRequests of [1, 100]) {
+    const { handler, calls } = setup(normal, { maxRequests });
+    assert.equal((await request(handler, { method: 'GET' })).data.remainingRequests, maxRequests);
+    assert.equal(calls.length, 0);
+  }
+  let submissions = 0;
+  const { handler, tasks } = setup(call => call.url.endsWith('tasks:atlasChisel') && ++submissions === 4
+    ? json({ detail: [] }, 422) : normal(call), { maxRequests: 4 });
+  assert.equal((await request(handler, { method: 'GET' })).data.remainingRequests, 4);
+  for (let index = 0; index < 4; index += 1) {
+    const res = await request(handler, { body: { requestId: `configured-${index}`, room } });
+    assert.equal(res.statusCode, index === 3 ? 502 : 200);
+    if (index === 3) assert.equal(res.data.error, 'invalid_request_upstream');
+    assert.equal(res.data.remainingRequests, 3 - index);
+    const status = await request(handler, { method: 'GET' });
+    assert.equal(status.data.remainingRequests, 3 - index);
+    assert.equal(status.statusCode, index === 3 ? 429 : 200);
+  }
+  const exhausted = await request(handler, { body: { requestId: 'configured-extra', room } });
+  assert.equal(exhausted.statusCode, 429);
+  assert.equal(exhausted.data.error, 'budget_exhausted');
+  assert.equal(exhausted.data.remainingRequests, 0);
+  assert.doesNotMatch(exhausted.data.message, /three/);
+  assert.equal(tasks(), 4);
+});
+
+test('paint status accepts configured remaining counts up to 100 and rejects invalid counts', async t => {
+  let remainingRequests: unknown = 3;
+  t.mock.method(globalThis, 'fetch', async () => json({ available: true, reason: null, provider: 'worldlabs', model: 'atlasChisel',
+    credentialStatus: 'unchecked', remainingRequests, pendingTransport: false }));
+  const signal = new AbortController().signal;
+  for (const remaining of [1, 3, 4, 100]) {
+    remainingRequests = remaining;
+    assert.deepEqual(await readRoomPaintStatus(signal), { phase: 'ready', remaining });
+  }
+  for (const remaining of [-1, 0, 1.5, 101, '4', null]) {
+    remainingRequests = remaining;
+    assert.deepEqual(await readRoomPaintStatus(signal), { phase: 'unreachable', remaining: null });
+  }
 });
 
 test('an output outside the observed World Labs storage path is rejected after the charge is acknowledged', async () => {

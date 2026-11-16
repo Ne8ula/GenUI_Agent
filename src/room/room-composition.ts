@@ -120,7 +120,7 @@ async function responseJson(response: Response, signal: AbortSignal): Promise<un
     reader.releaseLock();
   }
 }
-async function interpret(fetch: typeof globalThis.fetch, suggestion: string, signal: AbortSignal) {
+export async function interpret(fetch: typeof globalThis.fetch, suggestion: string, signal: AbortSignal) {
   let received: Response | undefined;
   try {
     signal.throwIfAborted();

@@ -34,13 +34,13 @@ async function fetchPainting(painting: { id: string; bytes: number; sha256: stri
 }
 
 // One paid attempt for the exact current layout; no retries. Abort returns 'stopped' and never yields an image.
-export async function runRoomPaint(layout: RoomLayout, signal: AbortSignal): Promise<RoomPaintResult> {
+export async function runRoomPaint(layout: RoomLayout, signal: AbortSignal, style?: 'liminal'): Promise<RoomPaintResult> {
   let submitted = false;
   let image: ImageBitmap | undefined;
   try {
     signal.throwIfAborted();
     submitted = true;
-    const { painting } = await post('/api/room-paint', { requestId: crypto.randomUUID(), room: {
+    const { painting } = await post('/api/room-paint', { requestId: crypto.randomUUID(), ...(style ? { style } : {}), room: {
       description: layout.description, seed: layout.seed, poses: layout.furnishings.map(({ x, z, rotation }) => ({ x, z, rotation })),
     } }, paintCodes, signal);
     if (!painting || typeof painting !== 'object' || Array.isArray(painting)) throw new RouteFailure('invalid_response');
