@@ -10,3 +10,4 @@ coverage/
 .claude/worktrees/
 test-results/
 playwright-report/
+.playwright-mcp/

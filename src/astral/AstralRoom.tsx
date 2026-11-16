@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
 import { useEffect, useRef } from 'react';
 import { PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three';
-import { createAstralConversation } from './conversation.ts';
 import { createDataLayer } from './data-layer.ts';
 import { createAstralEye } from './eye.ts';
 import { START_POSITION, arrivalPath, createFlight, holdingGlide, type Vec3 } from './flight.ts';
@@ -10,20 +9,20 @@ import { createInspectMarks } from './inspect-marks.ts';
 import { INSPECT_NONE, nextInspect } from './inspect.ts';
 import { hasLook } from './looks.ts';
 import { LIGHTING_START, createPointField, createTunnelCloud, nextLighting } from './point-field.ts';
-import { generateRoomCloud } from './room-generation.ts';
 import { loadRecordedRoomCloud } from './room-source.ts';
 import { createSplatView, type SplatView } from './splat-view.ts';
+import { SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.ts';
 import { createWater, type AstralWater } from './water.ts';
-import { ASTRAL_EFFECTS, TUNNEL, type AstralConversation, type AstralLight, type AstralPhase, type PointCloud, type RoomHero } from './types.ts';
+import { ASTRAL_EFFECTS, TUNNEL, type AstralLight, type AstralPhase, type PointCloud, type RoomHero } from './types.ts';
 import './astral.css';
 
 const TUNNEL_FORM_SECONDS = 6;
 const TUNNEL_HOLD_Z = 14; // the glide approaches this point, well short of the room, and never reaches it
-const TUNNEL_MIN_SECONDS = 8; // even a fast room waits until the tunnel has fully formed
 const REHEARSAL_MIN_SECONDS = 12; // long enough to judge the tunnel
 const ARRIVAL_SECONDS = 12; // flight from the tunnel to the room's viewpoint; matches point-field's arrival, which releases the spiral as the viewer passes it
 const DISSOLVE_SECONDS = 3.5;
 const UNAVAILABLE_SECONDS = 5;
+const IDLE_SECONDS = 45; // in the room with no input: the visitor has gone, and the room returns to the void
 const HORIZONTAL_FOV = 90; // degrees; keeps an ultrawide view from stretching at the edges
 const MAX_RENDER_PIXELS = 8_300_000; // ~4K; the LED wall gains nothing from more for a point field
 const LIGHT_KEYS: Partial<Record<string, AstralLight>> = {
@@ -56,7 +55,7 @@ export default function AstralRoom() {
 
     const scene = new Scene();
     const camera = new PerspectiveCamera(60, 1, 0.03, 200);
-    const flight = createFlight(camera, canvas);
+    const flight = createFlight(camera);
     const eye = createAstralEye();
     const field = createPointField();
     scene.add(field.object, eye.object);
@@ -77,8 +76,13 @@ export default function AstralRoom() {
     let stageAt = 0;
     let formationFrom = 0;
     let phase: AstralPhase = 'idle';
-    let conversationFailed = false;
     let unavailableUntil = 0;
+    // The keyboard and mouse stand in for the controller and the camera: any input is a visitor being there,
+    // and the mouse's place across the page is where they stand, side to side (-1 left edge, 1 right edge).
+    let lastInput = -Infinity;
+    let stopped = false; // Escape holds the start until the next key press
+    let side = 0, sideLow = 0, sideHigh = 0;
+    let lastTease = -Infinity, teases = 0;
     let generation: AbortController | undefined;
     let pendingRoom: { cloud: PointCloud; notBefore: number } | undefined;
     let arrival: { from: Vec3; velocity: Vec3; to: Vec3; lookFrom: Vec3; lookTo: Vec3 } | undefined;
@@ -133,8 +137,13 @@ export default function AstralRoom() {
       enterStage('tunnel');
     };
 
-    const dissolveTunnel = (unavailable: boolean) => {
+    /** Disperses whatever is formed, the tunnel or the room, back into the void. */
+    const dissolve = (unavailable: boolean) => {
       pendingRoom = undefined;
+      // shortcut: the paint and the pool are cut at once while the points disperse, fade them if the cut shows.
+      dropSplats();
+      dropWater();
+      flight.enabled = false;
       formationFrom = 1;
       if (unavailable) unavailableUntil = time + UNAVAILABLE_SECONDS;
       enterStage('dissolving');
@@ -157,7 +166,7 @@ export default function AstralRoom() {
           if (request.signal.aborted) return;
           generation = undefined;
           console.error('[astral] room generation failed', error);
-          if (stage === 'tunnel') dissolveTunnel(true);
+          if (stage === 'tunnel') dissolve(true);
         },
       );
     };
@@ -165,25 +174,25 @@ export default function AstralRoom() {
     const stopGeneration = () => {
       generation?.abort();
       generation = undefined;
-      if (stage === 'tunnel') dissolveTunnel(false);
+      if (stage === 'tunnel') dissolve(false);
     };
 
-    let conversation: AstralConversation | undefined;
-    try {
-      conversation = createAstralConversation({
-        onPhase: next => { phase = next; },
-        onDecision: d => { field.setEffect(d.effect, d.intensity); setLight(d.light); },
-        onReply: reply => {
-          if (!(reply.room && stage === 'void')) field.setEffect(reply.effect, reply.intensity);
-          setLight(reply.light);
-          if (reply.room) requestRoom(signal => generateRoomCloud(reply.room!, renderer, signal), TUNNEL_MIN_SECONDS);
-        },
-        onVoiceLevel: level => { field.setVoice(level); eye.setVoice(level); },
-      });
-    } catch (error) {
-      console.error('[astral] voice loop could not start', error);
-      conversationFailed = true;
-    }
+    const startRecorded = () => {
+      console.info('[astral] arriving in the RECORDED room fixture; this is not live generation.');
+      requestRoom(signal => loadRecordedRoomCloud(renderer, signal), REHEARSAL_MIN_SECONDS);
+    };
+    /** Any input: someone is there. From the void that alone starts the tunnel. Returns whether it did. */
+    const present = () => {
+      lastInput = time;
+      if (stage !== 'void' || stopped) return false;
+      startRecorded();
+      return true;
+    };
+    const setSpeaking = (on: boolean) => {
+      phase = on ? 'speaking' : 'idle';
+      field.setVoice(on ? 1 : 0);
+      eye.setVoice(on ? 1 : 0);
+    };
 
     const resize = () => {
       const width = host.clientWidth, height = host.clientHeight;
@@ -202,56 +211,37 @@ export default function AstralRoom() {
     resize();
     window.addEventListener('resize', resize);
 
-    const requestLock = () => {
-      if (document.pointerLockElement === canvas) return;
-      try {
-        void Promise.resolve(canvas.requestPointerLock()).catch(() => {});
-      } catch { /* refused outside a gesture or during the browser's cool-down; the next gesture retries */ }
-    };
-    let talking = false;
     const stopAll = () => {
-      talking = false;
-      conversation?.stop();
+      stopped = true;
+      globalThis.speechSynthesis?.cancel();
       stopGeneration();
     };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.code === 'Escape') {
         stopAll();
-        document.exitPointerLock();
         return;
       }
-      requestLock();
+      stopped = false;
+      const started = present();
       if (event.repeat) return;
-      if (event.code === 'KeyT') {
-        talking = true;
-        conversation?.startListening();
-      }
-      if (event.code === 'KeyR') {
-        console.info('[astral] rehearsal: arriving in the RECORDED room fixture; this is not live generation.');
-        requestRoom(signal => loadRecordedRoomCloud(renderer, signal), REHEARSAL_MIN_SECONDS);
-      }
+      // Rehearsal: R in a room throws its points into the recorded room again.
+      if (event.code === 'KeyR' && !started) startRecorded();
       const digit = /^(?:Digit|Numpad)([1-7])$/.exec(event.code);
       if (digit) field.setEffect(ASTRAL_EFFECTS[Number(digit[1]) - 1]!, 1);
-      // Rehearsal lighting, to judge it without the voice services: 8 liminal, 9 afternoon, 0 night, Minus dark, L the lamp.
+      // Lighting: 8 liminal, 9 afternoon, 0 night, Minus dark, L the lamp. These stand in for the controller's dial.
       const light = LIGHT_KEYS[event.code];
       if (light) setLight(light);
       if (event.code === 'KeyL') setLight(lighting.lamp ? 'lamp_off' : 'lamp_on');
       // Rehearsal: P swaps the points and the painted room.
       if (event.code === 'KeyP') showPaint(!splatView?.painted);
     };
-    const finishTalking = () => {
-      if (!talking) return;
-      talking = false;
-      conversation?.finishListening();
+    const onMouseMove = (event: MouseEvent) => {
+      side = Math.max(-1, Math.min(1, (event.clientX / host.clientWidth) * 2 - 1));
+      flight.setSide(side);
+      present();
     };
-    const onKeyUp = (event: KeyboardEvent) => { if (event.code === 'KeyT') finishTalking(); };
-    // Chrome swallows the Escape that ends pointer lock, so losing the lock is itself the stop control.
-    const onLockChange = () => { if (document.pointerLockElement !== canvas) stopAll(); };
     window.addEventListener('keydown', onKeyDown);
-    window.addEventListener('keyup', onKeyUp);
-    window.addEventListener('blur', finishTalking);
-    host.addEventListener('pointerdown', requestLock);
-    document.addEventListener('pointerlockchange', onLockChange);
+    window.addEventListener('mousemove', onMouseMove);
 
     const start = performance.now();
     let previous = start;
@@ -290,6 +280,8 @@ export default function AstralRoom() {
           flight.enabled = true;
           arrival = undefined;
           enterStage('room');
+          sideLow = sideHigh = side;
+          lastTease = -Infinity;
         }
       } else if (stage === 'dissolving') {
         const s = clamp01(elapsed / DISSOLVE_SECONDS);
@@ -301,7 +293,17 @@ export default function AstralRoom() {
         }
       }
 
-      const eyePhase = devEyePhase ?? (conversationFailed || time < unavailableUntil ? 'unavailable' : phase);
+      if (stage === 'room') {
+        sideLow = Math.min(sideLow, side);
+        sideHigh = Math.max(sideHigh, side);
+        if (time - Math.max(lastInput, stageAt) > IDLE_SECONDS) dissolve(false);
+        else if (sideTeaseDue(time, { since: stageAt, lastInput, lastTease, travelled: sideHigh - sideLow })) {
+          lastTease = time;
+          speakPlaceholder(SIDE_TEASES[teases++ % SIDE_TEASES.length]!, setSpeaking);
+        }
+      }
+
+      const eyePhase = devEyePhase ?? (time < unavailableUntil ? 'unavailable' : phase);
       eye.setPhase(eyePhase);
       eye.setStage(stage === 'dissolving' ? 'void' : stage);
       flight.update(time, dt);
@@ -338,12 +340,8 @@ export default function AstralRoom() {
       renderer.setAnimationLoop(null);
       window.removeEventListener('resize', resize);
       window.removeEventListener('keydown', onKeyDown);
-      window.removeEventListener('keyup', onKeyUp);
-      window.removeEventListener('blur', finishTalking);
-      host.removeEventListener('pointerdown', requestLock);
-      document.removeEventListener('pointerlockchange', onLockChange);
-      if (document.pointerLockElement === canvas) document.exitPointerLock();
-      conversation?.dispose();
+      window.removeEventListener('mousemove', onMouseMove);
+      globalThis.speechSynthesis?.cancel();
       flight.dispose();
       scene.remove(field.object, eye.object);
       field.dispose();

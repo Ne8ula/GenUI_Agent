@@ -1,6 +1,30 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { ROOM_CENTRE, TETHER_RADIUS, arrivalPath, holdingGlide, lookAngles, stepFlight, tetherPull, type FlightState } from '../src/astral/flight.ts';
+import { ROOM_CENTRE, TETHER_RADIUS, arrivalPath, holdingGlide, lookAngles, sideView, stepFlight, tetherPull, type FlightState } from '../src/astral/flight.ts';
+import { sideTeaseDue } from '../src/astral/tease.ts';
+
+test('side to side is a window in the middle and keeps turning only near the edges', () => {
+  assert.deepEqual(sideView(0), { shift: 0, yaw: 0, turn: 0 });
+  const right = sideView(0.5), left = sideView(-0.5);
+  assert.ok(right.shift > 0 && right.yaw > 0, 'stepping right slides right and looks left');
+  assert.equal(right.turn, 0, 'no turning in the middle');
+  assert.deepEqual([left.shift, left.yaw, left.turn], [-right.shift, -right.yaw, -0]);
+  const edge = sideView(1), near = sideView(0.85);
+  assert.ok(near.turn > 0 && near.turn < edge.turn, 'turning grows toward the edge, the same way the window looks');
+  assert.equal(sideView(-1).turn, -edge.turn);
+  assert.deepEqual(sideView(7), edge, 'clamped');
+  assert.deepEqual(sideView(Number.NaN), sideView(0));
+});
+
+test('EVA teases only a visitor who is there, has had time, and has not moved side to side', () => {
+  const visit = { since: 100, lastInput: 118, lastTease: -Infinity, travelled: 0.1 };
+  assert.equal(sideTeaseDue(119, visit), false, 'too soon');
+  assert.equal(sideTeaseDue(121, visit), true);
+  assert.equal(sideTeaseDue(121, { ...visit, travelled: 0.6 }), false, 'they worked it out');
+  assert.equal(sideTeaseDue(121, { ...visit, lastInput: 100 }), false, 'nobody there');
+  assert.equal(sideTeaseDue(121, { ...visit, lastTease: 110 }), false, 'just teased');
+  assert.equal(sideTeaseDue(141, { ...visit, lastInput: 140, lastTease: 110 }), true, 'again later');
+});
 
 const fly = (state: FlightState, thrust: [number, number, number], seconds: number, fps: number) => {
   for (let frame = 0; frame < seconds * fps; frame++) stepFlight(state, thrust, 1 / fps);

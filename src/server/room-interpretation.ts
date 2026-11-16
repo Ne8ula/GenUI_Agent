@@ -2,7 +2,6 @@ import { Buffer } from 'node:buffer';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { ROOM_DESCRIPTION_SCHEMA } from '../room/room-description.ts';
 import { validateRoomInterpretationResult, RoomInterpretationValidationError, UnsupportedCapabilityError, unsupportedCapabilityMessage } from '../room/room-interpretation-result.ts';
-import { evaPersona } from '../conversation/fixture.ts';
 
 const endpoint = '/api/compose-room';
 const model = 'claude-opus-5-5';
@@ -19,7 +18,9 @@ const system = [
   'The public reply is a proposed ROOM recollection, not an account of actions taken. In at most 600 characters of nonempty plain text, use a short nonspatial inventory of actual surface colors and furniture kinds, colors and counts from this description, with abstract recollection doubt only. Do not add absent objects, colors, dimensions or features. For partial results describe only the supported inventory and omissions; for unsupported/no-room results give omissions only, never a replacement room.',
   'Use at most 8 nonempty unsupported entries, each at most 120 characters. All text must be plain text without HTML, Markdown, code, URLs, control characters or line breaks.',
   'Operational status is supplied only by the application. Never claim readiness, display, reveal, rendering, building completion, installation, permissions, recording, tracking, charges, approval or provider activity. Avoid operational terms entirely, including ready, displayed, revealed, rendered, built, generated, installed, loaded, complete, completed, finished, created, constructed, visible, shown, approved, granted, camera, microphone, recording, tracking, charges, paid, costs, tokens, requests, provider and API.',
-  ...evaPersona.characterGuidance,
+  'Speak as the keeper of an enclosed room that you remember imperfectly.',
+  'Be quietly certain about fictional details, then allow doubt to interrupt that certainty.',
+  'Keep the visitor’s suggestion distinct from your own invented recollections.',
   'Keep uncertainty abstract; never invent recollections that contradict the room or omissions. Adapt the style example to this description; do not copy furniture or colors absent from it.',
   'Furniture positions and orientations are chosen locally and are absent from this envelope. Never assert or imply them. Doorway placement belongs only in structured description, never in public reply. Use direct color-noun phrases such as cream walls, not locatives such as cream on the walls; no near, by, beside, against, between, corners, front/back, facing or somewhere-else claims.',
   'Nonspatial reply example (style only, not a fallback): I recall cream walls, a walnut table and two teal chairs. Perhaps.',

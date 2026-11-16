@@ -2,12 +2,16 @@ import {
   Box3, BoxGeometry, CylinderGeometry, Mesh, MeshStandardMaterial, PerspectiveCamera,
   Vector3, type BufferGeometry, type WebGLRenderer,
 } from 'three';
-import { interpret } from '../room/room-composition.ts';
+import { interpret } from '../room/room-interpret.ts';
 import { createProceduralRoom } from '../room/procedural-room.ts';
 import { CENTER_VIEWPOINT, setFixtureViewpoint } from '../room/spatial-fixture.ts';
-import { RouteFailure } from '../room/prop-generation-client.ts';
 import { sampleSurfacePointCloud } from './surface-sampler.ts';
 import type { PointCloud, RoomLights } from './types.ts';
+
+class RouteFailure extends Error {
+  readonly code: string;
+  constructor(code: string) { super(code); this.code = code; }
+}
 
 function addFittings(room: ReturnType<typeof createProceduralRoom>, releases: (() => void)[]): RoomLights {
   const { width, depth, height } = room.layout.description;

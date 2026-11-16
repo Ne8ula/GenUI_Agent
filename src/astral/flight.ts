@@ -11,8 +11,12 @@ export const TETHER_RADIUS = 14;
 const THRUST = 1.25; // m/s²; with GLIDE this cruises at ~1.75 m/s
 const GLIDE = 1.4; // s; velocity e-folding time, the long coast to rest
 const TETHER_PULL = 0.8; // m/s² per metre past the tether radius
-const LOOK_RATE = 0.0016; // rad per mouse pixel
-const LOOK_LAG = 0.16; // s; the view trails the hand slightly
+const LOOK_LAG = 0.16; // s; the view trails the turn slightly
+const SIDE_LAG = 0.3; // s; the view trails the visitor's step slightly
+const WINDOW_SHIFT = 0.9; // m the viewpoint slides when the visitor stands at either edge
+const WINDOW_DEPTH = 2.5; // m ahead to the point the window keeps in the middle of the screen
+const TURN_EDGE = 0.7; // beyond this share of the way to either edge the view keeps turning
+const TURN_RATE = 0.6; // rad/s at the very edge
 const MAX_PITCH = 1.45;
 
 export interface FlightState {
@@ -67,13 +71,27 @@ export function holdingGlide(distance: number, elapsed: number, rate = 0.03, eas
   return distance * (1 - Math.exp(-rate * delayed));
 }
 
+/**
+ * What the visitor's side-to-side position (-1 left edge, 0 middle, 1 right edge) does to the view. In the middle it is
+ * a window: the viewpoint slides `shift` metres to that side and the look swings `yaw` radians the other way, so stepping
+ * right shows more of the left. Near an edge the look also keeps swinging the same way at `turn` rad/s, so a visitor
+ * can turn fully round. Positive yaw looks left (the flight's convention).
+ * shortcut: a slide and a counter-turn, not an off-axis projection; upgrade once the tracked camera and screen are calibrated.
+ */
+export function sideView(side: number): { shift: number; yaw: number; turn: number } {
+  const s = Number.isFinite(side) ? Math.max(-1, Math.min(1, side)) : 0;
+  const shift = s * WINDOW_SHIFT;
+  const past = Math.max(0, Math.abs(s) - TURN_EDGE) / (1 - TURN_EDGE);
+  return { shift, yaw: Math.atan(shift / WINDOW_DEPTH), turn: Math.sign(s) * past * TURN_RATE };
+}
+
 export interface FlightPush {
   /** Added to the velocity, m/s. */
   velocity?: Vec3;
   /** Added to the look direction, radians. */
   yaw?: number;
   pitch?: number;
-  /** Seconds during which the participant's keys and mouse are ignored. */
+  /** Seconds during which the participant's keys and side-to-side position are ignored. */
   hold?: number;
 }
 
@@ -81,6 +99,8 @@ export interface Flight {
   /** Participant input is ignored until the room is live. */
   enabled: boolean;
   update(time: number, dt: number): void;
+  /** Where the visitor stands, side to side: -1 left edge, 1 right edge (see sideView). */
+  setSide(side: number): void;
   /** Lets the scene shove or briefly take over the flight. */
   push(push: FlightPush): void;
   /**
@@ -98,11 +118,11 @@ const KEYS: Record<string, Vec3> = {
   Space: [0, 1, 0], KeyE: [0, 1, 0], ShiftLeft: [0, -1, 0], ShiftRight: [0, -1, 0], KeyQ: [0, -1, 0],
 };
 
-/** Free flight for `camera`; mouse look only while `lockTarget` holds the pointer lock. */
-export function createFlight(camera: PerspectiveCamera, lockTarget: Element): Flight {
+/** Free flight for `camera`: keys move, the visitor's side-to-side position (setSide) looks. */
+export function createFlight(camera: PerspectiveCamera): Flight {
   const state: FlightState = { position: [...START_POSITION], velocity: [0, 0, 0] };
   const held = new Set<string>();
-  let yaw = 0, pitch = 0, targetYaw = 0, targetPitch = 0, holdUntil = 0, now = 0;
+  let yaw = 0, pitch = 0, targetYaw = 0, targetPitch = 0, holdUntil = 0, now = 0, sideInput = 0, side = 0;
   let guided: { position: Vec3; lookAt: Vec3 } | null = null;
   let snapNext = false;
   const forward = new Vector3(), right = new Vector3();
@@ -114,15 +134,9 @@ export function createFlight(camera: PerspectiveCamera, lockTarget: Element): Fl
   };
   const onKeyUp = (event: KeyboardEvent) => held.delete(event.code);
   const onBlur = () => held.clear();
-  const onMouseMove = (event: MouseEvent) => {
-    if (!flight.enabled || guided || now < holdUntil || document.pointerLockElement !== lockTarget) return;
-    targetYaw -= event.movementX * LOOK_RATE;
-    targetPitch = Math.max(-MAX_PITCH, Math.min(MAX_PITCH, targetPitch - event.movementY * LOOK_RATE));
-  };
   window.addEventListener('keydown', onKeyDown);
   window.addEventListener('keyup', onKeyUp);
   window.addEventListener('blur', onBlur);
-  document.addEventListener('mousemove', onMouseMove);
 
   const flight: Flight = {
     enabled: false,
@@ -140,12 +154,18 @@ export function createFlight(camera: PerspectiveCamera, lockTarget: Element): Fl
         }
         if (snapNext) { yaw = targetYaw; pitch = targetPitch; snapNext = false; }
       }
+      // The window eases in and out with the visitor's control, so releasing or taking the flight never jumps the view.
+      const free = flight.enabled && !guided && time >= holdUntil;
+      side += ((free ? sideInput : 0) - side) * (1 - Math.exp(-dt / SIDE_LAG));
+      const view = sideView(side);
+      if (free) targetYaw += view.turn * dt;
       const look = 1 - Math.exp(-dt / LOOK_LAG);
       yaw += (targetYaw - yaw) * look;
       pitch += (targetPitch - pitch) * look;
 
-      forward.set(-Math.sin(yaw) * Math.cos(pitch), Math.sin(pitch), -Math.cos(yaw) * Math.cos(pitch));
-      right.set(Math.cos(yaw), 0, -Math.sin(yaw));
+      const viewYaw = yaw + view.yaw;
+      forward.set(-Math.sin(viewYaw) * Math.cos(pitch), Math.sin(pitch), -Math.cos(viewYaw) * Math.cos(pitch));
+      right.set(Math.cos(viewYaw), 0, -Math.sin(viewYaw));
       let f = 0, r = 0, u = 0;
       if (flight.enabled && time >= holdUntil) {
         for (const code of held) { const k = KEYS[code]!; r += k[0]; u += k[1]; f += k[2]; }
@@ -163,18 +183,19 @@ export function createFlight(camera: PerspectiveCamera, lockTarget: Element): Fl
       // Never dead still: a slow breath of drift, and a bank into sideways motion.
       const lateral = state.velocity[0] * right.x + state.velocity[2] * right.z;
       camera.position.set(
-        state.position[0] + Math.sin(time * 0.29) * 0.018,
+        state.position[0] + right.x * view.shift + Math.sin(time * 0.29) * 0.018,
         state.position[1] + Math.sin(time * 0.41) * 0.03 + Math.sin(time * 0.17 + 1) * 0.02,
-        state.position[2] + Math.sin(time * 0.23 + 2) * 0.018,
+        state.position[2] + right.z * view.shift + Math.sin(time * 0.23 + 2) * 0.018,
       );
       camera.rotation.set(
         pitch + Math.sin(time * 0.31) * 0.006,
-        yaw + Math.sin(time * 0.19 + 0.5) * 0.008,
+        viewYaw + Math.sin(time * 0.19 + 0.5) * 0.008,
         Math.sin(time * 0.21) * 0.014 - lateral * 0.035,
         'YXZ',
       );
       camera.updateMatrixWorld();
     },
+    setSide(value) { sideInput = Number.isFinite(value) ? Math.max(-1, Math.min(1, value)) : 0; },
     push({ velocity, yaw: dYaw = 0, pitch: dPitch = 0, hold = 0 }) {
       if (velocity) for (let axis = 0; axis < 3; axis++) state.velocity[axis] += velocity[axis]!;
       targetYaw += dYaw;
@@ -189,8 +210,7 @@ export function createFlight(camera: PerspectiveCamera, lockTarget: Element): Fl
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
       window.removeEventListener('blur', onBlur);
-      document.removeEventListener('mousemove', onMouseMove);
-    },
+      },
   };
   flight.update(0, 0);
   return flight;
