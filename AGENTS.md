@@ -1,6 +1,6 @@
 # EVA astral room: final visual demo
 
-This is the only project document. It covers what the application is, what exists, how to run and check it, what is known to be wrong, and the rules for working here. Keep it current when you change something it describes; do not add other planning, handoff or evidence documents.
+This document covers what the application is, what exists, how to run and check it, what is known to be wrong, and the rules for working here. Keep it current when you change something it describes. There is one other project document, `LIMINAL-GRAMMAR.md` (owner, 2026-11-16): how a room is composed and changed, the style every generation follows, and the build order for what comes next. Read it before any work on rooms, objects, menus or generation; where it differs from Direction below, it is later and wins. Do not add other planning, handoff or evidence documents.
 
 Branch `final-visual-demo`, started 2026-11-16 from `future-demos`. The final visual demo is due about 2026-11-30.
 
@@ -23,7 +23,22 @@ Built so far (2026-11-16): the first slice of all of the above, with the keyboar
 
 Still open, ask the owner before building: where exactly the camera sits and which way it points (it must face the visitor to measure side-to-side movement; a camera looking across the room from the side cannot); whether EVA's real lines are recorded in advance or generated live; how the lines stay audible over crowd chatter, since captions are not allowed.
 
-**Aesthetics: not yet specified.** Ask before designing a new look.
+**Changed later on 2026-11-16 (owner); where this differs from the list above, this wins:**
+
+- **No camera for now.** The webcam is dropped. Keyboard and mouse stay the way to move and look; the game controller comes later, and still waits for the owner to ask. The mouse's side-to-side view stays as built.
+- **The room is edited piece by piece** (first slice built 2026-11-16: a visitor replaces one hero object from a menu, see "Object replacement, visitor side" under What exists; the rest is not built). A visitor first picks from three categories and EVA generates the room; later visitors keep replacing its parts (walls, floor, objects) or ask for changes such as a longer room, so the room is never the same twice and never starts from nothing. EVA pushes back, sarcastically, on requests that are technically out of reach. Choices are made from menus EVA shows, not by speech.
+- **Menus.** As few words as possible, and not bound by conventional interface patterns; thumbnails made of points are welcome. This relaxes "no labels" below for menus only.
+- **Gather's code may be used.** The owner holds DAO's licence and Patreon subscription and said so. The licence text has not been read in any session; see Working rules.
+- **The room keeps its ordered dots** (owner, 2026-11-16, after comparing them with Gather v17's grain as `?look=sand`). For an object change the owner likes **burn then fall** and **shatter then spiral**; glitch then morph was not picked. `?look=sand` is therefore an unchosen variant; it has not been removed, because the object change and the replacement objects share its file (`sand-look.ts`) and its passes. The captures the owner chose from are in `.local/look-compare/round2/` (`sheet.png`, and `crop-default.png` against `crop-sand.png` at 1:1). What they showed:
+  - Sand now draws only the front surface (a depth pass of the same grains), with Gather's grain sizes (1.3 to 3.6 px), grains scattered off the rows, up to ten extra scattered passes, and brightness carried by how many grains there are. From the arrival view it is a crisp stipple, solid, as bright as the default, with the heroes level with the room. The first round's faults (blown out to white, then soft and see-through) came from layers adding up and from grains up to 16 px across.
+  - Still wrong in sand: individual book spines are not readable (confetti at 1:1; the default reads them better), the ceiling panels do not read as lit, and an arriving object glows brighter than in the default. Surfaces nearer than about 1.8 to 3.6 m open up instead of filling.
+  - In the default look a changing hero no longer turns into a white blob: its grains stay in the settled pass, and the burn shows EVA's red.
+  - Found on the way: `ceilingPanels` in `posed-frames.ts` merges the visible room's panels into one fitting, so the panel glow lands between the real panels in both looks; and there are shells of stray grains 0.5 to 2 m in front of the arrival camera, which only sparse near grains hide.
+  - Measured in headless Chrome at 1920x1080 (capped at 60): sand with ten passes held 16.7 ms a frame; twelve began dropping frames. Not measured at 3440x1440.
+- **Measured:** a draft World Labs splat (`refine: false`) of the fifteen library frames came back within 34 s as 524,288 splats; the refined one took 17 to 19 minutes for 2M. One run; its look is not yet judged. Draft is what makes paint possible inside a visit.
+- **Measured, one object (a brass diving helmet), one run each, timed from the moment its picture exists** (the picture itself took 16 s from OpenAI): picture to depth, 19 s, a front-only shell; picture to eight views' depth, 46 s, photographic from the front and torn at the sides; picture to eight views to draft splat to points, 79 s, the roughest; picture to a textured 3D model from Meshy, 32 s, the only one that is one solid shape from every side, with a plainer texture. Data, a plain-dot viewer and the comparison sheet are in `.local/object-test/` (`captures/sheet.png`). At the room's dot spacing a 0.5 m object gets about 6,700 points, so objects need finer sampling than the room. The owner has not yet picked a route.
+
+**Aesthetics:** the room's grain is settled as ordered dots (see above). Anything else about the look is still to be asked; comparison variants are approved.
 
 Do not infer the direction from the old crime-scene concept (a visitor suggests a room, EVA stages a solvable crime); that concept was rejected and its application has been removed.
 
@@ -43,11 +58,11 @@ Standing art direction (owner, 2026-11-12), which still applies unless the owner
 - Target is one desktop exhibition screen (ultrawide or LED wall) in Chrome; keyboard and mouse today, a physical controller and side webcam planned (see Direction). No mobile, responsive or touch work unless asked.
 - Verify what you changed. Run `npm run check`. For visual work also look at the running application at desktop size; judge grain from PNG captures at 1:1, because JPEG smears single-pixel grains. Add a focused test for new non-trivial logic.
 - Be truthful. Distinguish recorded fixtures from live generation, on screen and in reports. Never claim a check ran, a provider call worked, or a key is present without evidence from this session.
-- No commits, pushes, publishing, installs, model downloads or spending without the owner asking. Paid provider calls need the owner's approval each time, except World Labs calls for this demo, which the owner approved without a cap on 2026-11-12; still make only the calls a check needs and report each one.
+- No commits, pushes, publishing, installs, model downloads or spending without the owner asking. Paid provider calls need the owner's approval each time, with two exceptions: World Labs calls for this demo (approved without a cap on 2026-11-12), and calls a comparison experiment needs, so the owner can see which parts to keep (approved on 2026-11-16, any provider). Under both, make only the calls the check or comparison needs and report each one. Anything that runs unattended or repeatedly still needs asking.
 - Never open `.env.worldlabs` or any other `.env` file. Pass it with `node --env-file`.
 - Preserve existing protections in the server routes (origin checks, enable flags, request allowances, bounded inputs and responses). Model output is data, never code or permission.
 - The planned interaction has no microphone. If visitor speech ever returns, the exhibit must first tell visitors their speech is sent to ElevenLabs and logged there (see Known faults). Camera frames must stay on the machine.
-- DAO's Gather source licence forbids publicly releasing an application built mainly from it. Gather and Wake are references only; their source and video are not in this project.
+- DAO's Gather source is "not for redistribution" (its file header), and an earlier note here says the licence forbids publicly releasing an application built mainly from it. On 2026-11-16 the owner, who holds the licence, allowed adapting Gather's code in this project. Keep a credit comment where it is adapted, do not copy Gather's files or video into the project, and do not publish the source. The v17 source is at `C:\Users\alexx\Downloads\Gather-Source-v17\Gather-Source-v17` (its `LICENSE.txt` is not in that folder).
 
 ## Agents
 
@@ -71,7 +86,7 @@ The main session orchestrates on Fable 5.2 (pinned in the user settings). Worker
 
 The owner runs several Claude Code sessions on this project at the same time, from the CLI and from VS Code conversations. Two things keep them apart.
 
-**Sessions in the same folder take turns on a file.** A user-level hook, `~/.claude/hooks/file-queue.mjs` (rules in `../CLAUDE.md`), queues `Edit` and `Write` calls per file, first come first served. An edit can pause while another session finishes with that file; if it then fails because the file changed, read the file again and redo it. The queue does not cover:
+**Sessions in the same folder take turns on a file.** A user-level hook, `~/.claude/hooks/file-queue.mjs` (rules in `../CLAUDE.md`), queues `Edit` and `Write` calls per file. An edit on a file another session is using is refused at once with the place in the queue kept: do other work, then retry, and the retry waits up to 5 minutes for the turn. Read the file again before retrying. The queue does not cover:
 
 - Shell writes. Do not write project files through the shell.
 - Subagents of one session, which count as one owner. The orchestrator still gives each its own files.
@@ -90,7 +105,7 @@ Checked 2026-11-16 in a worktree made by `claude -w`: `npm run check` passed (32
 
 ## What exists
 
-`index.html` loads `src/main.tsx`, which mounts `AstralRoom`. There is one page and no on-screen interface.
+`index.html` loads `src/main.tsx`, which mounts `AstralRoom`. There is one page; the only interface drawn over the room is the inspection marks and the replacement menu, neither with words.
 
 Sequence: black void with the eye. Any key press or mouse movement counts as a visitor arriving and starts a spiral tunnel of points, which carries the viewer along it (at least 12 seconds). The room forms at the far end from the tunnel's own points. A 12 second arrival flight follows, then the visitor has control. After 45 seconds in the room with no input, the room disperses back into the void and waits for the next visitor.
 
@@ -99,9 +114,25 @@ In the room, the keyboard and mouse stand in for the planned controller and came
 - Keys move the viewer. The mouse's left-right place across the page is where the visitor stands, side to side; `flight.ts` `setSide` is the seam the camera will later drive. There is no mouse-look and no pointer lock. The view does not tilt up or down.
 - If a visitor has been giving input for 20 seconds without moving side to side, EVA teases them aloud, again every 30 seconds, until they move across a quarter of the floor width. The lines are placeholders in `tease.ts`, spoken by **the browser's built-in voice, not EVA's voice**; the console says so on every line. Chrome will not speak until the page has had a key press or click, so an exhibition machine needs the `--autoplay-policy=no-user-gesture-required` flag or recorded audio.
 
-The room is the **recorded library**: `public/fixtures/library/`, rebuilt once from a single picture with World Labs (fifteen generated views, then a 2M-splat reconstruction). 3.84M points. Five inspectable heroes: melted clock, statue head, pool, sky cube, spiral of books. It has a simulated pool and a painted splat version. This is a recording, not live generation, and the console says so.
+The room is the **recorded library**: `public/fixtures/library/`, rebuilt once from a single picture with World Labs (fifteen generated views, then a 2M-splat reconstruction). 3.84M points. Five inspectable heroes: melted clock, statue head, pool, sky cube, spiral of books. It has a simulated pool and a painted splat version. Outside what the one picture showed (more than about 55 degrees from its centre, so beside and behind the arrival spot) the points are drawn as thin upright lines of falling marks instead of where the reconstruction put them (`point-field.ts`, `uSeenAt`); the paint there is unchanged. This is a recording, not live generation, and the console says so.
 
 **No longer reachable from the page** (code and tests kept, nothing calls them): talking to EVA (`conversation.ts`, `src/speech/`, the four server routes) and the live room (`room-generation.ts`, `surface-sampler.ts`'s use by it, and the live-room files in `src/room/`). The live room never produced a room end to end (see Known faults). Decide with the owner whether EVA's real voice reuses the speech route before deleting any of it.
+
+**Object replacement, data side (2026-11-16; the page calls it through the visitor side, below).** `object-points.ts` exports three functions:
+
+- `loadShelf(signal)`: the recorded shelf of six models as `{ id, name, glb }`, with `glb` a URL. The console says it is a recording.
+- `loadObjectPoints(glbUrl, box, signal, density = 2)`: a model as points in room coordinates, scaled evenly to the largest size that fits the box, centred, standing on the box's floor, 1 mm clear of the box's faces, with normals and unlit texture colour. `density` is linear against the sampler's lattice (2 is half the spacing, four times the points) and is the factor to tune from captures; an object is capped at 250,000 points, past which its whole lattice coarsens.
+- `replaceHero(room, hero, object)`: a new cloud without the room's points inside that hero's box, then the object's points; that hero's `count` becomes the object's points in the box, and everything else is carried over.
+
+The live route `/api/object` (below) makes a fresh model of one of the same six objects. **Today it refuses every real model at its last step**; see Known faults.
+
+**Object replacement, visitor side (2026-11-16).** With keyboard and mouse only, a visitor looks at a hero, opens a menu, picks a replacement and watches the old object leave and the new one arrive. Everything offered is the recorded shelf; nothing is generated live.
+
+- **The menu** (`menu.ts`, `menu-view.ts`). While a hero is inspected, `F` or a click opens it. Each choice is the object itself as a small point cloud, turning slowly; there are no words. The selected one is the largest and brightest, in corner brackets. The rest of the room steps back to about a third of its light. While it is open the eye is put in its "thinking" phase, which brings it in front of the viewer, and the choices come out of the eye and stay round wherever it is on screen (moved in from the frame's edge so they all fit). `A`/`D` or the arrow keys move one choice along and wrap round; the mouse moves one choice for every 1/24 of the page's width it travels, and the side-to-side view holds still meanwhile. `Enter`, `F` or a click picks; `Esc` closes. The flight never sees the keys while the menu is open. The menu does not open during a change, or while any of the painted room is on screen.
+- **Three arrangements, not chosen: `?menu=ring` (default), `row`, `one`.** Ring: the choices circle the eye and the circle turns to bring the selected one below it. Row: a fixed line under the eye; the selected one rises and grows. One: one large object under the eye with its two neighbours small beside it. Delete the two the owner does not keep.
+- **The change** (`sand-look.ts`, `point-field.ts`). The page fits the picked model to the hero's box and calls `replaceHero`; the field takes from the new cloud only the points in that box and draws them as an object of its own beside the room's grains, which are never rebuilt, so every other grain keeps its place and its index. What stood in the box leaves by one of the three pairings and the new points arrive, over 5 seconds, in both looks. Each replacement takes the next pairing in turn (burn then fall, shatter then spiral, glitch then morph) until the owner picks one. A hero can be replaced again: then the earlier replacement is what leaves.
+- **Pushback** (`tease.ts`, `REFUSALS`). Two entries after the six objects are requests EVA will not do: a door, and a second eye. Picking one makes her say a line in the placeholder browser voice, the entry turns the eye's red, and nothing changes. She also refuses, with a line and no menu, to have the pool replaced, because its water is simulated apart from the points. The wording is placeholder.
+- **Memory** (`replacements.ts`). Each replacement a visitor makes is recorded as hero index and shelf id in the browser's `localStorage` (`eva.astral.replacements`), one entry per hero, and made again whenever the recorded library loads (the console says how many). **This is a shortcut: the room is remembered on one machine, in one browser profile, for one address.** What is stored is read as data and anything that is not a hero index with a shelf id is dropped.
 
 ### Keys and address-bar switches
 
@@ -112,14 +143,21 @@ The room is the **recorded library**: `public/fixtures/library/`, rebuilt once f
 | Mouse left-right | Where the visitor stands: a window in the middle, turning near the edges |
 | `R` | In a room: throw its points into the recorded library again |
 | Look at a hero, or fly within 1.2 m | Inspect: its grains brighten, the room dims, brackets and four lines of real numerals appear |
-| `P` | Swap points and painted (splat) room, through a spreading front |
+| `F` or a click, while a hero is inspected | Open the menu of replacements for it. On the pool: EVA refuses aloud |
+| In the menu: `A` / `D`, arrow keys, or moving the mouse | Move between the choices. `Enter`, `F` or a click picks; `Esc` closes the menu and nothing else |
+| `P` | Swap points and painted (splat) room: thin vertical lines of marks fall from the ceiling, some long, some short, and open into the paint |
 | `8` `9` `0` `-` | Lighting: liminal, afternoon, night, dark. `L` toggles lamps |
 | `1` to `7` | Effects: calm, breathe, melt, scatter, weightless, smear, vortex |
 | `Esc` | Stop: EVA's line, a tunnel in progress. Mouse movement will not restart it until the next key press |
 | `?px=0.5` to `2` | Render scale cap (default 1.5); lower it for a slow machine on a big screen |
 | `?room=surreal` | `R` loads the earlier fixture `public/fixtures/surreal-library/` instead (GLB meshes sampled to points) |
 | `?look=ribbons,data` | Two unchosen prototype looks (see below) |
+| `?look=sand` | Comparison variant, not chosen: the settled room drawn with Gather v17's grain (soft round grains that add up, counted in a float buffer and toned), instead of ordered opaque dots |
 | Dev server only | `?eye=idle\|listening\|thinking\|speaking\|unavailable`, `?splats=standin`, `?splatmax=`, `?splatnear=` |
+| `?menu=ring\|row\|one` | The menu's arrangement (default `ring`); none is chosen |
+| Dev server only: `G` | Replace a hero without the menu (the inspected hero, else the nearest; never the pool) with the next object of the shelf. Each press takes the next pairing: burn then fall, shatter then spiral, glitch then morph. Works in both looks. Not remembered |
+| Dev server only: `Backspace` | Forget every remembered replacement and load the recorded library again |
+| Dev server only: `?swap=<hero>,<pairing>,<0..1>` | That hero replaced by the shelf's first object (the diving helmet) on arrival, the change held still at a progress, for matching captures. Not remembered. Heroes: 0 clock, 1 statue head, 2 pool, 3 sky cube, 4 books |
 
 ### Source map
 
@@ -129,21 +167,27 @@ The room is the **recorded library**: `public/fixtures/library/`, rebuilt once f
 |---|---|
 | `AstralRoom.tsx` | Shell: renderer, stage sequence (void, tunnel, arriving, room, dissolving), keys, wiring |
 | `types.ts` | Shared contract: `PointCloud`, `RoomLights`, `RoomHero`, effects, lights, phases, `AstralReply`, `TUNNEL` |
-| `point-field.ts` | The GPU point renderer: tunnel cloud, tunnel-to-room arrival, seven effects, lighting moods (`MOODS`, `nextLighting`), hero highlight. Largest file |
+| `point-field.ts` | The GPU point renderer: tunnel cloud, tunnel-to-room arrival, seven effects, lighting moods (`MOODS`, `nextLighting`), hero highlight, the objects that replaced heroes (`replaceHero`). Largest file |
 | `flight.ts` | Key-driven flight, the side-to-side view (`sideView`, `setSide`), guided camera, arrival path |
-| `tease.ts` | EVA's unprompted lines: placeholder wording, when one is due, and the placeholder browser voice |
+| `tease.ts` | EVA's unprompted lines and her refusals (`REFUSALS`): placeholder wording, when a tease is due, and the placeholder browser voice |
+| `menu.ts`, `menu-view.ts` | The menu of replacements. `menu.ts` is pure: which choice is selected, each arrangement's layout, the two refused entries as points. `menu-view.ts` draws the choices as turning point clouds round the eye |
+| `grammar.ts` | Not used by the page. The room's ledger as pure data (`LIMINAL-GRAMMAR.md`, step 1): what stands in each slot (`standingNow`), the three hidden values (`roomValues`), the state read off them (`roomState`), a stored ledger read as untrusted data (`parseLedger`). Every weight and threshold is a named constant at the top of the file |
+| `grammar-decide.ts` | Not used by the page. What EVA allows and how a picked thing enters (`LIMINAL-GRAMMAR.md`, step 1), pure and seeded: `decideChange` refuses (`unknown`, `spent`, `fit`, `anchor`) or gives the visitor's change with its discrepancy and pose, plus a change putting the old strong discrepancy right; `roomSpent`; `arrivalOf`. The allowed sizes, copy counts and clearances are proposals, named constants at the top of the file |
+| `replacements.ts` | Which hero was replaced by which shelf object, kept in the browser's storage and read back as untrusted data |
+| `sand-look.ts` | The `sand` look, and the object change in both looks: the leave and arrive shader (`SWAP_VS`), its pairings and timing, `heroGrains` |
 | `eye.ts`, `eye-shader.ts`, `eye-source.ts`, `eye-fits.ts`, `eye-marks.ts`, `eye-volume.ts` | The eye: its raster source, shader, irregular fits, tracking marks and numerals, volume |
 | `conversation.ts` | Not used by the page. Hold-to-talk voice loop: sends the transcript to the decision and reply routes in parallel; both carry effect, intensity and light |
 | `room-source.ts` | Loads the recorded room: baked points, else splats, else posed frames; `?room=surreal` path |
 | `baked-points.ts`, `splat-points.ts`, `posed-frames.ts` | Three ways from the library fixture to an ordered point cloud; manifest validation is in `posed-frames.ts` |
-| `room-generation.ts`, `surface-sampler.ts` | Live room: description to procedural meshes to points. `room-generation.ts` is not used by the page; the sampler still serves `?room=surreal` |
+| `room-generation.ts`, `surface-sampler.ts` | Live room: description to procedural meshes to points. `room-generation.ts` is not used by the page; the sampler still serves `?room=surreal` and object replacement, and takes a `density` option (linear; 1 is the room's lattice) |
+| `object-points.ts` | Object replacement, data side: the recorded shelf, a model as points fitted into a hero's box, the room with one hero exchanged. Called by `AstralRoom.tsx` |
 | `splat-view.ts` | Renders `room.spz` with Spark as "the paint"; the points-to-paint swap; draw layers |
 | `water.ts`, `water-sim.ts` | Height-field wave simulation over the pool, drawn as points and as splats |
 | `inspect.ts`, `inspect-marks.ts` | Which hero the viewer is inspecting; its brackets and numerals on a 2D canvas |
 | `glow.ts` | Bloom limited to dense bright areas; always on |
 | `looks.ts`, `ribbons.ts`, `data-layer.ts`, `data-marks.ts` | Prototype looks behind `?look=`. `ribbons`: arrival as bundles of 1 px strands. `data`: four corner groups of live values. The owner has not chosen either; delete the ones not kept |
 
-`src/speech/` is the browser side of speech (microphone capture, realtime transcription, playback). `src/server/` holds the four dev-server routes. `src/room/` is what remains of the earlier crime-scene application, kept only because code in `src/astral/` imports it:
+`src/speech/` is the browser side of speech (microphone capture, realtime transcription, playback). `src/server/` holds the five dev-server routes. `src/room/` is what remains of the earlier crime-scene application, kept only because code in `src/astral/` imports it:
 
 - `room-interpret.ts`, `room-interpretation-result.ts`, `room-description.ts`, `room-case.ts`, `procedural-room.ts`, `spatial-fixture.ts`: the live room path. The compose-room contract still requires a crime "case" in every reply; nothing in the astral room uses it.
 - `construction-fixture.ts` and what it imports (`construction-animation.ts`, `construction-reveal.ts`, `room-display.ts`, `room-paint.ts`, `room-inspection.ts`, `room-prop-request.ts`, `room-prop-visual.ts`, `prop-glb-admission.ts`, `prop-png-admission.ts`): needed only to validate the `?room=surreal` fixture manifest. Removing that switch would let all of these and `public/fixtures/surreal-library/` go.
@@ -158,13 +202,17 @@ Routes exist only inside the Vite dev and preview servers (`vite.config.ts`); a 
 | `/api/astral-reply` | Anthropic `claude-opus-5-5` | `EVA_ENABLE_ASTRAL_REPLY` | `EVA_ANTHROPIC_API_KEY` | `EVA_ASTRAL_REPLY_MAX_REQUESTS` (20) |
 | `/api/astral-decision` | Jev `jev-1.14.0` | `EVA_ENABLE_ASTRAL_DECISION` | `EVA_JEV_API_KEY` | `EVA_ASTRAL_DECISION_MAX_REQUESTS` (20) |
 | `/api/compose-room` | Anthropic `claude-opus-5-5` | `EVA_ENABLE_ROOM_INTERPRETATION` | `EVA_ANTHROPIC_API_KEY` | `EVA_ROOM_INTERPRETATION_MAX_REQUESTS` (3) |
+| `/api/object` | OpenAI `gpt-image-2.5-flare`, then Meshy `meshy-t2.5` | `EVA_ENABLE_OBJECT` | `EVA_OPENAI_IMAGE_API_KEY`, `EVA_MESHY_API_KEY` | `EVA_OBJECT_MAX_REQUESTS` (3; a request is one picture and one model) |
 
 `GET` on a route with an `Origin` header reports its status without a provider call.
 
+`/api/object` (`src/server/object.ts`) takes `POST { "id": ... }` where the id is one of six objects in a fixed list in that file (`OBJECTS`: diving helmet, gramophone, rocking horse, globe, chess knight, televisions); the prompt is built on the server and no visitor text reaches a provider. It asks OpenAI for a 1536x1024 picture, sends it to Meshy for a textured model (smart topology, 10,000 target faces), polls every 2 s, downloads the GLB only from `assets.meshy.ai` (8 MiB at most), checks it with `validatePropGlb` and replies with the GLB bytes (`model/gltf-binary`); a failure is JSON with an `error` code. One request at a time, six minutes at most. `GET` also lists the six ids. On success the server console logs the timings, the picture's token count and the model's credits as live generation.
+
 ### Fixtures
 
-- `public/fixtures/library/`: `manifest.json` (frames with cameras, `splats`, `points`, `water`, five `heroes` boxes), fifteen frame trios (picture, depth EXR, confidence), `room.spz` (32 MB), `points.bin` (69 MB bake). **Re-bake `points.bin` whenever `room.spz` or `manifest.water` changes**; a stale bake is rejected and the points are recomputed from the splats (about 19 s). The bake script is `.local/bake-library-points.mjs`, which is not in the repository.
+- `public/fixtures/library/`: `manifest.json` (frames with cameras, `splats`, `points`, `water`, five `heroes` boxes), fifteen frame trios (picture, depth EXR, confidence), `room.spz` (32 MB), `points.bin` (69 MB bake). **Re-bake `points.bin` whenever `room.spz`, `manifest.water` or a `heroes` box changes**; a bake with a stale header is rejected and the points are recomputed from the splats (about 19 s), but a changed hero box is not detected: the old bake loads with the old point density. Points inside a hero box are sampled at half the room's spacing. The bake script is `.local/bake-library-points.mjs`, which is not in the repository.
 - `public/fixtures/surreal-library/`: the earlier recorded room (GLB shell and hero models); its own README describes it.
+- `public/fixtures/objects/`: the recorded shelf for object replacement. `manifest.json` (`objects`: id, name, glb file name) and six Meshy textured GLBs, 2.7 to 4.7 MB each, 22 MB together: diving helmet, gramophone, rocking horse, antique globe, marble chess knight, stack of televisions. Each was generated once on 2026-11-16 from an OpenAI picture; the helmet is the model of the first measured run, the other five went through the `/api/object` handler. The pictures, every provider call and plain-dot captures are in `.local/object-shelf/` (`calls.jsonl`, `captures/shelf-density-2.png`), which is not in the repository.
 
 ## Running and checking
 
@@ -175,6 +223,10 @@ Routes exist only inside the Vite dev and preview servers (`vite.config.ts`); a 
 - Headless captures need Chrome with a GPU: `chromium.launch({ channel: 'chrome', headless: true, args: ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist'] })`. Playwright is a dev dependency.
 
 Checked on 2026-11-16 after the first interaction slice: typecheck clean; 324 tests pass in 27 files; the build succeeds. In headless Chrome the built page had no console errors; mouse movement alone started the tunnel and the library; the view shifted with the mouse and turned at the edge; the room dispersed after 45 seconds without input and a key press brought it back; the tease fired 20 seconds after control and not after side-to-side movement. Not checked: the placeholder voice being audible (headless Chrome has no sound), how the side-to-side view feels in the hand, frame rate, any provider call.
+
+Checked on 2026-11-16 for object replacement, with no dev server: 337 tests pass in 30 files, among them the shelf manifest, the fit into a box, the density factor, `replaceHero`'s counts and the route's protections against a synthetic provider. Five real requests went through the `/api/object` handler called directly from a script: the picture took 13.9 to 16.8 s (1,434 to 1,442 tokens each, as OpenAI reported), the model 29 to 40 s from submission to download (15 credits each, as Meshy reported), the whole request 43 to 56 s, and each ended in the 422 described under Known faults. In headless Chrome, with files answered from disk, all six shelf models became points in the statue-head box in 0.1 to 0.17 s each with their texture colours, every point inside the box, and `replaceHero` on the real 3.83M-point room took 0.07 s and gave the expected counts. Not checked: the route inside a running dev server, a 200 reply for a real model, anything in the engine's look, and the typecheck as a whole (it failed at the time on three files another session was editing: `AstralRoom.tsx`, `point-field.ts`, `sand-look.ts`).
+
+Checked on 2026-11-16 for the visitor's side of object replacement, in headless Chrome at 1920x1080 against the dev server, on the sky cube: typecheck clean; 350 tests pass, among them the menu's selection and layouts, the stored replacements, the points taken for a new object, and a line for every refusal. A click and `F` each opened the menu with the six shelf objects and the two refused entries; six presses of `D` moved the selection and moved the viewer 4 mm (the flight did not see them); picking the door logged EVA's refusal as a placeholder-voice line, turned the entry red and changed nothing; mouse travel moved the selection; `Esc` closed the menu and nothing else; picking the gramophone replaced the cube over 5 seconds and stored `[{"hero":3,"object":"gramophone"}]`; after a reload the room arrived with the gramophone and the console said 1 of 1 replacements was made again; `Backspace` emptied the storage and brought the cube back. With `G` the same hero was replaced twice in both looks: the second time the first replacement left. No console errors. PNG captures are in `.local/object-menu/`: `menu-ring-default`, `menu-row-default`, `menu-one-default`, `menu-ring-sand`; `replace-default-025`, `-050`, `-080` and `replace-sand-025`, `-050`, `-080` (burn then fall held at those shares, seen from beside the line to the hero so it is not inspected); `flow-default-*` (the whole path above) and `twice-*`. `npm run build` succeeds. Not checked: the placeholder voice being audible (headless Chrome has no sound); the menu in the hand with a real mouse; how long the page stalls when a replacement starts (the room's 3.8M points are copied once) and the frame rate with the menu open; any hero but the sky cube; the row and one arrangements in sand; an ultrawide frame; the built page (only the dev server was looked at).
 
 Earlier measurements (2026-11-12, not repeated): 60 fps at 3440x1440 in headless Chrome on an RTX 5080 (headless caps at 60, so headroom is unknown). One live voice turn worked: Jev decision in 0.1 s, Opus reply in 2.4 s, spoken reply; EVA began speaking about 13 s after the visitor stopped.
 
@@ -189,9 +241,24 @@ Live path:
 
 Library room:
 
-- The melted clock is faint in the points (clear in the paint). The near-left shelf and the ceiling are noisy as points. Looking back toward the entrance, the glass wall shows seams. The paint has thin soft strips at the far left and right of the arrival view.
+- The melted clock's hero box was 0.6 m off until 2026-11-16 (it covered the shelf beside the clock), so the clock had ordinary point density and was nearly invisible as points; the box is corrected and the points re-baked. Its shape, face and rim now read; the Roman numerals are only hinted at, and from the arrival spot about 3,900 stray points still float in front of it. The near-left shelf and the ceiling are noisy as points. Looking back toward the entrance, the glass wall shows seams. The paint has thin soft strips at the far left and right of the arrival view.
 - Lighting moods do nothing while the paint is shown. This room has no lamp, so `L` does nothing in it.
 - The eye and the water were each mid-revision on 2026-11-12: the eye toward more dispersal and a 3D read, the pool toward reading as deep with a coping round its rim.
+
+Object replacement:
+
+- **`/api/object` refuses every real model (`invalid_mesh`, HTTP 422), after the picture and the model have been paid for.** `prop-glb-admission.ts` was written for small untextured props and rejects what Meshy's textured export contains: a JPEG texture (2048 px, 2.5 to 3.7 MB; the admission allows PNG only, 512 px and 2 MB), `doubleSided: true`, `normalized: false` on accessors, an identity `matrix` on the node, and a mipmap, repeating sampler. All five real requests on 2026-11-16 ended this way. Widening the admission for these models is the owner's decision (an attempt to edit it in that session was stopped by the permission system). Until then only the test with a synthetic provider shows a 200 reply.
+- The six shelf models do not pass that admission either, for the same reasons; they were saved from the provider's download by the generation script, and the browser loads them with three.js's own GLB loader.
+- **The painted (splat) room still shows the old object** after `replaceHero`: only the points change. The pool's water is also carried over, so an object put in the pool's box would stand on the basin floor under the water.
+- An object's colours are its unlit texture, while the room's points carry the room's own lighting (`lit`); how the two sit together has not been looked at in the engine. Models face whichever way Meshy turned them (the rocking horse is head-on to the arrival view); there is no turn parameter.
+- Not looked at: an object in the room in the engine's look (only plain-dot captures of the objects alone exist), and the default density of 2 (43,000 to 120,000 points in the statue-head box, against the 104,819 that hero has) is a starting value the owner has not judged. (Since then the visitor side has put the helmet and the gramophone in the sky cube's box in the engine, in both looks; see the next items and `.local/object-menu/`. Nobody has judged the density.)
+- The page refuses to replace the pool (EVA says a line), for the reason above. A replacement of the pool found in storage is skipped on load.
+- A replacement is drawn as an object of its own until the room is next loaded. Until then the field keeps the hero's box the room was set with, so a changed cloud that moved or resized that box would not be followed, and `R` throws the room from its original homes, the replaced hero among them. Floor and wall points that lie inside a hero's box leave with it; only the sky cube, which hangs clear of everything, has been replaced and looked at. The clock, the statue head and the books have not.
+- A replacement started while another is running cuts the first short. The page keeps a visitor from doing that (the menu does not open during a change); the dev key `G` can.
+- In the default look, about half-way through burn then fall, almost nothing shows in the box: the old object's last grains are dark ash and the new one's first grains are few. Glitch then morph is full of grains at the same moment. Which pairing is kept is the owner's to pick.
+- In sand, an inspected hero comes out pure white (`menu-ring-sand`), and half-way through burn then fall the last leaving grains show as a dark smear with a black rim (`replace-sand-050`). Seen without inspection the arriving helmet reads as a helmet. Another session was retuning the sand look, in `sand-look.ts` and `point-field.ts`, throughout this work, so the sand captures show its state at that minute and the cause was not pursued.
+- The menu stays round the eye, and the eye wanders, so the choices sometimes lie over the hero being replaced. `eye.ts` was not changed for the menu: the eye is only put in its thinking phase. After choosing with the mouse, the side-to-side view goes to wherever the mouse now is.
+- The shelf objects are unlit texture colour in a room whose points carry its lighting: in the default look the gramophone's horn and the helmet come out brighter than anything else in the room.
 
 Display:
 
