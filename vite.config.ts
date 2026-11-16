@@ -1,5 +1,7 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { createRequire } from 'node:module'
+import path from 'node:path'
 import process from 'node:process'
 import { createRoomInterpretationHandler } from './src/server/room-interpretation.ts'
 import { createAstralReplyHandler } from './src/server/astral-reply.ts'
@@ -78,8 +80,13 @@ function astralDecision(): Plugin {
   }
 }
 
+// A worktree under .claude/worktrees/ has no node_modules of its own: packages resolve from the main checkout,
+// which lies outside the worktree, so the dev server must be allowed to serve package files (the fonts) from there.
+// In the main checkout this folder is already inside the project, so nothing more is exposed.
+const packages = path.resolve(createRequire(import.meta.url).resolve('vite/package.json'), '../..')
+
 export default defineConfig({
   plugins: [react(), roomInterpretation(), speech(), astralReply(), astralDecision()],
-  server: { host: '127.0.0.1', port: 5173, strictPort: true },
+  server: { host: '127.0.0.1', port: 5173, strictPort: true, fs: { allow: ['.', packages] } },
   preview: { host: '127.0.0.1', port: 4173, strictPort: true },
 })

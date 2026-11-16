@@ -64,8 +64,29 @@ The main session orchestrates on Fable 5.2 (pinned in the user settings). Worker
 
 - Never pass a `model` when spawning an `eva-*` agent. An override replaces the model in the definition; on 2026-11-12 every UI and research run went to Opus that way.
 - A review crosses model families: `eva-reviewer` for GPT work, `eva-reviewer-gpt` for Claude work. The look of visual work is judged by the owner from captures, not by a reviewer.
-- Parallel agents share one working tree and one dev port. Give each agent files no other agent is editing. A variant look goes in its own file behind `?look=`, and the orchestrator does the shared wiring (`looks.ts`, `AstralRoom.tsx`). The orchestrator alone starts the server on 5173 and takes the captures, one variant after another. Worktrees are not used: they have no `node_modules`, and installs are not allowed.
+- Parallel agents share one working tree and one dev port. Give each agent files no other agent is editing. A variant look goes in its own file behind `?look=`, and the orchestrator does the shared wiring (`looks.ts`, `AstralRoom.tsx`). The orchestrator alone starts the server on 5173 and takes the captures, one variant after another.
 - Before reporting which model did a piece of work, read it from the subagent's transcript under `~/.claude/projects/`; the definition only says which model was requested.
+
+## Several sessions at once
+
+The owner runs several Claude Code sessions on this project at the same time, from the CLI and from VS Code conversations. Two things keep them apart.
+
+**Sessions in the same folder take turns on a file.** A user-level hook, `~/.claude/hooks/file-queue.mjs` (rules in `../CLAUDE.md`), queues `Edit` and `Write` calls per file, first come first served. An edit can pause while another session finishes with that file; if it then fails because the file changed, read the file again and redo it. The queue does not cover:
+
+- Shell writes. Do not write project files through the shell.
+- Subagents of one session, which count as one owner. The orchestrator still gives each its own files.
+- The dev port and the git index. One session at a time runs the server on 5173, and one commits.
+
+**A session doing longer independent work takes its own worktree**: a separate checkout at `.claude/worktrees/<name>` on branch `worktree-<name>`, started from the current commit (`worktree.baseRef` in `.claude/settings.json`).
+
+- From a terminal: `claude -w <name>` in the project folder.
+- From a VS Code conversation: Claude Code 2.1.322 cannot create a worktree there ("Refusing to use ... as an isolation worktree", because VS Code gives the folder path a lowercase `c:`). Create it with `git worktree add .claude/worktrees/<name> -b worktree-<name>`, then enter it by its path; entering an existing worktree works.
+- A worktree needs no `node_modules`. It sits inside the project folder, so Node, `tsc`, `npm run` and Vite find the main checkout's packages by looking upward. **Never link or junction `node_modules` into a worktree**: `git worktree remove` deletes what is behind a junction (tested 2026-11-16 on a dummy folder), and installs are not allowed.
+- Ignored files are not in a worktree: `.env.worldlabs` (pass `--env-file=../../../.env.worldlabs`), `.local/`, `dist/`.
+- The routes accept only port 5173, so one checkout serves at a time. Stop your server when you have looked.
+- To bring work back, commit in the worktree, then run `git merge worktree-<name>` in the main checkout. Remove a finished worktree with `git worktree remove`.
+
+Checked 2026-11-16 in a worktree made by `claude -w`: `npm run check` passed (324 tests), the build succeeded, and the dev page loaded in headless Chrome with no console errors or failed requests (on temporary port 5199, because another session held 5173).
 
 ## What exists
 
