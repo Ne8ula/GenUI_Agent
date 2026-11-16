@@ -1,9 +1,10 @@
 // The room's Gaussian-splat paint (World Labs' Marble reconstruction of the same frames), and the gesture that swaps it with the points.
 // Spark is loaded only when a room has a splat file, so rooms without one never touch it.
 //
-// The gesture: from the point the viewer is looking at, a ragged front spreads through the room. Where it arrives, splats condense
-// first as pin-point grains, then swell into the painted surface; the paint covers the point grains behind it, which stay whole until
-// it does. The way back is the same front drawing back into where the viewer is looking.
+// The gesture: from the point the viewer is looking at, a ragged front spreads through the room as lines of code. The room is cut
+// into thin vertical columns; down each one a line of short marks falls from the ceiling, in the room's own colours, some lines
+// long and some short. Above a line's tail its marks open into the painted surface, which covers the point grains behind it; they
+// stay whole until it does. The way back is the same lines drawing back up, toward where the viewer is looking.
 //
 // Layers, for other modules (water.ts): objects that belong with the points go in the main scene as usual; they are drawn in the points
 // layer and fade with it. Splat objects that belong with the paint (a SplatMesh) go in splatView.paint; they are sorted together
@@ -18,9 +19,12 @@ import type { PointCloud, RoomWater } from './types.ts';
 const GESTURE_SECONDS = 11;
 const GAZE_METRES = 2.5;          // the front starts this far along the line of sight
 const BAND_METRES = 0.45;         // the front's unit depth, metres
-const STAGES_END = 1.0;           // ... and by here it has swollen into paint
+const STAGES_END = 5;             // the longest line, in bands; the shortest is 0.8
 const FRONT_END = 0.88;           // share of the gesture by which the front has passed everything; the points then fade
-const GRAIN_METRES = 0.005;       // a splat's size while it is still a grain
+const GRAIN_METRES = 0.0004;      // a line's thickness (standard deviation) per metre from the viewer: under a pixel at any distance
+const COLUMN_METRES = 0.1;        // one line per column of this width
+const MARK_METRES = 0.06;         // the height of one mark in a line
+const FALL = 1;                   // metres the front spreads while a line falls one metre
 // Splats larger than this (largest standard deviation, metres) fade out: the reconstruction's guesses. ?splatmax= overrides in dev.
 const devMax = import.meta.env.DEV ? Number(new URLSearchParams(location.search).get('splatmax')) : 0;
 const maxSplatMetres = devMax > 0 ? devMax : 0.25;
@@ -86,7 +90,7 @@ export function createSplatView(options: {
   const rtPoints = target(), rtSplats = target();
   const quad = new FullScreenQuad(COMPOSITE.clone());
   const origin = new Vector3(), forward = new Vector3();
-  let ready = false, disposed = false, painted = false, t = 0;
+  let ready = false, disposed = false, painted = false, t = 0, top = 0;
   // The front's radius at each share of the splats it has passed, from the current origin: the paint arrives at an even pace
   // however the room is spread out (a near wall and a long far hall alike).
   const reach = new Float32Array(QUANTILES + 1);
@@ -115,10 +119,11 @@ export function createSplatView(options: {
     const uOrigin = dyno.dynoVec3(new Vector3()), uRadius = dyno.dynoFloat(1e6), uBand = dyno.dynoFloat(BAND_METRES), uGrain = dyno.dynoFloat(GRAIN_METRES);
     // the pool: centre at the water's surface, radii; zero radii = no pool
     const uPool = dyno.dynoVec3(new Vector3(...(water?.center ?? [0, 0, 0]))), uPoolR = dyno.dynoVec2(new Vector2(...(water?.radius ?? [0, 0])));
+    const uTop = dyno.dynoFloat(0);   // the ceiling: the highest sampled splat, where the lines start
     const uMax = dyno.dynoFloat(maxSplatMetres), uView = dyno.dynoVec3(new Vector3(0, 0, 1e6)), uNear = dyno.dynoFloat(nearMetres);
     mesh.worldModifier = dyno.dynoBlock({ gsplat: dyno.Gsplat }, { gsplat: dyno.Gsplat }, ({ gsplat }) => {
       const front = new dyno.Dyno({
-        inTypes: { gsplat: dyno.Gsplat, origin: 'vec3', radius: 'float', band: 'float', grain: 'float', maxSize: 'float', view: 'vec3', near: 'float', pool: 'vec3', poolR: 'vec2' },
+        inTypes: { gsplat: dyno.Gsplat, origin: 'vec3', radius: 'float', band: 'float', grain: 'float', top: 'float', maxSize: 'float', view: 'vec3', near: 'float', pool: 'vec3', poolR: 'vec2' },
         outTypes: { gsplat: dyno.Gsplat },
         statements: ({ inputs, outputs }) => dyno.unindentLines(`
           ${outputs.gsplat} = ${inputs.gsplat};
@@ -142,23 +147,34 @@ export function createSplatView(options: {
             // the ragged ring standing on the coping fades out over a band just outside the rim
             else keep *= mix(1.0, smoothstep(1.0, 1.0 + 0.15 / min(pr.x, pr.y), e), 1.0 - smoothstep(0.25, 0.35, h));
           }
-          // patches of about 0.6 m: each lands on its surface in one quick snap, in turn by its distance from the gaze, with jitter
-          vec3 cell = floor(c / 0.6);
-          float ph = fract(sin(dot(cell, vec3(12.9898, 78.233, 37.719))) * 43758.5453);
-          float d = length((cell + 0.5) * 0.6 - ${inputs.origin}) + (ph - 0.5) * 4.0 * ${inputs.band};
+          // lines of code: one per thin column, falling from the ceiling mark by mark, in turn by the column's distance from the gaze, with jitter
+          vec2 column = floor(c.xz / ${COLUMN_METRES});
+          float mark = floor(c.y / ${MARK_METRES});
+          vec3 at = vec3((column.x + 0.5) * ${COLUMN_METRES}, (mark + 0.5) * ${MARK_METRES}, (column.y + 0.5) * ${COLUMN_METRES});
+          float ph = fract(sin(dot(column, vec2(12.9898, 78.233))) * 43758.5453), ph2 = fract(ph * 61.7);
+          float d = length(at.xz - ${inputs.origin}.xz) + (ph - 0.5) * 4.0 * ${inputs.band} + (${inputs.top} - at.y) * ${FALL.toFixed(2)};
           float s = (${inputs.radius} - d) / ${inputs.band};
+          float len = mix(0.8, ${STAGES_END.toFixed(2)}, ph2 * ph2);   // most lines short, a few long
           if (s <= 0.0 || keep <= 0.0) {
             ${outputs.gsplat}.flags = 0u;
-          } else if (s < 1.0) {
-            // lifted toward the viewer, a little small, then snapped down with an overshoot; full opacity from the first frame
-            float x = s - 1.0, k = 1.70158, eb = 1.0 + (k + 1.0) * x * x * x + k * x * x;
-            vec3 lift = normalize(${inputs.view} - c + vec3(1e-4)) * (0.25 + 0.2 * ph);
-            ${outputs.gsplat}.center = c + lift * (1.0 - eb);
-            ${outputs.gsplat}.scales = sc * mix(0.55, 1.0, clamp(eb, 0.0, 1.2));
+          } else if (s < len) {
+            // a mark: its splats drawn as one thin upright dash on the column's axis; over the line's last third they open into the paint
+            float w = smoothstep(0.7, 1.0, s / len), head = 1.0 - smoothstep(0.0, 0.15, s);
+            // each mark is rolled again as the line passes: bright, dim, or missing
+            float roll = fract(sin(dot(vec3(column, mark) + floor(s * 4.0), vec3(12.9898, 78.233, 37.719))) * 43758.5453);
+            if (roll < 0.2 && w < 0.5 && head < 0.5) ${outputs.gsplat}.flags = 0u;
+            ${outputs.gsplat}.center = mix(vec3(at.x, at.y + (c.y - at.y) * 0.7, at.z), c, w);
+            float thin = ${inputs.grain} * max(1.0, length(c - ${inputs.view}));
+            ${outputs.gsplat}.scales = mix(vec3(thin, ${(MARK_METRES * 0.15).toFixed(4)}, thin), sc, w);
+            vec4 q = ${inputs.gsplat}.quaternion;
+            ${outputs.gsplat}.quaternion = normalize(mix(vec4(0.0, 0.0, 0.0, q.w < 0.0 ? -1.0 : 1.0), q, w));
+            // the room's own colour, lifted so a line stands out from the grains around it, and white at the falling head
+            vec3 lit = mix(min(col.rgb * 1.5 + 0.08, vec3(1.0)), vec3(1.0), 0.8 * head);
+            ${outputs.gsplat}.rgba = vec4(mix(lit, col.rgb, w), mix(keep * max(head, 0.25 + 0.75 * roll), col.a, w));
           }
         `),
       });
-      return { gsplat: front.apply({ gsplat, origin: uOrigin, radius: uRadius, band: uBand, grain: uGrain, maxSize: uMax, view: uView, near: uNear, pool: uPool, poolR: uPoolR }).gsplat };
+      return { gsplat: front.apply({ gsplat, origin: uOrigin, radius: uRadius, band: uBand, grain: uGrain, top: uTop, maxSize: uMax, view: uView, near: uNear, pool: uPool, poolR: uPoolR }).gsplat };
     });
     mesh.updateGenerator();
     splatScene.add(sparkRenderer, mesh);
@@ -172,6 +188,9 @@ export function createSplatView(options: {
     if (disposed) { release(); return; }
     if (carved) { packed!.needsUpdate = true; mesh.updateVersion(); }
     samples = sampleCentres(mesh);
+    top = -Infinity;
+    for (let i = 1; i < samples.length; i += 3) top = Math.max(top, samples[i]!);
+    uTop.value = top;
     if (packed) { const sizes: number[] = []; for (let k = 0; k < packed.numSplats; k += Math.max(1, Math.floor(packed.numSplats / SAMPLES))) { const s = packed.getSplat(k).scales; sizes.push(Math.max(s.x, s.y, s.z)); } sizes.sort((a, b) => a - b); uMax.value = Math.min(3 * sizes[sizes.length >> 1]!, 0.6 * maxSplatMetres); }
     frame(-1);
     let over = 0, n = 0;
@@ -198,7 +217,8 @@ export function createSplatView(options: {
         const all: number[] = [], seen: number[] = [], p = new Vector3();
         for (let i = 0; i < samples.length; i += 3) {
           p.fromArray(samples, i);
-          const d = p.distanceTo(origin);
+          // the same measure the lines use: across the floor from the gaze, plus the fall from the ceiling
+          const d = Math.hypot(p.x - origin.x, p.z - origin.z) + (top - p.y) * FALL;
           all.push(d);
           if (p.sub(camera.position).normalize().dot(forward) > 0.6) seen.push(d);
         }
@@ -219,7 +239,7 @@ export function createSplatView(options: {
       t = painted ? Math.min(1, t + dt / GESTURE_SECONDS) : Math.max(0, t - dt / GESTURE_SECONDS);
       paint.traverse(o => { if (o !== paint && 'opacity' in o) (o as { opacity: number }).opacity = ease(t); });
       // f: the share of the paint the front has passed. Before it starts, nothing is near; at its end, the last splat is whole.
-      // The front's jitter spans ±1.2 bands, so it starts 1.2 bands short of the nearest splat and ends with the farthest fully swollen.
+      // The columns' jitter spans ±2 bands, so it starts 2 bands short of the nearest splat and ends with the longest line fully open.
       const f = smooth(0, FRONT_END, t), q = f * QUANTILES, i = Math.min(QUANTILES - 1, Math.floor(q));
       const radius = reach[i]! + (reach[i + 1]! - reach[i]!) * (q - i);
       lastRadius = t === 0 ? -1 : radius + BAND_METRES * ((STAGES_END + 4.0) * f - 2.0);

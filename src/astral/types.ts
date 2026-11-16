@@ -27,6 +27,8 @@ export interface PointCloud {
   heroes?: RoomHero[];
   /** Where the viewer arrives. Absent for the tunnel. */
   arrival?: { position: [number, number, number]; lookAt: [number, number, number] };
+  /** True when `arrival` is the camera of the one picture the room was rebuilt from: what lies outside its view is the machine's guess. */
+  pictured?: boolean;
 }
 
 /** A pool: an ellipse in the floor (centre at the water's surface, radii along x and z, metres) with a basin `depth` metres deep below it. */

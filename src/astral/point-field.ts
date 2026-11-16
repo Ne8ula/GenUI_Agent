@@ -8,6 +8,7 @@ import { hasLook } from './looks.ts';
 import {
   dealOrigins, dealSteps, finish, groupPoints, orderByKeySteps, slabKeySteps, tunnelOrder, tunnelOriginKeys, type Groups, type Steps, type TunnelOrder,
 } from './ribbons.ts';
+import { SAND_EARLY_VS, SAND_GRAIN_VS, SAND_JITTER_VS, SAND_PX_VS, SAND_UNIFORMS_VS, SWAP_NONE, SWAP_PAIRINGS, SWAP_VS, createSandPass, heroGrains, sandMaterial, swapNow, type SwapControl } from './sand-look.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralEffect, type AstralLight, type PointCloud, type PointField } from './types.ts';
 
 const POINT_METRES = 0.003;       // a tunnel grain's size; on screen it shrinks with distance and, below a pixel, dims instead
@@ -27,6 +28,8 @@ const SOLID_EASE = 0.35;          // seconds per e-fold: a settled lit room diss
 const INSPECT_EASE = 0.18;       // seconds per e-fold: an inspection is in, or gone, in about half a second
 // The 'ribbons' look (?look=ribbons): the arrival and the kick fly along a few shared curves, drawn as strands of 1 px lines.
 const RIBBONS = hasLook('ribbons');
+// The 'sand' look (?look=sand): a settled room drawn with Gather v17's grain and tone pass in place of the solid pass (sand-look.ts).
+const SAND = hasLook('sand');
 const RIB_K = 12;                 // bundles: one per group of the room
 const RIB_PER_BAND = 3;           // arriving, the tunnel is cut into bands along its length, this many bundles to a band
 const RIB_STRIDE = 811;           // one grain in this many is drawn as a strand: about 380 strands to a bundle in the recorded room
@@ -114,6 +117,9 @@ in vec3 aFrom; in vec3 aCol; in vec3 aFromCol; in float aId; in vec3 aNorm;
 in float aTail;
 #endif
 uniform float uOrdered;                 // 1: the room's grains sit in ordered rows; slanted surfaces dim instead of thinning
+uniform vec4 uSeenAt; uniform vec3 uSeenDir;   // the picture the room was rebuilt from: its camera (w 1 when there is one) and where it looked
+const float CODE_COLUMN = 0.1;          // metres: one line of code per column of this width
+const vec2 GUESS_COS = vec2(0.17, 0.57);   // cosines from the picture's centre: past 80 degrees all guess, within 55 all seen
 out vec3 vCol;
 
 uint hashu(uint x) { x ^= x >> 16; x *= 0x7feb352dU; x ^= x >> 15; x *= 0x846ca68bU; x ^= x >> 16; return x; }
@@ -415,13 +421,14 @@ vec3 eyeLight(vec3 p, vec3 n, float nk) {
   vec3 de = uEyeL.xyz - p; float ed = dot(de, de), ef = 1.0 / (1.0 + ed / (EYE_R * EYE_R));
   return EYE_COL * uEyeL.w * facing(n, de, ed, nk) * ef * ef * (1.0 - smoothstep(1.0, EYE_REACH, sqrt(ed)));
 }
-
+${SAND_UNIFORMS_VS}
+${SWAP_VS}
 void main() {
 #if defined(STREAK) || defined(RLINE)
   uint i = uint(aId);
 #else
   uint i = uint(gl_VertexID);   // the full cloud is drawn in order, so a grain's index is its vertex: no id buffer to build or upload
-#endif
+#endif${SAND_EARLY_VS}
   float tail = 0.0;
 #ifdef STREAK
   tail = aTail;
@@ -432,6 +439,28 @@ void main() {
   vec3 col; float alive, air, bright, wsz, eTo, lw, nk; bool tracker;
   vec3 p = place(i, uTime - tail * uTail, mix(uForm, uFormTail, tail), mix(uFlight, uFlightTail, tail), col, alive, air, bright, tracker, wsz, eTo, lw, nk);
   float r3 = h01(i * 11u + 71u), r8 = h01(i * 41u + 3u);
+  vec3 pHome = p;   // where it sits on its surface, before a line of code or a change stands it elsewhere (sand-look.ts)
+  // Outside what the picture showed, the room is the machine's guess. There the grains leave their splatter and stand as lines of
+  // code: thin upright columns of marks, each falling at its own pace, some long, some short, fewer and shorter the further from
+  // the picture's view. Grains of a surface lying flat hang off it (or rise), so a ceiling and a floor make lines too.
+  if (uSeenAt.w > 0.5 && nk > 0.001) {
+    float kc = dot(normalize(position - uSeenAt.xyz), uSeenDir);
+    // grain by grain, so the seen room breaks up into lines instead of meeting them at an edge
+    if (h01(i * 59u + 23u) < (1.0 - smoothstep(GUESS_COS.x, GUESS_COS.y, kc)) * nk) {
+      vec2 cell = floor(position.xz / CODE_COLUMN);
+      float c1 = fract(sin(dot(cell, vec2(12.9898, 78.233))) * 43758.5453), c2 = fract(c1 * 61.7), c3 = fract(c1 * 157.3);
+      float y = position.y + sign(aNorm.y) * smoothstep(0.6, 0.8, abs(aNorm.y)) * h01(i * 67u + 5u) * mix(0.2, 1.2, c3);
+      float f = fract((y + uTime * mix(0.15, 0.5, c3)) / mix(0.7, 2.6, c2) + c1);   // 0 at a line's falling head, rising along its length
+      if (f > mix(0.85, 0.4, 1.0 - smoothstep(-0.5, GUESS_COS.x, kc)) * (0.5 + c1)) alive = 0.0;
+      p += vec3((cell.x + 0.5) * CODE_COLUMN - position.x, y - position.y, (cell.y + 0.5) * CODE_COLUMN - position.z);
+      col = mix(col, vec3(1.0), 0.6 * (1.0 - smoothstep(0.0, 0.05, f)));   // the head, whiter
+    }
+  }
+  // an object change (sand-look.ts): what stands in a hero's box leaves, the object replacing it arrives, and the room's own grains
+  // in a box that has been replaced are gone
+  float swHot = 0.0, swAlive = alive; vec3 swAt = p;
+  swapGrain(i, p, col, alive, nk, wsz, swHot);
+  bool swFly = alive != swAlive || distance(p, swAt) > 1e-5;   // the change has moved or faded this grain: it is in flight
 #ifdef STREAK
   p += uTrail * (0.2 + 1.8 * r8 * r8) * tail;   // where it was a moment ago, as the eye flew
   // a trail wrapping round to its start would draw one long false line
@@ -490,7 +519,9 @@ void main() {
 #endif
   }
 #endif
-
+  // BURN's glow is the grain's own light, in the eye's red: after the room's lighting, so it shows in the dark; as bright as the grain was, so the object keeps its form
+  col = mix(col, EYE_COL * 0.2 * (0.25 + 1.1 * max(max(col.r, col.g), col.b)), swHot);
+${SAND_JITTER_VS}
   vec4 mv = modelViewMatrix * vec4(p, 1.0);
   float z = max(-mv.z, 0.05);
   vec4 cp = projectionMatrix * mv;
@@ -509,7 +540,7 @@ void main() {
   for (int k = 0; k < MAX_CEIL; k++) { if (k >= uCeilN) break; panel = max(panel, 1.0 - smoothstep(0.55, 0.8, distance(uCeil[k].xyz, p))); }
   float mxc = max(max(c.r, c.g), max(c.b, 1e-4));
   c *= mix(min(1.0, SOLID_CAP / mxc), 1.0, panel);
-#endif
+#endif${SAND_GRAIN_VS}
 #if defined(STREAK)
   // a sparse accent: strongest on the ground, only while the eye moves, never on grains in flight
   float ground = mix(0.25, 1.0, 1.0 - smoothstep(0.3, 0.9, p.y - uFloor));
@@ -534,7 +565,7 @@ void main() {
     }
     float swell = 0.5 + 0.5 * sin(6.2832 * (position.y * 1.4 - uTime * 0.25));
     vec3 lifted = min(c * (1.0 + 0.45 + 0.3 * swell), max(c, vec3(HERO_CAP)));
-    c = mix(c * (1.0 - 0.12 * uHeroD), lifted, w);
+    c = mix(c * (1.0 - mix(0.12, 0.7, uStepBack) * uHeroD), lifted, w);   // behind the menu the rest steps back much further
     sz *= 1.0 + 0.2 * w;
   }
 #endif
@@ -553,7 +584,7 @@ void main() {
     c *= px * px / (N * N);   // light on light: the same light whatever the size; an opaque grain keeps its own colour
 #endif
     px = N;
-  }
+  }${SAND_PX_VS}
   gl_PointSize = px;
   gl_Position = cp;
   vCol = c;
@@ -762,7 +793,7 @@ function dealRibbons(g: Groups, angleRank: Uint8Array, prev: Prev, center: numbe
   return { from, b };
 }
 
-export function createPointField(): PointField {
+export function createPointField(): PointField & SwapControl {
   const u: Record<string, IUniform> = {
     uTime: { value: 0 }, uTail: { value: TAIL_SECONDS }, uFlight: { value: 1 }, uFlightTail: { value: 1 },
     uForm: { value: 0 }, uFormTail: { value: 0 }, uTunnelTo: { value: 0 }, uTunnelFrom: { value: 0 }, uMo: { value: [1, 0, 0, 0] },
@@ -777,7 +808,7 @@ export function createPointField(): PointField {
     uLit: { value: 0 }, uCeilNorm: { value: 0 }, uAmb: { value: [...MOODS.liminal.amb] }, uCeilCol: { value: CEILING_COLOR },
     uLampCol: { value: LAMP_COLOR }, uSunCol: { value: [...MOODS.liminal.sun] }, uSunDir: { value: [...MOODS.liminal.sunDir] },
     uCeil: { value: new Array(MAX_CEILING * 4).fill(0) }, uCeilN: { value: 0 }, uLampL: { value: new Array(MAX_LAMPS * 4).fill(0) }, uLampN: { value: 0 },
-    uEyeL: { value: [0, -100, 0, 0] }, uOrdered: { value: 0 },
+    uEyeL: { value: [0, -100, 0, 0] }, uOrdered: { value: 0 }, uSeenAt: { value: [0, 0, 0, 0] }, uSeenDir: { value: new Vector3(0, 0, -1) },
     uBaked: { value: 0 }, uCeilOn: { value: 1 }, uSolid: { value: 0 }, uBakeGain: { value: [...BAKED_GAIN.liminal] },
     uHeroMin: { value: new Array(MAX_HEROES * 3).fill(0) }, uHeroMax: { value: new Array(MAX_HEROES * 3).fill(0) },
     uHeroW: { value: new Array(MAX_HEROES).fill(0) }, uHeroN: { value: 0 }, uHeroD: { value: 0 },
@@ -798,6 +829,26 @@ export function createPointField(): PointField {
   const ribbonMat = RIBBONS ? material(SQUARE_FS, { RLINE: '' }) : null;
 
   const object = new Group();
+  // The 'sand' look: the settled grains are counted into a float buffer and toned instead (sand-look.ts); the pass draws them itself
+  const sandPass = SAND ? createSandPass() : null;
+  if (sandPass) { sandMaterial(solidMat, GRAIN_OF_SPACING); object.add(sandPass.quad); }
+  // an object change in progress, in any look (sand-look.ts)
+  u.uSwap = { value: [-1, 0, 0, 0] }; u.uSwapStyle = { value: [0, 0, 0] };
+  u.uHeroOut = { value: new Array(MAX_HEROES).fill(0) }; u.uStepBack = { value: 0 };
+  let swap = SWAP_NONE, stepBack = 0;
+  // An object that replaced a hero stands beside the room's own grains as grains of its own (attribute aObj), drawn by the same two
+  // passes. The room's buffers are never rebuilt for it, so every other grain keeps its place and its index, which its size, its
+  // flicker and its part in the lines of code come from. `leaver`: the object on its way out during a change.
+  // shortcut: the next kick still throws the room from the homes it was set with, the replaced hero among them; rebuild `prev` in replaceHero if a kick must start from the changed room.
+  type Stand = { hero: number; points: Points; solid: Points; obj: BufferAttribute };
+  let stands: Stand[] = [], leaver: Stand | null = null;
+  const dropStand = (s: Stand) => { object.remove(s.points); s.solid.removeFromParent(); s.points.geometry.dispose(); };
+  /** A new room, or none: no replacement objects, no hero's grains gone, nothing changing. */
+  const dropStands = () => {
+    for (const s of leaver ? [...stands, leaver] : stands) dropStand(s);
+    stands = []; leaver = null; swap = SWAP_NONE;
+    (u.uHeroOut!.value as number[]).fill(0);
+  };
   // one grain each, drawing nothing: the void compiles the field's shaders, so the first tunnel does not wait on them
   const one = new Float32Array(3), oneArrays: Arrays = { position: one, aFrom: one, aCol: one, aFromCol: one };
   const warm = [new Points(geometryOf(oneArrays), pointsMat), new Points(geometryOf(oneArrays), solidMat),new LineSegments(subsetGeometry(oneArrays, 1, 1, 2), streakMat),
@@ -925,12 +976,16 @@ export function createPointField(): PointField {
     jobs.push({ steps: orderAhead(prev), build: false });
     u.uTunnelTo!.value = tunnel ? 1 : 0;
     u.uOrdered!.value = cloud.ordered === true ? 1 : 0;
+    const seen = !tunnel && cloud.pictured ? cloud.arrival : undefined;
+    u.uSeenAt!.value = seen ? [...seen.position, 1] : [0, 0, 0, 0];
+    if (seen) (u.uSeenDir!.value as Vector3).fromArray(seen.lookAt).sub(new Vector3(...seen.position)).normalize();
     (u.uZr!.value as Vector2).set(lo[2]!, hi[2]!);
     // the room's heroes; a new room starts with none inspected
     const heroes = (tunnel ? [] : cloud.heroes ?? []).slice(0, MAX_HEROES), hMin = u.uHeroMin!.value as number[], hMax = u.uHeroMax!.value as number[];
     heroes.forEach((h, k) => { for (let a = 0; a < 3; a++) { hMin[k * 3 + a] = h.min[a]!; hMax[k * 3 + a] = h.max[a]!; } });
     u.uHeroN!.value = heroes.length;
     (u.uHeroW!.value as number[]).fill(0); u.uHeroD!.value = 0; inspectTarget = -1;
+    dropStands();   // and nothing replaced or changing
 
     (u.uCenter!.value as Vector3).fromArray(center);
     (u.uHalf!.value as Vector3).set(Math.max(0.5, (hi[0]! - lo[0]!) / 2), Math.max(0.5, (hi[1]! - lo[1]!) / 2), Math.max(0.5, (hi[2]! - lo[2]!) / 2));
@@ -961,7 +1016,7 @@ export function createPointField(): PointField {
     // the solid pass shares the grains; it is drawn first (opaque), as a child so it leaves with them
     solid = new Points(g, solidMat);
     solid.frustumCulled = false; solid.onBeforeRender = sizeFromRenderer; solid.visible = false;
-    points.add(solid);
+    if (sandPass) sandPass.grains = solid; else points.add(solid);   // sand: out of the scene, drawn by its pass into the float buffer
     // built for every cloud (dark unless on ribbons) and drawn for a moment, so its shader is compiled before the arrival needs it
     if (strandGeometry) { strands = new LineSegments(strandGeometry, ribbonMat!); strandsAt = clock; }
     [streaks, strands].forEach((o, k) => { if (o) { o.frustumCulled = false; o.renderOrder = k + 2; object.add(o); } });
@@ -1032,12 +1087,17 @@ export function createPointField(): PointField {
         deepest = Math.max(deepest, heroW[k]!);
       }
       u.uHeroD!.value = deepest;
+      u.uStepBack!.value = (u.uStepBack!.value as number) + (stepBack - (u.uStepBack!.value as number)) * ki;
+      // a change that has run its course is over: what left is gone for good
+      if (swap.hero >= 0 && swapNow(swap, time)[0] < 0) { swap = SWAP_NONE; if (leaver) { dropStand(leaver); leaver = null; } }
+      u.uSwap!.value = [...swapNow(swap, time), 1];   // in both looks a changing grain stays in the settled pass: additive, a dense hero's grains pile up into a white blob
 
       // a lit room settles into the solid pass; any effect hands it back to the additive one first
       const still = (u.uBaked!.value as number) > 0.5 && fxTarget.every(t => t === 0) && fxX.every(x => x < 0.01);
       const sv = u.uSolid!.value as number, st = still ? 1 : 0, sk = 1 - Math.exp(-dt / SOLID_EASE);
       u.uSolid!.value = Math.abs(st - sv) < 1e-3 ? st : sv + (st - sv) * sk;
       if (solid) solid.visible = (u.uSolid!.value as number) > 0.001;
+      for (const s of leaver ? [...stands, leaver] : stands) s.solid.visible = !!solid?.visible;
 
       // lighting eases toward the mood; the ceiling drifts slowly, fitting by fitting, and now and then one tube stutters
       const mood = MOODS[lighting.mood], k = 1 - Math.exp(-dt / LIGHT_EASE);
@@ -1075,6 +1135,42 @@ export function createPointField(): PointField {
 
     setInspect(hero) { inspectTarget = Number.isInteger(hero) && hero >= 0 && hero < (u.uHeroN!.value as number) ? hero : -1; },
 
+    // shortcut: a change started during another cuts the first short (what was leaving vanishes, what was arriving is there at once);
+    // the caller keeps a visitor from starting one meanwhile. Ease between them if that ever has to be allowed.
+    // shortcut: the hero's box is the one the room was set with; a changed room that moves or resizes it is not followed until the room is set again.
+    replaceHero(hero, room, pairing, progress) {
+      const style = SWAP_PAIRINGS[pairing], out = u.uHeroOut!.value as number[];
+      if (!style || !points || !solid || !Number.isInteger(hero) || hero < 0 || hero >= (u.uHeroN!.value as number)
+        || !(progress === null || (progress >= 0 && progress <= 1)) || jobs.some(job => job.build)) return false;
+      const grains = heroGrains(room, hero);
+      if (!grains) return false;
+      if (leaver) dropStand(leaver);
+      // what stands there now leaves: the object from the last change, else the room's own grains
+      leaver = stands.find(s => s.hero === hero) ?? null;
+      stands = stands.filter(s => s !== leaver);
+      if (leaver) { (leaver.obj.array as Float32Array).fill(-(hero + 1)); leaver.obj.needsUpdate = true; }
+      u.uSwapStyle!.value = [style.away, style.back, leaver || out[hero] ? 0 : 1];
+      out[hero] = 1;
+      if (grains.count > 0) {
+        const g = new BufferGeometry(), obj = new BufferAttribute(new Float32Array(grains.count).fill(hero + 1), 1);
+        g.setAttribute('position', new BufferAttribute(grains.positions, 3));
+        g.setAttribute('aCol', new BufferAttribute(grains.colors, 3));
+        g.setAttribute('aNorm', new BufferAttribute(grains.normals, 3));
+        g.setAttribute('aObj', obj);
+        const stand = new Points(g, pointsMat), standSolid = new Points(g, solidMat);
+        for (const o of [stand, standSolid]) { o.frustumCulled = false; o.onBeforeRender = sizeFromRenderer; }
+        stand.renderOrder = 1; standSolid.visible = solid.visible;
+        // as the room's own passes: the settled grains with the solid pass, or in sand under the grains its pass counts
+        (sandPass ? solid : stand).add(standSolid);
+        object.add(stand);
+        stands.push({ hero, points: stand, solid: standSolid, obj });
+      }
+      swap = { hero, pairing, progress, at: clock };
+      return true;
+    },
+
+    setStepBack(amount) { stepBack = Number.isFinite(amount) ? Math.min(1, Math.max(0, amount)) : 0; },
+
     setEyeLight(position, glow) {
       const e = u.uEyeL!.value as number[], g = Number.isFinite(glow) ? Math.min(1, Math.max(0, glow)) : 0;
       if (![position.x, position.y, position.z].every(Number.isFinite)) { e[3] = 0; return; }
@@ -1084,9 +1180,11 @@ export function createPointField(): PointField {
     dispose() {
       cancelBuild();
       jobs.length = 0;
+      dropStands();
       dropGeometry();
       for (const o of warm) { object.remove(o); o.geometry.dispose(); }
       for (const mat of [pointsMat, streakMat, ribbonMat, solidMat]) mat?.dispose();
+      sandPass?.dispose();
       prev = null;
     },
   };

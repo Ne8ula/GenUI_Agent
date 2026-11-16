@@ -14,21 +14,26 @@ export async function loadRecordedRoomCloud(_renderer: WebGLRenderer, signal: Ab
     const body = await response.text();
     if (body.length > 64 * 1024) throw new Error('The fixture manifest is too large.');
     const manifest = validatePosedManifest(JSON.parse(body));
-    // Re-bake points.bin whenever room.spz or manifest.water changes; stale bakes cannot follow a new reconstruction.
-    if (manifest.points) {
-      try {
-        const { loadBakedPoints } = await import('./baked-points.ts');
-        return await loadBakedPoints(base, manifest, signal);
-      } catch (error) {
-        signal.throwIfAborted();
-        console.warn('Recorded point bake rejected; recomputing from source.', error);
+    const load = async () => {
+      // Re-bake points.bin whenever room.spz or manifest.water changes; stale bakes cannot follow a new reconstruction.
+      if (manifest.points) {
+        try {
+          const { loadBakedPoints } = await import('./baked-points.ts');
+          return await loadBakedPoints(base, manifest, signal);
+        } catch (error) {
+          signal.throwIfAborted();
+          console.warn('Recorded point bake rejected; recomputing from source.', error);
+        }
       }
-    }
-    if (manifest.splats) {
-      const { loadSplatPoints } = await import('./splat-points.ts');
-      return loadSplatPoints(base, manifest, signal);
-    }
-    return loadPosedFrames(base, manifest, signal);
+      if (manifest.splats) {
+        const { loadSplatPoints } = await import('./splat-points.ts');
+        return loadSplatPoints(base, manifest, signal);
+      }
+      return loadPosedFrames(base, manifest, signal);
+    };
+    const cloud = await load();
+    cloud.pictured = true;   // all three arrive at the picture's own camera (the manifest's first frame)
+    return cloud;
   }
   const started = performance.now();
   const base = CONSTRUCTION_FIXTURE_BASE;

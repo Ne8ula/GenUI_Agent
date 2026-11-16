@@ -7,6 +7,7 @@ import { createRoomInterpretationHandler } from './src/server/room-interpretatio
 import { createAstralReplyHandler } from './src/server/astral-reply.ts'
 import { createAstralDecisionHandler } from './src/server/astral-decision.ts'
 import { createSpeechHandler } from './src/server/speech.ts'
+import { createObjectHandler } from './src/server/object.ts'
 
 function roomInterpretation(): Plugin {
   const handler = (port: number) => {
@@ -80,13 +81,31 @@ function astralDecision(): Plugin {
   }
 }
 
+function object(): Plugin {
+  const handler = (port: number) => {
+    const enabled = process.env.EVA_ENABLE_OBJECT === '1'
+    return createObjectHandler({
+      origin: `http://127.0.0.1:${port}`,
+      enabled,
+      pictureKey: enabled ? process.env.EVA_OPENAI_IMAGE_API_KEY : undefined,
+      modelKey: enabled ? process.env.EVA_MESHY_API_KEY : undefined,
+      maxRequests: process.env.EVA_OBJECT_MAX_REQUESTS === undefined ? undefined : Number(process.env.EVA_OBJECT_MAX_REQUESTS),
+    })
+  }
+  return {
+    name: 'local-object',
+    configureServer(server) { server.middlewares.use(handler(5173)) },
+    configurePreviewServer(server) { server.middlewares.use(handler(4173)) },
+  }
+}
+
 // A worktree under .claude/worktrees/ has no node_modules of its own: packages resolve from the main checkout,
 // which lies outside the worktree, so the dev server must be allowed to serve package files (the fonts) from there.
 // In the main checkout this folder is already inside the project, so nothing more is exposed.
 const packages = path.resolve(createRequire(import.meta.url).resolve('vite/package.json'), '../..')
 
 export default defineConfig({
-  plugins: [react(), roomInterpretation(), speech(), astralReply(), astralDecision()],
+  plugins: [react(), roomInterpretation(), speech(), astralReply(), astralDecision(), object()],
   server: { host: '127.0.0.1', port: 5173, strictPort: true, fs: { allow: ['.', packages] } },
   preview: { host: '127.0.0.1', port: 4173, strictPort: true },
 })

@@ -1,0 +1,12 @@
+{
+  "recorded": "2026-11-16",
+  "route": "A recording, not live generation. Each model was generated once: an OpenAI gpt-image-2.5-flare picture (1536x1024), then a Meshy meshy-t2.5 textured model (smart topology, 10,000 target faces, GLB). The diving helmet is the model of the first measured run; the other five were made through the /api/object handler.",
+  "objects": [
+    { "id": "diving-helmet", "name": "brass diving helmet", "glb": "diving-helmet.glb" },
+    { "id": "gramophone", "name": "gramophone", "glb": "gramophone.glb" },
+    { "id": "rocking-horse", "name": "rocking horse", "glb": "rocking-horse.glb" },
+    { "id": "globe", "name": "antique globe", "glb": "globe.glb" },
+    { "id": "chess-knight", "name": "marble chess knight", "glb": "chess-knight.glb" },
+    { "id": "televisions", "name": "stack of televisions", "glb": "televisions.glb" }
+  ]
+}

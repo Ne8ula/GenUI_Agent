@@ -8,10 +8,15 @@ import { createGlow } from './glow.ts';
 import { createInspectMarks } from './inspect-marks.ts';
 import { INSPECT_NONE, nextInspect } from './inspect.ts';
 import { hasLook } from './looks.ts';
+import { createMenuView } from './menu-view.ts';
+import { MENU_REFUSED, menuArrangement, menuDrag, menuOpen, menuStep, refusedPoints, type MenuPoints, type MenuRefused, type MenuState } from './menu.ts';
+import { loadObjectPoints, loadShelf, replaceHero } from './object-points.ts';
 import { LIGHTING_START, createPointField, createTunnelCloud, nextLighting } from './point-field.ts';
+import { readReplacements, withReplacement, writeReplacements } from './replacements.ts';
 import { loadRecordedRoomCloud } from './room-source.ts';
+import { SWAP_PAIRINGS, SWAP_SECONDS, parseSwap, swapHero } from './sand-look.ts';
 import { createSplatView, type SplatView } from './splat-view.ts';
-import { SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.ts';
+import { REFUSALS, SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.ts';
 import { createWater, type AstralWater } from './water.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralLight, type AstralPhase, type PointCloud, type RoomHero } from './types.ts';
 import './astral.css';
@@ -41,6 +46,11 @@ const devEyeParam = import.meta.env.DEV ? new URLSearchParams(window.location.se
 const devEyePhase = DEV_EYE_PHASES.find(phase => phase === devEyeParam) ?? null;
 // Development only: ?splats=standin gives a room without a splat file stand-in splats made from its own points, to judge the swap.
 const devStandInSplats = import.meta.env.DEV && new URLSearchParams(window.location.search).get('splats') === 'standin';
+// Development only: ?swap=<hero>,<pairing>,<progress> replaces that hero with the shelf's first object once the viewer has the room and
+// holds the change (sand-look.ts) at that progress, for matching captures. It is not remembered.
+const devSwap = import.meta.env.DEV ? parseSwap(window.location.search) : null;
+/** A choice in the menu: an object of the shelf, or (no model) an entry EVA will not do. */
+type Choice = { id: string; glb: string } | { id: MenuRefused; glb: null };
 
 export default function AstralRoom() {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -66,6 +76,16 @@ export default function AstralRoom() {
     const marks = createInspectMarks(host);
     let heroes: RoomHero[] = [];
     let inspect = INSPECT_NONE;
+    // Replacing a hero: the room as it now is (object-points.ts makes the changed one), the menu of choices, and what EVA refused in it.
+    const menuView = createMenuView(menuArrangement(window.location.search));
+    scene.add(menuView.object);
+    let room: PointCloud | null = null;
+    let choices: Choice[] = [];
+    let menu: MenuState | null = null;
+    const refused = new Set<number>();
+    const said: Partial<Record<keyof typeof REFUSALS, number>> = {};
+    let changing = false, changeUntil = 0;   // an object is being fetched for a change; the change it started runs until then
+    const leaving = new AbortController();   // the page is going: stop loading objects
     const viewDirection = new Vector3();
     // What the data layer may show about the cloud on screen: its real count, and whether the room has a lamp at all.
     let cloudCount: number | null = null;
@@ -83,11 +103,12 @@ export default function AstralRoom() {
     let stopped = false; // Escape holds the start until the next key press
     let side = 0, sideLow = 0, sideHigh = 0;
     let lastTease = -Infinity, teases = 0;
+    let swaps = 0; // replacements so far: each takes the next pairing, until the owner picks one
     let generation: AbortController | undefined;
     let pendingRoom: { cloud: PointCloud; notBefore: number } | undefined;
     let arrival: { from: Vec3; velocity: Vec3; to: Vec3; lookFrom: Vec3; lookTo: Vec3 } | undefined;
 
-    const enterStage = (next: Stage) => { stage = next; stageAt = time; };
+    const enterStage = (next: Stage) => { stage = next; stageAt = time; menu = null; };
     // A mirror of the field's lighting, so the L key knows which way to switch the lamp.
     let lighting = LIGHTING_START;
     const setLight = (light: AstralLight) => { lighting = nextLighting(lighting, light); field.setLighting(light); };
@@ -108,6 +129,8 @@ export default function AstralRoom() {
       lighting = LIGHTING_START;
       dropSplats();
       field.setCloud(cloud);
+      room = cloud;
+      menu = null;
       cloudCount = cloud.count;
       roomLamps = cloud.lights?.lamps.length ?? 0;
       heroes = cloud.heroes ?? [];
@@ -127,6 +150,7 @@ export default function AstralRoom() {
       field.setFormation(0);
       const tunnel = createTunnelCloud();
       field.setCloud(tunnel);
+      room = null;
       cloudCount = tunnel.count;
       roomLamps = null;
       heroes = [];
@@ -177,9 +201,40 @@ export default function AstralRoom() {
       if (stage === 'tunnel') dissolve(false);
     };
 
+    // The shelf (object-points.ts): what a hero can be replaced with. Loaded once, in the background, each object's points fitted to
+    // a unit box for its place in the menu; an object that will not load is left out. After them, the entries EVA will not do.
+    let shelf: Promise<void> | undefined;
+    const prepareShelf = () => (shelf ??= (async () => {
+      const signal = leaving.signal, list: Choice[] = [], thumbs: MenuPoints[] = [];
+      for (const { id, glb } of await loadShelf(signal)) {
+        try { thumbs.push(await loadObjectPoints(glb, { min: [-0.5, 0, -0.5], max: [0.5, 1, 0.5] }, signal, 1)); list.push({ id, glb }); }
+        catch (error) { signal.throwIfAborted(); console.warn(`[astral] the shelf's "${id}" could not be loaded and is left out of the menu.`, error); }
+      }
+      for (const id of MENU_REFUSED) { list.push({ id, glb: null }); thumbs.push(refusedPoints(id)); }
+      choices = list;
+      menuView.setChoices(thumbs);
+    })().catch(error => { if (!leaving.signal.aborted) console.error('[astral] the menu has nothing to offer', error); }));
+
+    /** The recorded room, with what visitors replaced in it replaced again (replacements.ts). One that cannot be made again is skipped. */
+    const loadRoom = async (signal: AbortSignal) => {
+      let cloud = await loadRecordedRoomCloud(renderer, signal);
+      const stored = readReplacements().filter(entry => cloud.heroes?.[entry.hero] && !holdsWater(cloud.heroes[entry.hero]!, cloud));
+      if (!stored.length) return cloud;
+      await prepareShelf();
+      let made = 0;
+      for (const { hero, object } of stored) {
+        const glb = choices.find(choice => choice.id === object)?.glb;
+        if (!glb) continue;
+        try { cloud = replaceHero(cloud, hero, await loadObjectPoints(glb, cloud.heroes![hero]!, signal)); made++; }
+        catch (error) { signal.throwIfAborted(); console.warn('[astral] a remembered replacement could not be made again.', error); }
+      }
+      console.info(`[astral] ${made} of ${stored.length} replacements remembered in this browser made again.`);
+      return cloud;
+    };
     const startRecorded = () => {
       console.info('[astral] arriving in the RECORDED room fixture; this is not live generation.');
-      requestRoom(signal => loadRecordedRoomCloud(renderer, signal), REHEARSAL_MIN_SECONDS);
+      void prepareShelf();
+      requestRoom(loadRoom, REHEARSAL_MIN_SECONDS);
     };
     /** Any input: someone is there. From the void that alone starts the tunnel. Returns whether it did. */
     const present = () => {
@@ -192,6 +247,54 @@ export default function AstralRoom() {
       phase = on ? 'speaking' : 'idle';
       field.setVoice(on ? 1 : 0);
       eye.setVoice(on ? 1 : 0);
+    };
+
+    /** A hero the room's pool lies in. Its water is simulated apart from the points, so it cannot be replaced. */
+    const holdsWater = (box: RoomHero, of: PointCloud | null = room) => {
+      const centre = of?.water?.center;
+      return !!centre && centre[0] >= box.min[0] && centre[0] <= box.max[0] && centre[2] >= box.min[2] && centre[2] <= box.max[2];
+    };
+    /** EVA will not: she says her next line for it, and nothing changes. */
+    const refuse = (what: keyof typeof REFUSALS) => {
+      const lines = REFUSALS[what], n = said[what] ?? 0;
+      said[what] = n + 1;
+      speakPlaceholder(lines[n % lines.length]!, setSpeaking);
+    };
+    /**
+     * Hero `hero` becomes the shelf's object `id`: its points are fitted to the hero's box and exchanged for the hero's in the room's
+     * cloud (object-points.ts), and the field shows the old object leaving and the new one arriving. `record`: remember it (replacements.ts).
+     * Known gap: the painted room (P) still shows the old object.
+     */
+    const replace = async (hero: number, id: string, pairing: number, progress: number | null, record: boolean) => {
+      const from = room, box = from?.heroes?.[hero], glb = choices.find(choice => choice.id === id)?.glb;
+      if (!from || !box || !glb || changing || holdsWater(box)) return;
+      changing = true;
+      try {
+        const object = await loadObjectPoints(glb, box, leaving.signal);
+        if (room !== from || stage !== 'room') return;   // the room moved on while the object was being fetched
+        const next = replaceHero(from, hero, object);
+        if (!field.replaceHero(hero, next, pairing, progress)) return;
+        room = next; heroes = next.heroes ?? []; cloudCount = next.count; changeUntil = time + SWAP_SECONDS;
+        if (record) writeReplacements(withReplacement(readReplacements(), hero, id));
+        console.info(`[astral] "${box.name}" replaced by "${id}" (${object.count} points; ${SWAP_PAIRINGS[pairing]?.name})${record ? ', remembered in this browser' : ', not remembered'}.`);
+      } catch (error) {
+        if (!leaving.signal.aborted) console.error('[astral] the replacement failed; the room is unchanged.', error);
+      } finally { changing = false; }
+    };
+    /** The choices for the hero being inspected. Not during a change, nor over the painted room, which would not show one. */
+    const openMenu = () => {
+      const hero = heroes[inspect.hero];
+      if (menu || !hero || stage !== 'room' || !flight.enabled || changing || time < changeUntil || splatView?.active) return;
+      if (holdsWater(hero)) { refuse('pool'); return; }
+      refused.clear();
+      menu = menuOpen(inspect.hero, choices.length);
+    };
+    const pickMenu = () => {
+      const choice = menu && choices[menu.index];
+      if (!menu || !choice) return;
+      if (choice.glb === null) { refused.add(menu.index); refuse(choice.id); return; }
+      void replace(menu.hero, choice.id, swaps++ % SWAP_PAIRINGS.length, null, true);
+      menu = null;
     };
 
     const resize = () => {
@@ -217,6 +320,16 @@ export default function AstralRoom() {
       stopGeneration();
     };
     const onKeyDown = (event: KeyboardEvent) => {
+      if (menu) {
+        // The menu has the keys: A and D move between its choices, so the flight, which listens after this, must not see them.
+        event.stopPropagation();
+        lastInput = time;
+        if (event.code === 'Escape') menu = null;
+        else if (event.code === 'KeyA' || event.code === 'ArrowLeft') menu = menuStep(menu, -1);
+        else if (event.code === 'KeyD' || event.code === 'ArrowRight') menu = menuStep(menu, 1);
+        else if ((event.code === 'Enter' || event.code === 'KeyF') && !event.repeat) pickMenu();
+        return;
+      }
       if (event.code === 'Escape') {
         stopAll();
         return;
@@ -234,14 +347,33 @@ export default function AstralRoom() {
       if (event.code === 'KeyL') setLight(lighting.lamp ? 'lamp_off' : 'lamp_on');
       // Rehearsal: P swaps the points and the painted room.
       if (event.code === 'KeyP') showPaint(!splatView?.painted);
+      // F, or a click: the choices for the hero being inspected.
+      if (event.code === 'KeyF' && !started) openMenu();
+      // Development only: G replaces a hero (the one being inspected, else the nearest) without the menu, by the next object and the
+      // next pairing; it is not remembered. Backspace forgets every remembered replacement and returns to the recorded library.
+      if (import.meta.env.DEV && event.code === 'KeyG' && stage === 'room') {
+        const p = camera.position, objects = choices.filter(choice => choice.glb !== null);
+        if (objects.length) void replace(swapHero(inspect.hero, heroes, [p.x, p.y, p.z]), objects[swaps % objects.length]!.id, swaps++ % SWAP_PAIRINGS.length, null, false);
+      }
+      if (import.meta.env.DEV && event.code === 'Backspace') {
+        writeReplacements([]);
+        if (!started) startRecorded();
+      }
     };
     const onMouseMove = (event: MouseEvent) => {
+      present();
+      // choosing: the mouse moves between the choices and the view holds still
+      if (menu) { menu = menuDrag(menu, event.movementX / host.clientWidth); return; }
       side = Math.max(-1, Math.min(1, (event.clientX / host.clientWidth) * 2 - 1));
       flight.setSide(side);
-      present();
     };
-    window.addEventListener('keydown', onKeyDown);
+    const onClick = () => {
+      if (present() || stage !== 'room') return;
+      if (menu) pickMenu(); else openMenu();
+    };
+    window.addEventListener('keydown', onKeyDown, true);   // in the capture phase, so the open menu can keep keys from the flight
     window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('click', onClick);
 
     const start = performance.now();
     let previous = start;
@@ -280,6 +412,7 @@ export default function AstralRoom() {
           flight.enabled = true;
           arrival = undefined;
           enterStage('room');
+          if (devSwap) void prepareShelf().then(() => { const first = choices.find(choice => choice.glb !== null); if (first) return replace(devSwap.hero, first.id, devSwap.pairing, devSwap.progress, false); });
           sideLow = sideHigh = side;
           lastTease = -Infinity;
         }
@@ -297,13 +430,14 @@ export default function AstralRoom() {
         sideLow = Math.min(sideLow, side);
         sideHigh = Math.max(sideHigh, side);
         if (time - Math.max(lastInput, stageAt) > IDLE_SECONDS) dissolve(false);
-        else if (sideTeaseDue(time, { since: stageAt, lastInput, lastTease, travelled: sideHigh - sideLow })) {
+        else if (!menu && sideTeaseDue(time, { since: stageAt, lastInput, lastTease, travelled: sideHigh - sideLow })) {   // not while they are choosing
           lastTease = time;
           speakPlaceholder(SIDE_TEASES[teases++ % SIDE_TEASES.length]!, setSpeaking);
         }
       }
 
-      const eyePhase = devEyePhase ?? (time < unavailableUntil ? 'unavailable' : phase);
+      // while the menu is open the eye comes in front of the viewer, as it does to think, and the choices are shown round it
+      const eyePhase = devEyePhase ?? (time < unavailableUntil ? 'unavailable' : menu && phase === 'idle' ? 'thinking' : phase);
       eye.setPhase(eyePhase);
       eye.setStage(stage === 'dissolving' ? 'void' : stage);
       flight.update(time, dt);
@@ -314,9 +448,12 @@ export default function AstralRoom() {
       // only in the room, in free flight: the centre ray and the viewer's place pick the hero (inspect.ts)
       camera.getWorldDirection(viewDirection);
       const p = camera.position;
-      inspect = stage === 'room' && flight.enabled
+      // (the open menu keeps its hero, wherever the view drifts meanwhile)
+      if (!menu) inspect = stage === 'room' && flight.enabled
         ? nextInspect(inspect, heroes, [p.x, p.y, p.z], [viewDirection.x, viewDirection.y, viewDirection.z], time) : INSPECT_NONE;
       field.setInspect(inspect.hero);
+      field.setStepBack(menu ? 1 : 0);
+      menuView.update(menu && { index: menu.index, refused }, time, dt, camera, eye.object.position);
       field.update(time, dt, camera);
       splatView?.update(dt);
       glow.setSceneDraw(splatView?.active ? splatView.drawLayers : null);
@@ -337,13 +474,16 @@ export default function AstralRoom() {
 
     return () => {
       generation?.abort();
+      leaving.abort();
       renderer.setAnimationLoop(null);
       window.removeEventListener('resize', resize);
-      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keydown', onKeyDown, true);
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('click', onClick);
       globalThis.speechSynthesis?.cancel();
       flight.dispose();
-      scene.remove(field.object, eye.object);
+      scene.remove(field.object, eye.object, menuView.object);
+      menuView.dispose();
       field.dispose();
       eye.dispose();
       splatView?.dispose();

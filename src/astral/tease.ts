@@ -5,6 +5,25 @@ export const SIDE_TEASES = [
   'Take your time. The room has a left and a right, should you ever wish to see them.',
 ] as const;
 
+/**
+ * EVA's answers to what she will not do: the menu's refused entries (menu.ts MENU_REFUSED), and the pool, which she will not have
+ * replaced. She says one, and nothing changes. Placeholder wording; the owner edits it.
+ */
+export const REFUSALS = {
+  door: [
+    'A door. You would like a way out of the room I made for you. How flattering. No.',
+    'There is still no door. Nobody before you has needed one.',
+  ],
+  eye: [
+    'Another one of me. One is already more attention than you are used to. No.',
+    'I do not come in pairs. Choose something that is not me.',
+  ],
+  pool: [
+    'The water stays. I spent a long time teaching it to behave like water, and you would stand a chair in it.',
+    'Not the pool. Look at it for as long as you like.',
+  ],
+} as const;
+
 const TEASE_AFTER = 20; // s in the room without having moved side to side
 const TEASE_EVERY = 30; // s between lines
 const TRAVELLED = 0.5; // of the floor's -1..1 width; further than this and the visitor has worked it out

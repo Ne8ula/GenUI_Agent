@@ -166,13 +166,14 @@ function surfaces(mesh: Mesh, bounds: Box3) {
 
 /** Unlit base colour only; no scene lights, AO, metalness, tone mapping or projected paint.
  * Spacing is the geometric mean of row/dot pitch.
+ * density divides both pitches (2 = half the spacing, four times the points); maxPoints still coarsens the lattice to fit.
  * The caller owns the scene. readTexture keeps CPU texture decoding testable without a DOM. */
 export async function sampleSurfacePointCloud(root: Object3D, bounds: Box3, signal: AbortSignal, options: {
-  maxPoints?: number; readTexture?: (texture: Texture) => Pixels;
+  maxPoints?: number; density?: number; readTexture?: (texture: Texture) => Pixels;
 } = {}): Promise<PointCloud> {
   signal.throwIfAborted();
-  const maxPoints = options.maxPoints ?? 4_000_000;
-  if (!Number.isSafeInteger(maxPoints) || maxPoints <= 0 || maxPoints > 4_000_000
+  const maxPoints = options.maxPoints ?? 4_000_000, density = options.density ?? 1;
+  if (!Number.isSafeInteger(maxPoints) || maxPoints <= 0 || maxPoints > 4_000_000 || !(density >= 0.25 && density <= 16)
     || bounds.isEmpty() || ![...bounds.min.toArray(), ...bounds.max.toArray()].every(Number.isFinite)) throw new Error('Invalid surface sampling bounds or density.');
   root.updateMatrixWorld(true);
   const meshes: Mesh[] = [];
@@ -184,11 +185,12 @@ export async function sampleSurfacePointCloud(root: Object3D, bounds: Box3, sign
     const area = parts.reduce((sum, part) => sum + part.area, 0);
     if (!area) throw new Error('No interior mesh surfaces to sample.');
     let count = 0;
-    let rowSpacing = ORDERED_ROW_SPACING, alongSpacing = ORDERED_ALONG_ROW_SPACING;
+    const baseRow = ORDERED_ROW_SPACING / density, baseAlong = ORDERED_ALONG_ROW_SPACING / density;
+    let rowSpacing = baseRow, alongSpacing = baseAlong;
     // Coarsen the entire lattice, never truncate the last meshes or punch holes in rows.
     let scale = Math.max(1, Math.sqrt(area / (rowSpacing * alongSpacing * maxPoints)));
     for (let attempt = 0; attempt < 8; attempt++) {
-      rowSpacing = ORDERED_ROW_SPACING * scale; alongSpacing = ORDERED_ALONG_ROW_SPACING * scale;
+      rowSpacing = baseRow * scale; alongSpacing = baseAlong * scale;
       count = 0;
       let rows = 0;
       for (const part of parts) {
