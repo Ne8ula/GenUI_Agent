@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { MOODS } from '../src/astral/grammar.ts';
-import { MOOD_CASTS, MOOD_FIGURES, MOOD_POINTS, SHELL_KEPT, SHELL_OPEN, chooseMood, chosenMood, forgetMood, moodFigures, moodPoints } from '../src/astral/mood-choice.ts';
+import { MOOD_CASTS, MOOD_GRAINS, chooseMood, chosenMood, forgetMood, moodForm } from '../src/astral/mood-choice.ts';
 
 /** A storage that holds one string, as localStorage would. */
 function store(initial: string | null = null) {
@@ -34,50 +34,46 @@ test('only a mood is stored, and a storage that fails remembers nothing without 
   assert.doesNotThrow(() => forgetMood(broken));
 });
 
-test('every mood has a figure in both sets: points in its cast, within reach of the view, with unit normals', () => {
-  for (const figures of MOOD_FIGURES) for (const mood of MOODS) {
-    const figure = moodPoints(mood, figures), cast = MOOD_CASTS[mood], what = `${figures} ${mood}`;
-    assert.ok(figure.count > 500 && figure.count <= MOOD_POINTS, `${what}: ${figure.count} points`);
-    assert.equal(figure.positions.length, figure.count * 3, what);
-    assert.equal(figure.colors.length, figure.count * 3, what);
-    assert.equal(figure.normals!.length, figure.count * 3, what);
-    assert.ok(figure.positions.every(value => Math.abs(value) <= 0.75), `${what}: about 1 across`);
-    for (let i = 0; i < figure.count; i++) {
-      const [r, g, b] = figure.colors.subarray(i * 3, i * 3 + 3) as unknown as [number, number, number], shade = r / cast[0];
-      assert.ok(shade > 0.3 && shade <= 1.0001 && Math.abs(g - cast[1] * shade) < 1e-5 && Math.abs(b - cast[2] * shade) < 1e-5, `${what}: its cast`);
-      assert.ok(Math.abs(Math.hypot(...figure.normals!.subarray(i * 3, i * 3 + 3)) - 1) < 1e-4, `${what}: a unit normal`);
-    }
+/** How far a form reaches along each axis, and the nearest and farthest its grains lie from its middle. */
+function measure(form: { positions: Float32Array }) {
+  const low = [Infinity, Infinity, Infinity], high = [-Infinity, -Infinity, -Infinity];
+  let near = Infinity, far = 0;
+  for (let i = 0; i < form.positions.length; i += 3) {
+    for (let a = 0; a < 3; a++) { low[a] = Math.min(low[a]!, form.positions[i + a]!); high[a] = Math.max(high[a]!, form.positions[i + a]!); }
+    const d = Math.hypot(form.positions[i]!, form.positions[i + 1]!, form.positions[i + 2]!);
+    near = Math.min(near, d); far = Math.max(far, d);
   }
-});
+  return { size: high.map((value, a) => value - low[a]!), near, far };
+}
 
-test('the three figures of a set are unlike one another, and those of the grid differ only in what the middle cube does', () => {
-  const size = (figure: { count: number; positions: Float32Array }, axis: number) => {
-    let low = Infinity, high = -Infinity;
-    for (let i = axis; i < figure.count * 3; i += 3) { low = Math.min(low, figure.positions[i]!); high = Math.max(high, figure.positions[i]!); }
-    return high - low;
-  };
-  const [floors, cubes, shell] = MOODS.map(mood => moodPoints(mood, 'forms')) as [ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>];
-  // a square figure is laid down an eighth of a turn round, so its box is as wide as it is from corner to corner
-  assert.ok(size(floors, 1) < 0.5 && Math.abs(size(floors, 0) - Math.SQRT2) < 0.05, 'quiet lies flat');
-  assert.ok(size(cubes, 1) > 0.95 && Math.abs(size(cubes, 0) - Math.SQRT2) < 0.05, 'uncanny stands as tall as its largest cube');
-  // the shell is round, and open on one side: nothing of it lies toward its opening
-  const open = [(SHELL_OPEN[0] + SHELL_OPEN[2]) * Math.SQRT1_2, SHELL_OPEN[1], (SHELL_OPEN[2] - SHELL_OPEN[0]) * Math.SQRT1_2];
-  assert.ok(shell.count > 3000 && shell.count < 5000, `eerie keeps about two thirds of its shell: ${shell.count}`);
-  for (let i = 0; i < shell.count * 3; i += 3) {
-    const [x, y, z] = shell.positions.subarray(i, i + 3) as unknown as [number, number, number];
-    assert.ok(Math.abs(Math.hypot(x, y, z) - 0.5) < 1e-4, 'round');
-    assert.ok(x * open[0]! + y * open[1]! + z * open[2]! < SHELL_KEPT / 2 + 1e-4, 'with an opening');
+test('every mood has a form: the same grains in each, within half a unit of the middle, each with the way its surface faces', () => {
+  for (const mood of MOODS) {
+    const form = moodForm(mood);
+    assert.equal(form.positions.length, MOOD_GRAINS * 3, mood);
+    assert.equal(form.normals.length, MOOD_GRAINS * 3, mood);
+    assert.ok(form.positions.every(Number.isFinite) && form.normals.every(Number.isFinite), `${mood}: finite`);
+    assert.ok(Math.abs(measure(form).far - 0.5) < 1e-4, `${mood}: reaches 0.5 and no further`);
+    for (let i = 0; i < MOOD_GRAINS * 3; i += 3 * 97)
+      assert.ok(Math.abs(Math.hypot(form.normals[i]!, form.normals[i + 1]!, form.normals[i + 2]!) - 1) < 1e-3, `${mood}: a unit normal`);
+    assert.deepEqual(moodForm(mood), form, `${mood}: the same every time`);
   }
-  const [lifted, large, gone] = MOODS.map(mood => moodPoints(mood, 'grid')) as [ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>];
-  assert.ok(size(lifted, 1) > size(large, 1) && size(large, 1) > size(gone, 1) + 0.2, 'lifted, too large, gone');
-  assert.ok(gone.count < lifted.count && lifted.count < large.count);
-  for (const figure of [lifted, large, gone]) assert.ok(Math.abs(size(figure, 0) - 0.88 * Math.SQRT2) < 0.01, 'the eight cubes round it stand as they were');
-});
-
-test('the set of figures is read from the address, and anything else is the first', () => {
-  assert.equal(moodFigures(''), 'forms');
-  assert.equal(moodFigures('?moods=grid'), 'grid');
-  assert.equal(moodFigures('?menu=row&moods=forms'), 'forms');
-  assert.equal(moodFigures('?moods=rooms'), 'forms');
   assert.deepEqual(Object.keys(MOOD_CASTS), [...MOODS]);
+});
+
+test('the three forms are unlike one another: a seamed sphere, a ribbon in a figure of eight, a ring round nothing', () => {
+  const [sphere, ribbon, ring] = MOODS.map(mood => moodForm(mood)) as [ReturnType<typeof moodForm>, ReturnType<typeof moodForm>, ReturnType<typeof moodForm>];
+  // the sphere is round but for its seam, a groove a tenth of its radius deep, and it faces outward everywhere
+  const round = measure(sphere);
+  assert.ok(round.near > 0.4 && round.near < 0.47, `the seam is a groove: ${round.near}`);
+  assert.ok(round.size.every(side => side > 0.9), 'as wide every way');
+  for (let i = 0; i < MOOD_GRAINS * 3; i += 3 * 97)
+    assert.ok(sphere.positions[i]! * sphere.normals[i]! + sphere.positions[i + 1]! * sphere.normals[i + 1]! + sphere.positions[i + 2]! * sphere.normals[i + 2]! > 0, 'facing out');
+  // the ribbon is taller than it is wide or deep, and passes close to its own middle where it crosses
+  const loop = measure(ribbon);
+  assert.ok(loop.size[1]! > loop.size[0]! && loop.size[1]! > loop.size[2]! * 1.3, `upright: ${loop.size}`);
+  assert.ok(loop.near < 0.2, 'it crosses near its middle');
+  // the ring keeps clear of its middle all the way round
+  const hoop = measure(ring);
+  assert.ok(hoop.near > 0.3, `nothing in the middle: ${hoop.near}`);
+  assert.ok(hoop.size[0]! > 0.95 && hoop.size[1]! < hoop.size[0]!, 'tipped toward the viewer');
 });

@@ -1,9 +1,8 @@
-// The void's choice (LIMINAL-GRAMMAR.md, Part 1 and step 6): which mood's room exists, and each mood's figure for the void.
+// The void's choice (LIMINAL-GRAMMAR.md, Part 1 and step 6): which mood's room exists, and each mood's form for the void.
 // A visitor who finds no room picks one of the three moods; that mood's room then exists until it is forgotten (a spent room
-// dispersing, or the owner's key). Pure: no three, no page. AstralRoom.tsx offers the choice; menu-view.ts draws it.
+// dispersing, or the owner's key). Pure: no three, no page. AstralRoom.tsx offers the choice; mood-view.ts draws it.
 // shortcut: the mood is kept in this browser's storage, as the room's memory is (replacements.ts); it moves to the server with it (step 9).
 import { MOODS, type Mood } from './grammar.ts';
-import type { MenuPoints } from './menu.ts';
 
 const KEY = 'eva.astral.mood';
 type Store = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
@@ -33,66 +32,71 @@ export const MOOD_CASTS: Record<Mood, readonly [number, number, number]> = {
   eerie: [0.88, 0.86, 0.7],     // dull warm white with green in it
 };
 
-/**
- * How a mood is shown in the void: an abstract figure of points in its cast, not a small room (owner, 2026-11-17). The owner is
- * choosing between two sets, ?moods=forms|grid. Delete the one not kept.
- * forms: three unlike shapes. Quiet is a floor and a ceiling with nothing between; uncanny is one cube repeated inside itself at the
- *   wrong sizes; eerie is a hollow shell, opened, with nothing in it.
- * grid: nine cubes with the middle one wrong, one way for each mood: lifted and turned, far too large, or gone with its place showing.
- */
-export const MOOD_FIGURES = ['forms', 'grid'] as const;
-export type MoodFigures = typeof MOOD_FIGURES[number];
-export function moodFigures(search: string): MoodFigures {
-  const asked = new URLSearchParams(search).get('moods');
-  return MOOD_FIGURES.find(figures => figures === asked) ?? 'forms';
+// How a mood is shown in the void (owner, 2026-11-17): one body of grains that takes an abstract form for each mood, after the
+// owner's two references (a twisted loop of glass ribbon; a sphere parted by an S-shaped seam). The forms are proposals:
+//   quiet: the sphere with its seam, whole and still. uncanny: the ribbon, a loop turned through itself.
+//   eerie: a ring round nothing (no reference; made to sit with the other two).
+// Every form has the same number of grains, so each grain has a place in all three and the body can go from one to another.
+
+/** Grains in the body: a lattice of GRAINS_ALONG rows of GRAINS_ROUND dots on each form. */
+const GRAINS_ALONG = 400, GRAINS_ROUND = 100;
+export const MOOD_GRAINS = GRAINS_ALONG * GRAINS_ROUND;
+
+/** A form: where each grain sits, within 0.5 of the middle, and the way the surface faces there. */
+export interface MoodForm { positions: Float32Array; normals: Float32Array }
+type V3 = [number, number, number];
+const cross = (a: V3, b: V3): V3 => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const unit = (a: V3): V3 => { const l = Math.hypot(...a) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
+
+/** A band round a closed curve: `wide` and `thick` are its half-sizes at `u` (0..1 along), and it turns `twist` times on its way round. */
+function band(curve: (t: number) => V3, size: (u: number) => readonly [number, number], twist: number, at: (i: number, p: V3, n: V3) => void) {
+  for (let i = 0; i < MOOD_GRAINS; i++) {
+    const row = Math.floor(i / GRAINS_ROUND), u = row / GRAINS_ALONG, t = u * 2 * Math.PI;
+    const phi = ((i % GRAINS_ROUND) + (row % 2) / 2) / GRAINS_ROUND * 2 * Math.PI;   // every other row half a step round: dots in a diamond
+    const c = curve(t), ahead = curve(t + 1e-3), behind = curve(t - 1e-3);
+    const along = unit([ahead[0] - behind[0], ahead[1] - behind[1], ahead[2] - behind[2]]);
+    const side = unit(cross(along, [0, 0, 1])), up = cross(along, side);   // the curves here never run along z
+    const turn = twist * t, cos = Math.cos(turn), sin = Math.sin(turn), [wide, thick] = size(u);
+    const w: V3 = [cos * side[0] + sin * up[0], cos * side[1] + sin * up[1], cos * side[2] + sin * up[2]];
+    const x: V3 = [cos * up[0] - sin * side[0], cos * up[1] - sin * side[1], cos * up[2] - sin * side[2]];
+    const a = Math.cos(phi), b = Math.sin(phi);
+    at(i, [c[0] + wide * a * w[0] + thick * b * x[0], c[1] + wide * a * w[1] + thick * b * x[1], c[2] + wide * a * w[2] + thick * b * x[2]],
+      unit([thick * a * w[0] + wide * b * x[0], thick * a * w[1] + wide * b * x[1], thick * a * w[2] + wide * b * x[2]]));
+  }
 }
 
-/** A figure has at most this many points, and is drawn this many times a menu choice's size. Starting values. */
-export const MOOD_POINTS = 12000, MOOD_SIZE = 1.3;
-const STEP = 0.02;   // between a figure's dots, where the figure is about 1 across
-/** The eerie shell's opening: the way it faces (a unit vector, before the figure is laid down), and how far toward it the shell is kept. */
-export const SHELL_OPEN = [0.6, 0.64, 0.48] as const, SHELL_KEPT = 0.3;
+/** The sphere's radius toward `d`: two halves meeting along a seam that swings up and down twice round it, one half standing a little proud. */
+function seamed(d: V3): number {
+  const from = Math.asin(Math.max(-1, Math.min(1, d[1]))) - 0.75 * Math.sin(2 * Math.atan2(d[2], d[0])) * Math.hypot(d[0], d[2]);
+  return 1 + 0.05 * Math.tanh(from / 0.08) - 0.11 * Math.exp(-((from / 0.11) ** 2));
+}
 
-/** A mood's figure as points, with normals so that its far side is drawn dimmer as it turns. */
-export function moodPoints(mood: Mood, figures: MoodFigures = 'forms'): MenuPoints {
-  const at: number[] = [], rgb: number[] = [], out: number[] = [], cast = MOOD_CASTS[mood];
-  // Every figure is laid down an eighth of a turn round: menu-view.ts sizes a choice by its box, and a square thing's box is then
-  // as wide as the thing is from corner to corner, so it stays inside its brackets while it turns.
-  const dot = (x: number, y: number, z: number, nx: number, ny: number, nz: number, shade = 1) => {
-    at.push((x + z) * Math.SQRT1_2, y, (z - x) * Math.SQRT1_2); out.push((nx + nz) * Math.SQRT1_2, ny, (nz - nx) * Math.SQRT1_2);
-    rgb.push(cast[0] * shade, cast[1] * shade, cast[2] * shade);
-  };
-  /** A cube of side `side` about `c`, turned `turn` round the upright axis: its six faces as dots, or only its twelve edges. */
-  const cube = (c: readonly [number, number, number], side: number, turn = 0, edges = false) => {
-    const n = Math.max(2, Math.round(side / STEP)), cos = Math.cos(turn), sin = Math.sin(turn);
-    for (let axis = 0; axis < 3; axis++) for (const way of [-1, 1]) for (let i = 0; i <= n; i++) for (let j = 0; j <= n; j++) {
-      if (edges && i % n && j % n) continue;
-      const p = [0, 0, 0], m = [0, 0, 0];
-      p[axis] = way * side / 2; p[(axis + 1) % 3] = side * (i / n - 0.5); p[(axis + 2) % 3] = side * (j / n - 0.5); m[axis] = way;
-      dot(c[0] + p[0]! * cos + p[2]! * sin, c[1] + p[1]!, c[2] - p[0]! * sin + p[2]! * cos, m[0]! * cos + m[2]! * sin, m[1]!, -m[0]! * sin + m[2]! * cos);
+/** A mood's form. Pure and the same every time. */
+export function moodForm(mood: Mood): MoodForm {
+  const positions = new Float32Array(MOOD_GRAINS * 3), normals = new Float32Array(MOOD_GRAINS * 3);
+  const at = (i: number, p: V3, n: V3) => { positions.set(p, i * 3); normals.set(n, i * 3); };
+  if (mood === 'quiet') {
+    for (let i = 0; i < MOOD_GRAINS; i++) {
+      const y = 1 - 2 * (i + 0.5) / MOOD_GRAINS, r = Math.sqrt(1 - y * y), d: V3 = [r * Math.cos(i * 2.399963), y, r * Math.sin(i * 2.399963)];
+      // the way the surface faces, from two points beside this one
+      const e1 = unit(cross(d, Math.abs(y) > 0.9 ? [1, 0, 0] : [0, 1, 0])), e2 = cross(d, e1), R = seamed(d);
+      const beside = (e: V3): V3 => { const q = unit([d[0] + 0.01 * e[0], d[1] + 0.01 * e[1], d[2] + 0.01 * e[2]]), s = seamed(q); return [q[0] * s - d[0] * R, q[1] * s - d[1] * R, q[2] * s - d[2] * R]; };
+      const n = unit(cross(beside(e1), beside(e2)));
+      const out = n[0] * d[0] + n[1] * d[1] + n[2] * d[2] < 0 ? -1 : 1;
+      at(i, [d[0] * R, d[1] * R, d[2] * R], [n[0] * out, n[1] * out, n[2] * out]);
     }
-  };
-  if (figures === 'grid') {
-    const PITCH = 0.34, SIDE = 0.2;
-    for (const gx of [-1, 0, 1]) for (const gz of [-1, 0, 1]) if (gx || gz) cube([gx * PITCH, SIDE / 2, gz * PITCH], SIDE);
-    if (mood === 'quiet') cube([0, SIDE / 2 + 0.3, 0], SIDE, 0.6);            // displaced: it hovers, turned
-    else if (mood === 'uncanny') cube([0, 0.23, 0], 0.46);                     // wrong scale
-    else for (let t = -SIDE / 2; t <= SIDE / 2 + 1e-6; t += STEP) for (const e of [-SIDE / 2, SIDE / 2]) {   // absent: where it stood
-      dot(t, 0, e, 0, 1, 0, 0.5); dot(e, 0, t, 0, 1, 0, 0.5);
-    }
-  } else if (mood === 'quiet') {
-    // a floor and a ceiling of ordered dots, facing each other, and nothing between: the room is waiting
-    for (let x = -0.5; x <= 0.5 + 1e-6; x += STEP * 1.5) for (let z = -0.5; z <= 0.5 + 1e-6; z += STEP * 1.5) { dot(x, -0.2, z, 0, 1, 0); dot(x, 0.2, z, 0, -1, 0); }
   } else if (mood === 'uncanny') {
-    // one cube, repeated inside itself, each smaller and turned a little further: the same thing at the wrong sizes
-    [1, 0.66, 0.4, 0.2].forEach((side, i) => cube([0, 0, 0], side, i * 0.35, true));
+    // a figure of eight in depth, its upper loop the larger; the ribbon turns once on its way round
+    band(t => [0.45 * Math.sin(2 * t) * (1 + 0.25 * Math.sin(t)), 0.62 * Math.sin(t), 0.3 * Math.cos(t)], () => [0.17, 0.045], 1, at);
   } else {
-    // a round shell, open on one side, and nothing inside: prepared, and nobody there
-    const N = 6000;
-    for (let k = 0; k < N; k++) {
-      const y = 1 - 2 * (k + 0.5) / N, r = Math.sqrt(1 - y * y), x = r * Math.cos(k * 2.399963), z = r * Math.sin(k * 2.399963);
-      if (x * SHELL_OPEN[0] + y * SHELL_OPEN[1] + z * SHELL_OPEN[2] < SHELL_KEPT) dot(x / 2, y / 2, z / 2, x, y, z);
-    }
+    // a ring, tipped toward the viewer so that what it stands round shows, a little uneven in its thickness
+    const tip = 1.0, cos = Math.cos(tip), sin = Math.sin(tip);
+    band(t => [0.5 * Math.cos(t), 0.5 * Math.sin(t), 0], u => { const r = 0.1 * (1 + 0.22 * Math.sin(6 * Math.PI * u)); return [r, r]; }, 0,
+      (i, p, n) => at(i, [p[0], p[1] * cos - p[2] * sin, p[1] * sin + p[2] * cos], [n[0], n[1] * cos - n[2] * sin, n[1] * sin + n[2] * cos]));
   }
-  return { count: at.length / 3, positions: Float32Array.from(at), colors: Float32Array.from(rgb), normals: Float32Array.from(out) };
+  // every form within 0.5 of the middle, so the body is one size whatever it is
+  let far = 0;
+  for (let i = 0; i < MOOD_GRAINS * 3; i += 3) far = Math.max(far, Math.hypot(positions[i]!, positions[i + 1]!, positions[i + 2]!));
+  for (let i = 0; i < MOOD_GRAINS * 3; i++) positions[i] = positions[i]! * 0.5 / far;
+  return { positions, normals };
 }

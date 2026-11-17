@@ -20,7 +20,8 @@ import { REFUSALS, SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.t
 import { createWater, type AstralWater } from './water.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralLight, type AstralPhase, type PointCloud, type RoomHero } from './types.ts';
 import { MOODS } from './grammar.ts';
-import { MOOD_POINTS, MOOD_SIZE, chooseMood, chosenMood, moodFigures, moodPoints } from './mood-choice.ts';
+import { chooseMood, chosenMood } from './mood-choice.ts';
+import { createMoodView } from './mood-view.ts';
 import './astral.css';
 
 const TUNNEL_FORM_SECONDS = 6;
@@ -238,13 +239,11 @@ export default function AstralRoom() {
       void prepareShelf();
       requestRoom(loadRoom, REHEARSAL_MIN_SECONDS);
     };
-    // The void's choice (mood-choice.ts): while no room exists, three abstract figures of points wait round the eye, one for each
-    // mood, drawn as the menu's choices are; in the void `menu` is that choice.
+    // The void's choice (mood-choice.ts, mood-view.ts): while no room exists, one body of grains waits in the void and takes the
+    // selected mood's form; in the void `menu` is that choice, stepped and picked with the menu's keys and mouse.
     // shortcut: whichever is picked, the room is the recorded library, until each mood has its own base room (step 7).
-    const moodView = createMenuView(menuArrangement(window.location.search), MOOD_SIZE, MOOD_POINTS);
+    const moodView = createMoodView();
     scene.add(moodView.object);
-    moodView.setChoices(MOODS.map(mood => moodPoints(mood, moodFigures(window.location.search))));
-    const unrefused: ReadonlySet<number> = new Set();
     const pickMood = () => {
       const mood = menu && MOODS[menu.index];
       if (!mood) return;
@@ -379,7 +378,8 @@ export default function AstralRoom() {
     const onMouseMove = (event: MouseEvent) => {
       present();
       // choosing: the mouse moves between the choices and the view holds still
-      if (menu) { menu = menuDrag(menu, event.movementX / host.clientWidth); return; }
+      // (in the void a step takes four times the travel: the body needs a moment to gather into each form)
+      if (menu) { menu = menuDrag(menu, event.movementX / host.clientWidth / (stage === 'void' ? 4 : 1)); return; }
       side = Math.max(-1, Math.min(1, (event.clientX / host.clientWidth) * 2 - 1));
       flight.setSide(side);
     };
@@ -473,7 +473,7 @@ export default function AstralRoom() {
       menuView.update(stage === 'room' && menu ? { index: menu.index, refused } : null, time, dt, camera, eye.object.position);
       // the void's choice is offered whenever the void has no room
       if (stage === 'void' && !menu && !chosenMood()) menu = menuOpen(0, MOODS.length);
-      moodView.update(stage === 'void' && menu ? { index: menu.index, refused: unrefused } : null, time, dt, camera, eye.object.position);
+      moodView.update(stage === 'void' && menu ? menu.index : null, time, dt, camera);
       field.update(time, dt, camera);
       splatView?.update(dt);
       glow.setSceneDraw(splatView?.active ? splatView.drawLayers : null);

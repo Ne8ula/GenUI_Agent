@@ -109,15 +109,18 @@ Checked 2026-11-16 in a worktree made by `claude -w`: `npm run check` passed (32
 
 Sequence: black void with the eye. If no room exists, the void offers the three moods first (next paragraph). If one exists, any key press or mouse movement counts as a visitor arriving and starts a spiral tunnel of points, which carries the viewer along it (at least 12 seconds). The room forms at the far end from the tunnel's own points. A 12 second arrival flight follows, then the visitor has control. After 45 seconds in the room with no input, the room disperses back into the void and waits for the next visitor.
 
-**The void's choice (2026-11-17, `LIMINAL-GRAMMAR.md` step 6).** While no room exists, three abstract figures of points wait round the eye in the void, one for each mood, with no words: quietly liminal, subtly uncanny, eerie absence, in that order. Nothing starts until one is picked. **They are figures, not small rooms** (owner, 2026-11-17: the first round showed each mood as a thinned, tinted copy of the library, which the owner did not like and found hard to tell apart; that code is deleted, its captures are in `.local/void-choice/rooms/`).
+**The void's choice (2026-11-17, `LIMINAL-GRAMMAR.md` step 6).** While no room exists, one body of grains waits in the middle of the void and takes an abstract form for the selected mood, with no words: quietly liminal, subtly uncanny, eerie absence, in that order. Stepping to another mood throws the grains and gathers them into its form. Nothing starts until one is picked. **This is the third round, after the owner's references** (2026-11-17: two pictures of glass forms, and bricelab.dev, where one body of particles re-forms for each item). Two earlier rounds were turned down and their code is deleted: small tinted copies of the library (`.local/void-choice/rooms/`), then three still figures of dots side by side (`figures/`).
 
 - **Whether a room exists** is `mood-choice.ts`: `chosenMood()`, `chooseMood(mood)`, `forgetMood()`. The mood is kept in the browser's storage (key `eva.astral.mood`) and read back as untrusted data: anything but a mood's name is no room. A marked shortcut, as the room's memory is: one machine, one browser profile, one address.
-- **Picking** uses the menu's keys and mouse: `A`/`D` or the arrow keys, or mouse travel, move between the three; `Enter`, `F` or a click picks. `Esc` does nothing (the choice opens again on the first mood). The pick stores the mood and starts the tunnel. **Until step 7 every mood's room is the recorded library**, and the console says so at each pick.
-- **A figure** (`moodPoints`) is ordered dots in its mood's cast (`MOOD_CASTS`: yellow-green, teal, warm white with green in it), made in code, with normals so its far side is dimmer as it turns. **Two sets, not chosen: `?moods=forms` (default) and `?moods=grid`.** Delete the one the owner does not keep.
-  - `forms`: three unlike shapes. Quiet is a floor and a ceiling of dots with nothing between. Uncanny is one cube repeated inside itself, four times, each smaller and turned further, as edges only. Eerie is a round shell, open on one side, with nothing in it.
-  - `grid`: nine cubes with the middle one wrong, one way for each mood: lifted and turned (quiet), far too large (uncanny), gone with its outline left on the ground (eerie).
-  - What each figure means is my proposal from the grammar's own terms, not the owner's wording. Shapes, casts, the spacing of the dots and the size are starting values.
-- **Drawn by the menu's own view**: a second `createMenuView`, which now takes a scale and a point count; the figures are drawn at 1.3 times a menu choice's size. The arrangement is the menu's switch, `?menu=ring|row|one`, and none is chosen. In the void the eye is left in its idle phase, not put in its thinking phase as the room's menu does.
+- **Picking** uses the menu's keys and mouse: `A`/`D` or the arrow keys, or mouse travel (a sixth of the page's width for each step, four times the menu's, so the body has time to gather), move between the three; `Enter`, `F` or a click picks. `Esc` does nothing (the choice opens again on the first mood). The pick stores the mood and starts the tunnel. **Until step 7 every mood's room is the recorded library**, and the console says so at each pick.
+- **The forms** (`moodForm` in `mood-choice.ts`, pure) are 40,000 grains each, as ordered dots on a surface made in code, every grain with a place in all three. Which form stands for which mood is my proposal, not the owner's word:
+  - Quiet: a sphere parted by a seam that swings round it, one half standing a little proud (the owner's second picture).
+  - Uncanny: a flat ribbon in a figure of eight, its upper loop the larger, turned once on its way round (the owner's first picture).
+  - Eerie: a ring round nothing, tipped toward the viewer. No reference was given for a third; it was made to sit with the other two.
+- **How each moves** (`mood-view.ts`; cut down from the field's effects, which are adapted from Gather): quiet breathes, swelling and sinking in slow uneven lobes; uncanny wrings itself, each height turning its own way and back; eerie is weightless, with regions lifting and three grains in ten leaving the surface, thinning out and forming again. The whole body turns slowly. A change of form is Gather's kick: each grain crosses at its own moment, thrown outward on the way, about a second and a half in all.
+- **How it is lit**: the mood's cast (`MOOD_CASTS`: yellow-green, teal, warm white with green in it) where the light falls, a spectrum that runs with the angle of view toward the edges (the glass of the references), the far side showing through dimly. Grains are whole-pixel squares of two or three sizes. Three ticks under the body say which of the three it is.
+- **Drawn by its own small view** (`createMoodView`), not by the menu's: the menu's view draws separate still choices and cannot move grains between forms. `menu-view.ts` is as it was before step 6. `?menu=` no longer affects the void. The body stands in the middle of the frame, not round the eye; the eye is left in its idle phase and wanders past it.
+- All sizes, speeds, amounts and colours are starting values, named at the top of `mood-view.ts` or beside the motion they belong to.
 - **Nothing in this checkout forgets the mood.** `forgetMood()` is for the room's ending (a spent room dispersing, the owner's key), which is another session's step 5. Until that is merged, a room once chosen exists until the stored key is removed by hand.
 
 In the room, the keyboard and mouse stand in for the planned controller and camera:
@@ -150,8 +153,7 @@ The live route `/api/object` (below) makes a fresh model of one of the same six 
 | Input | Effect |
 |---|---|
 | Any key, or moving the mouse | From the void, when a room exists: start the tunnel and the recorded library |
-| In the void, when no room exists: `A` / `D`, arrow keys, or moving the mouse | Move between the three moods' figures. `Enter`, `F` or a click picks one and starts the tunnel. `?menu=ring\|row\|one` arranges them as it does the menu |
-| `?moods=forms\|grid` | Which set of figures stands for the three moods in the void (default `forms`); neither is chosen |
+| In the void, when no room exists: `A` / `D`, arrow keys, or moving the mouse | Step between the three moods: the body of grains gathers into each one's form. `Enter`, `F` or a click picks the one shown and starts the tunnel |
 | `W A S D` | Move. `Space` / `E` up, `Shift` / `Q` down |
 | Mouse left-right | Where the visitor stands: a window in the middle, turning near the edges |
 | `R` | In a room: throw its points into the recorded library again |
@@ -180,7 +182,8 @@ The live route `/api/object` (below) makes a fresh model of one of the same six 
 |---|---|
 | `AstralRoom.tsx` | Shell: renderer, stage sequence (void, tunnel, arriving, room, dissolving), keys, wiring |
 | `types.ts` | Shared contract: `PointCloud`, `RoomLights`, `RoomHero`, effects, lights, phases, `AstralReply`, `TUNNEL` |
-| `mood-choice.ts` | The void's choice, pure: which mood's room exists, kept in the browser's storage (`chosenMood`, `chooseMood`, `forgetMood`); each mood's cast and its abstract figure for the void, in two sets (`MOOD_CASTS`, `moodPoints`, `moodFigures`) |
+| `mood-choice.ts` | The void's choice, pure: which mood's room exists, kept in the browser's storage (`chosenMood`, `chooseMood`, `forgetMood`); each mood's cast and its abstract form for the void as grain positions (`MOOD_CASTS`, `moodForm`) |
+| `mood-view.ts` | The void's choice as drawn: one body of grains that takes the selected mood's form, each form's motion, the throw and gather between forms, three ticks |
 | `point-field.ts` | The GPU point renderer: tunnel cloud, tunnel-to-room arrival, seven effects, lighting moods (`MOODS`, `nextLighting`), hero highlight, the objects that replaced heroes (`replaceHero`). Largest file |
 | `flight.ts` | Key-driven flight, the side-to-side view (`sideView`, `setSide`), guided camera, arrival path |
 | `tease.ts` | EVA's unprompted lines and her refusals (`REFUSALS`): placeholder wording, when a tease is due, and the placeholder browser voice |
@@ -244,21 +247,23 @@ Checked on 2026-11-16 for the visitor's side of object replacement, in headless 
 
 Earlier measurements (2026-11-12, not repeated): 60 fps at 3440x1440 in headless Chrome on an RTX 5080 (headless caps at 60, so headroom is unknown). One live voice turn worked: Jev decision in 0.1 s, Opus reply in 2.4 s, spoken reply; EVA began speaking about 13 s after the visitor stopped.
 
-Checked on 2026-11-17 for the void's choice (`LIMINAL-GRAMMAR.md` step 6), in a worktree at the commit before steps 2 to 5, in headless Chrome at 1920x1080 against its dev server on temporary port 5199, default look: typecheck clean; 395 tests pass in 35 files, among them the stored mood (chosen, read back, forgotten, read as untrusted data, a storage that fails) and the figures (every mood in both sets: its cast, unit normals, about 1 across; the three forms unlike one another; the grid's differing only in its middle cube; the switch). `npm run build` succeeds. `.local/void-choice/capture.mjs` took one page, with the default figures in the ring, through the path and checked each step against the console and the browser's storage:
+Checked on 2026-11-17 for the void's choice (`LIMINAL-GRAMMAR.md` step 6), in a worktree at the commit before steps 2 to 5, in headless Chrome at 1920x1080 against its dev server on temporary port 5199, default look: typecheck clean; 394 tests pass in 35 files, among them the stored mood (chosen, read back, forgotten, read as untrusted data, a storage that fails) and the forms (the same grains in each, within half a unit of the middle, unit normals, the same every time; the sphere's seam, the ribbon crossing near its middle, the ring clear of its middle). `npm run build` succeeds. Captures and their scripts are in `.local/void-choice/`:
 
-1. A first visitor finds no room; five seconds later the three figures are round the eye and nothing has started (`forms-ring-01-void`).
-2. Each mood selected in turn by `D` (`forms-ring-02-quiet-selected`, `-03-uncanny-`, `-04-eerie-`); nothing starts and nothing is stored.
-3. Mouse travel of a 24th of the page's width moves one along (`forms-ring-05`). `Esc` leaves the choice offered (`forms-ring-06`).
-4. `Enter` on the third: `eerie` is stored, the console names the mood and says the room is a recording, the tunnel starts (`forms-ring-07`).
-5. The page loaded again: a room exists, the void waits with no choice (`forms-ring-08`), and moving the mouse starts the tunnel.
-6. With the stored mood removed by the script and the page loaded again, a click picks the selected mood (`quiet`).
-7. With `{"mood":"surreal"}` stored and the page loaded again, the choice is offered and mouse movement starts nothing (`forms-ring-09`).
+- **`sheet.png`**: the body in each mood's form, the same three seconds later, and one change of form at a quarter, a half and one second (frames at half size; judge grain from the 1:1 captures).
+- `body.mjs` took those and more (`body-*`): the body arriving, each form settled and three seconds on, and eight frames a quarter second apart through each of the three changes.
+- `capture.mjs` took one page through the path and checked each step against the console and the browser's storage (`path-*`):
+  1. A first visitor finds no room; five seconds later the body is in the first form and nothing has started.
+  2. Each mood selected in turn by `D`; nothing starts and nothing is stored.
+  3. Mouse travel of a sixth of the page's width steps one along. `Esc` leaves the choice offered.
+  4. `Enter` on the third: `eerie` is stored, the console names the mood and says the room is a recording, the tunnel starts.
+  5. The page loaded again: a room exists, the void waits with no choice, and moving the mouse starts the tunnel.
+  6. With the stored mood removed by the script and the page loaded again, a click picks the selected mood (`quiet`).
+  7. With `{"mood":"surreal"}` stored and the page loaded again, the choice is offered and mouse movement starts nothing.
+- `room-menu.mjs` then arrived in the room with a mood stored, opened the replacement menu on the sky cube and picked the gramophone: the room's own menu still works (`room-menu-*`).
 
-The grid set in the ring, and the default set in the row and one arrangements, were taken through steps 1 and 2 only (`grid-ring-*`, `forms-row-*`, `forms-one-*`). **`sheet.png` puts the two sets side by side, each mood selected, over the first round's small rooms** (frames at half size; judge grain from the 1:1 captures). No console errors, page errors or failed requests in any of these runs; the whole path was run once with the figures.
+Every check passed, with no console errors, page errors or failed requests; each script was run once in this state. (In the first round one of seven runs of the path reported a failure whose line was not kept; it has not recurred.)
 
-From the first round, with small rooms, not repeated with the figures: `room-menu.mjs` arrived in the room with a mood stored, opened the replacement menu on the sky cube and picked the gramophone, to see that the room's own menu still works (`rooms/room-menu-*`). The ring path was then run seven times; the second run reported a failure whose line was not kept, and the five runs after it passed. A guess, not checked: the script loaded the page again while the room's files were still arriving, which the browser reports as a failed request; the script now waits before that load.
-
-Not checked: any of it watched running or used by a person with a real mouse; the figures turning (only still frames were looked at); the grid set in the row and one arrangements; the choice together with step 5's ending of a room, since `forgetMood()` has no caller in this checkout; the sand look; an ultrawide frame; frame time; the built page; whether the figures, casts and sizes are right, which is the owner's to say. No reviewer agent read this work.
+Not checked: **the motion itself, which nobody has watched**: only still frames a quarter second or more apart were looked at, so whether the breathing, the wringing, the drifting and the throw feel right, or too fast or slow, is unknown; any of it used by a person with a real mouse; frame time with the body on screen (40,000 grains); the choice together with step 5's ending of a room, since `forgetMood()` has no caller in this checkout; an ultrawide frame; a screen at another pixel density; the built page; whether the forms, their moods, the colours and the sizes are right, which is the owner's to say. No reviewer agent read this work.
 
 ## Known faults and open items
 
@@ -292,13 +297,14 @@ Object replacement:
 
 The void's choice:
 
-- **Whichever mood is picked, the room is the library**, until step 7. Nothing in the room that arrives answers to the figure picked.
-- **Nothing tells a visitor what a figure stands for**, by design: there are no words. Whether the three read as three kinds of room, or only as three shapes, has not been asked of anyone.
-- In `forms`, quiet's two planes are two thin lines when seen side-on and small, and eerie's shell looks like a whole sphere when its opening faces away. In `grid`, the three are the same clump of cubes at a distance; the cubes are seen through one another, so the lifted cube is hard to find among them.
-- A figure turns as a menu's object does and is not otherwise animated.
-- In the ring and the row at 1.3 times, the three figures fit the frame's height only where the eye is above the middle; elsewhere they are moved in from the edge, so the eye is not at their centre. In `one`, the selected figure is large enough to lie over the eye.
-- The eye's own marks and numerals are drawn among the figures, and the eye in its idle phase sometimes leaves the frame for a second or two; the figures then wait at that edge.
-- `Esc` puts the selection back on the first mood. After a pick with the mouse, the side-to-side view goes to wherever the mouse now is, as after the room's menu.
+- **Whichever mood is picked, the room is the library**, until step 7. Nothing in the room that arrives answers to the form picked.
+- **Nothing tells a visitor what a form stands for**, by design: there are no words. Whether the three read as three kinds of room, or only as three shapes, has not been asked of anyone.
+- **Only one form shows at a time.** A visitor who does not move the mouse or press a key sees the first and nothing says there are two more but the three ticks, which are small. The body does not step through the forms by itself.
+- **The eye wanders across the body**: it is left in its idle phase and passes in front of the body, beside it, and sometimes out of the frame, with its own marks and numerals. Nothing keeps the two apart.
+- The body is drawn light on light with no depth, so its far side shows through the near side (dimly, on purpose) and it does not hide the eye or anything else behind it.
+- The quiet sphere is the darkest of the three at its middle; the eerie ring's loose grains make a faint haze round it that reads as dust more than as a form.
+- A grain's place in one form has nothing to do with its place in the next, so a change is a cloud, not a flow from shape to shape. The cloud is dim for half a second.
+- `Esc` puts the selection back on the first mood, and the body gathers into it. After a pick with the mouse, the side-to-side view goes to wherever the mouse now is, as after the room's menu.
 - If the browser's storage refuses, the pick still starts the room, and the next void offers the three moods again.
 
 Display:

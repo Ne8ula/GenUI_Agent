@@ -37,12 +37,12 @@ void main() {
 }`;
 const THUMB_FS = /* glsl */ `precision highp float; in vec3 vCol; out vec4 o; void main() { o = vec4(vCol, 1.0); }`;
 
-/** A choice's points, at most `most` of them, centred, its longest side 1. */
-function thumbGeometry(points: MenuPoints, most: number): BufferGeometry {
+/** A choice's points, at most THUMB_POINTS of them, centred, its longest side 1. */
+function thumbGeometry(points: MenuPoints): BufferGeometry {
   const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
   for (let i = 0; i < points.count * 3; i++) { lo[i % 3] = Math.min(lo[i % 3]!, points.positions[i]!); hi[i % 3] = Math.max(hi[i % 3]!, points.positions[i]!); }
   const side = Math.max(hi[0]! - lo[0]!, hi[1]! - lo[1]!, hi[2]! - lo[2]!) || 1;
-  const stride = Math.max(1, Math.ceil(points.count / most)), n = Math.ceil(points.count / stride);
+  const stride = Math.max(1, Math.ceil(points.count / THUMB_POINTS)), n = Math.ceil(points.count / stride);
   const position = new Float32Array(n * 3), colour = new Float32Array(n * 3), normal = new Float32Array(n * 3);
   for (let o = 0; o < n; o++) for (let a = 0; a < 3; a++) {
     const j = o * stride * 3 + a;
@@ -57,8 +57,7 @@ function thumbGeometry(points: MenuPoints, most: number): BufferGeometry {
   return geometry;
 }
 
-/** `scale`: the whole arrangement this many times its size, and `most` points to a choice: the void's three rooms are larger and finer than a menu's objects. */
-export function createMenuView(arrangement: MenuArrangement, scale = 1, most = THUMB_POINTS): MenuView {
+export function createMenuView(arrangement: MenuArrangement): MenuView {
   // the group carries the camera's own frame, so its children are placed in view space: x right, y up, the viewer looking down -z
   const object = new Group();
   object.matrixAutoUpdate = false; object.visible = false;
@@ -84,7 +83,7 @@ export function createMenuView(arrangement: MenuArrangement, scale = 1, most = T
       drop();
       thumbs = choices.map(points => {
         const material = new ShaderMaterial({ glslVersion: GLSL3, vertexShader: THUMB_VS, fragmentShader: THUMB_FS, uniforms: { uPx: { value: 2 }, uLight: { value: 0 }, uRefused: { value: 0 } }, ...blend });
-        const thumb = new Points(thumbGeometry(points, most), material);
+        const thumb = new Points(thumbGeometry(points), material);
         thumb.frustumCulled = false; thumb.renderOrder = 8;
         thumb.onBeforeRender = renderer => { renderer.getDrawingBufferSize(buffer); };
         object.add(thumb);
@@ -102,15 +101,14 @@ export function createMenuView(arrangement: MenuArrangement, scale = 1, most = T
 
       // the frame at the menu's depth: half its height in metres, and its width in halves of its height
       const half = DEPTH * Math.tan(camera.fov * Math.PI / 360), aspect = camera.aspect;
-      const slots = menuLayout(arrangement, count, shown, aspect / scale).map(slot => ({ x: slot.x * scale, y: slot.y * scale, size: slot.size * scale, light: slot.light }));
+      const slots = menuLayout(arrangement, count, shown, aspect);
       // the eye's place on screen, moved in from the edge until every choice fits; an eye behind the viewer counts as far to its side
       local.copy(eye).applyMatrix4(inverse.copy(camera.matrixWorld).invert());
       const ahead = Math.max(0.3, -local.z), fit = (value: number, low: number, high: number) => (low > high ? (low + high) / 2 : Math.min(high, Math.max(low, value)));
       const left = Math.min(...slots.map(s => s.x - s.size / 2)), right = Math.max(...slots.map(s => s.x + s.size / 2));
       const bottom = Math.min(...slots.map(s => s.y - s.size / 2)), top = Math.max(...slots.map(s => s.y + s.size / 2));
-      const margin = Math.max(MARGIN, 0.14 * Math.max(...slots.map(s => s.size)));   // the brackets stand an eighth of its size out from the selected choice
-      const targetX = fit(local.x / ahead * DEPTH / half, -aspect + margin - left, aspect - margin - right);
-      const targetY = fit(local.y / ahead * DEPTH / half, -1 + margin - bottom, 1 - margin - top);
+      const targetX = fit(local.x / ahead * DEPTH / half, -aspect + MARGIN - left, aspect - MARGIN - right);
+      const targetY = fit(local.y / ahead * DEPTH / half, -1 + MARGIN - bottom, 1 - MARGIN - top);
       const follow = opening ? 1 : 1 - Math.exp(-Math.max(0, dt) / FOLLOW);
       anchorX += (targetX - anchorX) * follow; anchorY += (targetY - anchorY) * follow;
 
@@ -123,7 +121,7 @@ export function createMenuView(arrangement: MenuArrangement, scale = 1, most = T
         thumb.rotation.set(0.25, time * 0.5 + i * 1.7, 0);
         const u = thumb.material.uniforms;
         u.uLight!.value = slot.light * presence;
-        u.uPx!.value = (1.2 + 5 * slot.size / scale) * px;   // the selected choice's grains a little larger
+        u.uPx!.value = (1.2 + 5 * slot.size) * px;   // the selected choice's grains a little larger
         u.uRefused!.value = open?.refused.has(i) ? 1 : 0;
       });
       const selected = open ? slots[open.index] : undefined;
