@@ -20,7 +20,7 @@ import { REFUSALS, SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.t
 import { createWater, type AstralWater } from './water.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralLight, type AstralPhase, type PointCloud, type RoomHero } from './types.ts';
 import { MOODS } from './grammar.ts';
-import { MOOD_ROOM_POINTS, MOOD_ROOM_SIZE, chooseMood, chosenMood, moodRoom } from './mood-choice.ts';
+import { MOOD_POINTS, MOOD_SIZE, chooseMood, chosenMood, moodFigures, moodPoints } from './mood-choice.ts';
 import './astral.css';
 
 const TUNNEL_FORM_SECONDS = 6;
@@ -238,21 +238,13 @@ export default function AstralRoom() {
       void prepareShelf();
       requestRoom(loadRoom, REHEARSAL_MIN_SECONDS);
     };
-    // The void's choice (mood-choice.ts): while no room exists, three small rooms wait round the eye, one for each mood, drawn as the
-    // menu's choices are; in the void `menu` is that choice. Each is its mood's base room, thinned and tinted with the mood's cast.
-    // shortcut: all three are the recorded library, loaded once more for this, until each mood has its own base room (step 7).
-    const moodView = createMenuView(menuArrangement(window.location.search), MOOD_ROOM_SIZE, MOOD_ROOM_POINTS);
+    // The void's choice (mood-choice.ts): while no room exists, three abstract figures of points wait round the eye, one for each
+    // mood, drawn as the menu's choices are; in the void `menu` is that choice.
+    // shortcut: whichever is picked, the room is the recorded library, until each mood has its own base room (step 7).
+    const moodView = createMenuView(menuArrangement(window.location.search), MOOD_SIZE, MOOD_POINTS);
     scene.add(moodView.object);
+    moodView.setChoices(MOODS.map(mood => moodPoints(mood, moodFigures(window.location.search))));
     const unrefused: ReadonlySet<number> = new Set();
-    let moodsMade = false, moodsAsked = false;
-    const makeMoods = () => {
-      if (moodsAsked) return;
-      moodsAsked = true;
-      loadRecordedRoomCloud(renderer, leaving.signal).then(
-        cloud => { moodView.setChoices(MOODS.map(mood => moodRoom(cloud, mood))); moodsMade = true; },
-        error => { if (!leaving.signal.aborted) console.error('[astral] the three moods cannot be shown; no room can be chosen.', error); },
-      );
-    };
     const pickMood = () => {
       const mood = menu && MOODS[menu.index];
       if (!mood) return;
@@ -479,8 +471,8 @@ export default function AstralRoom() {
       field.setInspect(inspect.hero);
       field.setStepBack(menu ? 1 : 0);
       menuView.update(stage === 'room' && menu ? { index: menu.index, refused } : null, time, dt, camera, eye.object.position);
-      // the void's choice is offered whenever the void has no room, as soon as the three small rooms are made
-      if (stage === 'void' && !menu && !chosenMood()) { if (moodsMade) menu = menuOpen(0, MOODS.length); else makeMoods(); }
+      // the void's choice is offered whenever the void has no room
+      if (stage === 'void' && !menu && !chosenMood()) menu = menuOpen(0, MOODS.length);
       moodView.update(stage === 'void' && menu ? { index: menu.index, refused: unrefused } : null, time, dt, camera, eye.object.position);
       field.update(time, dt, camera);
       splatView?.update(dt);

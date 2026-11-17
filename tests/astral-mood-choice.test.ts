@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { MOODS } from '../src/astral/grammar.ts';
-import { MOOD_CASTS, chooseMood, chosenMood, forgetMood, moodRoom } from '../src/astral/mood-choice.ts';
+import { MOOD_CASTS, MOOD_FIGURES, MOOD_POINTS, SHELL_KEPT, SHELL_OPEN, chooseMood, chosenMood, forgetMood, moodFigures, moodPoints } from '../src/astral/mood-choice.ts';
 
 /** A storage that holds one string, as localStorage would. */
 function store(initial: string | null = null) {
@@ -34,63 +34,50 @@ test('only a mood is stored, and a storage that fails remembers nothing without 
   assert.doesNotThrow(() => forgetMood(broken));
 });
 
-/** A room of `count` mid-grey points along x, each with a normal. */
-function room(count: number) {
-  const positions = new Float32Array(count * 3), colors = new Float32Array(count * 3).fill(0.5), normals = new Float32Array(count * 3);
-  for (let i = 0; i < count; i++) { positions[i * 3] = i; normals[i * 3 + 1] = 1; }
-  return { count, positions, colors, normals };
-}
-
-test('a small room is a thinned copy of its base room, taken evenly through it, and the base room is untouched', () => {
-  const base = room(1000), small = moodRoom(base, 'quiet', 100);
-  assert.equal(small.count, 100);
-  assert.equal(small.positions.length, 300);
-  const xs = Array.from({ length: small.count }, (_, i) => small.positions[i * 3]!);
-  assert.ok(xs.every((x, i) => Number.isInteger(x) && x >= 0 && x < 1000 && (i === 0 || x > xs[i - 1]!)), 'its points are the room\'s, in the room\'s order');
-  assert.ok(xs[0]! < 20 && xs[99]! > 980 && xs.every((x, i) => i === 0 || x - xs[i - 1]! < 20), 'from end to end, with no stretch left out');
-  assert.deepEqual([...small.normals!.subarray(0, 3)], [0, 1, 0]);
-  assert.ok(base.colors.every(value => value === 0.5));
-  // a room with fewer points than asked is not padded; one without normals gets none; none asked, or none there, is none
-  assert.ok(moodRoom(room(7), 'eerie', 100).count <= 7);
-  assert.equal(moodRoom({ count: 2, positions: new Float32Array(6), colors: new Float32Array(6) }, 'eerie').normals, undefined);
-  assert.equal(moodRoom(room(0), 'quiet').count, 0);
-  assert.equal(moodRoom(base, 'quiet', 0).count, 0);
-  assert.equal(moodRoom(base, 'quiet', -3).count, 0);
-});
-
-test('a small room leaves out the few far-flung points, and what lies behind the spot where the visitor arrives', () => {
-  // two points of a thousand lie far outside the rest: with them the room would be drawn a thousandth of its size
-  const stray = room(1000);
-  stray.positions[500 * 3] = 1e6; stray.positions[250 * 3 + 1] = -1e6;
-  const small = moodRoom(stray, 'uncanny', 1000);
-  assert.ok(small.count > 900);
-  assert.ok(small.positions.every(value => Math.abs(value) < 1000));
-  // arriving at x 500 and looking along +x: the room from a metre behind that spot onward
-  const ahead = moodRoom({ ...room(1000), arrival: { position: [500, 0, 0], lookAt: [506, 0, 0] } }, 'uncanny', 1000);
-  const xs = Array.from({ length: ahead.count }, (_, i) => ahead.positions[i * 3]!);
-  assert.ok(ahead.count > 450 && xs.every(x => x > 499), `${ahead.count} points from ${Math.min(...xs)}`);
-  // looking the other way, the other half
-  const back = moodRoom({ ...room(1000), arrival: { position: [500, 0, 0], lookAt: [400, 0, 0] } }, 'uncanny', 1000);
-  assert.ok(back.count > 450 && back.positions.every((x, i) => i % 3 !== 0 || x < 501));
-});
-
-test('each mood tints the same room with its own cast, and a point stays as bright as it was', () => {
-  const light = (c: ArrayLike<number>) => 0.2126 * c[0]! + 0.7152 * c[1]! + 0.0722 * c[2]!;
-  const tints = MOODS.map(mood => [...moodRoom(room(10), mood).colors.subarray(0, 3)]);
-  for (const tint of tints) assert.ok(Math.abs(light(tint) - 0.5) < 0.01, `brightness kept: ${tint}`);
-  const [quiet, uncanny, eerie] = tints as [number[], number[], number[]];
-  assert.ok(quiet[1]! > quiet[0]! && quiet[0]! > quiet[2]! + 0.15, `yellow-green: ${quiet}`);
-  assert.ok(uncanny[1]! > uncanny[0]! + 0.2 && uncanny[2]! > uncanny[0]! + 0.2, `teal: ${uncanny}`);
-  assert.ok(eerie[0]! > eerie[2]! && eerie[1]! > eerie[2]! && eerie[0]! - eerie[2]! < 0.15, `warm white with green in it: ${eerie}`);
-  // the three differ from one another by more than a shade
-  for (let a = 0; a < 3; a++) for (let b = a + 1; b < 3; b++)
-    assert.ok(Math.hypot(...tints[a]!.map((value, i) => value - tints[b]![i]!)) > 0.1, `${MOODS[a]} against ${MOODS[b]}`);
-  // black stays black, and nothing leaves 0..1
-  const lit = { count: 2, positions: new Float32Array(6), colors: Float32Array.from([0, 0, 0, 1, 1, 1]) };
-  for (const mood of MOODS) {
-    const colors = moodRoom(lit, mood).colors;
-    assert.deepEqual([...colors.subarray(0, 3)], [0, 0, 0]);
-    assert.ok(colors.every(value => value >= 0 && value <= 1));
+test('every mood has a figure in both sets: points in its cast, within reach of the view, with unit normals', () => {
+  for (const figures of MOOD_FIGURES) for (const mood of MOODS) {
+    const figure = moodPoints(mood, figures), cast = MOOD_CASTS[mood], what = `${figures} ${mood}`;
+    assert.ok(figure.count > 500 && figure.count <= MOOD_POINTS, `${what}: ${figure.count} points`);
+    assert.equal(figure.positions.length, figure.count * 3, what);
+    assert.equal(figure.colors.length, figure.count * 3, what);
+    assert.equal(figure.normals!.length, figure.count * 3, what);
+    assert.ok(figure.positions.every(value => Math.abs(value) <= 0.75), `${what}: about 1 across`);
+    for (let i = 0; i < figure.count; i++) {
+      const [r, g, b] = figure.colors.subarray(i * 3, i * 3 + 3) as unknown as [number, number, number], shade = r / cast[0];
+      assert.ok(shade > 0.3 && shade <= 1.0001 && Math.abs(g - cast[1] * shade) < 1e-5 && Math.abs(b - cast[2] * shade) < 1e-5, `${what}: its cast`);
+      assert.ok(Math.abs(Math.hypot(...figure.normals!.subarray(i * 3, i * 3 + 3)) - 1) < 1e-4, `${what}: a unit normal`);
+    }
   }
+});
+
+test('the three figures of a set are unlike one another, and those of the grid differ only in what the middle cube does', () => {
+  const size = (figure: { count: number; positions: Float32Array }, axis: number) => {
+    let low = Infinity, high = -Infinity;
+    for (let i = axis; i < figure.count * 3; i += 3) { low = Math.min(low, figure.positions[i]!); high = Math.max(high, figure.positions[i]!); }
+    return high - low;
+  };
+  const [floors, cubes, shell] = MOODS.map(mood => moodPoints(mood, 'forms')) as [ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>];
+  // a square figure is laid down an eighth of a turn round, so its box is as wide as it is from corner to corner
+  assert.ok(size(floors, 1) < 0.5 && Math.abs(size(floors, 0) - Math.SQRT2) < 0.05, 'quiet lies flat');
+  assert.ok(size(cubes, 1) > 0.95 && Math.abs(size(cubes, 0) - Math.SQRT2) < 0.05, 'uncanny stands as tall as its largest cube');
+  // the shell is round, and open on one side: nothing of it lies toward its opening
+  const open = [(SHELL_OPEN[0] + SHELL_OPEN[2]) * Math.SQRT1_2, SHELL_OPEN[1], (SHELL_OPEN[2] - SHELL_OPEN[0]) * Math.SQRT1_2];
+  assert.ok(shell.count > 3000 && shell.count < 5000, `eerie keeps about two thirds of its shell: ${shell.count}`);
+  for (let i = 0; i < shell.count * 3; i += 3) {
+    const [x, y, z] = shell.positions.subarray(i, i + 3) as unknown as [number, number, number];
+    assert.ok(Math.abs(Math.hypot(x, y, z) - 0.5) < 1e-4, 'round');
+    assert.ok(x * open[0]! + y * open[1]! + z * open[2]! < SHELL_KEPT / 2 + 1e-4, 'with an opening');
+  }
+  const [lifted, large, gone] = MOODS.map(mood => moodPoints(mood, 'grid')) as [ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>, ReturnType<typeof moodPoints>];
+  assert.ok(size(lifted, 1) > size(large, 1) && size(large, 1) > size(gone, 1) + 0.2, 'lifted, too large, gone');
+  assert.ok(gone.count < lifted.count && lifted.count < large.count);
+  for (const figure of [lifted, large, gone]) assert.ok(Math.abs(size(figure, 0) - 0.88 * Math.SQRT2) < 0.01, 'the eight cubes round it stand as they were');
+});
+
+test('the set of figures is read from the address, and anything else is the first', () => {
+  assert.equal(moodFigures(''), 'forms');
+  assert.equal(moodFigures('?moods=grid'), 'grid');
+  assert.equal(moodFigures('?menu=row&moods=forms'), 'forms');
+  assert.equal(moodFigures('?moods=rooms'), 'forms');
   assert.deepEqual(Object.keys(MOOD_CASTS), [...MOODS]);
 });
