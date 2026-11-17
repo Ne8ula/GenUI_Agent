@@ -107,7 +107,15 @@ Checked 2026-11-16 in a worktree made by `claude -w`: `npm run check` passed (32
 
 `index.html` loads `src/main.tsx`, which mounts `AstralRoom`. There is one page; the only interface drawn over the room is the inspection marks and the replacement menu, neither with words.
 
-Sequence: black void with the eye. Any key press or mouse movement counts as a visitor arriving and starts a spiral tunnel of points, which carries the viewer along it (at least 12 seconds). The room forms at the far end from the tunnel's own points. A 12 second arrival flight follows, then the visitor has control. After 45 seconds in the room with no input, the room disperses back into the void and waits for the next visitor.
+Sequence: black void with the eye. If no room exists, the void offers the three moods first (next paragraph). If one exists, any key press or mouse movement counts as a visitor arriving and starts a spiral tunnel of points, which carries the viewer along it (at least 12 seconds). The room forms at the far end from the tunnel's own points. A 12 second arrival flight follows, then the visitor has control. After 45 seconds in the room with no input, the room disperses back into the void and waits for the next visitor.
+
+**The void's choice (2026-11-17, `LIMINAL-GRAMMAR.md` step 6).** While no room exists, three small rooms of points wait round the eye in the void, one for each mood, with no words: quietly liminal, subtly uncanny, eerie absence, in that order. Nothing starts until one is picked.
+
+- **Whether a room exists** is `mood-choice.ts`: `chosenMood()`, `chooseMood(mood)`, `forgetMood()`. The mood is kept in the browser's storage (key `eva.astral.mood`) and read back as untrusted data: anything but a mood's name is no room. A marked shortcut, as the room's memory is: one machine, one browser profile, one address.
+- **Picking** uses the menu's keys and mouse: `A`/`D` or the arrow keys, or mouse travel, move between the three; `Enter`, `F` or a click picks. `Esc` does nothing (the choice opens again on the first mood). The pick stores the mood and starts the tunnel. **Until step 7 every mood's room is the recorded library**, and the console says so at each pick.
+- **A small room** (`moodRoom`) is a thinned copy of its mood's base room: the part ahead of the spot where the visitor arrives and a metre behind it, without the half percent of points at each end of each axis (the library's stray points reach 19 m out and would shrink the room to a sliver), at most 24,000 points, each as bright as it was and its colour taken 80% of the way to the mood's cast (`MOOD_CASTS`: yellow-green, teal, warm white with green in it). All of these are starting values.
+- **Drawn by the menu's own view**: a second `createMenuView`, which now takes a scale and a point count; the three rooms are drawn at 1.6 times a menu choice's size. The arrangement is the menu's switch, `?menu=ring|row|one`, and none is chosen. In the void the eye is left in its idle phase, not put in its thinking phase as the room's menu does.
+- **Nothing in this checkout forgets the mood.** `forgetMood()` is for the room's ending (a spent room dispersing, the owner's key), which is another session's step 5. Until that is merged, a room once chosen exists until the stored key is removed by hand.
 
 In the room, the keyboard and mouse stand in for the planned controller and camera:
 
@@ -138,7 +146,8 @@ The live route `/api/object` (below) makes a fresh model of one of the same six 
 
 | Input | Effect |
 |---|---|
-| Any key, or moving the mouse | From the void: start the tunnel and the recorded library |
+| Any key, or moving the mouse | From the void, when a room exists: start the tunnel and the recorded library |
+| In the void, when no room exists: `A` / `D`, arrow keys, or moving the mouse | Move between the three moods' small rooms. `Enter`, `F` or a click picks one and starts the tunnel. `?menu=ring\|row\|one` arranges them as it does the menu |
 | `W A S D` | Move. `Space` / `E` up, `Shift` / `Q` down |
 | Mouse left-right | Where the visitor stands: a window in the middle, turning near the edges |
 | `R` | In a room: throw its points into the recorded library again |
@@ -167,6 +176,7 @@ The live route `/api/object` (below) makes a fresh model of one of the same six 
 |---|---|
 | `AstralRoom.tsx` | Shell: renderer, stage sequence (void, tunnel, arriving, room, dissolving), keys, wiring |
 | `types.ts` | Shared contract: `PointCloud`, `RoomLights`, `RoomHero`, effects, lights, phases, `AstralReply`, `TUNNEL` |
+| `mood-choice.ts` | The void's choice, pure: which mood's room exists, kept in the browser's storage (`chosenMood`, `chooseMood`, `forgetMood`); each mood's cast and its small room for the void (`MOOD_CASTS`, `moodRoom`) |
 | `point-field.ts` | The GPU point renderer: tunnel cloud, tunnel-to-room arrival, seven effects, lighting moods (`MOODS`, `nextLighting`), hero highlight, the objects that replaced heroes (`replaceHero`). Largest file |
 | `flight.ts` | Key-driven flight, the side-to-side view (`sideView`, `setSide`), guided camera, arrival path |
 | `tease.ts` | EVA's unprompted lines and her refusals (`REFUSALS`): placeholder wording, when a tease is due, and the placeholder browser voice |
@@ -230,6 +240,20 @@ Checked on 2026-11-16 for the visitor's side of object replacement, in headless 
 
 Earlier measurements (2026-11-12, not repeated): 60 fps at 3440x1440 in headless Chrome on an RTX 5080 (headless caps at 60, so headroom is unknown). One live voice turn worked: Jev decision in 0.1 s, Opus reply in 2.4 s, spoken reply; EVA began speaking about 13 s after the visitor stopped.
 
+Checked on 2026-11-17 for the void's choice (`LIMINAL-GRAMMAR.md` step 6), in a worktree at the commit before steps 2 to 5, in headless Chrome at 1920x1080 against its dev server on temporary port 5199, default look: typecheck clean; 395 tests pass in 35 files, among them the stored mood (chosen, read back, forgotten, read as untrusted data, a storage that fails) and the small room (thinned evenly, stray points and what lies behind the arrival spot left out, each cast, brightness kept). `npm run build` succeeds. `.local/void-choice/capture.mjs` took one page through the path and checked each step against the console and the browser's storage:
+
+1. A first visitor finds no room; nine seconds later the three small rooms are round the eye and nothing has started (`ring-01-void`).
+2. Each mood selected in turn by `D` (`ring-02-quiet-selected`, `-03-uncanny-`, `-04-eerie-`); nothing starts and nothing is stored.
+3. Mouse travel of a 24th of the page's width moves one along (`ring-05`). `Esc` leaves the choice offered (`ring-06`).
+4. `Enter` on the third: `eerie` is stored, the console names the mood and says the room is a recording, the tunnel starts (`ring-07`).
+5. The page loaded again: a room exists, the void waits with no choice (`ring-08`), and moving the mouse starts the tunnel.
+6. With the stored mood removed by the script and the page loaded again, a click picks the selected mood (`quiet`).
+7. With `{"mood":"surreal"}` stored and the page loaded again, the choice is offered and mouse movement starts nothing (`ring-09`).
+
+The row and one arrangements were taken through steps 1 and 2 only (`row-*`, `one-*`). `room-menu.mjs` then arrived in the room with a mood stored, opened the replacement menu on the sky cube and picked the gramophone, to see that the room's own menu still works (`room-menu-open`, `room-menu-picked`). No console errors, page errors or failed requests in the runs kept. **The ring path was run seven times; the second run reported a failure whose line was not kept, and the five runs after it passed.** A guess, not checked: the script loaded the page again while the room's files were still arriving, which the browser reports as a failed request; the script now waits before that load, and the last run was with that wait.
+
+Not checked: any of it watched running or used by a person with a real mouse; the three rooms together with step 5's ending of a room, since `forgetMood()` has no caller in this checkout; the sand look; an ultrawide frame; frame time with the three rooms on screen; how long the first frame stalls when the library is thinned (3.8M points are read once); the built page; whether the casts and sizes are right, which is the owner's to say. No reviewer agent read this work.
+
 ## Known faults and open items
 
 Live path:
@@ -259,6 +283,16 @@ Object replacement:
 - In sand, an inspected hero comes out pure white (`menu-ring-sand`), and half-way through burn then fall the last leaving grains show as a dark smear with a black rim (`replace-sand-050`). Seen without inspection the arriving helmet reads as a helmet. Another session was retuning the sand look, in `sand-look.ts` and `point-field.ts`, throughout this work, so the sand captures show its state at that minute and the cause was not pursued.
 - The menu stays round the eye, and the eye wanders, so the choices sometimes lie over the hero being replaced. `eye.ts` was not changed for the menu: the eye is only put in its thinking phase. After choosing with the mouse, the side-to-side view goes to wherever the mouse now is.
 - The shelf objects are unlit texture colour in a room whose points carry its lighting: in the default look the gramophone's horn and the helmet come out brighter than anything else in the room.
+
+The void's choice:
+
+- **The three small rooms are one room three times**, the library tinted three ways, until step 7. What tells them apart is colour alone.
+- The library is read twice for a first visitor: once to make the small rooms, once more when the tunnel starts (the browser's cache answers the second). If it cannot be read, no choice is shown and no room can be chosen; the console says so.
+- A small room turns as a menu's object does, seen from 14 degrees above, so side-on it is a thin slab. Its ceiling is drawn (dim, as the far side of any choice is), and the heroes come out as white blobs because their points are four times as dense as the room's.
+- In the ring and the row at 1.6 times, the three rooms fit the frame's height only where the eye is above the middle; elsewhere they are moved in from the edge, so the eye is not at their centre. In `one`, the selected room is large enough to lie over the eye.
+- The eye's own marks and numerals are drawn among the rooms, and the eye in its idle phase sometimes leaves the frame for a second or two; the rooms then wait at that edge.
+- `Esc` puts the selection back on the first mood. After a pick with the mouse, the side-to-side view goes to wherever the mouse now is, as after the room's menu.
+- If the browser's storage refuses, the pick still starts the room, and the next void offers the three moods again.
 
 Display:
 

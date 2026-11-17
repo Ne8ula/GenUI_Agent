@@ -19,6 +19,8 @@ import { createSplatView, type SplatView } from './splat-view.ts';
 import { REFUSALS, SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.ts';
 import { createWater, type AstralWater } from './water.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralLight, type AstralPhase, type PointCloud, type RoomHero } from './types.ts';
+import { MOODS } from './grammar.ts';
+import { MOOD_ROOM_POINTS, MOOD_ROOM_SIZE, chooseMood, chosenMood, moodRoom } from './mood-choice.ts';
 import './astral.css';
 
 const TUNNEL_FORM_SECONDS = 6;
@@ -236,10 +238,32 @@ export default function AstralRoom() {
       void prepareShelf();
       requestRoom(loadRoom, REHEARSAL_MIN_SECONDS);
     };
-    /** Any input: someone is there. From the void that alone starts the tunnel. Returns whether it did. */
+    // The void's choice (mood-choice.ts): while no room exists, three small rooms wait round the eye, one for each mood, drawn as the
+    // menu's choices are; in the void `menu` is that choice. Each is its mood's base room, thinned and tinted with the mood's cast.
+    // shortcut: all three are the recorded library, loaded once more for this, until each mood has its own base room (step 7).
+    const moodView = createMenuView(menuArrangement(window.location.search), MOOD_ROOM_SIZE, MOOD_ROOM_POINTS);
+    scene.add(moodView.object);
+    const unrefused: ReadonlySet<number> = new Set();
+    let moodsMade = false, moodsAsked = false;
+    const makeMoods = () => {
+      if (moodsAsked) return;
+      moodsAsked = true;
+      loadRecordedRoomCloud(renderer, leaving.signal).then(
+        cloud => { moodView.setChoices(MOODS.map(mood => moodRoom(cloud, mood))); moodsMade = true; },
+        error => { if (!leaving.signal.aborted) console.error('[astral] the three moods cannot be shown; no room can be chosen.', error); },
+      );
+    };
+    const pickMood = () => {
+      const mood = menu && MOODS[menu.index];
+      if (!mood) return;
+      chooseMood(mood);
+      console.info(`[astral] mood chosen: "${mood}". Until step 7 every mood's room is the RECORDED library.`);
+      startRecorded();
+    };
+    /** Any input: someone is there. From the void that alone starts the tunnel, if a room exists. Returns whether it did. */
     const present = () => {
       lastInput = time;
-      if (stage !== 'void' || stopped) return false;
+      if (stage !== 'void' || stopped || !chosenMood()) return false;
       startRecorded();
       return true;
     };
@@ -327,7 +351,7 @@ export default function AstralRoom() {
         if (event.code === 'Escape') menu = null;
         else if (event.code === 'KeyA' || event.code === 'ArrowLeft') menu = menuStep(menu, -1);
         else if (event.code === 'KeyD' || event.code === 'ArrowRight') menu = menuStep(menu, 1);
-        else if ((event.code === 'Enter' || event.code === 'KeyF') && !event.repeat) pickMenu();
+        else if ((event.code === 'Enter' || event.code === 'KeyF') && !event.repeat) (stage === 'void' ? pickMood : pickMenu)();
         return;
       }
       if (event.code === 'Escape') {
@@ -368,6 +392,7 @@ export default function AstralRoom() {
       flight.setSide(side);
     };
     const onClick = () => {
+      if (stage === 'void' && menu) { lastInput = time; pickMood(); return; }
       if (present() || stage !== 'room') return;
       if (menu) pickMenu(); else openMenu();
     };
@@ -437,7 +462,7 @@ export default function AstralRoom() {
       }
 
       // while the menu is open the eye comes in front of the viewer, as it does to think, and the choices are shown round it
-      const eyePhase = devEyePhase ?? (time < unavailableUntil ? 'unavailable' : menu && phase === 'idle' ? 'thinking' : phase);
+      const eyePhase = devEyePhase ?? (time < unavailableUntil ? 'unavailable' : menu && stage === 'room' && phase === 'idle' ? 'thinking' : phase);
       eye.setPhase(eyePhase);
       eye.setStage(stage === 'dissolving' ? 'void' : stage);
       flight.update(time, dt);
@@ -453,7 +478,10 @@ export default function AstralRoom() {
         ? nextInspect(inspect, heroes, [p.x, p.y, p.z], [viewDirection.x, viewDirection.y, viewDirection.z], time) : INSPECT_NONE;
       field.setInspect(inspect.hero);
       field.setStepBack(menu ? 1 : 0);
-      menuView.update(menu && { index: menu.index, refused }, time, dt, camera, eye.object.position);
+      menuView.update(stage === 'room' && menu ? { index: menu.index, refused } : null, time, dt, camera, eye.object.position);
+      // the void's choice is offered whenever the void has no room, as soon as the three small rooms are made
+      if (stage === 'void' && !menu && !chosenMood()) { if (moodsMade) menu = menuOpen(0, MOODS.length); else makeMoods(); }
+      moodView.update(stage === 'void' && menu ? { index: menu.index, refused: unrefused } : null, time, dt, camera, eye.object.position);
       field.update(time, dt, camera);
       splatView?.update(dt);
       glow.setSceneDraw(splatView?.active ? splatView.drawLayers : null);
@@ -482,8 +510,9 @@ export default function AstralRoom() {
       window.removeEventListener('click', onClick);
       globalThis.speechSynthesis?.cancel();
       flight.dispose();
-      scene.remove(field.object, eye.object, menuView.object);
+      scene.remove(field.object, eye.object, menuView.object, moodView.object);
       menuView.dispose();
+      moodView.dispose();
       field.dispose();
       eye.dispose();
       splatView?.dispose();
