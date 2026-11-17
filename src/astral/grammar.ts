@@ -12,17 +12,23 @@ export type Surface = typeof SURFACES[number];
 export type Discrepancy = typeof DISCREPANCIES[number];
 export type Pose = typeof POSES[number];
 
-/** A thing of the shelf, as far as the grammar needs it. `height` is its true height in metres, `era` a year. */
-export interface Thing { id: string; height: number; surfaces: readonly Surface[]; kinds: readonly Kind[]; era: number; repeatable: boolean }
+/**
+ * A thing of the shelf, as far as the grammar needs it. `height` is its true height in metres, `era` a year.
+ * `wide` and `deep` are its model's width and depth against its height (1: as wide as it is tall), measured facing its front.
+ */
+export interface Thing { id: string; height: number; wide: number; deep: number; surfaces: readonly Surface[]; kinds: readonly Kind[]; era: number; repeatable: boolean }
 /**
  * What stands in a slot. `thing` null with discrepancy 'absence': it was taken away and its place shows.
  * `factor` is size against true size (1 unless the discrepancy is scale); `copies` is 1 unless it is repetition.
  */
 export interface Standing { thing: string | null; discrepancy: Discrepancy | null; pose: Pose; factor: number; copies: number }
-/** A place a thing can be. `clear` is its free width, height and depth in metres. */
+/** A place a thing can be. `clear` is its free width, height and depth in metres, the depth along the way a thing there faces. */
 export interface Slot { id: string; surface: Surface; anchor: boolean; clear: readonly [number, number, number]; holds: Standing | null }
-/** `deviation` is what the recording carries outside its slots; `ambiguity` is the mood's starting figure. */
-export interface BaseRoom { mood: Mood; kind: Kind; era: number; deviation: number; ambiguity: number; slots: readonly Slot[] }
+/**
+ * `deviation` is what the recording carries outside its slots; `ambiguity` is the mood's starting figure. `places` is how many
+ * places the room has, beside the slot picked, where a copy of a repeated thing can stand; a room that says nothing has none.
+ */
+export interface BaseRoom { mood: Mood; kind: Kind; era: number; deviation: number; ambiguity: number; slots: readonly Slot[]; places?: number }
 /** One change a visitor caused: what now stands in a slot. `at` is milliseconds since 1970, passed in. */
 export interface Change extends Standing { slot: string; seed: number; at: number }
 export interface Values { familiarity: number; deviation: number; ambiguity: number }

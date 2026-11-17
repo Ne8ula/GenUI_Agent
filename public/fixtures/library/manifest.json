@@ -27,7 +27,9 @@
         -2.44,
         2.32,
         -3.5
-      ]
+      ],
+      "slot": { "id": "clock", "surface": "wall", "anchor": false, "point": [-2.86, 1.625, -4.08], "normal": [1, 0, 0], "facing": [1, 0, 0],
+        "holds": { "thing": "melted-clock", "discrepancy": null, "pose": "rests", "factor": 1, "copies": 1 } }
     },
     {
       "name": "statue head",
@@ -40,7 +42,9 @@
         -1.941,
         1.082,
         -9.09
-      ]
+      ],
+      "slot": { "id": "statue-head", "surface": "floor", "anchor": false, "point": [-2.8095, 0.019, -9.73], "normal": [0, 1, 0], "facing": [0, 0, 1],
+        "holds": { "thing": "statue-head", "discrepancy": null, "pose": "rests", "factor": 1, "copies": 1 } }
     },
     {
       "name": "pool",
@@ -66,7 +70,9 @@
         2.222,
         2.841,
         -5.175
-      ]
+      ],
+      "slot": { "id": "sky-cube", "surface": "air", "anchor": false, "point": [1.793, 2.07, -5.61], "normal": [0, 1, 0], "facing": [0, 0, 1],
+        "holds": { "thing": "sky-cube", "discrepancy": null, "pose": "rests", "factor": 1, "copies": 1 } }
     },
     {
       "name": "spiral of books",
@@ -79,9 +85,32 @@
         4.525,
         2.465,
         -5.837
-      ]
+      ],
+      "slot": { "id": "books", "surface": "floor", "anchor": false, "point": [3.7805, 0, -6.562], "normal": [0, 1, 0], "facing": [0, 0, 1],
+        "holds": { "thing": "book-spiral", "discrepancy": null, "pose": "rests", "factor": 1, "copies": 1 } }
     }
   ],
+  "placesNote": "Where the copies of a repeated thing stand, in the order they are taken, beside the slot the visitor picked: against a bookshelf face, floating in the pool, on free carpet. Measured from points.bin on 2026-11-17 (.local/discrepancies/place-probe.mjs): each box is air with nothing of the recording's in it. The owner's to move.",
+  "places": [
+    { "min": [3.04, 0.2, -4.0], "max": [3.74, 2.0, -2.6],
+      "slot": { "id": "shelf-right", "surface": "wall", "anchor": false, "point": [3.74, 1.1, -3.3], "normal": [-1, 0, 0], "facing": [-1, 0, 0], "holds": null } },
+    { "min": [0.3, -0.03, -5.9], "max": [1.5, 1.6, -4.7], "pose": "sunk",
+      "slot": { "id": "water", "surface": "floor", "anchor": false, "point": [0.9, -0.03, -5.3], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } },
+    { "min": [-2.5, 0.058, -7.6], "max": [-1.3, 1.9, -6.4],
+      "slot": { "id": "carpet-left", "surface": "floor", "anchor": false, "point": [-1.9, 0.058, -7.0], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } },
+    { "min": [2.4, -0.038, -9.2], "max": [3.6, 1.9, -8.0],
+      "slot": { "id": "carpet-back", "surface": "floor", "anchor": false, "point": [3.0, -0.038, -8.6], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } },
+    { "min": [-3.98, 0.2, -8.0], "max": [-3.28, 2.0, -6.6],
+      "slot": { "id": "shelf-left", "surface": "wall", "anchor": false, "point": [-3.98, 1.1, -7.3], "normal": [1, 0, 0], "facing": [1, 0, 0], "holds": null } }
+  ],
+  "room": {
+    "note": "A development fixture, not a liminal room. Declared honestly (a melted clock, a sunk head, a hovering cube, a spiral of books, a pool indoors) it would be spent before the first pick. So each slot holds the recording's own thing plainly, the room carries a deviation of 25 outside its slots, and it names no anchor: its familiarity is 0 and its state reads unreadable. mood, kind, era and ambiguity are proposals. Each hero with a slot is a slot of the grammar (src/astral/grammar.ts); its box is the slot's clear volume; the pool has none.",
+    "mood": "quiet",
+    "kind": "office",
+    "era": 1990,
+    "deviation": 25,
+    "ambiguity": 70
+  },
   "frames": [
     {
       "image": "frame-00.jpg",

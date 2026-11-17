@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { Quaternion, Vector3, type WebGLRenderer } from 'three';
 import { loadRecordedRoomCloud } from '../src/astral/room-source.ts';
-import { coveredByEarlierFrame, depthNormal, isFlyingPixel, loadPosedFrames, unprojectPixel, validatePosedManifest, type DepthFrame, type PosedCamera } from '../src/astral/posed-frames.ts';
+import { baseRoom, coveredByEarlierFrame, depthNormal, isFlyingPixel, loadPosedFrames, unprojectPixel, validatePosedManifest, type DepthFrame, type PosedCamera } from '../src/astral/posed-frames.ts';
 
 const camera = (): PosedCamera => ({ intrinsics: { width: 9, height: 7, fx: 100, fy: 100, cx: 4, cy: 3 }, extrinsics: { coordinateSystem: 'rub', position: [0, 1.6, 0], quaternion: [0, 0, 0, 1] } });
 const plane = (): DepthFrame => ({ camera: camera(), depth: new Float32Array(63).fill(4), confidence: new Uint8ClampedArray(63 * 4).fill(255) });
@@ -91,6 +92,65 @@ test('hero boxes and optional splat filenames are validated without accepting ex
   for (const min of [[0, NaN, -6], [0, 3, -6], [0, 1]]) assert.throws(() => validatePosedManifest({ ...m, heroes: [{ ...hero, min }] }), /Invalid/);
   assert.throws(() => validatePosedManifest({ ...m, heroes: Array(17).fill(hero) }), /Invalid/);
   for (const splats of ['../room.spz', 'https://example.com/a.spz', '/room.spz', 'a\\b.spz']) assert.throws(() => validatePosedManifest({ ...m, splats }), /Invalid/);
+});
+
+test('a slot is validated: no repeated id, no clear volume with a side of nothing or less, its point inside, directions along an axis', () => {
+  const holds = { thing: 'sky-cube', discrepancy: null, pose: 'rests', factor: 1, copies: 1 };
+  const slot = { id: 'sky', surface: 'air', anchor: false, point: [1, 1, -5], normal: [0, 1, 0], facing: [0, 0, 1], holds };
+  const hero = { name: 'sky cube', min: [0, 1, -6], max: [2, 3, -4], slot };
+  const room = { mood: 'quiet', kind: 'office', era: 1990, deviation: 25, ambiguity: 70 };
+  const m = (heroes: unknown[], declared: unknown = room) => ({ ...manifest(), heroes, room: declared });
+  const other = { ...hero, name: 'other', slot: { ...slot, id: 'other', surface: 'wall', facing: [-1, 0, 0], holds: null } };
+  const good = validatePosedManifest(m([hero, other, { name: 'pool', min: [5, 0, 0], max: [6, 1, 1] }]));
+  assert.deepEqual(baseRoom(good), { ...room, slots: [
+    { id: 'sky', surface: 'air', anchor: false, clear: [2, 2, 2], holds },
+    { id: 'other', surface: 'wall', anchor: false, clear: [2, 2, 2], holds: null },
+  ], places: 0 });
+  // The room has as many places for a repeated thing's copies as the manifest lists.
+  assert.equal(baseRoom(validatePosedManifest({ ...m([hero]), places: [{ min: [3, 0, 0], max: [4, 1, 1], slot: { ...other.slot, point: [3.5, 0, 0.5] } }] }))!.places, 1);
+  // A thing facing along x has the box's z side as its width and its x side as its depth.
+  assert.deepEqual(baseRoom(validatePosedManifest(m([{ ...other, max: [3, 3, -4], slot: { ...other.slot, point: [1, 2, -5] } }])))!.slots[0].clear, [2, 2, 3]);
+  assert.equal(baseRoom(validatePosedManifest({ ...manifest(), heroes: [hero] })), null);
+
+  assert.throws(() => validatePosedManifest(m([hero, { ...other, slot: { ...other.slot, id: 'sky' } }])), /Invalid/, 'a repeated slot id');
+  for (const max of [[2, 1, -4], [2, 0.5, -4], [0, 3, -4]]) assert.throws(() => validatePosedManifest(m([{ ...hero, max }])), /Invalid/, `clear volume to ${max}`);
+  for (const change of [
+    { id: 'Sky' }, { id: '' }, { id: 7 }, { surface: 'shelf' }, { anchor: 'no' }, { point: [1, 0.9, -5] }, { point: [1, 1] }, { point: [1, NaN, -5] },
+    { normal: [0, 0.7, 0.7] }, { normal: [0, 0, 0] }, { normal: [1, 1, 0] }, { facing: [0, 1, 0] }, { facing: [0, 0, 2] }, { facing: 'north' },
+    { holds: undefined }, { holds: 'sky-cube' }, { holds: { ...holds, thing: '../x' } }, { holds: { ...holds, pose: 'floats' } }, { holds: { ...holds, discrepancy: 'absence' } },
+    { holds: { ...holds, factor: 4 } }, { holds: { ...holds, copies: 0 } },
+  ]) assert.throws(() => validatePosedManifest(m([{ ...hero, slot: { ...slot, ...change } }])), /Invalid/, JSON.stringify(change));
+  assert.throws(() => validatePosedManifest(m([{ ...hero, slot: null }])), /Invalid/);
+  // What the recording declares wrong is accepted: an absence, a wrong size.
+  for (const declared of [{ ...holds, thing: null, discrepancy: 'absence' }, { ...holds, discrepancy: 'scale', factor: 4 }, { ...holds, pose: 'sunk', discrepancy: 'displacement' }]) {
+    assert.deepEqual(baseRoom(validatePosedManifest(m([{ ...hero, slot: { ...slot, holds: declared } }])))!.slots[0].holds, declared);
+  }
+  for (const change of [{ mood: 'calm' }, { kind: 'library' }, { era: 1990.5 }, { era: 990 }, { deviation: 101 }, { deviation: '25' }, { ambiguity: -1 }, { ambiguity: undefined }]) {
+    assert.throws(() => validatePosedManifest(m([hero], { ...room, ...change })), /Invalid/, JSON.stringify(change));
+  }
+  assert.throws(() => validatePosedManifest(m([hero], null)), /Invalid/);
+});
+
+test('a place for a copy is a clear volume with a slot that holds nothing, an id no slot has, and a known pose', () => {
+  const slot = { id: 'water', surface: 'floor', anchor: false, point: [1, 0, 1], normal: [0, 1, 0], facing: [0, 0, 1], holds: null };
+  const place = { min: [0, 0, 0], max: [2, 1, 2], slot };
+  const hero = { name: 'sky cube', min: [0, 1, -6], max: [2, 3, -4], slot: { ...slot, id: 'sky', point: [1, 1, -5] } };
+  const m = (places: unknown) => ({ ...manifest(), heroes: [hero], places });
+  const good = validatePosedManifest(m([place, { ...place, pose: 'sunk', slot: { ...slot, id: 'shelf' } }]));
+  assert.deepEqual(good.places!.map(each => [each.slot.id, each.pose]), [['water', undefined], ['shelf', 'sunk']]);
+  for (const bad of ['water', [null], [{ ...place, slot: undefined }], [{ min: [0, 0, 0], max: [2, 1, 2] }], [{ ...place, max: [2, 0, 2] }], [{ ...place, pose: 'floats' }],
+    [{ ...place, slot: { ...slot, id: 'sky' } }], [place, place], [{ ...place, slot: { ...slot, point: [3, 0, 1] } }], [{ ...place, slot: { ...slot, anchor: true } }],
+    [{ ...place, slot: { ...slot, holds: { thing: 'globe', discrepancy: null, pose: 'rests', factor: 1, copies: 1 } } }], Array.from({ length: 17 }, (_, i) => ({ ...place, slot: { ...slot, id: `p${i}` } }))]) {
+    assert.throws(() => validatePosedManifest(m(bad)), /Invalid/, JSON.stringify(bad).slice(0, 120));
+  }
+  // The library's own: five places, none in a hero's box, the water's below the floor's level and sunk.
+  const library = validatePosedManifest(JSON.parse(readFileSync(new URL('../public/fixtures/library/manifest.json', import.meta.url), 'utf8')));
+  assert.deepEqual(library.places!.map(each => [each.slot.id, each.slot.surface, each.pose ?? 'rests']),
+    [['shelf-right', 'wall', 'rests'], ['water', 'floor', 'sunk'], ['carpet-left', 'floor', 'rests'], ['carpet-back', 'floor', 'rests'], ['shelf-left', 'wall', 'rests']]);
+  for (const each of library.places!) for (const box of library.heroes!) {
+    if (each.slot.id === 'water') continue;   // the pool's own box holds the water
+    assert.ok([0, 1, 2].some(axis => each.max[axis] <= box.min[axis] || each.min[axis] >= box.max[axis]), `${each.slot.id} is in the box of ${box.name}`);
+  }
 });
 
 test('recorded source defaults to library; the explicit surreal query selects the original fixture', async t => {

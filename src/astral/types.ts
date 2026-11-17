@@ -1,4 +1,5 @@
 import type { Camera, Object3D } from 'three';
+import type { BaseRoom, Pose, Standing, Surface } from './grammar.ts';
 
 // Shared contract of the astral room demo. Point-field look adapted from Gather 聚 / Wake 森 by DAO (be-of-dao.com).
 
@@ -25,6 +26,10 @@ export interface PointCloud {
   water?: RoomWater;
   /** The room's hero objects, each as an axis-aligned box in the cloud's world frame; the points inside a box are that hero. */
   heroes?: RoomHero[];
+  /** What the room is to the grammar (grammar.ts): its mood, kind and slots. Absent for a room that declares none; such a room keeps no ledger. */
+  base?: BaseRoom;
+  /** Where the copies of a repeated thing can stand, in the order they are taken. */
+  places?: RoomPlace[];
   /** Where the viewer arrives. Absent for the tunnel. */
   arrival?: { position: [number, number, number]; lookAt: [number, number, number] };
   /** True when `arrival` is the camera of the one picture the room was rebuilt from: what lies outside its view is the machine's guess. */
@@ -45,6 +50,35 @@ export interface RoomHero {
   max: [number, number, number];
   /** How many of the cloud's points fall inside the box; set by the room loader. */
   count?: number;
+  /** The place a thing can stand here (LIMINAL-GRAMMAR.md, Part 4); the box is then its clear volume. Absent where nothing can be put, as in a pool. */
+  slot?: RoomSlot;
+}
+
+/**
+ * A slot of a room. `point` is on its surface, inside the clear volume: a thing touches the surface there and is centred on it
+ * the other two ways (in the air, the point is under the thing). `normal` points out of the surface and `facing` is the level way
+ * a thing's front is turned; both lie along an axis. `holds` is what stands there in the recording.
+ */
+export interface RoomSlot {
+  id: string;
+  surface: Surface;
+  anchor: boolean;
+  point: [number, number, number];
+  normal: [number, number, number];
+  facing: [number, number, number];
+  holds: Standing | null;
+}
+
+/**
+ * A place of a room where a copy of a repeated thing can stand, beside the slot the visitor picked: free air over a surface, with
+ * nothing of the recording's in it. Its box is its clear volume and its `slot` says how a thing stands there, as a hero's does;
+ * `pose` is how (default rests: a thing put in water is `sunk`, which floats it).
+ */
+export interface RoomPlace {
+  min: [number, number, number];
+  max: [number, number, number];
+  slot: RoomSlot;
+  pose?: Pose;
 }
 
 /** Positions of a room's light sources, in the cloud's world frame. Points near them are the fittings themselves. */

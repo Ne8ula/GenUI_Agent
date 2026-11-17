@@ -8,7 +8,7 @@ import { hasLook } from './looks.ts';
 import {
   dealOrigins, dealSteps, finish, groupPoints, orderByKeySteps, slabKeySteps, tunnelOrder, tunnelOriginKeys, type Groups, type Steps, type TunnelOrder,
 } from './ribbons.ts';
-import { SAND_EARLY_VS, SAND_GRAIN_VS, SAND_JITTER_VS, SAND_PX_VS, SAND_UNIFORMS_VS, SWAP_NONE, SWAP_PAIRINGS, SWAP_VS, createSandPass, heroGrains, sandMaterial, swapNow, type SwapControl } from './sand-look.ts';
+import { SAND_EARLY_VS, SAND_GRAIN_VS, SAND_JITTER_VS, SAND_PX_VS, SAND_UNIFORMS_VS, SWAP_FLOOR, SWAP_NONE, SWAP_PAIRINGS, SWAP_VS, createSandPass, moveUniforms, sandMaterial, swapNow, type SwapControl } from './sand-look.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralEffect, type AstralLight, type PointCloud, type PointField } from './types.ts';
 
 const POINT_METRES = 0.003;       // a tunnel grain's size; on screen it shrinks with distance and, below a pixel, dims instead
@@ -835,6 +835,7 @@ export function createPointField(): PointField & SwapControl {
   // an object change in progress, in any look (sand-look.ts)
   u.uSwap = { value: [-1, 0, 0, 0] }; u.uSwapStyle = { value: [0, 0, 0] };
   u.uHeroOut = { value: new Array(MAX_HEROES).fill(0) }; u.uStepBack = { value: 0 };
+  for (const [name, value] of Object.entries(moveUniforms())) u[name] = { value };   // how an arriving thing gets into its pose
   let swap = SWAP_NONE, stepBack = 0;
   // An object that replaced a hero stands beside the room's own grains as grains of its own (attribute aObj), drawn by the same two
   // passes. The room's buffers are never rebuilt for it, so every other grain keeps its place and its index, which its size, its
@@ -842,11 +843,29 @@ export function createPointField(): PointField & SwapControl {
   // shortcut: the next kick still throws the room from the homes it was set with, the replaced hero among them; rebuild `prev` in replaceHero if a kick must start from the changed room.
   type Stand = { hero: number; points: Points; solid: Points; obj: BufferAttribute };
   let stands: Stand[] = [], leaver: Stand | null = null;
+  // The floor of a replaced hero's slot (layFloor): a cloud of its own, laid once and left alone. No change moves it, takes it
+  // away or brings it, so whatever stands, sinks or is swapped there, the carpet under it stays as it is.
+  let floors: Stand[] = [];
   const dropStand = (s: Stand) => { object.remove(s.points); s.solid.removeFromParent(); s.points.geometry.dispose(); };
-  /** A new room, or none: no replacement objects, no hero's grains gone, nothing changing. */
+  /** Grains of their own beside the room's, drawn by the room's two passes; `mark` is what the change shader knows them by (aObj). */
+  const standOf = (hero: number, grains: PointCloud, mark: number): Stand => {
+    const g = new BufferGeometry(), obj = new BufferAttribute(new Float32Array(grains.count).fill(mark), 1), n = grains.count * 3;
+    g.setAttribute('position', new BufferAttribute(grains.positions.slice(0, n), 3));
+    g.setAttribute('aCol', new BufferAttribute(grains.colors.slice(0, n), 3));
+    g.setAttribute('aNorm', new BufferAttribute(grains.normals!.slice(0, n), 3));
+    g.setAttribute('aObj', obj);
+    const stand = new Points(g, pointsMat), standSolid = new Points(g, solidMat);
+    for (const o of [stand, standSolid]) { o.frustumCulled = false; o.onBeforeRender = sizeFromRenderer; }
+    stand.renderOrder = 1; standSolid.visible = !!solid?.visible;
+    // as the room's own passes: the settled grains with the solid pass, or in sand under the grains its pass counts
+    (sandPass && solid ? solid : stand).add(standSolid);
+    object.add(stand);
+    return { hero, points: stand, solid: standSolid, obj };
+  };
+  /** A new room, or none: no replacement objects, no laid floors, no hero's grains gone, nothing changing. */
   const dropStands = () => {
-    for (const s of leaver ? [...stands, leaver] : stands) dropStand(s);
-    stands = []; leaver = null; swap = SWAP_NONE;
+    for (const s of [...stands, ...floors, ...(leaver ? [leaver] : [])]) dropStand(s);
+    stands = []; floors = []; leaver = null; swap = SWAP_NONE;
     (u.uHeroOut!.value as number[]).fill(0);
   };
   // one grain each, drawing nothing: the void compiles the field's shaders, so the first tunnel does not wait on them
@@ -1090,14 +1109,16 @@ export function createPointField(): PointField & SwapControl {
       u.uStepBack!.value = (u.uStepBack!.value as number) + (stepBack - (u.uStepBack!.value as number)) * ki;
       // a change that has run its course is over: what left is gone for good
       if (swap.hero >= 0 && swapNow(swap, time)[0] < 0) { swap = SWAP_NONE; if (leaver) { dropStand(leaver); leaver = null; } }
-      u.uSwap!.value = [...swapNow(swap, time), 1];   // in both looks a changing grain stays in the settled pass: additive, a dense hero's grains pile up into a white blob
+      const [swHero, swPair, swSeconds, swMove] = swapNow(swap, time);
+      u.uSwap!.value = [swHero, swPair, swSeconds, 1];   // in both looks a changing grain stays in the settled pass: additive, a dense hero's grains pile up into a white blob
+      (u.uSwapMove!.value as number[])[0] = swMove;
 
       // a lit room settles into the solid pass; any effect hands it back to the additive one first
       const still = (u.uBaked!.value as number) > 0.5 && fxTarget.every(t => t === 0) && fxX.every(x => x < 0.01);
       const sv = u.uSolid!.value as number, st = still ? 1 : 0, sk = 1 - Math.exp(-dt / SOLID_EASE);
       u.uSolid!.value = Math.abs(st - sv) < 1e-3 ? st : sv + (st - sv) * sk;
       if (solid) solid.visible = (u.uSolid!.value as number) > 0.001;
-      for (const s of leaver ? [...stands, leaver] : stands) s.solid.visible = !!solid?.visible;
+      for (const s of [...stands, ...floors, ...(leaver ? [leaver] : [])]) s.solid.visible = !!solid?.visible;
 
       // lighting eases toward the mood; the ceiling drifts slowly, fitting by fitting, and now and then one tube stutters
       const mood = MOODS[lighting.mood], k = 1 - Math.exp(-dt / LIGHT_EASE);
@@ -1138,34 +1159,38 @@ export function createPointField(): PointField & SwapControl {
     // shortcut: a change started during another cuts the first short (what was leaving vanishes, what was arriving is there at once);
     // the caller keeps a visitor from starting one meanwhile. Ease between them if that ever has to be allowed.
     // shortcut: the hero's box is the one the room was set with; a changed room that moves or resizes it is not followed until the room is set again.
-    replaceHero(hero, room, pairing, progress) {
+    replaceHero(hero, grains, pairing, progress, move = null) {
       const style = SWAP_PAIRINGS[pairing], out = u.uHeroOut!.value as number[];
       if (!style || !points || !solid || !Number.isInteger(hero) || hero < 0 || hero >= (u.uHeroN!.value as number)
-        || !(progress === null || (progress >= 0 && progress <= 1)) || jobs.some(job => job.build)) return false;
-      const grains = heroGrains(room, hero);
-      if (!grains) return false;
+        || !(progress === null || (progress >= 0 && progress <= 1)) || jobs.some(job => job.build) || !grains.normals) return false;
       if (leaver) dropStand(leaver);
       // what stands there now leaves: the object from the last change, else the room's own grains
       leaver = stands.find(s => s.hero === hero) ?? null;
       stands = stands.filter(s => s !== leaver);
+      if (leaver && move?.carried) { dropStand(leaver); leaver = null; }   // the same thing, carried into its new pose: nothing leaves
       if (leaver) { (leaver.obj.array as Float32Array).fill(-(hero + 1)); leaver.obj.needsUpdate = true; }
+      for (const [name, value] of Object.entries(moveUniforms(move))) u[name]!.value = value;
       u.uSwapStyle!.value = [style.away, style.back, leaver || out[hero] ? 0 : 1];
       out[hero] = 1;
       if (grains.count > 0) {
-        const g = new BufferGeometry(), obj = new BufferAttribute(new Float32Array(grains.count).fill(hero + 1), 1);
-        g.setAttribute('position', new BufferAttribute(grains.positions, 3));
-        g.setAttribute('aCol', new BufferAttribute(grains.colors, 3));
-        g.setAttribute('aNorm', new BufferAttribute(grains.normals, 3));
-        g.setAttribute('aObj', obj);
-        const stand = new Points(g, pointsMat), standSolid = new Points(g, solidMat);
-        for (const o of [stand, standSolid]) { o.frustumCulled = false; o.onBeforeRender = sizeFromRenderer; }
-        stand.renderOrder = 1; standSolid.visible = solid.visible;
-        // as the room's own passes: the settled grains with the solid pass, or in sand under the grains its pass counts
-        (sandPass ? solid : stand).add(standSolid);
-        object.add(stand);
-        stands.push({ hero, points: stand, solid: standSolid, obj });
+        const stand = standOf(hero, grains, hero + 1), n = grains.count * 3;
+        // the middle each grain's change is drawn about: its own part's, or the hero's box's
+        const lo = u.uHeroMin!.value as number[], hi = u.uHeroMax!.value as number[], mids = new Float32Array(n);
+        let at = 0;
+        for (const part of grains.parts ?? [{ count: grains.count, mid: [0, 1, 2].map(axis => (lo[hero * 3 + axis]! + hi[hero * 3 + axis]!) / 2) }]) {
+          for (let i = 0; i < part.count && at < n; i++, at += 3) mids.set(part.mid, at);
+        }
+        stand.points.geometry.setAttribute('aMid', new BufferAttribute(mids, 3));
+        stands.push(stand);
       }
-      swap = { hero, pairing, progress, at: clock };
+      swap = { hero, pairing, progress, at: clock, move };
+      return true;
+    },
+
+    layFloor(hero, floor) {
+      if (!points || !solid || !floor.normals || !floor.count || !Number.isInteger(hero) || hero < 0 || hero >= (u.uHeroN!.value as number)
+        || floors.some(s => s.hero === hero)) return false;
+      floors.push(standOf(hero, floor, SWAP_FLOOR));
       return true;
     },
 

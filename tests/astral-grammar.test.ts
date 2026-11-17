@@ -6,7 +6,7 @@ import type { BaseRoom, Change, Discrepancy, Kind, Pose, Slot, Standing, Surface
 // ---- Examples for these tests only. Nothing here is a recorded room or the real shelf.
 
 const thing = (id: string, height: number, surfaces: Surface[], kinds: Kind[], era: number, repeatable = false): Thing =>
-  ({ id, height, surfaces, kinds, era, repeatable });
+  ({ id, height, wide: 1, deep: 1, surfaces, kinds, era, repeatable });
 
 const SHELF: Thing[] = [
   thing('desk', 0.75, ['floor'], ['office'], 1990),

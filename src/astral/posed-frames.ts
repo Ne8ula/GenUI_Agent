@@ -1,15 +1,43 @@
 import { FloatType, Quaternion, RedFormat, Vector3 } from 'three';
 import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
-import type { PointCloud, RoomHero, RoomWater } from './types.ts';
+import { KINDS, MOODS, POSES, SURFACES, parseLedger, type BaseRoom, type Thing } from './grammar.ts';
+import type { PointCloud, RoomHero, RoomPlace, RoomWater } from './types.ts';
 
 export type PosedCamera = {
   intrinsics: { width: number; height: number; fx: number; fy: number; cx: number; cy: number };
   extrinsics: { coordinateSystem: 'rub'; position: [number, number, number]; quaternion: [number, number, number, number] };
 };
-export type PosedManifest = { frames: { image: string; depth: string; confidence: string; source: 'picture' | 'generated'; camera: PosedCamera }[]; heroes?: RoomHero[]; splats?: string; points?: string; water?: RoomWater };
+export type PosedManifest = { frames: { image: string; depth: string; confidence: string; source: 'picture' | 'generated'; camera: PosedCamera }[]; heroes?: RoomHero[]; places?: RoomPlace[]; splats?: string; points?: string; water?: RoomWater;
+  /** What the room is to the grammar (LIMINAL-GRAMMAR.md, Part 4); its slots are the heroes that have one. */
+  room?: Omit<BaseRoom, 'slots' | 'places'> };
 export type DepthFrame = { camera: PosedCamera; depth: Float32Array; confidence: Uint8ClampedArray; kept?: Uint8Array };
 export const MIN_CONFIDENCE = 128;
 const surfaceTolerance = (depth: number) => 0.02 + 0.0125 * depth;
+
+const among = (list: readonly unknown[], value: unknown) => list.includes(value);
+const isId = (value: unknown): value is string => typeof value === 'string' && /^[a-z0-9-]{1,40}$/.test(value);
+/** One of the six directions along an axis. */
+const alongAxis = (value: unknown) => Array.isArray(value) && value.length === 3 && value.every(number => number === 0 || number === 1 || number === -1) && value.filter(Boolean).length === 1;
+/** What a slot holds in the recording, read by the ledger's own rules (grammar.ts): a known discrepancy and pose, numbers in range, an absence exactly where no thing is. */
+function stands(holds: unknown, slot: string): boolean {
+  if (typeof holds !== 'object' || holds === null) return false;
+  const thing = (holds as { thing?: unknown }).thing;
+  if (thing !== null && !isId(thing)) return false;
+  return parseLedger([{ ...holds, slot, seed: 0, at: 0 }], { slots: [{ id: slot }] } as unknown as BaseRoom, thing === null ? [] : [{ id: thing } as Thing]).length === 1;
+}
+
+/** The manifest as the grammar's base room: each hero that is a slot, its box the clear volume. Null when the manifest declares no room. */
+export function baseRoom(manifest: PosedManifest): BaseRoom | null {
+  if (!manifest.room) return null;
+  const { mood, kind, era, deviation, ambiguity } = manifest.room;
+  const slots = (manifest.heroes ?? []).flatMap(({ min, max, slot }) => {
+    if (!slot) return [];
+    const [x, y, z] = [0, 1, 2].map(axis => max[axis]! - min[axis]!) as [number, number, number];
+    // width is across the way a thing there faces, depth along it
+    return [{ id: slot.id, surface: slot.surface, anchor: slot.anchor, clear: slot.facing[0] ? [z, y, x] as const : [x, y, z] as const, holds: slot.holds }];
+  });
+  return { mood, kind, era, deviation, ambiguity, slots, places: manifest.places?.length ?? 0 };
+}
 
 export function validatePosedManifest(value: unknown): PosedManifest {
   const fail = (): never => { throw new Error('Invalid posed-frame manifest.'); };
@@ -35,13 +63,39 @@ export function validatePosedManifest(value: unknown): PosedManifest {
   if (pixels > 16_777_216) return fail();
   if ('splats' in value && !filename(value.splats)) return fail();
   if ('points' in value && !filename(value.points)) return fail();
+  const slots = new Set<string>();
+  /** A box with a side to every way, and (if it has one) a slot whose id is new and whose point is in the box. */
+  const boxed = (entry: any): boolean => {
+    if (!entry) return false;
+    for (const vector of [entry.min, entry.max]) if (!Array.isArray(vector) || vector.length !== 3 || !vector.every(Number.isFinite)) return false;
+    // also: a slot's clear volume has no side of nothing or less
+    if (entry.min.some((number: number, axis: number) => number >= entry.max[axis])) return false;
+    if (!('slot' in entry)) return true;
+    const slot = entry.slot;
+    if (!slot || !isId(slot.id) || slots.has(slot.id) || !among(SURFACES, slot.surface) || typeof slot.anchor !== 'boolean'
+      || !alongAxis(slot.normal) || !alongAxis(slot.facing) || slot.facing[1] !== 0
+      || !Array.isArray(slot.point) || slot.point.length !== 3 || !slot.point.every((number: unknown, axis: number) => typeof number === 'number' && number >= entry.min[axis] && number <= entry.max[axis])
+      || !(slot.holds === null || stands(slot.holds, slot.id))) return false;
+    slots.add(slot.id);
+    return true;
+  };
   if ('heroes' in value) {
     if (!Array.isArray(value.heroes) || value.heroes.length > 16) return fail();
     for (const hero of value.heroes) {
-      if (!hero || typeof hero.name !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9 '_-]{0,63}$/.test(hero.name)) return fail();
-      for (const vector of [hero.min, hero.max]) if (!Array.isArray(vector) || vector.length !== 3 || !vector.every(Number.isFinite)) return fail();
-      if (hero.min.some((number: number, axis: number) => number >= hero.max[axis])) return fail();
+      if (!hero || typeof hero.name !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9 '_-]{0,63}$/.test(hero.name) || !boxed(hero)) return fail();
     }
+  }
+  // Places for the copies of a repeated thing: each a clear volume with a slot that holds nothing, and the pose a thing takes there.
+  if ('places' in value) {
+    if (!Array.isArray(value.places) || value.places.length > 16) return fail();
+    for (const place of value.places) {
+      if (!boxed(place) || !place.slot || place.slot.holds !== null || place.slot.anchor !== false || !('pose' in place ? among(POSES, place.pose) : true)) return fail();
+    }
+  }
+  if ('room' in value) {
+    const room = value.room as Record<string, unknown> | null;
+    if (!room || !among(MOODS, room.mood) || !among(KINDS, room.kind) || !Number.isInteger(room.era) || (room.era as number) < 1800 || (room.era as number) > 2100
+      || ![room.deviation, room.ambiguity].every(number => typeof number === 'number' && number >= 0 && number <= 100)) return fail();
   }
   if ('water' in value) {
     const water = value.water as RoomWater;

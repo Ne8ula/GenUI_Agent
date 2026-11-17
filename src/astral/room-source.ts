@@ -2,7 +2,7 @@ import { Box3, Group, Mesh, Texture, Vector3, type Material, type Object3D, type
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { CONSTRUCTION_FIXTURE_BASE, validateConstructionManifest } from '../room/construction-fixture.ts';
 import { sampleSurfacePointCloud } from './surface-sampler.ts';
-import { loadPosedFrames, validatePosedManifest } from './posed-frames.ts';
+import { baseRoom, loadPosedFrames, validatePosedManifest } from './posed-frames.ts';
 import type { PointCloud, RoomLights } from './types.ts';
 
 export async function loadRecordedRoomCloud(_renderer: WebGLRenderer, signal: AbortSignal): Promise<PointCloud> {
@@ -33,6 +33,8 @@ export async function loadRecordedRoomCloud(_renderer: WebGLRenderer, signal: Ab
     };
     const cloud = await load();
     cloud.pictured = true;   // all three arrive at the picture's own camera (the manifest's first frame)
+    cloud.places = manifest.places;
+    cloud.base = baseRoom(manifest) ?? undefined;
     return cloud;
   }
   const started = performance.now();

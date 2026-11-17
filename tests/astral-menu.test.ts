@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
-  MENU_ARRANGEMENTS, MENU_REFUSED, MENU_STEP, menuArrangement, menuDrag, menuLayout, menuOpen, menuStep, menuTurn, refusedPoints,
+  MENU_ARRANGEMENTS, MENU_NOTHING, MENU_REFUSED, MENU_STEP, entryPoints, menuArrangement, menuDrag, menuLayout, menuOpen, menuStep, menuTurn,
 } from '../src/astral/menu.ts';
 
 test('?menu= picks one of the arrangements, and anything else is the ring', () => {
@@ -75,10 +75,10 @@ test('ring turns the selected choice to below the eye; row keeps its places; one
   assert.ok(one[1]!.x < 0 && one[2]!.x === 0 && one[3]!.x > 0);
 });
 
-test('each entry EVA refuses has points of its own to show', () => {
-  for (const id of MENU_REFUSED) {
-    const points = refusedPoints(id);
-    assert.ok(points.count > 500, id);
+test('each entry that is no object, "nothing" and the ones EVA refuses, has points of its own to show', () => {
+  for (const id of [MENU_NOTHING, ...MENU_REFUSED] as const) {
+    const points = entryPoints(id);
+    assert.ok(points.count > (id === MENU_NOTHING ? 200 : 500), id);
     assert.equal(points.positions.length, points.count * 3);
     assert.equal(points.colors.length, points.count * 3);
     assert.ok(points.positions.every(Number.isFinite) && points.colors.every(value => value >= 0 && value <= 1), id);

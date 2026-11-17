@@ -15,7 +15,10 @@ import {
   AddEquation, AlwaysDepth, BufferAttribute, BufferGeometry, CustomBlending, DepthTexture, GLSL3, HalfFloatType, Mesh, NearestFilter, NoBlending,
   OneFactor, OneMinusSrcColorFactor, ShaderMaterial, Vector2, WebGLRenderTarget, type Points,
 } from 'three';
+import { POSES, type Pose } from './grammar.ts';
+import { COPIES_MAX, COPIES_MIN, SCALE_FACTORS, type arrivalOf } from './grammar-decide.ts';
 import { boxDistance, type Box, type Vec3 } from './inspect.ts';
+import { POSE_OTHER } from './object-points.ts';
 import type { PointCloud } from './types.ts';
 
 // Sand. Pixel figures are at 1080 lines and scale with the render height. Tune exposure first (the whole picture), then SAND_FULL
@@ -55,44 +58,109 @@ export const SWAP_PAIRINGS = [
   { name: 'glitch, morph', away: 5, back: 2 },
 ] as const;
 
-/** One object change: which hero, which pairing, and either running since `at` (progress null) or held at `progress`. */
-export interface Swap { readonly hero: number; readonly pairing: number; readonly progress: number | null; readonly at: number }
+// The arrivals (LIMINAL-GRAMMAR.md, the pose table). 'assembles' is the pairing alone. In the others the thing assembles by the
+// pairing where its move starts from, then moves into its pose. Seconds and curves are starting values, to tune from the running page.
+export type Arrival = ReturnType<typeof arrivalOf>;
+const MOVES: Record<Arrival, { seconds: number; drop: boolean; whole: boolean } | null> = {
+  assembles: null,
+  rises: { seconds: 3, drop: false, whole: false },         // eases up from where it would rest
+  falls: { seconds: 0.9, drop: true, whole: false },        // drops from its hover, lands, rebounds once
+  'pushes-up': { seconds: 4, drop: false, whole: true },    // comes whole through the surface, cut off at it, while the old thing leaves
+  tips: { seconds: 1.4, drop: true, whole: false },         // stands upright, then falls into its lean
+  turns: { seconds: 3, drop: false, whole: false },         // faces the room, then turns away
+};
+const MOVE_AT = 0.9;            // a move starts when this share of the pairing has run: the last grains land as the thing sets off
+const PUSH_AT = 0.3;            // and a thing that comes whole starts at this share, as the old thing goes
+const MOVE_LOOSE = 0.5;         // 'grains': the share of a move between the first grain setting off and the last
+const DROP_LANDS = 0.62;        // a drop: the share of the move at which it lands; the rest is one rebound,
+const DROP_REBOUND = 0.05;      // this share of the way back up
+
+/**
+ * How an arriving thing gets into its pose (object-points.ts works it out). Its grains are where it ends. When the move starts the
+ * thing is turned by `angle` radians about `axis` through `centre`, and shifted by `offset` metres; the move undoes both.
+ */
+export interface Move {
+  readonly arrival: Arrival;
+  readonly centre: Vec3; readonly axis: Vec3; readonly angle: number; readonly offset: Vec3;
+  /** The surface a sunk thing is cut off at while it changes: an arriving grain with dot(xyz, its place) under w is not drawn. */
+  readonly cut: readonly [number, number, number, number] | null;
+  /** A variant, not chosen: each grain makes the move at its own moment, instead of the thing as one body. */
+  readonly loose?: boolean;
+  /** What stood there is this same thing (a hover put right): nothing leaves and nothing assembles, it only moves. */
+  readonly carried?: boolean;
+}
+
+/** A change's parts in seconds: the pairing (old thing leaving, new assembling), when the move starts, how long it takes, and all of it. */
+export function swapTimes(move?: Move | null): { pair: number; from: number; move: number; total: number } {
+  const how = move ? MOVES[move.arrival] : null;
+  if (!how) return { pair: SWAP_SECONDS, from: 0, move: 0, total: SWAP_SECONDS };
+  const pair = move!.carried ? 0 : SWAP_SECONDS, from = pair * (how.whole ? PUSH_AT : MOVE_AT);
+  return { pair, from, move: how.seconds, total: Math.max(pair, from + how.seconds) };
+}
+
+/** The shader's uniforms for a move, by name; with none, a move that changes nothing. uSwapMove's first figure is the frame's (swapNow). */
+export function moveUniforms(move?: Move | null): Record<'uSwapMove' | 'uSwapFrom' | 'uSwapTurn' | 'uSwapMid' | 'uSwapCut', number[]> {
+  const how = move ? MOVES[move.arrival] : null;
+  if (!move || !how) return { uSwapMove: [1, 0, 0, 0], uSwapFrom: [0, 0, 0], uSwapTurn: [0, 1, 0, 0], uSwapMid: [0, 0, 0], uSwapCut: [0, 0, 0, -1] };
+  return {
+    uSwapMove: [0, how.drop ? 1 : 0, move.loose ? MOVE_LOOSE : 0, how.whole || move.carried ? 1 : 0],
+    uSwapFrom: [...move.offset], uSwapTurn: [...move.axis, move.angle], uSwapMid: [...move.centre], uSwapCut: [...(move.cut ?? [0, 0, 0, -1])],
+  };
+}
+
+/** One object change: which hero, which pairing, how the new thing gets into its pose, and either running since `at` (progress null) or held at `progress`. */
+export interface Swap { readonly hero: number; readonly pairing: number; readonly progress: number | null; readonly at: number; readonly move?: Move | null }
 export const SWAP_NONE: Swap = Object.freeze({ hero: -1, pairing: 0, progress: null, at: 0 });
+/** What a laid floor's grains are marked with (aObj): an object of no hero, so no change is ever theirs and a replaced hero's box does not take them. */
+export const SWAP_FLOOR = 255;
+
+/**
+ * What stands for a hero after a change: the grains of a thing, or of several copies of it in several places of the room, or the
+ * floor an absent thing leaves. `parts`: where it is more than one thing, how many of its grains each is, in order, and the
+ * middle each one's change is drawn about (absent: the hero's box's own, for all of it).
+ */
+export type Stood = PointCloud & { parts?: readonly { count: number; mid: Vec3 }[] };
 
 /** What createPointField adds to PointField for the change. */
 export interface SwapControl {
   /**
-   * Hero `hero` is replaced. `room` is the room after the change (object-points.ts's replaceHero): the grains it has in that hero's
-   * box are the new object. What stands in the box now leaves by SWAP_PAIRINGS[pairing] and they arrive, from now over SWAP_SECONDS
-   * (progress null) or held at `progress` 0..1. Every other grain is left exactly as it is. False, and nothing changes, when any of
-   * it is invalid or a new room is on its way.
+   * Hero `hero` is replaced by `object`, whose grains may stand anywhere in the room. What stands for that hero now leaves by
+   * SWAP_PAIRINGS[pairing] and they arrive, then make `move` into their pose, from now over swapTimes(move).total seconds
+   * (progress null) or held at `progress` 0..1 of that. Every other grain is left exactly as it is. False, and nothing changes,
+   * when any of it is invalid or a new room is on its way.
    */
-  replaceHero(hero: number, room: PointCloud, pairing: number, progress: number | null): boolean;
+  replaceHero(hero: number, object: Stood, pairing: number, progress: number | null, move?: Move | null): boolean;
+  /**
+   * The floor of hero `hero`'s slot, as a cloud of its own: laid at once and left alone until the room is set again. No change
+   * takes it away, brings it or moves it, whatever stands or sinks there. False, and nothing changes, when that hero already has
+   * one, when the floor is empty, or without a room.
+   */
+  layFloor(hero: number, floor: PointCloud): boolean;
   /** How far the room steps back behind what is shown in front of it (the menu), 0..1. It eases, and only shows while a hero is inspected. */
   setStepBack(amount: number): void;
 }
 
-/** The grains `room` has in hero `hero`'s box, edges included, as the room's loaders count them. After a replacement they are the new object. Null without that hero or without normals. */
-export function heroGrains(room: PointCloud, hero: number): { count: number; positions: Float32Array; colors: Float32Array; normals: Float32Array } | null {
-  const box = room.heroes?.[hero], P = room.positions, at: number[] = [];
-  if (!box || !room.normals) return null;
-  for (let i = 0, j = 0; i < room.count; i++, j += 3) {
-    if (P[j]! >= box.min[0] && P[j]! <= box.max[0] && P[j + 1]! >= box.min[1] && P[j + 1]! <= box.max[1] && P[j + 2]! >= box.min[2] && P[j + 2]! <= box.max[2]) at.push(j);
-  }
-  const positions = new Float32Array(at.length * 3), colors = new Float32Array(at.length * 3), normals = new Float32Array(at.length * 3);
-  at.forEach((j, o) => {
-    for (let k = 0; k < 3; k++) { positions[o * 3 + k] = P[j + k]!; colors[o * 3 + k] = room.colors[j + k]!; normals[o * 3 + k] = room.normals![j + k]!; }
-  });
-  return { count: at.length, positions, colors, normals };
-}
-
-/** ?swap=<hero index>,<pairing index>,<progress 0..1>: a change held still, for matching captures. Null unless all three are valid. */
-export function parseSwap(search: string): { hero: number; pairing: number; progress: number } | null {
+/**
+ * ?swap=<hero index>,<pairing index>,<progress>[,<pose>[,<way>[,<thing>[,<wrong>]]]]: a change held still, for matching captures.
+ * `progress` is 0..1 of the whole change, or `run` to let it run. `pose` is one of the grammar's (default rests). `way` is the
+ * pose's other way (POSE_OTHER), `grains` (each grain moves at its own moment), both joined by + (which an address gives as a
+ * space), or nothing. `thing` is a shelf id (default: the shelf's first). `wrong` is a discrepancy: `x` and one of the allowed
+ * sizes (x2.5: wrong scale), `n` and a number of copies (n6: repetition), or `gone` (absence: the thing taken away). Null
+ * unless every part given is valid.
+ */
+export function parseSwap(search: string): { hero: number; pairing: number; progress: number | null; pose: Pose; other: boolean; loose: boolean; thing: string | null;
+  factor: number; copies: number; gone: boolean } | null {
   const parts = new URLSearchParams(search).get('swap')?.split(',') ?? [];
-  if (parts.length !== 3 || parts.some(part => part.trim() === '')) return null;
-  const [hero, pairing, progress] = parts.map(Number) as [number, number, number];
+  if (parts.length < 3 || parts.length > 7 || parts.slice(0, 4).some(part => part.trim() === '')) return null;
+  const wrong = parts[6], factor = wrong?.[0] === 'x' ? Number(wrong.slice(1)) : 1, copies = wrong?.[0] === 'n' ? Number(wrong.slice(1)) : 1, gone = wrong === 'gone';
+  if (wrong !== undefined && !(SCALE_FACTORS as readonly number[]).includes(factor) && !(Number.isInteger(copies) && copies >= COPIES_MIN && copies <= COPIES_MAX) && !gone) return null;
+  const hero = Number(parts[0]), pairing = Number(parts[1]), progress = parts[2] === 'run' ? null : Number(parts[2]);
+  const pose = (parts[3] ?? 'rests') as Pose, ways = (parts[4] ?? '').split(/[ +]/).filter(Boolean), thing = parts[5] ?? null;
   if (!Number.isInteger(hero) || hero < 0 || !Number.isInteger(pairing) || pairing < 0 || pairing >= SWAP_PAIRINGS.length) return null;
-  return progress >= 0 && progress <= 1 ? { hero, pairing, progress } : null;
+  if (!(progress === null || (progress >= 0 && progress <= 1)) || !POSES.includes(pose)) return null;
+  if (new Set(ways).size !== ways.length || ways.some(way => way !== 'grains' && way !== POSE_OTHER[pose])) return null;
+  if (thing !== null && !/^[a-z0-9-]{1,40}$/.test(thing)) return null;
+  return { hero, pairing, progress, pose, other: ways.some(way => way !== 'grains'), loose: ways.includes('grains'), thing, factor, copies, gone };
 }
 
 /** The hero a change acts on: the one being inspected, else the nearest to the viewer; -1 in a room without heroes. */
@@ -103,13 +171,17 @@ export function swapHero(inspected: number, heroes: readonly Box[], position: Ve
   return nearest;
 }
 
-/** The shader's uSwap.xyz at `time`: hero (-1 when nothing is changing), progress 0..1, seconds into the change. A running change ends by itself; a held one stays. */
-export function swapNow(swap: Swap, time: number): [number, number, number] {
-  if (swap.hero < 0) return [-1, 0, 0];
-  const s = swap.progress ?? (time - swap.at) / SWAP_SECONDS;
-  if (!(s >= 0) || (swap.progress === null && s >= 1)) return [-1, 0, 0];
-  const held = Math.min(1, s);
-  return [swap.hero, held, held * SWAP_SECONDS];   // a held change's clock is its progress, so two captures of it match
+/**
+ * A change at `time`, for the shader: hero (-1 when nothing is changing), how far through the pairing 0..1, seconds into the change
+ * (uSwap.xyz), and how far through the move 0..1 (uSwapMove.x). A running change ends by itself; a held one stays.
+ */
+export function swapNow(swap: Swap, time: number): [number, number, number, number] {
+  if (swap.hero < 0) return [-1, 0, 0, 1];
+  const times = swapTimes(swap.move), s = swap.progress ?? (time - swap.at) / times.total;
+  if (!(s >= 0) || (swap.progress === null && s >= 1)) return [-1, 0, 0, 1];
+  const T = Math.min(1, s) * times.total;   // a held change's clock is its progress, so two captures of it match
+  const share = (from: number, length: number) => length > 0 ? Math.min(1, Math.max(0, (T - from) / length)) : 1;
+  return [swap.hero, share(0, times.pair), T, share(times.from, times.move)];
 }
 
 const f = (x: number) => x.toFixed(4);
@@ -122,10 +194,16 @@ const f = (x: number) => x.toFixed(4);
  */
 export const SWAP_VS = /* glsl */ `
 uniform vec4 uSwap;        // which hero (-1: none), how far through the change 0..1, seconds into it, 1 when its grains stay in the settled pass (sand)
+uniform vec4 uSwapMove;    // the arriving thing's move into its pose: how far through it 0..1, 1 when it drops (else it eases), the share of it the grains set off over (0: as one body), 1 when the thing comes whole instead of assembling
+uniform vec3 uSwapFrom;    // when the move starts the thing is shifted by this, in metres,
+uniform vec4 uSwapTurn;    // and turned about this axis by this angle,
+uniform vec3 uSwapMid;     // through this point
+uniform vec4 uSwapCut;     // an arriving grain with dot(xyz, its place) under w is not drawn: the surface a sunk thing is cut off at
 uniform vec3 uSwapStyle;   // Gather's codes: how they leave (1 SHATTER, 2 BURN, 5 GLITCH), how the new ones arrive (2 MORPH, 4 SPIRAL, 5 FALL); 1 when it is the room's own grains that leave
 uniform float uHeroOut[MAX_HERO];   // 1 once the room's own grains in that hero's box have been replaced
 uniform float uStepBack;   // how far the room steps back behind the menu, 0..1
-in float aObj;             // 0, or absent: one of the room's own grains. k+1: a grain of the object that replaced hero k. -(k+1): of that object as it leaves
+in float aObj;             // 0, or absent: one of the room's own grains. k+1: a grain of the object that replaced hero k. -(k+1): of that object as it leaves. SWAP_FLOOR: of a laid floor, which no change touches
+in vec3 aMid;              // for an object's grain: the middle its change is drawn about (its own copy's place, where the object is several copies)
 const vec2 SWAP_WIND = vec2(0.45, 0.2);   // Gather's drift direction, fixed
 float hf(vec3 v) { return fract(sin(dot(v, vec3(127.1, 311.7, 74.7))) * 43758.5453); }
 void swapGrain(uint i, inout vec3 p, inout vec3 col, inout float alive, inout float nk, inout float wsz, out float hot) {
@@ -143,7 +221,7 @@ void swapGrain(uint i, inout vec3 p, inout vec3 col, inout float alive, inout fl
   }
   if (role < 0.5 || k < 0 || k >= uHeroN) return;
   vec3 lo = uHeroMin[k], hi = uHeroMax[k];
-  vec3 mid = 0.5 * (lo + hi); float S = 0.5 * max(hi.x - lo.x, max(hi.y - lo.y, hi.z - lo.z));
+  vec3 mid = ok >= 0 ? aMid : 0.5 * (lo + hi); float S = 0.5 * max(hi.x - lo.x, max(hi.y - lo.y, hi.z - lo.z));
   vec3 a = (position - mid) / S, q = a, own = col;
   int away = int(uSwapStyle.x + 0.5), back = int(uSwapStyle.y + 0.5);
   float T = uSwap.z, rd = h01(i * 2654435761u + 977u), r1 = h01(i * 3u + 17u), r3 = h01(i * 11u + 71u), r4 = h01(i * 17u + 113u);
@@ -157,6 +235,7 @@ void swapGrain(uint i, inout vec3 p, inout vec3 col, inout float alive, inout fl
   if (away == 1) key = c2;
   float t = (uSwap.y - ${f(SWAP_SPREAD)} * key) / ${f(SWAP_LEAVE)};   // 0: an old grain lets go. 1: it is gone, and a new one sets out
   float gone = clamp(t, 0.0, 1.0), m = clamp((t - 1.0) * ${f(SWAP_LEAVE / SWAP_BACK)}, 0.0, 1.0);
+  if (role > 1.5 && uSwapMove.w > 0.5) m = 1.0;   // a thing that comes whole: every grain in its place from the first
 
   // Leaving: Gather's AWAY styles, one life instead of its repeating ones
   float tr = gone * sqrt(gone), reach = ${f(SWAP_REACH)} * (0.55 + 0.9 * r3), ash = 0.0, flick = 1.0, szK = 1.0 - 0.45 * gone;
@@ -199,8 +278,22 @@ void swapGrain(uint i, inout vec3 p, inout vec3 col, inout float alive, inout fl
         arc = vec3((rd - 0.5) * 0.12 * hump, -hump * (0.45 + 0.7 * rd), hump * 0.1 * (h01(i * 7u + 3u) - 0.5));
       q = at + arc; col = mix(col, own, e); szK = mix(szK, 1.0, e); there = smoothstep(0.0, 0.35, e);
     }
+    if (uSwapMove.w > 0.5) hot = 0.0;
   }
   p += (q - a) * S; alive *= there; wsz *= szK;
+  if (role > 1.5) {
+    // The arrival's move: the thing has assembled where the move starts from, and now gets into its pose, as one body or each
+    // grain at its own moment. A drop accelerates, lands and rebounds once; anything else eases.
+    // shortcut: the thing turns about its middle and is shifted in a straight line, so a tipping thing's foot slides a little
+    // instead of staying where it stands; turn it about the edge it stands on if that shows.
+    // shortcut: its normals are not turned with it, so while it moves it is lit as it will be where it ends; turn aNorm too if a
+    // turning thing's light reads wrong.
+    float g = clamp((uSwapMove.x - uSwapMove.z * r4) / (1.0 - uSwapMove.z), 0.0, 1.0), s = g / ${f(DROP_LANDS)}, b = (g - ${f(DROP_LANDS)}) / ${f(1 - DROP_LANDS)};
+    float left = uSwapMove.y < 0.5 ? 1.0 - ease(g) : s < 1.0 ? 1.0 - s * s : ${f(DROP_REBOUND)} * sin(PI * b) * (1.0 - b);
+    vec3 d = p - uSwapMid, ax = uSwapTurn.xyz; float an = uSwapTurn.w * left, cM = cos(an), sM = sin(an);
+    p = uSwapMid + d * cM + cross(ax, d) * sM + ax * dot(ax, d) * (1.0 - cM) + uSwapFrom * left;
+    if (dot(uSwapCut.xyz, p) < uSwapCut.w) alive = 0.0;
+  }
   // in flight our look draws it with every other flight, in the additive pass; sand keeps it sand
   if (uSwap.w < 0.5 && t > 0.0 && m < 1.0) nk = 0.0;
 }

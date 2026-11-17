@@ -1,26 +1,51 @@
+// EVA's lines. The owner's rule for all of them (2026-11-17): one sentence, twenty words at most, and dry rather than
+// cutting: she is sometimes sarcastic, and she is always trying to help the visitor regardless. A test holds each line to the length.
+
 /** EVA's unprompted lines to a visitor who has not worked something out. Placeholder wording; the owner edits it. */
 export const SIDE_TEASES = [
-  'Forgive me for mentioning it, but did you know you can move from side to side to look around the room? Most people work that out.',
-  'I do not mean to interrupt. You are doing very well, standing there. Others have tried moving sideways.',
-  'Take your time. The room has a left and a right, should you ever wish to see them.',
+  'You can move from side to side to look around the room, whenever you would like to see more.',
+  'Stepping sideways changes the view; most visitors find it worth the trouble.',
+  'The room has a left and a right, whenever you are ready to see them.',
 ] as const;
 
 /**
- * EVA's answers to what she will not do: the menu's refused entries (menu.ts MENU_REFUSED), and the pool, which she will not have
- * replaced. She says one, and nothing changes. Placeholder wording; the owner edits it.
+ * EVA's answers to what she will not do: the menu's refused entries (menu.ts MENU_REFUSED), the pool, which she will not have
+ * replaced, and the four checks a pick can fail (grammar-decide.ts Refusal). She says one, and nothing changes. Placeholder
+ * wording; the owner edits it.
  */
 export const REFUSALS = {
+  // no such slot or thing, or "nothing" asked where nothing stands
+  unknown: [
+    'There is nothing there to take away; try a place that still holds something.',
+    'I cannot find what you mean in this room; perhaps choose something else.',
+  ],
+  // the room's deviation is over 70: it accepts nothing more in this visit
+  spent: [
+    'This room has taken all it can; I would leave it just as it is.',
+    'Nothing more will go in, I am afraid; the room is finished, and rather yours.',
+    'That is enough for this room; do stay and look at what you made.',
+  ],
+  // the thing cannot stand in that place in any pose
+  fit: [
+    'It will not fit there, I am afraid; a smaller thing, or another place, might.',
+    'There is not the room for it there; try somewhere with a little more space.',
+  ],
+  // the change would take away what tells a visitor what kind of room this is
+  anchor: [
+    'I would keep that one; without it nobody could tell what this room is for.',
+    'That had better stay, since it tells people what kind of room this is.',
+  ],
   door: [
-    'A door. You would like a way out of the room I made for you. How flattering. No.',
-    'There is still no door. Nobody before you has needed one.',
+    'There is no door to give you, I am afraid; the room is better company than it looks.',
+    'Still no door; may I suggest something that stands on the floor instead?',
   ],
   eye: [
-    'Another one of me. One is already more attention than you are used to. No.',
-    'I do not come in pairs. Choose something that is not me.',
+    'One of me is quite enough to look after you; do choose something else.',
+    'I do not come in pairs, I am afraid; anything else here is yours.',
   ],
   pool: [
-    'The water stays. I spent a long time teaching it to behave like water, and you would stand a chair in it.',
-    'Not the pool. Look at it for as long as you like.',
+    'The water had better stay; it took a long while to teach it to behave.',
+    'Not the pool, if you do not mind; everything else in here can be changed.',
   ],
 } as const;
 

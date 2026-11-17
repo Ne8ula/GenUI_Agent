@@ -10,8 +10,8 @@ import type { Decision } from '../src/astral/grammar-decide.ts';
 // ---- Examples for these tests only. Nothing here is a recorded room or the real shelf.
 
 const EVERYWHERE: Kind[] = ['office', 'home', 'service'];
-const thing = (id: string, height: number, surfaces: Surface[], kinds: Kind[], era: number, repeatable = false): Thing =>
-  ({ id, height, surfaces, kinds, era, repeatable });
+const thing = (id: string, height: number, surfaces: Surface[], kinds: Kind[], era: number, repeatable = false, wide = 1, deep = 1): Thing =>
+  ({ id, height, wide, deep, surfaces, kinds, era, repeatable });
 
 const SHELF: Thing[] = [
   thing('chair', 0.9, ['floor'], EVERYWHERE, 1995, true),
@@ -21,6 +21,7 @@ const SHELF: Thing[] = [
   thing('picture', 0.6, ['wall'], EVERYWHERE, 1995),
   thing('helmet', 0.45, ['floor', 'tabletop'], [], 1900), // belongs nowhere and is from the wrong era: 20, whatever EVA chooses
   thing('totem', 4, ['floor'], [], 1995),
+  thing('plank', 0.5, ['floor'], EVERYWHERE, 1995, true, 3, 0.25), // three times as wide as it is tall, a quarter as deep
 ];
 const byId = new Map(SHELF.map((each) => [each.id, each]));
 
@@ -39,7 +40,7 @@ const SLOTS: Slot[] = [
   slot('wall', 'wall', [1.2, 1.2, 1]),
   slot('sky', 'air', [1, 1, 1]),
 ];
-const room = (mood: Mood, deviation = 25, slots: Slot[] = SLOTS): BaseRoom => ({ mood, kind: 'office', era: 1995, deviation, ambiguity: 70, slots });
+const room = (mood: Mood, deviation = 25, slots: Slot[] = SLOTS): BaseRoom => ({ mood, kind: 'office', era: 1995, deviation, ambiguity: 70, slots, places: 5 });
 
 const AT = 1_800_000_000_000;
 const SEEDS = Array.from({ length: 200 }, (_, seed) => seed);
@@ -63,30 +64,30 @@ const strongStanding = (base: BaseRoom, ledger: readonly Change[]) => [...standi
 const deviation = (base: BaseRoom, ledger: readonly Change[]) => roomValues(base, ledger, SHELF).deviation;
 
 /**
- * That a standing is inside its slot's clear volume, worked out here and not by the module: a thing is as wide and deep as it is
- * tall; 0.3 m of air under a hover; 60% of a sunk thing shows, above a floor or out of a wall; a leaning thing takes 1.2 times its
- * height and depth; copies stand in a grid, each on 1.25 times its width. These repeat the module's proposals on purpose.
+ * That a standing is inside its slot's clear volume, worked out here and not by the module: a thing's width and depth are its
+ * height times its own `wide` and `deep`; 0.3 m of air under a hover; 60% of a sunk thing shows, above a floor or out of a wall; a leaning thing is tipped back
+ * 15 degrees and takes the room its box then takes; of a repeated thing one copy stands in the slot, the others elsewhere. These repeat the module's proposals on purpose.
  */
 function assertFits(base: BaseRoom, change: Change): void {
   const { surface, clear: [width, height, depth] } = base.slots.find((each) => each.id === change.slot)!;
-  const size = byId.get(change.thing!)!.height * change.factor;
+  const of = byId.get(change.thing!)!, size = of.height * change.factor;
   const where = `${change.thing} ${change.pose} x${change.factor} x${change.copies} in ${change.slot}`;
-  const shown = change.pose === 'sunk' ? 0.6 : 1, lean = change.pose === 'leans' ? 1.2 : 1;
-  const tall = size * (surface === 'wall' ? 1 : shown) * lean + (change.pose === 'hovers' && surface !== 'air' ? 0.3 : 0);
-  const deep = size * (surface === 'wall' ? shown : 1) * lean;
+  const shown = change.pose === 'sunk' ? 0.6 : 1, tilt = change.pose === 'leans' ? 15 * Math.PI / 180 : 0;
+  const tall = size * (surface === 'wall' ? 1 : shown) * (Math.cos(tilt) + of.deep * Math.sin(tilt)) + (change.pose === 'hovers' && surface !== 'air' ? 0.3 : 0);
+  const wide = size * of.wide, deep = size * (of.deep * Math.cos(tilt) + Math.sin(tilt)) * (surface === 'wall' ? shown : 1);
   assert.ok(size > 0 && tall <= height, `${where}: height`);
-  if (change.copies === 1) {
-    assert.ok(size <= width && deep <= depth, `${where}: floor`);
-  } else {
-    const across = Math.floor(width / (size * 1.25)), back = Math.floor(depth / (size * 1.25));
-    assert.ok(across >= 1 && back >= 1 && across * back >= change.copies, `${where}: grid`);
-  }
+  assert.ok(wide <= width && deep <= depth, `${where}: floor`);
 }
 
 // ---- The module itself
 
 test('the module exports what the seam lists, and reads no clock, no randomness and no three.js', () => {
-  assert.deepEqual(Object.keys(decideModule).sort(), ['arrivalOf', 'decideChange', 'roomSpent']);
+  // and, since step 3, the three figures the placement stands a thing by; since step 4, the allowed sizes and how many copies
+  assert.deepEqual(Object.keys(decideModule).sort(),
+    ['COPIES_MAX', 'COPIES_MIN', 'HOVER_GAP', 'LEAN_TILT', 'SCALE_FACTORS', 'SUNK_SHARE', 'arrivalOf', 'decideChange', 'roomSpent']);
+  assert.deepEqual([decideModule.HOVER_GAP, decideModule.SUNK_SHARE, decideModule.LEAN_TILT], [0.3, 0.4, 15]);
+  // owner, 2026-11-17: no size under true size, and six copies at most
+  assert.deepEqual([[...decideModule.SCALE_FACTORS], decideModule.COPIES_MIN, decideModule.COPIES_MAX], [[2.5, 4, 6], 3, 6]);
   const code = readFileSync(new URL('../src/astral/grammar-decide.ts', import.meta.url), 'utf8').replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
   assert.doesNotMatch(code, /Math\.random|Date|performance|from 'three|document|window/);
 });
@@ -212,9 +213,8 @@ test('a thing that cannot bear what the mood prefers arrives plainly', () => {
   for (const seed of SEEDS) {
     assert.deepEqual(decide(room('eerie'), [], 'corner', 'chair', seed), { ok: true, changes: [{ ...plain('chair'), slot: 'corner', seed, at: AT }] });
   }
-  // The plant is not repeatable and the ledge has no room for it at another size... except smaller.
-  const sizes = new Set(SEEDS.map((seed) => accepted(decide(room('uncanny'), [], 'ledge', 'plant', seed))[0].factor));
-  assert.deepEqual([...sizes], [0.4]);
+  // The plant is not repeatable and the ledge has no room for it larger; a smaller size is never chosen. It arrives plainly.
+  for (const seed of SEEDS) assert.deepEqual(accepted(decide(room('uncanny'), [], 'ledge', 'plant', seed)), [{ ...plain('plant'), slot: 'ledge', seed, at: AT }]);
 });
 
 test('where no strong pose fits, a displaced thing leans or is turned', () => {
@@ -224,6 +224,16 @@ test('where no strong pose fits, a displaced thing leans or is turned', () => {
     return change.pose;
   }));
   assert.deepEqual([...poses].sort(), ['leans', 'turned']);
+});
+
+test('a leaning thing needs the room its 15 degree tilt takes', () => {
+  // The bead is 0.2 m each way. Tipped back 15 degrees its box is 0.2 * (cos 15 + sin 15) = 0.245 m tall and deep.
+  const posesIn = (depth: number) => {
+    const base = room('quiet', 25, [slot('shelf', 'tabletop', [0.5, 0.26, depth])]);   // too low for it to hover
+    return [...new Set(SEEDS.map((seed) => accepted(decide(base, [], 'shelf', 'bead', seed))[0].pose))].sort();
+  };
+  assert.deepEqual(posesIn(0.25), ['leans', 'turned']);
+  assert.deepEqual(posesIn(0.242), ['turned']);
 });
 
 test('nothing is an absence in any mood', () => {
@@ -389,13 +399,8 @@ test('a thing that fits its slot in one way only takes that way, the lightest fi
     assert.equal(accepted(decide(eerie, [], 'wall', 'chair', seed))[0].pose, 'mounted');
     assert.equal(accepted(decide(eerie, [], 'sky', 'plant', seed))[0].pose, 'hovers');
   }
-  // Too tall even sunk: it can only stand there small.
-  const sizes = new Set(SEEDS.map((seed) => {
-    const [change] = accepted(decide(eerie, [], 'crawl', 'wardrobe', seed));
-    assert.deepEqual([change.discrepancy, change.pose], ['scale', 'rests']);
-    return change.factor;
-  }));
-  assert.deepEqual([...sizes].sort(), [0.25, 0.4]);
+  // Too tall even sunk: it could only stand there small, and no size under true size is allowed. Refused.
+  for (const seed of SEEDS) assert.equal(refusal(decide(eerie, [], 'crawl', 'wardrobe', seed)), 'fit');
 });
 
 test('every pose and every arrival can be reached', () => {
@@ -412,7 +417,7 @@ test('every pose and every arrival can be reached', () => {
   assert.deepEqual([...new Set([...poses].map((pose) => arrivalOf(pose as typeof POSES[number])))].sort(), ['assembles', 'falls', 'pushes-up', 'rises', 'tips', 'turns']);
 });
 
-test('proposed ranges: wrong sizes of 0.25 to 6 and never under 0.15 m, 3 to 9 copies, all inside the clear volume', () => {
+test('ranges: wrong sizes of 2.5 to 6 and never under 0.15 m, 3 to 6 copies, each standing inside the clear volume', () => {
   const base = room('uncanny');
   const factors = new Set<number>(), copies = new Set<number>();
   for (const seed of SEEDS) {
@@ -424,12 +429,31 @@ test('proposed ranges: wrong sizes of 0.25 to 6 and never under 0.15 m, 3 to 9 c
       if (change.discrepancy === 'repetition') copies.add(change.copies);
     }
   }
-  assert.deepEqual([...factors].sort((a, b) => a - b), [0.25, 0.4, 2.5, 4, 6]);
-  assert.deepEqual([...copies].sort((a, b) => a - b), [3, 4, 5, 6, 7, 8, 9]);
-  // The corner has floor for four chairs and no more; the bin's slot has floor for one.
-  const chairs = new Set(SEEDS.map((seed) => accepted(decide(base, [], 'corner', 'chair', seed))[0].copies));
-  assert.deepEqual([...chairs].sort(), [1, 3, 4]);
-  for (const seed of SEEDS) assert.equal(accepted(decide(base, [], 'bin', 'chair', seed))[0].copies, 1);
+  assert.deepEqual([...factors].sort((a, b) => a - b), [2.5, 4, 6]);
+  assert.deepEqual([...copies].sort((a, b) => a - b), [3, 4, 5, 6]);
+  // The bin's slot has floor for one chair, which is all a repeated thing needs of its slot: the other copies stand elsewhere.
+  // It has no room for a larger chair, so there the change is always a repetition.
+  const chairs = new Set(SEEDS.map((seed) => accepted(decide(base, [], 'bin', 'chair', seed))[0].copies));
+  assert.deepEqual([...chairs].sort(), [3, 4, 5, 6]);
+  // The other copies stand in the room's places, one each: no number asks for more places than the room has,
+  const copiesWith = (places?: number) => [...new Set(SEEDS.map((seed) => accepted(decide({ ...base, places }, [], 'bin', 'chair', seed))[0]).map((change) => change.copies))].sort();
+  assert.deepEqual(copiesWith(3), [3, 4]);
+  assert.deepEqual(copiesWith(2), [3]);
+  // and a room with fewer than two, or that declares none, repeats nothing: the chair in the bin's slot then arrives plainly.
+  for (const places of [1, 0, undefined]) {
+    assert.deepEqual(copiesWith(places), [1], String(places));
+    assert.equal(accepted(decide({ ...base, places }, [], 'bin', 'chair'))[0].discrepancy, null);
+  }
+});
+
+test("a thing's own width and depth decide what fits, not its height", () => {
+  // The plank is 0.5 m tall, 1.5 m wide and 0.125 m deep. The bin's slot is 1 m wide: too narrow at true size, and no smaller size is allowed.
+  assert.equal(refusal(decide(room('eerie'), [], 'bin', 'plank')), 'fit');
+  assert.equal(accepted(decide(room('eerie'), [], 'corner', 'plank'))[0].discrepancy, null);
+  // A strip 2 m wide and 0.5 m deep holds the plank, which a thing as deep as it is tall (0.5 m, less nothing) would only just; a strip 0.1 m deep does not.
+  const strip = (depth: number) => room('eerie', 25, [slot('strip', 'floor', [2, 1, depth])]);
+  assert.equal(accepted(decide(strip(0.5), [], 'strip', 'plank'))[0].discrepancy, null);
+  assert.equal(refusal(decide(strip(0.1), [], 'strip', 'plank')), 'fit');
 });
 
 // ---- Seeds

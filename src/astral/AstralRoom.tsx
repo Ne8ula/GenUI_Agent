@@ -5,16 +5,18 @@ import { createDataLayer } from './data-layer.ts';
 import { createAstralEye } from './eye.ts';
 import { START_POSITION, arrivalPath, createFlight, holdingGlide, type Vec3 } from './flight.ts';
 import { createGlow } from './glow.ts';
+import { decideChange, roomSpent } from './grammar-decide.ts';
+import { roomState, roomValues, standingNow, type BaseRoom, type Change, type Pose, type Thing } from './grammar.ts';
 import { createInspectMarks } from './inspect-marks.ts';
 import { INSPECT_NONE, nextInspect } from './inspect.ts';
 import { hasLook } from './looks.ts';
 import { createMenuView } from './menu-view.ts';
-import { MENU_REFUSED, menuArrangement, menuDrag, menuOpen, menuStep, refusedPoints, type MenuPoints, type MenuRefused, type MenuState } from './menu.ts';
-import { loadObjectPoints, loadShelf, replaceHero } from './object-points.ts';
+import { MENU_NOTHING, MENU_REFUSED, entryPoints, menuArrangement, menuDrag, menuOpen, menuStep, type MenuPoints, type MenuRefused, type MenuState } from './menu.ts';
+import { floorOf, litLikeRoom, loadObjectPoints, loadShelf, replaceHero, roomCast } from './object-points.ts';
 import { LIGHTING_START, createPointField, createTunnelCloud, nextLighting } from './point-field.ts';
-import { readReplacements, withReplacement, writeReplacements } from './replacements.ts';
+import { pickSeed, readLedger, writeLedger } from './replacements.ts';
 import { loadRecordedRoomCloud } from './room-source.ts';
-import { SWAP_PAIRINGS, SWAP_SECONDS, parseSwap, swapHero } from './sand-look.ts';
+import { SWAP_PAIRINGS, parseSwap, swapHero, swapTimes, type Move, type Stood } from './sand-look.ts';
 import { createSplatView, type SplatView } from './splat-view.ts';
 import { REFUSALS, SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.ts';
 import { createWater, type AstralWater } from './water.ts';
@@ -46,11 +48,18 @@ const devEyeParam = import.meta.env.DEV ? new URLSearchParams(window.location.se
 const devEyePhase = DEV_EYE_PHASES.find(phase => phase === devEyeParam) ?? null;
 // Development only: ?splats=standin gives a room without a splat file stand-in splats made from its own points, to judge the swap.
 const devStandInSplats = import.meta.env.DEV && new URLSearchParams(window.location.search).get('splats') === 'standin';
-// Development only: ?swap=<hero>,<pairing>,<progress> replaces that hero with the shelf's first object once the viewer has the room and
-// holds the change (sand-look.ts) at that progress, for matching captures. It is not remembered.
-const devSwap = import.meta.env.DEV ? parseSwap(window.location.search) : null;
-/** A choice in the menu: an object of the shelf, or (no model) an entry EVA will not do. */
-type Choice = { id: string; glb: string } | { id: MenuRefused; glb: null };
+// Development only: ?swap=<hero>,<pairing>,<progress>[,<pose>[,<way>[,<thing>[,<wrong>]]]] replaces that hero with a shelf object (the
+// first, unless named) in that pose once the viewer has the room, and holds the change (sand-look.ts) at that progress, for matching
+// captures. `wrong` is a discrepancy (LIMINAL-GRAMMAR.md, step 4): its size, its number, or the thing gone and its trace left. It is
+// not remembered. It is read again whenever the address changes without a load (history.replaceState, then a popstate event), so one
+// page can show many.
+const devSwap = () => import.meta.env.DEV ? parseSwap(window.location.search) : null;
+/** A choice in the menu: an object of the shelf, or (no model) "nothing", or an entry EVA will not do. */
+type Choice = { id: string; glb: string } | { id: MenuRefused | typeof MENU_NOTHING; glb: null };
+/** How a thing stands in a slot: the grammar's pose, size and number (a Change is one), and sand-look.ts's variants of its arrival. */
+type Stance = { pose: Pose; other?: boolean; loose?: boolean; carried?: boolean; factor?: number; copies?: number };
+/** The sampling of a thing made larger, against the room's lattice (1 is the room's own spacing, 2 an object's usual). A starting value, to judge from captures. */
+const ENLARGED_DENSITY = 1.4;
 
 export default function AstralRoom() {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -80,11 +89,20 @@ export default function AstralRoom() {
     const menuView = createMenuView(menuArrangement(window.location.search));
     scene.add(menuView.object);
     let room: PointCloud | null = null;
+    let arrived: PointCloud | null = null;   // the room as it arrived: an absent thing's floor is laid from the floor it had then
+    let cast: [number, number, number] = [1, 1, 1];   // and its cast, which a placed thing is lit by
+    const floors = new Map<number, number>();   // the heroes whose slot's carpet has been laid as a cloud of its own, and its points
+    let things: (Thing & { glb: string })[] = [];   // the shelf: what the grammar decides about, and each thing's model
     let choices: Choice[] = [];
     let menu: MenuState | null = null;
     const refused = new Set<number>();
     const said: Partial<Record<keyof typeof REFUSALS, number>> = {};
     let changing = false, changeUntil = 0;   // an object is being fetched for a change; the change it started runs until then
+    // EVA decides (LIMINAL-GRAMMAR.md, step 5): what the room is to the grammar, its ledger, and the changes of an accepted
+    // decision still to be shown, in order. A room that arrives with a ledger has `standing` put back as it forms.
+    type Made = { hero: number; object: Stood; floor: PointCloud | null };
+    const remembered = new WeakMap<PointCloud, { ledger: Change[]; standing: Made[] }>();
+    let base: BaseRoom | null = null, ledger: Change[] = [], queue: Change[] = [], standing: Made[] = [];
     const leaving = new AbortController();   // the page is going: stop loading objects
     const viewDirection = new Vector3();
     // What the data layer may show about the cloud on screen: its real count, and whether the room has a lamp at all.
@@ -108,7 +126,7 @@ export default function AstralRoom() {
     let pendingRoom: { cloud: PointCloud; notBefore: number } | undefined;
     let arrival: { from: Vec3; velocity: Vec3; to: Vec3; lookFrom: Vec3; lookTo: Vec3 } | undefined;
 
-    const enterStage = (next: Stage) => { stage = next; stageAt = time; menu = null; };
+    const enterStage = (next: Stage) => { stage = next; stageAt = time; menu = null; queue = []; };
     // A mirror of the field's lighting, so the L key knows which way to switch the lamp.
     let lighting = LIGHTING_START;
     const setLight = (light: AstralLight) => { lighting = nextLighting(lighting, light); field.setLighting(light); };
@@ -129,8 +147,12 @@ export default function AstralRoom() {
       lighting = LIGHTING_START;
       dropSplats();
       field.setCloud(cloud);
-      room = cloud;
-      menu = null;
+      room = arrived = cloud;
+      floors.clear();
+      cast = roomCast(cloud);
+      base = cloud.base ?? null;
+      ({ ledger, standing } = remembered.get(cloud) ?? { ledger: [], standing: [] });
+      menu = null; queue = [];
       cloudCount = cloud.count;
       roomLamps = cloud.lights?.lamps.length ?? 0;
       heroes = cloud.heroes ?? [];
@@ -150,7 +172,9 @@ export default function AstralRoom() {
       field.setFormation(0);
       const tunnel = createTunnelCloud();
       field.setCloud(tunnel);
-      room = null;
+      room = arrived = base = null;
+      ledger = []; standing = [];
+      floors.clear();
       cloudCount = tunnel.count;
       roomLamps = null;
       heroes = [];
@@ -202,33 +226,58 @@ export default function AstralRoom() {
     };
 
     // The shelf (object-points.ts): what a hero can be replaced with. Loaded once, in the background, each object's points fitted to
-    // a unit box for its place in the menu; an object that will not load is left out. After them, the entries EVA will not do.
+    // a unit box for its place in the menu; an object that will not load is left out of the menu. After them, "nothing", then the
+    // entries EVA will not do.
     let shelf: Promise<void> | undefined;
     const prepareShelf = () => (shelf ??= (async () => {
       const signal = leaving.signal, list: Choice[] = [], thumbs: MenuPoints[] = [];
-      for (const { id, glb } of await loadShelf(signal)) {
+      things = await loadShelf(signal);
+      for (const { id, glb } of things) {
         try { thumbs.push(await loadObjectPoints(glb, { min: [-0.5, 0, -0.5], max: [0.5, 1, 0.5] }, signal, 1)); list.push({ id, glb }); }
         catch (error) { signal.throwIfAborted(); console.warn(`[astral] the shelf's "${id}" could not be loaded and is left out of the menu.`, error); }
       }
-      for (const id of MENU_REFUSED) { list.push({ id, glb: null }); thumbs.push(refusedPoints(id)); }
+      for (const id of [MENU_NOTHING, ...MENU_REFUSED] as const) { list.push({ id, glb: null }); thumbs.push(entryPoints(id)); }
       choices = list;
       menuView.setChoices(thumbs);
     })().catch(error => { if (!leaving.signal.aborted) console.error('[astral] the menu has nothing to offer', error); }));
 
-    /** The recorded room, with what visitors replaced in it replaced again (replacements.ts). One that cannot be made again is skipped. */
+    /** Shelf thing `id` as it stands in a hero's slot of a room, lit by the room's `light`; or, for null, nothing: an absence. */
+    const standIn = async (of: PointCloud, box: RoomHero, id: string | null, stance: Stance, light: [number, number, number], signal: AbortSignal): Promise<Stood & { move?: Move }> => {
+      if (id === null) return { count: 0, positions: new Float32Array(0), colors: new Float32Array(0), normals: new Float32Array(0) };
+      const thing = things.find(thing => thing.id === id), factor = stance.factor ?? 1;
+      if (!thing) throw new Error(`The shelf has no "${id}".`);
+      // A thing made larger is sampled coarser than an object usually is: at an object's own spacing it is a smooth picture, far
+      // more detailed than the room round it (owner, 2026-11-17). Not as coarse as the room's own spacing: seen from near, that
+      // is more gap than grain, and what stands behind the thing shows through it.
+      const object = await loadObjectPoints(thing.glb, box, signal, factor > 1 ? ENLARGED_DENSITY : undefined, thing.height * factor,
+        { ...stance, places: (of.places ?? []).slice(0, (stance.copies ?? 1) - 1) });
+      litLikeRoom(object, light);
+      return object;
+    };
+
+    /**
+     * The recorded room, and with it the room's ledger (replacements.ts): what stands in each slot a visitor changed is made
+     * ready here, each in its pose, size and number, and put back as the room forms. One that cannot be made is skipped.
+     */
     const loadRoom = async (signal: AbortSignal) => {
-      let cloud = await loadRecordedRoomCloud(renderer, signal);
-      const stored = readReplacements().filter(entry => cloud.heroes?.[entry.hero] && !holdsWater(cloud.heroes[entry.hero]!, cloud));
-      if (!stored.length) return cloud;
+      const cloud = await loadRecordedRoomCloud(renderer, signal);
+      if (!cloud.base) return cloud;
       await prepareShelf();
-      let made = 0;
-      for (const { hero, object } of stored) {
-        const glb = choices.find(choice => choice.id === object)?.glb;
-        if (!glb) continue;
-        try { cloud = replaceHero(cloud, hero, await loadObjectPoints(glb, cloud.heroes![hero]!, signal)); made++; }
-        catch (error) { signal.throwIfAborted(); console.warn('[astral] a remembered replacement could not be made again.', error); }
+      let stored = readLedger(cloud.base, things);
+      // A room is spent by one visitor and ends when they leave. A spent ledger still stored means the page went before their 45
+      // seconds ran out; whoever arrives now is the next visitor, and does not find that room.
+      if (roomSpent(cloud.base, stored, things)) { endRoom('found spent: its visitor has left'); stored = []; }
+      const light = roomCast(cloud), standing: Made[] = [];
+      for (const [slot, stands] of stored.length ? standingNow(cloud.base, stored) : []) {
+        const hero = cloud.heroes?.findIndex(hero => hero.slot?.id === slot) ?? -1, box = cloud.heroes?.[hero];
+        if (!box?.slot || !stands || !stored.some(change => change.slot === slot)) continue;
+        try {
+          const object = await standIn(cloud, box, stands.thing, stands, light, signal);
+          standing.push({ hero, object, floor: box.slot.surface === 'floor' ? floorOf({ ...box, slot: box.slot }, cloud) : null });
+        } catch (error) { signal.throwIfAborted(); console.warn(`[astral] what the ledger has in the slot "${slot}" could not be made again.`, error); }
       }
-      console.info(`[astral] ${made} of ${stored.length} replacements remembered in this browser made again.`);
+      remembered.set(cloud, { ledger: stored, standing });
+      console.info(`[astral] the room's ledger, kept in this browser: ${stored.length} changes, ${standing.length} slots to put back as they were left.`);
       return cloud;
     };
     const startRecorded = () => {
@@ -261,40 +310,103 @@ export default function AstralRoom() {
       speakPlaceholder(lines[n % lines.length]!, setSpeaking);
     };
     /**
-     * Hero `hero` becomes the shelf's object `id`: its points are fitted to the hero's box and exchanged for the hero's in the room's
-     * cloud (object-points.ts), and the field shows the old object leaving and the new one arriving. `record`: remember it (replacements.ts).
+     * Hero `hero` becomes the shelf's object `id`, or nothing (null: an absence, the slot's floor laid clean where the thing stood):
+     * its points stand in the hero's slot at the thing's height and are exchanged for the hero's in the room's cloud
+     * (object-points.ts), and the field shows the old object leaving and the new one arriving.
+     * `stance`: the pose it stands in and arrives by, its size against its true size, and how many of it, the others standing in
+     * the room's places (EVA's choice, or the development switch's), with the variants of sand-look.ts's Move.
+     * Nothing here is remembered: the room's memory is its ledger, written when EVA decides.
      * Known gap: the painted room (P) still shows the old object.
      */
-    const replace = async (hero: number, id: string, pairing: number, progress: number | null, record: boolean) => {
-      const from = room, box = from?.heroes?.[hero], glb = choices.find(choice => choice.id === id)?.glb;
-      if (!from || !box || !glb || changing || holdsWater(box)) return;
+    const replace = async (hero: number, id: string | null, pairing: number, progress: number | null, stance: Stance = { pose: 'rests' }) => {
+      const from = room, box = from?.heroes?.[hero];
+      if (!from || !box || changing || holdsWater(box)) return;
       changing = true;
       try {
-        const object = await loadObjectPoints(glb, box, leaving.signal);
+        const object = await standIn(from, box, id, stance, cast, leaving.signal);
         if (room !== from || stage !== 'room') return;   // the room moved on while the object was being fetched
-        const next = replaceHero(from, hero, object);
-        if (!field.replaceHero(hero, next, pairing, progress)) return;
-        room = next; heroes = next.heroes ?? []; cloudCount = next.count; changeUntil = time + SWAP_SECONDS;
-        if (record) writeReplacements(withReplacement(readReplacements(), hero, id));
-        console.info(`[astral] "${box.name}" replaced by "${id}" (${object.count} points; ${SWAP_PAIRINGS[pairing]?.name})${record ? ', remembered in this browser' : ', not remembered'}.`);
+        // shortcut: the copies an object has in other places stay in this cloud when the hero is next replaced, though the field
+        // drops them; only the cloud's count is off. Keep each hero's object apart and rebuild the cloud from the arrived room if
+        // anything comes to read it.
+        const next = replaceHero(from, hero, object), move = object.move ? { ...object.move, loose: stance.loose, carried: stance.carried } : null;
+        if (!field.replaceHero(hero, object, pairing, progress, move)) return;
+        // The slot's carpet. A hero's box is emptied whole, floor and all, so the first time a hero on a floor is replaced its
+        // floor is laid again as a cloud of its own (owner, 2026-11-17), which stays through every later change there: no thing
+        // that stands, sinks, moves or leaves in that slot touches it. It is in the field only, not in the room's cloud.
+        if (box.slot?.surface === 'floor' && !floors.has(hero)) {
+          const floor = floorOf({ ...box, slot: box.slot }, arrived ?? from);
+          if (field.layFloor(hero, floor)) floors.set(hero, floor.count);
+        }
+        room = next; heroes = next.heroes ?? []; changeUntil = time + swapTimes(move).total;
+        cloudCount = next.count + [...floors.values()].reduce((sum, count) => sum + count, 0);
+        const copies = object.parts?.length ?? 1, factor = stance.factor ?? 1;
+        if (copies < (stance.copies ?? 1)) console.info(`[astral] ${stance.copies} copies asked; the room has places for ${copies}.`);
+        const what = id === null ? 'nothing' : `${copies > 1 ? `${copies} of ` : factor !== 1 ? `${factor} times ` : ''}"${id}"`;
+        console.info(`[astral] "${box.name}" replaced by ${what} (${object.count} points; ${stance.pose}; ${SWAP_PAIRINGS[pairing]?.name}).`);
       } catch (error) {
         if (!leaving.signal.aborted) console.error('[astral] the replacement failed; the room is unchanged.', error);
       } finally { changing = false; }
     };
+    /** Development only: the change the address's ?swap= names. A dropped thing has come from its own hover, so it is stood hovering
+     * first; a thing that is gone stood there first, plainly. */
+    const showDevSwap = async () => {
+      const swap = devSwap();
+      if (!swap || stage !== 'room') return;
+      await prepareShelf();
+      const id = swap.thing ?? things[0]?.id;
+      if (!id) return;
+      if (swap.pose === 'dropped') await replace(swap.hero, id, swap.pairing, 1, { ...swap, pose: 'hovers' });
+      if (swap.gone) await replace(swap.hero, id, swap.pairing, 1, swap);
+      await replace(swap.hero, swap.gone ? null : id, swap.pairing, swap.progress, { ...swap, carried: swap.pose === 'dropped' });
+    };
+    const onAddress = () => void showDevSwap();
     /** The choices for the hero being inspected. Not during a change, nor over the painted room, which would not show one. */
     const openMenu = () => {
       const hero = heroes[inspect.hero];
-      if (menu || !hero || stage !== 'room' || !flight.enabled || changing || time < changeUntil || splatView?.active) return;
+      if (menu || !hero || stage !== 'room' || !flight.enabled || changing || queue.length || time < changeUntil || splatView?.active) return;
       if (holdsWater(hero)) { refuse('pool'); return; }
       refused.clear();
+      // A spent room accepts nothing more: its menu opens with every entry already refused, so that shows without a word,
+      // whether or not her line is heard over the room.
+      if (base && roomSpent(base, ledger, things)) choices.forEach((_, index) => refused.add(index));
       menu = menuOpen(inspect.hero, choices.length);
     };
+    /**
+     * The visitor picked a thing, or "nothing", for the hero the menu is on. EVA decides (grammar-decide.ts): she refuses aloud
+     * and nothing changes, or what she returns is what happens. The ledger is the room's memory from that moment; the changes
+     * are then shown in order, the visitor's first, then each that puts an old discrepancy right.
+     */
     const pickMenu = () => {
       const choice = menu && choices[menu.index];
       if (!menu || !choice) return;
-      if (choice.glb === null) { refused.add(menu.index); refuse(choice.id); return; }
-      void replace(menu.hero, choice.id, swaps++ % SWAP_PAIRINGS.length, null, true);
-      menu = null;
+      if (choice.glb === null && choice.id !== MENU_NOTHING) { refused.add(menu.index); refuse(choice.id); return; }
+      const slot = heroes[menu.hero]?.slot?.id, picked = choice.glb === null ? null : choice.id;
+      if (!base || !slot) {   // a room the grammar does not know (?room=surreal): the thing is stood plainly, and nothing is remembered
+        if (picked) void replace(menu.hero, picked, swaps++ % SWAP_PAIRINGS.length, null);
+        menu = null;
+        return;
+      }
+      // The seed comes from the ledger and the slot, not from chance; the time is the page's clock. The grammar reads neither itself.
+      const decision = decideChange(base, ledger, things, slot, picked, pickSeed(base, ledger, slot), Date.now());
+      if (decision.ok) {
+        ledger = [...ledger, ...decision.changes];
+        writeLedger(ledger);
+        queue = [...decision.changes];
+        menu = null;
+      } else { refused.add(menu.index); refuse(decision.refusal); }
+      if (import.meta.env.DEV) {   // development only: a visitor never sees EVA's values
+        const values = roomValues(base, ledger, things), how = decision.ok
+          ? decision.changes.map(change => `${change.slot}: ${change.thing ?? 'nothing'}, ${change.discrepancy ?? 'plain'}, ${change.pose}${change.factor !== 1 ? `, x${change.factor}` : ''}${change.copies !== 1 ? `, ${change.copies} of it` : ''}`).join('; then ')
+          : `refused (${decision.refusal})`;
+        console.info(`[astral] EVA decided on "${picked ?? 'nothing'}" for "${slot}": ${how}. Familiarity ${values.familiarity}, deviation ${values.deviation}, ambiguity ${values.ambiguity}: ${roomState(values)}${roomSpent(base, ledger, things) ? ', spent' : ''}.`);
+      }
+    };
+    /** The room is over, spent or cleared by the owner: its ledger is forgotten, and the next visitor does not find it. */
+    const endRoom = (why: string) => {
+      ledger = []; queue = [];
+      writeLedger([]);
+      // step 6: call forgetMood() from ./mood-choice.ts here. That file is another session's and did not exist when this was written.
+      console.info(`[astral] the room is over (${why}): its ledger is cleared.`);
     };
 
     const resize = () => {
@@ -320,6 +432,16 @@ export default function AstralRoom() {
       stopGeneration();
     };
     const onKeyDown = (event: KeyboardEvent) => {
+      // The owner's key, Shift+Delete, in any build: the room is cleared by hand. Whatever is formed disperses and its ledger is forgotten.
+      if (event.code === 'Delete' && event.shiftKey) {
+        event.stopPropagation();
+        if (event.repeat) return;
+        endRoom('cleared by the owner\'s key');
+        generation?.abort();
+        generation = undefined;
+        if (stage !== 'void' && stage !== 'dissolving') dissolve(false);
+        return;
+      }
       if (menu) {
         // The menu has the keys: A and D move between its choices, so the flight, which listens after this, must not see them.
         event.stopPropagation();
@@ -349,15 +471,11 @@ export default function AstralRoom() {
       if (event.code === 'KeyP') showPaint(!splatView?.painted);
       // F, or a click: the choices for the hero being inspected.
       if (event.code === 'KeyF' && !started) openMenu();
-      // Development only: G replaces a hero (the one being inspected, else the nearest) without the menu, by the next object and the
-      // next pairing; it is not remembered. Backspace forgets every remembered replacement and returns to the recorded library.
-      if (import.meta.env.DEV && event.code === 'KeyG' && stage === 'room') {
-        const p = camera.position, objects = choices.filter(choice => choice.glb !== null);
-        if (objects.length) void replace(swapHero(inspect.hero, heroes, [p.x, p.y, p.z]), objects[swaps % objects.length]!.id, swaps++ % SWAP_PAIRINGS.length, null, false);
-      }
-      if (import.meta.env.DEV && event.code === 'Backspace') {
-        writeReplacements([]);
-        if (!started) startRecorded();
+      // Development only: G replaces a hero (the one being inspected, else the nearest) without the menu and without EVA, by the
+      // next object, resting, and the next pairing. It is not in the ledger, so it is not remembered.
+      if (import.meta.env.DEV && event.code === 'KeyG' && stage === 'room' && things.length) {
+        const p = camera.position;
+        void replace(swapHero(inspect.hero, heroes, [p.x, p.y, p.z]), things[swaps % things.length]!.id, swaps++ % SWAP_PAIRINGS.length, null);
       }
     };
     const onMouseMove = (event: MouseEvent) => {
@@ -374,6 +492,7 @@ export default function AstralRoom() {
     window.addEventListener('keydown', onKeyDown, true);   // in the capture phase, so the open menu can keep keys from the flight
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('click', onClick);
+    if (import.meta.env.DEV) window.addEventListener('popstate', onAddress);
 
     const start = performance.now();
     let previous = start;
@@ -412,7 +531,7 @@ export default function AstralRoom() {
           flight.enabled = true;
           arrival = undefined;
           enterStage('room');
-          if (devSwap) void prepareShelf().then(() => { const first = choices.find(choice => choice.glb !== null); if (first) return replace(devSwap.hero, first.id, devSwap.pairing, devSwap.progress, false); });
+          void showDevSwap();
           sideLow = sideHigh = side;
           lastTease = -Infinity;
         }
@@ -426,10 +545,29 @@ export default function AstralRoom() {
         }
       }
 
+      // What the ledger has standing in the room, put back as the room forms: each as an object of its own, settled, on its laid
+      // floor, exactly as a change leaves it, so the next change there takes all of it away (a repeated thing's copies too). The
+      // field refuses while the room's own grains are still being built; then it is asked again next frame.
+      while (standing.length && room && field.replaceHero(standing[0]!.hero, standing[0]!.object, 0, 1)) {
+        const { hero, object, floor } = standing.shift()!;
+        if (floor && field.layFloor(hero, floor)) floors.set(hero, floor.count);
+        room = replaceHero(room, hero, object); heroes = room.heroes ?? [];
+        cloudCount = room.count + [...floors.values()].reduce((sum, count) => sum + count, 0);
+      }
+
       if (stage === 'room') {
         sideLow = Math.min(sideLow, side);
         sideHigh = Math.max(sideHigh, side);
-        if (time - Math.max(lastInput, stageAt) > IDLE_SECONDS) dissolve(false);
+        if (time - Math.max(lastInput, stageAt) > IDLE_SECONDS) {
+          // the visitor has gone. A spent room goes with them, for good
+          if (base && roomSpent(base, ledger, things)) endRoom('spent, and its visitor has left');
+          dissolve(false);
+        } else if (queue.length && !changing && time >= changeUntil) {
+          // the next change of EVA's decision, once the one before it has run its course. A dropped thing is the one already
+          // hovering there, put right: nothing leaves and nothing assembles
+          const change = queue.shift()!;
+          void replace(heroes.findIndex(hero => hero.slot?.id === change.slot), change.thing, swaps++ % SWAP_PAIRINGS.length, null, { ...change, carried: change.pose === 'dropped' });
+        }
         else if (!menu && sideTeaseDue(time, { since: stageAt, lastInput, lastTease, travelled: sideHigh - sideLow })) {   // not while they are choosing
           lastTease = time;
           speakPlaceholder(SIDE_TEASES[teases++ % SIDE_TEASES.length]!, setSpeaking);
@@ -480,6 +618,7 @@ export default function AstralRoom() {
       window.removeEventListener('keydown', onKeyDown, true);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('click', onClick);
+      window.removeEventListener('popstate', onAddress);
       globalThis.speechSynthesis?.cancel();
       flight.dispose();
       scene.remove(field.object, eye.object, menuView.object);

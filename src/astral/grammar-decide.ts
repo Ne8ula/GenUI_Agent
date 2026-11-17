@@ -1,5 +1,5 @@
 // What EVA allows, and how a thing the visitor picked enters the room (LIMINAL-GRAMMAR.md, Part 1: "What EVA allows" and
-// "The visitor picks what, EVA picks how"). Pure: no three.js, no page, no clock, no Math.random. Nothing calls it yet (step 5).
+// "The visitor picks what, EVA picks how"). Pure: no three.js, no page, no clock, no Math.random. The menu's pick calls it (AstralRoom.tsx).
 import { roomValues, standingNow } from './grammar.ts';
 import type { BaseRoom, Change, Discrepancy, Mood, Pose, Slot, Standing, Surface, Thing } from './grammar.ts';
 
@@ -17,21 +17,29 @@ const ANCHOR = 65;
 const PREFERS: Record<Mood, readonly Discrepancy[]> = { quiet: ['displacement', 'light'], uncanny: ['scale', 'repetition'], eerie: ['absence'] };
 
 // ---- Proposals, the owner's to change. None of these is in the document.
-/** Wrong scale: the sizes allowed, against true size. */
-const SCALE_FACTORS = [0.25, 0.4, 2.5, 4, 6] as const;
+/** Wrong scale: the sizes allowed, against true size. Larger only (owner, 2026-11-17): a thing made small reads as something
+ * little on the floor, not as wrong. Exported with the copies' figures: the development switch uses the same. */
+export const SCALE_FACTORS = [2.5, 4, 6] as const;
 /** A scaled thing is never shorter than this, in metres, or the room's dots lose it. */
 const SCALE_SMALLEST = 0.15;
-/** Repetition: how many of one thing, in a grid on the slot's floor or tabletop. */
-const COPIES_MIN = 3;
-const COPIES_MAX = 9;
-/** The floor each copy takes, against the thing's own width. */
-const COPY_PITCH = 1.25;
-/** Air under a hovering thing, in metres. */
-const HOVER_GAP = 0.3;
+/** Repetition: how many of one thing. One stands in the slot picked and the others in other places of the room, never side by
+ * side or stacked (owner, 2026-11-17), so the slot needs room for one only. */
+export const COPIES_MIN = 3;
+export const COPIES_MAX = 6;
+/** Air under a hovering thing, in metres. Exported with the next two: the placement (object-points.ts) stands a thing by the same figures. */
+export const HOVER_GAP = 0.3;
 /** The share of a sunk thing that is below the floor or inside the wall. */
-const SUNK_SHARE = 0.4;
-/** The height and depth a leaning thing takes, against its own; step 3 gives the pose its real tilt. */
-const LEAN_ROOM = 1.2;
+export const SUNK_SHARE = 0.4;
+/** A leaning thing is tipped back, away from the way its slot faces, by this many degrees. */
+export const LEAN_TILT = 15;
+/**
+ * The height and depth a thing tipped back by LEAN_TILT takes, against its own. Not one figure: both depend on how deep the thing
+ * is against its height (`deep`). It is the room its box takes, so never less than the room the thing itself takes.
+ */
+const LEAN_ROOM = (deep: number) => {
+  const tilt = LEAN_TILT * Math.PI / 180;
+  return { tall: Math.cos(tilt) + deep * Math.sin(tilt), deep: Math.cos(tilt) + Math.sin(tilt) / deep };
+};
 
 const ARRIVALS = { rests: 'assembles', hovers: 'rises', dropped: 'falls', sunk: 'pushes-up', leans: 'tips', mounted: 'assembles', turned: 'turns' } as const;
 
@@ -62,33 +70,38 @@ function posesOn(thing: Thing, surface: Surface): Pose[] {
 }
 
 /**
- * Whether a thing `size` metres tall, in that pose, `copies` of it in a grid, stands inside the slot's clear volume.
- * shortcut: the shelf gives a thing's height only, so it is taken to be as wide and deep as it is tall; use its real width and depth
- * once step 2 measures the models.
+ * Whether the thing at `factor` times its true size, in that pose, stands inside the slot's clear volume.
+ * Its width and depth are the model's own, measured against its height (step 2), across and along the way the slot faces.
  */
-function fits(slot: Slot, pose: Pose, size: number, copies = 1): boolean {
+function fits(slot: Slot, pose: Pose, thing: Thing, factor = 1): boolean {
   const [width, height, depth] = slot.clear;
+  const size = thing.height * factor;
   const shown = pose === 'sunk' ? 1 - SUNK_SHARE : 1;
   const inWall = slot.surface === 'wall';
-  const lean = pose === 'leans' ? LEAN_ROOM : 1;
-  const tall = size * (inWall ? 1 : shown) * lean + (pose === 'hovers' && slot.surface !== 'air' ? HOVER_GAP : 0);
-  const pitch = size * (copies > 1 ? COPY_PITCH : 1);
-  // A clear volume with a side of nothing or less holds nothing (two negative sides would otherwise multiply into room).
-  return size > 0 && width > 0 && depth > 0 && tall <= height
-    && Math.floor(width / pitch) * Math.floor(depth / (pitch * (inWall ? shown : 1) * lean)) >= copies;
+  const lean = pose === 'leans' ? LEAN_ROOM(thing.deep) : { tall: 1, deep: 1 };
+  const tall = size * (inWall ? 1 : shown) * lean.tall + (pose === 'hovers' && slot.surface !== 'air' ? HOVER_GAP : 0);
+  // A clear volume with a side of nothing or less holds nothing.
+  return size > 0 && width > 0 && depth > 0 && tall <= height && size * thing.wide <= width && size * thing.deep * (inWall ? shown : 1) * lean.deep <= depth;
 }
 
-/** Every way the thing can stand in the slot and fit its clear volume: plainly, in each displaced pose, at each wrong size, in each number. */
-function waysIn(thing: Thing, slot: Slot): Standing[] {
+/**
+ * Every way the thing can stand in the slot and fit its clear volume: plainly, in each displaced pose, at each wrong size, in each number.
+ * The other copies of a repeated thing stand in the room's `places`, one each, so a room with fewer than COPIES_MIN - 1 of them
+ * repeats nothing, and no number asks for more places than the room has.
+ * reading: a place is not asked whether the thing belongs on its surface or fits it. A room's places are written by hand for
+ * what should stand there (owner, 2026-11-17: against a shelf, on the floor, floating in the water), each with its own pose, and
+ * the page makes every copy as much smaller as the tightest of them takes.
+ */
+function waysIn(thing: Thing, slot: Slot, places: number): Standing[] {
   const ways: Standing[] = [];
   const add = (pose: Pose, discrepancy: Discrepancy | null, factor = 1, copies = 1) => {
-    if (fits(slot, pose, thing.height * factor, copies)) ways.push({ thing: thing.id, discrepancy, pose, factor, copies });
+    if (fits(slot, pose, thing, factor)) ways.push({ thing: thing.id, discrepancy, pose, factor, copies });
   };
   for (const pose of posesOn(thing, slot.surface)) {
     add(pose, pose === 'rests' ? null : 'displacement');
     if (pose !== 'rests') continue;
     for (const factor of SCALE_FACTORS) if (thing.height * factor >= SCALE_SMALLEST) add('rests', 'scale', factor);
-    if (thing.repeatable && onGround(slot.surface)) for (let copies = COPIES_MIN; copies <= COPIES_MAX; copies++) add('rests', 'repetition', 1, copies);
+    if (thing.repeatable && onGround(slot.surface)) for (let copies = COPIES_MIN; copies <= Math.min(COPIES_MAX, 1 + places); copies++) add('rests', 'repetition', 1, copies);
   }
   return ways;
 }
@@ -101,7 +114,7 @@ function waysIn(thing: Thing, slot: Slot): Standing[] {
 function putRight(slot: Slot, standing: Standing, ledger: readonly Change[], shelf: readonly Thing[]): Standing | null {
   const id = standing.thing ?? ledger.filter((change) => change.slot === slot.id && change.thing !== null).pop()?.thing ?? slot.holds?.thing;
   const thing = shelf.find((each) => each.id === id);
-  if (!thing || !thing.surfaces.includes(slot.surface) || !fits(slot, 'rests', thing.height)) return null;
+  if (!thing || !thing.surfaces.includes(slot.surface) || !fits(slot, 'rests', thing)) return null;
   const hovered = standing.thing !== null && standing.pose === 'hovers' && onGround(slot.surface);
   return { thing: thing.id, discrepancy: null, pose: hovered ? 'dropped' : 'rests', factor: 1, copies: 1 };
 }
@@ -150,7 +163,7 @@ export function decideChange(base: BaseRoom, ledger: readonly Change[], shelf: r
   const stuck = rights.includes(null);
 
   const absence: Standing = { thing: null, discrepancy: 'absence', pose: 'rests', factor: 1, copies: 1 };
-  const ways = (picked ? waysIn(picked, place) : [absence])
+  const ways = (picked ? waysIn(picked, place, base.places ?? 0) : [absence])
     .map((way) => ({ way, weight: weigh(place, way) }))
     // reading: where the strong discrepancy that stands cannot be put right, a second one cannot be made, and a pick that could only
     // arrive as one is refused as 'fit'. The seam has no refusal of its own for this.

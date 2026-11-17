@@ -1,5 +1,5 @@
-// The visitor's menu of replacements for a hero: which choice is selected, where each choice sits in each arrangement, and the two
-// entries EVA will not do. Pure: no three, no page. menu-view.ts draws it; AstralRoom.tsx feeds it the keys and the mouse.
+// The visitor's menu of replacements for a hero: which choice is selected, where each choice sits in each arrangement, "nothing",
+// and the two entries EVA will not do. Pure: no three, no page. menu-view.ts draws it; AstralRoom.tsx feeds it the keys and the mouse.
 
 /** The arrangements the owner is choosing between: ?menu=ring|row|one. Delete the ones not kept. */
 export const MENU_ARRANGEMENTS = ['ring', 'row', 'one'] as const;
@@ -70,12 +70,20 @@ export type MenuRefused = typeof MENU_REFUSED[number];
 /** What a choice looks like in the menu: its own points. A PointCloud is one. */
 export interface MenuPoints { count: number; positions: Float32Array; colors: Float32Array; normals?: Float32Array }
 
-/** A refused entry as points, since nothing on the shelf stands for it: a door standing ajar in its frame, or a square-pupilled eye. */
-export function refusedPoints(id: MenuRefused): MenuPoints {
+/** "Nothing": the entry that takes a slot's thing away and puts nothing there. It comes after the shelf's objects, before the refused entries. */
+export const MENU_NOTHING = 'nothing';
+
+/** An entry that is no object of the shelf, as points: a door standing ajar in its frame, a square-pupilled eye, or, for
+ * "nothing", the bare edges of an empty box. */
+export function entryPoints(id: MenuRefused | typeof MENU_NOTHING): MenuPoints {
   const at: number[] = [], rgb: number[] = [];
   const dot = (x: number, y: number, z: number, c: readonly number[]) => { at.push(x, y, z); rgb.push(c[0]!, c[1]!, c[2]!); };
   const STEP = 0.012;
-  if (id === 'door') {
+  if (id === MENU_NOTHING) {
+    // the twelve edges of the space a thing would take, sparse and pale, and nothing in it
+    const pale = [0.7, 0.7, 0.66];
+    for (let t = -0.5; t <= 0.5; t += STEP * 3) for (const a of [-0.5, 0.5]) for (const b of [-0.5, 0.5]) { dot(t, a, b, pale); dot(a, t, b, pale); dot(a, b, t, pale); }
+  } else if (id === 'door') {
     const pale = [0.82, 0.8, 0.72], dim = [0.5, 0.49, 0.45];
     for (const z of [-0.04, 0.04]) for (let t = 0; t <= 1; t += STEP) for (const w of [0, 0.02, 0.04]) {
       dot(-0.27 - w, t, z, pale); dot(0.27 + w, t, z, pale);                // the jambs

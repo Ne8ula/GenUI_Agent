@@ -1,12 +1,13 @@
 {
   "recorded": "2026-11-16",
   "route": "A recording, not live generation. Each model was generated once: an OpenAI gpt-image-2.5-flare picture (1536x1024), then a Meshy meshy-t2.5 textured model (smart topology, 10,000 target faces, GLB). The diving helmet is the model of the first measured run; the other five were made through the /api/object handler.",
+  "grammar": "Per object, for src/astral/grammar.ts (Thing). height: true height in metres. wide, deep: the model's width (x) and depth (z) against its height, measured from the GLB's bounds on 2026-11-16; re-measure when a model is replaced. surfaces: what it stands on. kinds: the kinds of place it belongs to (office, home, service; none: it belongs nowhere). era: a year. repeatable: whether EVA may stand several of it. height, surfaces, kinds, era and repeatable are proposals for the owner to change.",
   "objects": [
-    { "id": "diving-helmet", "name": "brass diving helmet", "glb": "diving-helmet.glb" },
-    { "id": "gramophone", "name": "gramophone", "glb": "gramophone.glb" },
-    { "id": "rocking-horse", "name": "rocking horse", "glb": "rocking-horse.glb" },
-    { "id": "globe", "name": "antique globe", "glb": "globe.glb" },
-    { "id": "chess-knight", "name": "marble chess knight", "glb": "chess-knight.glb" },
-    { "id": "televisions", "name": "stack of televisions", "glb": "televisions.glb" }
+    { "id": "diving-helmet", "name": "brass diving helmet", "glb": "diving-helmet.glb", "height": 0.5, "wide": 0.751, "deep": 0.81, "surfaces": ["floor", "tabletop"], "kinds": [], "era": 1900, "repeatable": false },
+    { "id": "gramophone", "name": "gramophone", "glb": "gramophone.glb", "height": 0.7, "wide": 0.589, "deep": 0.667, "surfaces": ["floor", "tabletop"], "kinds": ["home"], "era": 1910, "repeatable": false },
+    { "id": "rocking-horse", "name": "rocking horse", "glb": "rocking-horse.glb", "height": 1, "wide": 0.332, "deep": 1.091, "surfaces": ["floor"], "kinds": ["home"], "era": 1950, "repeatable": false },
+    { "id": "globe", "name": "antique globe", "glb": "globe.glb", "height": 0.55, "wide": 0.452, "deep": 0.446, "surfaces": ["floor", "tabletop"], "kinds": ["office", "home"], "era": 1930, "repeatable": false },
+    { "id": "chess-knight", "name": "garden chess knight", "glb": "chess-knight.glb", "height": 0.6, "wide": 0.434, "deep": 0.464, "surfaces": ["floor", "tabletop"], "kinds": ["home"], "era": 1990, "repeatable": true },
+    { "id": "televisions", "name": "stack of televisions", "glb": "televisions.glb", "height": 1.35, "wide": 0.499, "deep": 0.246, "surfaces": ["floor"], "kinds": ["office", "home"], "era": 1990, "repeatable": true }
   ]
 }
