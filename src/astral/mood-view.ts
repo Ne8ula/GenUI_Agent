@@ -36,6 +36,8 @@ vec3 flow(vec3 q, float t) {
   return 0.5 * vec3(sin(q.y * 2.3 + t) + sin(q.z * 3.1 - t * 0.7 + q.x), sin(q.x * 2.7 - t * 0.8) + sin(q.z * 2.9 + t * 0.6 + q.y), sin(q.x * 3.3 + t * 0.5) + sin(q.y * 3.7 - t));
 }
 vec3 turnY(vec3 d, float a) { float c = cos(a), s = sin(a); return vec3(c * d.x + s * d.z, d.y, c * d.z - s * d.x); }
+const float MUTED = 0.45;                       // how much of a cast's colour is kept
+const vec3 PALE = vec3(0.8, 0.82, 0.77);        // the edges go toward this: a dull bone white
 void main() {
   uint id = uint(gl_VertexID);
   float r1 = h01(id * 7u + 5u), r2 = h01(id * 13u + 3u), r3 = h01(id * 19u + 11u), T = uTime;
@@ -68,10 +70,11 @@ void main() {
   vec3 nv = normalize(normalMatrix * n), v = normalize(-mv.xyz);
   float facing = dot(nv, v), lit = max(dot(nv, normalize(vec3(-0.45, 0.7, 0.55))), 0.0);
   vec3 tint = uCast[0] * w.x + uCast[1] * w.y + uCast[2] * w.z;
-  // glass, as grains: the mood's cast where the light falls, and a spectrum that runs with the angle of view toward the edges
-  vec3 spectrum = 0.5 + 0.5 * cos(6.2832 * (facing * 1.1 + dot(p, vec3(0.5, 0.35, 0.2)) + vec3(0.0, 0.33, 0.67)));
+  // Few colours (owner, 2026-11-17: liminal and surreal, not colourful; the first try had a rainbow toward the edges). The mood's
+  // cast, most of its colour taken out as the field does for DAO's near-monochrome, and paler toward the edges, as glass is.
+  tint = mix(vec3(dot(tint, vec3(0.2126, 0.7152, 0.0722))), tint, MUTED);
   vec3 c = tint * (0.28 + 0.72 * lit);
-  c = mix(c, spectrum * (0.35 + 0.65 * lit), 0.12 + 0.5 * pow(1.0 - abs(facing), 2.0));
+  c = mix(c, mix(tint, PALE, 0.7) * (0.35 + 0.65 * lit), 0.12 + 0.5 * pow(1.0 - abs(facing), 2.0));
   c *= facing < 0.0 ? 0.16 : 1.0;                       // the far side shows through, dimly
   vCol = min(c, vec3(0.85)) * alive * uPresence * mix(1.0, 0.55, clamp(thrown, 0.0, 1.0));
   gl_Position = projectionMatrix * mv;
