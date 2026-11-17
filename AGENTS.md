@@ -109,7 +109,21 @@ Checked 2026-11-16 in a worktree made by `claude -w`: `npm run check` passed (32
 
 `index.html` loads `src/main.tsx`, which mounts `AstralRoom`. There is one page; the only interface drawn over the room is the inspection marks and the replacement menu, neither with words.
 
-Sequence: black void with the eye. Any key press or mouse movement counts as a visitor arriving and starts a spiral tunnel of points, which carries the viewer along it (at least 12 seconds). The room forms at the far end from the tunnel's own points. A 12 second arrival flight follows, then the visitor has control. After 45 seconds in the room with no input, the room disperses back into the void and waits for the next visitor.
+Sequence: black void with the eye. If no room exists, the void offers the three moods first (next paragraph). If one exists, any key press or mouse movement counts as a visitor arriving and starts a spiral tunnel of points, which carries the viewer along it (at least 12 seconds). The room forms at the far end from the tunnel's own points. A 12 second arrival flight follows, then the visitor has control. After 45 seconds in the room with no input, the room disperses back into the void and waits for the next visitor.
+
+**The void's choice (2026-11-17, `LIMINAL-GRAMMAR.md` step 6).** While no room exists, one body of grains waits in the middle of the void and takes an abstract form for the selected mood, with no words: quietly liminal, subtly uncanny, eerie absence, in that order. Stepping to another mood throws the grains and gathers them into its form. Nothing starts until one is picked. **The owner chose this as the final version (2026-11-17).** It is the third round, made after the owner's references (two pictures of glass forms, and bricelab.dev, where one body of particles re-forms for each item). Two earlier rounds were turned down, and their code and captures are deleted: small tinted copies of the library, then three still figures of dots side by side.
+
+- **Whether a room exists** is `mood-choice.ts`: `chosenMood()`, `chooseMood(mood)`, `forgetMood()`. The mood is kept in the browser's storage (key `eva.astral.mood`) and read back as untrusted data: anything but a mood's name is no room. A marked shortcut, as the room's memory is: one machine, one browser profile, one address.
+- **Picking** uses the menu's keys and mouse: `A`/`D` or the arrow keys, or mouse travel (a sixth of the page's width for each step, four times the menu's, so the body has time to gather), move between the three; `Enter`, `F` or a click picks. `Esc` does nothing (the choice opens again on the first mood). The pick stores the mood and starts the tunnel. **Until step 7 every mood's room is the recorded library**, and the console says so at each pick.
+- **The forms** (`moodForm` in `mood-choice.ts`, pure) are 40,000 grains each, as ordered dots on a surface made in code, every grain with a place in all three. Which form stands for which mood was my proposal, and stands with the owner's choice of this version:
+  - Quiet: a sphere parted by a seam that swings round it, one half standing a little proud (the owner's second picture).
+  - Uncanny: a flat ribbon in a figure of eight, its upper loop the larger, turned once on its way round (the owner's first picture).
+  - Eerie: a ring round nothing, tipped toward the viewer. No reference was given for a third; it was made to sit with the other two.
+- **How each moves** (`mood-view.ts`; cut down from the field's effects, which are adapted from Gather): quiet breathes, swelling and sinking in slow uneven lobes; uncanny wrings itself, each height turning its own way and back; eerie is weightless, with regions lifting and three grains in ten leaving the surface, thinning out and forming again. The whole body turns slowly. A change of form is Gather's kick: each grain crosses at its own moment, thrown outward on the way, about a second and a half in all.
+- **How it is lit: few colours** (owner, 2026-11-17: "more liminal and more surreal rather than colorful"; the first try had a rainbow toward the edges). Each form is its mood's cast (`MOOD_CASTS`: yellow-green, teal, warm white with green in it) with 45% of its colour kept (`MUTED`), going toward a dull bone white at the edges (`PALE`), the far side showing through dimly. So the three are a dull olive, a pale grey-teal and a bone white, and the eye's red is the only strong colour on screen. Grains are whole-pixel squares of two or three sizes. Three ticks under the body say which of the three it is.
+- **Drawn by its own small view** (`createMoodView`), not by the menu's: the menu's view draws separate still choices and cannot move grains between forms. `menu-view.ts` is as it was before step 6. `?menu=` no longer affects the void. The body stands in the middle of the frame, not round the eye; the eye is left in its idle phase and wanders past it.
+- Sizes, speeds, amounts and colours are named at the top of `mood-view.ts` or beside the motion they belong to. They are the values of the chosen version; change them only when the owner asks.
+- **Merged with step 5 on 2026-11-17.** Every ending of a room (`endRoom`: a spent room whose visitor has left, the owner's key) calls `forgetMood()`, so the next void offers the three moods. **The mood picked is the room's mood**: `loadRoom` puts it in place of the library's own (`quiet`) before the first pick, so EVA prefers what that mood prefers. A marked shortcut until step 7: the kind of place, the era and the starting values stay the library's.
 
 In the room, the keyboard and mouse stand in for the planned controller and camera:
 
@@ -156,10 +170,10 @@ The room is the **recorded library**: `public/fixtures/library/`, rebuilt once f
 - **Refused.** Each of the four refusals (`unknown`, `spent`, `fit`, `anchor`) has lines in `tease.ts` (`REFUSALS`), placeholder wording in the placeholder browser voice. The entry turns the eye's red, the menu stays open so the visitor can pick something else, and nothing else changes, as with the door and the second eye. The red entry is the only sign of a refusal that does not depend on her line being heard. The pool, the door and the second eye are refused as before, without asking the grammar.
 - **The room's memory is the ledger** (`replacements.ts`: `readLedger`, `writeLedger`, key `eva.astral.ledger`), read back through `parseLedger` as untrusted data. **This is a shortcut, marked `shortcut:`, until step 9: the room is remembered on one machine, in one browser profile, for one address.** The earlier list of replacements (`eva.astral.replacements`) is no longer read or written.
 - **A room that arrives with a ledger.** While the recorded room loads, what the ledger has standing in each changed slot (`standingNow`) is made ready, in its pose, size and number. As the room forms, each is put back through the field as an object of its own, settled, on its laid floor, exactly as a change leaves it; so the next change there takes all of it away. Nothing of the ledger is baked into the room's cloud any more.
-- **A spent room** (deviation over 70) refuses every further pick aloud, and its menu opens with every entry already red. When that visitor leaves (45 seconds without input) it ends: the ledger is cleared, and the next visitor arrives in the recording. A spent ledger found when a room loads (the page went before the 45 seconds ran out) is ended the same way before the room is shown. `forgetMood()` from `mood-choice.ts` belongs in `endRoom`, which every ending goes through; that file did not exist on 2026-11-17, so one marked line stands where the call goes.
+- **A spent room** (deviation over 70) refuses every further pick aloud, and its menu opens with every entry already red. When that visitor leaves (45 seconds without input) it ends: the ledger is cleared, and the next visitor arrives in the recording. A spent ledger found when a room loads (the page went before the 45 seconds ran out) is ended the same way before the room is shown. Every ending goes through `endRoom`, which also forgets the room's mood (`forgetMood()`, step 6), so "arrives in the recording" here now means: is offered the three moods, and then arrives in the recording.
 - **The owner's key, `Shift` + `Delete`, in any build**, ends the room by hand at any stage: whatever is formed disperses and the ledger is cleared. Recommended and built, for the owner to overturn; it is one line in `onKeyDown`.
 - **Development server only:** after each decision the console has what EVA decided, the three values, the state, and whether the room is spent. A visitor never sees them.
-- **In the library EVA only ever chooses displacement.** Its mood is `quiet`, which prefers displacement and light, and light is not a thing's to carry. Wrong scale and repetition come only from the `uncanny` mood. They were run through the page by answering the manifest with that mood in the capture's own browser (`capture-uncanny.mjs`); no file says so.
+- **What EVA chooses follows the mood picked in the void** (since the merge with step 6; before it the library was always `quiet`). `quiet` prefers displacement and light, and light is not a thing's to carry, so there she only displaces. Wrong scale and repetition come only from `uncanny`. In `eerie` a picked thing always arrives plainly. The step 5 captures of wrong scale and repetition were made before the merge, by answering the manifest with the `uncanny` mood in the capture's own browser (`capture-uncanny.mjs`).
 - **The grammar counts the room's places** (`BaseRoom.places`, set by `baseRoom` from the manifest's list): a repeated thing never has more copies than one more than the room has places, and a room with fewer than two places repeats nothing. A place is not asked whether the thing belongs on its surface: places are written by hand for what should stand there.
 - A room the grammar does not know (`?room=surreal`, which declares no room) keeps no ledger: a pick there stands the thing plainly and nothing is remembered.
 
@@ -177,7 +191,8 @@ The live route `/api/object` (below) makes a fresh model of one of the same six 
 
 | Input | Effect |
 |---|---|
-| Any key, or moving the mouse | From the void: start the tunnel and the recorded library |
+| Any key, or moving the mouse | From the void, when a room exists: start the tunnel and the recorded library |
+| In the void, when no room exists: `A` / `D`, arrow keys, or moving the mouse | Step between the three moods: the body of grains gathers into each one's form. `Enter`, `F` or a click picks the one shown and starts the tunnel |
 | `W A S D` | Move. `Space` / `E` up, `Shift` / `Q` down |
 | Mouse left-right | Where the visitor stands: a window in the middle, turning near the edges |
 | `R` | In a room: throw its points into the recorded library again |
@@ -188,7 +203,7 @@ The live route `/api/object` (below) makes a fresh model of one of the same six 
 | `8` `9` `0` `-` | Lighting: liminal, afternoon, night, dark. `L` toggles lamps |
 | `1` to `7` | Effects: calm, breathe, melt, scatter, weightless, smear, vortex |
 | `Esc` | Stop: EVA's line, a tunnel in progress. Mouse movement will not restart it until the next key press |
-| `Shift` + `Delete` | The owner's key, in any build (proposed): the room is ended by hand. Whatever is formed disperses into the void and the ledger is cleared; the next visitor arrives in the recording |
+| `Shift` + `Delete` | The owner's key, in any build (proposed): the room is ended by hand. Whatever is formed disperses into the void, the ledger is cleared and the mood forgotten; the next visitor is offered the three moods |
 | `?px=0.5` to `2` | Render scale cap (default 1.5); lower it for a slow machine on a big screen |
 | `?room=surreal` | `R` loads the earlier fixture `public/fixtures/surreal-library/` instead (GLB meshes sampled to points) |
 | `?look=ribbons,data` | Two unchosen prototype looks (see below) |
@@ -206,6 +221,8 @@ The live route `/api/object` (below) makes a fresh model of one of the same six 
 |---|---|
 | `AstralRoom.tsx` | Shell: renderer, stage sequence (void, tunnel, arriving, room, dissolving), keys, wiring |
 | `types.ts` | Shared contract: `PointCloud`, `RoomLights`, `RoomHero`, effects, lights, phases, `AstralReply`, `TUNNEL` |
+| `mood-choice.ts` | The void's choice, pure: which mood's room exists, kept in the browser's storage (`chosenMood`, `chooseMood`, `forgetMood`); each mood's cast and its abstract form for the void as grain positions (`MOOD_CASTS`, `moodForm`) |
+| `mood-view.ts` | The void's choice as drawn: one body of grains that takes the selected mood's form, each form's motion, the throw and gather between forms, three ticks |
 | `point-field.ts` | The GPU point renderer: tunnel cloud, tunnel-to-room arrival, seven effects, lighting moods (`MOODS`, `nextLighting`), hero highlight, the objects that replaced heroes (`replaceHero`). Largest file |
 | `flight.ts` | Key-driven flight, the side-to-side view (`sideView`, `setSide`), guided camera, arrival path |
 | `tease.ts` | EVA's unprompted lines and her refusals (`REFUSALS`: the door, the second eye, the pool, and each of the four checks a pick can fail): placeholder wording, when a tease is due, and the placeholder browser voice |
@@ -322,7 +339,37 @@ The first run (`capture.mjs`) was not repeated after these changes; its check of
 
 Not checked: any of it watched running by a person, or heard (headless Chrome has no sound); the televisions part-way through their fall (six frames were taken as the cube finished leaving, `13-*`; the first and the third were looked at and show them already down, 0.3 m under where `10` has them); the refusal `anchor` in the browser (its lines are covered by a test; it cannot occur in the library, which declares no anchor); a ledger read back with an absence or a wrong size in it; sizes of 4 and 6 times, and numbers other than five; a visitor leaving while a decision's changes are still being shown; a clock or wall slot; the sand look; the painted room, which still shows the old things; frame time, and how long the frame is in which a remembered thing is put back; the built page (the build succeeds, and the owner's key is not gated by the dev server in the code, but only the dev server was driven); an ultrawide frame. No reviewer agent read this work.
 
+Checked on 2026-11-17 after steps 5 and 6 were merged in the main checkout, in headless Chrome at 1920x1080 against its dev server on temporary port 5199, default look: typecheck clean; 409 tests pass in 35 files; `npm run build` succeeds. `.local/void-choice/merged.mjs` took one page through both steps together and checked each against the console and the browser's storage (`merged-*`); every check passed, with no console errors, page errors or failed requests:
+
+1. A first visitor finds no room: the three moods are offered and nothing starts.
+2. The second mood picked: `uncanny` is stored and the tunnel starts; the room arrives with an empty ledger.
+3. At the statue head, the chess knight picked from the room's menu: EVA decides repetition, five of it, which only an `uncanny` room does; the ledger holds it. (Before the mood was put in place of the library's own, the same room picked as `uncanny` decided as `quiet`.)
+4. The owner's key: the console says the room is over, its ledger cleared and its mood forgotten; neither is stored.
+5. In the void that follows, the body of grains is back, mouse movement starts nothing, and `Enter` picks the first mood and starts the tunnel.
+
+Not checked after the merge: a spent room ending when its visitor leaves (the same `endRoom`, not driven); a spent ledger found at load; the `eerie` mood in the room; wrong scale from a mood picked in the void; step 5's own capture scripts, which now need a mood first (see Known faults); the built page.
+
 Earlier measurements (2026-11-12, not repeated): 60 fps at 3440x1440 in headless Chrome on an RTX 5080 (headless caps at 60, so headroom is unknown). One live voice turn worked: Jev decision in 0.1 s, Opus reply in 2.4 s, spoken reply; EVA began speaking about 13 s after the visitor stopped.
+
+Checked on 2026-11-17 for the void's choice (`LIMINAL-GRAMMAR.md` step 6), in a worktree at the commit before steps 2 to 5, in headless Chrome at 1920x1080 against its dev server on temporary port 5199, default look: typecheck clean; 394 tests pass in 35 files, among them the stored mood (chosen, read back, forgotten, read as untrusted data, a storage that fails) and the forms (the same grains in each, within half a unit of the middle, unit normals, the same every time; the sphere's seam, the ribbon crossing near its middle, the ring clear of its middle). `npm run build` succeeds. Captures and their scripts are in `.local/void-choice/`:
+
+- **`sheet.png`**: the body in each mood's form, the same three seconds later, and one change of form at a quarter, a half and one second (frames at half size; judge grain from the 1:1 captures).
+- `body.mjs` took those and more (`body-*`): the body arriving, each form settled and three seconds on, and eight frames a quarter second apart through each of the three changes.
+- `capture.mjs` took one page through the path and checked each step against the console and the browser's storage (`path-*`):
+  1. A first visitor finds no room; five seconds later the body is in the first form and nothing has started.
+  2. Each mood selected in turn by `D`; nothing starts and nothing is stored.
+  3. Mouse travel of a sixth of the page's width steps one along. `Esc` leaves the choice offered.
+  4. `Enter` on the third: `eerie` is stored, the console names the mood and says the room is a recording, the tunnel starts.
+  5. The page loaded again: a room exists, the void waits with no choice, and moving the mouse starts the tunnel.
+  6. With the stored mood removed by the script and the page loaded again, a click picks the selected mood (`quiet`).
+  7. With `{"mood":"surreal"}` stored and the page loaded again, the choice is offered and mouse movement starts nothing.
+- `room-menu.mjs` then arrived in the room with a mood stored, opened the replacement menu on the sky cube and picked the gramophone: the room's own menu still works (`room-menu-*`).
+
+Every check passed in the chosen state (muted colours), with no console errors or page errors: the body captures once, the room-menu check once, the path three times. The first of those three path runs passed all ten checks and reported one failed request, `televisions.glb`: the script had loaded the page again a second and a half after a tunnel started, while the shelf's models were still arriving, and the browser reports a download cut off that way as failed. The script now waits five seconds there, and the two runs after it were clean. That is also the likely cause of the one unexplained failure in the first round.
+
+**Frame time** (`frame-time.mjs`; headless Chrome caps at 60, so the headroom is unknown): 16.7 ms a frame at rest in each form, worst frame 19 to 21 ms; through a change of form 16.7 ms from quiet and from uncanny and 17.7 ms from eerie, worst 21 ms.
+
+Not checked: **the motion itself, which nobody has watched**: only still frames a quarter second or more apart were looked at, so whether the breathing, the wringing, the drifting and the throw feel right, or too fast or slow, is unknown; any of it used by a person with a real mouse; frame time at 3440x1440; an ultrawide frame; a screen at another pixel density; the built page (the build succeeds; only the dev server was driven). No reviewer agent read this work.
 
 ## Known faults and open items
 
@@ -352,9 +399,9 @@ Object replacement:
 - The recorded hero's own floor inside its box, which is denser than the room's, still leaves with the hero in that slot's first change, over the laid carpet. Laying a slot's carpet searches the room's 3.8M points once: one long frame (267 ms measured for an absence, which is two changes back to back).
 - What `?swap=` and `G` do is not in the ledger: it is not remembered, and EVA's next decision does not know of it.
 - **EVA decides (step 5), known gaps:**
-  - **`forgetMood()` is not called.** `mood-choice.ts` did not exist on 2026-11-17; one marked line in `endRoom` (`AstralRoom.tsx`) says where the call goes.
+  - **The step 5 capture scripts no longer run as written** (`.local/eva-decides/capture.mjs`, `capture-uncanny.mjs`, `again.mjs`): they start a visit by moving the mouse, and since the merge with step 6 a first visitor must pick a mood. Each needs a mood stored, or picked, before it arrives. They were not changed or run again.
   - **Four matters were recommended and built without the owner's word, and are the owner's to overturn** (each is small to change): the owner's key is `Shift` + `Delete`, which a visitor at the keyboard could still press; the chess knight is declared a garden piece 0.6 m tall in the shelf's manifest, instead of a 7 cm piece that only arrives enlarged; "nothing" is the bare edges of an empty box; a refusal leaves the menu open with the entry red, and a spent room's menu opens all red.
-  - **In the library only displacement, absence and plain arrivals come out of the menu** (see EVA decides). Wrong scale and repetition were shown by the page only with the mood changed in the capture's browser.
+  - **In a `quiet` room only displacement, absence and plain arrivals come out of the menu** (see EVA decides); in an `eerie` one only absence and plain arrivals. Wrong scale has been shown by the page only with the mood changed in the capture's browser, before the merge with step 6; repetition was shown again after it, from a mood picked in the void.
   - **Pressing `R` in a spent room ends it**, because any room that loads with a spent ledger is taken to be the next visitor's.
   - **The ledger is stored when EVA decides, before the changes are shown.** If a model then fails to load, or the visitor leaves while the changes are still being shown, the screen is behind the ledger until the room next loads.
   - "Nothing" picked where nothing stands is refused as `unknown`. After "nothing" has taken one of the recording's own things, a pick that could only arrive as a strong discrepancy is refused as `fit`, whose line says it does not fit: true to the grammar's reading, and not the real reason.
@@ -383,6 +430,18 @@ Object replacement:
 - In sand, an inspected hero comes out pure white (`menu-ring-sand`), and half-way through burn then fall the last leaving grains show as a dark smear with a black rim (`replace-sand-050`). Seen without inspection the arriving helmet reads as a helmet. Another session was retuning the sand look, in `sand-look.ts` and `point-field.ts`, throughout this work, so the sand captures show its state at that minute and the cause was not pursued.
 - The menu stays round the eye, and the eye wanders, so the choices sometimes lie over the hero being replaced. `eye.ts` was not changed for the menu: the eye is only put in its thinking phase. After choosing with the mouse, the side-to-side view goes to wherever the mouse now is.
 - The shelf objects are unlit texture colour in a room whose points carry its lighting: in the default look the gramophone's horn and the helmet come out brighter than anything else in the room.
+
+The void's choice:
+
+- **Whichever mood is picked, the room is the library**, until step 7. Nothing in the room that arrives answers to the form picked.
+- **Nothing tells a visitor what a form stands for**, by design: there are no words. Whether the three read as three kinds of room, or only as three shapes, has not been asked of anyone.
+- **Only one form shows at a time.** A visitor who does not move the mouse or press a key sees the first and nothing says there are two more but the three ticks, which are small. The body does not step through the forms by itself.
+- **The eye wanders across the body**: it is left in its idle phase and passes in front of the body, beside it, and sometimes out of the frame, with its own marks and numerals. Nothing keeps the two apart.
+- The body is drawn light on light with no depth, so its far side shows through the near side (dimly, on purpose) and it does not hide the eye or anything else behind it.
+- The quiet sphere is the darkest of the three at its middle; the eerie ring's loose grains make a faint haze round it that reads as dust more than as a form.
+- A grain's place in one form has nothing to do with its place in the next, so a change is a cloud, not a flow from shape to shape. The cloud is dim for half a second.
+- `Esc` puts the selection back on the first mood, and the body gathers into it. After a pick with the mouse, the side-to-side view goes to wherever the mouse now is, as after the room's menu.
+- If the browser's storage refuses, the pick still starts the room, and the next void offers the three moods again.
 
 Display:
 
