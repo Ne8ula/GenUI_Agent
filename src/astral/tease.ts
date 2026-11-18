@@ -1,6 +1,9 @@
 // EVA's lines. The owner's rule for all of them (2026-11-17): one sentence, twenty words at most, and dry rather than
 // cutting: she is sometimes sarcastic, and she is always trying to help the visitor regardless. A test holds each line to the length.
 
+// Every line here is recorded once in EVA's voice (public/fixtures/voice/, by .local/voice/record.mjs); edit one and it must be
+// recorded again, which is a paid call.
+
 /** EVA's unprompted lines to a visitor who has not worked something out. Placeholder wording; the owner edits it. */
 export const SIDE_TEASES = [
   'You can move from side to side to look around the room, whenever you would like to see more.',
@@ -67,9 +70,50 @@ export function sideTeaseDue(now: number, visit: {
     && now - visit.lastTease >= TEASE_EVERY && now - visit.lastInput <= TEASE_AFTER;
 }
 
+/** Where EVA's recorded lines are served from. Each was recorded once in her voice (ElevenLabs); none is generated live. */
+export const VOICE_BASE = '/fixtures/voice/';
+
 /**
- * Speaks a line and reports when the voice starts and stops.
- * shortcut: the browser's built-in voice stands in for EVA's, replace with recorded lines in EVA's voice once the owner approves the spend.
+ * The file a line's recording is in, named by the line's own words (FNV-1a over them). So a line whose wording is edited has no
+ * recording, and is spoken in the placeholder voice, until it is recorded again; it can never be played with its old words.
+ */
+export function lineFile(text: string): string {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < text.length; i++) hash = Math.imul(hash ^ text.charCodeAt(i), 0x01000193);
+  return `${(hash >>> 0).toString(16).padStart(8, '0')}.mp3`;
+}
+
+let playing: HTMLAudioElement | null = null;
+/** Silences EVA: the recorded line being played, and the placeholder voice. */
+export function stopSpeaking(): void {
+  playing?.pause();
+  playing = null;
+  globalThis.speechSynthesis?.cancel();
+}
+
+/**
+ * EVA says a line in her recorded voice, and reports when the voice starts and stops. One line at a time: a new one cuts the
+ * last short. A line with no recording (its wording was edited since) is spoken in the placeholder voice instead.
+ * Chrome plays no sound before the page has had a key press or click; then nothing is said, and the console says why.
+ */
+export function speakLine(text: string, speaking: (on: boolean) => void): void {
+  if (typeof Audio === 'undefined') { speakPlaceholder(text, speaking); return; }
+  stopSpeaking();
+  const audio = playing = new Audio(VOICE_BASE + lineFile(text));
+  const unrecorded = () => { if (playing !== audio) return; playing = null; speakPlaceholder(text, speaking); };
+  audio.onplaying = () => { console.info(`[astral] EVA line in her RECORDED voice (a recording, not generated live): ${text}`); speaking(true); };
+  audio.onended = audio.onpause = () => speaking(false);
+  audio.onerror = unrecorded;
+  audio.play().catch((error: unknown) => {
+    if ((error as { name?: string } | null)?.name !== 'NotAllowedError') { unrecorded(); return; }
+    console.info(`[astral] EVA line NOT heard (the browser plays no sound before a key press or click): ${text}`);
+    speaking(false);
+  });
+}
+
+/**
+ * Speaks a line in the browser's built-in voice and reports when the voice starts and stops: what a line with no recording
+ * falls back to (speakLine).
  * Chrome refuses to speak before the page has had a key press or click; the refusal arrives as `speaking(false)`.
  */
 export function speakPlaceholder(text: string, speaking: (on: boolean) => void): void {

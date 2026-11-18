@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { sampleSurfacePointCloud } from './surface-sampler.ts';
 import { KINDS, SURFACES, type Pose, type Thing } from './grammar.ts';
 import { HOVER_GAP, LEAN_TILT, SUNK_SHARE, arrivalOf } from './grammar-decide.ts';
-import type { Move, Stood } from './sand-look.ts';
+import type { Move, Stood } from './object-change.ts';
 import type { PointCloud, RoomHero, RoomPlace, RoomSlot } from './types.ts';
 
 // Replacing one hero of a room with another object: the shelf of recorded models, a model as points standing in a hero's slot
@@ -127,7 +127,7 @@ export function standInSlot(extent: readonly [number, number, number], hero: Box
  * factor the owner tunes).
  * With a `height` in metres and a box that is a slot, the thing stands in the slot at that height, turned to its facing, in the
  * pose `stance` names (standInSlot, poseIn); a sunk thing's points stop at the surface. `move` is then how it gets there when it
- * arrives (sand-look.ts). Wrong scale needs nothing here: it is a `height` that is not the thing's own.
+ * arrives (object-change.ts). Wrong scale needs nothing here: it is a `height` that is not the thing's own.
  * Repetition: with `places`, a copy more stands in each of those places of the room, at the size the first came out and in the
  * place's own pose. The copies share COPIES_MAX_POINTS, each an equal part and none more than one object's; `parts` says which
  * points are which copy.
@@ -202,7 +202,7 @@ export async function loadObjectPoints(glbUrl: string, box: Box & { slot?: RoomS
     const first = await stand({ ...box, slot }, stance.pose, stance.other, height!, share);
     if (!places.length) return { ...first.cloud, move: first.move };
     // The other copies, each where its place has it stand. They only assemble: the first copy's move, if its pose has one, is
-    // made by all of them as one body (sand-look.ts), which is right for a shift and wrong for a turn; repetition rests.
+    // made by all of them as one body (object-change.ts), which is right for a shift and wrong for a turn; repetition rests.
     const clouds = [first.cloud];
     for (const place of places) clouds.push((await stand(place, place.pose ?? 'rests', false, height! * first.shown, share)).cloud);
     const middle = (of: Box) => of.min.map((value, axis) => (value + of.max[axis]) / 2) as [number, number, number];

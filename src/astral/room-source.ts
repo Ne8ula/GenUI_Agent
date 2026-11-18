@@ -3,12 +3,19 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { CONSTRUCTION_FIXTURE_BASE, validateConstructionManifest } from '../room/construction-fixture.ts';
 import { sampleSurfacePointCloud } from './surface-sampler.ts';
 import { baseRoom, loadPosedFrames, validatePosedManifest } from './posed-frames.ts';
+import { MOODS, type Mood } from './grammar.ts';
+import { MOOD_CASTS } from './mood-choice.ts';
 import type { PointCloud, RoomLights } from './types.ts';
 
-export async function loadRecordedRoomCloud(_renderer: WebGLRenderer, signal: AbortSignal): Promise<PointCloud> {
+/**
+ * The recorded room of `mood`: that mood's base room (LIMINAL-GRAMMAR.md step 7). With no mood, the library, a development fixture.
+ * ?room=<mood>, ?room=library and ?room=surreal are development switches that load that room whatever the mood.
+ */
+export async function loadRecordedRoomCloud(_renderer: WebGLRenderer, signal: AbortSignal, mood: Mood | null = null): Promise<PointCloud> {
   signal.throwIfAborted();
-  if (new URLSearchParams(globalThis.location?.search ?? '').get('room') !== 'surreal') {
-    const base = '/fixtures/library/';
+  const room = new URLSearchParams(globalThis.location?.search ?? '').get('room');
+  if (room !== 'surreal') {
+    const base = `/fixtures/${(MOODS as readonly unknown[]).includes(room) ? room : room === 'library' ? room : mood ?? 'library'}/`;
     const response = await fetch(`${base}manifest.json`, { signal, redirect: 'error', credentials: 'same-origin', cache: 'no-store' });
     if (!response.ok) throw new Error(`The fixture manifest could not be loaded (HTTP ${response.status}).`);
     const body = await response.text();
@@ -35,6 +42,8 @@ export async function loadRecordedRoomCloud(_renderer: WebGLRenderer, signal: Ab
     cloud.pictured = true;   // all three arrive at the picture's own camera (the manifest's first frame)
     cloud.places = manifest.places;
     cloud.base = baseRoom(manifest) ?? undefined;
+    // its default lighting is its mood's cast (step 10), where the room declares that it was recorded in one
+    if (manifest.room?.cast) cloud.cast = MOOD_CASTS[manifest.room.mood];
     return cloud;
   }
   const started = performance.now();

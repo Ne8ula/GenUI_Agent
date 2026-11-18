@@ -4,11 +4,10 @@ import {
   OneMinusSrcColorFactor, Points, ShaderMaterial, Vector2, Vector3,
   type IUniform,
 } from 'three';
-import { hasLook } from './looks.ts';
 import {
-  dealOrigins, dealSteps, finish, groupPoints, orderByKeySteps, slabKeySteps, tunnelOrder, tunnelOriginKeys, type Groups, type Steps, type TunnelOrder,
+  dealSteps, finish, groupPointsSteps, orderByKeySteps, slabKeySteps, tunnelOrder, tunnelOriginKeys, type Groups, type Steps, type TunnelOrder,
 } from './ribbons.ts';
-import { SAND_EARLY_VS, SAND_GRAIN_VS, SAND_JITTER_VS, SAND_PX_VS, SAND_UNIFORMS_VS, SWAP_FLOOR, SWAP_NONE, SWAP_PAIRINGS, SWAP_VS, createSandPass, moveUniforms, sandMaterial, swapNow, type SwapControl } from './sand-look.ts';
+import { SWAP_FLOOR, SWAP_NONE, SWAP_VS, moveUniforms, swapNow, type SwapControl } from './object-change.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralEffect, type AstralLight, type PointCloud, type PointField } from './types.ts';
 
 const POINT_METRES = 0.003;       // a tunnel grain's size; on screen it shrinks with distance and, below a pixel, dims instead
@@ -26,11 +25,8 @@ const JOB_MS = 6;                 // the share of a frame that preparing a new c
 const MAX_HEROES = 8;
 const SOLID_EASE = 0.35;          // seconds per e-fold: a settled lit room dissolves into, or out of, the solid pass in about a second
 const INSPECT_EASE = 0.18;       // seconds per e-fold: an inspection is in, or gone, in about half a second
-// The 'ribbons' look (?look=ribbons): the arrival and the kick fly along a few shared curves, drawn as strands of 1 px lines.
-const RIBBONS = hasLook('ribbons');
-// The 'sand' look (?look=sand): a settled room drawn with Gather v17's grain and tone pass in place of the solid pass (sand-look.ts).
-const SAND = hasLook('sand');
-const RIB_K = 12;                 // bundles: one per group of the room
+// Ribbons (kept by the owner, 2026-11-17): the arrival and the kick fly along a few shared curves, drawn as strands of 1 px lines.
+const RIB_K = 12;                // bundles: one per group of the room
 const RIB_PER_BAND = 3;           // arriving, the tunnel is cut into bands along its length, this many bundles to a band
 const RIB_STRIDE = 811;           // one grain in this many is drawn as a strand: about 380 strands to a bundle in the recorded room
 const RIB_VERTS = 24;             // vertices per strand
@@ -64,6 +60,17 @@ const BAKED_GAIN: Record<Mood, number[]> = {
   night: [0.13, 0.15, 0.24],      // dim and cool
   dark: [0, 0, 0],                // only the eye's red shows the room
 };
+
+// A room's default lighting is its mood's cast (LIMINAL-GRAMMAR.md, Part 2 and step 10). A base room is recorded in its cast; the
+// default pulls every grain a little further into it, so what the recording left off-colour and what a visitor brings in sit under
+// the one light. 0 leaves the recording exactly as it is. A starting value, to judge from captures.
+const CAST_DEPTH = 0.25;
+/** The default lighting of a room whose colours hold its own light, as a multiplier on them: nothing is made brighter, and the cast's strongest colour is left as it is. A room with no cast is left as recorded. */
+export function castGain(cast: readonly number[] | undefined): [number, number, number] {
+  const most = Math.max(...(cast ?? []), 0);
+  if (!cast || cast.length !== 3 || !(most > 0) || !cast.every(value => value >= 0 && value <= most)) return [1, 1, 1];
+  return cast.map(value => 1 - CAST_DEPTH * (1 - value / most)) as [number, number, number];
+}
 
 /** The lighting as EVA has left it. */
 export interface LightingState { readonly mood: Mood; readonly lamp: boolean }
@@ -131,8 +138,7 @@ vec3 flow(vec3 q, float t) {
 vec2 rot(vec2 d, float a) { float c = cos(a), s = sin(a); return vec2(c * d.x - s * d.y, s * d.x + c * d.y); }
 vec3 rotY(vec3 d, float a) { vec2 r = rot(d.xz, -a); return vec3(r.x, d.y, r.y); }
 
-#ifdef RIBBONS
-// The 'ribbons' look: each group of the room is one bundle. Its grains were dealt origins that keep their order (ribbons.ts), so they
+// Ribbons: each group of the room is one bundle. Its grains were dealt origins that keep their order (ribbons.ts), so they
 // leave together from one patch, gather onto the bundle's shared curve into a tight bundle, and open onto their own homes.
 uniform float uRibOn, uRibLine;                                // 1 while this flight runs on ribbons; the strands' brightness
 uniform vec3 uRibD[RK], uRibO[RK], uRibP[RK], uRibQ[RK], uRibW[RK];   // group centre; the curve: origin patch, two controls, the gathering point
@@ -169,7 +175,6 @@ vec3 ribbon(vec3 a, vec3 b, float m, float rd, out float e) {
   e = h;   // a grain stays a small tunnel grain until it opens onto its surface; only then does it take the room's size, colour and light
   return c + da * mix(1.0, 0.05, g) * (1.0 - h) + db * h;
 }
-#endif
 
 // The tunnel is never still: where it has rolled up, every grain slides a little way down its own turn of the screw and fades out before it
 // starts the same stretch again, and three bright arms of light wind round the turns toward the far end. A slow ripple runs down the turns.
@@ -198,10 +203,8 @@ float flight(float m, float T, uint i, vec3 a, vec3 b, out vec3 arc) {
   uint sd = uint(uMo.x);
   float rd = h01(i * 2654435761u + sd);
   vec3 rv = vec3(h01(i ^ (sd * 3u + 11u)), h01(i * 7u + sd + 5u), h01(i * 13u + sd * 5u + 3u)) * 2.0 - 1.0;
-#ifdef RIBBONS
   if (uRibOn > 0.5) { float e; arc = ribbon(a, b, m, rd, e) - mix(a, b, e); return e; }
-#endif
-  if (uTunnelFrom > 0.5) {
+  if (uTunnelFrom > 0.5) {   // a cloud with no normals has no bundles: it arrives slab by slab instead
     float e = ease(clamp((m - layStart(i, b)) / LAY_SECONDS, 0.0, 1.0)), hump = sin(PI * e);
     // round the axis from its place on the spiral to its place in the room, turning on a little as it goes
     vec2 ra = a.xy - vec2(0.0, TY), rb = b.xy - vec2(0.0, TY);
@@ -237,15 +240,11 @@ vec3 place(uint i, float T, float F, float M, out vec3 col, out float alive, out
   if (M < 1.0) {
     float Tf = T;   // arriving, a grain stops sliding down its turn of the spiral once it has left it, so it never jumps back mid-air
     if (uTunnelFrom > 0.5) Tf -= max(0.0, M - layStart(i, to)) * ARRIVAL_S;
-#ifdef RIBBONS
     if (uRibOn > 0.5) Tf = T;
-#endif
     vec3 from = uTunnelFrom > 0.5 ? tunnelFlow(aFrom, Tf, r2, aliveFrom, glowFrom) : aFrom, arc;
     float e = flight(M, T, i, from, to, arc); eTo = e;
     h = mix(from, to, e) + arc; col = mix(aFromCol, aCol, e); air = sin(PI * e); alive = mix(aliveFrom, aliveTo, e); bright = mix(glowFrom, glowTo, e);
-#ifdef RIBBONS
-    bright *= 1.0 - mix(0.95, 0.85, uTunnelFrom) * ribA;   // in a kick the bundles pass close by the viewer   // on ribbons the strands carry the flight; the grains in it stay faint
-#endif
+    bright *= 1.0 - mix(0.95, 0.85, uTunnelFrom) * ribA;   // on ribbons the strands carry the flight; the grains in it stay faint (in a kick the bundles pass close by the viewer)
   }
 
   // Tone first: lift the mid-tones the tunnel is made of, then thin only what is nearly black.
@@ -354,9 +353,7 @@ vec3 place(uint i, float T, float F, float M, out vec3 col, out float alive, out
     h = m;
   }
   nk = eTo * ef;   // how far its surface normal means anything: not in flight, not as dust
-#ifdef RIBBONS
   if (uRibOn > 0.5 && uTunnelFrom < 0.5) nk = (1.0 - ribA) * ef;   // a kick on ribbons: a grain waiting on the old room is on a surface too
-#endif
   return h;
 }
 
@@ -421,14 +418,13 @@ vec3 eyeLight(vec3 p, vec3 n, float nk) {
   vec3 de = uEyeL.xyz - p; float ed = dot(de, de), ef = 1.0 / (1.0 + ed / (EYE_R * EYE_R));
   return EYE_COL * uEyeL.w * facing(n, de, ed, nk) * ef * ef * (1.0 - smoothstep(1.0, EYE_REACH, sqrt(ed)));
 }
-${SAND_UNIFORMS_VS}
 ${SWAP_VS}
 void main() {
 #if defined(STREAK) || defined(RLINE)
   uint i = uint(aId);
 #else
   uint i = uint(gl_VertexID);   // the full cloud is drawn in order, so a grain's index is its vertex: no id buffer to build or upload
-#endif${SAND_EARLY_VS}
+#endif
   float tail = 0.0;
 #ifdef STREAK
   tail = aTail;
@@ -439,7 +435,6 @@ void main() {
   vec3 col; float alive, air, bright, wsz, eTo, lw, nk; bool tracker;
   vec3 p = place(i, uTime - tail * uTail, mix(uForm, uFormTail, tail), mix(uFlight, uFlightTail, tail), col, alive, air, bright, tracker, wsz, eTo, lw, nk);
   float r3 = h01(i * 11u + 71u), r8 = h01(i * 41u + 3u);
-  vec3 pHome = p;   // where it sits on its surface, before a line of code or a change stands it elsewhere (sand-look.ts)
   // Outside what the picture showed, the room is the machine's guess. There the grains leave their splatter and stand as lines of
   // code: thin upright columns of marks, each falling at its own pace, some long, some short, fewer and shorter the further from
   // the picture's view. Grains of a surface lying flat hang off it (or rise), so a ceiling and a floor make lines too.
@@ -456,10 +451,10 @@ void main() {
       col = mix(col, vec3(1.0), 0.6 * (1.0 - smoothstep(0.0, 0.05, f)));   // the head, whiter
     }
   }
-  // an object change (sand-look.ts): what stands in a hero's box leaves, the object replacing it arrives, and the room's own grains
-  // in a box that has been replaced are gone
-  float swHot = 0.0, swAlive = alive; vec3 swAt = p;
-  swapGrain(i, p, col, alive, nk, wsz, swHot);
+  // an object change (object-change.ts): what stands in a hero's box leaves, the object replacing it arrives, and the room's own
+  // grains in a box that has been replaced are gone
+  float swAlive = alive; vec3 swAt = p;
+  swapGrain(i, p, alive, wsz);
   bool swFly = alive != swAlive || distance(p, swAt) > 1e-5;   // the change has moved or faded this grain: it is in flight
 #ifdef STREAK
   p += uTrail * (0.2 + 1.8 * r8 * r8) * tail;   // where it was a moment ago, as the eye flew
@@ -485,10 +480,8 @@ void main() {
   if (lw > 0.001) {
     float fit, lampG;
     vec3 nrm = aNorm;
-#ifdef RIBBONS
     // the old room's normal until the grain opens onto its new surface (absent outside a kick: then zero)
     if (uRibOn > 0.5 && uTunnelFrom < 0.5 && dot(aFromNorm, aFromNorm) > 0.5) nrm = normalize(mix(aFromNorm, aNorm, eTo) + 1e-5);
-#endif
     vec3 lin = pow(col, vec3(2.2));
     if (uBaked > 0.5) {
       // its own colours, as they are, times the change the mood makes; never past white
@@ -519,9 +512,6 @@ void main() {
 #endif
   }
 #endif
-  // BURN's glow is the grain's own light, in the eye's red: after the room's lighting, so it shows in the dark; as bright as the grain was, so the object keeps its form
-  col = mix(col, EYE_COL * 0.2 * (0.25 + 1.1 * max(max(col.r, col.g), col.b)), swHot);
-${SAND_JITTER_VS}
   vec4 mv = modelViewMatrix * vec4(p, 1.0);
   float z = max(-mv.z, 0.05);
   vec4 cp = projectionMatrix * mv;
@@ -540,7 +530,9 @@ ${SAND_JITTER_VS}
   for (int k = 0; k < MAX_CEIL; k++) { if (k >= uCeilN) break; panel = max(panel, 1.0 - smoothstep(0.55, 0.8, distance(uCeil[k].xyz, p))); }
   float mxc = max(max(c.r, c.g), max(c.b, 1e-4));
   c *= mix(min(1.0, SOLID_CAP / mxc), 1.0, panel);
-#endif${SAND_GRAIN_VS}
+  // a grain of a changing object stays one of the room's opaque grains, and as it fades it is there or not (Gather's SOLID), never faint
+  if (swFly && h01(i * 61u + 19u) > alive) alive = 0.0;
+#endif
 #if defined(STREAK)
   // a sparse accent: strongest on the ground, only while the eye moves, never on grains in flight
   float ground = mix(0.25, 1.0, 1.0 - smoothstep(0.3, 0.9, p.y - uFloor));
@@ -584,7 +576,7 @@ ${SAND_JITTER_VS}
     c *= px * px / (N * N);   // light on light: the same light whatever the size; an opaque grain keeps its own colour
 #endif
     px = N;
-  }${SAND_PX_VS}
+  }
   gl_PointSize = px;
   gl_Position = cp;
   vCol = c;
@@ -608,7 +600,7 @@ const TUNNEL_DEFINES = {
   MAX_HERO: String(MAX_HEROES), HERO_CAP: '0.78',
   BAKED_SUN: '0.45', SOLID_CAP: '0.64',   // afternoon's side light, as a wash over a room that already holds its own light
   EYE_R: '0.9', EYE_REACH: '2.8', EYE_COL: 'vec3(5.0, 0.04, 0.015)',   // the eye's light: deep red, its strength in the colour
-  ...(RIBBONS ? { RIBBONS: '', RK: String(RIB_K), RIB_LEN: RIB_LEN.toFixed(3), RIB_TURN: '-2.6', RIB_TINT: 'vec3(0.86, 0.9, 0.95)' } : {}),
+  RK: String(RIB_K), RIB_LEN: RIB_LEN.toFixed(3), RIB_TURN: '-2.6', RIB_TINT: 'vec3(0.86, 0.9, 0.95)',
 };
 
 /** The ceiling's light at p facing up, as the shader works it out for unit fittings (its normaliser). */
@@ -755,11 +747,11 @@ function ranksRound(g: Groups, center: number[]): Uint8Array {
  * as the viewer comes down; each bundle from one sector of one band of the spiral. In a kick, each group of the old room goes a third
  * of the way round to its new place, all the same way round.
  */
-function dealRibbons(g: Groups, angleRank: Uint8Array, prev: Prev, center: number[], arrival: number[]): { from: Uint32Array; b: Bundles } {
+function* dealRibbons(g: Groups, angleRank: Uint8Array, prev: Prev, center: number[], arrival: number[]): Steps<{ from: Uint32Array; b: Bundles }> {
   const K = g.k, cz = (c: number) => g.centres[c * 3 + 2]!;
   const rank = prev.tunnel ? (() => { const r = new Uint8Array(K); [...Array(K).keys()].sort((x, y) => cz(y) - cz(x)).forEach((c, i) => { r[c] = i; }); return r; })() : angleRank;
   const destKey = new Float32Array(g.group.length);
-  for (let i = 0; i < destKey.length; i++) destKey[i] = (rank[g.group[i]!]! + g.u[i]!) / K;
+  for (let i = 0; i < destKey.length; i++) { destKey[i] = (rank[g.group[i]!]! + g.u[i]!) / K; if (i % 65536 === 65535) yield; }
   let originKey: Float32Array;
   if (prev.tunnel) {
     const shares = new Array<number>(K);
@@ -768,11 +760,15 @@ function dealRibbons(g: Groups, angleRank: Uint8Array, prev: Prev, center: numbe
   } else {
     const pg = prev.groups!, pr = prev.angleRank!, shift = Math.round(pg.k / 3);
     originKey = new Float32Array(prev.n);
-    for (let j = 0; j < prev.n; j++) originKey[j] = (((pr[pg.group[j]!]! + shift) % pg.k) + pg.u[j]!) / pg.k;
+    for (let j = 0; j < prev.n; j++) { originKey[j] = (((pr[pg.group[j]!]! + shift) % pg.k) + pg.u[j]!) / pg.k; if (j % 65536 === 65535) yield; }
   }
-  const from = dealOrigins(destKey, originKey);
+  yield;
+  const from = yield* dealSteps(destKey, yield* orderByKeySteps(originKey));   // dealOrigins, a few milliseconds a frame
   const O = new Array<number>(K * 3).fill(0);
-  for (let i = 0; i < from.length; i++) { const c = g.group[i]!, j = from[i]! * 3; O[c * 3] += prev.pos[j]!; O[c * 3 + 1] += prev.pos[j + 1]!; O[c * 3 + 2] += prev.pos[j + 2]!; }
+  for (let i = 0; i < from.length; i++) {
+    const c = g.group[i]!, j = from[i]! * 3; O[c * 3] += prev.pos[j]!; O[c * 3 + 1] += prev.pos[j + 1]!; O[c * 3 + 2] += prev.pos[j + 2]!;
+    if (i % 65536 === 65535) yield;
+  }
   const b: Bundles = { D: [...g.centres], O, P: [], Q: [], W: [], T: [] };
   for (let c = 0; c < K; c++) {
     const o = [0, 1, 2].map(a => O[c * 3 + a]! / Math.max(1, g.sizes[c]!)), d = [0, 1, 2].map(a => g.centres[c * 3 + a]!);
@@ -826,14 +822,11 @@ export function createPointField(): PointField & SwapControl {
     transparent: false, depthTest: true, depthWrite: true, blending: NoBlending,
   });
   let solid: Points | null = null;
-  const ribbonMat = RIBBONS ? material(SQUARE_FS, { RLINE: '' }) : null;
+  const ribbonMat = material(SQUARE_FS, { RLINE: '' });
 
   const object = new Group();
-  // The 'sand' look: the settled grains are counted into a float buffer and toned instead (sand-look.ts); the pass draws them itself
-  const sandPass = SAND ? createSandPass() : null;
-  if (sandPass) { sandMaterial(solidMat, GRAIN_OF_SPACING); object.add(sandPass.quad); }
-  // an object change in progress, in any look (sand-look.ts)
-  u.uSwap = { value: [-1, 0, 0, 0] }; u.uSwapStyle = { value: [0, 0, 0] };
+  // an object change in progress (object-change.ts)
+  u.uSwap = { value: [-1, 0] }; u.uSwapOwn = { value: 0 };
   u.uHeroOut = { value: new Array(MAX_HEROES).fill(0) }; u.uStepBack = { value: 0 };
   for (const [name, value] of Object.entries(moveUniforms())) u[name] = { value };   // how an arriving thing gets into its pose
   let swap = SWAP_NONE, stepBack = 0;
@@ -857,8 +850,7 @@ export function createPointField(): PointField & SwapControl {
     const stand = new Points(g, pointsMat), standSolid = new Points(g, solidMat);
     for (const o of [stand, standSolid]) { o.frustumCulled = false; o.onBeforeRender = sizeFromRenderer; }
     stand.renderOrder = 1; standSolid.visible = !!solid?.visible;
-    // as the room's own passes: the settled grains with the solid pass, or in sand under the grains its pass counts
-    (sandPass && solid ? solid : stand).add(standSolid);
+    stand.add(standSolid);   // as the room's own passes: the settled grains with the solid pass
     object.add(stand);
     return { hero, points: stand, solid: standSolid, obj };
   };
@@ -871,7 +863,7 @@ export function createPointField(): PointField & SwapControl {
   // one grain each, drawing nothing: the void compiles the field's shaders, so the first tunnel does not wait on them
   const one = new Float32Array(3), oneArrays: Arrays = { position: one, aFrom: one, aCol: one, aFromCol: one };
   const warm = [new Points(geometryOf(oneArrays), pointsMat), new Points(geometryOf(oneArrays), solidMat),new LineSegments(subsetGeometry(oneArrays, 1, 1, 2), streakMat),
-    ...(ribbonMat ? [new LineSegments(subsetGeometry(oneArrays, 1, 1, RIB_VERTS), ribbonMat)] : [])];
+    new LineSegments(subsetGeometry(oneArrays, 1, 1, RIB_VERTS), ribbonMat)];
   for (const o of warm) { o.geometry.setDrawRange(0, 0); o.frustumCulled = false; object.add(o); }
   let points: Points | null = null, streaks: LineSegments | null = null, strands: LineSegments | null = null;
   let prev: Prev | null = null;
@@ -884,7 +876,7 @@ export function createPointField(): PointField & SwapControl {
   let inspectTarget = -1;   // the hero the viewer is inspecting, or -1
 
   // lighting: the state EVA left, and the eased values the shader sees
-  let lighting = LIGHTING_START, ceiling = 1, lampOn = 1, ceilingN = 0, flickerK = -1, flickerEnd = 0, nextFlicker = 20;
+  let lighting = LIGHTING_START, cast = castGain(undefined), ceiling = 1, lampOn = 1, ceilingN = 0, flickerK = -1, flickerEnd = 0, nextFlicker = 20;
   const amb = u.uAmb!.value as number[], sun = u.uSunCol!.value as number[], sunDir = u.uSunDir!.value as number[], bake = u.uBakeGain!.value as number[];
 
   // the size uniforms follow the drawing buffer and the lens, which only the renderer knows
@@ -933,14 +925,14 @@ export function createPointField(): PointField & SwapControl {
     const gain = lit ? ROOM_GAIN : Math.min(1, Math.max(0.08, 1.6e6 / n)) * (tunnel ? 2.2 : 1);
     const wsz = lit && cloud.spacing && cloud.spacing > 0 ? cloud.spacing * GRAIN_OF_SPACING : POINT_METRES;
     const axis: [number, number] = tunnel ? [0, TUNNEL.axisY] : [center[0]!, center[1]!];
-    const groups = RIBBONS && lit ? groupPoints(pos, n, RIB_K) : undefined, angleRank = groups && ranksRound(groups, center);
+    const groups = lit ? yield* groupPointsSteps(pos, n, RIB_K) : undefined, angleRank = groups && ranksRound(groups, center);
     const onRibbons = !!groups && !!p0 && (p0.tunnel || !!p0.groups);
     let bundles: Bundles | undefined;
     if (p0) {
       // every grain is dealt a place in the last cloud to come from.
       // shortcut: a kick during a kick starts from the last cloud's homes, not mid-air; fine at one cloud per scene.
       let dealt: Uint32Array | undefined;
-      if (onRibbons) { const r = dealRibbons(groups!, angleRank!, p0, center, cloud.arrival?.position ?? center); dealt = r.from; bundles = r.b; }
+      if (onRibbons) { const r = yield* dealRibbons(groups!, angleRank!, p0, center, cloud.arrival?.position ?? center); dealt = r.from; bundles = r.b; }
       else if (!tunnel) {
         // coherent: slab by slab, each grain from the same side of the axis. Arriving, the tunnel's axis on both sides; in a kick, each room's own
         const order = p0.order ?? (yield* orderByKeySteps(yield* slabKeySteps(p0.pos, p0.n, SLABS, p0.axis[0], p0.axis[1])));
@@ -971,7 +963,7 @@ export function createPointField(): PointField & SwapControl {
     object.add(staged);
     for (const [name, arr] of Object.entries(a)) if (arr) { g.setAttribute(name, new BufferAttribute(arr, 3)); frameDone = true; yield; }
     const streakGeometry = subsetGeometry(a, n, STREAK_STRIDE, 2);
-    const strandGeometry = ribbonMat ? subsetGeometry(a, n, RIB_STRIDE, RIB_VERTS) : null;
+    const strandGeometry = subsetGeometry(a, n, RIB_STRIDE, RIB_VERTS);
     frameDone = true; yield;
 
     // the swap: from here on, as setCloud always did at once
@@ -991,7 +983,7 @@ export function createPointField(): PointField & SwapControl {
     const wszs = u.uWsz!.value as Vector2;
     wszs.set(p0 ? wszs.y : wsz, wsz);
     // the tunnel's half of the ribbons' deal is worked out now, so the room's arrival has less to do in one frame
-    prev = { pos, col, n, tunnel, axis, nrm: groups && a.aNorm, groups, angleRank, tunnelOrder: RIBBONS && tunnel ? tunnelOrder(pos, n, TUNNEL.axisY, TUNNEL_TWIST) : undefined };
+    prev = { pos, col, n, tunnel, axis, nrm: groups && a.aNorm, groups, angleRank, tunnelOrder: tunnel ? tunnelOrder(pos, n, TUNNEL.axisY, TUNNEL_TWIST) : undefined };
     jobs.push({ steps: orderAhead(prev), build: false });
     u.uTunnelTo!.value = tunnel ? 1 : 0;
     u.uOrdered!.value = cloud.ordered === true ? 1 : 0;
@@ -1011,7 +1003,7 @@ export function createPointField(): PointField & SwapControl {
     u.uScale!.value = scale;
     u.uFloor!.value = lo[1]!;
 
-    // the room's own lights; a new room starts in the liminal ceiling light with its lamps on
+    // the room's own lights; a new room starts in its default lighting (its mood's cast, where it has one) with its lamps on
     u.uLit!.value = lit ? 1 : 0;
     u.uBaked!.value = lit && cloud.lit === true ? 1 : 0;
     const fittings = lit ? (cloud.lights?.ceiling ?? []).slice(0, MAX_CEILING) : [], bulbs = lit ? (cloud.lights?.lamps ?? []).slice(0, MAX_LAMPS) : [];
@@ -1022,6 +1014,8 @@ export function createPointField(): PointField & SwapControl {
     const atFloor = ceilingAt([center[0]!, lo[1]!, center[2]!], fittings);
     u.uCeilNorm!.value = atFloor > 0 ? CEILING_AT_FLOOR / atFloor : 0;   // the same pools whatever the room's fittings
     lighting = LIGHTING_START;
+    cast = castGain(cloud.cast);
+    if (lit && cloud.lit) bake.splice(0, 3, ...cast);   // a new room arrives in its cast, not eased into it from the last room's
 
     // the last cloud's buffers are freed a few frames on, not in the frame that first draws the new one
     const old = [points, streaks, strands].filter((o): o is Points | LineSegments => !!o);
@@ -1035,9 +1029,9 @@ export function createPointField(): PointField & SwapControl {
     // the solid pass shares the grains; it is drawn first (opaque), as a child so it leaves with them
     solid = new Points(g, solidMat);
     solid.frustumCulled = false; solid.onBeforeRender = sizeFromRenderer; solid.visible = false;
-    if (sandPass) sandPass.grains = solid; else points.add(solid);   // sand: out of the scene, drawn by its pass into the float buffer
+    points.add(solid);
     // built for every cloud (dark unless on ribbons) and drawn for a moment, so its shader is compiled before the arrival needs it
-    if (strandGeometry) { strands = new LineSegments(strandGeometry, ribbonMat!); strandsAt = clock; }
+    strands = new LineSegments(strandGeometry, ribbonMat); strandsAt = clock;
     [streaks, strands].forEach((o, k) => { if (o) { o.frustumCulled = false; o.renderOrder = k + 2; object.add(o); } });
   }
 
@@ -1109,8 +1103,8 @@ export function createPointField(): PointField & SwapControl {
       u.uStepBack!.value = (u.uStepBack!.value as number) + (stepBack - (u.uStepBack!.value as number)) * ki;
       // a change that has run its course is over: what left is gone for good
       if (swap.hero >= 0 && swapNow(swap, time)[0] < 0) { swap = SWAP_NONE; if (leaver) { dropStand(leaver); leaver = null; } }
-      const [swHero, swPair, swSeconds, swMove] = swapNow(swap, time);
-      u.uSwap!.value = [swHero, swPair, swSeconds, 1];   // in both looks a changing grain stays in the settled pass: additive, a dense hero's grains pile up into a white blob
+      const [swHero, swPair, swMove] = swapNow(swap, time);
+      u.uSwap!.value = [swHero, swPair];   // (a changing grain stays in the settled pass: additive, a dense hero's grains pile up into a white blob)
       (u.uSwapMove!.value as number[])[0] = swMove;
 
       // a lit room settles into the solid pass; any effect hands it back to the additive one first
@@ -1126,7 +1120,8 @@ export function createPointField(): PointField & SwapControl {
       const toward = (x: number, t: number) => { const y = x + (t - x) * k, s = 0.03 * dt; return Math.abs(t - y) <= s ? t : y + Math.sign(t - y) * s; };
       for (let i = 0; i < 3; i++) { amb[i] = toward(amb[i]!, mood.amb[i]!); sun[i] = toward(sun[i]!, mood.sun[i]!); sunDir[i] = toward(sunDir[i]!, mood.sunDir[i]!); }
       ceiling = toward(ceiling, mood.ceiling);
-      for (let i = 0; i < 3; i++) bake[i] = toward(bake[i]!, BAKED_GAIN[lighting.mood][i]!);
+      // the default is the room's own cast; the other settings are as they were (lighting that does not fit: step 10's second half)
+      for (let i = 0; i < 3; i++) bake[i] = toward(bake[i]!, (lighting.mood === 'liminal' ? cast : BAKED_GAIN[lighting.mood])[i]!);
       u.uCeilOn!.value = ceiling;
       lampOn = toward(lampOn, lighting.lamp ? 1 : 0);
       if (time > nextFlicker && ceilingN > 0) {
@@ -1159,9 +1154,9 @@ export function createPointField(): PointField & SwapControl {
     // shortcut: a change started during another cuts the first short (what was leaving vanishes, what was arriving is there at once);
     // the caller keeps a visitor from starting one meanwhile. Ease between them if that ever has to be allowed.
     // shortcut: the hero's box is the one the room was set with; a changed room that moves or resizes it is not followed until the room is set again.
-    replaceHero(hero, grains, pairing, progress, move = null) {
-      const style = SWAP_PAIRINGS[pairing], out = u.uHeroOut!.value as number[];
-      if (!style || !points || !solid || !Number.isInteger(hero) || hero < 0 || hero >= (u.uHeroN!.value as number)
+    replaceHero(hero, grains, progress, move = null) {
+      const out = u.uHeroOut!.value as number[];
+      if (!points || !solid || !Number.isInteger(hero) || hero < 0 || hero >= (u.uHeroN!.value as number)
         || !(progress === null || (progress >= 0 && progress <= 1)) || jobs.some(job => job.build) || !grains.normals) return false;
       if (leaver) dropStand(leaver);
       // what stands there now leaves: the object from the last change, else the room's own grains
@@ -1170,7 +1165,7 @@ export function createPointField(): PointField & SwapControl {
       if (leaver && move?.carried) { dropStand(leaver); leaver = null; }   // the same thing, carried into its new pose: nothing leaves
       if (leaver) { (leaver.obj.array as Float32Array).fill(-(hero + 1)); leaver.obj.needsUpdate = true; }
       for (const [name, value] of Object.entries(moveUniforms(move))) u[name]!.value = value;
-      u.uSwapStyle!.value = [style.away, style.back, leaver || out[hero] ? 0 : 1];
+      u.uSwapOwn!.value = leaver || out[hero] ? 0 : 1;
       out[hero] = 1;
       if (grains.count > 0) {
         const stand = standOf(hero, grains, hero + 1), n = grains.count * 3;
@@ -1183,7 +1178,7 @@ export function createPointField(): PointField & SwapControl {
         stand.points.geometry.setAttribute('aMid', new BufferAttribute(mids, 3));
         stands.push(stand);
       }
-      swap = { hero, pairing, progress, at: clock, move };
+      swap = { hero, progress, at: clock, move };
       return true;
     },
 
@@ -1208,8 +1203,7 @@ export function createPointField(): PointField & SwapControl {
       dropStands();
       dropGeometry();
       for (const o of warm) { object.remove(o); o.geometry.dispose(); }
-      for (const mat of [pointsMat, streakMat, ribbonMat, solidMat]) mat?.dispose();
-      sandPass?.dispose();
+      for (const mat of [pointsMat, streakMat, ribbonMat, solidMat]) mat.dispose();
       prev = null;
     },
   };

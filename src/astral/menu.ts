@@ -1,13 +1,6 @@
-// The visitor's menu of replacements for a hero: which choice is selected, where each choice sits in each arrangement, "nothing",
-// and the two entries EVA will not do. Pure: no three, no page. menu-view.ts draws it; AstralRoom.tsx feeds it the keys and the mouse.
-
-/** The arrangements the owner is choosing between: ?menu=ring|row|one. Delete the ones not kept. */
-export const MENU_ARRANGEMENTS = ['ring', 'row', 'one'] as const;
-export type MenuArrangement = typeof MENU_ARRANGEMENTS[number];
-export function menuArrangement(search: string): MenuArrangement {
-  const asked = new URLSearchParams(search).get('menu');
-  return MENU_ARRANGEMENTS.find(arrangement => arrangement === asked) ?? 'ring';
-}
+// The visitor's menu of replacements for a hero: which choice is selected, where each choice sits in the ring round the eye (the
+// owner's pick of three arrangements, 2026-11-17), "nothing", and the two entries EVA will not do. Pure: no three, no page.
+// menu-view.ts draws it; AstralRoom.tsx feeds it the keys and the mouse.
 
 /** Mouse travel that moves the selection one choice along, as a share of the page's width. */
 export const MENU_STEP = 1 / 24;
@@ -43,23 +36,13 @@ export function menuTurn(i: number, selected: number, count: number): number {
 export interface MenuSlot { x: number; y: number; size: number; light: number }
 
 /**
- * Each choice's slot. The selected one is always the largest and the brightest.
- * ring: the choices circle the eye, and the circle turns to bring the selected one below it.
- * row: a line under the eye that does not move; the selected one rises and grows. `aspect` (the frame's width over its height)
- *   draws the choices closer together when the line would otherwise run off the frame.
- * one: one large object under the eye, its two neighbours small beside it, the rest out of sight.
+ * Each choice's slot: the choices circle the eye, and the circle turns to bring the selected one below it. The selected one is
+ * always the largest and the brightest.
  */
-export function menuLayout(arrangement: MenuArrangement, count: number, selected: number, aspect = 16 / 9): MenuSlot[] {
-  const gap = Math.min(0.5, (2 * aspect - 0.6) / Math.max(1, count - 1));
+export function menuLayout(count: number, selected: number): MenuSlot[] {
   return Array.from({ length: count }, (_, i) => {
-    const d = menuTurn(i, selected, count), near = Math.max(0, 1 - Math.abs(d));
-    const size = 0.24 * (1 + 0.6 * near), light = 0.3 + 0.7 * near;
-    if (arrangement === 'ring') {
-      const angle = -Math.PI / 2 + d * 2 * Math.PI / count;
-      return { x: 0.52 * Math.cos(angle), y: 0.52 * Math.sin(angle), size, light };
-    }
-    if (arrangement === 'row') return { x: (i - (count - 1) / 2) * gap, y: -0.62 + 0.1 * near, size, light };
-    return { x: d * 0.8, y: -0.62, size: (0.16 + 0.5 * near) * Math.min(1, Math.max(0, 2 - Math.abs(d))), light };
+    const d = menuTurn(i, selected, count), near = Math.max(0, 1 - Math.abs(d)), angle = -Math.PI / 2 + d * 2 * Math.PI / count;
+    return { x: 0.52 * Math.cos(angle), y: 0.52 * Math.sin(angle), size: 0.24 * (1 + 0.6 * near), light: 0.3 + 0.7 * near };
   });
 }
 

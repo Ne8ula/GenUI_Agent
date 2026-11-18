@@ -1,4 +1,4 @@
-// Prototype look 'data' (?look=data): live values as abstract marks at the frame's edges, after Ryoji Ikeda's data-verse / test pattern.
+// The data marks (kept by the owner, 2026-11-17; always on): live values as abstract marks at the frame's edges, after Ryoji Ikeda's data-verse / test pattern.
 // No words. Every mark is a real value at this moment; a value that is unknown or absent has no mark.
 import '@fontsource/ibm-plex-mono/500.css';
 import { bitsOf, fixed, headingDegrees } from './data-marks.ts';

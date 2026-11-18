@@ -18,6 +18,8 @@ export interface PointCloud {
   lit?: boolean;
   /** True when the points sit in ordered rows that follow each surface (the 'ordered' look), not at random. */
   ordered?: boolean;
+  /** The colour of the room's default light, sRGB 0..1: its mood's cast (LIMINAL-GRAMMAR.md, Part 2). Absent: the room is shown as recorded. */
+  cast?: readonly [number, number, number];
   /** The room's own light sources, for the lighting system. Absent for the tunnel. */
   lights?: RoomLights;
   /** URL of a Gaussian-splat version of this room (SPZ) in the same world frame, when one exists. */

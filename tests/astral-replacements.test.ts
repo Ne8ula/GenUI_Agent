@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import test from 'node:test';
 import { decideChange, roomSpent, type Refusal } from '../src/astral/grammar-decide.ts';
 import type { Change, Thing } from '../src/astral/grammar.ts';
 import { MENU_REFUSED } from '../src/astral/menu.ts';
 import { baseRoom, validatePosedManifest } from '../src/astral/posed-frames.ts';
 import { pickSeed, readLedger, writeLedger } from '../src/astral/replacements.ts';
-import { REFUSALS, SIDE_TEASES } from '../src/astral/tease.ts';
+import { REFUSALS, SIDE_TEASES, VOICE_BASE, lineFile } from '../src/astral/tease.ts';
 
 // The real library and the real shelf, as the page has them.
 const json = (path: string) => JSON.parse(readFileSync(new URL(`../public/fixtures/${path}`, import.meta.url), 'utf8'));
@@ -92,4 +92,20 @@ test('every line of EVA\'s is one sentence of twenty words at most (owner, 2026-
     assert.ok(line.split(/\s+/).length <= 20, line);
     assert.match(line, /^[^.?!]+[.?!]$/, line);   // one sentence: nothing ends before the end
   }
+});
+
+test('a line\'s recording is named by its own words, so an edited line can never be played with its old ones', t => {
+  const lines = [...SIDE_TEASES, ...Object.values(REFUSALS).flat()], files = lines.map(lineFile);
+  for (const file of files) assert.match(file, /^[0-9a-f]{8}\.mp3$/);
+  assert.equal(new Set(files).size, lines.length);
+  assert.equal(lineFile(lines[0]!), lineFile(`${lines[0]!}`));
+  assert.notEqual(lineFile(lines[0]!), lineFile(lines[0]!.replace('room', 'Room')));
+  // What is recorded is an MP3. A line with no recording is not a failure: the page says it in the placeholder voice until it is
+  // recorded again (.local/voice/record.mjs, a paid call), and this says how many there are.
+  const recorded = files.filter(file => existsSync(new URL(`../public${VOICE_BASE}${file}`, import.meta.url)));
+  for (const file of recorded) {
+    const bytes = readFileSync(new URL(`../public${VOICE_BASE}${file}`, import.meta.url));
+    assert.ok(bytes.length > 2000 && (bytes.subarray(0, 3).toString('latin1') === 'ID3' || (bytes[0] === 0xff && (bytes[1]! & 0xe0) === 0xe0)), file);
+  }
+  t.diagnostic(`${recorded.length} of EVA's ${lines.length} lines have a recording in her voice`);
 });

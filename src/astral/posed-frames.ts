@@ -9,7 +9,9 @@ export type PosedCamera = {
 };
 export type PosedManifest = { frames: { image: string; depth: string; confidence: string; source: 'picture' | 'generated'; camera: PosedCamera }[]; heroes?: RoomHero[]; places?: RoomPlace[]; splats?: string; points?: string; water?: RoomWater;
   /** What the room is to the grammar (LIMINAL-GRAMMAR.md, Part 4); its slots are the heroes that have one. */
-  room?: Omit<BaseRoom, 'slots' | 'places'> };
+  room?: Omit<BaseRoom, 'slots' | 'places'> & {
+    /** The mood's light in Part 2's words. A room that declares it is lit by its mood's cast by default (room-source.ts). */
+    cast?: { colour: string; source: string } } };
 export type DepthFrame = { camera: PosedCamera; depth: Float32Array; confidence: Uint8ClampedArray; kept?: Uint8Array };
 export const MIN_CONFIDENCE = 128;
 const surfaceTolerance = (depth: number) => 0.02 + 0.0125 * depth;
@@ -96,6 +98,8 @@ export function validatePosedManifest(value: unknown): PosedManifest {
     const room = value.room as Record<string, unknown> | null;
     if (!room || !among(MOODS, room.mood) || !among(KINDS, room.kind) || !Number.isInteger(room.era) || (room.era as number) < 1800 || (room.era as number) > 2100
       || ![room.deviation, room.ambiguity].every(number => typeof number === 'number' && number >= 0 && number <= 100)) return fail();
+    const cast = room.cast as Record<string, unknown> | null | undefined;
+    if (cast !== undefined && (!cast || typeof cast.colour !== 'string' || typeof cast.source !== 'string')) return fail();
   }
   if ('water' in value) {
     const water = value.water as RoomWater;

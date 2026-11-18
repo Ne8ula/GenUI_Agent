@@ -14,7 +14,9 @@ export interface Groups {
   sizes: Uint32Array;
 }
 
-export function groupPoints(pos: Float32Array, n: number, k: number): Groups {
+export const groupPoints = (pos: Float32Array, n: number, k: number): Groups => finish(groupPointsSteps(pos, n, k));
+/** groupPoints in steps (see Steps): the field builds a room's groups a few milliseconds a frame. */
+export function* groupPointsSteps(pos: Float32Array, n: number, k: number): Steps<Groups> {
   if (k < 1 || k > 255) throw new RangeError('group count must be 1..255');
   const m = Math.min(n, 20000), sample = new Float32Array(m * 3);
   for (let s = 0; s < m; s++) { const j = Math.floor(s * n / m) * 3; sample[s * 3] = pos[j]!; sample[s * 3 + 1] = pos[j + 1]!; sample[s * 3 + 2] = pos[j + 2]!; }
@@ -39,6 +41,7 @@ export function groupPoints(pos: Float32Array, n: number, k: number): Groups {
   for (let i = 0; i < n; i++) {
     const c = nearest(pos, i * 3, centres, k); group[i] = c; sizes[c]!++;
     for (let a = 0; a < 3; a++) { const v = pos[i * 3 + a]!; if (v < lo[c * 3 + a]!) lo[c * 3 + a] = v; if (v > hi[c * 3 + a]!) hi[c * 3 + a] = v; }
+    if (i % STEP === STEP - 1) yield;
   }
   const axis = new Uint8Array(k);
   for (let c = 0; c < k; c++) for (let a = 1; a < 3; a++) if (hi[c * 3 + a]! - lo[c * 3 + a]! > hi[c * 3 + axis[c]!]! - lo[c * 3 + axis[c]!]!) axis[c] = a;
@@ -46,6 +49,7 @@ export function groupPoints(pos: Float32Array, n: number, k: number): Groups {
   for (let i = 0; i < n; i++) {
     const c = group[i]!, a = axis[c]!, w = hi[c * 3 + a]! - lo[c * 3 + a]!;
     u[i] = w > 0 ? Math.min(0.999999, (pos[i * 3 + a]! - lo[c * 3 + a]!) / w) : 0;
+    if (i % STEP === STEP - 1) yield;
   }
   return { k, centres, group, u, sizes };
 }

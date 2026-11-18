@@ -1,11 +1,11 @@
 // The menu as it is drawn: each choice is the object itself as a small point cloud, turning slowly, laid out round the eye's place
-// on screen (menu.ts has the arrangements). No words: the selected choice is the large bright one, in brackets; a refused one turns
+// on screen (menu.ts has the ring they sit in). No words: the selected choice is the large bright one, in brackets; a refused one turns
 // the eye's red. The choices come out of the eye when the menu opens and go back into it when it closes.
 import {
   AddEquation, BufferAttribute, BufferGeometry, CustomBlending, GLSL3, Group, LineBasicMaterial, LineSegments, Matrix4, OneFactor,
   OneMinusSrcColorFactor, Points, ShaderMaterial, Vector2, Vector3, type PerspectiveCamera,
 } from 'three';
-import { menuLayout, menuTurn, type MenuArrangement, type MenuPoints } from './menu.ts';
+import { menuLayout, menuTurn, type MenuPoints } from './menu.ts';
 
 const DEPTH = 2;             // metres in front of the viewer: near enough to turn in perspective, far enough to stay small
 const THUMB_POINTS = 6000;   // a choice is drawn with at most this many of its points
@@ -57,7 +57,7 @@ function thumbGeometry(points: MenuPoints): BufferGeometry {
   return geometry;
 }
 
-export function createMenuView(arrangement: MenuArrangement): MenuView {
+export function createMenuView(): MenuView {
   // the group carries the camera's own frame, so its children are placed in view space: x right, y up, the viewer looking down -z
   const object = new Group();
   object.matrixAutoUpdate = false; object.visible = false;
@@ -101,7 +101,7 @@ export function createMenuView(arrangement: MenuArrangement): MenuView {
 
       // the frame at the menu's depth: half its height in metres, and its width in halves of its height
       const half = DEPTH * Math.tan(camera.fov * Math.PI / 360), aspect = camera.aspect;
-      const slots = menuLayout(arrangement, count, shown, aspect);
+      const slots = menuLayout(count, shown);
       // the eye's place on screen, moved in from the edge until every choice fits; an eye behind the viewer counts as far to its side
       local.copy(eye).applyMatrix4(inverse.copy(camera.matrixWorld).invert());
       const ahead = Math.max(0.3, -local.z), fit = (value: number, low: number, high: number) => (low > high ? (low + high) / 2 : Math.min(high, Math.max(low, value)));

@@ -1,14 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {
-  MENU_ARRANGEMENTS, MENU_NOTHING, MENU_REFUSED, MENU_STEP, entryPoints, menuArrangement, menuDrag, menuLayout, menuOpen, menuStep, menuTurn,
-} from '../src/astral/menu.ts';
-
-test('?menu= picks one of the arrangements, and anything else is the ring', () => {
-  assert.deepEqual([...MENU_ARRANGEMENTS], ['ring', 'row', 'one']);
-  for (const arrangement of MENU_ARRANGEMENTS) assert.equal(menuArrangement(`?look=sand&menu=${arrangement}`), arrangement);
-  for (const other of ['', '?menu=', '?menu=dropdown', '?menu=RING', '?look=sand']) assert.equal(menuArrangement(other), 'ring', other);
-});
+import { MENU_NOTHING, MENU_REFUSED, MENU_STEP, entryPoints, menuDrag, menuLayout, menuOpen, menuStep, menuTurn } from '../src/astral/menu.ts';
 
 test('the menu opens on a hero with the first choice selected, and only when there is a hero and a choice', () => {
   assert.deepEqual(menuOpen(3, 5), { hero: 3, index: 0, count: 5, carry: 0 });
@@ -48,31 +40,17 @@ test('the distance between two choices goes the short way round', () => {
   assert.ok(Math.abs(menuTurn(0, 4.5, 5) - 0.5) < 1e-12);   // while the selection eases from 4 round to 0
 });
 
-test('in every arrangement the selected choice is the largest and the brightest, and every slot is finite', () => {
-  for (const arrangement of MENU_ARRANGEMENTS) for (const count of [1, 2, 5, 8]) for (let selected = 0; selected < count; selected++) {
-    const slots = menuLayout(arrangement, count, selected);
+test('the selected choice is the largest and the brightest, below the eye, and every slot is finite', () => {
+  for (const count of [1, 2, 5, 8]) for (let selected = 0; selected < count; selected++) {
+    const slots = menuLayout(count, selected);
     assert.equal(slots.length, count);
     slots.forEach((slot, i) => {
-      assert.ok([slot.x, slot.y, slot.size, slot.light].every(Number.isFinite), `${arrangement} ${count} ${i}`);
-      if (i !== selected) assert.ok(slot.size < slots[selected]!.size && slot.light < slots[selected]!.light, `${arrangement} ${count} ${selected} ${i}`);
+      assert.ok([slot.x, slot.y, slot.size, slot.light].every(Number.isFinite), `${count} ${i}`);
+      if (i !== selected) assert.ok(slot.size < slots[selected]!.size && slot.light < slots[selected]!.light, `${count} ${selected} ${i}`);
     });
     assert.equal(slots[selected]!.light, 1);
+    assert.ok(Math.abs(slots[selected]!.x) < 1e-9 && slots[selected]!.y < 0);   // the ring turns it to below the eye
   }
-});
-
-test('ring turns the selected choice to below the eye; row keeps its places; one shows the selected and its two neighbours only', () => {
-  for (let selected = 0; selected < 5; selected++) {
-    const ring = menuLayout('ring', 5, selected)[selected]!;
-    assert.ok(Math.abs(ring.x) < 1e-9 && ring.y < 0);
-  }
-  assert.deepEqual(menuLayout('row', 5, 0).map(slot => slot.x), menuLayout('row', 5, 3).map(slot => slot.x));
-  assert.deepEqual(menuLayout('row', 5, 0).map(slot => slot.x), [-1, -0.5, 0, 0.5, 1]);
-  // eight choices on a 16:9 frame: drawn closer together, so the whole line (each choice 0.24 to 0.39 across) stays inside it
-  const wide = menuLayout('row', 8, 7, 16 / 9);
-  assert.ok(wide[0]!.x - wide[0]!.size / 2 > -16 / 9 && wide[7]!.x + wide[7]!.size / 2 < 16 / 9);
-  const one = menuLayout('one', 6, 2);
-  assert.deepEqual(one.map(slot => slot.size > 0), [false, true, true, true, false, false]);
-  assert.ok(one[1]!.x < 0 && one[2]!.x === 0 && one[3]!.x > 0);
 });
 
 test('each entry that is no object, "nothing" and the ones EVA refuses, has points of its own to show', () => {

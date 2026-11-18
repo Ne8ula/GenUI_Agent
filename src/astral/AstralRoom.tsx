@@ -9,16 +9,15 @@ import { decideChange, roomSpent } from './grammar-decide.ts';
 import { MOODS, roomState, roomValues, standingNow, type BaseRoom, type Change, type Pose, type Thing } from './grammar.ts';
 import { createInspectMarks } from './inspect-marks.ts';
 import { INSPECT_NONE, nextInspect } from './inspect.ts';
-import { hasLook } from './looks.ts';
 import { createMenuView } from './menu-view.ts';
-import { MENU_NOTHING, MENU_REFUSED, entryPoints, menuArrangement, menuDrag, menuOpen, menuStep, type MenuPoints, type MenuRefused, type MenuState } from './menu.ts';
+import { MENU_NOTHING, MENU_REFUSED, entryPoints, menuDrag, menuOpen, menuStep, type MenuPoints, type MenuRefused, type MenuState } from './menu.ts';
 import { floorOf, litLikeRoom, loadObjectPoints, loadShelf, replaceHero, roomCast } from './object-points.ts';
 import { LIGHTING_START, createPointField, createTunnelCloud, nextLighting } from './point-field.ts';
 import { pickSeed, readLedger, writeLedger } from './replacements.ts';
 import { loadRecordedRoomCloud } from './room-source.ts';
-import { SWAP_PAIRINGS, parseSwap, swapHero, swapTimes, type Move, type Stood } from './sand-look.ts';
+import { parseSwap, swapHero, swapTimes, type Move, type Stood } from './object-change.ts';
 import { createSplatView, type SplatView } from './splat-view.ts';
-import { REFUSALS, SIDE_TEASES, sideTeaseDue, speakPlaceholder } from './tease.ts';
+import { REFUSALS, SIDE_TEASES, sideTeaseDue, speakLine, stopSpeaking } from './tease.ts';
 import { createWater, type AstralWater } from './water.ts';
 import { ASTRAL_EFFECTS, TUNNEL, type AstralLight, type AstralPhase, type PointCloud, type RoomHero } from './types.ts';
 import { chooseMood, chosenMood, forgetMood } from './mood-choice.ts';
@@ -50,15 +49,15 @@ const devEyeParam = import.meta.env.DEV ? new URLSearchParams(window.location.se
 const devEyePhase = DEV_EYE_PHASES.find(phase => phase === devEyeParam) ?? null;
 // Development only: ?splats=standin gives a room without a splat file stand-in splats made from its own points, to judge the swap.
 const devStandInSplats = import.meta.env.DEV && new URLSearchParams(window.location.search).get('splats') === 'standin';
-// Development only: ?swap=<hero>,<pairing>,<progress>[,<pose>[,<way>[,<thing>[,<wrong>]]]] replaces that hero with a shelf object (the
-// first, unless named) in that pose once the viewer has the room, and holds the change (sand-look.ts) at that progress, for matching
-// captures. `wrong` is a discrepancy (LIMINAL-GRAMMAR.md, step 4): its size, its number, or the thing gone and its trace left. It is
+// Development only: ?swap=<hero>,<progress>[,<pose>[,<way>[,<thing>[,<wrong>]]]] replaces that hero with a shelf object (the
+// first, unless named) in that pose once the viewer has the room, and holds the change (object-change.ts) at that progress, for
+// matching captures. `wrong` is a discrepancy (LIMINAL-GRAMMAR.md, step 4): its size, its number, or the thing gone. It is
 // not remembered. It is read again whenever the address changes without a load (history.replaceState, then a popstate event), so one
 // page can show many.
 const devSwap = () => import.meta.env.DEV ? parseSwap(window.location.search) : null;
 /** A choice in the menu: an object of the shelf, or (no model) "nothing", or an entry EVA will not do. */
 type Choice = { id: string; glb: string } | { id: MenuRefused | typeof MENU_NOTHING; glb: null };
-/** How a thing stands in a slot: the grammar's pose, size and number (a Change is one), and sand-look.ts's variants of its arrival. */
+/** How a thing stands in a slot: the grammar's pose, size and number (a Change is one), and object-change.ts's variants of its arrival. */
 type Stance = { pose: Pose; other?: boolean; loose?: boolean; carried?: boolean; factor?: number; copies?: number };
 /** The sampling of a thing made larger, against the room's lattice (1 is the room's own spacing, 2 an object's usual). A starting value, to judge from captures. */
 const ENLARGED_DENSITY = 1.4;
@@ -81,14 +80,14 @@ export default function AstralRoom() {
     const field = createPointField();
     scene.add(field.object, eye.object);
     const glow = createGlow(renderer, scene, camera);
-    // Prototype look (?look=data); off, nothing below changes.
-    const data = hasLook('data') ? createDataLayer(host) : null;
-    // Look and it answers: the room's heroes, which one the viewer is inspecting, and its marks (always on, any look).
+    // Live values as marks at the frame's corners (kept by the owner, 2026-11-17).
+    const data = createDataLayer(host);
+    // Look and it answers: the room's heroes, which one the viewer is inspecting, and its marks.
     const marks = createInspectMarks(host);
     let heroes: RoomHero[] = [];
     let inspect = INSPECT_NONE;
     // Replacing a hero: the room as it now is (object-points.ts makes the changed one), the menu of choices, and what EVA refused in it.
-    const menuView = createMenuView(menuArrangement(window.location.search));
+    const menuView = createMenuView();
     scene.add(menuView.object);
     let room: PointCloud | null = null;
     let arrived: PointCloud | null = null;   // the room as it arrived: an absent thing's floor is laid from the floor it had then
@@ -123,7 +122,7 @@ export default function AstralRoom() {
     let stopped = false; // Escape holds the start until the next key press
     let side = 0, sideLow = 0, sideHigh = 0;
     let lastTease = -Infinity, teases = 0;
-    let swaps = 0; // replacements so far: each takes the next pairing, until the owner picks one
+    let swaps = 0; // presses of the development key G: each takes the shelf's next thing
     let generation: AbortController | undefined;
     let pendingRoom: { cloud: PointCloud; notBefore: number } | undefined;
     let arrival: { from: Vec3; velocity: Vec3; to: Vec3; lookFrom: Vec3; lookTo: Vec3 } | undefined;
@@ -258,16 +257,13 @@ export default function AstralRoom() {
     };
 
     /**
-     * The recorded room, and with it the room's ledger (replacements.ts): what stands in each slot a visitor changed is made
-     * ready here, each in its pose, size and number, and put back as the room forms. One that cannot be made is skipped.
+     * The recorded base room of the mood picked in the void, and with it the room's ledger (replacements.ts): what stands in
+     * each slot a visitor changed is made ready here, each in its pose, size and number, and put back as the room forms. One
+     * that cannot be made is skipped.
      */
     const loadRoom = async (signal: AbortSignal) => {
-      const cloud = await loadRecordedRoomCloud(renderer, signal);
+      const cloud = await loadRecordedRoomCloud(renderer, signal, chosenMood());
       if (!cloud.base) return cloud;
-      // shortcut: until each mood has its own base room (step 7), the room is the library taken as the chosen mood's room: only
-      // what EVA prefers changes with the mood; its kind, era and starting values stay the library's.
-      const mood = chosenMood();
-      if (mood) cloud.base = { ...cloud.base, mood };
       await prepareShelf();
       let stored = readLedger(cloud.base, things);
       // A room is spent by one visitor and ends when they leave. A spent ledger still stored means the page went before their 45
@@ -292,15 +288,15 @@ export default function AstralRoom() {
       requestRoom(loadRoom, REHEARSAL_MIN_SECONDS);
     };
     // The void's choice (mood-choice.ts, mood-view.ts): while no room exists, one body of grains waits in the void and takes the
-    // selected mood's form; in the void `menu` is that choice, stepped and picked with the menu's keys and mouse.
-    // shortcut: whichever is picked, the room is the recorded library, until each mood has its own base room (step 7).
+    // selected mood's form; in the void `menu` is that choice, stepped and picked with the menu's keys and mouse. The mood
+    // picked is the room loaded: each has its own recorded base room (loadRoom).
     const moodView = createMoodView();
     scene.add(moodView.object);
     const pickMood = () => {
       const mood = menu && MOODS[menu.index];
       if (!mood) return;
       chooseMood(mood);
-      console.info(`[astral] mood chosen: "${mood}". Until step 7 every mood's room is the RECORDED library.`);
+      console.info(`[astral] mood chosen: "${mood}". Its room is that mood's RECORDED base room.`);
       startRecorded();
     };
     /** Any input: someone is there. From the void that alone starts the tunnel, if a room exists. Returns whether it did. */
@@ -325,18 +321,18 @@ export default function AstralRoom() {
     const refuse = (what: keyof typeof REFUSALS) => {
       const lines = REFUSALS[what], n = said[what] ?? 0;
       said[what] = n + 1;
-      speakPlaceholder(lines[n % lines.length]!, setSpeaking);
+      speakLine(lines[n % lines.length]!, setSpeaking);
     };
     /**
      * Hero `hero` becomes the shelf's object `id`, or nothing (null: an absence, the slot's floor laid clean where the thing stood):
      * its points stand in the hero's slot at the thing's height and are exchanged for the hero's in the room's cloud
      * (object-points.ts), and the field shows the old object leaving and the new one arriving.
      * `stance`: the pose it stands in and arrives by, its size against its true size, and how many of it, the others standing in
-     * the room's places (EVA's choice, or the development switch's), with the variants of sand-look.ts's Move.
+     * the room's places (EVA's choice, or the development switch's), with the variants of object-change.ts's Move.
      * Nothing here is remembered: the room's memory is its ledger, written when EVA decides.
      * Known gap: the painted room (P) still shows the old object.
      */
-    const replace = async (hero: number, id: string | null, pairing: number, progress: number | null, stance: Stance = { pose: 'rests' }) => {
+    const replace = async (hero: number, id: string | null, progress: number | null, stance: Stance = { pose: 'rests' }) => {
       const from = room, box = from?.heroes?.[hero];
       if (!from || !box || changing || holdsWater(box)) return;
       changing = true;
@@ -347,7 +343,7 @@ export default function AstralRoom() {
         // drops them; only the cloud's count is off. Keep each hero's object apart and rebuild the cloud from the arrived room if
         // anything comes to read it.
         const next = replaceHero(from, hero, object), move = object.move ? { ...object.move, loose: stance.loose, carried: stance.carried } : null;
-        if (!field.replaceHero(hero, object, pairing, progress, move)) return;
+        if (!field.replaceHero(hero, object, progress, move)) return;
         // The slot's carpet. A hero's box is emptied whole, floor and all, so the first time a hero on a floor is replaced its
         // floor is laid again as a cloud of its own (owner, 2026-11-17), which stays through every later change there: no thing
         // that stands, sinks, moves or leaves in that slot touches it. It is in the field only, not in the room's cloud.
@@ -360,7 +356,7 @@ export default function AstralRoom() {
         const copies = object.parts?.length ?? 1, factor = stance.factor ?? 1;
         if (copies < (stance.copies ?? 1)) console.info(`[astral] ${stance.copies} copies asked; the room has places for ${copies}.`);
         const what = id === null ? 'nothing' : `${copies > 1 ? `${copies} of ` : factor !== 1 ? `${factor} times ` : ''}"${id}"`;
-        console.info(`[astral] "${box.name}" replaced by ${what} (${object.count} points; ${stance.pose}; ${SWAP_PAIRINGS[pairing]?.name}).`);
+        console.info(`[astral] "${box.name}" replaced by ${what} (${object.count} points; ${stance.pose}).`);
       } catch (error) {
         if (!leaving.signal.aborted) console.error('[astral] the replacement failed; the room is unchanged.', error);
       } finally { changing = false; }
@@ -373,9 +369,9 @@ export default function AstralRoom() {
       await prepareShelf();
       const id = swap.thing ?? things[0]?.id;
       if (!id) return;
-      if (swap.pose === 'dropped') await replace(swap.hero, id, swap.pairing, 1, { ...swap, pose: 'hovers' });
-      if (swap.gone) await replace(swap.hero, id, swap.pairing, 1, swap);
-      await replace(swap.hero, swap.gone ? null : id, swap.pairing, swap.progress, { ...swap, carried: swap.pose === 'dropped' });
+      if (swap.pose === 'dropped') await replace(swap.hero, id, 1, { ...swap, pose: 'hovers' });
+      if (swap.gone) await replace(swap.hero, id, 1, swap);
+      await replace(swap.hero, swap.gone ? null : id, swap.progress, { ...swap, carried: swap.pose === 'dropped' });
     };
     const onAddress = () => void showDevSwap();
     /** The choices for the hero being inspected. Not during a change, nor over the painted room, which would not show one. */
@@ -400,7 +396,7 @@ export default function AstralRoom() {
       if (choice.glb === null && choice.id !== MENU_NOTHING) { refused.add(menu.index); refuse(choice.id); return; }
       const slot = heroes[menu.hero]?.slot?.id, picked = choice.glb === null ? null : choice.id;
       if (!base || !slot) {   // a room the grammar does not know (?room=surreal): the thing is stood plainly, and nothing is remembered
-        if (picked) void replace(menu.hero, picked, swaps++ % SWAP_PAIRINGS.length, null);
+        if (picked) void replace(menu.hero, picked, null);
         menu = null;
         return;
       }
@@ -438,7 +434,7 @@ export default function AstralRoom() {
       camera.fov = Math.min(60, (verticalFov * 180) / Math.PI);
       camera.updateProjectionMatrix();
       glow?.setSize(width, height, renderer.getPixelRatio());
-      data?.resize();
+      data.resize();
       marks.resize();
     };
     resize();
@@ -446,7 +442,7 @@ export default function AstralRoom() {
 
     const stopAll = () => {
       stopped = true;
-      globalThis.speechSynthesis?.cancel();
+      stopSpeaking();
       stopGeneration();
     };
     const onKeyDown = (event: KeyboardEvent) => {
@@ -490,10 +486,10 @@ export default function AstralRoom() {
       // F, or a click: the choices for the hero being inspected.
       if (event.code === 'KeyF' && !started) openMenu();
       // Development only: G replaces a hero (the one being inspected, else the nearest) without the menu and without EVA, by the
-      // next object, resting, and the next pairing. It is not in the ledger, so it is not remembered.
+      // shelf's next object, resting. It is not in the ledger, so it is not remembered.
       if (import.meta.env.DEV && event.code === 'KeyG' && stage === 'room' && things.length) {
         const p = camera.position;
-        void replace(swapHero(inspect.hero, heroes, [p.x, p.y, p.z]), things[swaps % things.length]!.id, swaps++ % SWAP_PAIRINGS.length, null);
+        void replace(swapHero(inspect.hero, heroes, [p.x, p.y, p.z]), things[swaps++ % things.length]!.id, null);
       }
     };
     const onMouseMove = (event: MouseEvent) => {
@@ -568,7 +564,7 @@ export default function AstralRoom() {
       // What the ledger has standing in the room, put back as the room forms: each as an object of its own, settled, on its laid
       // floor, exactly as a change leaves it, so the next change there takes all of it away (a repeated thing's copies too). The
       // field refuses while the room's own grains are still being built; then it is asked again next frame.
-      while (standing.length && room && field.replaceHero(standing[0]!.hero, standing[0]!.object, 0, 1)) {
+      while (standing.length && room && field.replaceHero(standing[0]!.hero, standing[0]!.object, 1)) {
         const { hero, object, floor } = standing.shift()!;
         if (floor && field.layFloor(hero, floor)) floors.set(hero, floor.count);
         room = replaceHero(room, hero, object); heroes = room.heroes ?? [];
@@ -586,11 +582,11 @@ export default function AstralRoom() {
           // the next change of EVA's decision, once the one before it has run its course. A dropped thing is the one already
           // hovering there, put right: nothing leaves and nothing assembles
           const change = queue.shift()!;
-          void replace(heroes.findIndex(hero => hero.slot?.id === change.slot), change.thing, swaps++ % SWAP_PAIRINGS.length, null, { ...change, carried: change.pose === 'dropped' });
+          void replace(heroes.findIndex(hero => hero.slot?.id === change.slot), change.thing, null, { ...change, carried: change.pose === 'dropped' });
         }
         else if (!menu && sideTeaseDue(time, { since: stageAt, lastInput, lastTease, travelled: sideHigh - sideLow })) {   // not while they are choosing
           lastTease = time;
-          speakPlaceholder(SIDE_TEASES[teases++ % SIDE_TEASES.length]!, setSpeaking);
+          speakLine(SIDE_TEASES[teases++ % SIDE_TEASES.length]!, setSpeaking);
         }
       }
 
@@ -620,17 +616,15 @@ export default function AstralRoom() {
       glow.setSceneDraw(splatView?.active ? splatView.drawLayers : null);
       glow.render();
       marks.update(heroes[inspect.hero] ?? null, camera, dt);
-      if (data) {
-        const e = eye.object.position, inRoom = stage === 'arriving' || stage === 'room';
-        data.update({
-          frameMs, stage,
-          viewer: { x: camera.position.x, y: camera.position.y, z: camera.position.z, dirX: viewDirection.x, dirZ: viewDirection.z },
-          eye: { x: e.x, y: e.y, z: e.z, glow: eye.glow, phase: eyePhase },
-          axisZ: stage === 'tunnel' || stage === 'arriving' ? camera.position.z : null,
-          lighting: inRoom ? { mood: lighting.mood, lamp: roomLamps ? lighting.lamp : null } : null,
-          points: cloudCount,
-        });
-      }
+      const e = eye.object.position, inRoom = stage === 'arriving' || stage === 'room';
+      data.update({
+        frameMs, stage,
+        viewer: { x: camera.position.x, y: camera.position.y, z: camera.position.z, dirX: viewDirection.x, dirZ: viewDirection.z },
+        eye: { x: e.x, y: e.y, z: e.z, glow: eye.glow, phase: eyePhase },
+        axisZ: stage === 'tunnel' || stage === 'arriving' ? camera.position.z : null,
+        lighting: inRoom ? { mood: lighting.mood, lamp: roomLamps ? lighting.lamp : null } : null,
+        points: cloudCount,
+      });
     });
 
     return () => {
@@ -642,7 +636,7 @@ export default function AstralRoom() {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('click', onClick);
       window.removeEventListener('popstate', onAddress);
-      globalThis.speechSynthesis?.cancel();
+      stopSpeaking();
       flight.dispose();
       scene.remove(field.object, eye.object, menuView.object, moodView.object);
       menuView.dispose();
@@ -652,7 +646,7 @@ export default function AstralRoom() {
       splatView?.dispose();
       dropWater();
       glow?.dispose();
-      data?.dispose();
+      data.dispose();
       marks.dispose();
       renderer.dispose();
       renderer.forceContextLoss();

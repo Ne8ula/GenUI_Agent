@@ -1,0 +1,494 @@
+{
+  "id": "uncanny",
+  "label": "Recorded room built from one generated picture (OpenAI gpt-image-2.6-sunburst) by World Labs Atlas (images2PosedRGBD; atlasGenerate twice for fourteen views round the room; posedImages2Splats for room.spz from all fifteen frames; 2026-11-17). Not live generation.",
+  "splats": "room.spz",
+  "points": "points.bin",
+  "picture": "uncanny-s5 of .local/base-rooms/ (the owner's pick, 2026-11-17): a sitting room under one fitting, its television gone soft over its cabinet.",
+  "heroes": [
+    { "name": "melted television", "min": [-0.9, 0.02, -5.17], "max": [0.9, 1.6, -4.58],
+      "slot": { "id": "television", "surface": "floor", "anchor": false, "point": [0, 0.02, -4.875], "normal": [0, 1, 0], "facing": [0, 0, 1],
+        "holds": { "thing": "melted-television", "discrepancy": null, "pose": "rests", "factor": 1, "copies": 1 } } },
+    { "name": "sofa", "min": [-1.97, 0.02, -4.22], "max": [-1.07, 1.6, -2.6],
+      "slot": { "id": "sofa", "surface": "floor", "anchor": true, "point": [-1.52, 0.02, -3.41], "normal": [0, 1, 0], "facing": [0, 0, 1],
+        "holds": { "thing": "sofa", "discrepancy": null, "pose": "rests", "factor": 1, "copies": 1 } } },
+    { "name": "armchair", "min": [1.18, 0.02, -3.6], "max": [1.99, 1.6, -2.79],
+      "slot": { "id": "armchair", "surface": "floor", "anchor": true, "point": [1.585, 0.02, -3.195], "normal": [0, 1, 0], "facing": [0, 0, 1],
+        "holds": { "thing": "armchair", "discrepancy": null, "pose": "rests", "factor": 1, "copies": 1 } } },
+    { "name": "empty carpet", "min": [0.15, 0.02, -4.3], "max": [1.15, 1.9, -3.3],
+      "slot": { "id": "carpet", "surface": "floor", "anchor": false, "point": [0.65, 0.02, -3.8], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } }
+  ],
+  "placesNote": "Where the copies of a repeated thing stand, in the order they are taken, beside the slot the visitor picked: five pieces of free carpet, each a box of air with nothing of the recording's in it (checked against the baked points with .local/base-rooms/probe.mjs, 2026-11-17). The owner's to move.",
+  "places": [
+    { "min": [-1.0, 0.02, -3.9], "max": [0.0, 1.9, -2.9],
+      "slot": { "id": "carpet-left", "surface": "floor", "anchor": false, "point": [-0.5, 0.02, -3.4], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } },
+    { "min": [0.95, 0.02, -5.15], "max": [1.9, 1.9, -4.32],
+      "slot": { "id": "far-right", "surface": "floor", "anchor": false, "point": [1.425, 0.02, -4.735], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } },
+    { "min": [-1.9, 0.02, -5.15], "max": [-0.95, 1.9, -4.3],
+      "slot": { "id": "far-left", "surface": "floor", "anchor": false, "point": [-1.425, 0.02, -4.725], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } },
+    { "min": [0.75, 0.02, -2.5], "max": [1.75, 1.9, -1.5],
+      "slot": { "id": "near-right", "surface": "floor", "anchor": false, "point": [1.25, 0.02, -2.0], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } },
+    { "min": [-1.75, 0.02, -2.5], "max": [-0.75, 1.9, -1.5],
+      "slot": { "id": "near-left", "surface": "floor", "anchor": false, "point": [-1.25, 0.02, -2.0], "normal": [0, 1, 0], "facing": [0, 0, 1], "holds": null } }
+  ],
+  "room": {
+    "note": "Written by hand on 2026-11-17 from the baked points (.local/base-rooms/probe.mjs); every figure is a proposal. The floor is at y 0. Each box is its thing's bounds with 5 cm round it and free air up to 1.6 m. The sofa and the armchair are the anchors: what says this is a sitting room. The television was recorded melted and cannot be put right; a melted thing is none of the grammar's discrepancies, so its slot (the television with its cabinet, standing on the floor) holds it plainly and its weight is in `deviation`: 30, as much as a wrong scale, and 5 for the second room World Labs invented behind the arrival spot. That figure does not fall if a visitor replaces the television. At 35 the room starts in the uncanny band and EVA can still make one wrong scale or repetition (30) without spending it; Part 1's 55 would leave her none. One slot on open carpet holds nothing. `cast` is Part 2's; nothing reads it until step 10.",
+    "mood": "uncanny",
+    "kind": "home",
+    "era": 1985,
+    "deviation": 35,
+    "ambiguity": 75,
+    "cast": { "colour": "cold teal to blue-green", "source": "one ceiling fitting, dim" }
+  },
+  "frames": [
+    {
+      "image": "frame-00.jpg",
+      "depth": "frame-00-depth.exr",
+      "confidence": "frame-00-confidence.png",
+      "source": "picture",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0,
+            1.061553955078125,
+            0
+          ],
+          "quaternion": [
+            -0.010076883215224357,
+            0.000006765482787987946,
+            0.000671352183714654,
+            0.9999490015321483
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-01.jpg",
+      "depth": "frame-01-depth.exr",
+      "confidence": "frame-01-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -0.8,
+            1.061553955078125,
+            -2.7
+          ],
+          "quaternion": [
+            -0.07061993522447241,
+            -0.48318580007921197,
+            -0.03914093254154628,
+            0.8717868402026273
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-02.jpg",
+      "depth": "frame-02-depth.exr",
+      "confidence": "frame-02-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0.9,
+            1.061553955078125,
+            -2.7
+          ],
+          "quaternion": [
+            -0.06931512504293216,
+            0.5172549518910636,
+            0.04208261426264553,
+            0.8519810923731099
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-03.jpg",
+      "depth": "frame-03-depth.exr",
+      "confidence": "frame-03-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0.9,
+            1.061553955078125,
+            -4.2
+          ],
+          "quaternion": [
+            -0.09713654860626544,
+            0.4391547486545845,
+            0.04783018199090007,
+            0.891863146087845
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-04.jpg",
+      "depth": "frame-04-depth.exr",
+      "confidence": "frame-04-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -0.7,
+            1.061553955078125,
+            -4
+          ],
+          "quaternion": [
+            -0.1225587412182833,
+            -0.2588681339184528,
+            -0.03313365045329631,
+            0.9575326654481332
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-05.jpg",
+      "depth": "frame-05-depth.exr",
+      "confidence": "frame-05-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0,
+            1.061553955078125,
+            -4.3
+          ],
+          "quaternion": [
+            0,
+            0.9999831410730288,
+            0.005806683194314081,
+            0
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-06.jpg",
+      "depth": "frame-06-depth.exr",
+      "confidence": "frame-06-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -0.8,
+            1.061553955078125,
+            -4.4
+          ],
+          "quaternion": [
+            0.01197917790861459,
+            0.9334369943784075,
+            0.031306514482612444,
+            -0.35717191795182973
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-07.jpg",
+      "depth": "frame-07-depth.exr",
+      "confidence": "frame-07-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0.9,
+            1.061553955078125,
+            -4.4
+          ],
+          "quaternion": [
+            -0.01206456122876014,
+            0.9300573902912469,
+            0.030663300218828682,
+            0.36593368135043625
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-08.jpg",
+      "depth": "frame-08-depth.exr",
+      "confidence": "frame-08-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0,
+            1.061553955078125,
+            -3
+          ],
+          "quaternion": [
+            0.02880701091578928,
+            0,
+            0,
+            0.9995849919452059
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-09.jpg",
+      "depth": "frame-09-depth.exr",
+      "confidence": "frame-09-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -0.5,
+            1.061553955078125,
+            -2.7
+          ],
+          "quaternion": [
+            -0.00224820994386098,
+            0.9612167816358858,
+            0.007839049948434873,
+            0.27567334573640656
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-10.jpg",
+      "depth": "frame-10-depth.exr",
+      "confidence": "frame-10-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0.5,
+            1.061553955078125,
+            -2.7
+          ],
+          "quaternion": [
+            0.00224820994386098,
+            0.9612167816358858,
+            0.007839049948434873,
+            -0.27567334573640656
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-11.jpg",
+      "depth": "frame-11-depth.exr",
+      "confidence": "frame-11-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0,
+            1.061553955078125,
+            -3.6
+          ],
+          "quaternion": [
+            -0.06271861103357043,
+            0.6703306074938384,
+            0.057029206052196704,
+            0.7372048033918507
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-12.jpg",
+      "depth": "frame-12-depth.exr",
+      "confidence": "frame-12-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            0,
+            1.061553955078125,
+            -3.6
+          ],
+          "quaternion": [
+            -0.06446401939346508,
+            -0.6352939061350656,
+            -0.05334415509362761,
+            0.7677241979699718
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-13.jpg",
+      "depth": "frame-13-depth.exr",
+      "confidence": "frame-13-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            1,
+            1.061553955078125,
+            -3
+          ],
+          "quaternion": [
+            -0.011604987909312492,
+            -0.19610240037226326,
+            -0.002320997581862498,
+            0.9805120018613164
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "image": "frame-14.jpg",
+      "depth": "frame-14-depth.exr",
+      "confidence": "frame-14-confidence.png",
+      "source": "generated",
+      "camera": {
+        "extrinsics": {
+          "coordinateSystem": "rub",
+          "position": [
+            -0.9,
+            1.061553955078125,
+            -3
+          ],
+          "quaternion": [
+            -0.0113871858682333,
+            0.21321681929409217,
+            0.002485261146904434,
+            0.9769353834543739
+          ]
+        },
+        "intrinsics": {
+          "cx": 640,
+          "cy": 360,
+          "fx": 843.3008422851562,
+          "fy": 843.3008422851562,
+          "height": 720,
+          "width": 1280
+        }
+      }
+    }
+  ]
+}
